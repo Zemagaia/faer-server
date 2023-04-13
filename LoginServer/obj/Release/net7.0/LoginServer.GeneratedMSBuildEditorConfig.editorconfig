@@ -7,5 +7,5 @@ build_property.InvariantGlobalization =
 build_property.PlatformNeutralAssembly = 
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
-build_property.RootNamespace = LoginServer
+build_property.RootNamespace = AppEngine
 build_property.ProjectDir = /home/a/faer/server/LoginServer/

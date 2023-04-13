@@ -4,14 +4,14 @@
     "/home/a/faer/server/LoginServer/LoginServer.csproj": {}
   },
   "projects": {
-    "/home/a/faer/server/LoginServer/LoginServer.csproj": {
+    "/home/a/faer/server/Common/Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/a/faer/server/LoginServer/LoginServer.csproj",
-        "projectName": "LoginServer",
-        "projectPath": "/home/a/faer/server/LoginServer/LoginServer.csproj",
+        "projectUniqueName": "/home/a/faer/server/Common/Common.csproj",
+        "projectName": "Common",
+        "projectPath": "/home/a/faer/server/Common/Common.csproj",
         "packagesPath": "/home/a/.nuget/packages/",
-        "outputPath": "/home/a/faer/server/LoginServer/obj/",
+        "outputPath": "/home/a/faer/server/Common/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/a/.nuget/NuGet/NuGet.Config"
@@ -25,11 +25,82 @@
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
-            "projectReferences": {
-              "/home/a/faer/server/Shared/Shared.csproj": {
-                "projectPath": "/home/a/faer/server/Shared/Shared.csproj"
-              }
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Dynamitey": {
+              "target": "Package",
+              "version": "[2.0.10.189, )"
+            },
+            "Ionic.Zlib": {
+              "target": "Package",
+              "version": "[1.9.1.5, )"
+            },
+            "NLog": {
+              "target": "Package",
+              "version": "[5.1.2, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3-beta1, )"
+            },
+            "StackExchange.Redis": {
+              "target": "Package",
+              "version": "[2.6.96, )"
             }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.105/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/a/faer/server/DungeonGen/DungeonGen.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/a/faer/server/DungeonGen/DungeonGen.csproj",
+        "projectName": "DungeonGen",
+        "projectPath": "/home/a/faer/server/DungeonGen/DungeonGen.csproj",
+        "packagesPath": "/home/a/.nuget/packages/",
+        "outputPath": "/home/a/faer/server/DungeonGen/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/a/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
           }
         },
         "warningProperties": {
@@ -61,14 +132,14 @@
         }
       }
     },
-    "/home/a/faer/server/Shared/Shared.csproj": {
+    "/home/a/faer/server/GameServer/GameServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/a/faer/server/Shared/Shared.csproj",
-        "projectName": "Shared",
-        "projectPath": "/home/a/faer/server/Shared/Shared.csproj",
+        "projectUniqueName": "/home/a/faer/server/GameServer/GameServer.csproj",
+        "projectName": "GameServer",
+        "projectPath": "/home/a/faer/server/GameServer/GameServer.csproj",
         "packagesPath": "/home/a/.nuget/packages/",
-        "outputPath": "/home/a/faer/server/Shared/obj/",
+        "outputPath": "/home/a/faer/server/GameServer/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/a/.nuget/NuGet/NuGet.Config"
@@ -82,7 +153,14 @@
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "/home/a/faer/server/Common/Common.csproj": {
+                "projectPath": "/home/a/faer/server/Common/Common.csproj"
+              },
+              "/home/a/faer/server/DungeonGen/DungeonGen.csproj": {
+                "projectPath": "/home/a/faer/server/DungeonGen/DungeonGen.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -95,21 +173,79 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
-            "Ionic.Zlib": {
+            "BouncyCastle.NetCore": {
               "target": "Package",
-              "version": "[1.9.1.5, )"
+              "version": "[1.9.0, )"
             },
             "NLog": {
               "target": "Package",
               "version": "[5.1.2, )"
-            },
-            "Newtonsoft.Json": {
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.105/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/a/faer/server/LoginServer/LoginServer.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/a/faer/server/LoginServer/LoginServer.csproj",
+        "projectName": "LoginServer",
+        "projectPath": "/home/a/faer/server/LoginServer/LoginServer.csproj",
+        "packagesPath": "/home/a/.nuget/packages/",
+        "outputPath": "/home/a/faer/server/LoginServer/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/a/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/home/a/faer/server/Common/Common.csproj": {
+                "projectPath": "/home/a/faer/server/Common/Common.csproj"
+              },
+              "/home/a/faer/server/GameServer/GameServer.csproj": {
+                "projectPath": "/home/a/faer/server/GameServer/GameServer.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "NLog": {
               "target": "Package",
-              "version": "[13.0.3, )"
-            },
-            "StackExchange.Redis": {
-              "target": "Package",
-              "version": "[2.6.96, )"
+              "version": "[5.1.2, )"
             }
           },
           "imports": [

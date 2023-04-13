@@ -351,7 +351,7 @@ namespace common
             acc.FlushAsync();
         }
 
-        public RegisterStatus Register(string uuid, string password, bool isGuest, out DbAccount acc)
+        public RegisterStatus Register(string uuid, string password, string username, out DbAccount acc)
         {
             var newAccounts = Resources.Settings.Accounts;
 
@@ -364,9 +364,9 @@ namespace common
             acc = new DbAccount(_db, newAccId)
             {
                 UUID = uuid,
-                Name = GuestNames[(uint)uuid.GetHashCode() % GuestNames.Length],
+                Name = username,
                 Admin = false,
-                NameChosen = false,
+                NameChosen = true,
                 Verified = false,
                 AgeVerified = true,
                 FirstDeath = true,
@@ -377,7 +377,7 @@ namespace common
                 VaultCount = newAccounts.VaultCount,
                 MaxCharSlot = newAccounts.MaxCharSlot,
                 RegTime = DateTime.Now,
-                Guest = isGuest,
+                Guest = false,
                 Fame = newAccounts.Fame,
                 TotalFame = newAccounts.Fame,
                 Credits = newAccounts.Gold,
