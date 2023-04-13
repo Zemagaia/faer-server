@@ -161,23 +161,6 @@
           }
         }
       },
-      "Common/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v7.0",
-        "dependencies": {
-          "Dynamitey": "2.0.10.189",
-          "Ionic.Zlib": "1.9.1.5",
-          "NLog": "5.1.2",
-          "Newtonsoft.Json": "13.0.3-beta1",
-          "StackExchange.Redis": "2.6.96"
-        },
-        "compile": {
-          "bin/placeholder/Common.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Common.dll": {}
-        }
-      },
       "DungeonGen/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
@@ -193,15 +176,32 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "BouncyCastle.NetCore": "1.9.0",
-          "Common": "1.0.0",
           "DungeonGen": "1.0.0",
-          "NLog": "5.1.2"
+          "NLog": "5.1.2",
+          "Shared": "1.0.0"
         },
         "compile": {
           "bin/placeholder/GameServer.dll": {}
         },
         "runtime": {
           "bin/placeholder/GameServer.dll": {}
+        }
+      },
+      "Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Dynamitey": "2.0.10.189",
+          "Ionic.Zlib": "1.9.1.5",
+          "NLog": "5.1.2",
+          "Newtonsoft.Json": "13.0.3-beta1",
+          "StackExchange.Redis": "2.6.96"
+        },
+        "compile": {
+          "bin/placeholder/Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Shared.dll": {}
         }
       }
     }
@@ -623,11 +623,6 @@
         "system.runtime.nuspec"
       ]
     },
-    "Common/1.0.0": {
-      "type": "project",
-      "path": "../Common/Common.csproj",
-      "msbuildProject": "../Common/Common.csproj"
-    },
     "DungeonGen/1.0.0": {
       "type": "project",
       "path": "../DungeonGen/DungeonGen.csproj",
@@ -637,13 +632,18 @@
       "type": "project",
       "path": "../GameServer/GameServer.csproj",
       "msbuildProject": "../GameServer/GameServer.csproj"
+    },
+    "Shared/1.0.0": {
+      "type": "project",
+      "path": "../Shared/Shared.csproj",
+      "msbuildProject": "../Shared/Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
-      "Common >= 1.0.0",
       "GameServer >= 1.0.0",
-      "NLog >= 5.1.2"
+      "NLog >= 5.1.2",
+      "Shared >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -671,11 +671,11 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "/home/a/faer/server/Common/Common.csproj": {
-              "projectPath": "/home/a/faer/server/Common/Common.csproj"
-            },
             "/home/a/faer/server/GameServer/GameServer.csproj": {
               "projectPath": "/home/a/faer/server/GameServer/GameServer.csproj"
+            },
+            "/home/a/faer/server/Shared/Shared.csproj": {
+              "projectPath": "/home/a/faer/server/Shared/Shared.csproj"
             }
           }
         }

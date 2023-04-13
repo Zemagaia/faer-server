@@ -25,7 +25,7 @@ namespace GameServer
 
             Config = args.Length > 0 ? ServerConfig.ReadFile(args[0]) : ServerConfig.ReadFile("gameServer.json");
 
-            LogManager.Configuration.Variables["logDirectory"] = Config.serverSettings.logFolder + "/gameserver";
+            LogManager.Configuration.Variables["logDirectory"] = Config.serverSettings.logFolder + "/game";
             LogManager.Configuration.Variables["buildConfig"] = Utils.GetBuildConfig();
 
             Config.serverInfo.maxPlayers = Config.serverSettings.maxPlayers;

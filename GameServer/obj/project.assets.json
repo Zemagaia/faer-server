@@ -161,7 +161,17 @@
           }
         }
       },
-      "Common/1.0.0": {
+      "DungeonGen/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/DungeonGen.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DungeonGen.dll": {}
+        }
+      },
+      "Shared/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
@@ -172,20 +182,10 @@
           "StackExchange.Redis": "2.6.96"
         },
         "compile": {
-          "bin/placeholder/Common.dll": {}
+          "bin/placeholder/Shared.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Common.dll": {}
-        }
-      },
-      "DungeonGen/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v7.0",
-        "compile": {
-          "bin/placeholder/DungeonGen.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/DungeonGen.dll": {}
+          "bin/placeholder/Shared.dll": {}
         }
       }
     }
@@ -607,23 +607,23 @@
         "system.runtime.nuspec"
       ]
     },
-    "Common/1.0.0": {
-      "type": "project",
-      "path": "../Common/Common.csproj",
-      "msbuildProject": "../Common/Common.csproj"
-    },
     "DungeonGen/1.0.0": {
       "type": "project",
       "path": "../DungeonGen/DungeonGen.csproj",
       "msbuildProject": "../DungeonGen/DungeonGen.csproj"
+    },
+    "Shared/1.0.0": {
+      "type": "project",
+      "path": "../Shared/Shared.csproj",
+      "msbuildProject": "../Shared/Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
       "BouncyCastle.NetCore >= 1.9.0",
-      "Common >= 1.0.0",
       "DungeonGen >= 1.0.0",
-      "NLog >= 5.1.2"
+      "NLog >= 5.1.2",
+      "Shared >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -651,11 +651,11 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "/home/a/faer/server/Common/Common.csproj": {
-              "projectPath": "/home/a/faer/server/Common/Common.csproj"
-            },
             "/home/a/faer/server/DungeonGen/DungeonGen.csproj": {
               "projectPath": "/home/a/faer/server/DungeonGen/DungeonGen.csproj"
+            },
+            "/home/a/faer/server/Shared/Shared.csproj": {
+              "projectPath": "/home/a/faer/server/Shared/Shared.csproj"
             }
           }
         }
