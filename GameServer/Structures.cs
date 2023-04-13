@@ -185,26 +185,8 @@ namespace GameServer
     public struct TimedPosition
     {
         public int Time;
-        public Position Position;
-
-        public static TimedPosition Read(NReader rdr)
-        {
-            TimedPosition ret = new TimedPosition();
-            ret.Time = rdr.ReadInt32();
-            ret.Position = Position.Read(rdr);
-            return ret;
-        }
-
-        public void Write(NWriter wtr)
-        {
-            wtr.Write(Time);
-            Position.Write(wtr);
-        }
-
-        public override string ToString()
-        {
-            return string.Format("{{Time: {0}, Position: {1}}}", Time, Position);
-        }
+        public float X;
+        public float Y;
     }
 
     public struct Position

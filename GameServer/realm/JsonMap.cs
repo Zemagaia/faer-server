@@ -35,8 +35,6 @@ namespace GameServer.realm
                             stats.Add(new KeyValuePair<StatsType, object>(StatsType.Size, Utils.FromString(kv[1]))); break;
                         case "eff":
                             stats.Add(new KeyValuePair<StatsType, object>(StatsType.Effects, Utils.FromString(kv[1]))); break;
-                        case "conn":
-                            stats.Add(new KeyValuePair<StatsType, object>(StatsType.ObjectConnection, Utils.FromString(kv[1]))); break;
                         //case "mtype":
                         //    entity.Stats[StatsType.MerchantMerchandiseType] = Utils.FromString(kv[1]); break;
                         //case "mcount":

@@ -2,7 +2,6 @@
 using common.resources;
 using GameServer.logic;
 using GameServer.logic.transitions;
-using GameServer.networking;
 using GameServer.realm.entities;
 using GameServer.realm.entities.player;
 using GameServer.realm.entities.vendors;
@@ -144,8 +143,6 @@ namespace GameServer.realm
             _x = new SV<float>(this, StatsType.None, 0);
             _y = new SV<float>(this, StatsType.None, 0);
             _conditionEffects1 = new SV<int>(this, StatsType.Effects, 0);
-            _conditionEffects2 = new SV<int>(this, StatsType.Effects2, 0);
-            _petData = new SV<PetData>(this, StatsType.PetData, new PetData());
 
             ObjectType = objType;
             Manager = manager;
@@ -189,8 +186,6 @@ namespace GameServer.realm
                 case StatsType.Size: Size = (int)val; break;
                 case StatsType.AltTextureIndex: AltTextureIndex = (int)val; break;
                 case StatsType.Effects: ConditionEffects = (ConditionEffects)(ulong)val; break;
-                case StatsType.PetData: PetData = new PetData((byte[])val); break;
-                case StatsType.Immunities: Immunities = (int[])val ?? new int[ImmunityCount]; break;
             }
         }
 
@@ -200,9 +195,6 @@ namespace GameServer.realm
             stats[StatsType.Size] = Size;
             stats[StatsType.AltTextureIndex] = AltTextureIndex;
             stats[StatsType.Effects] = _conditionEffects1.GetValue();
-            stats[StatsType.Effects2] = _conditionEffects2.GetValue();
-            stats[StatsType.PetData] = _petData.GetValue();
-            stats[StatsType.Immunities] = Immunities;
         }
 
         public void FromDefinition(ObjectDef def)
@@ -279,13 +271,6 @@ namespace GameServer.realm
                 if (this.Dist(_playerOwner) > 20 && _poTp)
                 {
                     Move(_playerOwner.X, _playerOwner.Y);
-                }
-
-                // dispose entity if their owner has left the world
-                if (_playerOwner.Client.State == ProtocolState.Reconnecting ||
-                    _playerOwner.Client.State == ProtocolState.Disconnected)
-                {
-                    Owner.LeaveWorld(this);
                 }
             }
 
@@ -823,7 +808,7 @@ namespace GameServer.realm
                         Immunities[i] = 0;
                 }
 
-            InvokeStatChange(StatsType.Immunities, Immunities);
+            //InvokeStatChange(StatsType.Immunities, Immunities);
         }
 
         public bool HasConditionEffect(ConditionEffects eff)

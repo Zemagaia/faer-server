@@ -2,7 +2,6 @@
 using common;
 using common.resources;
 using GameServer.logic;
-using GameServer.networking;
 using GameServer.realm.commands;
 using GameServer.realm.setpieces;
 using GameServer.realm.worlds;
@@ -52,7 +51,7 @@ namespace GameServer.realm
         private Thread _network;
         private Thread _logic;
         public NetworkTicker Network { get; private set; }
-        public FLLogicTicker Logic { get; private set; }
+        public LogicTicker Logic { get; private set; }
 
         public readonly ConcurrentDictionary<int, World> Worlds = new();
 
@@ -122,7 +121,7 @@ namespace GameServer.realm
             Log.Info("Starting Realm Manager...");
 
             // start server logic management
-            Logic = new FLLogicTicker(this);
+            Logic = new LogicTicker(this);
             var logic = new Task(() => Logic.TickLoop(), TaskCreationOptions.LongRunning);
             logic.ContinueWith(Program.Stop, TaskContinuationOptions.OnlyOnFaulted);
             logic.Start();
@@ -156,9 +155,8 @@ namespace GameServer.realm
             if (Clients.Keys.Contains(client))
                 Disconnect(client);
 
-            client.Id = Interlocked.Increment(ref _nextClientId);
-            var plrInfo = new PlayerInfo()
-            {
+            //client.Id = Interlocked.Increment(ref _nextClientId);
+            var plrInfo = new PlayerInfo {
                 AccountId = client.Account.AccountId,
                 GuildId = client.Account.GuildId,
                 Name = client.Account.Name,

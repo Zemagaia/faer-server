@@ -1,7 +1,6 @@
 ﻿using System.Globalization;
 using common;
 using common.resources;
-using GameServer.networking.server;
 using GameServer.realm;
 using NLog;
 
@@ -25,7 +24,7 @@ namespace GameServer
 
             Config = args.Length > 0 ? ServerConfig.ReadFile(args[0]) : ServerConfig.ReadFile("gameServer.json");
 
-            LogManager.Configuration.Variables["logDirectory"] = Config.serverSettings.logFolder + "/gameserver";
+            LogManager.Configuration.Variables["logDirectory"] = Config.serverSettings.logFolder + "/game";
             LogManager.Configuration.Variables["buildConfig"] = Utils.GetBuildConfig();
 
             Config.serverInfo.maxPlayers = Config.serverSettings.maxPlayers;
@@ -47,7 +46,6 @@ namespace GameServer
                 var server = new Server(manager,
                     Config.serverInfo.port,
                     Config.serverSettings.maxConnections);
-                server.Start();
 
                 Console.CancelKeyPress += delegate { Shutdown.Set(); };
 

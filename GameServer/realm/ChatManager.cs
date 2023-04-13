@@ -1,5 +1,4 @@
 ﻿using common;
-using GameServer.networking.packets.outgoing;
 using GameServer.realm.entities.player;
 using GameServer.realm.worlds;
 using NLog;
