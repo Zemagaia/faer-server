@@ -1,0 +1,1804 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<Objects>
+	<!-- 0x0200 to 0x02FF -->
+	<Object type="0x0200" id="T0Sword">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xA0</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0201" id="T1Sword">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xA1</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0202" id="T2Sword">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xA2</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0203" id="T3Sword">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xA3</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0204" id="T4Sword">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xA4</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0205" id="T5Sword">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xA5</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0206" id="T6Sword">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xA6</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0207" id="T7Sword">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xA7</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0208" id="T8Sword">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xA8</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+   
+	<Object type="0x0209" id="T0Wand">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xB0</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x020A" id="T1Wand">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xB1</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x020B" id="T2Wand">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xB2</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x020C" id="T3Wand">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xB3</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x020D" id="T4Wand">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xB4</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x020E" id="T5Wand">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xB5</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x020F" id="T6Wand">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xB6</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0210" id="T7Wand">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xB7</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0211" id="T8Wand">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xB8</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+   
+	<Object type="0x0212" id="T0Bow">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xC0</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0213" id="T1Bow">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xC1</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0214" id="T2Bow">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xC2</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0215" id="T3Bow">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xC3</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0216" id="T4Bow">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xC4</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0217" id="T5Bow">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xC5</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0218" id="T6Bow">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xC6</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0219" id="T7Bow">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xC7</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0220" id="T8Bow">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xC8</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	
+	<Object type="0x0221" id="T0Dagger">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xD0</Index>
+		</Texture>
+	</Object>
+	<Object type="0x0222" id="T1Dagger">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xD1</Index>
+		</Texture>
+	</Object>
+	<Object type="0x0223" id="T2Dagger">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xD2</Index>
+		</Texture>
+	</Object>
+	<Object type="0x0224" id="T3Dagger">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xD3</Index>
+		</Texture>
+	</Object>
+	<Object type="0x0225" id="T4Dagger">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xD4</Index>
+		</Texture>
+	</Object>
+	<Object type="0x0226" id="T5Dagger">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xD5</Index>
+		</Texture>
+	</Object>
+	<Object type="0x0227" id="T6Dagger">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xD6</Index>
+		</Texture>
+	</Object>
+	<Object type="0x0228" id="T7Dagger">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xD7</Index>
+		</Texture>
+	</Object>
+	<Object type="0x0229" id="T8Dagger">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xD8</Index>
+		</Texture>
+	</Object>
+ 
+	<Object type="0x022A" id="T0Staff">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xE0</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x022B" id="T1Staff">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xE1</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x022C" id="T2Staff">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xE2</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x022D" id="T3Staff">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xE3</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x022E" id="T4Staff">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xE4</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x022F" id="T5Staff">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xC5</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0230" id="T6Staff">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xE6</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0231" id="T7Staff">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xE7</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0232" id="T8Staff">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xE8</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+ 
+	<Object type="0x0233" id="T0Katana">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xF0</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0234" id="T1Katana">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xF1</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0235" id="T2Katana">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xF2</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0236" id="T3Katana">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xF3</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0237" id="T4Katana">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xF4</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0238" id="T5Katana">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xF5</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0239" id="T6Katana">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xF6</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x023A" id="T7Katana">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xF7</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x023B" id="T8Katana">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered1</File>
+			<Index>0xF8</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+   
+	<Object type="0x023C" id="T0Spell">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0x49</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x023D" id="T1Spell">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0x4A</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x023E" id="T2Spell">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0x4B</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x023F" id="T3Spell">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0x4C</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0240" id="T4Spell">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0x4D</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0241" id="T5Spell">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0x4E</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0242" id="T6Spell">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0x4F</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0243" id="T7Spell">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0x59</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0244" id="T8Spell">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0x5A</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+
+	<Object type="0x0245" id="T0Star">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0xD0</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x0246" id="T1Star">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0xD1</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x0247" id="T2Star">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0xD2</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x0248" id="T3Star">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0xD3</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x0249" id="T4Star">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0xD4</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x024A" id="T5Star">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0xD5</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x024B" id="T6Star">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0xD6</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x024C" id="T7Star">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0xD7</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x024D" id="T8Star">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0xD8</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+  
+	<Object type="0x024E" id="T0Shield">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0xE0</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x024F" id="T1Shield">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0xE1</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0250" id="T2Shield">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0xE2</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0251" id="T3Shield">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0xE3</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0252" id="T4Shield">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0xE4</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0253" id="T5Shield">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0xE5</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0254" id="T6Shield">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0xE6</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0255" id="T7Shield">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0xE7</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0256" id="T8Shield">
+
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0xE8</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	
+	<Object type="0x0257" id="T0Quiver">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0xF0</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0258" id="T1Quiver">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0xF1</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0259" id="T2Quiver">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0xF2</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x025A" id="T3Quiver">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0xF3</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x025B" id="T4Quiver">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0xF4</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x025C" id="T5Quiver">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0xF5</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x025D" id="T6Quiver">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0xF6</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x025E" id="T7Quiver">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0xF7</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x025F" id="T8Quiver">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentTiered2</File>
+			<Index>0xF8</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	
+	<Object type="0x0260" id="Magma Ball">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentCustom</File>
+			<Index>0x06</Index>
+		</Texture>
+		<Rotation>100</Rotation>
+	</Object>
+	<Object type="0x0261" id="Ghost Wand Shot">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentCustom</File>
+			<Index>0x04</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0262" id="Poison Dagger Shot">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentCustom</File>
+			<Index>0x08</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+
+	<Object type="0x0263" id="Blood Drop Small">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x00</Index>
+		</Texture>
+	</Object>
+	<Object type="0x0264" id="Blood Drop Big">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x01</Index>
+		</Texture>
+	</Object>
+	<Object type="0x0265" id="Gold Drop">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x02</Index>
+		</Texture>
+	</Object>
+	<Object type="0x0267" id="Blue Ray">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x03</Index>
+		</Texture>
+	</Object>
+	<Object type="0x0268" id="Red Star Spinner">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x04</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x0269" id="Silver Circle Spinner">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x05</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x026A" id="Green Dart">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x06</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x026B" id="Red Dart">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x07</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x026C" id="Blue Dart">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x08</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x026D" id="Gold Dart">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x09</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x026E" id="Silver Spinner 1">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x0A</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x026F" id="Purple Spinner 1">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x0B</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x0270" id="Gold Spinner 1">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x0C</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x0271" id="Blue Spinner 1">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x0D</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x0272" id="Green Spinner 1">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x0E</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x0273" id="Red Spinner 1">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x0F</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	
+	<Object type="0x0274" id="Brown Wave">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x10</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0276" id="Silver Wave">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x11</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0277" id="Gold Wave Small">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x12</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0278" id="Gold Drop 2">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x13</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0279" id="Gold Wave Big">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x14</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x027A" id="Bolt 1">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x15</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x027B" id="Wooden Wave">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x16</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x027C" id="Wooden Barrel">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x17</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x027D" id="Rum Bottle">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x18</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x027E" id="Ice Shard">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x1A</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x027F" id="Silver Spinner 2">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x1A</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x0280" id="Purple Spinner 2">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x1B</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x0281" id="Gold Spinner 2">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x1C</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x0282" id="Blue Spinner 2">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x1D</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x0283" id="Green Spinner 2">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x1E</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x0284" id="Red Spinner 2">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x1F</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	
+	<Object type="0x0285" id="Fireball">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x20</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x0286" id="Green Blast Small">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x21</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0287" id="Green Soul Spinner">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x22</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x0288" id="Fireblast">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x23</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0289" id="Soulblast">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x24</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x028A" id="Iceblast small">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x25</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x028B" id="Soulblast Small">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x26</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x028C" id="Soulwave">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x27</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x028D" id="Fireblast Big">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x28</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x028E" id="Ice Shard Small">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x29</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x028F" id="Silver Orb">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x2A</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x0290" id="Purple Orb">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x2B</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x0291" id="Gold Orb">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x2C</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x0292" id="Blue Orb">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x2D</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x0293" id="Green Orb">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x2E</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x0294" id="Red Orb">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x2F</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	
+	<Object type="0x0295" id="Grey Spear">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x30</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0296" id="Grey Blast">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x31</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0297" id="Grey Swipe">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x32</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0298" id="Black Blast">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x33</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x0299" id="Red Bolt">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x34</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x029A" id="Gold Bolt">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x35</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x029B" id="Red Wave Big">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x36</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x029C" id="Gold Wave Bigger">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x37</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x029D" id="Red Spinner 3">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x38</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x029E" id="Gold Spinner 3">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x39</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x029F" id="Silver Orb 2">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x3A</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x02A0" id="Purple Orb 2">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x3B</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x02A1" id="Gold Orb 2">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x3C</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x02A2" id="Blue Orb 2">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x3D</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x02A3" id="Green Orb 2">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x3E</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x02A4" id="Red Orb 2">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x3F</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	
+	<Object type="0x02A5" id="Gold Spear">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>040</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x02A6" id="Gold Wave Even Bigger">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x41</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x02A7" id="Gold Slash 1">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x42</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x02A8" id="Gold Spinner 4">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x43</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x02A9" id="Gold Slash 2">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x44</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x02AA" id="Red Spinner 4">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x45</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x02AB" id="Bone Wave Small">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x46</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x02AC" id="Bone Wave Big">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x47</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x02AD" id="Red Spinner 5">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x48</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x02AE" id="Gold Spinner 5">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x49</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x02AF" id="Silver Gem">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x4A</Index>
+		</Texture>
+	</Object>
+	<Object type="0x02B0" id="Purple Gem">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x4B</Index>
+		</Texture>
+	</Object>
+	<Object type="0x02B1" id="Gold Gem">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x4C</Index>
+		</Texture>
+	</Object>
+	<Object type="0x02B2" id="Blue Gem">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x4D</Index>
+		</Texture>
+	</Object>
+	<Object type="0x02B3" id="Green Gem">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x4E</Index>
+		</Texture>
+	</Object>
+	<Object type="0x02B4" id="Red Gem">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x4F</Index>
+		</Texture>
+	</Object>
+	
+	<Object type="0x02B5" id="Gold Slash 3">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x50</Index>
+		</Texture>
+	</Object>
+	<Object type="0x0275" id="Silver Blast">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x5A</Index>
+		</Texture>
+	</Object>
+	<Object type="0x02B6" id="Purple Blast">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x5B</Index>
+		</Texture>
+	</Object>
+	<Object type="0x02B7" id="Gold Blast">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x5C</Index>
+		</Texture>
+	</Object>
+	<Object type="0x02B8" id="Blue Blast">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x5D</Index>
+		</Texture>
+	</Object>
+	<Object type="0x02B9" id="Green Blast">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x5E</Index>
+		</Texture>
+	</Object>
+	<Object type="0x02BA" id="Red Blast">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x5F</Index>
+		</Texture>
+	</Object>
+	
+	<Object type="0x02BB" id="Silver Fireblast">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x6A</Index>
+		</Texture>
+	</Object>
+	<Object type="0x02BC" id="Purple Fireblast">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x6B</Index>
+		</Texture>
+	</Object>
+	<Object type="0x02BD" id="Gold Fireblast">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x6C</Index>
+		</Texture>
+	</Object>
+	<Object type="0x02BE" id="Blue Fireblast">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x6D</Index>
+		</Texture>
+	</Object>
+	<Object type="0x02BF" id="Green Fireblast">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x6E</Index>
+		</Texture>
+	</Object>
+	<Object type="0x02C0" id="Red Fireblast">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x6F</Index>
+		</Texture>
+	</Object>
+	
+	<Object type="0x02C2" id="Greek Alpha">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x7A</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x02C3" id="Greek Beta">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x7B</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x02C4" id="Greek Gamma">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x7C</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x02C5" id="Greek Delta">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x7D</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x02C6" id="Greek Epsilon">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x7E</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x02C7" id="Greek Zeta">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x7F</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x02C8" id="Greek Eta">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x8A</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x02C9" id="Greek Theta">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x8B</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x02CA" id="Greek Iota">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x8C</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x02CB" id="Greek Kappa">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x8D</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x02CC" id="Greek Lambda">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x8E</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x02CD" id="Greek Mu">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x8F</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x02CE" id="Greek Nu">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x9A</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x02CF" id="Greek Xi">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x9B</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x02D0" id="Greek Omicron">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x9C</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x02D1" id="Greek Pi">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x9D</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x02D2" id="Greek Rho">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x9E</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x02D3" id="Greek Sigma">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x9F</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x02D4" id="Greek Tau">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0xAA</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x02D5" id="Greek Upsilon">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0xAB</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x02D6" id="Greek Phi">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0xAC</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x02D7" id="Greek Chi">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0xAD</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x02D8" id="Greek Psi">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0xAE</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<Object type="0x02D9" id="Greek Omega">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0xAF</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	<!-- <Object type="0x0294" id="Greek All">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0xBA</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object> -->
+	
+	<Object type="0x02DA" id="ElemClashOrb">
+		<Class>Projectile</Class>
+		<RandomTexture>
+			<Texture>
+				<File>equipmentCustom</File>
+				<Index>0x60</Index>
+			</Texture>
+			<Texture>
+				<File>equipmentCustom</File>
+				<Index>0x61</Index>
+			</Texture>
+			<Texture>
+				<File>equipmentCustom</File>
+				<Index>0x62</Index>
+			</Texture>
+			<Texture>
+				<File>equipmentCustom</File>
+				<Index>0x63</Index>
+			</Texture>
+		</RandomTexture>
+		<Rotation>80</Rotation>
+	</Object>
+
+	<Object type="0x02DB" id="JFC Cutlass">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x53</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x02DC" id="JFC Hook">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x52</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x02DD" id="Cannonball Small">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>projectileSmall</File>
+			<Index>0x51</Index>
+		</Texture>
+		<Rotation>80</Rotation>
+	</Object>
+	
+	<Object type="0x02DE" id="Cronus Magic 2">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentCustom</File>
+			<Index>0x152</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	<Object type="0x02DF" id="Cronus Magic">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentCustom</File>
+			<Index>0x150</Index>
+		</Texture>
+	</Object>
+	<Object type="0x02E0" id="Conflict Blast">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentCustom</File>
+			<Index>0x160</Index>
+		</Texture>
+	</Object>
+	<Object type="0x02E1" id="Soul Orb">
+		<Class>Projectile</Class>
+		<Texture>
+			<File>equipmentCustom</File>
+			<Index>0x168</Index>
+		</Texture>
+		<AngleCorrection>1</AngleCorrection>
+	</Object>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</Objects>

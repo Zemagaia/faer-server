@@ -1,0 +1,27 @@
+<BehaviorEntries>
+   
+    <BehaviorEntry id="Jim Fancycoat, the Pirate King">
+		<State id="root">
+			<Behavior speed="0.5">Wander</Behavior>
+            <State id="attack1">
+                <Behavior text="Aye! yer skill be a fine cup fer me rum!" broadcast="true">Taunt</Behavior>
+                <Behavior radius="5" projectileIndex="0" predictive="0">Shoot</Behavior>
+            </State>
+		</State>
+	</BehaviorEntry>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</BehaviorEntries>

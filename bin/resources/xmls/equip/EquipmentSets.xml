@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<EquipmentSets>
+	<EquipmentSet type="0x0001" id="Bearer of the Phylactery Set">
+		<Setpiece slot="0" itemtype="0x121C">Equipment</Setpiece>
+		<Setpiece slot="1" itemtype="0x121D">Equipment</Setpiece>
+		<Setpiece slot="2" itemtype="0x121E">Equipment</Setpiece>
+		<Setpiece slot="3" itemtype="0x121F">Equipment</Setpiece>
+		<Setpiece slot="4" itemtype="0x1220">Equipment</Setpiece>
+		<Setpiece slot="5" itemtype="0x1221">Equipment</Setpiece>
+		<ActivateOnEquipAll skinType="0x0601" size="120" color="0x70D584">ChangeSkin</ActivateOnEquipAll>
+		<ActivateOnEquipAll stat="MaximumHP" amount="220">IncrementStat</ActivateOnEquipAll>
+		<ActivateOnEquipAll stat="Stamina" amount="18">IncrementStat</ActivateOnEquipAll>
+		<ActivateOnEquipAll stat="Tenacity" amount="8">IncrementStat</ActivateOnEquipAll>
+		<ActivateOnEquipAll stat="LifeStealKill" amount="25">IncrementStat</ActivateOnEquipAll>
+	</EquipmentSet>
+</EquipmentSets>

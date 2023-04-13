@@ -1,0 +1,36 @@
+<BehaviorEntries>
+    
+    <BehviorEntry id="Jim Fancycoat, the Pirate King">
+		<State id="root">
+            <State id="attack1">
+                <Behavior behavior="Prioritize">
+                    <Behavior speed="0.75" range="6">Follow</Behavior>
+                    <Behavior speed="0.4">Wander</Behavior>
+                </Behavior>
+                <Behavior text="Aye! yer skull be a fine cup fer me rum!">Taunt</Behavior>
+                <Behavior text="I will kill ye quickly! I cannot get me coat messy!">Taunt</Behavior>
+                <Behavior radius="6" count="1" predictive="1" projectileIndex="0">Shoot</Behavior>
+            </State>
+        
+        
+        
+        
+        
+        </State>
+	</BehviorEntry>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</BehaviorEntries>

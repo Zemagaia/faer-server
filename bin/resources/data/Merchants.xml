@@ -1,0 +1,61 @@
+<Merchants>
+    
+    <!-- Offensive Equipment -->
+    <List region="Store 1" currency="Fame" starsRequired="0">
+        <!-- Weapons -->
+        <Item price="1000">Ruby Plated Dagger</Item>
+        <Item price="1000">Ruby-Reinforced Longbow</Item>
+        <Item price="1000">Staff of Diabolic Secrets</Item>
+        <Item price="1000">Wand of Dark Magic</Item>
+        <Item price="1000">Adamant Great Sword</Item>
+        <Item price="1000">Demon's Edge</Item>
+        
+        <!-- Abilities -->
+        <Item price="1000">Cloak of the Red Agent</Item>
+        <Item price="1000">Quiver of the Crimson Elf</Item>
+        <Item price="1000">Magic Nova Spell</Item>
+        <Item price="1000">Tome of Divine Favor</Item>
+        <Item price="1000">Helm of the Great General</Item>
+        <Item price="1000">Colossus Shield</Item>
+        <Item price="1000">Seal of the Holy Warrior</Item>
+        <Item price="1000">Nightwing Vial</Item>
+        <Item price="1000">Lifedrinker Skull</Item>
+        <Item price="1000">T6 Orb</Item>
+        <Item price="1000">Scepter of Skybolts</Item>
+        <Item price="1000">Doom Circle</Item>
+        <Item price="1000">T6 Totem</Item>
+        <Item price="1000">Deck of the Ancient</Item>
+        <Item price="1000">T6 Rune</Item>
+    </List>
+    
+    
+    <!-- Defensive Equipment -->
+    <List region="Store 2" currency="Fame" starsRequired="0">
+        <!-- Weak Armors -->
+        <Item price="100">Robe of the Conjurer</Item>
+        <Item price="100">Gold-Studded Armor</Item>
+        <Item price="100">Golden Chestplate</Item>
+        
+        <!-- Strong Armors-->
+        <Item price="1000">Robe of the Grand Sorcerer</Item>
+        <Item price="1000">Wyvern Skin Armor</Item>
+        <Item price="1000">Dragonscale Chestplate</Item>
+        
+        <!--Rings-->
+        <Item price="250">Golden Ring</Item>
+        <Item price="1000">Ruby Circlet</Item>
+    </List>
+
+
+    <!-- Keys -->
+    <List region="Store 3" currency="Fame" starsRequired="0">
+        <Item price="500">Magic Potion</Item>
+    </List>
+
+
+    <!-- Other Consumables -->
+    <List region="Store 4" currency="Fame" starsRequired="0">
+        <Item price="500">Health Potion</Item>
+    </List>
+    
+</Merchants>

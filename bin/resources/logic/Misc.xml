@@ -1,0 +1,17 @@
+<BehaviorEntries>
+    
+    <BehaviorEntry id="White Fountain">
+        <State id="root">
+            <Behavior range="7.5">HealPlayer</Behavior>
+        </State>
+    </BehaviorEntry>
+	
+	<BehaviorEntry id="Skeletou">
+		<State id="root">
+		</State>
+		<!--<LootDef item="Skull of Cursed Apparitions" probability="1">ItemLoot</LootDef>-->
+		<LootDef item="Elemental Clash" probability="1">ItemLoot</LootDef>
+		<LootDef item="Training Wand" probability="1">ItemLoot</LootDef>
+	</BehaviorEntry>
+    
+</BehaviorEntries>

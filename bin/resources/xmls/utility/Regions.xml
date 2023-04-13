@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<Regions>
+	<Region type="0x0000" id="Spawn">
+		<Color>0x00FF00</Color>
+	</Region>
+	<Region type="0x0001" id="Realm Portals">
+		<Color>0xFF0000</Color>
+	</Region>
+	<Region type="0x0002" id="Store 1">
+		<Color>0xFFDCF3</Color>
+	</Region>
+	<Region type="0x0003" id="Store 2">
+		<Color>0xD9FFF3</Color>
+	</Region>
+	<Region type="0x0004" id="Store 3">
+		<Color>0xC6B1FF</Color>
+	</Region>
+	<Region type="0x0005" id="Store 4">
+		<Color>0xB1DAFF</Color>
+	</Region>
+	<Region type="0x0006" id="Store 5">
+		<Color>0xFCFFB1</Color>
+	</Region>
+	<Region type="0x0007" id="Store 6">
+		<Color>0xD5FFB9</Color>
+	</Region>
+	<Region type="0x0008" id="Store 7">
+		<Color>0x80D186</Color>
+	</Region>
+	<Region type="0x0009" id="Store 8">
+		<Color>0xEBE310</Color>
+	</Region>
+	<Region type="0x000A" id="Store 9">
+		<Color>0xAB8A00</Color>
+	</Region>
+	<Region type="0x000B" id="Store 10">
+		<Color>0xCC6633</Color>
+	</Region>
+	<Region type="0x000C" id="Store 11">
+		<Color>0x009900</Color>
+	</Region>
+	<Region type="0x000D" id="Store 12">
+		<Color>0xCC3399</Color>
+	</Region>
+	<Region type="0x000E" id="Store 13">
+		<Color>0x660033</Color>
+	</Region>
+	<Region type="0x000F" id="Store 14">
+		<Color>0x663366</Color>
+	</Region>
+	<Region type="0x0010" id="Store 15">
+		<Color>0x9966FF</Color>
+	</Region>
+	<Region type="0x0011" id="Store 16">
+		<Color>0x666699</Color>
+	</Region>
+	<Region type="0x0012" id="Store 17">
+		<Color>0x333399</Color>
+	</Region>
+	<Region type="0x0013" id="Store 18">
+		<Color>0x003399</Color>
+	</Region>
+	<Region type="0x0014" id="Store 19">
+		<Color>0x339966</Color>
+	</Region>
+	<Region type="0x0015" id="Store 20">
+		<Color>0xFFFF66</Color>
+	</Region>
+	<Region type="0x0016" id="Vault">
+		<Color>0x828492</Color>
+	</Region>
+	<Region type="0x0017" id="Gifting Chest">
+		<Color>0x424452</Color>
+	</Region>
+	<Region type="0x0018" id="PetRegion">
+		<Color>0x424400</Color>
+	</Region>
+	<Region type="0x0019" id="Safezone">
+		<Color>0x615D6B</Color>
+	</Region>
+	<Region type="0x001A" id="Biome Valley">
+		<Color>0x404040</Color>
+	</Region>
+	<Region type="0x001B" id="Biome Hallowed">
+		<Color>0xAEA7D3</Color>
+	</Region>
+	<Region type="0x001C" id="Biome Fungal Forest">
+		<Color>0x876700</Color>
+	</Region>
+	<Region type="0x001D" id="Biome Desert">
+		<Color>0xFFCE30</Color>
+	</Region>
+	<Region type="0x001E" id="Biome Elvish Wood">
+		<Color>0xFFFF00</Color>
+	</Region>
+	<Region type="0x001F" id="Biome Snowy Peaks">
+		<Color>0xA0A0A0</Color>
+	</Region>
+	<Region type="0x0020" id="Biome Scorch">
+		<Color>0x606060</Color>
+	</Region>
+	<Region type="0x0021" id="Biome Forest">
+		<Color>0x00BF23</Color>
+	</Region>
+	<Region type="0x0022" id="Biome Rainforest">
+		<Color>0x008718</Color>
+	</Region>
+	<Region type="0x0023" id="Biome Coastal Forest">
+		<Color>0x00510E</Color>
+	</Region>
+	<Region type="0x0024" id="Biome Swamp">
+		<Color>0x8A8C1F</Color>
+	</Region>
+	<Region type="0x0025" id="Biome Ocean">
+		<Color>0x7777FF</Color>
+	</Region>
+	<Region type="0x0026" id="Biome Ocean Unwalk">
+		<Color>0x3A3AFF</Color>
+	</Region>
+	<Region type="0x0027" id="Biome Deep Forest">
+		<Color>0x6A8400</Color>
+	</Region>
+	
+
+</Regions>

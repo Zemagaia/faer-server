@@ -1,0 +1,947 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<Objects>
+	<!-- 0x0500 to 0x05FF -->
+	<Object type="0x0500" id="Small Fungus">
+		<Class>GameObject</Class>
+		<Texture>
+			<File>realmEnvironment</File>
+			<Index>0x7D</Index>
+		</Texture>
+		<ShadowSize>40</ShadowSize>
+		<Static/>
+		<Size>70</Size>
+	</Object>
+	<Object type="0x0501" id="Large Fungus">
+		<Class>GameObject</Class>
+		<Texture>
+			<File>realmEnvironment</File>
+			<Index>0x7D</Index>
+		</Texture>
+		<ShadowSize>80</ShadowSize>
+		<Static/>
+	</Object>
+	<Object type="0x0502" id="Flowers">
+		<Class>GameObject</Class>
+		<RandomTexture>
+			<Texture>
+				<File>realmEnvironment</File>
+				<Index>0x79</Index>
+			</Texture>
+			<Texture>
+				<File>realmEnvironment</File>
+				<Index>0x7A</Index>
+			</Texture>
+		</RandomTexture>
+		<DrawOnGround/>
+		<Static/>
+	</Object>
+	<Object type="0x0503" id="Burning Rock">
+		<Class>GameObject</Class>
+		<Texture>
+			<File>realmEnvironment</File>
+			<Index>0x7B</Index>
+		</Texture>
+		<HitSound>monster/rocks_hit</HitSound>
+		<DeathSound>monster/rocks_death</DeathSound>
+		<Static/>
+		<OccupySquare/>
+	</Object>
+	<Object type="0x0504" id="Tall Tree">
+		<Class>GameObject</Class>
+		<RandomTexture>
+			<Texture>
+				<File>realmEnvironment</File>
+				<Index>0x05</Index>
+			</Texture>
+			<Texture>
+				<File>realmEnvironment</File>
+				<Index>0x06</Index>
+			</Texture>
+			<Texture>
+				<File>realmEnvironment</File>
+				<Index>0x07</Index>
+			</Texture>
+			<Texture>
+				<File>realmEnvironment</File>
+				<Index>0x08</Index>
+			</Texture>
+		</RandomTexture>
+		<MinSize>130</MinSize>
+		<MaxSize>160</MaxSize>
+		<SizeStep>5</SizeStep>
+		<Static/>
+		<OccupySquare/>
+	</Object>
+	<Object type="0x0505" id="Ash Pile">
+		<Class>GameObject</Class>
+		<Texture>
+			<File>realmEnvironment</File>
+			<Index>0x7D</Index>
+		</Texture>
+		<ShadowSize>40</ShadowSize>
+		<Static/>
+		<Size>70</Size>
+	</Object>
+	<!--0x0506 and 0x0507-->
+	<Object type="0x0508" id="Golden Tree">
+		<Class>GameObject</Class>
+		<RandomTexture>
+			<Texture>
+				<File>realmEnvironment</File>
+				<Index>0x00</Index>
+			</Texture>
+			<Texture>
+				<File>realmEnvironment</File>
+				<Index>0x01</Index>
+			</Texture>
+			<Texture>
+				<File>realmEnvironment</File>
+				<Index>0x02</Index>
+			</Texture>
+		</RandomTexture>
+		<MinSize>130</MinSize>
+		<MaxSize>160</MaxSize>
+		<SizeStep>5</SizeStep>
+		<Static/>
+		<OccupySquare/>
+	</Object>
+	<!--0x0509 to 0x050C-->
+	<Object type="0x050D" id="Tree">
+		<Class>GameObject</Class>
+		<RandomTexture>
+			<Texture>
+				<File>realmEnvironment</File>
+				<Index>0x72</Index>
+			</Texture>
+			<Texture>
+				<File>realmEnvironment</File>
+				<Index>0x73</Index>
+			</Texture>
+		</RandomTexture>
+		<HitSound>monster/trees_hit</HitSound>
+		<DeathSound>monster/tress_death</DeathSound>
+		<MinSize>130</MinSize>
+		<MaxSize>160</MaxSize>
+		<SizeStep>5</SizeStep>
+		<Static/>
+		<XpMult>0.0</XpMult>
+		<OccupySquare/>
+	</Object>
+	<Object type="0x050E" id="Golden Bush">
+		<Class>GameObject</Class>
+		<Texture>
+			<File>realmEnvironment</File>
+			<Index>0x30</Index>
+		</Texture>
+		<ShadowSize>75</ShadowSize>
+		<Static/>
+	</Object>
+	<Object type="0x050F" id="Rock">
+		<Class>GameObject</Class>
+		<Texture>
+			<File>realmEnvironment</File>
+			<Index>0x7B</Index>
+		</Texture>
+		<HitSound>monster/rocks_hit</HitSound>
+		<DeathSound>monster/rocks_death</DeathSound>
+		<Static/>
+		<OccupySquare/>
+	</Object>
+	<!--0x0510-->
+	<Object type="0x0511" id="Large Cactus">
+		<Class>GameObject</Class>
+		<RandomTexture>
+			<Texture>
+				<File>realmEnvironment</File>
+				<Index>0x20</Index>
+			</Texture>
+			<Texture>
+				<File>realmEnvironment</File>
+				<Index>0x21</Index>
+			</Texture>
+			<Texture>
+				<File>realmEnvironment</File>
+				<Index>0x22</Index>
+			</Texture>
+		</RandomTexture>
+		<MinSize>130</MinSize>
+		<MaxSize>160</MaxSize>
+		<SizeStep>5</SizeStep>
+		<ShadowSize>75</ShadowSize>
+		<Static/>
+		<OccupySquare/>
+	</Object>
+	<Object type="0x0512" id="Cactus">
+		<Class>GameObject</Class>
+		<RandomTexture>
+			<Texture>
+				<File>realmEnvironment</File>
+				<Index>0x23</Index>
+			</Texture>
+			<Texture>
+				<File>realmEnvironment</File>
+				<Index>0x24</Index>
+			</Texture>
+		</RandomTexture>
+		<MinSize>130</MinSize>
+		<MaxSize>160</MaxSize>
+		<SizeStep>5</SizeStep>
+		<ShadowSize>50</ShadowSize>
+		<Static/>
+		<OccupySquare/>
+		<Size>80</Size>
+	</Object>
+	<Object type="0x0513" id="Flowering Cactus">
+		<Class>GameObject</Class>
+		<RandomTexture>
+			<Texture>
+				<File>realmEnvironment</File>
+				<Index>0x25</Index>
+			</Texture>
+			<Texture>
+				<File>realmEnvironment</File>
+				<Index>0x26</Index>
+			</Texture>
+			<Texture>
+				<File>realmEnvironment</File>
+				<Index>0x27</Index>
+			</Texture>
+			<Texture>
+				<File>realmEnvironment</File>
+				<Index>0x28</Index>
+			</Texture>
+		</RandomTexture>
+		<MinSize>130</MinSize>
+		<MaxSize>160</MaxSize>
+		<SizeStep>5</SizeStep>
+		<Static/>
+		<OccupySquare/>
+	</Object>
+	<!--0x0514 to 0x052C-->
+	<Object type="0x052D" id="Dead Bush">
+		<Class>GameObject</Class>
+		<Texture>
+			<File>realmEnvironment</File>
+			<Index>0x51</Index>
+		</Texture>
+		<ShadowSize>50</ShadowSize>
+		<Static/>
+	</Object>
+	<Object type="0x052E" id="Dying Bush">
+		<Class>GameObject</Class>
+		<Texture>
+			<File>realmEnvironment</File>
+			<Index>0x51</Index>
+		</Texture>
+		<ShadowSize>50</ShadowSize>
+		<Static/>
+	</Object>
+	<Object type="0x052F" id="Tumbleweed">
+		<Class>GameObject</Class>
+		<Texture>
+			<File>realmEnvironment</File>
+			<Index>0x51</Index>
+		</Texture>
+		<ShadowSize>50</ShadowSize>
+		<Static/>
+		<Size>80</Size>
+	</Object>
+	<!--0x052F to 0x0538-->
+	<Object type="0x0539" id="Sporing Fungi">
+		<Class>GameObject</Class>
+		<Texture>
+			<File>realmEnvironment</File>
+			<Index>0x7D</Index>
+		</Texture>
+		<ShadowSize>90</ShadowSize>
+		<Static/>
+		<Size>80</Size>
+	</Object>
+	<!--0x053A to 0x053D-->
+	<Object type="0x053E" id="Lily Pads">
+		<Class>GameObject</Class>
+		<RandomTexture>
+			<Texture>
+				<File>realmEnvironment</File>
+				<Index>0x71</Index>
+			</Texture>
+			<Texture>
+				<File>realmEnvironment</File>
+				<Index>0x7f</Index>
+			</Texture>
+		</RandomTexture>
+		<DrawOnGround/>
+		<Static/>
+	</Object>
+	<Object type="0x053F" id="Mud Pile">
+		<Class>GameObject</Class>
+		<Texture>
+			<File>realmEnvironment</File>
+			<Index>0x77</Index>
+		</Texture>
+		<ShadowSize>50</ShadowSize>
+		<Static/>
+	</Object>
+	<Object type="0x0540" id="Shrub">
+		<Class>GameObject</Class>
+		<Texture>
+			<File>realmEnvironment</File>
+			<Index>0x78</Index>
+		</Texture>
+		<ShadowSize>75</ShadowSize>
+		<Static/>
+	</Object>
+	<Object type="0x0541" id="Bush">
+		<Class>GameObject</Class>
+		<Texture>
+			<File>realmEnvironment</File>
+			<Index>0x77</Index>
+		</Texture>
+		<ShadowSize>75</ShadowSize>
+		<Static/>
+	</Object>
+	<Object type="0x0542" id="Cherry Tree">
+		<Class>GameObject</Class>
+		<RandomTexture>
+			<Texture>
+				<File>realmEnvironment</File>
+				<Index>0x16</Index>
+			</Texture>
+			<Texture>
+				<File>realmEnvironment</File>
+				<Index>0x17</Index>
+			</Texture>
+			<Texture>
+				<File>realmEnvironment</File>
+				<Index>0x18</Index>
+			</Texture>
+		</RandomTexture>
+		<Static/>
+		<MinSize>120</MinSize>
+		<MaxSize>140</MaxSize>
+		<SizeStep>20</SizeStep>
+		<OccupySquare/>
+	</Object>
+	<Object type="0x0543" id="Tree Leafless">
+		<Class>GameObject</Class>
+		<Texture>
+			<File>realmEnvironment</File>
+			<Index>0x74</Index>
+		</Texture>
+		<HitSound>monster/trees_hit</HitSound>
+		<DeathSound>monster/tress_death</DeathSound>
+		<MinSize>130</MinSize>
+		<MaxSize>160</MaxSize>
+		<SizeStep>5</SizeStep>
+		<Static/>
+		<XpMult>0.0</XpMult>
+		<OccupySquare/>
+	</Object>
+	<Object type="0x0544" id="Tree Dead">
+		<Class>GameObject</Class>
+		<Texture>
+			<File>realmEnvironment</File>
+			<Index>0x75</Index>
+		</Texture>
+		<HitSound>monster/trees_hit</HitSound>
+		<DeathSound>monster/tress_death</DeathSound>
+		<MinSize>130</MinSize>
+		<MaxSize>160</MaxSize>
+		<SizeStep>5</SizeStep>
+		<Static/>
+		<XpMult>0.0</XpMult>
+		<OccupySquare/>
+	</Object>
+	<Object type="0x0545" id="Tree Stump">
+		<Class>GameObject</Class>
+		<Texture>
+			<File>realmEnvironment</File>
+			<Index>0x50</Index>
+		</Texture>
+		<ShadowSize>50</ShadowSize>
+		<Static/>
+	</Object>
+
+	<Object type="0x054A" id="Pirate">
+		<Group>Pirates</Group>
+		<Enemy/>
+		<Class>Character</Class>
+		<AnimatedTexture>
+			<File>realmChars</File>
+			<Index>0</Index>
+		</AnimatedTexture>
+		<HitSound>monster/pirates_hit</HitSound>
+		<DeathSound>monster/pirates_death</DeathSound>
+		<Size>100</Size>
+		<MaxHitPoints>120</MaxHitPoints>
+		<Defense>0</Defense>
+		<Resistance>0</Resistance>
+		<Agility>7</Agility>
+		<Tenacity>0</Tenacity>
+		<Projectile id="0">
+			<ObjectId>T1Sword</ObjectId>
+			<Damage>4</Damage>
+			<Speed>40</Speed>
+			<LifetimeMS>600</LifetimeMS>
+			<DamageType>Physical</DamageType>
+		</Projectile>
+		<Projectile id="1">
+			<ObjectId>Rum Bottle</ObjectId>
+			<Damage>6</Damage>
+			<Speed>40</Speed>
+			<LifetimeMS>600</LifetimeMS>
+			<DamageType>Magical</DamageType>
+		</Projectile>
+	</Object>
+	<Object type="0x054B" id="Piratess">
+		<Group>Pirates</Group>
+		<Enemy/>
+		<Class>Character</Class>
+		<AnimatedTexture>
+			<File>realmChars</File>
+			<Index>1</Index>
+		</AnimatedTexture>
+		<HitSound>monster/pirates_hit</HitSound>
+		<DeathSound>monster/pirates_death</DeathSound>
+		<Size>100</Size>
+		<MaxHitPoints>120</MaxHitPoints>
+		<Defense>0</Defense>
+		<Resistance>0</Resistance>
+		<Agility>9</Agility>
+		<Tenacity>0</Tenacity>
+		<Projectile id="0">
+			<ObjectId>T1Sword</ObjectId>
+			<Damage>4</Damage>
+			<Speed>40</Speed>
+			<LifetimeMS>600</LifetimeMS>
+			<DamageType>Physical</DamageType>
+		</Projectile>
+		<Projectile id="1">
+			<ObjectId>Rum Bottle</ObjectId>
+			<Damage>6</Damage>
+			<Speed>40</Speed>
+			<LifetimeMS>600</LifetimeMS>
+			<DamageType>Magical</DamageType>
+		</Projectile>
+	</Object>
+	
+	<Object type="0x054C" id="Golden Scorpion">
+		<Group>Scorpions</Group>
+		<Enemy/>
+		<Class>Character</Class>
+		<AnimatedTexture>
+			<File>realmChars</File>
+			<Index>2</Index>
+		</AnimatedTexture>
+		<HitSound>monster/scorpions_hit</HitSound>
+		<DeathSound>monster/scorpions_death</DeathSound>
+		<Size>155</Size>
+		<MaxHitPoints>150</MaxHitPoints>
+		<Defense>10</Defense>
+		<Resistance>10</Resistance>
+		<Agility>5</Agility>
+		<Tenacity>0</Tenacity>
+		<Projectile id="0">
+			<ObjectId>Soulblast Small</ObjectId>
+			<Damage>7</Damage>
+			<Speed>40</Speed>
+			<LifetimeMS>2000</LifetimeMS>
+			<DamageType>Magical</DamageType>
+		</Projectile>
+	</Object>
+	<Object type="0x054D" id="Scorpion Warrior">
+		<Group>Scorpions</Group>
+		<Enemy />
+		<Class>Character</Class>
+		<AnimatedTexture>
+			<File>realmChars</File>
+			<Index>3</Index>
+		</AnimatedTexture>
+		<HitSound>monster/scorpions_hit</HitSound>
+		<DeathSound>monster/scorpions_death</DeathSound>
+		<Size>100</Size>
+		<MaxHitPoints>50</MaxHitPoints>
+		<Defense>3</Defense>
+		<Resistance>3</Resistance>
+		<Agility>6</Agility>
+		<Tenacity>0</Tenacity>
+		<Projectile id="0">
+			<ObjectId>T0Wand</ObjectId>
+			<Damage>7</Damage>
+			<Speed>40</Speed>
+			<LifetimeMS>2000</LifetimeMS>
+			<DamageType>Magical</DamageType>
+		</Projectile>
+	</Object>
+	
+	<Object type="0x054E" id="Bandit Leader">
+		<Group>Bandits</Group>
+		<Enemy/>
+		<Class>Character</Class>
+		<AnimatedTexture>
+			<File>realmChars</File>
+			<Index>6</Index>
+		</AnimatedTexture>
+		<HitSound>monster/elves_hit</HitSound>
+		<DeathSound>monster/elves_death</DeathSound>
+		<Size>150</Size>
+		<MaxHitPoints>310</MaxHitPoints>
+		<Defense>3</Defense>
+		<Resistance>3</Resistance>
+		<Agility>8</Agility>
+		<Tenacity>0</Tenacity>
+		<Projectile id="0">
+			<ObjectId>T0Dagger</ObjectId>
+			<Damage>9</Damage>
+			<Speed>60</Speed>
+			<Size>60</Size>
+			<LifetimeMS>800</LifetimeMS>
+			<DamageType>Physical</DamageType>
+		</Projectile>
+		<Projectile id="1">
+			<ObjectId>Gold Drop</ObjectId>
+			<Damage>12</Damage>
+			<Speed>60</Speed>
+			<Size>60</Size>
+			<LifetimeMS>800</LifetimeMS>
+			<DamageType>Physical</DamageType>
+		</Projectile>
+	</Object>
+	<Object type="0x054F" id="Bandit Enemy">
+		<Group>Bandits</Group>
+		<DisplayId>Bandit</DisplayId>
+		<Enemy/>
+		<Class>Character</Class>
+		<AnimatedTexture>
+			<File>realmChars</File>
+			<Index>7</Index>
+		</AnimatedTexture>
+		<HitSound>monster/elves_hit</HitSound>
+		<DeathSound>monster/elves_death</DeathSound>
+		<Size>100</Size>
+		<MaxHitPoints>200</MaxHitPoints>
+		<Defense>3</Defense>
+		<Resistance>3</Resistance>
+		<Agility>8</Agility>
+		<Tenacity>0</Tenacity>
+		<Projectile id="0">
+			<ObjectId>T0Dagger</ObjectId>
+			<Damage>8</Damage>
+			<Speed>60</Speed>
+			<Size>60</Size>
+			<LifetimeMS>600</LifetimeMS>
+			<DamageType>Physical</DamageType>
+		</Projectile>
+		<Projectile id="1">
+			<ObjectId>T1Sword</ObjectId>
+			<Damage>10</Damage>
+			<Speed>60</Speed>
+			<Size>60</Size>
+			<LifetimeMS>1000</LifetimeMS>
+			<DamageType>Physical</DamageType>
+		</Projectile>
+	</Object>
+	
+	<Object type="0x0550" id="Hobbit Mage">
+		<Enemy/>
+		<Class>Character</Class>
+		<AnimatedTexture>
+			<File>realmChars</File>
+			<Index>10</Index>
+		</AnimatedTexture>
+		<HitSound>monster/hobbits_hit</HitSound>
+		<DeathSound>monster/hobbits_death</DeathSound>
+		<Size>88</Size>
+		<MaxHitPoints>350</MaxHitPoints>
+		<Defense>2</Defense>
+		<Projectile id="0">
+			<ObjectId>Iceblast small</ObjectId>
+			<Damage>25</Damage>
+			<Speed>50</Speed>
+			<LifetimeMS>340</LifetimeMS>
+		</Projectile>
+		<Projectile id="1">
+			<ObjectId>Ice Shard</ObjectId>
+			<Damage>35</Damage>
+			<Speed>50</Speed>
+			<LifetimeMS>340</LifetimeMS>
+		</Projectile>
+		<Projectile id="2">
+			<ObjectId>Blue Fireblast</ObjectId>
+			<Damage>45</Damage>
+			<Speed>50</Speed>
+			<LifetimeMS>340</LifetimeMS>
+		</Projectile>
+	</Object>
+	<Object type="0x0551" id="Hobbit Archer">
+		<Enemy/>
+		<Class>Character</Class>
+		<AnimatedTexture>
+			<File>realmChars</File>
+			<Index>9</Index>
+		</AnimatedTexture>
+		<HitSound>monster/hobbits_hit</HitSound>
+		<DeathSound>monster/hobbits_death</DeathSound>
+		<Size>88</Size>
+		<MaxHitPoints>300</MaxHitPoints>
+		<Defense>2</Defense>
+		<Projectile id="0">
+			<ObjectId>Green Dart</ObjectId>
+			<Damage>20</Damage>
+			<Speed>60</Speed>
+			<LifetimeMS>2000</LifetimeMS>
+		</Projectile>
+	</Object>
+	<Object type="0x0552" id="Hobbit Rogue">
+		<Enemy/>
+		<Class>Character</Class>
+		<AnimatedTexture>
+			<File>realmChars</File>
+			<Index>8</Index>
+		</AnimatedTexture>
+		<HitSound>monster/hobbits_hit</HitSound>
+		<DeathSound>monster/hobbits_death</DeathSound>
+		<Size>88</Size>
+		<MaxHitPoints>300</MaxHitPoints>
+		<Defense>2</Defense>
+		<Projectile id="0">
+			<ObjectId>T1Dagger</ObjectId>
+			<Damage>25</Damage>
+			<Speed>50</Speed>
+			<LifetimeMS>800</LifetimeMS>
+		</Projectile>
+	</Object>
+	
+	<Object type="0x0553" id="Undead Hobbit Rogue">
+		<Enemy/>
+		<Class>Character</Class>
+		<AnimatedTexture>
+			<File>realmChars</File>
+			<Index>11</Index>
+		</AnimatedTexture>
+		<HitSound>monster/undead_hobbits_hit</HitSound>
+		<DeathSound>monster/undead_hobbits_death</DeathSound>
+		<Size>88</Size>
+		<MaxHitPoints>330</MaxHitPoints>
+		<Defense>2</Defense>
+		<Projectile id="0">
+			<ObjectId>T1Dagger</ObjectId>
+			<Damage>30</Damage>
+			<Speed>60</Speed>
+			<LifetimeMS>800</LifetimeMS>
+		</Projectile>
+	</Object>
+	<Object type="0x0554" id="Undead Hobbit Archer">
+		<Enemy/>
+		<Class>Character</Class>
+		<AnimatedTexture>
+			<File>realmChars</File>
+			<Index>12</Index>
+		</AnimatedTexture>
+		<HitSound>monster/undead_hobbits_hit</HitSound>
+		<DeathSound>monster/undead_hobbits_death</DeathSound>
+		<Size>75</Size>
+		<MaxHitPoints>345</MaxHitPoints>
+		<Defense>0</Defense>
+		<Projectile id="0">
+			<ObjectId>Green Dart</ObjectId>
+			<Damage>32</Damage>
+			<Speed>60</Speed>
+			<LifetimeMS>2000</LifetimeMS>
+		</Projectile>
+	</Object>
+	<Object type="0x0555" id="Undead Hobbit Mage">
+		<Enemy/>
+		<Class>Character</Class>
+		<AnimatedTexture>
+			<File>realmChars</File>
+			<Index>13</Index>
+		</AnimatedTexture>
+		<HitSound>monster/undead_hobbits_hit</HitSound>
+		<DeathSound>monster/undead_hobbits_death</DeathSound>
+		<Size>100</Size>
+		<MaxHitPoints>360</MaxHitPoints>
+		<Defense>12</Defense>
+		<Projectile id="0">
+			<ObjectId>Gold Drop</ObjectId>
+			<Damage>30</Damage>
+			<Speed>50</Speed>
+			<LifetimeMS>340</LifetimeMS>
+		</Projectile>
+		<Projectile id="1">
+			<ObjectId>Fireblast</ObjectId>
+			<Damage>35</Damage>
+			<Speed>50</Speed>
+			<LifetimeMS>340</LifetimeMS>
+		</Projectile>
+		<Projectile id="2">
+			<ObjectId>Purple Blast</ObjectId>
+			<Damage>35</Damage>
+			<Speed>50</Speed>
+			<LifetimeMS>340</LifetimeMS>
+		</Projectile>
+		<Projectile id="3">
+			<ObjectId>Gold Drop 2</ObjectId>
+			<Damage>40</Damage>
+			<Speed>60</Speed>
+			<LifetimeMS>1100</LifetimeMS>
+			<Size>150</Size>
+		</Projectile>
+	</Object>
+	
+	<Object type="0x0556" id="Goblin Rogue">
+		<Enemy/>
+		<Class>Character</Class>
+		<AnimatedTexture>
+			<File>realmChars</File>
+			<Index>14</Index>
+		</AnimatedTexture>
+		<HitSound>monster/goblins_hit</HitSound>
+		<DeathSound>monster/goblins_death</DeathSound>
+		<Size>75</Size>
+		<MaxHitPoints>25</MaxHitPoints>
+		<Defense>3</Defense>
+		<Projectile id="0">
+			<ObjectId>T1Dagger</ObjectId>
+			<Damage>35</Damage>
+			<Speed>60</Speed>
+			<LifetimeMS>800</LifetimeMS>
+		</Projectile>
+	</Object>
+	<Object type="0x0557" id="Goblin Warrior">
+		<Enemy/>
+		<Class>Character</Class>
+		<AnimatedTexture>
+			<File>realmChars</File>
+			<Index>15</Index>
+		</AnimatedTexture>
+		<HitSound>monster/goblins_hit</HitSound>
+		<DeathSound>monster/goblins_death</DeathSound>
+		<Size>75</Size>
+		<MaxHitPoints>360</MaxHitPoints>
+		<Defense>12</Defense>
+		<Projectile id="0">
+			<ObjectId>T1Sword</ObjectId>
+			<Damage>40</Damage>
+			<Speed>60</Speed>
+			<LifetimeMS>600</LifetimeMS>
+		</Projectile>
+	</Object>
+	<Object type="0x0558" id="Goblin Mage">
+		<Enemy />
+		<Class>Character</Class>
+		<AnimatedTexture>
+			<File>realmChars</File>
+			<Index>16</Index>
+		</AnimatedTexture>
+		<HitSound>monster/goblins_hit</HitSound>
+		<DeathSound>monster/goblins_death</DeathSound>
+		<Size>120</Size>
+		<MaxHitPoints>400</MaxHitPoints>
+		<Defense>8</Defense>
+		<Projectile id="0">
+			<ObjectId>Blue Blast</ObjectId>
+			<Damage>45</Damage>
+			<Speed>35</Speed>
+			<Size>90</Size>
+			<LifetimeMS>3000</LifetimeMS>
+			<Wavy />
+		</Projectile>
+		<Projectile id="1">
+			<ObjectId>Blue Ray</ObjectId>
+			<Damage>65</Damage>
+			<Speed>75</Speed>
+			<Size>130</Size>
+			<LifetimeMS>1600</LifetimeMS>
+		</Projectile>
+	</Object>
+	
+	<Object type="0x0559" id="Elf Archer">
+		<Enemy/>
+		<Class>Character</Class>
+		<AnimatedTexture>
+			<File>realmChars</File>
+			<Index>17</Index>
+		</AnimatedTexture>
+		<HitSound>monster/elves_hit</HitSound>
+		<DeathSound>monster/elves_death</DeathSound>
+		<Size>100</Size>
+		<MaxHitPoints>345</MaxHitPoints>
+		<Defense>2</Defense>
+		<Projectile id="0">
+			<ObjectId>Green Dart</ObjectId>
+			<Damage>36</Damage>
+			<Speed>65</Speed>
+			<LifetimeMS>2000</LifetimeMS>
+		</Projectile>
+	</Object>
+	<Object type="0x055A" id="Elf Swordsman">
+		<Group>Elves</Group>
+		<Enemy/>
+		<Class>Character</Class>
+		<AnimatedTexture>
+			<File>realmChars</File>
+			<Index>18</Index>
+		</AnimatedTexture>
+		<HitSound>monster/elves_hit</HitSound>
+		<DeathSound>monster/elves_death</DeathSound>
+		<Size>100</Size>
+		<MaxHitPoints>420</MaxHitPoints>
+		<Defense>8</Defense>
+		<Projectile id="0">
+			<ObjectId>T1Sword</ObjectId>
+			<Damage>40</Damage>
+			<Speed>100</Speed>
+			<LifetimeMS>400</LifetimeMS>
+		</Projectile>
+	</Object>
+	<Object type="0x055B" id="Elf Mage">
+		<Group>Elves</Group>
+		<Enemy/>
+		<Class>Character</Class>
+		<AnimatedTexture>
+			<File>realmChars</File>
+			<Index>19</Index>
+		</AnimatedTexture>
+		<HitSound>monster/elves_hit</HitSound>
+		<DeathSound>monster/elves_death</DeathSound>
+		<Size>100</Size>
+		<MaxHitPoints>300</MaxHitPoints>
+		<Defense>3</Defense>
+		<Projectile id="0">
+			<ObjectId>Blue Magic</ObjectId>
+			<Damage>35</Damage>
+			<Speed>65</Speed>
+			<LifetimeMS>1500</LifetimeMS>
+		</Projectile>
+	</Object>
+	<Object type="0x055C" id="Elf Wizard">
+		<Enemy/>
+		<Class>Character</Class>
+		<AnimatedTexture>
+			<File>realmChars</File>
+			<Index>20</Index>
+		</AnimatedTexture>
+		<HitSound>monster/elves_hit</HitSound>
+		<DeathSound>monster/elves_death</DeathSound>
+		<Size>140</Size>
+		<MaxHitPoints>420</MaxHitPoints>
+		<Defense>7</Defense>
+		<Projectile id="0">
+			<ObjectId>Blue Ray</ObjectId>
+			<Damage>55</Damage>
+			<Speed>70</Speed>
+			<LifetimeMS>2000</LifetimeMS>
+			<Size>90</Size>
+		</Projectile>
+	</Object>
+	
+	<Object type="0x055D" id="Sand Devil">
+		<Enemy/>
+		<Class>Character</Class>
+		<AnimatedTexture>
+			<File>realmChars</File>
+			<Index>21</Index>
+		</AnimatedTexture>
+		<HitSound>monster/scorpions_hit</HitSound>
+		<DeathSound>monster/scorpions_death</DeathSound>
+		<Size>100</Size>
+		<MaxHitPoints>450</MaxHitPoints>
+		<Defense>6</Defense>
+		<Projectile id="0">
+			<ObjectId>Silver Circle Spinner</ObjectId>
+			<Damage>55</Damage>
+			<Speed>65</Speed>
+			<Size>68</Size>
+			<LifetimeMS>1500</LifetimeMS>
+			<Wavy/>
+			<ConditionEffect duration="1.5">Confused</ConditionEffect>
+		</Projectile>
+	</Object>
+	
+	<Object type="0x055E" id="Giant Crab">
+		<Enemy />
+		<Class>Character</Class>
+		<AnimatedTexture>
+			<File>realmChars16</File>
+			<Index>12</Index>
+		</AnimatedTexture>
+		<HitSound>monster/scorpions_hit</HitSound>
+		<DeathSound>monster/scorpions_death</DeathSound>
+		<Size>100</Size>
+		<MaxHitPoints>550</MaxHitPoints>
+		<Defense>8</Defense>
+		<Projectile id="0">
+			<ObjectId>Silver Wave</ObjectId>
+			<Damage>1</Damage>
+			<Speed>20</Speed>
+			<Size>60</Size>
+			<LifetimeMS>200</LifetimeMS>
+		</Projectile>
+		<Projectile id="1">
+			<ObjectId>Beam</ObjectId>
+			<Damage>40</Damage>
+			<Speed>40</Speed>
+			<Size>100</Size>
+			<LifetimeMS>400</LifetimeMS>
+		</Projectile>
+		<Projectile id="2">
+			<ObjectId>Silver Wave</ObjectId>
+			<Damage>45</Damage>
+			<Speed>60</Speed>
+			<Size>140</Size>
+			<LifetimeMS>600</LifetimeMS>
+		</Projectile>
+		<Projectile id="3">
+			<ObjectId>Silver Wave</ObjectId>
+			<Damage>45</Damage>
+			<Speed>80</Speed>
+			<Size>180</Size>
+			<LifetimeMS>800</LifetimeMS>
+		</Projectile>
+		<Projectile id="4">
+			<ObjectId>Blue Fireblast</ObjectId>
+			<Damage>55</Damage>
+			<Speed>70</Speed>
+			<LifetimeMS>1800</LifetimeMS>
+			<Size>90</Size>
+		</Projectile>
+	</Object>
+
+	<Object type="0x055F" id="Oasis Tree">
+		<Class>GameObject</Class>
+		<RandomTexture>
+			<Texture>
+				<File>realmEnvironment</File>
+				<Index>0x10</Index>
+			</Texture>
+			<Texture>
+				<File>realmEnvironment</File>
+				<Index>0x12</Index>
+			</Texture>
+			<Texture>
+				<File>realmEnvironment</File>
+				<Index>0x11</Index>
+			</Texture>
+		</RandomTexture>
+		<MinSize>130</MinSize>
+		<MaxSize>160</MaxSize>
+		<SizeStep>5</SizeStep>
+		<Static/>
+		<OccupySquare/>
+	</Object>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</Objects>

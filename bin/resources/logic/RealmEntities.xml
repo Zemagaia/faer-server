@@ -1,0 +1,113 @@
+<BehaviorEntries>
+	
+    <BehaviorEntry id="Hobbit Mage">
+        <State id="root">
+			<Behavior target="Forest Maze Portal" probability="0.20">DropPortalOnDeath</Behavior>
+			<State id="idle">
+				<Behavior dist="12" targetState="ring1">PlayerWithinTransition</Behavior>
+			</State>
+			<State id="ring1">
+				<Behavior radius="1" fixedAngle="0" count="15" shootAngle="24" cooldown="1200" projectileIndex="0">Shoot</Behavior>
+				<Behavior time="400" targetState="ring2">TimedTransition</Behavior>
+			</State>
+			<State id="ring2">
+				<Behavior radius="1" fixedAngle="8" count="15" shootAngle="24" cooldown="1200" projectileIndex="1">Shoot</Behavior>
+				<Behavior time="400" targetState="ring3">TimedTransition</Behavior>
+			</State>
+			<State id="ring3">
+				<Behavior radius="1" fixedAngle="16" count="15" shootAngle="24" cooldown="1200" projectileIndex="2">Shoot</Behavior>
+				<Behavior time="400" targetState="idle">TimedTransition</Behavior>
+			</State>
+			<Behavior behavior="Prioritize">
+				<Behavior speed="0.4" altitude="9">StayAbove</Behavior>
+				<Behavior speed="0.75" range="6">Follow</Behavior>
+				<Behavior speed="0.4">Wander</Behavior>
+			</Behavior>
+			<Behavior children="Hobbit Archer" maxChildren="4" cooldown="12000" givesNoXp="false">Spawn</Behavior>
+			<Behavior children="Hobbit Rogue" maxChildren="3" cooldown="6000" givesNoXp="false">Spawn</Behavior>
+		</State>
+		<LootDef tier="2" type="Weapon" probability="0.3">TierLoot</LootDef>
+		<LootDef tier="2" type="Armor" probability="0.3">TierLoot</LootDef>
+		<LootDef tier="1" type="Ring" probability="0.11">TierLoot</LootDef>
+		<LootDef tier="1" type="Ability" probability="0.39">TierLoot</LootDef>
+		<LootDef item="Health Potion" probability="0.02">ItemLoot</LootDef>
+		<LootDef item="Magic Potion" probability="0.02">ItemLoot</LootDef>
+    </BehaviorEntry>
+	
+	<BehaviorEntry id="Hobbit Archer">
+		<State id="root">
+			<Behavior radius="10">Shoot</Behavior>
+			<State id="run1">
+				<Behavior behavior="Prioritize">
+					<Behavior speed="1.1" acquireRange="12" protectee="Hobbit Mage" protectionRange="10" reprotectRange="1">Protect</Behavior>
+					<Behavior speed="0.4">Wander</Behavior>
+				</Behavior>
+				<Behavior time="400" targetState="run2">TimedTransition</Behavior>
+			</State>
+			<State id="run2">
+				<Behavior behavior="Prioritize">
+					<Behavior speed="0.8" distance="4">StayBack</Behavior>
+					<Behavior speed="0.4">Wander</Behavior>
+				</Behavior>
+				<Behavior time="600" targetState="run3">TimedTransition</Behavior>
+			</State>
+			<State id="run3">
+				<Behavior behavior="Prioritize">
+					<Behavior speed="1" acquireRange="16" protectee="Hobbit Archer" protectionRange="2" reprotectRange="2">Protect</Behavior>
+					<Behavior speed="0.4">Wander</Behavior>
+				</Behavior>
+				<Behavior time="400" targetState="run1">TimedTransition</Behavior>
+			</State>
+		</State>
+		<LootDef item="Health Potion" probability="0.04">ItemLoot</LootDef>
+	</BehaviorEntry>
+	
+	<BehaviorEntry id="Hobbit Rogue">
+		<State id="root">
+			<!--<BehaviorTemplate coolDown="100">CrazyShotgun</BehaviorTemplate>-->
+			<Behavior radius="3">Shoot</Behavior>
+			<Behavior behavior="Prioritize">
+				<Behavior speed="1.2" acquireRange="15" protectee="Hobbit Mage" protectionRange="9" reprotectRange="2.5">Protect</Behavior>
+				<Behavior speed="0.85" range="1">Follow</Behavior>
+				<Behavior speed="0.4">Wander</Behavior>
+			</Behavior>
+		</State>
+		<LootDef item="Health Potion" probability="0.04">ItemLoot</LootDef>
+	</BehaviorEntry>
+	
+	<BehaviorEntry id="Undead Hobbit Mage">
+		<State id="root">
+			<Behavior radius="10" projectileIndex="3">Shoot</Behavior>
+			<State id="idle">
+				<Behavior distance="12" targetState="ring1">PlayerWithinTransition</Behavior>
+			</State>
+			<State id="ring1">
+				<Behavior radius="1" fixedAngle="0" count="15" shootAngle="24" cooldown="1200" projectileIndex="0">Shoot</Behavior>
+				<Behavior time="400" targetState="ring2">TimedTransition</Behavior>
+			</State>
+			<State id="ring2">
+				<Behavior radius="1" fixedAngle="8" count="15" shootAngle="24" cooldown="1200" projectileIndex="1">Shoot</Behavior>
+				<Behavior time="400" targetState="ring3">TimedTransition</Behavior>
+			</State>
+			<State id="ring3">
+				<Behavior radius="1" fixedAngle="16" count="15" shootAngle="24" cooldown="1200" projectileIndex="2">Shoot</Behavior>
+				<Behavior time="400" targetState="idle">TimedTransition</Behavior>
+			</State>
+			<Behavior behavior="Prioritize">
+				<Behavior speed="0.4" altitude="20">StayAbove</Behavior>
+				<Behavior speed="0.75" range="6">Follow</Behavior>
+				<Behavior speed="0.4">Wander</Behavior>
+			</Behavior>
+			<Behavior children="Undead Hobbit Archer" maxChildren="4" cooldown="12000" givesNoXp="false">Spawn</Behavior>
+			<Behavior children="Undead Hobbit Rogue" maxChildren="3" cooldown="6000" givesNoXp="false">Spawn</Behavior>
+		</State>
+		<LootDef tier="3" type="Weapon" probability="0.3">TierLoot</LootDef>
+		<LootDef tier="3" type="Armor" probability="0.3">TierLoot</LootDef>
+		<LootDef tier="1" type="Ring" probability="0.12">TierLoot</LootDef>
+		<LootDef tier="1" type="Ability" probability="0.39">TierLoot</LootDef>
+		<LootDef item="Magic Potion" probability="0.03">ItemLoot</LootDef>
+	</BehaviorEntry>
+
+    
+
+</BehaviorEntries>

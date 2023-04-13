@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<GroundTypes>
+	<!-- 0x0300 to 0x03FF -->
+	<Ground type="0x0300" id="White Floor 1">
+		<Texture>
+			<File>nexusEnvironment</File>
+			<Index>0x10</Index>
+		</Texture>
+	</Ground>
+	<Ground type="0x0301" id="White Floor 2">
+		<Texture>
+			<File>nexusEnvironment</File>
+			<Index>0x11</Index>
+		</Texture>
+	</Ground>
+	<Ground type="0x0302" id="White Floor 3">
+		<Texture>
+			<File>nexusEnvironment</File>
+			<Index>0x12</Index>
+		</Texture>
+	</Ground>
+	<Ground type="0x0303" id="White Floor 4">
+		<Texture>
+			<File>nexusEnvironment</File>
+			<Index>0x13</Index>
+		</Texture>
+	</Ground>
+	<Ground type="0x0304" id="White Floor 5">
+		<Texture>
+			<File>nexusEnvironment</File>
+			<Index>0x14</Index>
+		</Texture>
+	</Ground>
+	<Ground type="0x0305" id="Grey Pathway">
+		<Texture>
+			<File>nexusEnvironment</File>
+			<Index>0x10</Index>
+		</Texture>
+		<Speed>1.4</Speed>
+		<CompositePriority>1</CompositePriority>
+	</Ground>
+	<Ground type="0x0306" id="Dark Cobblestone">
+		<Texture>
+			<File>nexusEnvironment</File>
+			<Index>0x1b</Index>
+		</Texture>
+	</Ground>
+	<Ground type="0x0307" id="Gothic Rug">
+		<SameTypeEdgeMode/>
+		<Texture>
+			<File>nexusEnvironment</File>
+			<Index>0x0C</Index>
+		</Texture>
+		<Edge>
+			<Texture>
+				<File>nexusEnvironment</File>
+				<Index>0x0D</Index>
+			</Texture>
+		</Edge>
+		<InnerCorner>
+			<Texture>
+				<File>nexusEnvironment</File>
+				<Index>0x0E</Index>
+			</Texture>
+		</InnerCorner>
+		<Corner>
+			<Texture>
+				<File>nexusEnvironment</File>
+				<Index>0x0F</Index>
+			</Texture>
+		</Corner>
+	</Ground>
+	<Ground type="0x0308" id="Guild Rug Green">
+		<SameTypeEdgeMode/>
+		<Texture>
+			<File>nexusEnvironment</File>
+			<Index>0x09</Index>
+		</Texture>
+		<Edge>
+			<Texture>
+				<File>nexusEnvironment</File>
+				<Index>0x0A</Index>
+			</Texture>
+		</Edge>
+		<InnerCorner>
+			<Texture>
+				<File>nexusEnvironment</File>
+				<Index>0x0B</Index>
+			</Texture>
+		</InnerCorner>
+	</Ground>
+	<Ground type="0x0309" id="Pool">
+		<Texture>
+			<File>realmEnvironment</File>
+			<Index>0xC2</Index>
+		</Texture>
+		<Sink/>
+		<Speed>.666</Speed>
+		<CompositePriority>2</CompositePriority>
+	</Ground>
+	<Ground type="0x030A" id="Bridge Light">
+		<Texture>
+			<File>nexusEnvironment</File>
+			<Index>0x1c</Index>
+		</Texture>
+	</Ground>
+	<Ground type="0x030B" id="Wood Panel Floor">
+		<Texture>
+			<File>nexusEnvironment</File>
+			<Index>0x04</Index>
+		</Texture>
+	</Ground>
+	<Ground type="0x030C" id="Wood Panel Floor Speedy">
+		<Texture>
+			<File>nexusEnvironment</File>
+			<Index>0x04</Index>
+		</Texture>
+		<Speed>1.4</Speed>
+	</Ground>
+	<Ground type="0x030D" id="Wood Plank Floor">
+		<RandomTexture>
+			<Texture>
+				<File>nexusEnvironment</File>
+				<Index>0x06</Index>
+			</Texture>
+			<Texture>
+				<File>nexusEnvironment</File>
+				<Index>0x07</Index>
+			</Texture>
+			<Texture>
+				<File>nexusEnvironment</File>
+				<Index>0x06</Index>
+			</Texture>
+			<Texture>
+				<File>nexusEnvironment</File>
+				<Index>0x06</Index>
+			</Texture>
+			<Texture>
+				<File>nexusEnvironment</File>
+				<Index>0x07</Index>
+			</Texture>
+		</RandomTexture>
+	</Ground>
+	<Ground type="0x030E" id="Wood Plank Floor Dark">
+		<RandomTexture>
+			<Texture>
+				<File>nexusEnvironment</File>
+				<Index>0x1F</Index>
+			</Texture>
+			<Texture>
+				<File>nexusEnvironment</File>
+				<Index>0x1E</Index>
+			</Texture>
+			<Texture>
+				<File>nexusEnvironment</File>
+				<Index>0x1F</Index>
+			</Texture>
+		</RandomTexture>
+	</Ground>
+	<Ground type="0x030F" id="Pet Yard Dirt">
+		<SameTypeEdgeMode/>
+		<RandomTexture>
+			<Texture>
+				<File>nexusEnvironment</File>
+				<Index>0x20</Index>
+			</Texture>
+			<Texture>
+				<File>nexusEnvironment</File>
+				<Index>0x21</Index>
+			</Texture>
+			<Texture>
+				<File>nexusEnvironment</File>
+				<Index>0x22</Index>
+			</Texture>
+			<Texture>
+				<File>nexusEnvironment</File>
+				<Index>0x23</Index>
+			</Texture>
+			<Texture>
+				<File>nexusEnvironment</File>
+				<Index>0x24</Index>
+			</Texture>
+			<Texture>
+				<File>nexusEnvironment</File>
+				<Index>0x25</Index>
+			</Texture>
+			<Texture>
+				<File>nexusEnvironment</File>
+				<Index>0x26</Index>
+			</Texture>
+			<Texture>
+				<File>nexusEnvironment</File>
+				<Index>0x27</Index>
+			</Texture>
+		</RandomTexture>
+		<Edge>
+			<Texture>
+				<File>nexusEnvironment</File>
+				<Index>0x30</Index>
+			</Texture>
+		</Edge>
+		<InnerCorner>
+			<Texture>
+				<File>nexusEnvironment</File>
+				<Index>0x31</Index>
+			</Texture>
+		</InnerCorner>
+		<Corner>
+			<Texture>
+				<File>nexusEnvironment</File>
+				<Index>0x32</Index>
+			</Texture>
+		</Corner>
+	</Ground>
+	<Ground type="0x0310" id="Pet Yard Grass">
+		<RandomTexture>
+			<Texture>
+				<File>nexusEnvironment</File>
+				<Index>0x28</Index>
+			</Texture>
+			<Texture>
+				<File>nexusEnvironment</File>
+				<Index>0x29</Index>
+			</Texture>
+			<Texture>
+				<File>nexusEnvironment</File>
+				<Index>0x2A</Index>
+			</Texture>
+			<Texture>
+				<File>nexusEnvironment</File>
+				<Index>0x2B</Index>
+			</Texture>
+			<Texture>
+				<File>nexusEnvironment</File>
+				<Index>0x2C</Index>
+			</Texture>
+			<Texture>
+				<File>nexusEnvironment</File>
+				<Index>0x2D</Index>
+			</Texture>
+			<Texture>
+				<File>nexusEnvironment</File>
+				<Index>0x2E</Index>
+			</Texture>
+			<Texture>
+				<File>nexusEnvironment</File>
+				<Index>0x2F</Index>
+			</Texture>
+		</RandomTexture>
+	</Ground>
+	<Ground type="0x0311" id="White Floor 1 Fast Walk">
+		<Texture>
+			<File>nexusEnvironment</File>
+			<Index>0x10</Index>
+		</Texture>
+		<Speed>1.4</Speed>
+	</Ground>
+	
+	
+	
+</GroundTypes>
