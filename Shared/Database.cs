@@ -778,25 +778,8 @@ namespace common
             var inv = Utils.ResizeArray(givenItems, Resources.Settings.InventorySize);
             for (var i = givenItems.Length; i < inv.Length; i++)
                 inv[i] = 0xffff;
-            var datas = new ItemData[Resources.Settings.InventorySize];
-            for (var i = 0; i < datas.Length; i++)
-            {
-                if (inv[i] != 0xffff)
-                {
-                    datas[i] = ItemData.GenerateData(inv[i]);
-                    var item = Resources.GameData.Items[inv[i]];
-                    var slotType = item?.SlotType;
-                    if (slotType != 10) // not consumable
-                    {
-                        datas[i].Quality = 1;
-                        datas[i].Runes = new ushort[4];
-                    }
-                }
-                else
-                    datas[i] = new ItemData();
-            }
 
-            return datas;
+            return inv.Select(x => x == ushort.MaxValue ? null : Resources.GameData.Items[x]).ToArray();
         }
 
         public CreateStatus CreateCharacter(

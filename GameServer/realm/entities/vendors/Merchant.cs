@@ -2,6 +2,7 @@
 using GameServer.networking.packets.outgoing;
 using GameServer.realm.entities.player;
 using StackExchange.Redis;
+using wServer.realm;
 
 namespace GameServer.realm.entities.vendors
 {
@@ -182,25 +183,16 @@ namespace GameServer.realm.entities.vendors
         {
             var invTrans = player.Inventory.CreateTransaction();
             var item = Manager.Resources.GameData.Items[Item];
-            var itemData = new ItemData();
             var slot = player.Inventory.GetAvailableInventorySlot(item);
             s = slot;
             if (slot == -1)
             {
-                itemData = ItemData.GenerateData(Item);
-                if (item.SlotType != 10 && item.SlotType != 26)
-                {
-                    var quality = ItemData.MakeQuality(item);
-                    itemData.Quality = quality;
-                    itemData.Runes = ItemData.GetRuneSlots(quality);
-                }
-
-                player.Manager.Database.AddGift(player.Client.Account, itemData, tran);
+                player.Manager.Database.AddGift(player.Client.Account, item, tran);
                 _isInvFull = true;
                 return null;
             }
 
-            invTrans[slot] = itemData;
+            invTrans[slot] = item;
             _isInvFull = false;
             return invTrans;
         }
@@ -217,7 +209,6 @@ namespace GameServer.realm.entities.vendors
             var acc = player.Client.Account;
             player.Credits = acc.Credits;
             player.CurrentFame = acc.Fame;
-            player.Tokens = acc.Tokens;
 
             // if the item is put in your inv, execute changes immediately
             if (invTrans != null)

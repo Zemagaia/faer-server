@@ -28,10 +28,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="realm\entities\player\skillTree" />
-    </ItemGroup>
-
-    <ItemGroup>
       <None Update="gameServer.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>

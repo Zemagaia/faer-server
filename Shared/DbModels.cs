@@ -818,7 +818,7 @@ namespace common
             Field = "gift." + giftIndex;
             Init(acc.Database, "vault." + acc.AccountId, Field);
 
-            var items = GetValue<ItemData[]>(Field);
+            var items = GetValue<Item[]>(Field);
             if (items != null)
                 return;
 

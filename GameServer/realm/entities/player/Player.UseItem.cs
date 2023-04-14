@@ -156,8 +156,6 @@ namespace GameServer.realm.entities.player
 
                     if (item == null)
                         return;
-
-                    itemData = ItemData.GenerateData(item);
                     break;
                 }
 
@@ -218,7 +216,7 @@ namespace GameServer.realm.entities.player
                                 }
                             }
 
-                            Activate(time, item, itemData, pos, activateId, clientTime, slot == 1);
+                            Activate(time, item, pos, activateId, clientTime, slot == 1);
                         });
                         task.ContinueWith(e =>
                                 Log.Error(e.Exception.InnerException.ToString()),
@@ -237,7 +235,7 @@ namespace GameServer.realm.entities.player
                 }
 
                 if (item.Consumable || item.SlotType == slotType)
-                    Activate(time, item, itemData, pos, activateId, clientTime, slot == 1);
+                    Activate(time, item, pos, activateId, clientTime, slot == 1);
                 else
                     Client.SendPacket(new InvResult { Result = 1 });
             }
@@ -248,7 +246,7 @@ namespace GameServer.realm.entities.player
         private double _coolDown;
         public int NextAttackMpRefill;
 
-        private void Activate(RealmTime time, Item item, ItemData itemData, Position target, byte activateId,
+        private void Activate(RealmTime time, Item item, Position target, byte activateId,
             int clientTime, bool isAbility)
         {
             if (IsInvalidTime(time.TotalElapsedMs, clientTime))
@@ -304,10 +302,10 @@ namespace GameServer.realm.entities.player
                         AEGenericActivate(time, item, target, eff);
                         break;
                     case ActivateEffects.BulletNova:
-                        AEBulletNova(time, item, itemData, target, eff, clientTime);
+                        AEBulletNova(time, item, target, eff, clientTime);
                         break;
                     case ActivateEffects.Shoot:
-                        AEShoot(time, item, itemData, target, eff, clientTime);
+                        AEShoot(time, item, target, eff, clientTime);
                         break;
                     case ActivateEffects.StatBoostSelf:
                         AEStatBoostSelf(time, item, target, eff);
@@ -376,28 +374,25 @@ namespace GameServer.realm.entities.player
                         AEDye(time, item, target, eff);
                         break;
                     case ActivateEffects.ShurikenAbility:
-                        AEShurikenAbility(time, item, itemData, target, eff, clientTime);
+                        AEShurikenAbility(time, item, target, eff, clientTime);
                         break;
                     case ActivateEffects.Fame:
                         AEAddFame(time, item, target, eff);
                         break;
                     case ActivateEffects.Backpack:
-                        AEBackpack(time, item, itemData, target, eff);
+                        AEBackpack(time, item, target, eff);
                         break;
                     case ActivateEffects.MiscBoosts:
-                        AEMiscBoosts(time, item, itemData, target, eff);
+                        AEMiscBoosts(time, item, target, eff);
                         break;
                     case ActivateEffects.UnlockPortal:
                         AEUnlockPortal(time, item, target, eff);
                         break;
-                    case ActivateEffects.CreatePet:
-                        AECreatePet(time, item, itemData, target, eff);
-                        break;
                     case ActivateEffects.UnlockEmote:
-                        AEUnlockEmote(time, item, itemData, eff);
+                        AEUnlockEmote(time, item, eff);
                         break;
                     case ActivateEffects.UnlockSkin:
-                        AEUnlockSkin(time, item, itemData, target, eff);
+                        AEUnlockSkin(time, item, target, eff);
                         break;
                     case ActivateEffects.HealingGrenade:
                         AEHealingGrenade(time, item, target, eff);
@@ -409,7 +404,7 @@ namespace GameServer.realm.entities.player
                         AECard(time, item, target, eff);
                         break;
                     case ActivateEffects.Orb:
-                        AEOrb(time, item, itemData, target, eff, clientTime);
+                        AEOrb(time, item, target, eff, clientTime);
                         break;
                     case ActivateEffects.Tome:
                         AETome(time, item, target, eff);
@@ -502,12 +497,12 @@ namespace GameServer.realm.entities.player
             return true;
         }
 
-        private void RefundItem(ItemData item, string message = "")
+        private void RefundItem(Item item, string message = "")
         {
             if (!string.IsNullOrWhiteSpace(message))
                 SendError(message);
 
-            var slot = Inventory.GetAvailableInventorySlot(item.Item);
+            var slot = Inventory.GetAvailableInventorySlot(item);
 
             if (slot != -1)
             {
@@ -519,59 +514,7 @@ namespace GameServer.realm.entities.player
             SendError($"Your inventory is full, and your {item} has been sent to a gift chest.");
         }
 
-        private void AECreatePet(RealmTime time, Item item, ItemData itemData, Position target, ActivateEffect eff)
-        {
-            if (Owner is not PetYard)
-            {
-                RefundItem(itemData, "Can only use this item in Pet Yard");
-                return;
-            }
-
-            var client = Client;
-            var resources = Manager.Resources;
-            var petDatas = client.Account.PetDatas.ToList();
-            var maxPets = client.Account.PetYardType * 10 > 50 ? 50 : client.Account.PetYardType * 10;
-            if (petDatas.Count >= maxPets)
-            {
-                RefundItem(itemData, $"You cannot have more than {maxPets} pets");
-            }
-
-            // when player creates a character their pet data has Id as 0, so we don't want that
-            if (Manager.Database.GetAccountHashField(client.Account, "nextPetId") == 0)
-            {
-                Manager.Database.IncrementHashField("account." + AccountId, "nextPetId");
-            }
-
-            if (!resources.GameData.IdToObjectType.TryGetValue(eff.ObjType, out var objType))
-            {
-                RefundItem(itemData, "Pet not found. Please contact staff to resolve this issue");
-                return;
-            }
-
-            var petObjDesc = resources.GameData.ObjectDescs[objType];
-            if (!petObjDesc.IsPet)
-            {
-                RefundItem(itemData, "Item does not spawn a pet. Please contact staff to resolve this issue");
-                return;
-            }
-
-            // create pet data and add to account pets
-            var petData = new PetData();
-            Manager.Database.IncrementHashField("account." + AccountId, "nextPetId");
-            petData.Id = Manager.Database.GetAccountHashField(client.Account, "nextPetId");
-            petData.ObjectType = objType;
-            petDatas.Add(petData);
-            client.Account.PetDatas = petDatas.ToArray();
-            client.Account.FlushAsync();
-            SendInfo($"Successfully added {eff.ObjType} to your pets");
-            // add pet to world
-            var pet = Resolve(Manager, objType);
-            pet.Move(X, Y);
-            Owner.EnterWorld(pet);
-            pet.PetData = petData;
-        }
-
-        private void AEUnlockEmote(RealmTime time, Item item, ItemData itemData, ActivateEffect eff)
+        private void AEUnlockEmote(RealmTime time, Item item, ActivateEffect eff)
         {
             if (Owner == null || Owner is Test)
             {
@@ -589,10 +532,10 @@ namespace GameServer.realm.entities.player
                 return;
             }
 
-            RefundItem(itemData, "You already have this emote!");
+            RefundItem(item, "You already have this emote!");
         }
 
-        private void AEUnlockSkin(RealmTime time, Item item, ItemData itemData, Position target, ActivateEffect eff)
+        private void AEUnlockSkin(RealmTime time, Item item, Position target, ActivateEffect eff)
         {
             if (Owner == null || Owner is Test)
             {
@@ -602,7 +545,7 @@ namespace GameServer.realm.entities.player
 
             if (Owner is not Vault)
             {
-                RefundItem(itemData, "You can only use this item in your vault.");
+                RefundItem(item, "You can only use this item in your vault.");
                 return;
             }
 
@@ -618,7 +561,7 @@ namespace GameServer.realm.entities.player
                 return;
             }
 
-            RefundItem(itemData, "You already have this skin!");
+            RefundItem(item, "You already have this skin!");
         }
 
         private void AEUnlockPortal(RealmTime time, Item item, Position target, ActivateEffect eff)
@@ -707,7 +650,7 @@ namespace GameServer.realm.entities.player
         /// <param name="manaDrain">mana drain/s (default: 10)</param>
         /// <param name="lightGain">light gain/s (default: 5)</param>
         /// <param name="shoots">true/false, self explanatory (default: true)</param>
-        private void AEOrb(RealmTime time, Item item, ItemData itemData, Position target, ActivateEffect eff,
+        private void AEOrb(RealmTime time, Item item, Position target, ActivateEffect eff,
             long clientTime)
         {
             if (!_isDrainingMana)
@@ -721,7 +664,7 @@ namespace GameServer.realm.entities.player
             if (Light >= item.LightEndCost && eff.Shoots)
             {
                 Light -= item.LightEndCost;
-                AEShoot(time, item, itemData, target, eff, clientTime);
+                AEShoot(time, item, target, eff, clientTime);
             }
 
             _isDrainingMana = false;
@@ -742,39 +685,10 @@ namespace GameServer.realm.entities.player
             ApplyConditionEffect(effect, eff.DurationMS);
         }
 
-        private void AEMiscBoosts(RealmTime time, Item item, ItemData itemData, Position target, ActivateEffect eff)
-        {
-            var id = eff.Id.ToLower();
-            if (LTBoostTime + eff.DurationMS > 86400000 ||
-                LDBoostTime + eff.DurationMS > 86400000 ||
-                id == "xp" && (XPBoostTime + eff.DurationMS > 86400000 || Level >= 300))
-            {
-                RefundItem(itemData);
-                return;
-            }
-
-            switch (id)
-            {
-                case "tier":
-                    LTBoostTime += eff.DurationMS;
-                    InvokeStatChange(StatsType.LTBoostTime, LTBoostTime / 1000, true);
-                    return;
-                case "drop":
-                    LDBoostTime += eff.DurationMS;
-                    InvokeStatChange(StatsType.LDBoostTime, LDBoostTime / 1000, true);
-                    return;
-                case "xp":
-                    XPBoostTime += eff.DurationMS;
-                    XPBoosted = true;
-                    InvokeStatChange(StatsType.XPBoostTime, XPBoostTime / 1000, true);
-                    return;
-            }
-        }
-
-        private void AEBackpack(RealmTime time, Item item, ItemData itemData, Position target, ActivateEffect eff)
+        private void AEBackpack(RealmTime time, Item item, Position target, ActivateEffect eff)
         {
             if (HasBackpack)
-                RefundItem(itemData);
+                RefundItem(item);
 
             HasBackpack = true;
         }
@@ -871,8 +785,7 @@ namespace GameServer.realm.entities.player
             return 0;
         }
 
-        private void AEShurikenAbility(RealmTime time, Item item, ItemData itemData, Position target,
-            ActivateEffect eff, long clientTime)
+        private void AEShurikenAbility(RealmTime time, Item item, Position target, ActivateEffect eff, long clientTime)
         {
             if (!HasConditionEffect(ConditionEffects.NinjaSpeedy))
             {
@@ -883,7 +796,7 @@ namespace GameServer.realm.entities.player
             if (MP >= item.MpEndCost)
             {
                 MP -= item.MpEndCost;
-                AEShoot(time, item, itemData, target, eff, clientTime);
+                AEShoot(time, item, target, eff, clientTime);
             }
 
             ApplyConditionEffect(ConditionEffectIndex.NinjaSpeedy, 0);
@@ -1540,7 +1453,7 @@ namespace GameServer.realm.entities.player
             }, p => this.DistSqr(p) < RadiusSqr);
         }
 
-        private void AEShoot(RealmTime time, Item item, ItemData itemData, Position target, ActivateEffect eff,
+        private void AEShoot(RealmTime time, Item item, Position target, ActivateEffect eff,
             long clientTime)
         {
             var arcGap = item.ArcGap * Math.PI / 180;
@@ -1551,7 +1464,7 @@ namespace GameServer.realm.entities.player
             for (var i = 0; i < item.NumProjectiles; i++)
             {
                 var proj = CreateProjectile(prjDesc, item.ObjectType,
-                    (int)(Stats.GetAttackDamage(prjDesc, true) * itemData.Quality),
+                    (int)Stats.GetAttackDamage(prjDesc, true),
                     clientTime, new Position { X = X, Y = Y }, (float)(startAngle + arcGap * i), i);
                 if (HasConditionEffect(ConditionEffects.Blind))
                     proj.Damage = 0;
@@ -1569,7 +1482,7 @@ namespace GameServer.realm.entities.player
             BroadcastSync(sPkts, p => p != this && this.DistSqr(p) < RadiusSqr);
         }
 
-        private void AEBulletNova(RealmTime time, Item item, ItemData itemData, Position target, ActivateEffect eff, int cTime)
+        private void AEBulletNova(RealmTime time, Item item, Position target, ActivateEffect eff, int cTime)
         {
             var prjs = new Projectile[eff.NumShots];
             var prjDesc = item.Projectiles[0]; //Assume only one
@@ -1579,7 +1492,7 @@ namespace GameServer.realm.entities.player
             for (var i = 0; i < eff.NumShots; i++)
             {
                 var proj = CreateProjectile(prjDesc, item.ObjectType,
-                    (int)(Random.Next(prjDesc.MinDamage, prjDesc.MaxDamage) * itemData.Quality),
+                    (int)Random.Next(prjDesc.MinDamage, prjDesc.MaxDamage),
                     time.TotalElapsedMs, target, (float)(i * (Math.PI * 2) / eff.NumShots), i);
                 if (HasConditionEffect(ConditionEffects.Blind))
                     proj.Damage = 0;

@@ -48,23 +48,6 @@ namespace GameServer.realm.entities
 
         private void SetConditions()
         {
-            if (ObjectDesc.SlowImmune)
-                ApplyImmunity(Immunity.SlowImmune, -1);
-            if (ObjectDesc.StunImmune)
-                ApplyImmunity(Immunity.StunImmune, -1);
-            if (ObjectDesc.UnarmoredImmune)
-                ApplyImmunity(Immunity.UnarmoredImmune, -1);
-            if (ObjectDesc.StasisImmune)
-                ApplyImmunity(Immunity.StasisImmune, -1);
-            if (ObjectDesc.ParalyzeImmune)
-                ApplyImmunity(Immunity.ParalyzeImmune, -1);
-            if (ObjectDesc.CurseImmune)
-                ApplyImmunity(Immunity.CurseImmune, -1);
-            if (ObjectDesc.PetrifyImmune)
-                ApplyImmunity(Immunity.PetrifyImmune, -1);
-            if (ObjectDesc.CrippledImmune)
-                ApplyImmunity(Immunity.CrippledImmune, -1);
-
             if (ObjectDesc.Invincible)
                 ApplyConditionEffect(ConditionEffectIndex.Invincible);
             if (ObjectDesc.Invulnerable)

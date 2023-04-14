@@ -30,8 +30,9 @@ namespace GameServer.realm.entities
         public override void Init(World owner)
         {
             base.Init(owner);
+            // todo: immunity
             if (ObjectDesc.StasisImmune)
-                ApplyImmunity(Immunity.StasisImmune, -1);
+                return;
         }
 
         public void SetDamageCounter(DamageCounter counter, Enemy enemy)
