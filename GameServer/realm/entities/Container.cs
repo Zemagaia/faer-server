@@ -1,6 +1,7 @@
 ﻿using System.Xml.Linq;
 using common;
 using common.resources;
+using wServer.realm;
 
 namespace GameServer.realm.entities
 {
@@ -24,20 +25,7 @@ namespace GameServer.realm.entities
             if (dbLink != null)
                 Inventory = new Inventory(this, dbLink.Items);
             else
-                Inventory = new Inventory(this, new ItemData[0]);
-
-            var uiids = new HashSet<ulong>();
-            for (var i = 0; i < Inventory.Length; i++)
-            {
-                var inventory = Inventory;
-                var uiid = inventory[i].UIID;
-                if (uiid == 0) continue;
-                if (uiids.Add(uiid)) continue;
-
-                Log.Error(
-                    $"Container had duplicate UIID ({uiid}) on inventory slot {i}...");
-                inventory[i] = new ItemData();
-            }
+                Inventory = new Inventory(this, new Item[0]);
 
             BagOwners = new int[0];
             DbLink = dbLink;
@@ -49,10 +37,10 @@ namespace GameServer.realm.entities
             {
                 var inv = eq.Value.CommaToArray<ushort>().ToArray();
                 Array.Resize(ref inv, Inventory.Length);
-                var itemDatas = new ItemData[inv.Length];
-                for (var i = 0; i < itemDatas.Length; i++)
-                    itemDatas[i] = inv[i] == ushort.MaxValue ? new ItemData() : ItemData.GenerateData(inv[i]);
-                Inventory.SetItems(itemDatas);
+                var items = new Item[inv.Length];
+                for (var i = 0; i < items.Length; i++)
+                    items[i] = inv[i] == ushort.MaxValue ? null : Manager.Resources.GameData.Items[inv[i]];
+                Inventory.SetItems(items);
             }
         }
 
@@ -65,10 +53,11 @@ namespace GameServer.realm.entities
         {
             if (Inventory == null) return;
 
+            // todo: inventory work
             switch (stats)
             {
                 case StatsType.Inventory:
-                    var items = (ItemData[])val;
+                    var items = (Item[])val;
                     for (var i = 0; i < items.Length; i++)
                         Inventory[i] = items[i];
                     break;
@@ -82,6 +71,7 @@ namespace GameServer.realm.entities
         {
             if (Inventory == null) return;
 
+            // todo: inventory work
             stats[StatsType.Inventory] = Inventory.GetItems();
             stats[StatsType.OwnerAccountId] = (BagOwners.Length == 1 ? BagOwners[0] : -1).ToString();
             base.ExportStats(stats);

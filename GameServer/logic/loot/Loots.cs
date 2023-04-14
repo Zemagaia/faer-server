@@ -10,13 +10,13 @@ namespace GameServer.logic.loot
 {
     public struct LootDef
     {
-        public LootDef(ItemData item, double probability)
+        public LootDef(Item item, double probability)
         {
             Probability = probability;
             Item = item;
         }
 
-        public readonly ItemData Item;
+        public readonly Item Item;
         public readonly double Probability;
     }
 
@@ -32,7 +32,7 @@ namespace GameServer.logic.loot
 
         private static readonly Random Rand = new();
 
-        public IEnumerable<ItemData> GetLoots(RealmManager manager, int min, int max)
+        public IEnumerable<Item> GetLoots(RealmManager manager, int min, int max)
         {
             //For independent loots(e.g. chests)
             var consideration = new List<LootDef>();
@@ -69,14 +69,14 @@ namespace GameServer.logic.loot
                 return;
 
             var consideration = new List<LootDef>();
-            var shared = new List<ItemData>();
+            var shared = new List<Item>();
             foreach (var i in this)
                 i.Populate(enemy.Manager, enemy, null, Rand, consideration);
 
             var dats = enemy.DamageCounter.GetPlayerData();
             foreach (var i in consideration)
-                if (Rand.NextDouble() < i.Probability && i.Item.Item?.Soulbound == false)
-                    shared.Add(GetItemData(i, null));
+                if (Rand.NextDouble() < i.Probability && i.Item?.Untradable == false)
+                    shared.Add(i.Item);
             if (shared.Count > 0)
                 AddBagToWorld(enemy, shared, new Player[0]);
 
@@ -92,43 +92,23 @@ namespace GameServer.logic.loot
                     ? Constants.GlobalLootBoost ?? 1
                     : 1;
 
-                var playerLoot = new List<ItemData>();
+                var playerLoot = new List<Item>();
                 foreach (var i in consideration)
                     if (Rand.NextDouble() < i.Probability * lootDropBoost * luckStatBoost * globalLBoost)
-                        playerLoot.Add(GetItemData(i, dat));
+                        playerLoot.Add(i.Item);
                 if (playerLoot.Count > 0)
                     AddBagToWorld(enemy, playerLoot, new[] { dat.Item1 });
             }
         }
 
-        private ItemData GetItemData(LootDef i, Tuple<Player, int> dat)
-        {
-            // public loot
-            i.Item.ObjectType = i.Item.Item.ObjectType;
-            i.Item.UIID = ItemData.MakeUIID(i.Item.ObjectType);
-            // private loot since owner is not null
-            /*if (dat is not null && dat.Item1 is not null)
-            {
-            }*/
-
-            if (i.Item.Item.SlotType != 10 && i.Item.Item.SlotType != 26)
-            {
-                var quality = ItemData.MakeQuality(i.Item.Item);
-                i.Item.Quality = quality;
-                i.Item.Runes = ItemData.GetRuneSlots(quality);
-            }
-
-            return i.Item;
-        }
-
-        private static void AddBagToWorld(Enemy enemy, List<ItemData> items, Player[] owners)
+        private static void AddBagToWorld(Enemy enemy, List<Item> items, Player[] owners)
         {
             var bag = BrownBag;
             var bagType = 0;
             var player = owners.Length > 0 ? owners[0] : null;
             for (var i = 0; i < items.Count; i++)
             {
-                var type = items[i].Item?.BagType;
+                var type = items[i]?.BagType;
                 if (type != null && type > bagType)
                     bagType = (int)type;
             }

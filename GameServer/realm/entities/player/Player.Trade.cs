@@ -73,21 +73,19 @@ namespace GameServer.realm.entities.player
                 for (int i = 0; i < 12; i++)
                     my[i] = new TradeItem()
                     {
-                        ItemData = Inventory[i],
+                        Item = Inventory[i].ObjectType,
                         SlotType = SlotTypes[i],
                         Included = false,
-                        Tradeable = Inventory[i].Item != null && i >= 4 && !Inventory[i].Item.Soulbound &&
-                                    !Inventory[i].Soulbound
+                        Tradeable = Inventory[i] != null && i >= 4 && !Inventory[i].Untradable
                     };
                 var your = new TradeItem[12];
                 for (int i = 0; i < 12; i++)
                     your[i] = new TradeItem()
                     {
-                        ItemData = target.Inventory[i],
+                        Item = target.Inventory[i].ObjectType,
                         SlotType = target.SlotTypes[i],
                         Included = false,
-                        Tradeable = target.Inventory[i].Item != null && i >= 4 && !target.Inventory[i].Item.Soulbound &&
-                                    !target.Inventory[i].Soulbound
+                        Tradeable = target.Inventory[i] != null && i >= 4 && !target.Inventory[i].Untradable
                     };
                 _client.SendTradeStart(my, target.Name, your);
                 target._client.SendTradeStart(your, Name, my);

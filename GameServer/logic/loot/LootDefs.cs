@@ -40,7 +40,7 @@ namespace GameServer.logic.loot
             var mostDamage = GetMostDamage(data);
             foreach (var loot in mostDamage.Where(pl => pl.Equals(playerDat)).SelectMany(_ => _loots))
             {
-                if (loot is QuestLoot || loot is GoldDrop)
+                if (loot is GoldDrop)
                 {
                     loot.Populate(manager, enemy, playerDat, rand, lootDefs);
                     continue;
@@ -113,7 +113,7 @@ namespace GameServer.logic.loot
 
             foreach (var i in _children)
             {
-                if (i is QuestLoot || i is GoldDrop)
+                if (i is GoldDrop)
                 {
                     i.Populate(manager, enemy, playerDat, rand, lootDefs);
                     continue;
@@ -213,7 +213,7 @@ namespace GameServer.logic.loot
                 .Select(item => item.Value)
                 .ToArray();
             foreach (var i in candidates)
-                lootDefs.Add(new LootDef(ItemData.GenerateData(i), _probability / candidates.Length));
+                lootDefs.Add(new LootDef(i, _probability / candidates.Length));
         }
     }
 
@@ -222,20 +222,17 @@ namespace GameServer.logic.loot
         protected static readonly Logger Log = LogManager.GetLogger("ItemLoot");
         private readonly string _item;
         private readonly double _probability;
-        private readonly string _itemData;
 
         public ItemLoot(XElement e)
         {
             _item = e.ParseString("@item");
             _probability = e.ParseFloat("@probability");
-            _itemData = e.ParseString("@itemData");
         }
         
-        public ItemLoot(string item, double probability, string itemData = null)
+        public ItemLoot(string item, double probability)
         {
             _item = item;
             _probability = probability;
-            _itemData = itemData;
 
             // Send items for the gameserver to log any non-existent items on BehaviorDb startup.
             BehaviorDb.SendItem(item);
@@ -246,120 +243,12 @@ namespace GameServer.logic.loot
         {
             if (playerDat != null) return;
             var dat = manager.Resources.GameData;
-            ItemData fData;
-            try
-            {
-                fData = JsonConvert.DeserializeObject<ItemData>(_itemData);
-            }
-            catch
-            {
-                fData = new ItemData();
-            }
 
             var objType = dat.IdToObjectType[_item];
             if (dat.IdToObjectType.ContainsKey(_item)
                 && dat.Items.ContainsKey(objType))
             {
-                fData.Item = dat.Items[objType];
-                fData.ObjectType = objType;
-                fData.UIID = ItemData.MakeUIID(objType);
-                lootDefs.Add(new LootDef(fData, _probability));
-            }
-        }
-    }
-
-    public class QuestLoot : ILootDef
-    {
-        protected static readonly Logger Log = LogManager.GetLogger("QuestLoot");
-        private readonly string _item;
-        private readonly double _probability;
-
-        public QuestLoot(XElement e)
-        {
-            _item = e.ParseString("@item");
-            _probability = e.ParseFloat("@probability");
-        }
-        
-        public QuestLoot(string item, double probability)
-        {
-            _item = item;
-            _probability = probability;
-
-            // Send items for the gameserver to log any non-existent items on BehaviorDb startup.
-            BehaviorDb.SendItem(item);
-        }
-
-        public void Populate(RealmManager manager, Enemy enemy, Tuple<Player, int> playerDat,
-            Random rand, IList<LootDef> lootDefs)
-        {
-            if (playerDat == null)
-            {
-                return;
-            }
-
-            var dat = manager.Resources.GameData;
-            if (!dat.IdToObjectType.ContainsKey(_item) || !dat.Items.ContainsKey(dat.IdToObjectType[_item]))
-            {
-                return;
-            }
-
-            var fData = new ItemData();
-            var player = playerDat.Item1;
-            int i;
-            int j;
-
-            var quests = player.Client.Account.AccountQuests;
-            for (i = 0; i < quests.Length; i++)
-            for (j = 0; j < quests[i].DeliverDatas.Length; j++)
-            {
-                // make sure that the items haven't already been delivered
-                if (quests[i].Delivered[j])
-                {
-                    continue;
-                }
-
-                var data = quests[i].DeliverDatas[j];
-                if (data.MaxQuantity == 0)
-                {
-                    continue;
-                }
-
-                fData.Quantity = 1;
-                fData.MaxQuantity = data.MaxQuantity;
-                var objType = dat.IdToObjectType[_item];
-                fData.Item = dat.Items[objType];
-                fData.ObjectType = objType;
-                fData.UIID = ItemData.MakeUIID(objType);
-                // if account quest has already assigned a quantity
-                // add loot to defs and don't check char quests
-                lootDefs.Add(new LootDef(fData, _probability));
-                return;
-            }
-
-            quests = player.CharacterQuests;
-            for (i = 0; i < quests.Length; i++)
-            for (j = 0; j < quests[i].DeliverDatas.Length; j++)
-            {
-                // make sure that the items haven't already been delivered
-                if (quests[i].Delivered[j])
-                {
-                    continue;
-                }
-
-                var data = quests[i].DeliverDatas[j];
-                if (data.MaxQuantity == 0)
-                {
-                    continue;
-                }
-
-                fData.Quantity = 1;
-                fData.MaxQuantity = data.MaxQuantity;
-                var objType = dat.IdToObjectType[_item];
-                fData.Item = dat.Items[objType];
-                fData.ObjectType = objType;
-                fData.UIID = ItemData.MakeUIID(objType);
-                lootDefs.Add(new LootDef(fData, _probability));
-                return;
+                lootDefs.Add(new LootDef(dat.Items[objType], _probability));
             }
         }
     }

@@ -124,8 +124,7 @@ namespace GameServer.realm
                 return _states;
             }
         }
-
-        public int[] Immunities = new int[ImmunityCount];
+        
         protected Entity(RealmManager manager, ushort objType)
         {
             _name = new SV<string>(this, StatsType.Name, "");
@@ -268,8 +267,6 @@ namespace GameServer.realm
                 _posHistory[++_posIdx] = new Position() { X = X, Y = Y };
             if (_effects != null)
                 ProcessConditionEffects(time);
-            if (Immunities.Any(x => x > 0))
-                ProcessImmunities(time);
         }
 
         public void SwitchTo(State state)
@@ -778,19 +775,6 @@ namespace GameServer.realm
             ConditionEffects = newEffects;
         }
 
-        private void ProcessImmunities(RealmTime time)
-        {
-            for (var i = 0; i < Immunities.Length; i++)
-                if (Immunities[i] > 0)
-                {
-                    Immunities[i] -= time.ElapsedMsDelta;
-                    if (Immunities[i] < 0)
-                        Immunities[i] = 0;
-                }
-
-            //InvokeStatChange(StatsType.Immunities, Immunities);
-        }
-
         public bool HasConditionEffect(ConditionEffects eff)
         {
             return (ConditionEffects & eff) != 0;
@@ -840,30 +824,6 @@ namespace GameServer.realm
 
         private bool ApplyCondition(ConditionEffectIndex effect, int duration)
         {
-            if (effect == ConditionEffectIndex.Slow && GetImmunity(Immunity.SlowImmune) > 0)
-                return false;
-            
-            if (effect == ConditionEffectIndex.Stunned && GetImmunity(Immunity.StunImmune) > 0)
-                return false;
-
-            if (effect == ConditionEffectIndex.Unarmored && GetImmunity(Immunity.UnarmoredImmune) > 0)
-                return false;
-
-            if (effect == ConditionEffectIndex.Stasis && GetImmunity(Immunity.StasisImmune) > 0)
-                return false;
-
-            if (effect == ConditionEffectIndex.Paralyzed && GetImmunity(Immunity.ParalyzeImmune) > 0)
-                return false;
-
-            if (effect == ConditionEffectIndex.Curse && GetImmunity(Immunity.CurseImmune) > 0)
-                return false;
-
-            if (effect == ConditionEffectIndex.Petrify && GetImmunity(Immunity.PetrifyImmune) > 0)
-                return false;
-
-            if (effect == ConditionEffectIndex.Crippled && GetImmunity(Immunity.CrippledImmune) > 0)
-                return false;
-
             if (duration > 0)
             {
                 if (HasConditionEffect(ConditionEffects.Staggered) &&
@@ -919,23 +879,6 @@ namespace GameServer.realm
         public void RestoreDefaultSize()
         {
             Size = _originalSize;
-        }
-
-        public void ApplyImmunity(Immunity type, int val)
-        {
-            Immunities[(int)type] = val;
-        }
-
-        public int GetImmunity(Immunity stat)
-        {
-            try
-            {
-                return Immunities[(int)stat];
-            }
-            catch
-            {
-                return -2;
-            }
         }
     }
 }

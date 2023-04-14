@@ -524,14 +524,7 @@ namespace GameServer.realm.commands
             var slot = inventory.GetAvailableInventorySlot(item);
             if (slot != -1)
             {
-                inventory[slot] = ItemData.GenerateData(item);
-                inventory[slot].Soulbound = true;
-                if (item.SlotType != 10 && item.SlotType != 26)
-                {
-                    inventory[slot].Quality = 1;
-                    inventory[slot].Runes = new ushort[4];
-                }
-
+                inventory[slot] = item;
                 player.ForceUpdate(slot);
                 return true;
             }
@@ -1542,7 +1535,7 @@ namespace GameServer.realm.commands
         protected override bool Process(Player player, RealmTime time, string args)
         {
             for (int i = 4; i < 12; i++)
-                player.Inventory[i] = new ItemData();
+                player.Inventory[i] = null;
             player.SendInfo("Inventory Cleared.");
             return true;
         }
@@ -1776,18 +1769,8 @@ namespace GameServer.realm.commands
                 return false;
             }
 
-            var itemData = ItemData.GenerateData(item);
-            itemData.Soulbound = true;
-
-            if (item.SlotType != 10 && item.SlotType != 26)
-            {
-                var quality = ItemData.MakeQuality(item);
-                itemData.Quality = quality;
-                itemData.Runes = ItemData.GetRuneSlots(quality);
-            }
-
             // add gift
-            player.Manager.Database.AddGift(acc, itemData);
+            player.Manager.Database.AddGift(acc, item);
             string itemName = string.IsNullOrWhiteSpace(item.DisplayName) ? item.ObjectId : item.DisplayName;
 
             // send out success notifications
@@ -2272,148 +2255,6 @@ namespace GameServer.realm.commands
                 player.SendError("Specify some players to invite!");
                 return false;
             }
-        }
-    }
-
-    class ModDataCommand : Command
-    {
-        public ModDataCommand() : base("modify", aliases: "mod", permLevel: 90)
-        {
-        }
-
-        protected override bool Process(Player player, RealmTime time, string args)
-        {
-            var arr = args.Split(' ');
-            var slot = int.Parse(arr[0]);
-            var property = arr[1];
-            var value = string.Join(" ", arr.Skip(2).Take(arr.Length).ToArray());
-            if (arr.Length == 0 || string.IsNullOrWhiteSpace(property) || string.IsNullOrWhiteSpace(value))
-            {
-                player.SendHelp("Usage: /modify <slot> <property> <value>");
-                return false;
-            }
-
-            var item = player.Inventory[slot];
-            if (item == new ItemData())
-            {
-                player.SendError("Empty slot");
-                return false;
-            }
-
-            if (property.ToLower() == "uiid")
-            {
-                player.SendError("Cannot mod this value");
-                return false;
-            }
-
-            var result = UpdateItemData(item, property, value);
-            switch (result)
-            {
-                case UpdateResult.Success:
-                    player.Inventory[slot] = item;
-                    player.ForceUpdate(slot);
-                    player.Stats.ReCalculateValues();
-                    player.SendInfo($"Updated item data on slot {slot} [{property} = {value}]");
-                    break;
-                case UpdateResult.InvalidProperty:
-                    player.SendError($"Invalid property \"{property}\"");
-                    break;
-                case UpdateResult.InvalidValue:
-                    player.SendError(
-                        $"Failed to update item data. \"{value}\" is not valid for property \"{property}\"");
-                    break;
-            }
-
-            return true;
-        }
-
-        private UpdateResult UpdateItemData(ItemData item, string var, string val)
-        {
-            var field = typeof(ItemData).GetFields().FirstOrDefault(i => i.Name.EqualsIgnoreCase(var));
-            if (field == null)
-                return UpdateResult.InvalidProperty;
-
-            var type = field.FieldType;
-            if (type == typeof(string))
-            {
-                field.SetValue(item, val);
-            }
-            else if (type == typeof(int))
-            {
-                if (Utils.FromString(val, -1) == -1)
-                    return UpdateResult.InvalidValue;
-                field.SetValue(item, Utils.FromString(val));
-            }
-            else if (type == typeof(ushort))
-            {
-                if (!ushort.TryParse(val, out var res))
-                    return UpdateResult.InvalidValue;
-                field.SetValue(item, res);
-            }
-            else if (type == typeof(bool))
-            {
-                if (!bool.TryParse(val, out var res))
-                    return UpdateResult.InvalidValue;
-                field.SetValue(item, res);
-            }
-            else if (type == typeof(float))
-            {
-                if (!float.TryParse(val, out var res))
-                    return UpdateResult.InvalidValue;
-                field.SetValue(item, res);
-            }
-            else if (type == typeof(double))
-            {
-                if (!double.TryParse(val, out var res))
-                    return UpdateResult.InvalidValue;
-                field.SetValue(item, res);
-            }
-            else if (type == typeof(int[]))
-            {
-                object res;
-                if (val.IndexOf(',') != -1)
-                    res = val.Replace("[", "").Replace("]", "").Split(',').Select(n => int.Parse(n)).ToArray();
-                else
-                    res = new[] { int.Parse(val) };
-
-                field.SetValue(item, res);
-            }
-            else if (type == typeof(ushort[]))
-            {
-                object res;
-                if (val.IndexOf(',') != -1)
-                    res = val.Replace("[", "").Replace("]", "").Split(',').Select(n => ushort.Parse(n)).ToArray();
-                else
-                    res = new[] { ushort.Parse(val) };
-
-                field.SetValue(item, res);
-            }
-            else if (type == typeof(KeyValuePair<byte, short>[]))
-            {
-                object res = null;
-                if (val.IndexOf(';') != -1)
-                    res = val.Replace("[", "").Replace("]", "").Split(';').Select(n =>
-                        new KeyValuePair<byte, short>(byte.Parse(n.Split(',')[0]), short.Parse(n.Split(',')[1]))).ToArray();
-                else if (val.IndexOf(',') != -1)
-                    res = new[]
-                    {
-                        new KeyValuePair<byte, short>(byte.Parse(val.Split(',')[0]), short.Parse(val.Split(',')[1]))
-                    };
-
-                if (res == null)
-                    return UpdateResult.InvalidValue;
-                field.SetValue(item, res);
-            }
-            else return UpdateResult.InvalidValue;
-
-            return UpdateResult.Success;
-        }
-
-        private enum UpdateResult
-        {
-            Success,
-            InvalidProperty,
-            InvalidValue
         }
     }
 

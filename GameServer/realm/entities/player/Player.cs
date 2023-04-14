@@ -242,14 +242,6 @@ namespace GameServer.realm.entities.player
             set => _admin.SetValue(value);
         }
 
-        private readonly SV<int> _tokens;
-
-        public int Tokens
-        {
-            get => _tokens.GetValue();
-            set => _tokens.SetValue(value);
-        }
-
         private readonly SV<int> _shield;
 
         public int Shield
@@ -265,9 +257,6 @@ namespace GameServer.realm.entities.player
             get => _shieldMax.GetValue();
             set => _shieldMax.SetValue(value);
         }
-
-        public QuestData[] AvailableQuests;
-        public AcceptedQuestData[] CharacterQuests;
 
         public int XPBoostTime { get; set; }
         public int LDBoostTime { get; set; }
@@ -364,7 +353,6 @@ namespace GameServer.realm.entities.player
                 case StatsType.LTBoostTime: LTBoostTime = (int)val * 1000; break;
                 case StatsType.Rank: Rank = (int)val; break; 
                 case StatsType.Admin: Admin = (int)val; break;
-                case StatsType.Tokens: Tokens = (int)val; break;
                 case StatsType.UnholyEssence: UnholyEssence = (int)val; break;
                 case StatsType.DivineEssence: DivineEssence = (int)val; break;
             }
@@ -444,7 +432,6 @@ namespace GameServer.realm.entities.player
             stats[StatsType.OxygenBar] = OxygenBar;
             stats[StatsType.Rank] = Rank;
             stats[StatsType.Admin] = Admin;
-            stats[StatsType.Tokens] = Tokens;
             stats[StatsType.UnholyEssence] = UnholyEssence;
             stats[StatsType.DivineEssence] = DivineEssence;
             stats[StatsType.ShieldPoints] = Shield;
@@ -517,7 +504,6 @@ namespace GameServer.realm.entities.player
             _oxygenBar = new SV<int>(this, StatsType.OxygenBar, -1, true);
             _rank = new SV<int>(this, StatsType.Rank, client.Account.Rank);
             _admin = new SV<int>(this, StatsType.Admin, client.Account.Admin ? 1 : 0);
-            _tokens = new SV<int>(this, StatsType.Tokens, client.Account.Tokens, true);
             _unholyEssence = new SV<int>(this, StatsType.UnholyEssence, client.Account.UnholyEssence, true);
             _divineEssence = new SV<int>(this, StatsType.DivineEssence, client.Account.DivineEssence, true);
             _shield = new SV<int>(this, StatsType.ShieldPoints, -1, true);
@@ -563,19 +549,7 @@ namespace GameServer.realm.entities.player
 
             // inventory setup
             DbLink = new DbCharInv(Client.Account, Client.Character.CharId);
-            Inventory = new Inventory(this, Utils.ResizeArray((DbLink as DbCharInv).Items.Select(_ => _ ?? new ItemData()).ToArray(), settings.InventorySize));
-            var uiids = new HashSet<ulong>();
-            for (var i = 0; i < settings.InventorySize; i++)
-            {
-                var inventory = Inventory;
-                var uiid = inventory[i].UIID;
-                if (uiid == 0) continue;
-                if (uiids.Add(uiid)) continue;
-
-                Log.Error(
-                    $"{Name} ({AccountId}) had duplicate UIID ({uiid}) on inventory slot {i}, duping?");
-                inventory[i] = new ItemData();
-            }
+            Inventory = new Inventory(this, Utils.ResizeArray((DbLink as DbCharInv).Items, settings.InventorySize));
 
             if (!saveInventory)
                 DbLink = null;
@@ -1291,13 +1265,13 @@ namespace GameServer.realm.entities.player
             {
                 var item = Inventory[i];
 
-                if (item == null || !item.Item.Resurrects)
+                if (item == null || !item.Resurrects)
                     continue;
 
-                Inventory[i] = new ItemData();
+                Inventory[i] = null;
                 foreach (var player in Owner.Players.Values)
                     player.SendInfo(
-                        $"{Name}'s {(!string.IsNullOrWhiteSpace(item.Item.DisplayName) ? item.Item.DisplayName : item.Item.ObjectId)} breaks and they disappear");
+                        $"{Name}'s {item.DisplayName} breaks and they disappear");
 
                 ReconnectToNexus();
                 return true;
@@ -1519,8 +1493,6 @@ namespace GameServer.realm.entities.player
                     return Credits;
                 case CurrencyType.Fame:
                     return CurrentFame;
-                case CurrencyType.Tokens:
-                    return Tokens;
                 case CurrencyType.UnholyEssence:
                     return UnholyEssence;
                 case CurrencyType.DivineEssence:
@@ -1539,9 +1511,6 @@ namespace GameServer.realm.entities.player
                     break;
                 case CurrencyType.Fame:
                     CurrentFame = amount;
-                    break;
-                case CurrencyType.Tokens:
-                    Tokens = amount;
                     break;
                 case CurrencyType.UnholyEssence:
                     UnholyEssence = amount;

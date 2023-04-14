@@ -6,15 +6,10 @@ namespace GameServer.realm.entities.player
     {
         internal Projectile PlayerShootProjectile(
             byte id, ProjectileDesc desc, ushort objType,
-            long time, Position position, float angle, ItemData itemData, int projectileId)
+            long time, Position position, float angle, int projectileId)
         {
             bulletId = id;
-            int dmg;
-            if (itemData.Quality > 0)
-                dmg = (int)(Stats.GetAttackDamage(desc) * itemData.Quality);
-            else
-                dmg = (int)Stats.GetAttackDamage(desc);
-            return CreateProjectile(desc, objType, dmg,
+            return CreateProjectile(desc, objType, (int)Stats.GetAttackDamage(desc),
                 time, position, angle, projectileId);
         }
     }
