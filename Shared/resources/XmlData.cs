@@ -70,7 +70,6 @@ namespace common.resources
         int prevUpdateCount = -1;
         XElement addition;
         string[] addXml;
-        public ForgeRecipes Forge { get; private set; }
 
         public XmlData(string path)
         {
@@ -150,9 +149,6 @@ namespace common.resources
                     slotType2ItemType = new Dictionary<int, ItemType>());
 
             addition = new XElement("ExtData");
-            Forge = new ForgeRecipes();
-
-            Forge.AddRecipes();
 
             string basePath = Utils.GetBasePath(path);
 
@@ -181,7 +177,6 @@ namespace common.resources
             log.Info("{0} Merchants", merchants.Count);
             log.Info("{0} Remote Textures", _usedRemoteTextures.Count);
             log.Info("{0} Additions", addition.Elements().Count());
-            log.Info("{0} Forge Recipes", Forge.Recipes.Count);
         }
 
         private void LoadXmls(string basePath, string ext)

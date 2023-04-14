@@ -1,6 +1,7 @@
 ﻿using common;
 using common.resources;
 using GameServer.realm.entities.player;
+using wServer.realm;
 
 namespace GameServer.realm
 {
@@ -47,39 +48,14 @@ namespace GameServer.realm
         {
             for (var i = 0; i < 6; i++)
             {
-                if (_player.Inventory[i].Item == null)
+                if (_player.Inventory[i] == null)
                     continue;
 
-                int value;
-                foreach (var boost in _player.Inventory[i].Item.StatsBoost)
-                {
-                    value = boost.Value;
-                    if (value < 0)
-                        value = (int)Math.Floor((double) (value / _player.Inventory[i].Quality));
-                    else
-                        value = (int)Math.Floor((double) (value * _player.Inventory[i].Quality));
-                    IncrementBoost((StatsType)boost.Key, value);
-                }
-
-                if (_player.Inventory[i].StatBoosts != null)
-                    foreach (var dBoost in _player.Inventory[i].StatBoosts)
-                    {
-                        value = dBoost.Value;
-                        IncrementBoost((StatsType)dBoost.Key, value);
-                    }
-
-
-                float valuePerc;
-                foreach (var pBoost in _player.Inventory[i].Item.StatsBoostPerc)
-                {
-                    valuePerc = pBoost.Value;
-                    if (valuePerc < 0)
-                        valuePerc = valuePerc / _player.Inventory[i].Quality;
-                    else
-                        valuePerc = valuePerc * _player.Inventory[i].Quality;
-                    value = (int)(_parent.Base[StatsManager.GetStatIndex((StatsType)pBoost.Key)] * valuePerc);
-                    IncrementBoost((StatsType)pBoost.Key, value);
-                }
+                foreach (var boost in _player.Inventory[i].StatsBoost)
+                    IncrementBoost((StatsType)boost.Key, boost.Value);
+                
+                foreach (var pBoost in _player.Inventory[i].StatsBoostPerc)
+                    IncrementBoost((StatsType)pBoost.Key, (int)(_parent.Base[StatsManager.GetStatIndex((StatsType)pBoost.Key)] * pBoost.Value));
             }
         }
 

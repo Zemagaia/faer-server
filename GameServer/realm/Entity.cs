@@ -21,7 +21,6 @@ namespace GameServer.realm
         public World Owner { get; private set; }
         public int Id { get; internal set; }
         public ushort ObjectType { get; protected set; }
-        public bool IsPet { get; private set; }
         public Player AttackTarget { get; set; }
         public int LootValue { get; set; } = 1;
         public event EventHandler FocusLost;
@@ -127,13 +126,6 @@ namespace GameServer.realm
         }
 
         public int[] Immunities = new int[ImmunityCount];
-        private readonly SV<PetData> _petData;
-        public PetData PetData
-        {
-            get => _petData.GetValue();
-            set => _petData.SetValue(value);
-        }
-
         protected Entity(RealmManager manager, ushort objType)
         {
             _name = new SV<string>(this, StatsType.Name, "");
@@ -151,12 +143,6 @@ namespace GameServer.realm
             if (_desc == null)
                 return;
 
-            if (_desc.IsPet)
-            {
-                IsPet = true;
-                Immunities[(int)Immunity.StasisImmune] = -1;
-            }
-
             if (_desc.Player)
             {
                 _posHistory = new Position[256];
@@ -172,7 +158,7 @@ namespace GameServer.realm
                 return;
             }
 
-            if (_desc.Character || IsPet)
+            if (_desc.Character)
             {
                 _effects = new int[EffectCount];
             }
@@ -207,10 +193,10 @@ namespace GameServer.realm
         {
             Id = stat.Id;
             (this is Enemy ? Owner.EnemiesCollision : Owner.PlayersCollision)
-                .Move(this, stat.Position.X, stat.Position.Y);
-            X = stat.Position.X;
-            Y = stat.Position.Y;
-            foreach (var i in stat.Stats)
+                .Move(this, stat.X, stat.Y);
+            X = stat.X;
+            Y = stat.Y;
+            foreach (var i in stat.StatTypes)
                 ImportStats(i.Key, i.Value);
         }
 
@@ -222,8 +208,9 @@ namespace GameServer.realm
             return new ObjectStats()
             {
                 Id = Id,
-                Position = new Position() { X = RealX, Y = RealY },
-                Stats = stats.ToArray()
+                X = RealX, 
+                Y = RealY,
+                StatTypes = stats.ToArray()
             };
         }
 
@@ -261,12 +248,7 @@ namespace GameServer.realm
         public virtual void Tick(RealmTime time)
         {
             if (this is Projectile || Owner == null) return;
-            if (IsPet)
-            {
-                ApplyConditionEffect(ConditionEffectIndex.Invincible);
-                PetTick(time);
-            }
-            else if (_playerOwner != null)
+            if (_playerOwner != null)
             {
                 if (this.Dist(_playerOwner) > 20 && _poTp)
                 {
@@ -627,9 +609,9 @@ namespace GameServer.realm
 
         public void MoveEntity(float x, float y)
         {
-            if (Owner != null && !(this is Projectile) &&
+            if (Owner != null && this is not Projectile &&
                 (this is not StaticObject staticObject || staticObject.Hittestable))
-                (this is Enemy e && !e.IsPet || this is StaticObject && !(this is Decoy)
+                (this is Enemy || this is StaticObject && this is not Decoy
                         ? Owner.EnemiesCollision
                         : Owner.PlayersCollision)
                     .Move(this, x, y);
@@ -706,8 +688,6 @@ namespace GameServer.realm
                 case "Forge":
                 case "PetViewer":
                     return new StaticObject(manager, id, null, true, false, false);
-                case "PetMerchant":
-                    return new PetMerchant(manager, id);
                 default:
                     Log.Warn("Not supported type: {0}", type);
                     return new Entity(manager, id);

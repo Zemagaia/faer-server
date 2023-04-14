@@ -60,25 +60,6 @@ namespace GameServer.realm.commands
         }
     }
 
-    class TutorialCommand : Command
-    {
-        public TutorialCommand() : base("tutorial")
-        {
-        }
-
-        protected override bool Process(Player player, RealmTime time, string args)
-        {
-            player.Client.Reconnect(new Reconnect()
-            {
-                Host = "",
-                Port = 2050,
-                GameId = World.Tutorial,
-                Name = "Tutorial"
-            });
-            return true;
-        }
-    }
-
     class ServerCommand : Command
     {
         public ServerCommand() : base("world")

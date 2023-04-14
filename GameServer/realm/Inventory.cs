@@ -1,8 +1,13 @@
-﻿using common;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using common;
 using common.resources;
+using GameServer;
+using GameServer.realm;
 using GameServer.realm.entities.player;
 
-namespace GameServer.realm
+namespace wServer.realm
 {
     public interface IContainer
     {
@@ -14,21 +19,21 @@ namespace GameServer.realm
     public class InventoryChangedEventArgs : EventArgs
     {
         //index = -1 -> reset
-        public InventoryChangedEventArgs(ItemData[] old, ItemData[] @new)
+        public InventoryChangedEventArgs(Item[] old, Item[] @new)
         {
             OldItems = old;
             NewItems = @new;
         }
 
-        public ItemData[] OldItems { get; private set; }
-        public ItemData[] NewItems { get; private set; }
+        public Item[] OldItems { get; private set; }
+        public Item[] NewItems { get; private set; }
     }
 
-    public class InventoryTransaction : IEnumerable<ItemData>
+    public class InventoryTransaction : IEnumerable<Item>
     {
         private readonly IContainer _parent;
-        private readonly ItemData[] _originalItems;
-        private readonly ItemData[] _changedItems;
+        private readonly Item[] _originalItems;
+        private readonly Item[] _changedItems;
 
         public int Length => _originalItems.Length;
 
@@ -36,7 +41,7 @@ namespace GameServer.realm
         {
             _parent = parent;
             _originalItems = parent.Inventory.GetItems();
-            _changedItems = (ItemData[])_originalItems.Clone();
+            _changedItems = (Item[])_originalItems.Clone();
         }
 
         public bool Validate(bool revert = false)
@@ -69,9 +74,34 @@ namespace GameServer.realm
                     inv[i] = _originalItems[i];
         }
 
-        public IEnumerator<ItemData> GetEnumerator()
+        public int GetAvailableInventorySlot(Item item)
         {
-            return ((IEnumerable<ItemData>)_changedItems).GetEnumerator();
+            var plr = _parent as Player;
+            if (plr != null)
+            {
+                var playerDesc = plr.Manager.Resources.GameData
+                    .Classes[plr.ObjectDesc.ObjectType];
+                for (var i = 0; i < 4; i++)
+                    if (_changedItems[i] == null && playerDesc.SlotTypes[i] == item.SlotType)
+                        return i;
+
+                for (var i = 4; i < 12 || (plr.HasBackpack && i < plr.Inventory.Length); i++)
+                    if (_changedItems[i] == null)
+                        return i;
+            }
+            else
+            {
+                for (var i = 0; i < 8; i++)
+                    if (_changedItems[i] == null)
+                        return i;
+            }
+
+            return -1;
+        }
+
+        public IEnumerator<Item> GetEnumerator()
+        {
+            return ((IEnumerable<Item>)_changedItems).GetEnumerator();
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
@@ -79,54 +109,70 @@ namespace GameServer.realm
             return _changedItems.GetEnumerator();
         }
 
-        public ItemData this[int index]
+        public Item this[int index]
         {
-            get => _changedItems[index];
-            set => _changedItems[index] = value;
+            get { return _changedItems[index]; }
+            set { _changedItems[index] = value; }
         }
     }
 
     public class InventoryItems
     {
-        private readonly SV<ItemData[]> _itemTypes;
-        private ItemData[] _items;
+        private readonly SV<int>[] _itemTypes;
+        private readonly Item[] _items;
 
         public int Length => _items.Length;
 
-        public InventoryItems(IContainer container, ItemData[] items)
+        public InventoryItems(IContainer container, Item[] items)
         {
-            _itemTypes = new SV<ItemData[]>(container as Entity, StatsType.Inventory, items);
-            _items = items;
+            _itemTypes = new SV<int>[items.Length];
+            _items = new Item[items.Length];
+
+            for (var i = 0; i < items.Length; i++)
+            {
+                var sti = (int)StatsType.Inventory0 + i;
+                if (i >= 12)
+                    sti = (int)StatsType.BackPack0 + i - 12;
+
+                _itemTypes[i] = new SV<int>(
+                    container as Entity,
+                    (StatsType)sti, items[i]?.ObjectType ?? -1,
+                    container is Player && i > 3);
+                _items[i] = items[i];
+            }
         }
 
-        public void SetItems(ItemData[] items)
+        public void SetItems(Item[] items)
         {
-            if (items.Length > Length && Length > 0)
+            if (items.Length > Length)
                 throw new InvalidOperationException("Item array must be <= the size of the initialized array.");
 
-            _itemTypes.SetValue(items);
-            _items = items;
+            for (var i = 0; i < items.Length; i++)
+            {
+                _itemTypes[i].SetValue(items[i]?.ObjectType ?? -1);
+                _items[i] = items[i];
+            }
         }
 
-        public ItemData[] GetItems()
+        public Item[] GetItems()
         {
-            return (ItemData[])_items.Clone();
+            return (Item[])_items.Clone();
         }
 
-        public ItemData this[int index]
+        public Item this[int index]
         {
-            get => _items[index];
+            get { return _items[index]; }
             set
             {
+                _itemTypes[index].SetValue(value?.ObjectType ?? -1);
                 _items[index] = value;
-                _itemTypes.SetValue(_items);
             }
         }
     }
 
-    public class Inventory : IEnumerable<ItemData>
+    public class Inventory : IEnumerable<Item>
     {
-        private readonly object _invLock = new();
+        private readonly object _invLock = new object();
         private readonly IContainer _parent;
 
         private readonly InventoryItems _items;
@@ -137,19 +183,19 @@ namespace GameServer.realm
         public int Length => _items.Length;
 
         public Inventory(IContainer parent)
-            : this(parent, new ItemData[Program.Resources.Settings.InventorySize])
+            : this(parent, new Item[20])
         {
         }
 
-        public Inventory(IContainer parent, ItemData[] items)
+        public Inventory(IContainer parent, Item[] items)
         {
             _parent = parent;
             _items = new InventoryItems(parent, items);
         }
 
-        public void SetItems(ItemData[] items)
+        public void SetItems(Item[] items)
         {
-            lock (_invLock)
+            lock(_invLock)
             {
                 var oItems = _items.GetItems();
                 _items.SetItems(items);
@@ -157,21 +203,21 @@ namespace GameServer.realm
             }
         }
 
-        public void SetItems(IEnumerable<ItemData> items)
+        public void SetItems(IEnumerable<ushort> items)
         {
-            lock (_invLock)
+            lock(_invLock)
             {
                 var oItems = _items.GetItems();
-                _items.SetItems(ConvertToItemArray(items));
+                _items.SetItems(ConvertObjectType2ItemArray(items));
                 InventoryChanged?.Invoke(this, new InventoryChangedEventArgs(oItems, _items.GetItems()));
             }
         }
 
-        public ItemData[] GetItems()
+        public Item[] GetItems()
         {
-            lock (TrySaveLock)
+            lock(TrySaveLock)
             {
-                lock (_invLock)
+                lock(_invLock)
                 {
                     return _items.GetItems();
                 }
@@ -180,32 +226,24 @@ namespace GameServer.realm
 
         public ushort[] GetItemTypes()
         {
-            lock (_invLock)
+            lock(_invLock)
             {
                 return _items.GetItems().Select(_ => _?.ObjectType ?? 0xffff).ToArray();
             }
         }
 
-        public ItemData[] GetItemDatas()
-        {
-            lock (_invLock)
-            {
-                return _items.GetItems().Select(_ => _ ?? new ItemData()).ToArray();
-            }
-        }
-
-        public ItemData this[int index]
+        public Item this[int index]
         {
             get
             {
-                lock (_invLock)
+                lock(_invLock)
                 {
                     return _items[index];
                 }
             }
             set
             {
-                lock (_invLock)
+                lock(_invLock)
                 {
                     if (_items[index] != value)
                     {
@@ -222,17 +260,16 @@ namespace GameServer.realm
             return new InventoryTransaction(Parent);
         }
 
-        private static readonly object TrySaveLock = new();
-
+        private static readonly object TrySaveLock = new object();
         public static bool Execute(params InventoryTransaction[] transactions)
         {
-            lock (TrySaveLock)
+            lock(TrySaveLock)
             {
-                if (transactions.Any(transaction => !transaction.Validate()))
+                if (transactions.Any(tranaction => !tranaction.Validate()))
                     return false;
 
-                foreach (var transaction in transactions)
-                    transaction.Execute();
+                foreach (var transcation in transactions)
+                    transcation.Execute();
 
                 return true;
             }
@@ -240,38 +277,38 @@ namespace GameServer.realm
 
         public static bool Revert(params InventoryTransaction[] transactions)
         {
-            lock (TrySaveLock)
+            lock(TrySaveLock)
             {
-                if (transactions.Any(transaction => !transaction.Validate(true)))
+                if (transactions.Any(tranaction => !tranaction.Validate(true)))
                     return false;
 
-                foreach (var transaction in transactions)
-                    transaction.Revert();
+                foreach (var transcation in transactions)
+                    transcation.Revert();
                 return true;
             }
         }
 
         public int GetAvailableInventorySlot(Item item)
         {
-            lock (_invLock)
+            lock(_invLock)
             {
                 var plr = _parent as Player;
                 if (plr != null)
                 {
                     var playerDesc = plr.Manager.Resources.GameData
                         .Classes[plr.ObjectDesc.ObjectType];
-                    for (var i = 0; i < 6; i++)
-                        if (_items[i].Item == null && playerDesc.SlotTypes[i] == item.SlotType)
+                    for (var i = 0; i < 4; i++)
+                        if (_items[i] == null && playerDesc.SlotTypes[i] == item.SlotType)
                             return i;
 
-                    for (var i = 6; i < 18 || (plr.HasBackpack && i < plr.Inventory.Length); i++)
-                        if (_items[i].Item == null)
+                    for (var i = 4; i < 12 || (plr.HasBackpack && i < plr.Inventory.Length); i++)
+                        if (_items[i] == null)
                             return i;
                 }
                 else
                 {
-                    for (var i = 0; i < _parent.Inventory.Length; i++)
-                        if (_items[i].Item == null)
+                    for (var i = 0; i < 8; i++)
+                        if (_items[i] == null)
                             return i;
                 }
 
@@ -279,14 +316,17 @@ namespace GameServer.realm
             }
         }
 
-        private static ItemData[] ConvertToItemArray(IEnumerable<ItemData> a)
+        private static Item[] ConvertObjectType2ItemArray(IEnumerable<ushort> a)
         {
-            return a.Select(_ => _ == null ? new ItemData() : _).ToArray();
+            var gameData = Program.Resources.GameData;
+            return a
+                .Select(_ => (_ == 0xffff || !gameData.Items.ContainsKey(_)) ? null : gameData.Items[_])
+                .ToArray();
         }
 
-        public IEnumerator<ItemData> GetEnumerator()
+        public IEnumerator<Item> GetEnumerator()
         {
-            return ((IEnumerable<ItemData>)_items.GetItems()).GetEnumerator();
+            return ((IEnumerable<Item>)_items.GetItems()).GetEnumerator();
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()

@@ -56,75 +56,6 @@ namespace common
             _redis.Dispose();
         }
 
-        public static readonly string[] GuestNames =
-        {
-            "Darq", "Deyst", "Drac", "Drol",
-            "Eango", "Eashy", "Eati", "Eendi", "Ehoni",
-            "Gharr", "Iatho", "Iawa", "Idrae", "Iri", "Issz", "Itani",
-            "Laen", "Lauk", "Lorz",
-            "Oalei", "Odaru", "Oeti", "Orothi", "Oshyu",
-            "Queq", "Radph", "Rayr", "Ril", "Rilr", "Risrr",
-            "Saylt", "Scheev", "Sek", "Serl", "Seus",
-            "Tal", "Tiar", "Uoro", "Urake", "Utanu",
-            "Vorck", "Vorv", "Yangu", "Yimi", "Zhiar"
-        };
-
-        public DbAccount CreateGuestAccount(string uuid)
-        {
-            var newAccounts = Resources.Settings.Accounts;
-
-            var acnt = new DbAccount(_db, 0)
-            {
-                UUID = uuid,
-                Name = GuestNames[(uint)uuid.GetHashCode() % GuestNames.Length],
-                Admin = false,
-                NameChosen = false,
-                Verified = false,
-                AgeVerified = true,
-                FirstDeath = true,
-                PetYardType = newAccounts.PetYardType,
-                GuildId = 0,
-                GuildRank = 0,
-                VaultCount = newAccounts.VaultCount,
-                MaxCharSlot = newAccounts.MaxCharSlot,
-                RegTime = DateTime.Now,
-                Guest = true,
-                Fame = newAccounts.Fame,
-                TotalFame = newAccounts.Fame,
-                Credits = newAccounts.Gold,
-                TotalCredits = newAccounts.Gold,
-                UnholyEssence = newAccounts.UnholyEssence,
-                TotalUnholyEssence = newAccounts.TotalUnholyEssence,
-                DivineEssence = newAccounts.DivineEssence,
-                TotalDivineEssence = newAccounts.TotalDivineEssence,
-                PassResetToken = "",
-                AccountMails = new List<AccountMail>(),
-                AccountQuests = new AcceptedQuestData[0],
-                DailyQuestsCompleted = new int[0],
-            };
-
-            // make sure guest have all classes if they are supposed to
-            var stats = new DbClassStats(acnt);
-            if (Resources.Settings.Accounts.ClassesUnlocked)
-            {
-                foreach (var @class in Resources.GameData.Classes.Keys)
-                    stats.Unlock(@class);
-                stats.FlushAsync();
-            }
-            else
-                _db.KeyDelete("classStats.0");
-
-            // make sure guests have all skins if they are supposed to
-            if (newAccounts.SkinsUnlocked)
-            {
-                acnt.Skins = (from skin in Resources.GameData.Skins.Values
-                    where !skin.NoSkinSelect
-                    select skin.Type).ToArray();
-            }
-
-            return acnt;
-        }
-
         public LoginStatus Verify(string uuid, string password, out DbAccount acc)
         {
             acc = null;
@@ -169,13 +100,6 @@ namespace common
             tran.AddCondition(Condition.KeyNotExists(aKey));
             tran.StringSetAsync(aKey, lockToken, TimeSpan.FromSeconds(_lockTTL));
 
-            if (acc.DiscordId != null)
-            {
-                var dKey = $"dLock:{acc.DiscordId}";
-                tran.AddCondition(Condition.KeyNotExists(dKey));
-                tran.StringSetAsync(dKey, lockToken, TimeSpan.FromSeconds(_lockTTL));
-            }
-
             var committed = tran.Execute();
 
             acc.LockToken = committed ? lockToken : null;
@@ -195,13 +119,6 @@ namespace common
             tran.AddCondition(Condition.StringEqual(aKey, acc.LockToken));
             tran.KeyExpireAsync(aKey, TimeSpan.FromSeconds(_lockTTL));
 
-            if (acc.DiscordId != null)
-            {
-                var dKey = $"dLock:{acc.DiscordId}";
-                tran.AddCondition(Condition.StringEqual(dKey, acc.LockToken));
-                tran.KeyExpireAsync(dKey, TimeSpan.FromSeconds(_lockTTL));
-            }
-
             return tran.Execute();
         }
 
@@ -212,13 +129,6 @@ namespace common
             string aKey = $"lock:{acc.AccountId}";
             tran.AddCondition(Condition.StringEqual(aKey, acc.LockToken));
             tran.KeyDeleteAsync(aKey);
-
-            if (acc.DiscordId != null)
-            {
-                var dKey = $"dLock:{acc.DiscordId}";
-                tran.AddCondition(Condition.StringEqual(dKey, acc.LockToken));
-                tran.KeyDeleteAsync(dKey);
-            }
 
             tran.ExecuteAsync(CommandFlags.FireAndForget);
         }
@@ -305,24 +215,10 @@ namespace common
             if (!trans.Execute()) return false;
 
             acc.Name = newName;
-            acc.NameChosen = true;
             acc.FlushAsync();
             return true;
         }
-
-        public bool UnnameIGN(DbAccount acc, string lockToken)
-        {
-            var trans = _db.CreateTransaction();
-            trans.AddCondition(Condition.StringEqual(NAME_LOCK, lockToken));
-            trans.HashDeleteAsync("names", acc.Name.ToUpperInvariant());
-            if (!trans.Execute()) return false;
-
-            acc.Name = GuestNames[acc.AccountId % GuestNames.Length];
-            acc.NameChosen = false;
-            acc.FlushAsync();
-            return true;
-        }
-
+        
         private static RandomNumberGenerator gen = RNGCryptoServiceProvider.Create();
 
         public void ChangePassword(string uuid, string password)
@@ -337,18 +233,6 @@ namespace common
             login.HashedPassword = hash;
             login.Salt = salt;
             login.Flush();
-        }
-
-        public void Guest(DbAccount acc, bool isGuest)
-        {
-            acc.Guest = isGuest;
-            acc.FlushAsync();
-        }
-
-        public void ChangeAgeVerified(DbAccount acc, bool verified)
-        {
-            acc.AgeVerified = true;
-            acc.FlushAsync();
         }
 
         public RegisterStatus Register(string uuid, string password, string username, out DbAccount acc)
@@ -366,31 +250,17 @@ namespace common
                 UUID = uuid,
                 Name = username,
                 Admin = false,
-                NameChosen = true,
-                Verified = false,
-                AgeVerified = true,
-                FirstDeath = true,
-                PetYardType = newAccounts.PetYardType,
-                PetDatas = new PetData[0],
                 GuildId = 0,
                 GuildRank = 0,
                 VaultCount = newAccounts.VaultCount,
                 MaxCharSlot = newAccounts.MaxCharSlot,
                 RegTime = DateTime.Now,
-                Guest = false,
                 Fame = newAccounts.Fame,
                 TotalFame = newAccounts.Fame,
                 Credits = newAccounts.Gold,
                 TotalCredits = newAccounts.Gold,
-                UnholyEssence = newAccounts.UnholyEssence,
-                TotalUnholyEssence = newAccounts.TotalUnholyEssence,
-                DivineEssence = newAccounts.DivineEssence,
-                TotalDivineEssence = newAccounts.TotalDivineEssence,
                 PassResetToken = "",
-                LastSeen = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds,
-                AccountMails = new List<AccountMail>(),
-                AccountQuests = new AcceptedQuestData[0],
-                DailyQuestsCompleted = new int[0],
+                LastSeen = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds
             };
 
             if (newAccounts.SkinsUnlocked)
@@ -531,9 +401,6 @@ namespace common
             if (acc == null)
                 return AddGuildMemberStatus.Error;
 
-            if (acc.NameChosen == false)
-                return AddGuildMemberStatus.NameNotChosen;
-
             if (acc.GuildId == guild.Id)
                 return AddGuildMemberStatus.AlreadyInGuild;
 
@@ -638,20 +505,6 @@ namespace common
             guild.FlushAsync();
             return true;
         }
-        
-        public bool ChangeYardLevel(DbAccount account, int level)
-        {
-            // supported yard levels
-            if (level != 2 &&
-                level != 3 &&
-                level != 4 &&
-                level != 5)
-                return false;
-
-            account.PetYardType = level;
-            account.FlushAsync();
-            return true;
-        }
 
         public int ResolveId(string ign)
         {
@@ -702,10 +555,7 @@ namespace common
         {
             { CurrencyType.Gold, new[] { "totalCredits", "credits" } },
             { CurrencyType.Fame, new[] { "totalFame", "fame" } },
-            { CurrencyType.GuildFame, new[] { "totalFame", "fame" } },
-            { CurrencyType.Tokens, new[] { "totalTokens", "tokens" } },
-            { CurrencyType.UnholyEssence, new[] { "totalUnholyEssence", "unholyEssence" } },
-            { CurrencyType.DivineEssence, new[] { "totalDivineEssence", "divineEssence" } }
+            { CurrencyType.GuildFame, new[] { "totalFame", "fame" } }
         };
 
         public void UpdateCurrency(int accountId, int amount, CurrencyType currency, ITransaction transaction = null)
@@ -779,12 +629,6 @@ namespace common
                     return acc.Credits;
                 case CurrencyType.Fame:
                     return acc.Fame;
-                case CurrencyType.Tokens:
-                    return acc.Tokens;
-                case CurrencyType.UnholyEssence:
-                    return acc.UnholyEssence;
-                case CurrencyType.DivineEssence:
-                    return acc.DivineEssence;
                 default:
                     return null;
             }
@@ -806,25 +650,6 @@ namespace common
                         acc.TotalFame = value;
                     else
                         acc.Fame = value;
-                    break;
-
-                case CurrencyType.Tokens:
-                    if (total)
-                        acc.TotalTokens = value;
-                    else
-                        acc.Tokens = value;
-                    break;
-                case CurrencyType.UnholyEssence:
-                    if (total)
-                        acc.TotalUnholyEssence = value;
-                    else
-                        acc.UnholyEssence = value;
-                    break;
-                case CurrencyType.DivineEssence:
-                    if (total)
-                        acc.TotalDivineEssence = value;
-                    else
-                        acc.DivineEssence = value;
                     break;
             }
         }
@@ -878,82 +703,7 @@ namespace common
 
             return task;
         }
-
-        public Task UpdateTokens(DbAccount acc, int amount, ITransaction transaction = null)
-        {
-            var trans = transaction ?? _db.CreateTransaction();
-
-            if (amount > 0)
-                trans.HashIncrementAsync(acc.Key, "totalTokens", amount)
-                    .ContinueWith(t =>
-                    {
-                        if (!t.IsCanceled)
-                            acc.TotalTokens = (int)t.Result;
-                    });
-
-            var task = trans.HashIncrementAsync(acc.Key, "tokens", amount)
-                .ContinueWith(t =>
-                {
-                    if (!t.IsCanceled)
-                        acc.Tokens = (int)t.Result;
-                });
-
-            if (transaction == null)
-                trans.Execute();
-
-            return task;
-        }
-
-        public Task UpdateUnholyEssence(DbAccount acc, int amount, ITransaction transaction = null)
-        {
-            var trans = transaction ?? _db.CreateTransaction();
-
-            if (amount > 0)
-                trans.HashIncrementAsync(acc.Key, "totalUnholyEssence", amount)
-                    .ContinueWith(t =>
-                    {
-                        if (!t.IsCanceled)
-                            acc.TotalUnholyEssence = (int)t.Result;
-                    });
-
-            var task = trans.HashIncrementAsync(acc.Key, "unholyEssence", amount)
-                .ContinueWith(t =>
-                {
-                    if (!t.IsCanceled)
-                        acc.UnholyEssence = (int)t.Result;
-                });
-
-            if (transaction == null)
-                trans.Execute();
-
-            return task;
-        }
-
-        public Task UpdateDivineEssence(DbAccount acc, int amount, ITransaction transaction = null)
-        {
-            var trans = transaction ?? _db.CreateTransaction();
-
-            if (amount > 0)
-                trans.HashIncrementAsync(acc.Key, "totalDivineEssence", amount)
-                    .ContinueWith(t =>
-                    {
-                        if (!t.IsCanceled)
-                            acc.TotalDivineEssence = (int)t.Result;
-                    });
-
-            var task = trans.HashIncrementAsync(acc.Key, "divineEssence", amount)
-                .ContinueWith(t =>
-                {
-                    if (!t.IsCanceled)
-                        acc.DivineEssence = (int)t.Result;
-                });
-
-            if (transaction == null)
-                trans.Execute();
-
-            return task;
-        }
-
+        
         public Task UpdateGuildFame(DbGuild guild, int amount, ITransaction transaction = null)
         {
             var guildKey = $"guild.{guild.Id}";
@@ -1023,7 +773,7 @@ namespace common
                 BitConverter.GetBytes(character.CharId));
         }
 
-        private ItemData[] InitInventory(ushort[] givenItems)
+        private Item[] InitInventory(ushort[] givenItems)
         {            
             var inv = Utils.ResizeArray(givenItems, Resources.Settings.InventorySize);
             for (var i = givenItems.Length; i < inv.Length; i++)
@@ -1120,12 +870,9 @@ namespace common
                 Tex1 = 0,
                 Tex2 = 0,
                 Skin = skinType,
-                PetData = new PetData(),
                 FameStats = new byte[0],
                 CreateTime = DateTime.Now,
-                LastSeen = DateTime.Now,
-                AvailableQuests = new QuestData[0],
-                CharacterQuests = new AcceptedQuestData[0]
+                LastSeen = DateTime.Now
             };
 
             if (newCharacters.Maxed)
@@ -1168,15 +915,13 @@ namespace common
         }
 
         public Task<bool> SaveCharacter(
-            DbAccount acc, DbChar character, DbClassStats stats, bool lockAcc)
+            DbAccount acc, DbChar character, bool lockAcc)
         {
             var trans = _db.CreateTransaction();
             if (lockAcc)
                 trans.AddCondition(Condition.StringEqual(
                     $"lock:{acc.AccountId}", acc.LockToken));
             character.FlushAsync(trans);
-            stats.Update(character);
-            stats.FlushAsync(trans);
             return trans.ExecuteAsync();
         }
 
@@ -1200,7 +945,7 @@ namespace common
 
             // save character
             character.FinalFame = finalFame;
-            SaveCharacter(acc, character, classStats, acc.LockToken != null);
+            SaveCharacter(acc, character, acc.LockToken != null);
 
             var death = new DbDeath(acc, character.CharId)
             {
@@ -1444,116 +1189,6 @@ namespace common
             return abi.Banned;
         }
 
-        // Market
-        public void AddMarketData(DbAccount acc, ItemData item, int sellerId, string sellerName,
-            int price, int timeLeft, CurrencyType currency)
-        {
-            int marketId = DbMarketData.NextId(Conn);
-            DbMarketData data = new DbMarketData(_db, marketId);
-            data.ItemData = item;
-            data.SellerName = sellerName;
-            data.SellerId = sellerId;
-            data.Currency = currency;
-            data.Price = price;
-            data.StartTime = DateTime.UtcNow.ToUnixTimestamp();
-            data.TimeLeft = timeLeft;
-            data.Flush();
-
-            AddPlayerOffer(acc, marketId);
-        }
-
-        // Market
-        public DbMarketData GetMarketData(int id)
-        {
-            DbMarketData ret = new DbMarketData(_db, id);
-            if (ret.IsNull)
-            {
-                return null;
-            }
-
-            return ret;
-        }
-
-        // Market
-        public bool RemoveMarketData(DbAccount acc, int id)
-        {
-            var trans = _db.CreateTransaction();
-            trans.HashDeleteAsync("market", id);
-            if (!trans.Execute())
-            {
-                return false;
-            }
-
-            RemovePlayerOffer(acc, id);
-            return true;
-        }
-
-        // Market
-        public void RemovePlayerOffer(DbAccount acc, int id)
-        {
-            acc.Reload("marketOffers");
-
-            var gList = acc.MarketOffers.ToList();
-            gList.Remove(id);
-            acc.MarketOffers = gList.ToArray();
-            acc.FlushAsync();
-        }
-
-        // Market
-        public void AddPlayerOffer(DbAccount acc, int id) => AddPlayerOffers(acc, new int[] { id });
-
-        public void AddPlayerOffers(DbAccount acc, IEnumerable<int> ids)
-        {
-            acc.Reload("marketOffers");
-
-            var gList = acc.MarketOffers.ToList();
-            gList.AddRange(ids);
-
-            acc.MarketOffers = gList.ToArray();
-            acc.FlushAsync();
-        }
-
-        public void AddGift(DbAccount acc, ItemData item, ITransaction transaction = null)
-        {
-            AddGifts(acc, new List<ItemData>() { item }, transaction);
-        }
-
-        public void AddGifts(DbAccount acc, List<ItemData> items, ITransaction transaction = null)
-        {
-            var len = items.Count;
-            var saved = false;
-            var nextId = acc.NextGiftId/* + 1*/;
-            var chest = new DbGiftSingle(acc, nextId);
-            var active = acc.ActiveGiftChests;
-            active.Add(nextId);
-            var chestItems = chest.Items.ToList();
-            // add items
-            while (items.Count > 0)
-            {
-                chestItems.Add(items[0]);
-                items.RemoveAt(0);
-                if (chestItems.Count == 36)
-                {
-                    // save chest with new items and setup next
-                    chest.Items = chestItems.ToArray();
-                    chest.FlushAsync(transaction);
-                    nextId++;
-                    chest = new DbGiftSingle(acc, nextId);
-                    chestItems = chest.Items.ToList();
-                    active.Add(nextId);
-                    saved = true;
-                }
-            }
-
-            // save all
-            acc.NextGiftId = nextId;
-            acc.ActiveGiftChests = active;
-            chest.Items = chestItems.ToArray();
-            if (len > 1 || !saved)
-                chest.FlushAsync(transaction);
-            acc.FlushAsync(transaction);
-        }
-
         public int LastLegendsUpdateTime()
         {
             var time = _db.StringGet("legends:updateTime");
@@ -1613,16 +1248,6 @@ namespace common
             _db.HashDeleteAsync($"discordAccount.{discordId}", accId, CommandFlags.FireAndForget);
             _db.HashDeleteAsync($"account.{accId}", "discordId", CommandFlags.FireAndForget);
             return true;
-        }
-
-        public void RankDiscord(string discordId, int rank)
-        {
-            _db.HashSetAsync("discordRank", discordId, rank, When.Always, CommandFlags.FireAndForget);
-        }
-
-        public void CleanMarket()
-        {
-            DbMarketData.CleanMarket(this);
         }
 
         public void IncrementHashField(string key, string hashField)

@@ -11,6 +11,7 @@ using GameServer.realm.worlds;
 using GameServer.realm.worlds.logic;
 using NLog;
 using Newtonsoft.Json;
+using wServer.realm;
 using File = System.IO.File;
 
 namespace GameServer.realm.entities.player
@@ -1612,7 +1613,7 @@ namespace GameServer.realm.entities.player
         public void DropNextRandom(int times = 1)
         {
             for (var i = 0; i < times; i++)
-                Client.Random.NextInt();
+                Client.ClientRandom.NextInt();
         }
     }
 }

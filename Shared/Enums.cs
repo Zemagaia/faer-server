@@ -18,10 +18,7 @@ namespace common
     {
         Gold = 0,
         Fame = 1,
-        GuildFame = 2,
-        Tokens = 3,
-        UnholyEssence = 4,
-        DivineEssence = 5
+        GuildFame = 2
     }
 
     [Flags]

@@ -5,6 +5,7 @@ using GameServer.networking.packets.outgoing;
 using GameServer.realm.worlds;
 using GameServer.realm.worlds.logic;
 using StackExchange.Redis;
+using wServer.realm;
 
 namespace GameServer.realm.entities.player
 {
@@ -119,20 +120,20 @@ namespace GameServer.realm.entities.player
         private bool _skinSet;
         private int _flamePillarState;
 
-        public void UseItem(RealmTime time, int objId, int slot, Position pos, byte activateId, int clientTime)
+        public void UseItem(int objId, int slot, float x, float y)
         {
             lock (_useLock)
             {
                 var entity = Owner.GetEntity(objId);
                 if (entity == null)
                 {
-                    Client.SendPacket(new InvResult { Result = 1 });
+                    Client.SendInvResult(1);
                     return;
                 }
 
                 if (entity is Player && objId != Id)
                 {
-                    Client.SendPacket(new InvResult { Result = 1 });
+                    Client.SendInvResult(1);
                     return;
                 }
 
@@ -141,7 +142,7 @@ namespace GameServer.realm.entities.player
                 // eheh no more clearing BBQ loot bags
                 if (this.Dist(entity) > 3)
                 {
-                    Client.SendPacket(new InvResult { Result = 1 });
+                    Client.SendInvResult(1);
                     return;
                 }
 
@@ -149,7 +150,6 @@ namespace GameServer.realm.entities.player
 
                 // get item
                 Item item = null;
-                ItemData itemData = null;
                 foreach (var stack in Stacks.Where(stack => stack.Slot == slot))
                 {
                     item = stack.Pull();
@@ -166,25 +166,15 @@ namespace GameServer.realm.entities.player
                     if (container == null)
                         return;
 
-                    itemData = cInv[slot];
-                    item = itemData.Item;
+                    item = cInv[slot];
                 }
 
-                if (item == null || itemData == null)
+                if (item == null)
                     return;
 
                 // make sure not trading and trying to consume item
                 if (tradeTarget != null && item.Consumable)
                     return;
-
-                if (MP < item.MpCost && activateId == 1
-                    || MP < item.MpCost2 && activateId == 2
-                    || HP < item.HpCost && activateId == 1
-                    || HasConditionEffect(ConditionEffects.Suppressed) && slot == 1)
-                {
-                    Client.SendPacket(new InvResult { Result = 1 });
-                    return;
-                }
 
                 // use item
                 var slotType = 10;
@@ -195,33 +185,7 @@ namespace GameServer.realm.entities.player
                     if (item.Consumable)
                     {
                         var db = Manager.Database;
-
-                        var successor = new ItemData();
-                        if (item.SuccessorId != null)
-                            successor = ItemData.GenerateData(item);
-                        if (container is not GiftChest)
-                            cInv[slot] = successor;
-
-                        if (itemData.Quantity > 0 || item.Quantity > 0 && item.MaxQuantity > 0)
-                        {
-                            // consume item and add quantity to item data if it's unavailable
-                            if (itemData.MaxQuantity == 0 && itemData.Quantity == 0)
-                            {
-                                itemData.MaxQuantity = item.MaxQuantity;
-                                itemData.Quantity = item.Quantity;
-                            }
-                            if (itemData.Quantity - 1 > 0)
-                            {
-                                successor = itemData;
-                                if (container is not GiftChest)
-                                {
-                                    itemData.Quantity--;
-                                    cInv[slot] = successor;
-                                    entity.ForceUpdate(slot);
-                                }
-                            }
-                        }
-
+                        
                         var trans = db.Conn.CreateTransaction();
                         if (container is GiftChest)
                         {

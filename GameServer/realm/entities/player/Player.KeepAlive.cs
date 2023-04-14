@@ -2,6 +2,7 @@
 using GameServer.networking.packets.incoming;
 using GameServer.networking.packets.outgoing;
 using GameServer.realm.worlds.logic;
+using Org.BouncyCastle.Asn1.X509;
 
 namespace GameServer.realm.entities.player
 {
@@ -32,7 +33,7 @@ namespace GameServer.realm.entities.player
         private readonly ConcurrentQueue<int> _serverTimeLog = new();
 
         bool KeepAlive(RealmTime time) {
-            return true;
+            /*
             if (_pingTime == -1)
             {
                 _pingTime = time.TotalElapsedMs - PingPeriod;
@@ -86,18 +87,18 @@ namespace GameServer.realm.entities.player
             _client.SendPacket(new Ping()
             {
                 Serial = (int)time.TotalElapsedMs
-            });
+            });*/
             return UpdateOnPing();
         }
 
-        public void Pong(RealmTime time, Pong pongPkt)
+        public void Pong(RealmTime time, int pongTime, int serial)
         {
             _cnt++;
 
-            _sum += time.TotalElapsedMs - pongPkt.Time;
+            _sum += time.TotalElapsedMs - pongTime;
             TimeMap = _sum / _cnt;
 
-            _latSum += (time.TotalElapsedMs - pongPkt.Serial) / 2;
+            _latSum += (time.TotalElapsedMs - serial) / 2;
             Latency = (int)_latSum / _cnt;
 
             _pongTime = time.TotalElapsedMs;
@@ -115,13 +116,6 @@ namespace GameServer.realm.entities.player
             {
                 _client.Disconnect("RenewLock failed. (Timeout)");
                 return false;
-            }
-
-            // save character
-            if (!(Owner is Test))
-            {
-                SaveToCharacter();
-                _client.Character.FlushAsync();
             }
 
             return true;

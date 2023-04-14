@@ -109,7 +109,7 @@ namespace GameServer.realm.entities.player
                 {
                     Id = _.Key.Id,
                     Position = new Position() { X = _.Key.RealX, Y = _.Key.RealY },
-                    Stats = _.Value.ToArray(),
+                    StatTypes = _.Value.ToArray(),
                     DamageDealt = DamageDealt
                 }).ToArray();
                 _statUpdates.Clear();

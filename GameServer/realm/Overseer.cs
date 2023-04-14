@@ -281,20 +281,12 @@ namespace GameServer.realm
 
         private void BroadcastMsg(string message)
         {
-            _world.Manager.Chat.Oryx(_world, message);
+            _world.Manager.Chat.Enemy(_world, "a", message);
         }
 
         private void BroadcastEnemyMsg(string name, string message)
         {
             _world.Manager.Chat.Enemy(_world, name, message);
-        }
-
-        public void OnPlayerEntered(Player player)
-        {
-            player.SendInfo("Welcome to Realm of the Mad God");
-            player.SendEnemy("Oryx the Mad God", "You are food for my minions!");
-            player.SendInfo("Use [WASDQE] to move; click to shoot!");
-            player.SendInfo("Type \"/help\" for more help");
         }
 
         private void SpawnEvent(string name, string setpiece)

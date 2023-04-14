@@ -58,7 +58,7 @@ namespace GameServer.realm
                 attackMult = 0.5f + power / 50f;
             }
 
-            var ret = Owner.Client.Random.Next(desc.MinDamage, desc.MaxDamage) * attackMult;
+            var ret = Owner.Client.ClientRandom.Next(desc.MinDamage, desc.MaxDamage) * attackMult;
             if (Owner.HasConditionEffect(ConditionEffects.Brave))
                 ret *= 1.5f;
 
@@ -72,7 +72,7 @@ namespace GameServer.realm
             float criticalStrike = this[14];
             float strength = this[2] <= 384 ? this[2] : 384;
             float ret = 0;
-            var roll = Owner.Client.Random.Next(0, 1000);
+            var roll = Owner.Client.ClientRandom.Next(0, 1000);
             var chance = (1 + criticalStrike) * 10 > 500 ? 500 : (int)(1 + criticalStrike) * 10;
             if (roll > chance || Owner.HasConditionEffect(ConditionEffects.Unsteady))
                 return ret;
@@ -215,42 +215,10 @@ namespace GameServer.realm
                     return 1;
                 case StatsType.Strength:
                     return 2;
-                case StatsType.Armor:
-                    return 3;
-                case StatsType.Agility:
-                    return 4;
-                case StatsType.Dexterity:
-                    return 5;
                 case StatsType.Stamina:
                     return 6;
-                case StatsType.Intelligence:
-                    return 7;
                 case StatsType.Luck:
                     return 10;
-                case StatsType.Haste:
-                    return 11;
-                case StatsType.Shield:
-                    return 12;
-                case StatsType.Tenacity:
-                    return 13;
-                case StatsType.CriticalStrike:
-                    return 14;
-                case StatsType.LifeSteal:
-                    return 15;
-                case StatsType.ManaLeech:
-                    return 16;
-                case StatsType.LifeStealKill:
-                    return 17;
-                case StatsType.ManaLeechKill:
-                    return 18;
-                case StatsType.Resistance:
-                    return 19;
-                case StatsType.Wit:
-                    return 20;
-                case StatsType.Lethality:
-                    return 21;
-                case StatsType.Piercing:
-                    return 22;
                 default:
                     return -1;
             }
@@ -266,42 +234,10 @@ namespace GameServer.realm
                     return StatsType.MaximumMP;
                 case 2:
                     return StatsType.Strength;
-                case 3:
-                    return StatsType.Armor;
-                case 4:
-                    return StatsType.Agility;
-                case 5:
-                    return StatsType.Dexterity;
                 case 6:
                     return StatsType.Stamina;
-                case 7:
-                    return StatsType.Intelligence;
                 case 10:
                     return StatsType.Luck;
-                case 11:
-                    return StatsType.Haste;
-                case 12:
-                    return StatsType.Shield;
-                case 13:
-                    return StatsType.Tenacity;
-                case 14:
-                    return StatsType.CriticalStrike;
-                case 15:
-                    return StatsType.LifeSteal;
-                case 16:
-                    return StatsType.ManaLeech;
-                case 17:
-                    return StatsType.LifeStealKill;
-                case 18:
-                    return StatsType.ManaLeechKill;
-                case 19:
-                    return StatsType.Resistance;
-                case 20:
-                    return StatsType.Wit;
-                case 21:
-                    return StatsType.Lethality;
-                case 22:
-                    return StatsType.Piercing;
                 default:
                     return StatsType.None;
             }
@@ -317,42 +253,10 @@ namespace GameServer.realm
                     return StatsType.MPBoost;
                 case 2:
                     return StatsType.StrengthBonus;
-                case 3:
-                    return StatsType.ArmorBonus;
-                case 4:
-                    return StatsType.AgilityBonus;
-                case 5:
-                    return StatsType.DexterityBonus;
                 case 6:
                     return StatsType.StaminaBonus;
-                case 7:
-                    return StatsType.IntelligenceBonus;
                 case 10:
                     return StatsType.LuckBonus;
-                case 11:
-                    return StatsType.HasteBoost;
-                case 12:
-                    return StatsType.ShieldBonus;
-                case 13:
-                    return StatsType.TenacityBoost;
-                case 14:
-                    return StatsType.CriticalStrikeBoost;
-                case 15:
-                    return StatsType.LifeStealBoost;
-                case 16:
-                    return StatsType.ManaLeechBoost;
-                case 17:
-                    return StatsType.LifeStealKillBoost;
-                case 18:
-                    return StatsType.ManaLeechKillBoost;
-                case 19:
-                    return StatsType.ResistanceBoost;
-                case 20:
-                    return StatsType.WitBoost;
-                case 21:
-                    return StatsType.LethalityBoost;
-                case 22:
-                    return StatsType.PiercingBoost;
                 default:
                     return StatsType.None;
             }

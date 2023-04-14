@@ -242,26 +242,17 @@ namespace AppEngine
     {
         public int AccountId { get; private set; }
         public string Name { get; set; }
-
-        public bool NameChosen { get; private set; }
-        public bool Converted { get; private set; }
+        
         public bool Admin { get; private set; }
         public int Rank { get; private set; }
-        public bool VerifiedEmail { get; private set; }
-        public bool AgeVerified { get; private set; }
-        public bool FirstDeath { get; private set; }
-        public int PetYardType { get; private set; }
 
         public int Credits { get; private set; }
-        public int UnholyEssence { get; private set; }
-        public int DivineEssence { get; private set; }
         public int NextCharSlotPrice { get; private set; }
         public int CharSlotCurrency { get; private set; }
         public string MenuMusic { get; private set; }
         public string DeadMusic { get; private set; }
         public int MapMinRank { get; private set; }
         public int SpriteMinRank { get; private set; }
-        public int BeginnerPackageTimeLeft { get; private set; }
 
         public Stats Stats { get; private set; }
         public GuildIdentity Guild { get; private set; }
@@ -280,25 +271,16 @@ namespace AppEngine
                 AccountId = acc.AccountId,
                 Name = acc.Name,
 
-                NameChosen = acc.NameChosen,
-                Converted = false,
                 Admin = acc.Admin,
                 Rank = acc.Rank,
-                VerifiedEmail = acc.Verified,
-                AgeVerified = acc.AgeVerified,
-                FirstDeath = acc.FirstDeath,
-                PetYardType = acc.PetYardType,
-
+                
                 Credits = acc.Credits,
-                UnholyEssence = acc.UnholyEssence,
-                DivineEssence = acc.DivineEssence,
                 NextCharSlotPrice = Program.Resources.Settings.CharacterSlotCost,
                 CharSlotCurrency = Program.Resources.Settings.CharacterSlotCurrency,
                 MenuMusic = Program.Resources.Settings.MenuMusic,
                 DeadMusic = Program.Resources.Settings.DeadMusic,
                 MapMinRank = Program.Resources.Settings.MapMinRank,
                 SpriteMinRank = Program.Resources.Settings.SpriteMinRank,
-                BeginnerPackageTimeLeft = 0,
 
                 Stats = Stats.FromDb(acc, new DbClassStats(acc)),
                 Guild = GuildIdentity.FromDb(acc, new DbGuild(acc)),
@@ -317,29 +299,17 @@ namespace AppEngine
                 new XElement("Account",
                     new XElement("AccountId", AccountId),
                     new XElement("Name", Name),
-                    NameChosen ? new XElement("NameChosen", "") : null,
-                    Converted ? new XElement("Converted", "") : null,
                     Admin ? new XElement("Admin", "") : null,
                     new XElement("Rank", Rank),
                     new XElement("LastSeen", LastSeen),
-                    VerifiedEmail ? new XElement("VerifiedEmail", "") : null,
-                    new XElement("IsAgeVerified", (AgeVerified) ? 1 : 0),
-                    FirstDeath ? new XElement("isFirstDeath", "") : null,
-                    new XElement("PetYardType",
-                        PetYardType == 0
-                            ? 1
-                            : PetYardType), // todo, a value of zero doesn't work. old accounts throw error...
                     Banned ? new XElement("Banned", BanReasons).AddAttribute("liftTime", BanLiftTime) : null,
                     new XElement("Credits", Credits),
-                    new XElement("UnholyEssence", UnholyEssence),
-                    new XElement("DivineEssence", DivineEssence),
                     new XElement("NextCharSlotPrice", NextCharSlotPrice),
                     new XElement("CharSlotCurrency", CharSlotCurrency),
                     new XElement("MenuMusic", MenuMusic),
                     new XElement("DeadMusic", DeadMusic),
                     new XElement("MapMinRank", MapMinRank),
                     new XElement("SpriteMinRank", SpriteMinRank),
-                    new XElement("BeginnerPackageTimeLeft", BeginnerPackageTimeLeft),
                     Stats.ToXml(),
                     Guild.ToXml()
                 );
@@ -353,7 +323,7 @@ namespace AppEngine
         public int Level { get; private set; }
         public int Exp { get; private set; }
         public int CurrentFame { get; private set; }
-        public ItemData[] Equipment { get; private set; }
+        public Item[] Equipment { get; private set; }
         public int MaxHitPoints { get; private set; }
         public int HitPoints { get; private set; }
         public int MaxMagicPoints { get; private set; }
@@ -373,9 +343,6 @@ namespace AppEngine
         public int MagicStackCount { get; private set; }
         public bool Dead { get; private set; }
         public bool HasBackpack { get; private set; }
-        public QuestData[] AvailableQuests { get; private set; }
-        public AcceptedQuestData[] CharacterQuests { get; private set; }
-        public PetData PetData { get; private set; }
 
         public static Character FromDb(DbChar character, bool dead)
         {
@@ -406,9 +373,6 @@ namespace AppEngine
                 MagicStackCount = character.MagicStackCount,
                 Dead = dead,
                 HasBackpack = character.HasBackpack,
-                AvailableQuests = character.AvailableQuests,
-                CharacterQuests = character.CharacterQuests,
-                PetData = character.PetData,
             };
         }
 
@@ -421,7 +385,6 @@ namespace AppEngine
                     new XElement("Level", Level),
                     new XElement("Exp", Exp),
                     new XElement("CurrentFame", CurrentFame),
-                    new XElement("Equipment", Convert.ToBase64String(Equipment.ToBytes(false))),
                     new XElement("MaxHitPoints", MaxHitPoints),
                     new XElement("HitPoints", HitPoints),
                     new XElement("MaxMagicPoints", MaxMagicPoints),
@@ -440,10 +403,7 @@ namespace AppEngine
                     new XElement("HealthStackCount", HealthStackCount),
                     new XElement("MagicStackCount", MagicStackCount),
                     new XElement("Dead", Dead),
-                    new XElement("HasBackpack", (HasBackpack) ? "1" : "0"),
-                    new XElement("AvailableQuests", Convert.ToBase64String(AvailableQuests.ToBytes(false))),
-                    new XElement("CharacterQuests", Convert.ToBase64String(CharacterQuests.ToBytes(false))),
-                    new XElement("PetData", Convert.ToBase64String(PetData?.Export() ?? new PetData().Export()))
+                    new XElement("HasBackpack", (HasBackpack) ? "1" : "0")
                 );
         }
     }
@@ -745,7 +705,6 @@ namespace AppEngine
         public int Tex1 { get; private set; }
         public int Tex2 { get; private set; }
         public int Skin { get; private set; }
-        public ItemData[] Equipment { get; private set; }
         public int TotalFame { get; private set; }
 
         public static FameListEntry FromDb(DbChar character)
@@ -760,7 +719,6 @@ namespace AppEngine
                 Tex1 = character.Tex1,
                 Tex2 = character.Tex2,
                 Skin = character.Skin,
-                Equipment = character.Items,
                 TotalFame = death.TotalFame
             };
         }
@@ -776,7 +734,6 @@ namespace AppEngine
                     new XElement("Tex1", Tex1),
                     new XElement("Tex2", Tex2),
                     new XElement("Texture", Skin),
-                    new XElement("Equipment", Convert.ToBase64String(Equipment.ToBytes(false))),
                     new XElement("TotalFame", TotalFame)
                 );
         }

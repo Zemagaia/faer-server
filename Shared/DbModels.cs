@@ -100,21 +100,6 @@ namespace common
             if (typeof(T) == typeof(string))
                 return (T)(object)Encoding.UTF8.GetString(val.Key);
 
-            if (typeof(T) == typeof(ItemData[]))
-                return (T)val.Key.FromBytes(typeof(ItemData[]));
-
-            if (typeof(T) == typeof(PetData[]))
-                return (T)val.Key.FromBytes(typeof(PetData[]));
-
-            if (typeof(T) == typeof(PetData))
-                return (T)(object)new PetData(val.Key);
-
-            if (typeof(T) == typeof(QuestData[]))
-                return (T)val.Key.FromBytes(typeof(QuestData[]));
-
-            if (typeof(T) == typeof(AcceptedQuestData[]))
-                return (T)val.Key.FromBytes(typeof(AcceptedQuestData[]));
-
             throw new NotSupportedException();
         }
 
@@ -162,21 +147,6 @@ namespace common
                 buff = new byte[arr.Length * 4];
                 Buffer.BlockCopy(arr, 0, buff, 0, buff.Length);
             }
-            
-            else if (typeof(T) == typeof(ItemData[]))
-                buff = ((ItemData[])(object)val).ToBytes(true);
-            
-            else if (typeof(T) == typeof(PetData[]))
-                buff = ((PetData[])(object)val).ToBytes(true);
-            
-            else if (typeof(T) == typeof(PetData))
-                buff = ((PetData)(object)val).Export();
-            
-            else if (typeof(T) == typeof(QuestData[]))
-                buff = ((QuestData[])(object)val).ToBytes(true);
-            
-            else if (typeof(T) == typeof(AcceptedQuestData[]))
-                buff = ((AcceptedQuestData[])(object)val).ToBytes(true);
 
             else
                 throw new NotSupportedException();
@@ -286,101 +256,6 @@ namespace common
         }
     }
 
-    public class DbMarketData
-    {
-        private IDatabase _db;
-
-        public DbMarketData() // empty for deserialization.
-        {
-        }
-
-        internal DbMarketData(IDatabase db, int id)
-        {
-            _db = db;
-
-            Id = id;
-            var json = (string)db.HashGet("market", id);
-            if (json == null)
-            {
-                IsNull = true;
-            }
-            else
-            {
-                JsonConvert.PopulateObject(json, this);
-            }
-        }
-
-        private static readonly Random _rand = new();
-
-        public static int NextId(IDatabase db)
-        {
-            int id;
-            do
-            {
-                id = _rand.Next(int.MaxValue);
-            } while ((string)db.HashGet("market", id) != null);
-
-            return id;
-        }
-
-        [JsonProperty("marketId")] public int Id;
-
-        [JsonProperty("itemData")] public ItemData ItemData;
-
-        [JsonProperty("sellerName")] public string SellerName;
-
-        [JsonProperty("sellerId")] public int SellerId;
-
-        [JsonProperty("currency")] public CurrencyType Currency;
-
-        [JsonProperty("price")] public int Price;
-
-        [JsonProperty("startTime")] public int StartTime;
-
-        [JsonProperty("timeLeft")] public int TimeLeft;
-
-        [JsonIgnore] public bool IsNull { get; private set; }
-
-        public void Flush()
-        {
-            _db.HashSet("market", Id, JsonConvert.SerializeObject(this));
-        }
-
-        public static DbMarketData[] Get(IDatabase db, ushort itemType)
-        {
-            List<DbMarketData> ret = new List<DbMarketData>();
-            var allOffers = db.HashGetAll("market");
-            foreach (var i in allOffers)
-            {
-                DbMarketData l = JsonConvert.DeserializeObject<DbMarketData>(i.Value);
-                if (l.ItemData.ObjectType == itemType)
-                {
-                    ret.Add(l);
-                }
-            }
-
-            return ret.ToArray();
-        }
-
-        public static void CleanMarket(Database db)
-        {
-            var allOffers = db.Conn.HashGetAll("market");
-            foreach (var i in allOffers)
-            {
-                DbMarketData l = JsonConvert.DeserializeObject<DbMarketData>(i.Value);
-                if (l.TimeLeft <
-                    DateTime.UtcNow.ToUnixTimestamp()) // Market has been up its max time, remove it from marketplace.
-                {
-                    DbAccount
-                        owner = db.GetAccount(l
-                            .SellerId); // Owner should never be null, as SellerId should ALWAYS be a valid account id.
-                    db.RemoveMarketData(owner, l.Id);
-                    db.AddGift(owner, l.ItemData);
-                }
-            }
-        }
-    }
-
     public class DbAccount : RedisObject
     {
         public DbAccount(IDatabase db, int accId, string field = null)
@@ -391,9 +266,6 @@ namespace common
             if (field != null)
                 return;
 
-            if (DiscordId != null)
-                DiscordRank = (int)db.HashGet("discordRank", DiscordId);
-
             var time = Utils.FromUnixTimestamp(BanLiftTime);
             if (!Banned || BanLiftTime <= -1 || time > DateTime.UtcNow) return;
             Banned = false;
@@ -402,7 +274,6 @@ namespace common
         }
 
         public int AccountId { get; private set; }
-        public int DiscordRank { get; private set; }
 
         public int AccountIdOverride
         {
@@ -430,36 +301,6 @@ namespace common
         {
             get => GetValue<bool>("admin");
             set => SetValue("admin", value);
-        }
-
-        public bool NameChosen
-        {
-            get => GetValue<bool>("nameChosen");
-            set => SetValue("nameChosen", value);
-        }
-
-        public bool Verified
-        {
-            get => GetValue<bool>("verified");
-            set => SetValue("verified", value);
-        }
-
-        public bool AgeVerified
-        {
-            get => GetValue<bool>("ageVerified");
-            set => SetValue("ageVerified", value);
-        }
-
-        public bool FirstDeath
-        {
-            get => GetValue<bool>("firstDeath");
-            set => SetValue("firstDeath", value);
-        }
-
-        public int PetYardType
-        {
-            get => GetValue<int>("petYardType");
-            set => SetValue("petYardType", value);
         }
 
         public int GuildId
@@ -517,12 +358,6 @@ namespace common
             set => SetValue("regTime", value);
         }
 
-        public bool Guest
-        {
-            get => GetValue<bool>("guest");
-            set => SetValue("guest", value);
-        }
-
         public int Credits
         {
             get => GetValue<int>("credits");
@@ -545,42 +380,6 @@ namespace common
         {
             get => GetValue<int>("totalFame");
             set => SetValue("totalFame", value);
-        }
-
-        public int Tokens
-        {
-            get => GetValue<int>("tokens");
-            set => SetValue("tokens", value);
-        }
-
-        public int TotalTokens
-        {
-            get => GetValue<int>("totalTokens");
-            set => SetValue("totalTokens", value);
-        }
-
-        public int UnholyEssence
-        {
-            get => GetValue<int>("unholyEssence");
-            set => SetValue("unholyEssence", value);
-        }
-
-        public int TotalUnholyEssence
-        {
-            get => GetValue<int>("totalUnholyEssence");
-            set => SetValue("totalUnholyEssence", value);
-        }
-
-        public int DivineEssence
-        {
-            get => GetValue<int>("divineEssence");
-            set => SetValue("divineEssence", value);
-        }
-
-        public int TotalDivineEssence
-        {
-            get => GetValue<int>("totalDivineEssence");
-            set => SetValue("totalDivineEssence", value);
         }
 
         public int NextCharId
@@ -673,54 +472,7 @@ namespace common
             set => SetValue("size", value);
         }
 
-        public bool RankManager
-        {
-            get => GetValue<bool>("rankManager");
-            set => SetValue("rankManager", value);
-        }
-
-        public string DiscordId
-        {
-            get => GetValue<string>("discordId");
-            set => SetValue("discordId", value);
-        }
-
-        public int Rank => DiscordRank > LegacyRank ? DiscordRank : LegacyRank;
-
-        public List<AccountMail> AccountMails
-        {
-            get
-            {
-                try
-                {
-                    return JsonConvert.DeserializeObject<List<AccountMail>>(GetValue<string>("mail"));
-                }
-                catch
-                {
-                    return null;
-                }
-            }
-            set => SetValue("mail", JsonConvert.SerializeObject(value, Utils.SerializerSettings()));
-        }
-
-        public AcceptedQuestData[] AccountQuests
-        {
-            get => GetValue<AcceptedQuestData[]>("quests");
-            set => SetValue("quests", value);
-        }
-
-        // by unix datetime
-        public int[] DailyQuestsCompleted
-        {
-            get => GetValue<int[]>("dailyQuestsCompleted") ?? new int[0];
-            set => SetValue("dailyQuestsCompleted", value);
-        }
-
-        public PetData[] PetDatas
-        {
-            get => GetValue<PetData[]>("petDatas");
-            set => SetValue("petDatas", value);
-        }
+        public int Rank => LegacyRank;
 
         public void RefreshLastSeen()
         {
@@ -732,46 +484,6 @@ namespace common
     {
         public int BestLevel;
         public int BestFame;
-    }
-
-    public class PetData
-    {
-        public int Id;
-        public ushort ObjectType;
-
-        public PetData()
-        {
-        }
-
-        public PetData Read(NReader rdr)
-        {
-            return new PetData()
-            {
-                Id = rdr.ReadInt32(),
-                ObjectType = rdr.ReadUInt16()
-            };
-        }
-        
-        public PetData(byte[] data)
-        {
-            using (var ms = new MemoryStream(data))
-            using (var rdr = new NReader(ms))
-            {
-                Id = rdr.ReadInt32();
-                ObjectType = rdr.ReadUInt16();
-            }
-        }
-        
-        public byte[] Export()
-        {
-            using (var ms = new MemoryStream())
-            using (var wtr = new NWriter(ms))
-            {
-                wtr.Write(Id);
-                wtr.Write(ObjectType);
-                return ms.ToArray();
-            }
-        }
     }
 
     public class DbClassStats : RedisObject
@@ -842,18 +554,6 @@ namespace common
             Init(acc.Database, "char." + acc.AccountId + "." + charId);
         }
 
-        public QuestData[] AvailableQuests
-        {
-            get => GetValue<QuestData[]>("availableQuests");
-            set => SetValue("availableQuests", value);
-        }
-
-        public AcceptedQuestData[] CharacterQuests
-        {
-            get => GetValue<AcceptedQuestData[]>("quests");
-            set => SetValue("quests", value);
-        }
-
         public ushort ObjectType
         {
             get => GetValue<ushort>("charType");
@@ -884,9 +584,9 @@ namespace common
             set => SetValue("finalFame", value);
         }
 
-        public ItemData[] Items
+        public Item[] Items
         {
-            get => GetValue("items", new ItemData[20].Select(_ => new ItemData()).ToArray());
+            get => GetValue("items", new Item[20].Select(_ => new Item()).ToArray());
             set => SetValue("items", value);
         }
 
@@ -924,12 +624,6 @@ namespace common
         {
             get => GetValue<int>("skin");
             set => SetValue("skin", value);
-        }
-
-        public PetData PetData
-        {
-            get => GetValue<PetData>("petData");
-            set => SetValue("petData", value);
         }
 
         public byte[] FameStats
@@ -1092,9 +786,9 @@ namespace common
     {
         public string Field { get; protected set; }
 
-        public ItemData[] Items
+        public Item[] Items
         {
-            get => GetValue(Field, new ItemData[18].Select(_ => new ItemData()).ToArray());
+            get => GetValue(Field, new Item[18].Select(_ => new Item()).ToArray());
             set => SetValue(Field, value);
         }
     }
@@ -1106,12 +800,12 @@ namespace common
             Field = "vault." + vaultIndex;
             Init(acc.Database, "vault." + acc.AccountId, Field);
 
-            var items = GetValue<ItemData[]>(Field);
+            var items = GetValue<Item[]>(Field);
             if (items != null)
                 return;
 
             var trans = Database.CreateTransaction();
-            SetValue(Field, Utils.ResizeArray(Items, 36).Select(_ => new ItemData()).ToArray());
+            SetValue(Field, Utils.ResizeArray(Items, 36).Select(_ => new Item()).ToArray());
             FlushAsync(trans);
             trans.Execute(CommandFlags.FireAndForget);
         }

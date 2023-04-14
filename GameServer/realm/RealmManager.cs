@@ -50,7 +50,6 @@ namespace GameServer.realm
 
         private Thread _network;
         private Thread _logic;
-        public NetworkTicker Network { get; private set; }
         public LogicTicker Logic { get; private set; }
 
         public readonly ConcurrentDictionary<int, World> Worlds = new();
@@ -126,12 +125,6 @@ namespace GameServer.realm
             logic.ContinueWith(Program.Stop, TaskContinuationOptions.OnlyOnFaulted);
             logic.Start();
 
-            // start received packet processor
-            Network = new NetworkTicker(this);
-            var network = new Task(() => Network.TickLoop(), TaskCreationOptions.LongRunning);
-            network.ContinueWith(Program.Stop, TaskContinuationOptions.OnlyOnFaulted);
-            network.Start();
-
             Log.Info("Realm Manager started.");
         }
 
@@ -142,7 +135,6 @@ namespace GameServer.realm
             Terminating = true;
             InterServer.Dispose();
             Resources.Dispose();
-            Network.Shutdown();
 
             Log.Info("Realm Manager stopped.");
         }

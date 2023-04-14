@@ -1,4 +1,5 @@
 ﻿using common;
+using wServer.realm;
 
 namespace GameServer.realm
 {
@@ -41,7 +42,7 @@ namespace GameServer.realm
         {
             var min = 0;
             var max = 0;
-            var weap = _parent.Owner.Inventory[1].Item;
+            var weap = _parent.Owner.Inventory[1];
             if (weap != null && weap.Projectiles.Length > 0)
             {
                 min = weap.Projectiles[0].MinDamage;

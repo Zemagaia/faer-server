@@ -51,12 +51,9 @@ namespace GameServer.realm
                 Stats = new ObjectStats()
                 {
                     Id = ObjId,
-                    Position = new Position()
-                    {
-                        X = x + 0.5f,
-                        Y = y + 0.5f
-                    },
-                    Stats = stats.ToArray()
+                    X = x + 0.5f,
+                    Y = y + 0.5f,
+                    StatTypes = stats.ToArray()
                 }
             };
         }

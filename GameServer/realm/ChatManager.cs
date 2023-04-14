@@ -54,95 +54,8 @@ namespace GameServer.realm
             if (string.IsNullOrWhiteSpace(text))
                 return;
 
-            if (src.IsControlling)
-            {
-                Mob(src.SpectateTarget, text);
-            }
-            else
-            {
-                var tp = new Text()
-                {
-                    Name = (src.Client.Account.Admin ? "@" : "") + src.Name,
-                    ObjectId = src.Id,
-                    NumStars = src.Stars,
-                    Admin = src.Admin,
-                    BubbleTime = 5,
-                    Recipient = "",
-                    Txt = text,
-                    CleanText = text,
-                    NameColor = (src.Glow != 0) ? src.Glow : 0x123456,
-                    TextColor = (src.Glow != 0) ? 0xFFFFFF : 0x123456
-                };
-
-                SendTextPacket(src, tp, p => !p.Client.Account.IgnoreList.Contains(src.AccountId));
-            }
-        }
-
-        public bool Local(Player src, string text)
-        {
-            foreach (var word in text.Split(' ')
-                .Where(word => word.StartsWith(":") && word.EndsWith(":") && exclusiveEmotes.Contains(word))
-                .Where(word => !src.Client.Account.Emotes.Contains(word)))
-                text = text.Replace(word, string.Empty);
-
-            if (string.IsNullOrWhiteSpace(text))
-                return true;
-
-            var tp = new Text()
-            {
-                Name = (src.Client.Account.Admin ? "@" : "") + src.Name,
-                ObjectId = src.Id,
-                NumStars = src.Stars,
-                Admin = src.Admin,
-                BubbleTime = 5,
-                Recipient = "",
-                Txt = text,
-                CleanText = text,
-                NameColor = 0xAD85FF,
-                TextColor = 0xAD85FF
-            };
-
-            SendTextPacket(src, tp,
-                p => !p.Client.Account.IgnoreList.Contains(src.AccountId) &&
-                     p.DistSqr(src) < Player.RadiusSqr);
-            return true;
-        }
-
-        private void SendTextPacket(Player src, Text tp, Predicate<Player> conditional)
-        {
-            var filtered = manager.Resources.FilterList.Any(r => r.IsMatch(tp.Txt));
-
-            if (filtered)
-            {
-                // message found in filter list, only send to clients with same ip as source
-                src.Owner.BroadcastPacketConditional(tp,
-                    p => conditional(p) && p.Client.Account.IP == src.Client.Account.IP);
-            }
-            else
-            {
-                src.Owner.BroadcastPacketConditional(tp, conditional);
-            }
-
-            Log.Info($"[{src.Owner.Name}({src.Owner.Id}){(filtered ? " *filtered*" : "")}] <{src.Name}> {tp.Txt}");
-        }
-
-        public void Mob(Entity entity, string text)
-        {
-            if (string.IsNullOrWhiteSpace(text) || entity.Owner == null)
-                return;
-
-            var world = entity.Owner;
-            var name = entity.ObjectDesc.DisplayId;
-
-            world.BroadcastPacket(new Text()
-            {
-                ObjectId = entity.Id,
-                BubbleTime = 5,
-                NumStars = -1,
-                Name = $"#{name}",
-                Txt = text
-            }, null);
-            Log.Info($"[{world.Name}({world.Id})] <{name}> {text}");
+            src.Client.SendText(src.Name, src.Id, 5, "", text, 
+                (uint)(src.Glow != 0 ? src.Glow : 0x123456), (uint)(src.Glow != 0 ? 0xFFFFFF : 0x123456));
         }
 
         public void Announce(string text, bool local = false)
@@ -184,35 +97,14 @@ namespace GameServer.realm
             });
             return true;
         }
-
-
-        public void Oryx(World world, string text)
-        {
-            if (string.IsNullOrWhiteSpace(text))
-                return;
-
-            world.BroadcastPacket(new Text()
-            {
-                BubbleTime = 0,
-                NumStars = -1,
-                Name = "#Oryx the Mad God",
-                Txt = text
-            }, null);
-            Log.Info("[{0}({1})] <Oryx the Mad God> {2}", world.Name, world.Id, text);
-        }
-
+        
         public void Enemy(World world, string name, string text)
         {
             if (string.IsNullOrWhiteSpace(text))
                 return;
 
-            world.BroadcastPacket(new Text()
-            {
-                BubbleTime = 0,
-                NumStars = -1,
-                Name = $"#{name}",
-                Txt = text
-            }, null);
+            foreach (var p in world.Players.Values)
+               p.Client.SendText(name, 0, 0, "", text);
             Log.Info("[{0}({1})] <{3}> {2}", world.Name, world.Id, text, name);
         }
 

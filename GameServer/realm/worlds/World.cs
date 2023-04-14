@@ -372,11 +372,6 @@ namespace GameServer.realm.worlds
                 Players.TryAdd(entity.Id, p);
                 PlayersCollision.Insert(entity);
                 Interlocked.Increment(ref _totalConnects);
-                p.Client.SendPacket(new CurrentTime()
-                {
-                    Hour = (int)Constants.GetGameHour()
-                });
-                Overseer?.OnPlayerEntered(p);
                 return entity.Id;
             }
 
@@ -504,9 +499,6 @@ namespace GameServer.realm.worlds
 
         public Player GetUniqueNamedPlayer(string name)
         {
-            if (Database.GuestNames.Contains(name))
-                return null;
-
             foreach (var i in Players)
             {
                 if (i.Value.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase))

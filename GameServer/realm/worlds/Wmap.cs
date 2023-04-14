@@ -186,7 +186,7 @@ namespace GameServer.realm.worlds
                         X = x + 0.5f,
                         Y = y + 0.5f
                     },
-                    Stats = stats.ToArray()
+                    StatTypes = stats.ToArray()
                 }
             };
         }

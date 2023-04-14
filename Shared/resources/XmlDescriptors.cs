@@ -292,7 +292,7 @@ namespace common.resources
         public readonly string DisplayId;
         public readonly string DisplayName;
         public readonly string SuccessorId;
-        public readonly bool Soulbound;
+        public readonly bool Untradable;
         public readonly bool Undead;
         public readonly bool PUndead;
         public readonly bool SUndead;
@@ -354,7 +354,7 @@ namespace common.resources
             DisplayName = string.IsNullOrWhiteSpace(DisplayId) ? ObjectId : DisplayId;
             FeedPower = e.GetValue<int>("FeedPower");
             SuccessorId = e.GetValue<string>("SuccessorId");
-            Soulbound = e.HasElement("Soulbound");
+            Untradable = e.HasElement("Soulbound");
             Undead = e.HasElement("Undead");
             PUndead = e.HasElement("PUndead");
             SUndead = e.HasElement("SUndead");
