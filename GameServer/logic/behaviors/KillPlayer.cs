@@ -56,16 +56,10 @@ namespace GameServer.logic.behaviors
                 // send kill message
                 if (_killMessage != null)
                 {
-                    var packet = new Text()
+                    foreach (var p in host.Owner.Players.Values)
                     {
-                        Name = "#" + (host.ObjectDesc.DisplayId ?? host.ObjectDesc.ObjectId),
-                        ObjectId = host.Id,
-                        NumStars = -1,
-                        BubbleTime = 3,
-                        Recipient = "",
-                        Txt = _killMessage,
-                        CleanText = ""
-                    };
+                        p.Client.SendText("#" + (host.ObjectDesc.DisplayId ?? host.ObjectDesc.ObjectId), host.Id, 3, "", _killMessage, 0xAB1533, 0xAB1533);
+                    }
                     foreach (var i in host.Owner.PlayersCollision.HitTest(host.X, host.Y, 15).Where(e => e is Player))
                     {
                         if (i is Player && host.Dist(i) < 15)
@@ -83,13 +77,10 @@ namespace GameServer.logic.behaviors
 
         private void Kill(Entity host, Player player)
         {
-            host.Owner.BroadcastPacketNearby(new ShowEffect()
-            {
-                EffectType = EffectType.Trail,
-                TargetObjectId = host.Id,
-                Pos1 = new Position { X = player.X, Y = player.Y },
-                Color = new ARGB(0xffffffff)
-            }, host, null);
+            foreach (var p in host.Owner.Players.Values)
+                if (MathUtils.DistSqr(p.X, p.Y, host.X, host.Y) < 16 * 16)
+                    p.Client.SendShowEffect(EffectType.Trail, host.Id, player.X, player.Y, 0, 0, 0xFFFFFFFF);
+            
 
             // kill player
             player.Death(host.ObjectDesc.DisplayId, rekt: _rekt);

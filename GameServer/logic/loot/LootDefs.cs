@@ -393,13 +393,7 @@ namespace GameServer.logic.loot
                 return;
             var player = playerDat.Item1;
             player.Client.Account.Credits = player.Credits += MathUtils.Next(_min, _max);
-            player.Client.SendPacket(new ShowEffect()
-            {
-                EffectType = EffectType.Flow,
-                TargetObjectId = player.Id,
-                Pos1 = new Position() { X = enemy.X, Y = enemy.Y },
-                Color = new ARGB(0xffffff00)
-            });
+            player.Client.SendShowEffect(EffectType.Flow, player.Id, enemy.X, enemy.Y, enemy.X, enemy.Y, 0xFFFFFF00);
         }
     }
 

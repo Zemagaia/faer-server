@@ -117,11 +117,7 @@ namespace GameServer.realm.entities.vendors
 
         protected void SendFailed(Player player, BuyResult result)
         {
-            player.Client.SendPacket(new networking.packets.outgoing.BuyResult
-            {
-                Result = 1,
-                ResultString = $"Purchase Error: {result.GetDescription()}"
-            });
+            player.Client.SendBuyResult(1, $"Purchase Error: {result.GetDescription()}");
         }
     }
 }

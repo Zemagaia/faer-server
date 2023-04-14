@@ -26,7 +26,7 @@ namespace GameServer.realm.entities.player
                 {
                     SendError(
                         $"Offensive ability on cooldown for {Math.Round((float)PassiveCooldown[player.Player.TreeOffensive] / 1000, 1)}s");
-                    Client.SendPacket(new InvResult() { Result = 1 });
+                    Client.SendInvResult(1);
                     return;
                 }
 
@@ -53,7 +53,7 @@ namespace GameServer.realm.entities.player
                 {
                     SendError(
                         $"Defensive ability on cooldown for {Math.Round((float)PassiveCooldown[player.Player.TreeDefensive] / 1000, 1)}s");
-                    Client.SendPacket(new InvResult() { Result = 1 });
+                    Client.SendInvResult(1);
                     return;
                 }
 

@@ -215,31 +215,27 @@ namespace GameServer.realm.commands
             var notif = mob;
             if (num != null)
                 notif = $"{(CommandTag == "ds" || CommandTag == "devspawn" ? "Devs" : "S")}pawning " + ((num > 1) ? num + " " : "") + mob + "...";
-
-            w.BroadcastPacket(new Notification
+            foreach (var p in w.Players.Values)
             {
-                Color = new ARGB(0xffff0000),
-                ObjectId = (player.IsControlling) ? player.SpectateTarget.Id : player.Id,
-                Message = notif
-            }, null);
-
+                if (MathUtils.DistSqr(p.X, p.Y, p.X, p.Y) < 16 * 16) 
+                    p.Client.SendNotification((player.IsControlling) ? player.SpectateTarget.Id : player.Id, notif, 0xFFFF0000);
+                    
+            }
+            
             if (player.IsControlling)
-                w.BroadcastPacket(new Text
+                foreach (var p in w.Players.Values)
                 {
-                    Name = $"#{player.SpectateTarget.ObjectDesc.DisplayId}",
-                    NumStars = -1,
-                    BubbleTime = 0,
-                    Txt = notif
-                }, null);
+                    if (MathUtils.DistSqr(p.X, p.Y, p.X, p.Y) < 16 * 16) 
+                        p.Client.SendText($"#{player.SpectateTarget.ObjectDesc.DisplayId}", 0, 0, $"", notif, 0, 0);
+                    
+                }
             else
-                w.BroadcastPacket(new Text
+                foreach (var p in w.Players.Values)
                 {
-                    Name = $"#{player.Name}",
-                    NumStars = player.Stars,
-                    Admin = player.Admin,
-                    BubbleTime = 0,
-                    Txt = notif
-                }, null);
+                    if (MathUtils.DistSqr(p.X, p.Y, p.X, p.Y) < 16 * 16) 
+                        p.Client.SendText($"#{player.Name}", 0, 0, $"", notif, 0, 0);
+                    
+                }
         }
 
         private void QueueSpawnEvent(
@@ -743,19 +739,6 @@ namespace GameServer.realm.commands
             }
 
             player.SendInfo("Quest location: (" + player.Quest.X + ", " + player.Quest.Y + ")");
-            return true;
-        }
-    }
-
-    class OryxSayCommand : Command
-    {
-        public OryxSayCommand() : base("oryxSay", permLevel: 80, aliases: "osay")
-        {
-        }
-
-        protected override bool Process(Player player, RealmTime time, string args)
-        {
-            player.Manager.Chat.Oryx(player.Owner, args);
             return true;
         }
     }
@@ -1561,40 +1544,6 @@ namespace GameServer.realm.commands
             for (int i = 4; i < 12; i++)
                 player.Inventory[i] = new ItemData();
             player.SendInfo("Inventory Cleared.");
-            return true;
-        }
-    }
-
-    class MusicCommand : Command
-    {
-        public MusicCommand() : base("music", permLevel: 70)
-        {
-        }
-
-        protected override bool Process(Player player, RealmTime time, string music)
-        {
-            var owner = player.Owner;
-            owner.Music = music;
-
-            foreach (var plr in owner.Players.Values)
-                plr.SendInfo($"World music changed to {music}.");
-
-            var i = 0;
-            foreach (var plr in owner.Players.Values)
-            {
-                owner.Timers.Add(new WorldTimer(100 * i, (w, t) =>
-                {
-                    if (plr == null)
-                        return;
-
-                    plr.Client.SendPacket(new SwitchMusic()
-                    {
-                        Music = music
-                    });
-                }));
-                i++;
-            }
-
             return true;
         }
     }
@@ -2566,29 +2515,7 @@ namespace GameServer.realm.commands
             return true;
         }
     }
-    
-    class LegendaryPopupCommand : Command
-    {
-        public LegendaryPopupCommand() : base("popup", 90, listCommand: false)
-        {
-        }
 
-        protected override bool Process(Player player, RealmTime time, string args)
-        {
-            if (!player.Manager.Config.serverSettings.debugMode)
-            {
-                player.SendError($"This command can only be used in debug mode");
-                return false;
-            }
-            
-            player.Client.SendPacket(new GlobalNotification()
-            {
-                Text = "legendaryLoot"
-            });
-            return true;
-        }
-    }
-    
     class AddPetCommand : Command
     {
         public AddPetCommand() : base("addpet", 90, listCommand: false)

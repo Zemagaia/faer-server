@@ -37,12 +37,9 @@ namespace GameServer.realm.entities.vendors
 
                 acc.Reload("vaultCount");
                 player.CurrentFame = acc.Fame;
-
-                player.Client.SendPacket(new networking.packets.outgoing.BuyResult()
-                {
-                    Result = 0,
-                    ResultString = "Vault chest purchased! Re-enter your vault to reload changes."
-                });
+                
+                player.Client.SendBuyResult(0, $"Vault chest purchased! Re-enter your vault to reload changes.");
+                
             }).ContinueWith(e =>
                     Log.Error(e.Exception.InnerException.ToString()),
                 TaskContinuationOptions.OnlyOnFaulted);

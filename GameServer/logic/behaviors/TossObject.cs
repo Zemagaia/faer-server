@@ -186,13 +186,9 @@ namespace GameServer.logic.behaviors
                     }
 
                     if (!_tossInvis)
-                        host.Owner.BroadcastPacketNearby(new ShowEffect()
-                        {
-                            EffectType = EffectType.Throw,
-                            Color = new ARGB(0xffffbf00),
-                            TargetObjectId = host.Id,
-                            Pos1 = target
-                        }, target);
+                        foreach (var p in host.Owner.Players.Values)
+                            if (p != host && MathUtils.DistSqr(p.X, p.Y, host.X, host.Y) < 16 * 16)
+                                p.Client.SendShowEffect(EffectType.Throw, host.Id, target.X, target.Y, 0, 0, 0xFFFFBF00);
                     host.Owner.Timers.Add(new WorldTimer(_tossInvis ? 0 : 1500, (world, t) =>
                     {
                         if (!world.IsPassable(target.X, target.Y, true))

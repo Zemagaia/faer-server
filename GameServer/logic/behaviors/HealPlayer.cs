@@ -51,25 +51,15 @@ namespace GameServer.logic.behaviors
                     {
                         int n = newHp - entity.HP;
                         entity.HP = newHp;
-                        entity.Owner.BroadcastPacketNearby(new ShowEffect()
-                        {
-                            EffectType = EffectType.Potion,
-                            TargetObjectId = entity.Id,
-                            Color = new ARGB(0xffffffff)
-                        }, entity, null);
-                        entity.Owner.BroadcastPacketNearby(new ShowEffect()
-                        {
-                            EffectType = EffectType.Trail,
-                            TargetObjectId = host.Id,
-                            Pos1 = new Position { X = entity.X, Y = entity.Y },
-                            Color = new ARGB(0xffffffff)
-                        }, host, null);
-                        entity.Owner.BroadcastPacketNearby(new Notification()
-                        {
-                            ObjectId = entity.Id,
-                            Message = "+" + n,
-                            Color = new ARGB(0xff00ff00)
-                        }, entity, null);
+                        foreach (var p in host.Owner.Players.Values)
+                            if (MathUtils.DistSqr(p.X, p.Y, host.X, host.Y) < 16 * 16)
+                                p.Client.SendShowEffect(EffectType.Potion, entity.Id, 0, 0, 0, 0, 0xFFFFFFFF);
+                        foreach (var p in host.Owner.Players.Values)
+                            if (MathUtils.DistSqr(p.X, p.Y, host.X, host.Y) < 16 * 16)
+                                p.Client.SendShowEffect(EffectType.Trail, host.Id, entity.X, entity.Y, 0, 0, 0xFFFFFFFF);
+                        foreach (var p in host.Owner.Players.Values)
+                            if (MathUtils.DistSqr(p.X, p.Y, host.X, host.Y) < 16 * 16)
+                                p.Client.SendNotification(entity.Id, "+" + n, 0xFF00FF00);
                     }
                 }
                 cool = _coolDown.Next(Random);

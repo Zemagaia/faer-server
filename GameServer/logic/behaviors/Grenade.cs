@@ -81,25 +81,15 @@ namespace GameServer.logic.behaviors
                             X = player.X,
                             Y = player.Y,
                         };
-                    host.Owner.BroadcastPacketNearby(new ShowEffect()
-                    {
-                        EffectType = EffectType.Throw,
-                        Color = new ARGB(color),
-                        TargetObjectId = host.Id,
-                        Pos1 = target
-                    }, host, null);
+                    foreach (var p in host.Owner.Players.Values)
+                        if (MathUtils.DistSqr(p.X, p.Y, host.X, host.Y) < 16 * 16)
+                            p.Client.SendShowEffect(EffectType.Throw, host.Id, target.X, target.Y, 0, 0, color);
+                    
                     host.Owner.Timers.Add(new WorldTimer(1500, (world, t) =>
                     {
-                        world.BroadcastPacketNearby(new Aoe()
-                        {
-                            Pos = target,
-                            Radius = radius,
-                            Damage = (ushort)damage,
-                            Duration = 0,
-                            Effect = 0,
-                            Color = new ARGB(color),
-                            OrigType = host.ObjectType
-                        }, host, null);
+                        foreach (var p in host.Owner.Players.Values)
+                            if (MathUtils.DistSqr(p.X, p.Y, host.X, host.Y) < 16 * 16)
+                                p.Client.SendAOE(target.X, target.Y, radius, (ushort)damage, 0, 0, host.ObjectType, color);
                         world.AOE(target, radius, true, p =>
                         {
                             if (p == null) return;

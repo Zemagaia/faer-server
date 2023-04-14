@@ -553,14 +553,8 @@ namespace GameServer.realm.commands
             }
 
             player.Manager.Database.IgnoreAccount(srcAccount, targetAccount, true);
-
-            player.Client.SendPacket(new AccountList()
-            {
-                AccountListId = 1, // ignore list
-                AccountIds = srcAccount.IgnoreList
-                    .Select(i => i.ToString())
-                    .ToArray()
-            });
+            
+            player.Client.SendAccountList(1, srcAccount.IgnoreList);
 
             player.SendInfo(playerName + " has been added to your ignore list.");
             return true;
@@ -601,14 +595,8 @@ namespace GameServer.realm.commands
             }
 
             player.Manager.Database.IgnoreAccount(srcAccount, targetAccount, false);
-
-            player.Client.SendPacket(new AccountList()
-            {
-                AccountListId = 1, // ignore list
-                AccountIds = srcAccount.IgnoreList
-                    .Select(i => i.ToString())
-                    .ToArray()
-            });
+            
+            player.Client.SendAccountList(1, srcAccount.IgnoreList);
 
             player.SendInfo(playerName + " no longer ignored.");
             return true;
@@ -649,15 +637,8 @@ namespace GameServer.realm.commands
             }
 
             player.Manager.Database.LockAccount(srcAccount, targetAccount, true);
-
-            player.Client.SendPacket(new AccountList()
-            {
-                AccountListId = 0, // locked list
-                AccountIds = player.Client.Account.LockList
-                    .Select(i => i.ToString())
-                    .ToArray(),
-                LockAction = 1
-            });
+            
+            player.Client.SendAccountList(0, player.Client.Account.LockList);
 
             player.SendInfo(playerName + " has been locked.");
             return true;
@@ -698,15 +679,8 @@ namespace GameServer.realm.commands
             }
 
             player.Manager.Database.LockAccount(srcAccount, targetAccount, false);
-
-            player.Client.SendPacket(new AccountList()
-            {
-                AccountListId = 0, // locked list
-                AccountIds = player.Client.Account.LockList
-                    .Select(i => i.ToString())
-                    .ToArray(),
-                LockAction = 0
-            });
+            
+            player.Client.SendAccountList(0, player.Client.Account.LockList);
 
             player.SendInfo(playerName + " no longer locked.");
             return true;

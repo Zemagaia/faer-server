@@ -120,7 +120,7 @@ namespace GameServer.realm.entities
 
                 p.SetCooldown(0, 15);
             }
-
+            
             Owner.BroadcastPacketNearby(new Damage
             {
                 TargetId = Id,

@@ -114,7 +114,6 @@ namespace GameServer.realm.entities.player
                 }).ToArray();
                 _statUpdates.Clear();
             }
-
             _client.SendPacket(new NewTick
             {
                 TickId = ++TickId,

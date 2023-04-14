@@ -39,11 +39,7 @@ namespace GameServer.realm.entities.vendors
 
             if (guild.Fame < Price)
             {
-                player.Client.SendPacket(new networking.packets.outgoing.BuyResult
-                {
-                    ResultString = "Not enough Guild Fame!",
-                    Result = 9
-                });
+                player.Client.SendBuyResult(9, $"Not enough Guild Fame!");
                 return;
             }
 
@@ -55,11 +51,7 @@ namespace GameServer.realm.entities.vendors
             }
 
             player.Manager.Database.UpdateGuildFame(guild, -Price);
-            player.Client.SendPacket(new networking.packets.outgoing.BuyResult
-            {
-                ResultString = "Upgrade successful! Please leave the Guild Hall to have it upgraded.",
-                Result = 0
-            });
+            player.Client.SendBuyResult(0, $"Upgrade successful! Please leave the Guild Hall to have it upgraded.");
         }
     }
 }

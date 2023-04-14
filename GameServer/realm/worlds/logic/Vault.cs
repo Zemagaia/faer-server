@@ -184,12 +184,6 @@ namespace GameServer.realm.worlds.logic
             var x = new StaticObject(_client.Manager, 0x0406, null, true, false, false);
             x.Move(entity.X, entity.Y);
             EnterWorld(x);
-
-            if (_client.Account.ActiveGiftChests.Count <= 0)
-                _client.SendPacket(new GlobalNotification
-                {
-                    Text = "giftChestEmpty"
-                });
         }
     }
 }

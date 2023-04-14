@@ -182,23 +182,13 @@ namespace GameServer.logic.behaviors
 
                         prjs[i] = prj;
                     }
-
-                    var pkt = new EnemyShoot()
-                    {
-                        BulletId = prjId,
-                        OwnerId = host.Id,
-                        StartingPos = prjPos,
-                        Angle = startAngle,
-                        Damage = (short)dmg,
-                        BulletType = (byte)(desc.BulletType),
-                        AngleInc = _shootAngle,
-                        NumShots = (byte)count,
-                        DamageType = desc.DamageType
-                    };
+                    
+                    foreach (var p in host.Owner.Players.Values)
+                        p.Client.SendEnemyShoot(prjId, host.Id, (byte)(desc.BulletType), host.X, host.y, startAngle, (short)dmg, (byte)count, _shootAngle);
                     foreach (var plr in host.Owner.Players
-                        .Where(p => p.Value.DistSqr(host) < 1200)) // 40 sqrs
+                                 .Where(p => p.Value.DistSqr(host) < 1200)) // 40 sqrs
                     {
-                        plr.Value.Client.SendPacket(pkt);
+                        plr.Value.Client.Send(pkt);
                     }
                 }
 

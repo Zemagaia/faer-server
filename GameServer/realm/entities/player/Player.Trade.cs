@@ -89,27 +89,13 @@ namespace GameServer.realm.entities.player
                         Tradeable = target.Inventory[i].Item != null && i >= 4 && !target.Inventory[i].Item.Soulbound &&
                                     !target.Inventory[i].Soulbound
                     };
-
-                _client.SendPacket(new TradeStart()
-                {
-                    MyItems = my,
-                    YourName = target.Name,
-                    YourItems = your
-                });
-                target._client.SendPacket(new TradeStart()
-                {
-                    MyItems = your,
-                    YourName = Name,
-                    YourItems = my
-                });
+                _client.SendTradeStart(my, target.Name, your);
+                target._client.SendTradeStart(your, Name, my);
             }
             else
             {
                 target.potentialTrader[this] = 1000 * 20;
-                target._client.SendPacket(new TradeRequested()
-                {
-                    Name = Name
-                });
+                target._client.SendTradeRequested(Name);
                 SendInfo("You have sent a trade request to " + target.Name + "!");
                 return;
             }
@@ -117,19 +103,10 @@ namespace GameServer.realm.entities.player
 
         public void CancelTrade()
         {
-            _client.SendPacket(new TradeDone()
-            {
-                Code = 1,
-                Description = "Trade canceled!"
-            });
+            _client.SendTradeDone(1, $"Trade canceled!");
 
             if (tradeTarget != null && tradeTarget._client != null)
-                tradeTarget._client.SendPacket(new TradeDone()
-                {
-                    Code = 1,
-                    Description = "Trade canceled!"
-                });
-
+                tradeTarget._client.SendTradeDone(1, $"Trade Canceled!");
             ResetTrade();
         }
 

@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Drawing;
+using System.Text.RegularExpressions;
 using GameServer.networking.packets.outgoing;
 
 namespace GameServer.realm.entities.player
@@ -113,167 +114,71 @@ namespace GameServer.realm.entities.player
 
         public void SendInfo(string text)
         {
-            _client.SendPacket(new Text()
-            {
-                BubbleTime = 0,
-                NumStars = -1,
-                Name = "",
-                Txt = text
-            });
+            _client.SendText($"", 0, 0, "", text, 0, 0x0000FF);
         }
 
         public void SendInfo(string text, params object[] args)
         {
-            _client.SendPacket(new Text()
-            {
-                BubbleTime = 0,
-                NumStars = -1,
-                Name = "",
-                Txt = string.Format(text, args)
-            });
+            _client.SendText($"", 0, 0, "", string.Format(text, args), 0, 0x0000FF);
         }
 
         public void SendError(string text)
         {
-            _client.SendPacket(new Text()
-            {
-                BubbleTime = 0,
-                NumStars = -1,
-                Name = "*Error*",
-                Txt = text
-            });
+            _client.SendText($"*Error*", 0, 0, "", text, 0, 0xFF0000);
         }
 
         public void SendErrorFormat(string text, params object[] args)
         {
-            _client.SendPacket(new Text()
-            {
-                BubbleTime = 0,
-                NumStars = -1,
-                Name = "*Error*",
-                Txt = string.Format(text, args)
-            });
+            _client.SendText($"*Error*", 0, 0, "", string.Format(text, args), 0, 0xFF0000);
         }
 
         public void SendClientText(string text)
         {
-            _client.SendPacket(new Text()
-            {
-                BubbleTime = 0,
-                NumStars = -1,
-                Name = "*Client*",
-                Txt = text
-            });
+            _client.SendText($"*Client*", 0, 0, "", text, 0, 0);
         }
 
         public void SendClientTextFormat(string text, params object[] args)
         {
-            _client.SendPacket(new Text()
-            {
-                BubbleTime = 0,
-                NumStars = -1,
-                Name = "*Client*",
-                Txt = string.Format(text, args)
-            });
+            _client.SendText($"*Client*", 0, 0, "", string.Format(text, args), 0, 0);
         }
 
         public void SendHelp(string text)
         {
-            _client.SendPacket(new Text()
-            {
-                BubbleTime = 0,
-                NumStars = -1,
-                Name = "*Help*",
-                Txt = text
-            });
+            _client.SendText($"*Help*", 0, 0, "", text, 0, 0x5B3138);
         }
 
         public void SendHelpFormat(string text, params object[] args)
         {
-            _client.SendPacket(new Text()
-            {
-                BubbleTime = 0,
-                NumStars = -1,
-                Name = "*Help*",
-                Txt = string.Format(text, args)
-            });
+            _client.SendText($"*Help*", 0, 0, "", string.Format(text, args), 0, 0x5B3138);
         }
 
-        public void SendEnemy(string name, string text, int nameColor = -1)
+        public void SendEnemy(string name, string text, uint nameColor = 0xFF0000)
         {
-            _client.SendPacket(new Text()
-            {
-                BubbleTime = 0,
-                NumStars = -1,
-                Name = name,
-                Txt = text,
-                NameColor = nameColor == -1 ? 0xFFA800 : nameColor
-            });
+            _client.SendText(name, 0, 0, $"", text, nameColor, 0);
         }
 
         public void SendGuildDeath(string text)
         {
-            _client.SendPacket(new Text()
-            {
-                BubbleTime = 0,
-                NumStars = -1,
-                Name = "",
-                Txt = text,
-                TextColor = 0x00b300
-            });
+            _client.SendText($"", 0, 0, $"", text, 0, 0x97C688);
+        
         }
 
         public void SendEnemyFormat(string name, string text, params object[] args)
         {
-            _client.SendPacket(new Text()
-            {
-                BubbleTime = 0,
-                NumStars = -1,
-                Name = "#" + name,
-                Txt = string.Format(text, args)
-            });
+            _client.SendText("#" + name, 0, 0, $"", string.Format(text, args), 0, 0x00B300);
+           
         }
 
-        public void SendText(string sender, string text, int nameColor = 0x123456, int textColor = 0x123456)
+        public void SendText(string sender, string text, uint nameColor = 0x123456, uint textColor = 0x123456)
         {
-            _client.SendPacket(new Text()
-            {
-                BubbleTime = 0,
-                NumStars = -1,
-                Name = sender,
-                Txt = text,
-                NameColor = nameColor,
-                TextColor = textColor
-            });
+            _client.SendText(sender, 0, 0, $"", text, nameColor, textColor);
         }
 
         internal void TellReceived(int objId, int stars, int admin, string from, string to, string text)
         {
-            Client.SendPacket(new Text()
-            {
-                ObjectId = objId,
-                BubbleTime = 10,
-                NumStars = stars,
-                Admin = admin,
-                Name = from,
-                Recipient = to,
-                Txt = text
-            });
+            Client.SendText(from, objId, 10, to, text, 0x00E6FF, 0x00E6FF);
         }
-
-        internal void Invited(int objId, string inviter, string dungeon)
-        {
-            _client.SendPacket(new Text()
-            {
-                BubbleTime = 0,
-                NumStars = -1,
-                Name = "",
-                Txt = "You've been invited by " + inviter + " to join them in " + dungeon + ". Send /daccept " + objId +
-                      " to join.",
-                TextColor = 0x94b8b8
-            });
-        }
-
+        
         internal void AnnouncementReceived(string text)
         {
             _client.Player.SendInfo(string.Concat("<ANNOUNCEMENT> ", text));
@@ -289,16 +194,7 @@ namespace GameServer.realm.entities.player
 
         internal void GuildReceived(int objId, int stars, int admin, string from, string text)
         {
-            Client.SendPacket(new Text()
-            {
-                ObjectId = objId,
-                BubbleTime = 10,
-                NumStars = stars,
-                Admin = admin,
-                Name = from,
-                Recipient = "*Guild*",
-                Txt = text
-            });
+            Client.SendText(from, 0, 10, "*Guild", text, 0x97C688, 0x97C688);
         }
     }
 }

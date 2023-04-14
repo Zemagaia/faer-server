@@ -34,20 +34,6 @@ namespace GameServer.logic.behaviors
                 owner.Music = _music;
 
                 var i = 0;
-                foreach (var plr in owner.Players.Values)
-                {
-                    owner.Timers.Add(new WorldTimer(100 * i, (w, t) =>
-                    {
-                        if (plr == null)
-                            return;
-
-                        plr.Client.SendPacket(new SwitchMusic()
-                        {
-                            Music = _music
-                        });
-                    }));
-                    i++;
-                }
             }
         }
     }

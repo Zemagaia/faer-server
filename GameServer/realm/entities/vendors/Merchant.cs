@@ -233,27 +233,13 @@ namespace GameServer.realm.entities.vendors
         {
             var item = Manager.Resources.GameData.Items[Item];
 
-            if (gift)
-                player.Client.SendPacket(new GlobalNotification
-                {
-                    Text = "giftChestOccupied"
-                });
-
             if (_isInvFull)
             {
-                player.Client.SendPacket(new networking.packets.outgoing.BuyResult
-                {
-                    Result = 0,
-                    ResultString = $"Your inventory is full, and your {item.DisplayName} has been sent to a gift chest"
-                });
+                player.Client.SendBuyResult(0, $"Your inventory is full, and your {item.DisplayName} has been sent to a gift chest.");
             }
             else
-                player.Client.SendPacket(new networking.packets.outgoing.BuyResult
-                {
-                    Result = 0,
-                    ResultString = "Your purchase was successful"
-                });
-
+                player.Client.SendBuyResult(0, $"Your purchase was successful.");
+            
             Log.Info("[{0}]User {1} has bought {2} for {3} {4}.",
                 DateTime.Now, player.Name, item.DisplayName, Price, Currency.ToString());
         }

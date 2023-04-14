@@ -49,25 +49,15 @@ namespace GameServer.logic.behaviors
                     {
                         int n = newMp - entity.MP;
                         entity.MP = newMp;
-                        entity.Owner.BroadcastPacketNearby(new ShowEffect()
-                        {
-                            EffectType = EffectType.Potion,
-                            TargetObjectId = entity.Id,
-                            Color = new ARGB(0xffffffff)
-                        }, entity, null);
-                        entity.Owner.BroadcastPacketNearby(new ShowEffect()
-                        {
-                            EffectType = EffectType.Trail,
-                            TargetObjectId = host.Id,
-                            Pos1 = new Position { X = entity.X, Y = entity.Y },
-                            Color = new ARGB(0xffffffff)
-                        }, host, null);
-                        entity.Owner.BroadcastPacketNearby(new Notification()
-                        {
-                            ObjectId = entity.Id,
-                            Message = "+" + n,
-                            Color = new ARGB(0xff3366ff)
-                        }, entity, null);
+                        foreach (var p in host.Owner.Players.Values)
+                            if (MathUtils.DistSqr(p.X, p.Y, host.X, host.Y) < 16 * 16)
+                                p.Client.SendShowEffect(EffectType.Potion, entity.Id, 0, 0, 0, 0, 0xFFFFFFFF);
+                        foreach (var p in host.Owner.Players.Values)
+                            if (MathUtils.DistSqr(p.X, p.Y, host.X, host.Y) < 16 * 16)
+                                p.Client.SendShowEffect(EffectType.Trail, host.Id, entity.X, entity.Y, 0, 0, 0x816ECC);
+                        foreach (var p in host.Owner.Players.Values)
+                            if (MathUtils.DistSqr(p.X, p.Y, host.X, host.Y) < 16 * 16)
+                                p.Client.SendNotification(entity.Id, "+" + n, 0x816ECC);
                     }
                 }
 

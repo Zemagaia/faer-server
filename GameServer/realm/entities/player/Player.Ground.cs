@@ -1,4 +1,5 @@
-﻿using common.resources;
+﻿using common;
+using common.resources;
 using GameServer.networking.packets.outgoing;
 using GameServer.realm.worlds;
 
@@ -60,14 +61,9 @@ namespace GameServer.realm.entities.player
             }
             else
                 HP -= damage;
-
-            Owner.BroadcastPacketNearby(new Damage()
-            {
-                TargetId = Id,
-                DamageAmount = (ushort)damage,
-                Kill = HP <= 0,
-            }, this);
-
+            foreach (var p in Owner.Players.Values)
+                if (MathUtils.DistSqr(p.X, Y, X, Y) < 16 * 16)
+                        p.Client.SendDamage(Id, 0, (ushort)damage, HP <= 0, 0, 0);
             if (HP <= 0)
             {
                 Death(tileDesc.ObjectId, tile: tile);

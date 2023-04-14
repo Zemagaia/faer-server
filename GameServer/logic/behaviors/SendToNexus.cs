@@ -27,10 +27,8 @@ namespace GameServer.logic.behaviors
 
             foreach (var player in owner.Players.Values)
             {
-                player.BroadcastSync(new ShowEffect()
-                {
-                    EffectType = EffectType.Earthquake
-                });
+                player.Client.SendShowEffect(EffectType.Earthquake, 0, 0, 0, 0, 0, 0);
+               
             }
 
             owner.Timers.Add(new WorldTimer((int)(_delay * 1000), (world, t) =>

@@ -16,7 +16,7 @@ namespace GameServer.logic.behaviors
         private readonly int _maxDamage;
         private readonly bool _noDef;
         private readonly bool _players;
-        private readonly ARGB _color;
+        private readonly uint _color;
         private readonly ConditionEffectIndex _effect;
         private readonly int _effectDuration;
         private Cooldown _coolDown;
@@ -89,24 +89,18 @@ namespace GameServer.logic.behaviors
                     host.Owner.AOE(target, _radius, _players, en => { entities.Add(en); });
 
                     if (_players)
-                        host.Owner.BroadcastPacketNearby(new Aoe()
+                        
+                        foreach (var p in host.Owner.Players.Values)
                         {
-                            Pos = target,
-                            Radius = _radius,
-                            Damage = (ushort)_damage,
-                            Duration = 0,
-                            Effect = 0,
-                            Color = _color,
-                            OrigType = host.ObjectType
-                        }, host, null);
+                            if (p != host && MathUtils.DistSqr(p.X, p.Y, host.X, host.Y) < 16 * 16)
+                                p.Client.SendAOE(target.X, target.Y, _radius, (ushort)_damage, 0, 0, host.ObjectType, _color);
+                        }
                     else
-                        host.Owner.BroadcastPacketNearby(new ShowEffect()
+                        foreach (var p in host.Owner.Players.Values)
                         {
-                            EffectType = EffectType.AreaBlast,
-                            TargetObjectId = host.Id,
-                            Color = _color,
-                            Pos1 = new Position() { X = _radius }
-                        }, host, exclusive: host.GetPlayerOwner());
+                            if (p != host && MathUtils.DistSqr(p.X, p.Y, host.X, host.Y) < 16 * 16)
+                                p.Client.SendShowEffect(EffectType.AreaBlast, host.Id, _radius, 0, 0, 0, _color);
+                        }
 
                     foreach (var entity in entities)
                     {

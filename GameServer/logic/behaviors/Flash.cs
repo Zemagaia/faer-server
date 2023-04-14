@@ -31,13 +31,11 @@ namespace GameServer.logic.behaviors
 
         protected override void OnStateEntry(Entity host, RealmTime time, ref object state)
         {
-            host.Owner.BroadcastPacketNearby(new ShowEffect()
+            foreach (var p in host.Owner.Players.Values)
             {
-                EffectType = EffectType.Flashing,
-                Pos1 = new Position() { X = flashPeriod, Y = flashRepeats },
-                TargetObjectId = host.Id,
-                Color = new ARGB(color)
-            }, host, null);
+                if (p != host && MathUtils.DistSqr(p.X, p.Y, host.X, host.Y) < 16 * 16)
+                    p.Client.SendShowEffect(EffectType.Flashing, host.Id, flashPeriod, flashRepeats, 0, 0, color);
+            }
         }
     }
 }

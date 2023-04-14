@@ -87,16 +87,12 @@ namespace GameServer.realm.entities
                         }, p);
                 }
 
-                HP -= dmg;
-                Owner.BroadcastPacketNearby(new Damage()
+                foreach (var player in Owner.Players.Values)
                 {
-                    TargetId = this.Id,
-                    Effects = 0,
-                    DamageAmount = (ushort)dmg,
-                    Kill = !CheckHP(),
-                    BulletId = projectile.BulletId,
-                    ObjectId = projectile.ProjectileOwner.Self.Id
-                }, this, p);
+                    if (MathUtils.DistSqr(p.X, p.Y, X, Y) < 16 * 16)
+                        player.Client.SendDamage(this.Id, 0, (ushort)dmg, !CheckHP(), projectile.BulletId, projectile.ProjectileOwner.Self.Id);
+                }
+                HP -= dmg;
             }
 
             return true;

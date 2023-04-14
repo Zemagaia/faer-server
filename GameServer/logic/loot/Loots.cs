@@ -149,34 +149,6 @@ namespace GameServer.logic.loot
                 case 4:
                     bag = GreyBag;
                     break;
-                case 5:
-                    bag = GoldenBag;
-                    player?.Client.SendPacket(new GlobalNotification()
-                    {
-                        Text = "legendaryLoot"
-                    });
-                    break;
-                case 6:
-                    bag = RedBag;
-                    player?.Client.SendPacket(new GlobalNotification()
-                    {
-                        Text = "mythicLoot"
-                    });
-                    break;
-                case 7:
-                    bag = PinkBag;
-                    player?.Client.SendPacket(new GlobalNotification()
-                    {
-                        Text = "unholyLoot"
-                    });
-                    break;
-                case 8:
-                    bag = CyanBag;
-                    player?.Client.SendPacket(new GlobalNotification()
-                    {
-                        Text = "divineLoot"
-                    });
-                    break;
             }
 
             var container = new Container(enemy.Manager, bag, 1000 * 60, true);
