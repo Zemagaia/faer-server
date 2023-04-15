@@ -1,6 +1,6 @@
 ﻿using System.Xml.Linq;
-using common;
-using common.resources;
+using Shared;
+using Shared.resources;
 using GameServer.realm;
 using GameServer.realm.entities;
 
@@ -51,11 +51,6 @@ namespace GameServer.logic.behaviors
                         if (e.Host is Enemy && entity is Enemy && (e.Host as Enemy).Spawned)
                         {
                             (entity as Enemy).Spawned = true;
-                            (entity as Enemy).ApplyConditionEffect(new ConditionEffect()
-                            {
-                                Effect = ConditionEffectIndex.Invisible,
-                                DurationMS = -1
-                            });
                         }
 
                         e.Host.Owner.EnterWorld(entity);

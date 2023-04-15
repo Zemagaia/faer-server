@@ -1,6 +1,6 @@
 ﻿using System.Xml.Linq;
-using common;
-using common.resources;
+using Shared;
+using Shared.resources;
 using GameServer.realm;
 
 namespace GameServer.logic.behaviors
@@ -29,10 +29,7 @@ namespace GameServer.logic.behaviors
         protected override void TickCore(Entity host, RealmTime time, ref object state)
         {
             if (host.Owner == null) return;
-
-            if (host.HasConditionEffect(ConditionEffects.Paused)) 
-                return;
-
+            
             var hx = (int) host.X;
             var hy = (int) host.Y;
 

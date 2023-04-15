@@ -1,6 +1,6 @@
 ﻿using System.Xml.Linq;
-using common;
-using common.resources;
+using Shared;
+using Shared.resources;
 using GameServer.realm;
 
 namespace GameServer.logic.behaviors

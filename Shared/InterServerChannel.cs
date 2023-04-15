@@ -3,7 +3,7 @@ using System.Text;
 using Newtonsoft.Json;
 using StackExchange.Redis;
 
-namespace common
+namespace Shared
 {
     public class InterServerEventArgs<T> : EventArgs
     {

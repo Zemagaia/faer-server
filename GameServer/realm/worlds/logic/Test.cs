@@ -1,5 +1,5 @@
-﻿using common.resources;
-using common.terrain;
+﻿using Shared.resources;
+using Shared.terrain;
 
 namespace GameServer.realm.worlds.logic
 {

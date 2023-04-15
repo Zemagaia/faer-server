@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Text;
 
-namespace common
+namespace Shared
 {
     public class NWriter : BinaryWriter
     {

@@ -1,6 +1,5 @@
 ﻿using System.Xml.Linq;
-using common;
-using GameServer.networking.packets.outgoing;
+using Shared;
 using GameServer.realm;
 using GameServer.realm.entities;
 
@@ -42,8 +41,6 @@ namespace GameServer.logic.behaviors
 
             if (cool <= 0)
             {
-                if (host.HasConditionEffect(ConditionEffects.Stunned)) return;
-
                 foreach (var entity in host.GetNearestEntitiesByGroup(range, group).OfType<Enemy>())
                 {
                     int newHp = entity.ObjectDesc.MaxHP;
@@ -58,14 +55,11 @@ namespace GameServer.logic.behaviors
                         int n = newHp - entity.HP;
                         entity.HP = newHp;
                         foreach (var p in host.Owner.Players.Values)
-                            if (MathUtils.DistSqr(p.X, p.Y, host.X, host.Y) < 16 * 16)
+                            if (MathUtils.DistSqr(p.X, p.Y, host.X, host.Y) < 16 * 16) {
                                 p.Client.SendShowEffect(EffectType.Potion, entity.Id, 0, 0, 0, 0, 0xFFFFFFFF);
-                        foreach (var p in host.Owner.Players.Values)
-                            if (MathUtils.DistSqr(p.X, p.Y, host.X, host.Y) < 16 * 16)
-                                p.Client.SendShowEffect(EffectType.Trail, host.Id, entity.X, entity.Y, 0, 0, 0xFFFFFFFF);
-                        foreach (var p in host.Owner.Players.Values)
-                            if (MathUtils.DistSqr(p.X, p.Y, host.X, host.Y) < 16 * 16)
+                                p.Client.SendShowEffect(EffectType.Trail, host.Id, entity.X, entity.Y, 0, 0, 0xFFFFFFFF); 
                                 p.Client.SendNotification(entity.Id, "+" + n, 0xFF00FF00);
+                            }
                     }
                 }
                 cool = coolDown.Next(Random);

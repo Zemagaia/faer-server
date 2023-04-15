@@ -1,5 +1,5 @@
 ﻿using System.Xml.Linq;
-using common;
+using Shared;
 using GameServer.realm;
 
 namespace GameServer.logic.behaviors
@@ -44,10 +44,7 @@ namespace GameServer.logic.behaviors
             BuzzStorage storage = (BuzzStorage)state;
 
             Status = CycleStatus.NotStarted;
-
-            if (host.HasConditionEffect(ConditionEffects.Paralyzed))
-                return;
-
+            
             if (storage.RemainingTime > 0)
             {
                 storage.RemainingTime -= time.ElapsedMsDelta;

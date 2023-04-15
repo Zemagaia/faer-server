@@ -1,10 +1,9 @@
-﻿using common;
-using common.resources;
-using common.terrain;
-using GameServer.networking;
-using GameServer.networking.packets.outgoing;
+﻿using Shared;
+using Shared.resources;
+using Shared.terrain;
 using GameServer.realm.entities;
 using GameServer.realm.entities.vendors;
+using wServer.realm;
 
 namespace GameServer.realm.worlds.logic
 {
@@ -22,20 +21,6 @@ namespace GameServer.realm.worlds.logic
             {
                 _client = client;
                 AccountId = _client.Account.AccountId;
-                ExtraXML = ExtraXML.Concat(new[]
-                {
-                    @"	<Objects>
-		                    <Object type=""0x0403"" id=""Vault Chest"">
-			                    <Class>Container</Class>
-			                    <Container/>
-			                    <CanPutNormalObjects/>
-			                    <CanPutSoulboundObjects/>
-			                    <ShowName/>
-			                    <Texture><File>utility</File><Index>0x06</Index></Texture>
-			                    <SlotTypes>0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
-		                    </Object>
-	                    </Objects>"
-                }).ToArray();
                 vaults = new LinkedList<Container>();
             }
         }
@@ -111,7 +96,7 @@ namespace GameServer.realm.worlds.logic
                 EnterWorld(x);
             }
 
-            foreach (var i in _client.Account.ActiveGiftChests)
+            /*foreach (var i in _client.Account.ActiveGiftChests)
             {
                 var giftChest = new DbGiftSingle(_client.Account, i);
                 con = new GiftChest(_client.Manager, 0x0405, null, false, giftChest);
@@ -122,7 +107,7 @@ namespace GameServer.realm.worlds.logic
                 con.Move(giftChestPosition[0].X + 0.5f, giftChestPosition[0].Y + 0.5f);
                 EnterWorld(con);
                 giftChestPosition.RemoveAt(0);
-            }
+            }*/
 
             foreach (var i in giftChestPosition)
             {
@@ -163,7 +148,7 @@ namespace GameServer.realm.worlds.logic
             if (dbLink == null)
                 return;
 
-            dbLink.Items = chest.Inventory.GetItems();
+            dbLink.Items = chest.Inventory.GetItemTypes();
             dbLink.FlushAsync();
         }
 
@@ -173,13 +158,6 @@ namespace GameServer.realm.worlds.logic
 
             if (entity.ObjectType != 0x0405)
                 return;
-
-            if (entity is GiftChest gift)
-            {
-                var active = _client.Account.ActiveGiftChests;
-                active.Remove(gift.AssignedGiftId);
-                _client.Account.ActiveGiftChests = active;
-            }
             
             var x = new StaticObject(_client.Manager, 0x0406, null, true, false, false);
             x.Move(entity.X, entity.Y);

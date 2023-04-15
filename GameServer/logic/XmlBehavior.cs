@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using System.Xml.Linq;
-using common;
+using Shared;
 using GameServer.logic.loot;
 
 namespace GameServer.logic

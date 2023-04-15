@@ -1,9 +1,9 @@
 ﻿using System.Text;
-using common.resources;
+using Shared.resources;
 using Newtonsoft.Json;
 using StackExchange.Redis;
 
-namespace common
+namespace Shared
 {
     public abstract class RedisObject
     {
@@ -324,7 +324,7 @@ namespace common
         public int VaultCount
         {
             get => GetValue<int>("vaultCount");
-            set => SetValue("vaultCount", value);
+            init => SetValue("vaultCount", value);
         }
 
         public int NextGiftId
@@ -421,7 +421,7 @@ namespace common
         public string Notes
         {
             get => GetValue<string>("notes");
-            set => SetValue("notes", value);
+            init => SetValue("notes", value);
         }
 
         public bool Hidden
@@ -451,7 +451,7 @@ namespace common
         public int BanLiftTime
         {
             get => GetValue<int>("banLiftTime");
-            set => SetValue("banLiftTime", value);
+            init => SetValue("banLiftTime", value);
         }
 
         public List<string> Emotes
@@ -557,7 +557,7 @@ namespace common
         public ushort ObjectType
         {
             get => GetValue<ushort>("charType");
-            set => SetValue("charType", value);
+            init => SetValue("charType", value);
         }
 
         public int Level
@@ -584,9 +584,9 @@ namespace common
             set => SetValue("finalFame", value);
         }
 
-        public Item[] Items
+        public ushort[] Items
         {
-            get => GetValue("items", new Item[20].Select(_ => new Item()).ToArray());
+            get => GetValue<ushort[]>("items");
             set => SetValue("items", value);
         }
 
@@ -720,37 +720,37 @@ namespace common
         public ushort ObjectType
         {
             get => GetValue<ushort>("objType");
-            set => SetValue("objType", value);
+            init => SetValue("objType", value);
         }
 
         public int Level
         {
             get => GetValue<int>("level");
-            set => SetValue("level", value);
+            init => SetValue("level", value);
         }
 
         public int TotalFame
         {
             get => GetValue<int>("totalFame");
-            set => SetValue("totalFame", value);
+            init => SetValue("totalFame", value);
         }
 
         public string Killer
         {
             get => GetValue<string>("killer");
-            set => SetValue("killer", value);
+            init => SetValue("killer", value);
         }
 
         public bool FirstBorn
         {
             get => GetValue<bool>("firstBorn");
-            set => SetValue("firstBorn", value);
+            init => SetValue("firstBorn", value);
         }
 
         public DateTime DeathTime
         {
             get => GetValue<DateTime>("deathTime");
-            set => SetValue("deathTime", value);
+            init => SetValue("deathTime", value);
         }
     }
 
@@ -784,11 +784,11 @@ namespace common
 
     public abstract class RInventory : RedisObject
     {
-        public string Field { get; protected set; }
+        public string Field { get; protected init; }
 
-        public Item[] Items
+        public ushort[] Items
         {
-            get => GetValue(Field, new Item[18].Select(_ => new Item()).ToArray());
+            get => GetValue<ushort[]>(Field) ?? Enumerable.Repeat((ushort)0xffff, 20).ToArray();
             set => SetValue(Field, value);
         }
     }
@@ -805,7 +805,7 @@ namespace common
                 return;
 
             var trans = Database.CreateTransaction();
-            SetValue(Field, Utils.ResizeArray(Items, 36).Select(_ => new Item()).ToArray());
+            SetValue<ushort[]>(Field, Items);
             FlushAsync(trans);
             trans.Execute(CommandFlags.FireAndForget);
         }
@@ -994,7 +994,7 @@ namespace common
         public string Name
         {
             get => GetValue<string>("name");
-            set => SetValue("name", value);
+            init => SetValue("name", value);
         }
 
         public int Level

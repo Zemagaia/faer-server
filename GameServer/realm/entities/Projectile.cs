@@ -1,5 +1,5 @@
-﻿using common;
-using common.resources;
+﻿using Shared;
+using Shared.resources;
 
 namespace GameServer.realm.entities
 {
@@ -11,19 +11,19 @@ namespace GameServer.realm.entities
 
     public class Projectile : Entity
     {
-        public IProjectileOwner ProjectileOwner { get; set; }
+        public IProjectileOwner ProjectileOwner { get; init; }
         public ushort Container { get; set; }
         public ProjectileDesc ProjDesc { get; }
         public long CreationTime { get; set; }
         public long ServerCreationTime { get; set; }
         private int _elapsed;
 
-        public byte BulletId { get; set; }
-        public byte ProjectileId { get; set; }
-        public Position StartPos { get; set; }
-        public float Angle { get; set; }
-        public int Damage { get; set; }
-        public DamageTypes DamageType { get; set; }
+        public byte BulletId { get; init; }
+        public byte ProjectileId { get; init; }
+        public Position StartPos { get; init; }
+        public float Angle { get; init; }
+        public int Damage { get; init; }
+        public DamageTypes DamageType { get; init; }
 
         private readonly HashSet<Entity> _hit = new();
 

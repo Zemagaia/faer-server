@@ -8,7 +8,7 @@ using System.Net;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
 
-namespace common.resources
+namespace Shared.resources
 {
     public class Resources : IDisposable
     {

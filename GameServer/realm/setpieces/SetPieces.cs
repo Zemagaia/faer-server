@@ -1,4 +1,4 @@
-﻿using common.resources;
+﻿using Shared.resources;
 using GameServer.realm.worlds;
 using NLog;
 

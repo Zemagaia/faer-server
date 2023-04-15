@@ -1,8 +1,7 @@
-﻿using common;
-using common.resources;
-using common.terrain;
+﻿using Shared;
+using Shared.resources;
+using Shared.terrain;
 using GameServer.logic;
-using GameServer.networking.packets.outgoing;
 using GameServer.realm.entities.player;
 using GameServer.realm.worlds;
 
@@ -54,8 +53,7 @@ namespace GameServer.realm.entities
         public int Damage(Player from, RealmTime time, int dmg, bool noDef, bool dmgTypeDelayed = false,
             DamageTypes damageType = DamageTypes.Magical, params ConditionEffect[] effs)
         {
-            if (stat || Owner == null || HasConditionEffect(ConditionEffects.Invincible) ||
-                HasConditionEffect(ConditionEffects.Paused) || HasConditionEffect(ConditionEffects.Stasis)) return 0;
+            if (stat || Owner == null) return 0;
             dmg = (int)StatsManager.GetDefenseDamage(this, dmg, damageType, from);
             var effDmg = dmg;
             if (effDmg > HP)
@@ -63,18 +61,11 @@ namespace GameServer.realm.entities
             if (!HasConditionEffect(ConditionEffects.Invulnerable))
                 HP -= dmg;
             ApplyConditionEffect(effs);
-
-            Owner?.BroadcastPacketNearby(new Damage()
-            {
-                TargetId = Id,
-                Effects = 0,
-                DamageAmount = (ushort)dmg,
-                Kill = HP < 0,
-                BulletId = 0,
-                ObjectId = from.Id,
-                DTp = dmgTypeDelayed
-            }, this);
-
+            
+            foreach (var plr in Owner.Players.Values)
+                if (MathUtils.DistSqr(X, Y, plr.X, plr.Y) < 16 * 16)
+                    plr.Client.SendDamage(Id, 0, (ushort)dmg, HP < 0, 0, from.Id);
+            
             DamageCounter.HitBy(from, time, null, dmg);
 
             if (HP < 0 && Owner != null)
@@ -87,34 +78,18 @@ namespace GameServer.realm.entities
 
         public override bool HitByProjectile(Projectile projectile, RealmTime time)
         {
-            if (stat || Owner == null || HasConditionEffect(ConditionEffects.Invincible) ||
-                HasConditionEffect(ConditionEffects.Paused) || HasConditionEffect(ConditionEffects.Stasis) ||
+            if (stat || Owner == null ||
                 projectile.ProjectileOwner is not Player p)
                 return false;
-
-            int[] fDamages = null;
-            var inv = p.Inventory;
-            for (var i = 0; i < 6; i++)
-            {
-                if (inv[i].Item is null || inv[i].DamageBoosts is null) continue;
-                if (fDamages is null)
-                {
-                    fDamages = inv[i].DamageBoosts;
-                    continue;
-                }
-
-                fDamages = StatsManager.DamageUtils.Add(fDamages, inv[i].DamageBoosts);
-            }
-
-            var dmg = GetDamage(projectile, fDamages, p);
+            
+            var dmg = (int)StatsManager.GetDefenseDamage(this, projectile.Damage, projectile.DamageType, p);
             if (!HasConditionEffect(ConditionEffects.Invulnerable))
                 HP -= dmg;
             ApplyConditionEffect(projectile.ProjDesc.Effects);
 
             // Stheno's Kiss
-            if (!p.HasConditionEffect(ConditionEffects.Suppressed) &&
-                !HasConditionEffect(ConditionEffects.Invulnerable) &&
-                p.Inventory[1].Item.Power == "Stheno's Kiss" && !p.OnCooldown(0))
+            if (!HasConditionEffect(ConditionEffects.Invulnerable) &&
+                p.Inventory[1].Power == "Stheno's Kiss" && !p.OnCooldown(0))
             {
                 for (var i = 0; i < 5; i++)
                     Owner.Timers.Add(new WorldTimer(1000 * i, (_, t) => Damage(p, t, 200, false, true)));
@@ -122,16 +97,10 @@ namespace GameServer.realm.entities
                 p.SetCooldown(0, 15);
             }
             
-            Owner.BroadcastPacketNearby(new Damage
-            {
-                TargetId = Id,
-                Effects = projectile.ConditionEffects,
-                DamageAmount = (ushort)dmg,
-                Kill = HP < 0,
-                BulletId = projectile.BulletId,
-                ObjectId = projectile.ProjectileOwner.Self.Id
-            }, this, p);
-
+            foreach (var plr in Owner.Players.Values)
+                if (MathUtils.DistSqr(X, Y, plr.X, plr.Y) < 16 * 16)
+                    plr.Client.SendDamage(Id, projectile.ConditionEffects, (ushort)dmg, HP < 0, projectile.BulletId, projectile.ProjectileOwner.Self.Id);
+            
             DamageCounter.HitBy(p, time, projectile, dmg);
 
             if (HP < 0 && Owner != null)
@@ -141,31 +110,12 @@ namespace GameServer.realm.entities
 
             return true;
         }
-
-        private int GetDamage(Projectile projectile, int[] fDamages, Player player)
-        {
-            if (fDamages is null)
-                return (int)StatsManager.GetDefenseDamage(this, projectile.Damage, projectile.DamageType, player);
-
-            return (int)StatsManager.GetDefenseDamage(this,
-                new[]
-                {
-                    projectile.Damage, fDamages[0], fDamages[1], fDamages[2],
-                    fDamages[3], fDamages[4], fDamages[5], fDamages[6], fDamages[7]
-                },
-                new[]
-                {
-                    projectile.DamageType, DamageTypes.Physical, DamageTypes.Magical, DamageTypes.Earth,
-                    DamageTypes.Air, DamageTypes.Profane, DamageTypes.Fire, DamageTypes.Water, DamageTypes.Holy
-                }, player);
-        }
-
+        
         private float _bleeding;
 
         public override void Tick(RealmTime time)
         {
-            if (pos == null)
-                pos = new Position() { X = X, Y = Y };
+            pos ??= new Position {X = X, Y = Y};
 
             if (!stat && HasConditionEffect(ConditionEffects.Bleeding))
             {

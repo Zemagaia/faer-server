@@ -1,5 +1,5 @@
 ﻿using System.Xml.Linq;
-using common;
+using Shared;
 using GameServer.logic.behaviors;
 
 namespace GameServer.logic

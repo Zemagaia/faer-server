@@ -1,5 +1,5 @@
-﻿using common;
-using common.resources;
+﻿using Shared;
+using Shared.resources;
 using GameServer.realm.entities.player;
 using wServer.realm;
 

@@ -1,6 +1,4 @@
-﻿using GameServer.realm.entities.player;
-
-namespace GameServer.realm
+﻿namespace GameServer.realm
 {
     public enum StatsType : byte
     {

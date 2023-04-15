@@ -1,6 +1,6 @@
-﻿using common;
-using common.resources;
-using common.terrain;
+﻿using Shared;
+using Shared.resources;
+using Shared.terrain;
 using GameServer.realm.entities;
 using Ionic.Zlib;
 using Newtonsoft.Json;
@@ -64,10 +64,7 @@ namespace GameServer.realm
         public int Height { get; set; }
 
         MapTile[,] tiles;
-        public MapTile this[int x, int y]
-        {
-            get { return tiles[x, y]; }
-        }
+        public MapTile this[int x, int y] => tiles[x, y];
 
         public void Init(int w, int h)
         {
@@ -114,9 +111,6 @@ namespace GameServer.realm
                                 entity.Size = Utils.FromString(kv[1]); break;
                             case "eff":
                                 entity.ConditionEffects = (ConditionEffects)Utils.FromString(kv[1]); break;
-                            case "conn":
-                                (entity as ConnectedObject).Connection = default;
-                                break; //Utils.FromString(kv[1]); break; todo fix
                             //case "mtype":
                             //    entity.Stats[StatsType.MerchantMerchandiseType] = Utils.FromString(kv[1]); break;
                             //case "mcount":

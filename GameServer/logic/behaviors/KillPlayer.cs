@@ -1,6 +1,5 @@
 ﻿using System.Xml.Linq;
-using common;
-using GameServer.networking.packets.outgoing;
+using Shared;
 using GameServer.realm;
 using GameServer.realm.entities.player;
 
@@ -57,14 +56,8 @@ namespace GameServer.logic.behaviors
                 if (_killMessage != null)
                 {
                     foreach (var p in host.Owner.Players.Values)
-                    {
-                        p.Client.SendText("#" + (host.ObjectDesc.DisplayId ?? host.ObjectDesc.ObjectId), host.Id, 3, "", _killMessage, 0xAB1533, 0xAB1533);
-                    }
-                    foreach (var i in host.Owner.PlayersCollision.HitTest(host.X, host.Y, 15).Where(e => e is Player))
-                    {
-                        if (i is Player && host.Dist(i) < 15)
-                            (i as Player).Client.SendPacket(packet);
-                    }
+                        if (MathUtils.DistSqr(p.X, p.Y, host.X, host.Y) < 16 * 16)
+                            p.Client.SendText("#" + (host.ObjectDesc.DisplayId ?? host.ObjectDesc.ObjectId), host.Id, 3, "", _killMessage, 0xAB1533, 0xAB1533);
                 }
 
                 cool = _coolDown.Next(Random);

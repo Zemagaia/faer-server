@@ -1,6 +1,4 @@
-﻿using common;
-using GameServer.networking.packets.outgoing;
-using GameServer.realm.worlds.logic;
+﻿using GameServer.realm.worlds.logic;
 
 namespace GameServer.realm.entities.player
 {
@@ -18,13 +16,7 @@ namespace GameServer.realm.entities.player
 
             Manager.Database.ReloadAccount(_client.Account);
             var acc = _client.Account;
-
-            if (!acc.NameChosen)
-            {
-                SendError("A unique name is required before trading with others!");
-                return;
-            }
-
+            
             if (tradeTarget != null)
             {
                 SendError("Already trading!");

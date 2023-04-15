@@ -1,4 +1,4 @@
-﻿using common;
+﻿using Shared;
 using GameServer.realm.entities.player;
 using GameServer.realm.worlds;
 using StackExchange.Redis;
@@ -52,7 +52,7 @@ namespace GameServer.realm
 				return;
 			}
 			client.Player.Owner.LeaveWorld(client.Player);
-			client.Player.DisposeUpdate();
+			//client.Player.DisposeUpdate();
 			client.SendCreateSuccess(client.Manager.Worlds[world.Id].EnterWorld(client.Player), client.Character.CharId);
 			client.Manager.Clients[client].WorldInstance = client.Player.Owner.Id;
 			client.Manager.Clients[client].WorldName = client.Player.Owner.Name;

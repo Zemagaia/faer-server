@@ -1,6 +1,5 @@
 ﻿using System.Xml.Linq;
-using common;
-using GameServer.networking.packets.outgoing;
+using Shared;
 using GameServer.realm;
 using GameServer.realm.entities;
 
@@ -36,9 +35,6 @@ namespace GameServer.logic.behaviors
 
             if (cool <= 0)
             {
-                if (host.HasConditionEffect(ConditionEffects.Stunned)) 
-                    return;
-
                 var entity = host as Character;
 
                 if (entity == null)

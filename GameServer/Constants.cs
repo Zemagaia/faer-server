@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using common;
+﻿using Shared;
 
 namespace GameServer
 {
@@ -25,13 +22,7 @@ namespace GameServer
 
         public static readonly ConditionEffectIndex[] NegativeEffsIdx = new ConditionEffectIndex[]
         {
-            ConditionEffectIndex.Bleeding, ConditionEffectIndex.Blind, ConditionEffectIndex.Confused,
-            ConditionEffectIndex.Crippled, ConditionEffectIndex.Curse, ConditionEffectIndex.Drunk,
-            ConditionEffectIndex.Hallucinating, ConditionEffectIndex.Hexed, ConditionEffectIndex.Paralyzed,
-            ConditionEffectIndex.Petrify, ConditionEffectIndex.Sick, ConditionEffectIndex.Slow,
-            ConditionEffectIndex.Stunned, ConditionEffectIndex.Stupefied, ConditionEffectIndex.Suppressed,
-            ConditionEffectIndex.Unarmored, ConditionEffectIndex.Unsighted, ConditionEffectIndex.PetDisable,
-            ConditionEffectIndex.Exposed, ConditionEffectIndex.Staggered
+            ConditionEffectIndex.Bleeding, ConditionEffectIndex.Sick,
         };
 
         public static double GetGameHour()

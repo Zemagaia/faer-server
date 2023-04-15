@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
-using common.terrain;
+using Shared.terrain;
 using NLog;
 
-namespace common.resources
+namespace Shared.resources
 {
     public class ConditionEffect
     {
@@ -270,7 +270,7 @@ namespace common.resources
         public readonly ushort ObjectType;
         public readonly string ObjectId;
         public readonly int SlotType;
-        public readonly int Tier;
+        public readonly string Tier;
         public readonly string Description;
         public readonly float RateOfFire;
         public readonly bool Usable;
@@ -331,7 +331,7 @@ namespace common.resources
             ObjectId = e.GetAttribute<string>("id");
             SlotType = e.GetValue<int>("SlotType");
             if (e.HasElement("Tier"))
-                Tier = e.GetValue<int>("Tier");
+                Tier = e.GetValue<string>("Tier");
             else
                 Untiered = true;
             Description = e.GetValue<string>("Description");

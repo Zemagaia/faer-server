@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-using System.Text.RegularExpressions;
-using GameServer.networking.packets.outgoing;
+﻿using System.Text.RegularExpressions;
 
 namespace GameServer.realm.entities.player
 {

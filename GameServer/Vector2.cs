@@ -67,25 +67,13 @@ namespace GameServer
 
         #region Properties
 
-        public static Vector2 Zero
-        {
-            get { return zeroVector; }
-        }
+        public static Vector2 Zero => zeroVector;
 
-        public static Vector2 One
-        {
-            get { return unitVector; }
-        }
+        public static Vector2 One => unitVector;
 
-        public static Vector2 UnitX
-        {
-            get { return unitXVector; }
-        }
+        public static Vector2 UnitX => unitXVector;
 
-        public static Vector2 UnitY
-        {
-            get { return unitYVector; }
-        }
+        public static Vector2 UnitY => unitYVector;
 
         #endregion Properties
 
@@ -125,13 +113,13 @@ namespace GameServer
         public static float Distance(Vector2 value1, Vector2 value2)
         {
             float v1 = value1.X - value2.X, v2 = value1.Y - value2.Y;
-            return (float)System.Math.Sqrt((v1 * v1) + (v2 * v2));
+            return (float)Math.Sqrt((v1 * v1) + (v2 * v2));
         }
 
         public static void Distance(ref Vector2 value1, ref Vector2 value2, out float result)
         {
             float v1 = value1.X - value2.X, v2 = value1.Y - value2.Y;
-            result = (float)System.Math.Sqrt((v1 * v1) + (v2 * v2));
+            result = (float)Math.Sqrt((v1 * v1) + (v2 * v2));
         }
 
         public static float DistanceSquared(Vector2 value1, Vector2 value2)
@@ -222,7 +210,7 @@ namespace GameServer
 
         public float Length()
         {
-            return (float)System.Math.Sqrt((X * X) + (Y * Y));
+            return (float)Math.Sqrt((X * X) + (Y * Y));
         }
 
         public float LengthSquared()
@@ -295,7 +283,7 @@ namespace GameServer
 
         public void Normalize()
         {
-            float d = (float)System.Math.Sqrt((X * X) + (Y * Y));
+            float d = (float)Math.Sqrt((X * X) + (Y * Y));
             if (d == 0) return;
             float val = 1.0f / d;
             X *= val;
@@ -304,7 +292,7 @@ namespace GameServer
 
         public static Vector2 Normalize(Vector2 value)
         {
-            float val = 1.0f / (float)System.Math.Sqrt((value.X * value.X) + (value.Y * value.Y));
+            float val = 1.0f / (float)Math.Sqrt((value.X * value.X) + (value.Y * value.Y));
             value.X *= val;
             value.Y *= val;
             return value;
@@ -312,7 +300,7 @@ namespace GameServer
 
         public static void Normalize(ref Vector2 value, out Vector2 result)
         {
-            float val = 1.0f / (float)System.Math.Sqrt((value.X * value.X) + (value.Y * value.Y));
+            float val = 1.0f / (float)Math.Sqrt((value.X * value.X) + (value.Y * value.Y));
             result.X = value.X * val;
             result.Y = value.Y * val;
         }

@@ -1,8 +1,6 @@
 ﻿using System.Text;
-using common;
-using common.resources;
-using GameServer.networking.packets.incoming;
-using GameServer.networking.packets.outgoing;
+using Shared;
+using Shared.resources;
 using GameServer.realm.entities;
 using GameServer.realm.entities.player;
 using GameServer.realm.worlds;
@@ -52,10 +50,7 @@ namespace GameServer.realm.commands
 
         protected override bool Process(Player player, RealmTime time, string args)
         {
-            player.Client.ProcessPacket(new JoinGuild()
-            {
-                GuildName = args
-            });
+            player.Client.ProcessJoinGuild(args);
             return true;
         }
     }
@@ -73,50 +68,7 @@ namespace GameServer.realm.commands
             return true;
         }
     }
-
-    class PauseCommand : Command
-    {
-        public PauseCommand() : base("pause")
-        {
-        }
-
-        protected override bool Process(Player player, RealmTime time, string args)
-        {
-            if (player.SpectateTarget != null)
-            {
-                player.SendError("The use of pause is disabled while spectating.");
-                return false;
-            }
-
-            if (player.HasConditionEffect(ConditionEffects.Paused))
-            {
-                player.ApplyConditionEffect(new ConditionEffect()
-                {
-                    Effect = ConditionEffectIndex.Paused,
-                    DurationMS = 0
-                });
-                player.SendInfo("Game resumed.");
-                return true;
-            }
-
-            var owner = player.Owner;
-
-            if (player.Owner.EnemiesCollision.HitTest(player.X, player.Y, 8).OfType<Enemy>().Any())
-            {
-                player.SendError("Not safe to pause.");
-                return false;
-            }
-
-            player.ApplyConditionEffect(new ConditionEffect()
-            {
-                Effect = ConditionEffectIndex.Paused,
-                DurationMS = -1
-            });
-            player.SendInfo("Game paused.");
-            return true;
-        }
-    }
-
+    
     /// <summary>
     /// This introduces a subtle bug, since the client UI is not notified when a /teleport is typed, it's cooldown does not reset.
     /// This leads to the unfortunate situation where the cooldown has been not been reached, but the UI doesn't know. The graphical TP will fail
@@ -196,13 +148,7 @@ namespace GameServer.realm.commands
                         else
                         {
                             world.Invites.Remove(player.Name.ToLower());
-                            player.Client.Reconnect(new Reconnect()
-                            {
-                                Host = "",
-                                Port = 2050,
-                                GameId = world.Id,
-                                Name = world.SBName != null ? world.SBName : world.Name,
-                            });
+                            player.Client.Reconnect(world.SBName ?? world.Name, world.Id);
                             return true;
                         }
                     }
@@ -224,13 +170,7 @@ namespace GameServer.realm.commands
                         world.Invites.Remove(player.Name.ToLower());
                         if (world.InviteDict.ContainsKey(player.Name.ToLower()))
                             world.InviteDict.Remove(player.Name.ToLower());
-                        player.Client.Reconnect(new Reconnect()
-                        {
-                            Host = "",
-                            Port = 2050,
-                            GameId = world.Id,
-                            Name = world.SBName != null ? world.SBName : world.Name,
-                        });
+                        player.Client.Reconnect(world.SBName ?? world.Name, world.Id);
                         return true;
                     }
                     else if (world.InviteDict.Keys.Contains(player.Name.ToLower()))
@@ -451,47 +391,6 @@ namespace GameServer.realm.commands
             }
 
             return player.Manager.Chat.Guild(player, args);
-        }
-    }
-
-    class LocalCommand : Command
-    {
-        public LocalCommand() : base("l")
-        {
-        }
-
-        protected override bool Process(Player player, RealmTime time, string args)
-        {
-            if (!player.NameChosen)
-            {
-                player.SendError("Choose a name!");
-                return false;
-            }
-
-            if (player.Muted)
-            {
-                player.SendError("Muted. You can not local chat at this time.");
-                return false;
-            }
-
-            if (player.CompareAndCheckSpam(args, time.TotalElapsedMs))
-            {
-                return false;
-            }
-
-            var sent = player.Manager.Chat.Local(player, args);
-            if (!sent)
-            {
-                player.SendError(
-                    "Failed to send message. Use of extended ascii characters and ascii whitespace (other than space) is not allowed.");
-            }
-            else
-            {
-                player.Owner.ChatReceived(player, args);
-            }
-
-
-            return sent;
         }
     }
 
@@ -759,132 +658,6 @@ namespace GameServer.realm.commands
         }
     }
 
-    class TimeCommand : Command
-    {
-        public TimeCommand() : base("time")
-        {
-        }
-
-        protected override bool Process(Player player, RealmTime time, string args)
-        {
-            player.SendInfo("Time for you to get a watch!");
-            return true;
-        }
-    }
-
-    /*
-    class ArenaCommand : Command
-    {
-        public ArenaCommand() : base("arena") { }
-
-        protected override bool Process(Player player, RealmTime time, string args)
-        {
-            player.Client.Reconnect(new Reconnect()
-            {
-                Host = "",
-                Port = 2050,
-                GameId = World.Arena,
-                Name = "Arena"
-            });
-            return true;
-        }
-    }
-
-    class DeathArenaCommand : Command
-    {
-        public DeathArenaCommand() : base("oa") { }
-
-        protected override bool Process(Player player, RealmTime time, string args)
-        {
-            player.Client.Reconnect(new Reconnect()
-            {
-                Host = "",
-                Port = 2050,
-                GameId = World.DeathArena,
-                Name = "Oryx's Arena"
-            });
-            return true;
-        }
-    }
-    */
-
-    class DailyQuestCommand : Command
-    {
-        public DailyQuestCommand() : base("dailyquest", aliases: "dq")
-        {
-        }
-
-        protected override bool Process(Player player, RealmTime time, string args)
-        {
-            player.Client.Reconnect(new Reconnect()
-            {
-                Host = "",
-                Port = 2050,
-                GameId = World.Tinker,
-                Name = "Quest Room"
-            });
-            return true;
-        }
-    }
-
-    class VaultCommand : Command
-    {
-        public VaultCommand() : base("vault")
-        {
-        }
-
-        protected override bool Process(Player player, RealmTime time, string args)
-        {
-            player.Client.Reconnect(new Reconnect()
-            {
-                Host = "",
-                Port = 2050,
-                GameId = World.Vault,
-                Name = "Vault"
-            });
-            return true;
-        }
-    }
-
-    /*class SoloArenaCommand : Command
-    {
-        public SoloArenaCommand() : base("sa") { }
-
-        protected override bool Process(Player player, RealmTime time, string args)
-        {
-            player.Client.Reconnect(new Reconnect()
-            {
-                Host = "",
-                Port = 2050,
-                GameId = World.ArenaSolo,
-                Name = "Arena Solo"
-            });
-            return true;
-        }
-    }*/
-
-    class GhallCommand : Command
-    {
-        public GhallCommand() : base("ghall")
-        {
-        }
-
-
-        protected override bool Process(Player player, RealmTime time, string args)
-        {
-            if (player.GuildRank < 0)
-            {
-                player.SendError("You need to be in a guild.");
-                return false;
-            }
-
-            var proto = player.Manager.Resources.Worlds["GuildHall"];
-            var world = player.Manager.GetWorld(proto.id);
-            player.Reconnect(world.GetInstance(player.Client));
-            return true;
-        }
-    }
-
     class LefttoMaxCommand : Command
     {
         public LefttoMaxCommand() : base("lefttomax")
@@ -1012,26 +785,7 @@ namespace GameServer.realm.commands
             return true;
         }
     }
-
-    class MarketplaceCommand : Command
-    {
-        public MarketplaceCommand() : base("market", aliases: "marketplace")
-        {
-        }
-
-        protected override bool Process(Player player, RealmTime time, string args)
-        {
-            player.Client.Reconnect(new Reconnect()
-            {
-                Host = "",
-                Port = 2050,
-                GameId = World.MarketPlace,
-                Name = "Marketplace"
-            });
-            return true;
-        }
-    }
-
+    
     class RemoveAccountOverrideCommand : Command
     {
         public RemoveAccountOverrideCommand() : base("removeOverride", 0, listCommand: false)
@@ -1217,13 +971,7 @@ namespace GameServer.realm.commands
                     player.SendError("Could not find the player to invite.");
                     return false;
                 }
-
-                if (!targetClient.Account.NameChosen)
-                {
-                    player.SendError("Player needs to choose a name first.");
-                    return false;
-                }
-
+                
                 if (targetClient.Account.GuildId > 0)
                 {
                     player.SendError("Player is already in a guild.");
@@ -1232,11 +980,7 @@ namespace GameServer.realm.commands
 
                 targetClient.Player.GuildInvite = player.Client.Account.GuildId;
 
-                targetClient.SendPacket(new InvitedToGuild()
-                {
-                    Name = player.Name,
-                    GuildName = player.Guild
-                });
+                targetClient.SendInvitedToGuild(player.Name, player.Guild);
                 return true;
             }
 
@@ -1291,118 +1035,6 @@ namespace GameServer.realm.commands
         }
     }
 
-    class SpectateCommand : Command
-    {
-        public SpectateCommand() : base("spectate")
-        {
-        }
-
-        protected override bool Process(Player player, RealmTime time, string name)
-        {
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                player.SendError("Usage: /spectate <player name>");
-                return false;
-            }
-
-
-            var target = player.Owner.Players.Values
-                .SingleOrDefault(p =>
-                    p.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase) && p.CanBeSeenBy(player));
-
-            if (target == null)
-            {
-                player.SendError("Player not found. Note: Target player must be on the same map.");
-                return false;
-            }
-
-            if (!player.Client.Account.Admin &&
-                player.Owner.EnemiesCollision.HitTest(player.X, player.Y, 8).OfType<Enemy>().Any())
-            {
-                player.SendError("Enemies cannot be nearby when initiating spectator mode.");
-                return false;
-            }
-
-            if (player.SpectateTarget != null)
-            {
-                player.SpectateTarget.FocusLost -= player.ResetFocus;
-                player.SpectateTarget.Controller = null;
-            }
-
-            if (player != target)
-            {
-                player.ApplyConditionEffect(ConditionEffectIndex.Paused);
-                target.FocusLost += player.ResetFocus;
-                player.SpectateTarget = target;
-            }
-            else
-            {
-                player.SpectateTarget = null;
-                player.Owner.Timers.Add(new WorldTimer(1500, (w, t) =>
-                {
-                    if (player.SpectateTarget == null)
-                        player.ApplyConditionEffect(ConditionEffectIndex.Paused, 0);
-                }));
-            }
-
-            player.Client.SendPacket(new SetFocus()
-            {
-                ObjectId = target.Id
-            });
-
-            player.SendInfo($"Now spectating {target.Name}. Use the /self command to exit.");
-            return true;
-        }
-    }
-
-    class SelfCommand : Command
-    {
-        public SelfCommand() : base("self")
-        {
-        }
-
-        protected override bool Process(Player player, RealmTime time, string name)
-        {
-            if (player.SpectateTarget != null)
-            {
-                player.SpectateTarget.FocusLost -= player.ResetFocus;
-                player.SpectateTarget.Controller = null;
-            }
-
-            player.SpectateTarget = null;
-            player.Sight.UpdateCount++;
-            player.Owner.Timers.Add(new WorldTimer(1500, (w, t) =>
-            {
-                if (player.SpectateTarget == null)
-                    player.ApplyConditionEffect(ConditionEffectIndex.Paused, 0);
-            }));
-            player.Client.SendPacket(new SetFocus()
-            {
-                ObjectId = player.Id
-            });
-            return true;
-        }
-    }
-
-    class BazaarCommand : Command
-    {
-        public BazaarCommand() : base("bazaar")
-        {
-        }
-
-        protected override bool Process(Player player, RealmTime time, string args)
-        {
-            player.Client.Reconnect(new Reconnect()
-            {
-                Host = "",
-                Port = 2050,
-                GameId = World.ClothBazaar,
-                Name = "Cloth Bazaar"
-            });
-            return true;
-        }
-    }
-
     class ServersCommand : Command
     {
         public ServersCommand() : base("servers", aliases: "svrs")
@@ -1430,12 +1062,6 @@ namespace GameServer.realm.commands
                 if (currentSvr)
                 {
                     sb.Append("]");
-                }
-
-                sb.Append($" ({server.players}/{server.maxPlayers}");
-                if (server.queueLength > 0)
-                {
-                    sb.Append($" + {server.queueLength} queued");
                 }
 
                 sb.Append(")");

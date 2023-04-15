@@ -1,4 +1,4 @@
-﻿namespace common
+﻿namespace Shared
 {
     public interface ISellableItem
     {

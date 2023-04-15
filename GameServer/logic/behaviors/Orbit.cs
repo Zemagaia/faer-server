@@ -1,5 +1,5 @@
 ﻿using System.Xml.Linq;
-using common;
+using Shared;
 using GameServer.realm;
 
 namespace GameServer.logic.behaviors
@@ -46,7 +46,7 @@ namespace GameServer.logic.behaviors
             this.orbitClockwise = orbitClockwise;
         }
 
-        protected override void OnStateEntry(realm.Entity host, realm.RealmTime time, ref object state)
+        protected override void OnStateEntry(Entity host, RealmTime time, ref object state)
         {
             int orbitDir;
             if (orbitClockwise == null)
@@ -67,10 +67,7 @@ namespace GameServer.logic.behaviors
             OrbitState s = (OrbitState)state;
 
             Status = CycleStatus.NotStarted;
-
-            if (host.HasConditionEffect(ConditionEffects.Paralyzed))
-                return;
-
+            
             var entity = host.AttackTarget ?? host.GetNearestEntity(acquireRange, target);
 
             if (entity != null)

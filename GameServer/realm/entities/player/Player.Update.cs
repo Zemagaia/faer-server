@@ -1,6 +1,5 @@
 ﻿using System.Collections.Concurrent;
-using common.terrain;
-using GameServer.networking.packets.outgoing;
+using Shared.terrain;
 using GameServer.realm.worlds;
 
 namespace GameServer.realm.entities.player
@@ -67,7 +66,7 @@ namespace GameServer.realm.entities.player
         private readonly HashSet<IntPoint> _clientStatic = new();
         private readonly UpdatedSet _clientEntities;
         private ObjectStats[] _updateStatuses;
-        private Update.TileData[] _tiles;
+        private TileData[] _tiles;
         private ObjectDef[] _newObjects;
         private int[] _removedObjects;
 
@@ -108,18 +107,14 @@ namespace GameServer.realm.entities.player
                 _updateStatuses = _statUpdates.Select(_ => new ObjectStats()
                 {
                     Id = _.Key.Id,
-                    Position = new Position() { X = _.Key.RealX, Y = _.Key.RealY },
-                    StatTypes = _.Value.ToArray(),
-                    DamageDealt = DamageDealt
+                    X = _.Key.RealX, 
+                    Y = _.Key.RealY,
+                    StatTypes = _.Value.ToArray()
                 }).ToArray();
                 _statUpdates.Clear();
             }
-            _client.SendPacket(new NewTick
-            {
-                TickId = ++TickId,
-                TickTime = time.ElapsedMsDelta,
-                Statuses = _updateStatuses
-            });
+            
+            _client.SendNewTick((byte) (++TickId % 256), time.ElapsedMsDelta, _updateStatuses);
             AwaitMove(TickId);
         }
 
@@ -129,7 +124,7 @@ namespace GameServer.realm.entities.player
             var sCircle = Sight.GetSightCircle(Owner.Blocking);
 
             // get list of tiles for update
-            var tilesUpdate = new List<Update.TileData>(AppoxAreaOfSight);
+            var tilesUpdate = new List<TileData>(AppoxAreaOfSight);
             foreach (var point in sCircle)
             {
                 var x = point.X;
@@ -140,11 +135,11 @@ namespace GameServer.realm.entities.player
                     tiles[x, y] >= tile.UpdateCount)
                     continue;
 
-                tilesUpdate.Add(new Update.TileData()
+                tilesUpdate.Add(new TileData()
                 {
                     X = (short)x,
                     Y = (short)y,
-                    Tile = (Tile)tile.TileId
+                    Tile = tile.TileId
                 });
                 tiles[x, y] = tile.UpdateCount;
             }
@@ -176,12 +171,7 @@ namespace GameServer.realm.entities.player
                 _tiles = tilesUpdate.ToArray();
                 _newObjects = entitiesAdd.Select(_ => _.ToDefinition()).Concat(staticsUpdate).ToArray();
                 _removedObjects = entitiesRemove.ToArray();
-                _client.SendPacket(new Update
-                {
-                    Tiles = _tiles,
-                    NewObjs = _newObjects,
-                    Drops = _removedObjects
-                });
+                _client.SendUpdate(_tiles, _newObjects, _removedObjects);
                 AwaitUpdateAck(time.TotalElapsedMs);
             }
         }
@@ -208,7 +198,6 @@ namespace GameServer.realm.entities.player
                 }
 
                 if (i is Player ||
-                    i == questEntity || i == SpectateTarget ||
                     i.ObjectDesc.KeepMinimap || /*(i is StaticObject && (i as StaticObject).Static) ||*/
                     visibleTiles.Contains(new IntPoint((int)i.X, (int)i.Y)))
                     continue;
@@ -227,10 +216,6 @@ namespace GameServer.realm.entities.player
                 if ((i.Value == this || i.Value.Client.Account != null && i.Value.Client.Player.CanBeSeenBy(this)) &&
                     _clientEntities.Add(i.Value))
                     yield return i.Value;
-
-            foreach (var i in Owner.PlayersCollision.HitTest(X, Y, Radius))
-                if ((i is Decoy || i is Enemy pet && pet.IsPet) && _clientEntities.Add(i))
-                    yield return i;
 
             var p = new IntPoint(0, 0);
             foreach (var i in Owner.EnemiesCollision.HitTest(X, Y, Radius))
@@ -253,9 +238,6 @@ namespace GameServer.realm.entities.player
                 if (i.Value != null && i.Value.ObjectDesc.KeepMinimap && _clientEntities.Add(i.Value))
                     yield return i.Value;
             }
-
-            if (questEntity?.Owner != null && _clientEntities.Add(questEntity))
-                yield return questEntity;
 
             if (SpectateTarget?.Owner != null && _clientEntities.Add(SpectateTarget))
                 yield return SpectateTarget;

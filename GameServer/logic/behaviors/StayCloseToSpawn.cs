@@ -1,5 +1,5 @@
 ﻿using System.Xml.Linq;
-using common;
+using Shared;
 using GameServer.realm;
 
 namespace GameServer.logic.behaviors
@@ -32,9 +32,6 @@ namespace GameServer.logic.behaviors
         protected override void TickCore(Entity host, RealmTime time, ref object state)
         {
             Status = CycleStatus.NotStarted;
-
-            if (host.HasConditionEffect(ConditionEffects.Paralyzed))
-                return;
 
             if (!(state is Vector2))
             {

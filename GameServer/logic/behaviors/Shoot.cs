@@ -1,7 +1,6 @@
 ﻿using System.Xml.Linq;
-using common;
-using common.resources;
-using GameServer.networking.packets.outgoing;
+using Shared;
+using Shared.resources;
 using GameServer.realm;
 using GameServer.realm.entities;
 
@@ -109,12 +108,7 @@ namespace GameServer.logic.behaviors
 
             if (cool <= 0)
             {
-                if (host.HasConditionEffect(ConditionEffects.Stunned))
-                    return;
-
                 var count = _count;
-                if (host.HasConditionEffect(ConditionEffects.Crippled))
-                    count = (int)Math.Ceiling(_count / 2.0);
 
                 Entity player;
                 if (host.AttackTarget != null)
@@ -174,7 +168,7 @@ namespace GameServer.logic.behaviors
                     {
                         var prj = host.CreateProjectile(
                             desc, host.ObjectType, dmg, time.TotalElapsedMs,
-                            prjPos, (startAngle + _shootAngle * i), i);
+                            prjPos.X, prjPos.Y, (startAngle + _shootAngle * i), i);
                         host.Owner.EnterWorld(prj);
 
                         if (i == 0)
@@ -184,12 +178,8 @@ namespace GameServer.logic.behaviors
                     }
                     
                     foreach (var p in host.Owner.Players.Values)
-                        p.Client.SendEnemyShoot(prjId, host.Id, (byte)(desc.BulletType), host.X, host.y, startAngle, (short)dmg, (byte)count, _shootAngle);
-                    foreach (var plr in host.Owner.Players
-                                 .Where(p => p.Value.DistSqr(host) < 1200)) // 40 sqrs
-                    {
-                        plr.Value.Client.Send(pkt);
-                    }
+                        if (MathUtils.DistSqr(host.X, host.Y, p.X, p.Y) < 40 * 40)
+                            p.Client.SendEnemyShoot(prjId, host.Id, (byte)(desc.BulletType), host.X, host.Y, startAngle, (short)dmg, (byte)count, _shootAngle);
                 }
 
                 cool = _coolDown.Next(Random);

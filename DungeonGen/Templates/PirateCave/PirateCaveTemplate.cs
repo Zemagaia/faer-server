@@ -63,37 +63,19 @@ namespace DungeonGenerator.Templates.PirateCave
             new(0x68f, "Cave Pirate Cabin Boy")
         };
 
-        public override int MaxDepth
-        {
-            get { return 10; }
-        }
+        public override int MaxDepth => 10;
 
         NormDist targetDepth;
 
-        public override NormDist TargetDepth
-        {
-            get { return targetDepth; }
-        }
+        public override NormDist TargetDepth => targetDepth;
 
-        public override NormDist SpecialRmCount
-        {
-            get { return null; }
-        }
+        public override NormDist SpecialRmCount => null;
 
-        public override NormDist SpecialRmDepthDist
-        {
-            get { return null; }
-        }
+        public override NormDist SpecialRmDepthDist => null;
 
-        public override Range RoomSeparation
-        {
-            get { return new Range(3, 7); }
-        }
+        public override Range RoomSeparation => new Range(3, 7);
 
-        public override int CorridorWidth
-        {
-            get { return 2; }
-        }
+        public override int CorridorWidth => 2;
 
         public override void Initialize()
         {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace common
+namespace Shared
 {
     // Adds strong typing to WeakReference.Target using generics. Also,
     // the Create factory method is used in place of a constructor
@@ -23,10 +23,7 @@ namespace common
         {
         }
 
-        public new T Target
-        {
-            get { return (T)base.Target; }
-        }
+        public new T Target => (T)base.Target;
     }
 
     // Provides a weak reference to a null target object, which, unlike
@@ -41,10 +38,7 @@ namespace common
         {
         }
 
-        public override bool IsAlive
-        {
-            get { return true; }
-        }
+        public override bool IsAlive => true;
     }
 
     // Provides a weak reference to an object of the given type to be used in
@@ -173,10 +167,7 @@ namespace common
         public abstract IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator();
         protected abstract void SetValue(TKey key, TValue value);
 
-        public bool IsReadOnly
-        {
-            get { return false; }
-        }
+        public bool IsReadOnly => false;
 
         public ICollection<TKey> Keys
         {
@@ -210,7 +201,7 @@ namespace common
 
                 return value;
             }
-            set { SetValue(key, value); }
+            set => SetValue(key, value);
         }
 
         public void Add(KeyValuePair<TKey, TValue> item)
@@ -254,15 +245,9 @@ namespace common
                 this.dictionary = dictionary;
             }
 
-            public int Count
-            {
-                get { return this.dictionary.Count; }
-            }
+            public int Count => this.dictionary.Count;
 
-            public bool IsReadOnly
-            {
-                get { return true; }
-            }
+            public bool IsReadOnly => true;
 
             public void CopyTo(T[] array, int arrayIndex)
             {
@@ -389,10 +374,7 @@ namespace common
         // either the key or value objects have already been garbage
         // collected. Call RemoveCollectedEntries to weed out collected
         // entries and update the count accordingly.
-        public override int Count
-        {
-            get { return this.dictionary.Count; }
-        }
+        public override int Count => this.dictionary.Count;
 
         public override void Add(TKey key, TValue value)
         {

@@ -1,5 +1,5 @@
 ﻿using System.Xml.Linq;
-using common;
+using Shared;
 using GameServer.realm;
 
 namespace GameServer.logic.behaviors
@@ -48,9 +48,6 @@ namespace GameServer.logic.behaviors
                 protectee = host.Manager.Resources.GameData.IdToObjectType[protecteeString];
 
             Status = CycleStatus.NotStarted;
-
-            if (host.HasConditionEffect(ConditionEffects.Paralyzed))
-                return;
 
             var entity = host.GetNearestEntity(acquireRange, protectee);
             Vector2 vect;

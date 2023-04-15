@@ -1,4 +1,4 @@
-﻿using common;
+﻿using Shared;
 
 namespace GameServer.realm.entities.player
 {
@@ -23,22 +23,10 @@ namespace GameServer.realm.entities.player
                 PassiveCooldown[PassiveSlot] = 250;
             }
 
-            if (HasConditionEffect(ConditionEffects.Exposed) && Stats.Boost[12] > 0)
-            {
-                Stats.Boost.ActivateBoost[12].PopAll();
-                Stats.ReCalculateValues();
-                ShieldDamage = 0;
-            }
-
             ShieldMax = Stats[12];
             Shield = Stats[12] - ShieldDamage;
 
-            if (HasConditionEffect(ConditionEffects.Shielded) && ShieldDamage > 0)
-            {
-                ShieldDamage -= Math.Max(6,
-                    (int)Math.Round(Stats[12] * 0.05f * (time.ElapsedMsDelta / 1000f), 0));
-            }
-            else if (ShieldDamage < 0)
+            if (ShieldDamage < 0)
             {
                 ShieldDamage = 0;
             }
@@ -47,11 +35,6 @@ namespace GameServer.realm.entities.player
             if (_isDrainingMana)
             {
                 MP = Math.Max(0, (int)(MP - _manaDrain * time.ElapsedMsDelta / 1000f));
-
-                if (_lightGain > 0)
-                    Light += Math.Max(1,
-                        (int)((HasConditionEffect(ConditionEffects.Enlightened) ? _lightGain + 3 : _lightGain) *
-                            time.ElapsedMsDelta / 1000f));
 
                 if (MP == 0)
                     _isDrainingMana = false;
@@ -67,27 +50,9 @@ namespace GameServer.realm.entities.player
             if (_client.Account.Hidden && !HasConditionEffect(ConditionEffects.Hidden))
             {
                 ApplyConditionEffect(ConditionEffectIndex.Hidden);
-                ApplyConditionEffect(ConditionEffectIndex.Invincible);
                 Manager.Clients[Client].Hidden = true;
             }
-
-            if (Muted && !HasConditionEffect(ConditionEffects.Muted))
-                ApplyConditionEffect(ConditionEffectIndex.Muted);
-
-            if (HasConditionEffect(ConditionEffects.Renewed) && !HasConditionEffect(ConditionEffects.Sick))
-            {
-                if (_healing > 1)
-                {
-                    HP = Math.Min(Stats[0], HP + (int)_healing);
-                    _healing -= (int)_healing;
-                }
-
-                _healing += 28 * (time.ElapsedMsDelta / 1000f);
-            }
-
-            if (HasConditionEffect(ConditionEffects.Stupefied) && MP > 0)
-                MP = 0;
-
+            
             if (HasConditionEffect(ConditionEffects.Bleeding) && HP > 1 && Shield <= 0)
             {
                 if (_bleeding > 1)
@@ -100,15 +65,7 @@ namespace GameServer.realm.entities.player
 
                 _bleeding += 28 * (time.ElapsedMsDelta / 1000f);
             }
-
-            if (HasConditionEffect(ConditionEffects.NinjaSpeedy))
-            {
-                MP = Math.Max(0, (int)(MP - 10 * time.ElapsedMsDelta / 1000f));
-
-                if (MP == 0)
-                    ApplyConditionEffect(ConditionEffectIndex.NinjaSpeedy, 0);
-            }
-
+            
             if (_newbieTime > 0)
             {
                 _newbieTime -= time.ElapsedMsDelta;
@@ -146,9 +103,7 @@ namespace GameServer.realm.entities.player
 
         bool CanMpRegen()
         {
-            if (HasConditionEffect(ConditionEffects.Stupefied) ||
-                HasConditionEffect(ConditionEffects.NinjaSpeedy) ||
-                _isDrainingMana)
+            if (_isDrainingMana)
                 return false;
 
             return true;
@@ -166,10 +121,6 @@ namespace GameServer.realm.entities.player
 
         public bool IsVisibleToEnemy()
         {
-            if (HasConditionEffect(ConditionEffects.Paused))
-                return false;
-            if (HasConditionEffect(ConditionEffects.Invisible))
-                return false;
             if (HasConditionEffect(ConditionEffects.Hidden))
                 return false;
             if (_newbieTime > 0)

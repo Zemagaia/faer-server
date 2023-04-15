@@ -2,7 +2,7 @@
 using System.IO;
 using Newtonsoft.Json;
 
-namespace common.resources
+namespace Shared.resources
 {
     public class Update
     {

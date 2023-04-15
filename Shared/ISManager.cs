@@ -5,7 +5,7 @@ using System.Timers;
 using NLog;
 using Timer = System.Timers.Timer;
 
-namespace common
+namespace Shared
 {
     public class ISManager : InterServerChannel, IDisposable
     {

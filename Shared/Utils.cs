@@ -10,12 +10,12 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using common.resources;
+using Shared.resources;
 using Dynamitey;
 using Ionic.Zlib;
 using Newtonsoft.Json;
 
-namespace common
+namespace Shared
 {
     public static class Utils
     {

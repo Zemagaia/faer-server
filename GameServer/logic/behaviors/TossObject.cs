@@ -1,8 +1,7 @@
 ﻿using System.Xml.Linq;
-using common;
-using common.resources;
-using common.terrain;
-using GameServer.networking.packets.outgoing;
+using Shared;
+using Shared.resources;
+using Shared.terrain;
 using GameServer.realm;
 using GameServer.realm.entities;
 
@@ -119,9 +118,6 @@ namespace GameServer.logic.behaviors
 
             if (cool <= 0)
             {
-                if (host.HasConditionEffect(ConditionEffects.Stunned))
-                    return;
-
                 if (Random.NextDouble() > _probability)
                 {
                     state = _coolDown.Next(Random);
@@ -212,14 +208,6 @@ namespace GameServer.logic.behaviors
                         if (enemyHost != null && enemyEntity != null)
                         {
                             enemyEntity.Region = enemyHost.Region;
-                            if (enemyHost.Spawned)
-                            {
-                                enemyEntity.ApplyConditionEffect(new ConditionEffect()
-                                {
-                                    Effect = ConditionEffectIndex.Invisible,
-                                    DurationMS = -1
-                                });
-                            }
 
                             if (enemyHost.DevSpawned)
                             {

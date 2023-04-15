@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace common.resources
+namespace Shared.resources
 {
     public class ChangePassword
     {

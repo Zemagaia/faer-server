@@ -1,4 +1,4 @@
-﻿using common;
+﻿using Shared;
 using GameServer.realm.entities.player;
 using GameServer.realm.worlds;
 
@@ -12,13 +12,11 @@ namespace GameServer.realm.entities
             _usable = new SV<bool>(this, StatsType.PortalUsable, true);
             Locked = manager.Resources.GameData.Portals[ObjectType].Locked;
             Opener = "";
-            ScoutQuestActive = false;
         }
 
         private readonly SV<bool> _usable;
         public bool PlayerOpened { get; set; }
         public string Opener { get; set; }
-        public bool ScoutQuestActive { get; set; }
 
         public bool Usable
         {
@@ -87,7 +85,6 @@ namespace GameServer.realm.entities
             {
                 world.PlayerDungeon = true;
                 world.Opener = Opener;
-                world.ScoutQuestActive = ScoutQuestActive;
                 world.Invites = new HashSet<string>();
                 world.InviteDict = new Dictionary<string, Player>();
             }

@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using GameServer.networking.packets.outgoing;
 
 namespace GameServer.realm.entities.player
 {
@@ -22,10 +21,10 @@ namespace GameServer.realm.entities.player
                     return;
                 }
 
-                if (OnCooldown(player.Player.TreeOffensive))
+                if (OnCooldown(TreeOffensive))
                 {
                     SendError(
-                        $"Offensive ability on cooldown for {Math.Round((float)PassiveCooldown[player.Player.TreeOffensive] / 1000, 1)}s");
+                        $"Offensive ability on cooldown for {Math.Round((float)PassiveCooldown[TreeOffensive] / 1000, 1)}s");
                     Client.SendInvResult(1);
                     return;
                 }
@@ -49,10 +48,10 @@ namespace GameServer.realm.entities.player
                     return;
                 }
 
-                if (OnCooldown(player.Player.TreeDefensive))
+                if (OnCooldown(TreeDefensive))
                 {
                     SendError(
-                        $"Defensive ability on cooldown for {Math.Round((float)PassiveCooldown[player.Player.TreeDefensive] / 1000, 1)}s");
+                        $"Defensive ability on cooldown for {Math.Round((float)PassiveCooldown[TreeDefensive] / 1000, 1)}s");
                     Client.SendInvResult(1);
                     return;
                 }
@@ -63,7 +62,7 @@ namespace GameServer.realm.entities.player
         
         public void GetOffensiveAbilities(Position target, float angle)
         {
-            var name = Enum.GetName(typeof(Player.OffensiveAbilities), OffensiveAbility);
+            var name = Enum.GetName(typeof(OffensiveAbilities), OffensiveAbility);
             if (name == null)
             {
                 return;
@@ -76,7 +75,7 @@ namespace GameServer.realm.entities.player
 
         public void GetDefensiveAbilities(Position target, float angle)
         {
-            var name = Enum.GetName(typeof(Player.DefensiveAbilities), DefensiveAbility);
+            var name = Enum.GetName(typeof(DefensiveAbilities), DefensiveAbility);
             if (name == null)
             {
                 return;

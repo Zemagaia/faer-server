@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel;
-using common;
+using Shared;
 using GameServer.realm.entities.player;
 using GameServer.realm.worlds.logic;
 
@@ -32,24 +32,17 @@ namespace GameServer.realm.entities.vendors
 
         private readonly SV<int> _price;
         private readonly SV<CurrencyType> _currency;
-        private readonly SV<int> _rankReq;
 
         public int Price
         {
-            get { return _price.GetValue(); }
-            set { _price.SetValue(value); }
+            get => _price.GetValue();
+            set => _price.SetValue(value);
         }
 
         public CurrencyType Currency
         {
-            get { return _currency.GetValue(); }
-            set { _currency.SetValue(value); }
-        }
-
-        public int RankReq
-        {
-            get { return _rankReq.GetValue(); }
-            set { _rankReq.SetValue(value); }
+            get => _currency.GetValue();
+            set => _currency.SetValue(value);
         }
 
         public int Tax { get; set; }
@@ -59,7 +52,6 @@ namespace GameServer.realm.entities.vendors
         {
             _price = new SV<int>(this, StatsType.SellablePrice, 0);
             _currency = new SV<CurrencyType>(this, StatsType.SellablePriceCurrency, 0);
-            _rankReq = new SV<int>(this, StatsType.SellableRankRequirement, 0);
         }
 
         public virtual void Buy(Player player)
@@ -71,7 +63,6 @@ namespace GameServer.realm.entities.vendors
         {
             stats[StatsType.SellablePrice] = Price;
             stats[StatsType.SellablePriceCurrency] = (int)Currency;
-            stats[StatsType.SellableRankRequirement] = RankReq;
             base.ExportStats(stats);
         }
 
@@ -85,9 +76,6 @@ namespace GameServer.realm.entities.vendors
                 case StatsType.SellablePriceCurrency:
                     Currency = (CurrencyType)val;
                     break;
-                case StatsType.SellableRankRequirement:
-                    RankReq = (int)val;
-                    break;
             }
 
             base.ImportStats(stats, val);
@@ -97,21 +85,8 @@ namespace GameServer.realm.entities.vendors
         {
             if (Owner is Test)
                 return BuyResult.IsTestMap;
-            if (player.Stars < RankReq)
-                return BuyResult.InsufficientRank;
-
-            var acc = player.Client.Account;
-            if (acc.Guest)
-            {
-                // reload guest prop just in case user registered in game
-                acc.Reload("guest");
-                if (acc.Guest)
-                    return BuyResult.IsGuest;
-            }
-
             if (player.GetCurrency(Currency) < Price)
                 return BuyResult.InsufficientFunds;
-
             return BuyResult.Ok;
         }
 

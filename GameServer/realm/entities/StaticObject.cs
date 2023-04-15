@@ -1,6 +1,5 @@
 ﻿using System.Xml.Linq;
-using common;
-using GameServer.networking.packets.outgoing;
+using Shared;
 using GameServer.realm.entities.player;
 
 namespace GameServer.realm.entities
@@ -57,36 +56,8 @@ namespace GameServer.realm.entities
         {
             if (Vulnerable && projectile.ProjectileOwner is Player p)
             {
-                int[] fDamages = null;
-                for (var i = 0; i < 6; i++)
-                {
-                    if (p.Inventory[i].Item is null) continue;
-                    if (p.Inventory[i].DamageBoosts is null) continue;
-                    if (fDamages is null)
-                        fDamages = p.Inventory[i].DamageBoosts;
-                    else
-                        fDamages = StatsManager.DamageUtils.Add(fDamages, p.Inventory[i].DamageBoosts);
-                }
-
-                int dmg;
-
-                if (fDamages is null)
-                    dmg = (int)StatsManager.GetDefenseDamage(this, projectile.Damage, projectile.DamageType, p);
-                else
-                {
-                    dmg = (int)StatsManager.GetDefenseDamage(this,
-                        new[]
-                        {
-                            projectile.Damage, fDamages[0], fDamages[1], fDamages[2],
-                            fDamages[3], fDamages[4], fDamages[5], fDamages[6], fDamages[7]
-                        },
-                        new[]
-                        {
-                            projectile.DamageType, DamageTypes.Physical, DamageTypes.Magical, DamageTypes.Earth,
-                            DamageTypes.Air, DamageTypes.Profane, DamageTypes.Fire, DamageTypes.Water, DamageTypes.Holy
-                        }, p);
-                }
-
+                int dmg = (int)StatsManager.GetDefenseDamage(this, projectile.Damage, projectile.DamageType, p);
+                
                 foreach (var player in Owner.Players.Values)
                 {
                     if (MathUtils.DistSqr(p.X, p.Y, X, Y) < 16 * 16)

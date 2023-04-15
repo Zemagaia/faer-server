@@ -48,15 +48,9 @@ namespace DungeonGenerator.Dungeon
 
         public Point Pos { get; set; }
 
-        public Rect Bounds
-        {
-            get { return new Rect(Pos.X, Pos.Y, Pos.X + Width, Pos.Y + Height); }
-        }
+        public Rect Bounds => new Rect(Pos.X, Pos.Y, Pos.X + Width, Pos.Y + Height);
 
-        public virtual Range NumBranches
-        {
-            get { return new Range(1, 4); }
-        }
+        public virtual Range NumBranches => new Range(1, 4);
 
         public abstract void Rasterize(BitmapRasterizer<DungeonTile> rasterizer, Random rand);
     }

@@ -1,6 +1,5 @@
-﻿using common;
-using common.resources;
-using GameServer.networking.packets.outgoing;
+﻿using Shared;
+using Shared.resources;
 using GameServer.realm.worlds;
 
 namespace GameServer.realm.entities.player

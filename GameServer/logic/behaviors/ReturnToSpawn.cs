@@ -1,5 +1,5 @@
 ﻿using System.Xml.Linq;
-using common;
+using Shared;
 using GameServer.realm;
 using GameServer.realm.entities;
 
@@ -25,10 +25,7 @@ namespace GameServer.logic.behaviors
         protected override void TickCore(Entity host, RealmTime time, ref object state)
         {
             if (!(host is Enemy)) return;
-
-            if (host.HasConditionEffect(ConditionEffects.Paralyzed))
-                return;
-
+            
             var spawn = (host as Enemy).SpawnPoint;
             var vect = new Vector2(spawn.X, spawn.Y) - new Vector2(host.X, host.Y);
             if (vect.Length() > _returnWithinRadius)

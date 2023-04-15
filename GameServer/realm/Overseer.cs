@@ -1,11 +1,11 @@
-﻿using common.resources;
-using common.terrain;
+﻿using Shared.resources;
+using Shared.terrain;
 using GameServer.realm.entities;
 using GameServer.realm.entities.player;
 using GameServer.realm.setpieces;
 using GameServer.realm.worlds;
+using GameServer.realm.worlds.logic;
 using NLog;
-using Castle = GameServer.realm.worlds.logic.Castle;
 
 namespace GameServer.realm
 {
@@ -373,11 +373,6 @@ namespace GameServer.realm
                     BroadcastMsg(msg);
                 }
             }
-
-            foreach (var player in _world.Players)
-            {
-                player.Value.HandleQuest(_dummyTime, true);
-            }
         }
 
         public void InitCloseRealm()
@@ -393,20 +388,6 @@ namespace GameServer.realm
             BroadcastEnemyMsg("Thyrr, the Viperous Reaper", "WHO DARES WAKE ME UP?!");
             BroadcastEnemyMsg("Thyrr, the Viperous Reaper",
                 "Heroes who defeated my servants, you will not reach the Royal Fortress!");
-        }
-
-        public void SendToCastle()
-        {
-            BroadcastMsg("MY MINIONS HAVE FAILED ME!");
-            BroadcastMsg("BUT NOW YOU SHALL FEEL MY WRATH!");
-            BroadcastMsg("COME MEET YOUR DOOM AT THE WALLS OF MY CASTLE!");
-
-            if (_world.Players.Count <= 0)
-                return;
-
-            var castle = _world.Manager.AddWorld(
-                new Castle(_world.Manager.Resources.Worlds.Data["Castle"], playersEntering: _world.Players.Count));
-            _world.QuakeToWorld(castle);
         }
         
         public void Init()

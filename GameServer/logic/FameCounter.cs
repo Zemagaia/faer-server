@@ -1,4 +1,4 @@
-﻿using common;
+﻿using Shared;
 using GameServer.realm;
 using GameServer.realm.entities;
 using GameServer.realm.entities.player;
@@ -9,10 +9,7 @@ namespace GameServer.logic
     {
         Player player;
 
-        public Player Host
-        {
-            get { return player; }
-        }
+        public Player Host => player;
 
         public FameStats Stats { get; private set; }
         public DbClassStats ClassStats { get; private set; }
@@ -74,31 +71,6 @@ namespace GameServer.logic
                 case ("Manor of the Immortals"):
                     Stats.ManorsCompleted++;
                     break;
-            }
-        }
-
-
-        public void Killed(Enemy enemy, bool killer)
-        {
-            if (enemy == null) return;
-
-            if (enemy.ObjectDesc.God)
-                Stats.GodAssists++;
-            else
-                Stats.MonsterAssists++;
-            if (player.Quest == enemy)
-                Stats.QuestsCompleted++;
-            if (killer)
-            {
-                if (enemy.ObjectDesc.God)
-                    Stats.GodKills++;
-                else
-                    Stats.MonsterKills++;
-
-                if (enemy.ObjectDesc.Cube)
-                    Stats.CubeKills++;
-                if (enemy.ObjectDesc.Oryx)
-                    Stats.OryxKills++;
             }
         }
 

@@ -1,5 +1,4 @@
-﻿using common.resources;
-using GameServer.networking;
+﻿using Shared.resources;
 using NLog;
 
 namespace GameServer.realm.worlds.logic

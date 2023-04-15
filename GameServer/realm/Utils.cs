@@ -1,5 +1,5 @@
-﻿using common;
-using common.resources;
+﻿using Shared;
+using Shared.resources;
 using GameServer.realm.entities;
 using GameServer.realm.entities.player;
 using GameServer.realm.worlds;
@@ -269,7 +269,7 @@ namespace GameServer.realm {
 
         public static float GetSpeed(this Entity entity, float spdMult) {
             float agility = entity.ObjectDesc.Agility;
-            return entity.HasConditionEffect(ConditionEffects.Slow) ? 4 : 4 + 5.6f * (agility * spdMult / 75f);
+            return entity.HasConditionEffect(ConditionEffects.Slowed) ? 4 : 4 + 5.6f * (agility * spdMult / 75f);
         }
 
         public static void
@@ -361,7 +361,7 @@ namespace GameServer.realm {
 
         public static bool TauntedPlayerNearby(this Entity entity, double radius) {
             foreach (var i in entity.Owner.PlayersCollision.HitTest(entity.X, entity.Y, radius)) {
-                if (!(i is Player) || !i.HasConditionEffect(ConditionEffects.Taunted) || entity == i)
+                if (!(i is Player) || !i.HasConditionEffect(ConditionEffects.Targeted) || entity == i)
                     continue;
 
                 var d = i.DistSqr(entity);
@@ -376,7 +376,7 @@ namespace GameServer.realm {
             if (entity.Owner == null) yield break;
             foreach (var i in entity.Owner.PlayersCollision.HitTest(entity.X, entity.Y, dist)
                          .Where(e => e is IPlayer)) {
-                if (!(i is Player p) || !p.HasConditionEffect(ConditionEffects.Taunted) ||
+                if (!(i is Player p) || !p.HasConditionEffect(ConditionEffects.Targeted) ||
                     p.Client.Account.Hidden && p.HasConditionEffect(ConditionEffects.Hidden)) continue;
                 var d = i.Dist(entity);
                 if (d < dist)
@@ -415,9 +415,6 @@ namespace GameServer.realm {
         public static int[] ABILITY_TYPES = {FLASK_TYPE, BLOODSTONE_TYPE, TOTEM_TYPE, HELM_TYPE, BULWARK_TYPE, CLOCK_TYPE};
 
         public static bool AuditItem(this IContainer container, Item item, int slot) {
-            if (container is OneWayContainer && item != null)
-                return false;
-
             return item == null || container.SlotTypes[slot] == 0 || item.SlotType == container.SlotTypes[slot];
         }
 

@@ -1,12 +1,9 @@
 ﻿using System.Xml.Linq;
-using common;
-using common.resources;
-using GameServer.networking.packets.outgoing;
+using Shared;
 using GameServer.realm;
 using GameServer.realm.entities;
 using GameServer.realm.entities.player;
 using NLog;
-using Newtonsoft.Json;
 
 namespace GameServer.logic.loot
 {
@@ -145,13 +142,13 @@ namespace GameServer.logic.loot
         public static readonly int[] ArtifactT = { 31 };
         public static readonly int[] CharmT = { 32 };
 
-        private readonly byte _tier;
+        private readonly string _tier;
         private readonly int[] _types;
         private readonly double _probability;
 
         public TierLoot(XElement e)
         {
-            _tier = (byte)e.ParseInt("@tier");
+            _tier = e.ParseString("@tier");
             switch (e.ParseString("@type"))
             {
                 case "Weapon":
@@ -176,7 +173,7 @@ namespace GameServer.logic.loot
             _probability = e.ParseFloat("@probability");
         }
         
-        public TierLoot(byte tier, ItemType type, double probability)
+        public TierLoot(string tier, ItemType type, double probability)
         {
             _tier = tier;
             switch (type)

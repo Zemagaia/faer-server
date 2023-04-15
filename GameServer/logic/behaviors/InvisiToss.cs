@@ -1,5 +1,5 @@
 ﻿using System.Xml.Linq;
-using common;
+using Shared;
 using GameServer.realm;
 using GameServer.realm.entities;
 
@@ -45,9 +45,6 @@ namespace GameServer.logic.behaviors
 
             if (cool <= 0)
             {
-                if (host.HasConditionEffect(ConditionEffects.Stunned))
-                    return;
-
                 Position target = new Position
                 {
                     X = host.X + (float)(range * Math.Cos(angle.Value)),

@@ -1,6 +1,6 @@
 ﻿using System.Xml.Linq;
-using common;
-using common.resources;
+using Shared;
+using Shared.resources;
 using GameServer.realm;
 using GameServer.realm.entities;
 
@@ -62,11 +62,6 @@ namespace GameServer.logic.behaviors
                     if (enemyHost.Spawned)
                     {
                         enemyEntity.Spawned = true;
-                        enemyEntity.ApplyConditionEffect(new ConditionEffect()
-                        {
-                            Effect = ConditionEffectIndex.Invisible,
-                            DurationMS = -1
-                        });
                     }
 
                     if (enemyHost.DevSpawned)
@@ -104,11 +99,6 @@ namespace GameServer.logic.behaviors
                     if (enemyHost.Spawned)
                     {
                         enemyEntity.Spawned = true;
-                        enemyEntity.ApplyConditionEffect(new ConditionEffect()
-                        {
-                            Effect = ConditionEffectIndex.Invisible,
-                            DurationMS = -1
-                        });
                     }
 
                     if (enemyHost.DevSpawned)

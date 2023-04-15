@@ -1,6 +1,4 @@
-﻿using common.resources;
-using GameServer.networking.packets.outgoing;
-using GameServer.realm.entities.player;
+﻿using GameServer.realm.entities.player;
 using StackExchange.Redis;
 using wServer.realm;
 
@@ -10,28 +8,21 @@ namespace GameServer.realm.entities.vendors
     {
         private readonly SV<ushort> _item;
         private readonly SV<int> _count;
-        private readonly SV<int> _timeLeft;
 
         public ushort Item
         {
-            get { return _item.GetValue(); }
-            set { _item.SetValue(value); }
+            get => _item.GetValue();
+            set => _item.SetValue(value);
         }
 
         public int Count
         {
-            get { return _count.GetValue(); }
-            set { _count.SetValue(value); }
+            get => _count.GetValue();
+            set => _count.SetValue(value);
         }
 
-        public int TimeLeft
-        {
-            get { return _timeLeft.GetValue(); }
-            set { _timeLeft.SetValue(value); }
-        }
-
-        public int ReloadOffset { get; set; }
-        public bool Rotate { get; set; }
+        public int ReloadOffset { get; init; }
+        public bool Rotate { get; init; }
 
         protected volatile bool BeingPurchased;
         protected volatile bool AwaitingReload;
@@ -42,7 +33,6 @@ namespace GameServer.realm.entities.vendors
         {
             _item = new SV<ushort>(this, StatsType.MerchantMerchandiseType, 0x1400);
             _count = new SV<int>(this, StatsType.MerchantRemainingCount, -1);
-            _timeLeft = new SV<int>(this, StatsType.MerchantRemainingMinute, -1);
             Rotate = true;
         }
 
@@ -50,7 +40,6 @@ namespace GameServer.realm.entities.vendors
         {
             stats[StatsType.MerchantMerchandiseType] = (int)Item;
             stats[StatsType.MerchantRemainingCount] = Count;
-            stats[StatsType.MerchantRemainingMinute] = -1; //(int)(TimeLeft / 60000f);
             base.ExportStats(stats);
         }
 
@@ -64,9 +53,6 @@ namespace GameServer.realm.entities.vendors
                 case StatsType.MerchantRemainingCount:
                     Count = (int)val;
                     break;
-                case StatsType.MerchantRemainingMinute:
-                    TimeLeft = (int)val;
-                    break;
             }
 
             base.ImportStats(stats, val);
@@ -79,7 +65,7 @@ namespace GameServer.realm.entities.vendors
             if (TimeLeft == -1)
                 return;
             
-            TimeLeft = Math.Max(0, TimeLeft - time.ElaspedMsDelta);
+            TimeLeft = Math.Max(0, TimeLeft - time.ElapsedMsDelta);
 
             if (this.AnyPlayerNearby(2))
                 return;
@@ -124,14 +110,13 @@ namespace GameServer.realm.entities.vendors
 
                 BeingPurchased = true;
 
-                TimeLeft = -1; // needed for player merchant to function properly with new rotation method
                 Reload();
                 BeingPurchased = false;
                 AwaitingReload = false;
             }
         }
 
-        public virtual void Reload()
+        protected virtual void Reload()
         {
         }
 
@@ -185,12 +170,12 @@ namespace GameServer.realm.entities.vendors
             var item = Manager.Resources.GameData.Items[Item];
             var slot = player.Inventory.GetAvailableInventorySlot(item);
             s = slot;
-            if (slot == -1)
+            /*if (slot == -1)
             {
                 player.Manager.Database.AddGift(player.Client.Account, item, tran);
                 _isInvFull = true;
                 return null;
-            }
+            }*/
 
             invTrans[slot] = item;
             _isInvFull = false;
@@ -224,13 +209,11 @@ namespace GameServer.realm.entities.vendors
         {
             var item = Manager.Resources.GameData.Items[Item];
 
-            if (_isInvFull)
-            {
-                player.Client.SendBuyResult(0, $"Your inventory is full, and your {item.DisplayName} has been sent to a gift chest.");
-            }
-            else
-                player.Client.SendBuyResult(0, $"Your purchase was successful.");
-            
+            player.Client.SendBuyResult(0,
+                _isInvFull
+                    ? $"Your inventory is full, and your {item.DisplayName} has been sent to a gift chest."
+                    : $"Your purchase was successful.");
+
             Log.Info("[{0}]User {1} has bought {2} for {3} {4}.",
                 DateTime.Now, player.Name, item.DisplayName, Price, Currency.ToString());
         }

@@ -1,5 +1,5 @@
 ﻿using System.Xml.Linq;
-using common;
+using Shared;
 using GameServer.realm;
 using GameServer.realm.entities;
 using GameServer.realm.entities.player;
@@ -47,9 +47,6 @@ namespace GameServer.logic.behaviors
                 (ChargeState) state;
 
             Status = CycleStatus.NotStarted;
-
-            if (host.HasConditionEffect(ConditionEffects.Paralyzed)) 
-                return;
 
             if (s.RemainingTime <= 0)
             {

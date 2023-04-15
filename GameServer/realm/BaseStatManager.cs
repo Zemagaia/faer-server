@@ -1,4 +1,4 @@
-﻿using common;
+﻿using Shared;
 using wServer.realm;
 
 namespace GameServer.realm

@@ -42,10 +42,7 @@ namespace DungeonGenerator
             return rand.Next(Begin, End + 1);
         }
 
-        public bool IsEmpty
-        {
-            get { return Begin == End; }
-        }
+        public bool IsEmpty => Begin == End;
 
         public Range Intersection(Range range)
         {

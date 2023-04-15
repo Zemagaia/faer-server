@@ -1,6 +1,5 @@
 ﻿using System.Xml.Linq;
-using common;
-using GameServer.networking.packets.outgoing;
+using Shared;
 using GameServer.realm;
 using GameServer.realm.entities;
 using GameServer.realm.entities.player;
@@ -31,7 +30,7 @@ namespace GameServer.logic.behaviors
             _effect = e.ParseConditionEffect("@effect");
             _effectDuration = e.ParseInt("@effectDuration");
             _players = e.ParseBool("@players");
-            _color = new ARGB(e.ParseUInt("@color", undefined: 0xffff0000));
+            _color = e.ParseUInt("@color", undefined: 0xffff0000);
             _coolDown = new Cooldown().Normalize(e.ParseInt("@coolDown"));
         }
         
@@ -53,7 +52,7 @@ namespace GameServer.logic.behaviors
             _effect = effect;
             _effectDuration = effectDuration;
             _players = players;
-            _color = new ARGB(color);
+            _color = color;
             _coolDown = coolDown.Normalize();
         }
 
@@ -69,9 +68,6 @@ namespace GameServer.logic.behaviors
             if (cool <= 0)
             {
                 _damage = Random.Next(_minDamage, _maxDamage);
-                if (host.HasConditionEffect(ConditionEffects.Stunned))
-                    return;
-
                 var player = host.AttackTarget ?? host.GetNearestEntity(_radius * 2, _players);
 
                 if (host.TauntedPlayerNearby(_radius * 2) && _players)
@@ -110,16 +106,12 @@ namespace GameServer.logic.behaviors
                                 ? 1d - (double)p.Stats[13] / 100
                                 : 1d;
                             ((IPlayer)p).Damage(_damage, host, _noDef);
-                            if (!p.HasConditionEffect(ConditionEffects.Invincible) &&
-                                !p.HasConditionEffect(ConditionEffects.Stasis))
-                                p.ApplyConditionEffect(_effect, (int)(Math.Max(1, _effectDuration * tenacity)));
+                            p.ApplyConditionEffect(_effect, (int)(Math.Max(1, _effectDuration * tenacity)));
                         }
                         else if (entity is Enemy e && !_players)
                         {
                             e.Damage(host.GetPlayerOwner(), time, _damage, _noDef);
-                            if (!e.HasConditionEffect(ConditionEffects.Invincible) &&
-                                !e.HasConditionEffect(ConditionEffects.Stasis))
-                                e.ApplyConditionEffect(_effect, _effectDuration);
+                            e.ApplyConditionEffect(_effect, _effectDuration);
                         }
                     }
 

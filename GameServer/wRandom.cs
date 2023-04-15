@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace GameServer
+﻿namespace GameServer
 {
     public class WRandom
     {

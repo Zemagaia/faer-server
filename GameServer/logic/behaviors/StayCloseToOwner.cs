@@ -1,5 +1,5 @@
 ﻿using System.Xml.Linq;
-using common;
+using Shared;
 using GameServer.realm;
 
 namespace GameServer.logic.behaviors
@@ -38,10 +38,6 @@ namespace GameServer.logic.behaviors
         {
             if (host.GetPlayerOwner() is null) return;
             Status = CycleStatus.NotStarted;
-
-            if (host.HasConditionEffect(ConditionEffects.Paralyzed))
-                return;
-            
 
             if (state is not Vector2)
             {

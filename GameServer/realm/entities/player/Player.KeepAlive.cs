@@ -1,8 +1,4 @@
 ﻿using System.Collections.Concurrent;
-using GameServer.networking.packets.incoming;
-using GameServer.networking.packets.outgoing;
-using GameServer.realm.worlds.logic;
-using Org.BouncyCastle.Asn1.X509;
 
 namespace GameServer.realm.entities.player
 {
@@ -180,22 +176,21 @@ namespace GameServer.realm.entities.player
             _move.Enqueue(tickId);
         }
 
-        public void MoveReceived(RealmTime time, Move pkt)
+        public void MoveReceived(RealmTime time, int clientTickId, int clientTime)
         {
-            int tickId;
-            if (!_move.TryDequeue(out tickId))
+            /*if (!_move.TryDequeue(out var tickId))
             {
                 _client.Disconnect("One too many MovePackets");
                 return;
             }
 
-            if (tickId != pkt.TickId)
+            if (tickId != clientTickId)
             {
                 _client.Disconnect("[NewTick -> Move] TickIds don't match");
                 return;
             }
 
-            if (pkt.TickId > TickId)
+            if (clientTickId > TickId)
             {
                 _client.Disconnect("[NewTick -> Move] Invalid tickId");
                 return;
@@ -203,7 +198,7 @@ namespace GameServer.realm.entities.player
 
             var lastClientTime = LastClientTime;
             var lastServerTime = LastServerTime;
-            LastClientTime = pkt.Time;
+            LastClientTime = clientTime;
             LastServerTime = time.TotalElapsedMs;
 
             if (lastClientTime == -1)
@@ -232,7 +227,7 @@ namespace GameServer.realm.entities.player
             {
                 Log.Debug(
                     $"TickId: {tickId}, Client Delta: {_clientTimeLog.Sum() / _clientTimeLog.Count}, Server Delta: {_serverTimeLog.Sum() / _serverTimeLog.Count}");
-            }
+            }*/
         }
     }
 }

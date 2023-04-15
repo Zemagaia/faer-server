@@ -4,7 +4,7 @@ using System.Xml.Linq;
 using System.Xml.XPath;
 using NLog;
 
-namespace common.resources
+namespace Shared.resources
 {
     public class AppSettings : InitSettings
     {

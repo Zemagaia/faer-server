@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 
-namespace common
+namespace Shared
 {
     public class ServerConfig
     {
@@ -44,7 +44,6 @@ namespace common
         public Coordinates coordinates { get; set; } = new();
         public int players { get; set; } = 0;
         public int maxPlayers { get; set; } = 0;
-        public int queueLength { get; set; } = 0;
         public bool adminOnly { get; set; } = false;
         public int minRank { get; set; } = 0;
         public string instanceId { get; set; } = "";

@@ -2,13 +2,12 @@ using System.Net;
 using System.Net.Sockets;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using common;
-using common.resources;
+using Shared;
+using Shared.resources;
 using GameServer.realm;
 using GameServer.realm.entities;
 using GameServer.realm.entities.player;
 using GameServer.realm.entities.vendors;
-using GameServer.realm.worlds;
 using GameServer.realm.worlds.logic;
 using NLog;
 using StackExchange.Redis;
@@ -329,11 +328,11 @@ public class Client {
         TrySend(ptr);
     }
 
-    public void SendNewTick(int tickId, int tickTime, ObjectStats[] stats) {
+    public void SendNewTick(byte tickId, int tickTime, ObjectStats[] stats) {
         var ptr = 0;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
         WriteByte(ref ptr, ref spanRef, (byte)PacketId.NewTick);
-        WriteInt(ref ptr, ref spanRef, tickId);
+        WriteByte(ref ptr, ref spanRef, tickId);
         WriteInt(ref ptr, ref spanRef, tickTime);
         WriteShort(ref ptr, ref spanRef, (short) stats.Length);
         for (var i = 0; i < stats.Length; i++) {
@@ -607,7 +606,7 @@ public class Client {
             return;
         }
 
-        Log.Trace<string, string, string>("Reconnecting client ({0}) @ {1} to {2}...", Account.Name(), IP, name);
+        Log.Trace("Reconnecting client ({0}) @ {1} to {2}...", Account.Name, IP, name);
         ConnectManager.Reconnect(this, gameId);
     }
 
@@ -996,8 +995,6 @@ public class Client {
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessChooseName(string name) {
-        //IL_00b4: Unknown result type (might be due to invalid IL or missing references)
-        //IL_00bf: Unknown result type (might be due to invalid IL or missing references)
         if (Player == null) {
             return;
         }
@@ -1013,13 +1010,12 @@ public class Client {
         try {
             while ((lockToken = Manager.Database.AcquireLock("nameLock")) == null) { }
 
-            if (Manager.Database.Conn.HashExists(RedisKey.op_Implicit("names"),
-                    RedisValue.op_Implicit(name.ToUpperInvariant()), (CommandFlags) 0)) {
+            if (Manager.Database.Conn.HashExists("names", name.ToUpperInvariant())) {
                 SendNameResult(success: false, "Duplicated name");
                 return;
             }
 
-            if (Account.Gems() < 1000) {
+            if (Account.Credits < 1000) {
                 SendNameResult(success: false, "Not enough gold");
                 return;
             }
@@ -1049,18 +1045,17 @@ public class Client {
             return;
         }
 
-        var createdGuild = default(DbGuild);
         var guildRes = Manager.Database.CreateGuild(guildName, out var createdGuild);
         if ((int) guildRes > 0) {
             SendGuildResult(success: false,
-                "Guild Creation Error: " + ((object) (GuildCreateStatus) (ref guildRes)).ToString());
+                "Guild Creation Error: " + guildRes);
             return;
         }
 
         var addResult = Manager.Database.AddGuildMember(createdGuild, Account, true);
         if ((int) addResult > 0) {
             SendGuildResult(success: false,
-                "Guild Creation Error: " + ((object) (AddGuildMemberStatus) (ref addResult)).ToString());
+                "Guild Creation Error: " + addResult);
             return;
         }
 
@@ -1094,7 +1089,7 @@ public class Client {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessEnemyHit(byte bulletId, int targetId) {
         if (Player?.Owner != null && Player.Owner.Enemies.TryGetValue(targetId, out var en)) {
-            Player.Projectiles[bulletId].ForceHit(en, Manager.Logic.WorldTime);
+            Player._projectiles[bulletId].ForceHit(en, Manager.Logic.WorldTime);
         }
     }
 
@@ -1220,9 +1215,8 @@ public class Client {
             SendFailure(version, FailureType.ClientUpdateNeeded);
             return;
         }
-
-        var acc = default(DbAccount);
-        var val = Manager.Database.Verify(guid, pwd, ref acc);
+        
+        var val = Manager.Database.Verify(guid, pwd, out var acc);
         if ((int) val == 1 || (int) val == 2) {
             SendFailure("Failed to login: Invalid credentials");
             return;
@@ -1251,7 +1245,7 @@ public class Client {
         ((RedisObject) acc).FlushAsync((ITransaction) null);
         Account = acc;
         if (createChar) {
-            var status = Manager.Database.CreateCharacter(acc, charType, skinType, out var character);
+            var status = Manager.Database.CreateCharacter(Manager.Resources.GameData, acc, charType, skinType, out var character);
             switch ((int) status) {
                 case 1:
                     SendFailure("Too many characters");
@@ -1386,7 +1380,7 @@ public class Client {
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void ProcessJoinGuild(string guildName) {
+    public void ProcessJoinGuild(string guildName) {
         if (Player == null) {
             return;
         }
@@ -1409,8 +1403,7 @@ public class Client {
 
         var guildResult = Manager.Database.AddGuildMember(guild, Account, false);
         if ((int) guildResult > 0) {
-            Player.SendError("Could not join guild. (" + ((object) (AddGuildMemberStatus) (ref guildResult))
-                .ToString() + ")");
+            Player.SendError("Could not join guild. (" + guildResult + ")");
             return;
         }
 
@@ -1436,36 +1429,36 @@ public class Client {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessPlayerHit(byte bulletId, int objId) {
         if (Player?.Owner != null && Player.Owner.Enemies.TryGetValue(objId, out var enemy)) {
-            enemy.Projectiles[bulletId].ForceHit(Player, Manager.Logic.WorldTime);
+            enemy._projectiles[bulletId].ForceHit(Player, Manager.Logic.WorldTime);
         }
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessPlayerShoot(int time, byte bulletId, ushort objType, float x, float y, float angle) {
-        if (Manager.Resources.GameData.Items.TryGetValue(objType, out var item) && item != Player.Inventory[1] &&
-            Player.ValidatePlayerShoot(item, time) == PlayerShootStatus.OK) {
+        if (Manager.Resources.GameData.Items.TryGetValue(objType, out var item) && item != Player.Inventory[1]) {
             var prjDesc = item.Projectiles[0];
-            var prj = Player.PlayerShootProjectile(bulletId, prjDesc, item.ObjectType, time, x, y, angle);
+            var prj = Player.PlayerShootProjectile(bulletId, prjDesc, item.ObjectType, time, x, y, angle, bulletId);
             Player.Owner.EnterWorld(prj);
         }
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessPlayerText(string text) {
-        if (Player?.Owner != null && text.Length <= 512) {
-            var manager = Player.Manager;
-            if (text[0] == '/') {
-                manager.Commands.Execute(Player, Manager.Logic.WorldTime, text);
-                return;
-            }
-
-            if (Player.Muted) {
-                Player.SendError("Muted. You can not talk at this time.");
-                return;
-            }
-
-            manager.Chat.Say(Player, text);
+        if (Player?.Owner == null || text.Length > 512) 
+            return;
+        
+        var manager = Player.Manager;
+        if (text[0] == '/') {
+            manager.Commands.Execute(Player, Manager.Logic.WorldTime, text);
+            return;
         }
+
+        if (Player.Muted) {
+            Player.SendError("Muted. You can not talk at this time.");
+            return;
+        }
+
+        manager.Chat.Say(Player, text);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1567,9 +1560,9 @@ public class Client {
                     return;
                 }
 
-                ProtoWorld proto = Player.Manager.Resources.Worlds.Item("GuildHall");
+                /*ProtoWorld proto = Player.Manager.Resources.Worlds.Item("GuildHall");
                 var world2 = Player.Manager.GetWorld(proto.id);
-                Player.Reconnect(world2);
+                Player.Reconnect(world2);*/
             }
         }
 

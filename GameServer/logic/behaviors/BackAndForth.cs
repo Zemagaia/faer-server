@@ -1,5 +1,5 @@
 ﻿using System.Xml.Linq;
-using common;
+using Shared;
 using GameServer.realm;
 
 namespace GameServer.logic.behaviors
@@ -30,10 +30,7 @@ namespace GameServer.logic.behaviors
             else dist = (float)state;
 
             Status = CycleStatus.NotStarted;
-
-            if (host.HasConditionEffect(ConditionEffects.Paralyzed)) 
-                return;
-
+            
             float moveDist = host.GetSpeed(speed) * (time.ElapsedMsDelta / 1000f);
             if (dist > 0)
             {

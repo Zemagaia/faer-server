@@ -241,35 +241,17 @@ namespace DungeonGenerator.Templates.Lab
             current = roomTemplates[currentId];
         }
 
-        public override RoomType Type
-        {
-            get { return RoomType.Normal; }
-        }
+        public override RoomType Type => RoomType.Normal;
 
-        public override int Width
-        {
-            get { return current.Bounds.MaxX - current.Bounds.X; }
-        }
+        public override int Width => current.Bounds.MaxX - current.Bounds.X;
 
-        public override int Height
-        {
-            get { return current.Bounds.MaxY - current.Bounds.Y; }
-        }
+        public override int Height => current.Bounds.MaxY - current.Bounds.Y;
 
-        public override Tuple<Direction, int>[] ConnectionPoints
-        {
-            get { return current.Connections; }
-        }
+        public override Tuple<Direction, int>[] ConnectionPoints => current.Connections;
 
-        public override Range NumBranches
-        {
-            get { return current.NumBranches; }
-        }
+        public override Range NumBranches => current.NumBranches;
 
-        public RoomFlags Flags
-        {
-            get { return current.Flags; }
-        }
+        public RoomFlags Flags => current.Flags;
 
         public override void Rasterize(BitmapRasterizer<DungeonTile> rasterizer, Random rand)
         {

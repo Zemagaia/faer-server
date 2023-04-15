@@ -1,11 +1,7 @@
-﻿using System.Drawing;
-using common;
-using common.resources;
-using GameServer.networking.packets;
-using GameServer.networking.packets.outgoing;
+﻿using Shared;
+using Shared.resources;
 using GameServer.realm.worlds;
 using GameServer.realm.worlds.logic;
-using StackExchange.Redis;
 using wServer.realm;
 
 namespace GameServer.realm.entities.player
@@ -17,12 +13,7 @@ namespace GameServer.realm.entities.player
         public static readonly ConditionEffect[] NegativeEffs = {
             new()
             {
-                Effect = ConditionEffectIndex.Slow,
-                DurationMS = 0
-            },
-            new()
-            {
-                Effect = ConditionEffectIndex.Paralyzed,
+                Effect = ConditionEffectIndex.Slowed,
                 DurationMS = 0
             },
             new()
@@ -32,87 +23,12 @@ namespace GameServer.realm.entities.player
             },
             new()
             {
-                Effect = ConditionEffectIndex.Stunned,
-                DurationMS = 0
-            },
-            new()
-            {
-                Effect = ConditionEffectIndex.Confused,
-                DurationMS = 0
-            },
-            new()
-            {
-                Effect = ConditionEffectIndex.Blind,
-                DurationMS = 0
-            },
-            new()
-            {
-                Effect = ConditionEffectIndex.Stupefied,
-                DurationMS = 0
-            },
-            new()
-            {
-                Effect = ConditionEffectIndex.Unarmored,
-                DurationMS = 0
-            },
-            new()
-            {
                 Effect = ConditionEffectIndex.Bleeding,
                 DurationMS = 0
             },
             new()
             {
-                Effect = ConditionEffectIndex.Crippled,
-                DurationMS = 0
-            },
-            new()
-            {
                 Effect = ConditionEffectIndex.Sick,
-                DurationMS = 0
-            },
-            new()
-            {
-                Effect = ConditionEffectIndex.Drunk,
-                DurationMS = 0
-            },
-            new()
-            {
-                Effect = ConditionEffectIndex.Hallucinating,
-                DurationMS = 0
-            },
-            new()
-            {
-                Effect = ConditionEffectIndex.Hexed,
-                DurationMS = 0
-            },
-            new()
-            {
-                Effect = ConditionEffectIndex.Unsteady,
-                DurationMS = 0
-            },
-            new()
-            {
-                Effect = ConditionEffectIndex.Unsighted,
-                DurationMS = 0
-            },
-            new()
-            {
-                Effect = ConditionEffectIndex.Curse,
-                DurationMS = 0
-            },
-            new()
-            {
-                Effect = ConditionEffectIndex.Suppressed,
-                DurationMS = 0
-            },
-            new()
-            {
-                Effect = ConditionEffectIndex.Exposed,
-                DurationMS = 0
-            },
-            new()
-            {
-                Effect = ConditionEffectIndex.Staggered,
                 DurationMS = 0
             }
         };
@@ -186,12 +102,6 @@ namespace GameServer.realm.entities.player
                         var db = Manager.Database;
                         
                         var trans = db.Conn.CreateTransaction();
-                        if (container is GiftChest)
-                        {
-                            SendError("Cannot use consumables from gift chest.");
-                            return;
-                        }
-
                         var task = trans.ExecuteAsync();
                         task.ContinueWith(t =>
                         {
@@ -217,7 +127,7 @@ namespace GameServer.realm.entities.player
                                 }
                             }
 
-                            Activate(time, item, pos, activateId, clientTime, slot == 1);
+                            Activate(Manager.Logic.WorldTime, item, new Position {X=x, Y=y}, 0, 0, slot == 1);
                         });
                         task.ContinueWith(e =>
                                 Log.Error(e.Exception.InnerException.ToString()),
@@ -236,7 +146,7 @@ namespace GameServer.realm.entities.player
                 }
 
                 if (item.Consumable || item.SlotType == slotType)
-                    Activate(time, item, pos, activateId, clientTime, slot == 1);
+                    Activate(Manager.Logic.WorldTime, item, new Position {X=x, Y=y}, 0, 0, slot == 1);
                 else
                     Client.SendInvResult(1);
             }
@@ -299,15 +209,6 @@ namespace GameServer.realm.entities.player
             {
                 switch (eff.Effect)
                 {
-                    case ActivateEffects.GenericActivate:
-                        AEGenericActivate(time, item, target, eff);
-                        break;
-                    case ActivateEffects.BulletNova:
-                        AEBulletNova(time, item, target, eff, clientTime);
-                        break;
-                    case ActivateEffects.Shoot:
-                        AEShoot(time, item, target, eff, clientTime);
-                        break;
                     case ActivateEffects.StatBoostSelf:
                         AEStatBoostSelf(time, item, target, eff);
                         break;
@@ -319,9 +220,6 @@ namespace GameServer.realm.entities.player
                         break;
                     case ActivateEffects.ConditionEffectAura:
                         AEConditionEffectAura(time, item, target, eff);
-                        break;
-                    case ActivateEffects.ClearConditionEffectAura:
-                        AEClearConditionEffectAura(time, item, target, eff);
                         break;
                     case ActivateEffects.Heal:
                         AEHeal(time, item, target, eff);
@@ -338,30 +236,6 @@ namespace GameServer.realm.entities.player
                     case ActivateEffects.Teleport:
                         AETeleport(time, item, target, eff);
                         break;
-                    case ActivateEffects.SpawnUndead:
-                        AESpawnUndead(time, item, target, eff);
-                        break;
-                    case ActivateEffects.Trap:
-                        AETrap(time, item, target, eff);
-                        break;
-                    case ActivateEffects.StasisBlast:
-                        StasisBlast(time, item, target, eff);
-                        break;
-                    case ActivateEffects.Decoy:
-                        AEDecoy(time, item, target, eff);
-                        break;
-                    case ActivateEffects.Lightning:
-                        AELightning(time, item, target, eff);
-                        break;
-                    case ActivateEffects.Vial:
-                        AEVial(time, item, target, eff);
-                        break;
-                    case ActivateEffects.RemoveNegativeConditions:
-                        AERemoveNegativeConditions(time, item, target, eff);
-                        break;
-                    case ActivateEffects.RemoveNegativeConditionsSelf:
-                        AERemoveNegativeConditionSelf(time, item, target, eff);
-                        break;
                     case ActivateEffects.FixedStat:
                         AEFixedStat(time, item, target, eff);
                         break;
@@ -371,20 +245,8 @@ namespace GameServer.realm.entities.player
                     case ActivateEffects.Create:
                         AECreate(time, item, target, eff);
                         break;
-                    case ActivateEffects.Dye:
-                        AEDye(time, item, target, eff);
-                        break;
-                    case ActivateEffects.ShurikenAbility:
-                        AEShurikenAbility(time, item, target, eff, clientTime);
-                        break;
-                    case ActivateEffects.Fame:
-                        AEAddFame(time, item, target, eff);
-                        break;
                     case ActivateEffects.Backpack:
                         AEBackpack(time, item, target, eff);
-                        break;
-                    case ActivateEffects.MiscBoosts:
-                        AEMiscBoosts(time, item, target, eff);
                         break;
                     case ActivateEffects.UnlockPortal:
                         AEUnlockPortal(time, item, target, eff);
@@ -395,20 +257,8 @@ namespace GameServer.realm.entities.player
                     case ActivateEffects.UnlockSkin:
                         AEUnlockSkin(time, item, target, eff);
                         break;
-                    case ActivateEffects.HealingGrenade:
-                        AEHealingGrenade(time, item, target, eff);
-                        break;
                     case ActivateEffects.Totem:
                         AETotem(time, item, target, eff);
-                        break;
-                    case ActivateEffects.Card:
-                        AECard(time, item, target, eff);
-                        break;
-                    case ActivateEffects.Orb:
-                        AEOrb(time, item, target, eff, clientTime);
-                        break;
-                    case ActivateEffects.Tome:
-                        AETome(time, item, target, eff);
                         break;
                     default:
                         Log.Warn("Activate effect {0} not implemented.", eff.Effect);
@@ -419,11 +269,6 @@ namespace GameServer.realm.entities.player
 
         private bool HandleEffectsOnActivate(Item item, Position target, Random rnd, int clientTime, long lastUse)
         {
-            if (HasConditionEffect(ConditionEffects.Suppressed))
-            {
-                return true;
-            }
-
             // ability should never be null since it's being used
             // do pillar of flame before since weapons might activate
             // even though you didn't have enough mp/hp to activate the ability
@@ -431,7 +276,7 @@ namespace GameServer.realm.entities.player
 
             for (var i = 0; i < 6; i++)
             {
-                if (Inventory[i].Item == null)
+                if (Inventory[i] == null)
                 {
                     continue;
                 }
@@ -444,7 +289,7 @@ namespace GameServer.realm.entities.player
 
         private void HandleRegularActivatePowers(Position target, Random rnd, int i)
         {
-            switch (Inventory[i].Item.Power)
+            switch (Inventory[i].Power)
             {
                 case "Vindictive Wraith":
                     if (rnd.NextDouble() <= 0.4)
@@ -478,7 +323,7 @@ namespace GameServer.realm.entities.player
 
         private bool HandlePillarOfFlame(Item item, int clientTime, long lastUse)
         {
-            if (Inventory[2].Item.Power == "Pillar of Flame")
+            if (Inventory[2].Power == "Pillar of Flame")
             {
                 _flamePillarState = Math.Min(3, _flamePillarState + 1);
                 if (lastUse + _coolDown * 2 < clientTime)
@@ -511,7 +356,8 @@ namespace GameServer.realm.entities.player
                 return;
             }
 
-            Manager.Database.AddGift(Client.Account, item);
+            //todo
+            //Manager.Database.AddGift(Client.Account, item);
             SendError($"Your inventory is full, and your {item} has been sent to a gift chest.");
         }
 
@@ -654,22 +500,14 @@ namespace GameServer.realm.entities.player
 
         private void AETotem(RealmTime time, Item item, Position target, ActivateEffect eff)
         {
-            // prevent player from losing mp, might be needed if there's no item cooldown
-            if (_isSpawned && eff.NoStack)
-            {
-                MP += item.MpCost;
-                return;
-            }
-
-            var duration = eff.UseWisMod ? (int)(UseWisMod(eff.DurationSec) * 1000) : eff.DurationMS;
+            var duration = eff.UseWisMod ? (int)(eff.DurationSec * 1000) : eff.DurationMS;
             duration += _flamePillarState * 1000;
-            _isSpawned = true;
             for (var i = 0; i < eff.BoostValuesStats.Length; i++)
             {
                 // Pillar of Flame scale
-                var boost = ScaleFlamePillar(item, i);
+                var boost = 0;//ScaleFlamePillar(item, i);
                 var idx = StatsManager.GetStatIndex((StatsType)eff.BoostValuesStats[i]);
-                var amount = eff.UseWisMod ? (int)UseWisMod(eff.BoostValues[i], 0) : eff.BoostValues[i];
+                var amount = eff.BoostValues[i];
                 amount += boost;
 
                 Stats.Boost.ActivateBoost[idx].Push(amount, eff.NoStack);
@@ -705,7 +543,6 @@ namespace GameServer.realm.entities.player
                 SetDefaultSkin(PrevSkin);
                 SetDefaultSize(PrevSize == 0 ? 100 : PrevSize);
                 _skinSet = false;
-                _isSpawned = false;
             }));
         }
 
@@ -780,27 +617,16 @@ namespace GameServer.realm.entities.player
 
         private void AEMagicNova(RealmTime time, Item item, Position target, ActivateEffect eff)
         {
-            if (!HasConditionEffect(ConditionEffects.Stupefied))
-            {
-                var pkts = new List<Packet>();
-                this.AOE(eff.Range, true, player =>
-                    ActivateHealMp(player as Player, eff.Amount, pkts));
+            this.AOE(eff.Range, true, player =>
+                    ActivateHealMp(player as Player, eff.Amount));
                 foreach (var p in Owner.Players.Values)
-                {
                     if (MathUtils.DistSqr(p.X, Y, X, Y) < RadiusSqr) 
                         p.Client.SendShowEffect(EffectType.AreaBlast, Id, eff.Range, eff.Range, 0 ,0, 0xFFFFFFFF);
-                }
-            }
         }
 
         private void AEMagic(RealmTime time, Item item, Position target, ActivateEffect eff)
         {
-            if (!HasConditionEffect(ConditionEffects.Stupefied))
-            {
-                var pkts = new List<Packet>();
-                ActivateHealMp(this, eff.Amount, pkts);
-                BroadcastSync(pkts, p => this.DistSqr(p) < RadiusSqr);
-            }
+            ActivateHealMp(this, eff.Amount);
         }
 
         private void AEHealNova(RealmTime time, Item item, Position target, ActivateEffect eff)
@@ -810,17 +636,15 @@ namespace GameServer.realm.entities.player
                 var amount = eff.Amount;
                 var range = eff.Range;
 
-                var pkts = new List<Packet>();
                 this.AOE(range, true, player =>
                 {
                     if (!player.HasConditionEffect(ConditionEffects.Sick))
-                        ActivateHealHp(player as Player, amount, pkts);
+                        ActivateHealHp(player as Player, amount);
                 });
+                
                 foreach (var p in Owner.Players.Values)
-                {
                     if (MathUtils.DistSqr(p.X, Y, X, Y) < RadiusSqr) 
                         p.Client.SendShowEffect(EffectType.AreaBlast, Id, eff.Range, eff.Range, 0 ,0, 0xFFFFFFFF);
-                }
             }
         }
 
@@ -828,9 +652,7 @@ namespace GameServer.realm.entities.player
         {
             if (!HasConditionEffect(ConditionEffects.Sick))
             {
-                var pkts = new List<Packet>();
-                ActivateHealHp(this, eff.Amount, pkts);
-                BroadcastSync(pkts, p => this.DistSqr(p) < RadiusSqr);
+                ActivateHealHp(this, eff.Amount);
             }
         }
 
@@ -847,9 +669,6 @@ namespace GameServer.realm.entities.player
                     DurationMS = duration
                 });
             });
-            var color = 0xffffffff;
-            if (eff.ConditionEffect.Value == ConditionEffectIndex.Brave)
-                color = 0xffff0000;
             foreach (var p in Owner.Players.Values)
             {
                 if (MathUtils.DistSqr(p.X, Y, X, Y) < RadiusSqr) 
@@ -923,70 +742,37 @@ namespace GameServer.realm.entities.player
                 Stats.ReCalculateValues();
             }));
             foreach (var p in Owner.Players.Values)
-            {
-
                 if (MathUtils.DistSqr(p.X, Y, X, Y) < RadiusSqr) 
                     p.Client.SendShowEffect(EffectType.Potion, Id, 0, 0, 0, 0, 0xFFFFFFFF);
-            
-        }
-
-
-
-            foreach (var plr in Owner.Players.Values
-                .Where(p => p.DistSqr(this) < RadiusSqr))
-            {
-                plr.Client.SendPackets(batch);
-            }
         }
         
-        //No idea on this one
-        private static void ActivateHealHp(Player player, int amount, List<Packet> pkts)
+        private void ActivateHealHp(Player player, int amount)
         {
             var maxHp = player.Stats[0];
             var newHp = Math.Min(maxHp, player.HP + amount);
             if (newHp == player.HP)
                 return;
 
-            pkts.Add(new ShowEffect
-            {
-                EffectType = EffectType.Potion,
-                TargetObjectId = player.Id,
-                Color = new ARGB(0xffffffff)
-            });
-            pkts.Add(new Notification
-            {
-                Color = new ARGB(0xff00ff00),
-                ObjectId = player.Id,
-                Message = "+" + (newHp - player.HP)
-            });
+            foreach (var p in Owner.Players.Values)
+                if (MathUtils.DistSqr(p.X, p.Y, X, Y) < RadiusSqr) {
+                    p.Client.SendShowEffect(EffectType.Potion, Id, 0, 0, 0, 0, 0xFFFFFF);
+                    p.Client.SendNotification(player.Id, "+" + (newHp - player.HP), 0x00FF00);
+                }
 
             player.HP = newHp;
         }
         
-        //No idea on this one either
-        private static void ActivateHealMp(Player player, int amount, List<Packet> pkts)
-        {
+        private void ActivateHealMp(Player player, int amount) {
             var maxMp = player.Stats[1];
             var newMp = Math.Min(maxMp, player.MP + amount);
             if (newMp == player.MP)
                 return;
+            
             foreach (var p in Owner.Players.Values)
-            {
-                if (MathUtils.DistSqr(p.X, Y, X, Y) < RadiusSqr) 
-                    p.Client.SendShowEffect(EffectType.Potion, Id, 0, 0, 0, 0, 0xFFFFFFFF);
-            }
-            pkts.Add(new ShowEffect
-            {
-                EffectType = EffectType.Potion,
-                TargetObjectId = player.Id,
-                Color = new ARGB(0xffffffff)
-            });
-            pkts.Add(new Notification
-            {
-                Color = new ARGB(0xff9000ff),
-                ObjectId = player.Id,
-                Message = "+" + (newMp - player.MP)
-            });
+                if (MathUtils.DistSqr(p.X, p.Y, X, Y) < RadiusSqr) {
+                    p.Client.SendShowEffect(EffectType.Potion, Id, 0, 0, 0, 0, 0xFFFFFF);
+                    p.Client.SendNotification(player.Id, "+" + (newMp - player.MP), 0x9000FF);
+                }
 
             player.MP = newMp;
         }
@@ -994,7 +780,7 @@ namespace GameServer.realm.entities.player
         private void SpawnAlly(Position target, string ally, float duration, bool teleportToOwner = true,
             bool forceSpawn = false)
         {
-            if (Owner.Name == "Nexus" && !forceSpawn || _isSpawned)
+            if (Owner.Name == "Nexus" && !forceSpawn)
             {
                 return;
             }
@@ -1003,14 +789,12 @@ namespace GameServer.realm.entities.player
 
             en.Move(target.X, target.Y);
             Owner.EnterWorld(en);
-            _isSpawned = true;
             en.SetPlayerOwner(this);
             en.SetPoTp(teleportToOwner);
             en.AlwaysTick = true;
             Owner.Timers.Add(new WorldTimer((int)(duration * 1000), (world, _) =>
             {
                 world.LeaveWorld(en);
-                _isSpawned = false;
             }));
         }
 
@@ -1018,17 +802,14 @@ namespace GameServer.realm.entities.player
         {
             if (!HasConditionEffect(ConditionEffects.Sick))
             {
-                var pkts = new List<Packet>();
                 this.AOE(range, true, player =>
                 {
                     if (!player.HasConditionEffect(ConditionEffects.Sick))
-                        ActivateHealHp(player as Player, amount, pkts);
+                        ActivateHealHp(player as Player, amount);
                 });
                 foreach (var p in Owner.Players.Values)
-                {
                     if (MathUtils.DistSqr(p.X, Y, X, Y) < RadiusSqr) 
                         p.Client.SendShowEffect(EffectType.AreaBlast, Id, range, range, 0 ,0, 0xCD4D3B);
-                }
             }
         }
 
@@ -1044,9 +825,7 @@ namespace GameServer.realm.entities.player
 
             if (!HasConditionEffect(ConditionEffects.Sick))
             {
-                var pkts = new List<Packet>();
-                ActivateHealHp(this, amount, pkts);
-                BroadcastSync(pkts, p => this.DistSqr(p) < RadiusSqr);
+                ActivateHealHp(this, amount);
             }
         }
 

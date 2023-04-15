@@ -1,4 +1,4 @@
-﻿using common;
+﻿using Shared;
 using GameServer.realm;
 using NLog;
 

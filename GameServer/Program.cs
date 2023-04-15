@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
-using common;
-using common.resources;
+using Shared;
+using Shared.resources;
 using GameServer.realm;
 using NLog;
 
@@ -29,7 +29,7 @@ namespace GameServer
 
             Config.serverInfo.maxPlayers = Config.serverSettings.maxPlayers;
 
-            using (Resources = new Resources(Config.serverSettings.resourceFolder, true))
+            using (Resources = new Resources(args.Length != 0 ? args[0] + "/resources" : Config.serverSettings.resourceFolder, true))
             using (var db = new Database(
                 Config.dbInfo.host,
                 Config.dbInfo.port,

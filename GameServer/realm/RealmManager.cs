@@ -1,6 +1,6 @@
 ﻿using System.Collections.Concurrent;
-using common;
-using common.resources;
+using Shared;
+using Shared.resources;
 using GameServer.logic;
 using GameServer.realm.commands;
 using GameServer.realm.setpieces;
@@ -78,9 +78,7 @@ namespace GameServer.realm
             DbEvents = new DbEvents(this);
 
             // basic server necessities
-            ConMan = new ConnectManager(this,
-                config.serverSettings.maxPlayers,
-                config.serverSettings.maxPlayersWithPriority);
+            ConMan = new ConnectManager(this);
             Behaviors = new BehaviorDb(this);
             Commands = new CommandManager(this);
 
@@ -159,7 +157,6 @@ namespace GameServer.realm
             // recalculate usage statistics
             Config.serverInfo.players = ConMan.GetPlayerCount();
             Config.serverInfo.maxPlayers = Config.serverSettings.maxPlayers;
-            Config.serverInfo.queueLength = ConMan.QueueLength();
             Config.serverInfo.playerList.Add(plrInfo);
             return true;
         }
@@ -175,7 +172,6 @@ namespace GameServer.realm
             // recalculate usage statistics
             Config.serverInfo.players = ConMan.GetPlayerCount();
             Config.serverInfo.maxPlayers = Config.serverSettings.maxPlayers;
-            Config.serverInfo.queueLength = ConMan.QueueLength();
             Config.serverInfo.playerList.Remove(plrInfo);
         }
 
@@ -202,9 +198,6 @@ namespace GameServer.realm
             DynamicWorld.TryGetWorld(proto, null, out world);
             if (world != null)
             {
-                if (world is Marketplace && !Config.serverSettings.enableMarket)
-                    return;
-
                 AddWorld(id, world);
                 return;
             }

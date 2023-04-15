@@ -61,41 +61,23 @@ namespace DungeonGenerator.Templates.Abyss
             MapTemplate = ReadTemplate(typeof(AbyssTemplate));
         }
 
-        public override int MaxDepth
-        {
-            get { return 50; }
-        }
+        public override int MaxDepth => 50;
 
         NormDist targetDepth;
 
-        public override NormDist TargetDepth
-        {
-            get { return targetDepth; }
-        }
+        public override NormDist TargetDepth => targetDepth;
 
         NormDist specialRmCount;
 
-        public override NormDist SpecialRmCount
-        {
-            get { return specialRmCount; }
-        }
+        public override NormDist SpecialRmCount => specialRmCount;
 
         NormDist specialRmDepthDist;
 
-        public override NormDist SpecialRmDepthDist
-        {
-            get { return specialRmDepthDist; }
-        }
+        public override NormDist SpecialRmDepthDist => specialRmDepthDist;
 
-        public override Range RoomSeparation
-        {
-            get { return new Range(0, 1); }
-        }
+        public override Range RoomSeparation => new Range(0, 1);
 
-        public override int CorridorWidth
-        {
-            get { return 3; }
-        }
+        public override int CorridorWidth => 3;
 
         public override void Initialize()
         {

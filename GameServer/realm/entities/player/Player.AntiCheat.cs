@@ -1,5 +1,4 @@
-﻿using common;
-using GameServer.networking.packets.incoming;
+﻿using Shared;
 using NLog;
 
 namespace GameServer.realm.entities.player
@@ -27,14 +26,7 @@ namespace GameServer.realm.entities.player
         public double DexRateOfFire()
         {
             var dex = Stats[5] <= 384 ? Stats[5] : 384;
-            if (HasConditionEffect(ConditionEffects.Crippled))
-                return 0.0015;
-
             var rof = 0.0015 + (dex / 75.0) * (0.008 - 0.0015);
-
-            if (HasConditionEffect(ConditionEffects.Berserk))
-                rof = rof * 1.5;
-
             return rof;
         }
 
@@ -51,26 +43,6 @@ namespace GameServer.realm.entities.player
         {
             var estimatedServerTime = C2STime(clientTime);
             return estimatedServerTime > serverTime + MaxToleranceMs || estimatedServerTime - MaxToleranceMs > serverTime;
-        }
-
-        public void DequeueShotSync(RealmTime time, ShootAck packet)
-        {
-            if (IsInvalidTime(time.TotalElapsedMs, packet.Time))
-            {
-                Client.Disconnect("Invalid Sync time");
-                return;
-            }
-
-            var shots = _shoot[0];
-            for (var i = 0; i < shots.Value.Length; i++)
-            {
-                var proj = Owner.GetProjectile(Id, shots.Value[i]);
-                if (proj == null)
-                    continue;
-                proj.OverrideCreationTime(packet.Time);
-            }
-
-            ShootAckReceived();
         }
     }
 }

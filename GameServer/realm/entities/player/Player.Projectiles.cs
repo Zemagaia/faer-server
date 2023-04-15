@@ -1,4 +1,4 @@
-﻿using common.resources;
+﻿using Shared.resources;
 
 namespace GameServer.realm.entities.player
 {
@@ -6,11 +6,11 @@ namespace GameServer.realm.entities.player
     {
         internal Projectile PlayerShootProjectile(
             byte id, ProjectileDesc desc, ushort objType,
-            long time, Position position, float angle, int projectileId)
+            long time, float x, float y, float angle, int projectileId)
         {
             bulletId = id;
             return CreateProjectile(desc, objType, (int)Stats.GetAttackDamage(desc),
-                time, position, angle, projectileId);
+                time, x, y, angle, projectileId);
         }
     }
 }

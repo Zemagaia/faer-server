@@ -1,6 +1,6 @@
 ﻿using System.Xml.Linq;
-using common;
-using common.terrain;
+using Shared;
+using Shared.terrain;
 using GameServer.realm;
 using GameServer.realm.worlds.logic;
 
@@ -38,10 +38,7 @@ namespace GameServer.logic.behaviors
         {
             if (host.Owner is not Realm) return;
             Status = CycleStatus.NotStarted;
-
-            if (host.HasConditionEffect(ConditionEffects.Paralyzed))
-                return;
-
+            
             if (state is not Vector2)
             {
                 state = new Vector2(host.X, host.Y);

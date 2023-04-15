@@ -6,11 +6,11 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using StackExchange.Redis;
-using common.resources;
+using Shared.resources;
 using NLog;
 using Newtonsoft.Json;
 
-namespace common
+namespace Shared
 {
     public class Database : IDisposable
     {
@@ -773,13 +773,13 @@ namespace common
                 BitConverter.GetBytes(character.CharId));
         }
 
-        private Item[] InitInventory(ushort[] givenItems)
-        {            
-            var inv = Utils.ResizeArray(givenItems, Resources.Settings.InventorySize);
+        private ushort[] InitInventory(ushort[] givenItems)
+        {
+            var inv = Utils.ResizeArray(givenItems, 20);
             for (var i = givenItems.Length; i < inv.Length; i++)
                 inv[i] = 0xffff;
 
-            return inv.Select(x => x == ushort.MaxValue ? null : Resources.GameData.Items[x]).ToArray();
+            return inv;
         }
 
         public CreateStatus CreateCharacter(

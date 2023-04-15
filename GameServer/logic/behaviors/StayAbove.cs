@@ -1,5 +1,5 @@
 ﻿using System.Xml.Linq;
-using common;
+using Shared;
 using GameServer.realm;
 
 namespace GameServer.logic.behaviors
@@ -26,9 +26,6 @@ namespace GameServer.logic.behaviors
         protected override void TickCore(Entity host, RealmTime time, ref object state)
         {
             Status = CycleStatus.NotStarted;
-
-            if (host.HasConditionEffect(ConditionEffects.Paralyzed))
-                return;
 
             var map = host.Owner.Map;
             var tile = map[(int)host.X, (int)host.Y];

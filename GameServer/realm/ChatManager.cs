@@ -1,4 +1,4 @@
-﻿using common;
+﻿using Shared;
 using GameServer.realm.entities.player;
 using GameServer.realm.worlds;
 using NLog;
@@ -133,7 +133,6 @@ namespace GameServer.realm
                 Type = ChatType.Tell,
                 Inst = manager.InstanceId,
                 ObjId = src.Id,
-                Stars = src.Stars,
                 Admin = src.Admin,
                 From = src.Client.Account.AccountId,
                 To = id,
@@ -182,7 +181,6 @@ namespace GameServer.realm
                 Type = (announce) ? ChatType.GuildAnnounce : ChatType.Guild,
                 Inst = manager.InstanceId,
                 ObjId = src.Id,
-                Stars = src.Stars,
                 Admin = src.Admin,
                 From = src.Client.Account.AccountId,
                 To = src.Client.Account.GuildId,
@@ -221,7 +219,7 @@ namespace GameServer.realm
                         .Where(x => x.Account.AccountId == e.Content.To)
                         .Select(x => x.Player))
                     {
-                        i.Invited(e.Content.ObjId, from, e.Content.Text);
+                        //i.Invited(e.Content.ObjId, from, e.Content.Text);
                     }
                 }
                     break;

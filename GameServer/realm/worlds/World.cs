@@ -1,12 +1,9 @@
 ﻿using System.Collections.Concurrent;
-using common;
-using common.resources;
-using common.terrain;
+using Shared;
+using Shared.resources;
+using Shared.terrain;
 using DungeonGenerator;
 using DungeonGenerator.Templates;
-using GameServer.networking;
-using GameServer.networking.packets;
-using GameServer.networking.packets.outgoing;
 using GameServer.realm.entities;
 using GameServer.realm.entities.player;
 using GameServer.realm.entities.vendors;
@@ -51,13 +48,11 @@ namespace GameServer.realm.worlds
         public bool IsLimbo { get; protected set; }
         public bool AllowTeleport { get; protected set; }
         public bool ShowDisplays { get; protected set; }
-        public string[] ExtraXML { get; protected set; }
         public bool Persist { get; protected set; }
         public int Blocking { get; protected set; }
         public string Music { get; set; }
         public bool PlayerDungeon { get; set; }
         public string Opener { get; set; }
-        public bool ScoutQuestActive { get; set; }
         public HashSet<string> Invites { get; set; }
         public Dictionary<string, Player> InviteDict { get; set; }
 
@@ -108,7 +103,6 @@ namespace GameServer.realm.worlds
             ShowDisplays = proto.showDisplays;
             Blocking = proto.blocking;
             Opener = "";
-            ScoutQuestActive = false;
 
             var rnd = new Random();
             if (proto.music != null)
@@ -126,7 +120,6 @@ namespace GameServer.realm.worlds
             StaticObjects = new ConcurrentDictionary<int, StaticObject>();
             Pets = new ConcurrentDictionary<int, Enemy>();
             Timers = new List<WorldTimer>();
-            ExtraXML = Empty<string>.Array;
             AllowTeleport = true;
             ShowDisplays = true;
             Persist = false; // if false, attempts to delete world with 0 players
@@ -237,9 +230,7 @@ namespace GameServer.realm.worlds
                         Price = item.Price,
                         Count = item.Count,
                         Currency = shop.Currency,
-                        RankReq = shop.StarsRequired,
                         ItemList = shop.Items,
-                        TimeLeft = -1,
                         ReloadOffset = reloadOffset,
                         Rotate = rotate
                     };
@@ -354,13 +345,6 @@ namespace GameServer.realm.worlds
 
             foreach (var i in Map.InstantiateEntities(Manager))
                 EnterWorld(i);
-
-            if (ScoutQuestActive)
-            {
-                foreach (var en in Enemies)
-                    en.Value.Spawned = true;
-                InitQuestDependent();
-            }
         }
 
         public virtual int EnterWorld(Entity entity)
@@ -376,7 +360,7 @@ namespace GameServer.realm.worlds
             }
 
             // for regular enemies
-            if (entity is Enemy e && !e.IsPet)
+            if (entity is Enemy e)
             {
                 entity.Id = GetNextEntityId();
                 entity.Init(this);
@@ -410,10 +394,7 @@ namespace GameServer.realm.worlds
                 entity.Id = GetNextEntityId();
                 entity.Init(this);
                 StaticObjects.TryAdd(entity.Id, entity as StaticObject);
-                if (entity is Decoy)
-                    PlayersCollision.Insert(entity);
-                else
-                    EnemiesCollision.Insert(entity);
+                EnemiesCollision.Insert(entity);
                 return entity.Id;
             }
 
@@ -438,7 +419,7 @@ namespace GameServer.realm.worlds
                 }
             }
             // for enemies
-            else if (entity is Enemy e && !e.IsPet)
+            else if (entity is Enemy e)
             {
                 Enemy dummy;
                 Enemies.TryRemove(entity.Id, out dummy);
@@ -472,10 +453,7 @@ namespace GameServer.realm.worlds
                         plr.Value.Sight.UpdateCount++;
                 }
 
-                if (entity is Decoy)
-                    PlayersCollision.Remove(entity);
-                else
-                    EnemiesCollision.Remove(entity);
+                EnemiesCollision.Remove(entity);
             }
 
             entity.Dispose();
@@ -506,10 +484,7 @@ namespace GameServer.realm.worlds
                     if (!i.Value.NameChosen && !(this is Test))
                         Manager.Database.ReloadAccount(i.Value.Client.Account);
 
-                    if (i.Value.Client.Account.NameChosen)
-                        return i.Value;
-
-                    break;
+                    return i.Value;
                 }
             }
 
@@ -539,94 +514,18 @@ namespace GameServer.realm.worlds
             return true;
         }
 
-        public void BroadcastPacket(
-            Packet pkt,
-            Player exclude)
-        {
-            foreach (var i in Players)
-                if (i.Value != exclude)
-                    i.Value.Client.SendPacket(pkt);
-        }
-
-        public void BroadcastPackets(IEnumerable<Packet> pkts, Player exclude)
-        {
-            foreach (var i in Players)
-                if (i.Value != exclude)
-                    i.Value.Client.SendPackets(pkts);
-        }
-
-        public void BroadcastPacketNearby(Packet pkt, Entity entity, Player exclude = null, Player exclusive = null)
-        {
-            if (exclusive != null)
-            {
-                BroadcastPacketConditional(pkt, p => p == exclusive && p.DistSqr(entity) < Player.RadiusSqr);
-                return;
-            }
-            
-            if (exclude == null)
-            {
-                BroadcastPacketConditional(pkt, p => p.DistSqr(entity) < Player.RadiusSqr);
-            }
-            else
-            {
-                BroadcastPacketConditional(pkt, p => p != exclude && p.DistSqr(entity) < Player.RadiusSqr);
-            }
-        }
-
-        public void BroadcastPacketNearby(Packet pkt, Position pos)
-        {
-            BroadcastPacketConditional(pkt, p => MathsUtils.DistSqr(p.X, p.Y, pos.X, pos.Y) < Player.RadiusSqr);
-        }
-
-        public void BroadcastPacketConditional(
-            Packet pkt,
-            Predicate<Player> cond)
-        {
-            foreach (var i in Players)
-                if (cond(i.Value))
-                    i.Value.Client.SendPacket(pkt);
-        }
-
-        public void WorldAnnouncement(string msg)
-        {
-            var announcement = string.Concat("<ANNOUNCMENT> ", msg);
-            foreach (var i in Players)
-                i.Value.SendInfo(announcement);
-        }
-
         public void QuakeToWorld(World newWorld)
         {
             if (!Persist || this is Realm)
                 Closed = true;
 
-            BroadcastPacket(new ShowEffect()
-            {
-                EffectType = EffectType.Earthquake
-            }, null);
+            foreach (var p in Players)
+                p.Value.Client.SendShowEffect(EffectType.Earthquake, 0, 0, 0, 0, 0, 0);
 
             Timers.Add(new WorldTimer(8000, (w, t) =>
             {
-                var rcpNotPaused = new Reconnect()
-                {
-                    Host = "",
-                    Port = 2050,
-                    GameId = newWorld.Id,
-                    Name = newWorld.SBName
-                };
-
-                var rcpPaused = new Reconnect()
-                {
-                    Host = "",
-                    Port = 2050,
-                    GameId = World.Realm,
-                    Name = "Nexus"
-                };
-
-                foreach (var plr in w.Players)
-                    plr.Value.Client.Reconnect(
-                        plr.Value.HasConditionEffect(ConditionEffects.Paused) && plr.Value.SpectateTarget == null
-                            ? rcpPaused
-                            : rcpNotPaused);
+                foreach (var plr in w.Players.Values)
+                    plr.Client.Reconnect(newWorld.SBName, newWorld.Id);
             }));
 
             if (!Persist)
@@ -644,25 +543,6 @@ namespace GameServer.realm.worlds
                 en.Value.OnChatTextReceived(player, text);
             foreach (var en in StaticObjects)
                 en.Value.OnChatTextReceived(player, text);
-        }
-
-        protected void InitQuestDependent()
-        {
-            if (Map is null || Map.Regions is null)
-            {
-                return;
-            }
-
-            QuestTracker = Entity.Resolve(Manager, "Exploring Quest");
-            if (QuestTracker == null)
-            {
-                return;
-            }
-
-            var pos = GetSpawnPoints().PickRandom().Key;
-            QuestTracker.TickStateManually = true;
-            QuestTracker.Move(pos.X + .5f, pos.Y + .5f);
-            EnterWorld(QuestTracker);
         }
 
         public virtual void Tick(RealmTime time)
@@ -725,8 +605,6 @@ namespace GameServer.realm.worlds
                 {
                     foreach (var i in EnemiesCollision.GetActiveChunks(PlayersCollision))
                         i.Tick(time);
-                    foreach (var i in StaticObjects.Where(x => x.Value is Decoy))
-                        i.Value.Tick(time);
                 }
                 else
                 {

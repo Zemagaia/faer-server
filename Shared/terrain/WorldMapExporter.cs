@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Ionic.Zlib;
 
-namespace common.terrain
+namespace Shared.terrain
 {
     class WorldMapExporter
     {

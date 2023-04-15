@@ -1,6 +1,6 @@
 ﻿using System.Text;
 using System.Xml.Linq;
-using common;
+using Shared;
 using GameServer.realm;
 using GameServer.realm.worlds.logic;
 

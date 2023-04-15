@@ -1,5 +1,5 @@
 ﻿using System.Xml.Linq;
-using common;
+using Shared;
 using GameServer.realm;
 
 namespace GameServer.logic.behaviors
@@ -32,10 +32,7 @@ namespace GameServer.logic.behaviors
             else storage = (WanderStorage)state;
 
             Status = CycleStatus.NotStarted;
-
-            if (host.HasConditionEffect(ConditionEffects.Paralyzed))
-                return;
-
+            
             Status = CycleStatus.InProgress;
             if (storage.RemainingDistance <= 0)
             {

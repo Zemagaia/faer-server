@@ -1,4 +1,4 @@
-﻿using common;
+﻿using Shared;
 using GameServer.realm.entities.player;
 
 namespace GameServer.realm.entities.vendors

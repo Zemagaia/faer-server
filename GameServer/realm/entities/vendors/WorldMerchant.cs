@@ -1,10 +1,10 @@
-﻿using common;
+﻿using Shared;
 
 namespace GameServer.realm.entities.vendors
 {
     class WorldMerchant : Merchant
     {
-        public List<ISellableItem> ItemList { get; set; }
+        public List<ISellableItem> ItemList { get; init; }
         public ISellableItem ShopItem { get; set; }
 
         public WorldMerchant(RealmManager manager, ushort objType)
@@ -14,13 +14,13 @@ namespace GameServer.realm.entities.vendors
 
         public override void Tick(RealmTime time)
         {
-            if (ShopItem == null && TimeLeft != 0 && Count != 0)
+            if (ShopItem == null && Count != 0)
                 return;
 
             base.Tick(time);
         }
 
-        public override void Reload()
+        protected override void Reload()
         {
             if (Reloading)
                 return;

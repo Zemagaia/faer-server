@@ -1,5 +1,5 @@
 ﻿using System.Xml.Linq;
-using common;
+using Shared;
 using GameServer.realm;
 
 namespace GameServer.logic.behaviors
@@ -33,9 +33,6 @@ namespace GameServer.logic.behaviors
             else cooldown = (int)state;
 
             Status = CycleStatus.NotStarted;
-
-            if (host.HasConditionEffect(ConditionEffects.Paralyzed))
-                return;
 
             Entity e = entity != null ? 
                 host.GetNearestEntityByName(distance, entity) : 

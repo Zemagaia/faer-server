@@ -1,5 +1,5 @@
-﻿using common;
-using common.resources;
+﻿using Shared;
+using Shared.resources;
 using GameServer.logic;
 using GameServer.logic.transitions;
 using GameServer.realm.entities;
@@ -105,7 +105,7 @@ namespace GameServer.realm
         }
 
         Entity IProjectileOwner.Self => this;
-        private readonly Projectile[] _projectiles;
+        public readonly Projectile[] _projectiles;
         Projectile[] IProjectileOwner.Projectiles => _projectiles;
         protected byte bulletId;
 
@@ -257,8 +257,7 @@ namespace GameServer.realm
 
             if (CurrentState != null && Owner != null)
             {
-                if (!HasConditionEffect(ConditionEffects.Stasis) &&
-                    !TickStateManually &&
+                if (!TickStateManually &&
                     (this.AnyPlayerNearby() || ConditionEffects != 0 || AlwaysTick))
                     TickState(time);
             }
@@ -364,14 +363,6 @@ namespace GameServer.realm
 
         private void ResolveNewLocation(float x, float y, FPoint pos)
         {
-            if (HasConditionEffect(ConditionEffects.Paralyzed) ||
-                HasConditionEffect(ConditionEffects.Petrify))
-            {
-                pos.X = X;
-                pos.Y = Y;
-                return;
-            }
-
             var dx = x - X;
             var dy = y - Y;
 
@@ -608,7 +599,7 @@ namespace GameServer.realm
         {
             if (Owner != null && this is not Projectile &&
                 (this is not StaticObject staticObject || staticObject.Hittestable))
-                (this is Enemy || this is StaticObject && this is not Decoy
+                (this is Enemy || this is StaticObject
                         ? Owner.EnemiesCollision
                         : Owner.PlayersCollision)
                     .Move(this, x, y);
@@ -645,9 +636,6 @@ namespace GameServer.realm
                 case "Wall":
                 case "DoubleWall":
                     return new Wall(manager, id, node);
-                case "ConnectedWall":
-                case "CaveWall":
-                    return new ConnectedObject(manager, id);
                 case "GameObject":
                 case "CharacterChanger":
                 case "MoneyChanger":
@@ -691,7 +679,7 @@ namespace GameServer.realm
             }
         }
 
-        public Projectile CreateProjectile(ProjectileDesc desc, ushort container, int dmg, long time, Position pos,
+        public Projectile CreateProjectile(ProjectileDesc desc, ushort container, int dmg, long time, float x, float y,
             float angle, int projectileId)
         {
             var ret = new Projectile(Manager, desc) //Assume only one
@@ -704,11 +692,11 @@ namespace GameServer.realm
                 DamageType = desc.DamageType,
 
                 CreationTime = time,
-                StartPos = pos,
+                StartPos = new Position { X = x, Y = y},
                 Angle = angle,
 
-                X = pos.X,
-                Y = pos.Y
+                X = x,
+                Y = y
             };
             if (_projectiles[ret.BulletId] != null)
                 _projectiles[ret.BulletId].Destroy();
@@ -784,9 +772,6 @@ namespace GameServer.realm
         {
             foreach (var i in effs)
             {
-                if (!ApplyCondition(i.Effect, i.DurationMS))
-                    continue;
-
                 var duration = i.DurationMS;
 
                 var eff = (int)i.Effect;
@@ -810,9 +795,6 @@ namespace GameServer.realm
 
         public void ApplyConditionEffect(ConditionEffectIndex effect, int durationMs = -1)
         {
-            if (!ApplyCondition(effect, durationMs))
-                return;
-
             var eff = (int)effect;
 
             _effects[eff] = durationMs;
@@ -820,27 +802,6 @@ namespace GameServer.realm
                 ConditionEffects |= (ConditionEffects)((ulong)1 << eff);
 
             _tickingEffects = true;
-        }
-
-        private bool ApplyCondition(ConditionEffectIndex effect, int duration)
-        {
-            if (duration > 0)
-            {
-                if (HasConditionEffect(ConditionEffects.Staggered) &&
-                    !Constants.NegativeEffsIdx.Contains(effect) &&
-                    effect != ConditionEffectIndex.Staggered)
-                {
-                    return false;
-                }
-                if (HasConditionEffect(ConditionEffects.Unstoppable) &&
-                    Constants.NegativeEffsIdx.Contains(effect) &&
-                    effect != ConditionEffectIndex.Unstoppable)
-                {
-                    return false;
-                }
-            }
-
-            return true;
         }
 
         public void OnChatTextReceived(Player player, string text)

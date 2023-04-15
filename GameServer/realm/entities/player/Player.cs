@@ -1,18 +1,11 @@
 ﻿using System.Globalization;
-using common;
-using common.resources;
+using Shared;
 using GameServer.logic;
-using GameServer.networking;
-using GameServer.networking.packets;
-using GameServer.networking.packets.outgoing;
-using GameServer.realm.logic.accountMails;
-using GameServer.realm.logic.quests;
 using GameServer.realm.worlds;
 using GameServer.realm.worlds.logic;
-using NLog;
 using Newtonsoft.Json;
+using NLog;
 using wServer.realm;
-using File = System.IO.File;
 
 namespace GameServer.realm.entities.player
 {
@@ -46,14 +39,6 @@ namespace GameServer.realm.entities.player
             set => _experience.SetValue(value);
         }
 
-        private readonly SV<int> _experienceGoal;
-
-        public int ExperienceGoal
-        {
-            get => _experienceGoal.GetValue();
-            set => _experienceGoal.SetValue(value);
-        }
-
         private readonly SV<int> _level;
 
         public int Level
@@ -76,22 +61,6 @@ namespace GameServer.realm.entities.player
         {
             get => _fame.GetValue();
             set => _fame.SetValue(value);
-        }
-
-        private readonly SV<int> _fameGoal;
-
-        public int FameGoal
-        {
-            get => _fameGoal.GetValue();
-            set => _fameGoal.SetValue(value);
-        }
-
-        private readonly SV<int> _stars;
-
-        public int Stars
-        {
-            get => _stars.GetValue();
-            set => _stars.SetValue(value);
         }
 
         private readonly SV<string> _guild;
@@ -215,7 +184,7 @@ namespace GameServer.realm.entities.player
         public int LightMax
         {
             get => _lightMax.GetValue();
-            set => _lightMax.SetValue(value);
+            init => _lightMax.SetValue(value);
         }
 
         private readonly SV<int> _light;
@@ -279,8 +248,6 @@ namespace GameServer.realm.entities.player
 
         public int XpBoostItem { get; set; }
         public int DamageDealt { get; set; }
-        public Quests Quests { get; private set; }
-        public AccountMails Mails { get; private set; }
 
         private readonly SV<int> _offensiveAbility;
 
@@ -297,147 +264,51 @@ namespace GameServer.realm.entities.player
             get => _defensiveAbility.GetValue();
             set => _defensiveAbility.SetValue(value);
         }
-
-        protected override void ImportStats(StatsType stats, object val)
-        {
-            var items = Manager.Resources.GameData.Items;
-            base.ImportStats(stats, val);
-            switch (stats)
-            {
-                case StatsType.AccountId: AccountId = ((string)val).ToInt32(); break;
-                case StatsType.Experience: Experience = (int)val; break;
-                case StatsType.ExperienceGoal: ExperienceGoal = (int)val; break;
-                case StatsType.Level: Level = (int)val; break;
-                case StatsType.Fame: Fame = (int)val; break;
-                case StatsType.CurrentFame: CurrentFame = (int)val; break;
-                case StatsType.FameGoal: FameGoal = (int)val; break;
-                case StatsType.Stars: Stars = (int)val; break;
-                case StatsType.Guild: Guild = (string)val; break;
-                case StatsType.GuildRank: GuildRank = (int)val; break;
-                case StatsType.Credits: Credits = (int)val; break;
-                case StatsType.NameChosen: NameChosen = (int)val != 0; break;
-                case StatsType.Texture1: Texture1 = (int)val; break;
-                case StatsType.Texture2: Texture2 = (int)val; break;
-                case StatsType.Skin: Skin = (int)val; break;
-                case StatsType.Glow: Glow = (int)val; break;
-                case StatsType.MP: MP = (int)val; break;
-                case StatsType.Inventory: Inventory.GetItems(); break;
-                case StatsType.MaximumHP: Stats.Base[0] = (int)val; break;
-                case StatsType.MaximumMP: Stats.Base[1] = (int)val; break;
-                case StatsType.Strength: Stats.Base[2] = (int)val; break;
-                case StatsType.Armor: Stats.Base[3] = (int)val; break;
-                case StatsType.Agility: Stats.Base[4] = (int)val; break;
-                case StatsType.Dexterity: Stats.Base[5] = (int)val; break;
-                case StatsType.Stamina: Stats.Base[6] = (int)val; break;
-                case StatsType.Intelligence: Stats.Base[7] = (int)val; break;
-                case StatsType.Luck: Stats.Base[10] = (int)val; break;
-                case StatsType.Haste: Stats.Base[11] = (int)val; break;
-                case StatsType.Shield: Stats.Base[12] = (int)val; break;
-                case StatsType.Tenacity: Stats.Base[13] = (int)val; break;
-                case StatsType.CriticalStrike: Stats.Base[14] = (int)val; break;
-                case StatsType.LifeSteal: Stats.Base[15] = (int)val; break;
-                case StatsType.ManaLeech: Stats.Base[16] = (int)val; break;
-                case StatsType.LifeStealKill: Stats.Base[17] = (int)val; break;
-                case StatsType.ManaLeechKill: Stats.Base[18] = (int)val; break;
-                case StatsType.Resistance: Stats.Base[19] = (int)val; break;
-                case StatsType.Wit: Stats.Base[20] = (int)val; break;
-                case StatsType.Lethality: Stats.Base[21] = (int)val; break;
-                case StatsType.Piercing: Stats.Base[22] = (int)val; break;
-                case StatsType.ShieldPoints: Shield = (int)val; break;
-                case StatsType.ShieldPointsMax: ShieldMax = (int)val; break;
-                case StatsType.HealthStackCount: HealthPots.Count = (int)val; break; 
-                case StatsType.MagicStackCount: MagicPots.Count = (int)val; break;
-                case StatsType.HasBackpack: HasBackpack = (int)val == 1; break;
-                case StatsType.XPBoostTime: XPBoostTime = (int)val * 1000; break;
-                case StatsType.LDBoostTime: LDBoostTime = (int)val * 1000; break;
-                case StatsType.LTBoostTime: LTBoostTime = (int)val * 1000; break;
-                case StatsType.Rank: Rank = (int)val; break; 
-                case StatsType.Admin: Admin = (int)val; break;
-                case StatsType.UnholyEssence: UnholyEssence = (int)val; break;
-                case StatsType.DivineEssence: DivineEssence = (int)val; break;
-            }
-        }
-
+        
         protected override void ExportStats(IDictionary<StatsType, object> stats)
         {
             base.ExportStats(stats);
             stats[StatsType.AccountId] = AccountId.ToString();
-            stats[StatsType.Experience] = Experience - GetLevelExp(Level);
-            stats[StatsType.ExperienceGoal] = ExperienceGoal;
-            stats[StatsType.Level] = Level;
-            stats[StatsType.CurrentFame] = CurrentFame;
-            stats[StatsType.Fame] = Fame;
-            stats[StatsType.FameGoal] = FameGoal;
-            stats[StatsType.Stars] = Stars;
             stats[StatsType.Guild] = Guild;
             stats[StatsType.GuildRank] = GuildRank;
-            stats[StatsType.Credits] = Credits;
-            stats[StatsType.NameChosen] = // check from account in case ingame registration
-                _client.Account?.NameChosen ?? NameChosen ? 1 : 0;
             stats[StatsType.Texture1] = Texture1;
             stats[StatsType.Texture2] = Texture2;
             stats[StatsType.Skin] = Skin;
             stats[StatsType.Glow] = Glow;
             stats[StatsType.MP] = MP;
-            stats[StatsType.Inventory] = Inventory.GetItems();
+            stats[StatsType.Inventory0] = Inventory[0]?.ObjectType ?? -1;
+            stats[StatsType.Inventory1] = Inventory[1]?.ObjectType ?? -1;
+            stats[StatsType.Inventory2] = Inventory[2]?.ObjectType ?? -1;
+            stats[StatsType.Inventory3] = Inventory[3]?.ObjectType ?? -1;
+            stats[StatsType.Inventory4] = Inventory[4]?.ObjectType ?? -1;
+            stats[StatsType.Inventory5] = Inventory[5]?.ObjectType ?? -1;
+            stats[StatsType.Inventory6] = Inventory[6]?.ObjectType ?? -1;
+            stats[StatsType.Inventory7] = Inventory[7]?.ObjectType ?? -1;
+            stats[StatsType.Inventory8] = Inventory[8]?.ObjectType ?? -1;
+            stats[StatsType.Inventory9] = Inventory[9]?.ObjectType ?? -1;
+            stats[StatsType.Inventory10] = Inventory[10]?.ObjectType ?? -1;
+            stats[StatsType.Inventory11] = Inventory[11]?.ObjectType ?? -1;
+            stats[StatsType.BackPack0] = Inventory[12]?.ObjectType ?? -1;
+            stats[StatsType.BackPack1] = Inventory[13]?.ObjectType ?? -1;
+            stats[StatsType.BackPack2] = Inventory[14]?.ObjectType ?? -1;
+            stats[StatsType.BackPack3] = Inventory[15]?.ObjectType ?? -1;
+            stats[StatsType.BackPack4] = Inventory[16]?.ObjectType ?? -1;
+            stats[StatsType.BackPack5] = Inventory[17]?.ObjectType ?? -1;
+            stats[StatsType.BackPack6] = Inventory[18]?.ObjectType ?? -1;
+            stats[StatsType.BackPack7] = Inventory[19]?.ObjectType ?? -1;
             stats[StatsType.MaximumHP] = Stats[0];
             stats[StatsType.MaximumMP] = Stats[1];
             stats[StatsType.Strength] = Stats[2];
-            stats[StatsType.Armor] = Stats[3];
-            stats[StatsType.Agility] = Stats[4];
-            stats[StatsType.Dexterity] = Stats[5];
             stats[StatsType.Stamina] = Stats[6];
-            stats[StatsType.Intelligence] = Stats[7];
             stats[StatsType.Luck] = Stats[10];
-            stats[StatsType.Haste] = Stats[11];
-            stats[StatsType.Shield] = Stats[12];
-            stats[StatsType.Tenacity] = Stats[13];
-            stats[StatsType.CriticalStrike] = Stats[14];
-            stats[StatsType.LifeSteal] = Stats[15];
-            stats[StatsType.ManaLeech] = Stats[16];
-            stats[StatsType.LifeStealKill] = Stats[17];
-            stats[StatsType.ManaLeechKill] = Stats[18];
-            stats[StatsType.Resistance] = Stats[19];
-            stats[StatsType.Wit] = Stats[20];
-            stats[StatsType.Lethality] = Stats[21];
-            stats[StatsType.Piercing] = Stats[22];
             stats[StatsType.HPBoost] = Stats.Boost[0];
             stats[StatsType.MPBoost] = Stats.Boost[1];
             stats[StatsType.StrengthBonus] = Stats.Boost[2];
-            stats[StatsType.ArmorBonus] = Stats.Boost[3];
-            stats[StatsType.AgilityBonus] = Stats.Boost[4];
-            stats[StatsType.DexterityBonus] = Stats.Boost[5];
             stats[StatsType.StaminaBonus] = Stats.Boost[6];
-            stats[StatsType.IntelligenceBonus] = Stats.Boost[7];
             stats[StatsType.LuckBonus] = Stats.Boost[10];
-            stats[StatsType.HasteBoost] = Stats.Boost[11];
-            stats[StatsType.ShieldBonus] = Stats.Boost[12];
-            stats[StatsType.TenacityBoost] = Stats.Boost[13];
-            stats[StatsType.CriticalStrikeBoost] = Stats.Boost[14];
-            stats[StatsType.LifeStealBoost] = Stats.Boost[15];
-            stats[StatsType.ManaLeechBoost] = Stats.Boost[16];
-            stats[StatsType.LifeStealKillBoost] = Stats.Boost[17];
-            stats[StatsType.ManaLeechKillBoost] = Stats.Boost[18];
-            stats[StatsType.ResistanceBoost] = Stats.Boost[19];
-            stats[StatsType.WitBoost] = Stats.Boost[20];
-            stats[StatsType.LethalityBoost] = Stats.Boost[21];
-            stats[StatsType.PiercingBoost] = Stats.Boost[22];
             stats[StatsType.HealthStackCount] = HealthPots.Count;
             stats[StatsType.MagicStackCount] = MagicPots.Count;
             stats[StatsType.HasBackpack] = (HasBackpack) ? 1 : 0;
-            stats[StatsType.XPBoost] = (XPBoostTime != 0) ? 1 : 0;
-            stats[StatsType.XPBoostTime] = XPBoostTime / 1000;
-            stats[StatsType.LDBoostTime] = LDBoostTime / 1000;
-            stats[StatsType.LTBoostTime] = LTBoostTime / 1000;
-            stats[StatsType.OxygenBar] = OxygenBar;
-            stats[StatsType.Rank] = Rank;
-            stats[StatsType.Admin] = Admin;
-            stats[StatsType.UnholyEssence] = UnholyEssence;
-            stats[StatsType.DivineEssence] = DivineEssence;
-            stats[StatsType.ShieldPoints] = Shield;
-            stats[StatsType.ShieldPointsMax] = ShieldMax;
-            stats[StatsType.LightMax] = LightMax;
-            stats[StatsType.Light] = Light;
         }
 
         public void SaveToCharacter()
@@ -460,11 +331,8 @@ namespace GameServer.realm.entities.player
             chr.XPBoostTime = XPBoostTime;
             chr.LDBoostTime = LDBoostTime;
             chr.LTBoostTime = LTBoostTime;
-            chr.PetData = PetData;
-            chr.Items = Inventory.GetItems();
+            chr.Items = Inventory.GetItemTypes();
             chr.Light = Light;
-            chr.AvailableQuests = AvailableQuests;
-            chr.CharacterQuests = CharacterQuests;
             chr.OffensiveAbility = OffensiveAbility;
             chr.DefensiveAbility = DefensiveAbility;
         }
@@ -482,40 +350,15 @@ namespace GameServer.realm.entities.player
             _clientEntities = new UpdatedSet(this);
 
             _accountId = new SV<int>(this, StatsType.AccountId, client.Account.AccountId, true);
-            _experience = new SV<int>(this, StatsType.Experience, client.Character.Experience, true);
-            _experienceGoal = new SV<int>(this, StatsType.ExperienceGoal, 0, true);
-            _level = new SV<int>(this, StatsType.Level, client.Character.Level);
-            _currentFame = new SV<int>(this, StatsType.CurrentFame, client.Account.Fame, true);
-            _fame = new SV<int>(this, StatsType.Fame, client.Character.Fame, true);
-            _fameGoal = new SV<int>(this, StatsType.FameGoal, 0, true);
-            _stars = new SV<int>(this, StatsType.Stars, 0);
             _guild = new SV<string>(this, StatsType.Guild, "");
             _guildRank = new SV<int>(this, StatsType.GuildRank, -1);
-            _credits = new SV<int>(this, StatsType.Credits, client.Account.Credits, true);
-            _nameChosen = new SV<bool>(this, StatsType.NameChosen, client.Account.NameChosen, false,
-                v => _client.Account?.NameChosen ?? v);
             _texture1 = new SV<int>(this, StatsType.Texture1, client.Character.Tex1);
             _texture2 = new SV<int>(this, StatsType.Texture2, client.Character.Tex2);
             _skin = new SV<int>(this, StatsType.Skin, 0);
             _glow = new SV<int>(this, StatsType.Glow, 0);
             _mp = new SV<int>(this, StatsType.MP, client.Character.MP);
             _hasBackpack = new SV<bool>(this, StatsType.HasBackpack, client.Character.HasBackpack, true);
-            _xpBoosted = new SV<bool>(this, StatsType.XPBoost, client.Character.XPBoostTime != 0, true);
-            _oxygenBar = new SV<int>(this, StatsType.OxygenBar, -1, true);
-            _rank = new SV<int>(this, StatsType.Rank, client.Account.Rank);
-            _admin = new SV<int>(this, StatsType.Admin, client.Account.Admin ? 1 : 0);
-            _unholyEssence = new SV<int>(this, StatsType.UnholyEssence, client.Account.UnholyEssence, true);
-            _divineEssence = new SV<int>(this, StatsType.DivineEssence, client.Account.DivineEssence, true);
-            _shield = new SV<int>(this, StatsType.ShieldPoints, -1, true);
-            _shieldMax = new SV<int>(this, StatsType.ShieldPointsMax, -1, true);
-            _lightMax = new SV<int>(this, StatsType.LightMax, -1, true);
-            _light = new SV<int>(this, StatsType.Light, client.Character.Light, true);
-
-            AvailableQuests = client.Character.AvailableQuests ?? new QuestData[0];
-            CharacterQuests = client.Character.CharacterQuests ?? new AcceptedQuestData[0];
-            _offensiveAbility = new SV<int>(this, StatsType.OffensiveAbility, client.Character.OffensiveAbility, true);
-            _defensiveAbility = new SV<int>(this, StatsType.DefensiveAbility, client.Character.DefensiveAbility, true);
-
+            
             Name = client.Account.Name;
             HP = client.Character.HP;
             ConditionEffects = 0;
@@ -523,7 +366,6 @@ namespace GameServer.realm.entities.player
             XPBoostTime = client.Character.XPBoostTime;
             LDBoostTime = client.Character.LDBoostTime;
             LTBoostTime = client.Character.LTBoostTime;
-            PetData = client.Character.PetData;
 
             var s = (ushort)client.Character.Skin;
             if (gameData.Skins.Keys.Contains(s))
@@ -549,8 +391,13 @@ namespace GameServer.realm.entities.player
 
             // inventory setup
             DbLink = new DbCharInv(Client.Account, Client.Character.CharId);
-            Inventory = new Inventory(this, Utils.ResizeArray((DbLink as DbCharInv).Items, settings.InventorySize));
-
+            Inventory = new Inventory(this,
+                Utils.ResizeArray(
+                    (DbLink as DbCharInv).Items
+                    .Select(_ => (_ == 0xffff || !gameData.Items.ContainsKey(_)) ? null : gameData.Items[_])
+                    .ToArray(),
+                    20));
+            
             if (!saveInventory)
                 DbLink = null;
 
@@ -591,16 +438,7 @@ namespace GameServer.realm.entities.player
                         ? 0xFF0000
                         : client.Account.GlowColor;
                 });
-
-            Quests = new Quests(this);
-            Quests.MakeQuestGiver(this);
-
-            if (ObjectDesc.ObjectId == "Lightmage")
-            {
-                LightMax = 100;
-            }
-
-            Mails = new AccountMails(client);
+            
             SetItemXpBoost();
         }
 
@@ -609,24 +447,7 @@ namespace GameServer.realm.entities.player
 
         public Entity SpectateTarget { get; set; }
         public bool IsControlling => SpectateTarget != null && !(SpectateTarget is Player);
-
-        public void ResetFocus(object target, EventArgs e)
-        {
-            var entity = target as Entity;
-            entity.FocusLost -= ResetFocus;
-            entity.Controller = null;
-
-            if (Owner == null)
-                return;
-
-            SpectateTarget = null;
-            Owner.Timers.Add(new WorldTimer(3000, (w, t) =>
-                ApplyConditionEffect(ConditionEffectIndex.Paused, 0)));
-            Client.SendPacket(new SetFocus()
-            {
-                ObjectId = Id
-            });
-        }
+        
 
         public override void Init(World owner)
         {
@@ -645,167 +466,29 @@ namespace GameServer.realm.entities.player
             tiles = new byte[owner.Map.Width, owner.Map.Height];
 
             FameCounter = new FameCounter(this);
-            FameGoal = GetFameGoal(FameCounter.ClassStats[ObjectType].BestFame);
-            ExperienceGoal = GetExpGoal(_client.Character.Level);
-            Stars = GetStars();
 
             if (owner.Name.Equals("OceanTrench"))
                 OxygenBar = 100;
 
             SetNewbiePeriod();
-            
-            var changed = false;
-            foreach (var i in _client.Account.ActiveGiftChests)
-            {
-                var giftChest = new DbGiftSingle(_client.Account, i);
-                if (giftChest.Items.Length == 0)
-                {
-                    _client.Account.ActiveGiftChests.Remove(i);
-                    Manager.Database.Conn.HashDeleteAsync("vault." + AccountId,
-                        giftChest.Field);
-                    changed = true;
-                    continue;
-                }
-
-                if (changed) _client.Account.FlushAsync();
-            }
-            
-            Client.SendPacket(new GlobalNotification
-            {
-                Text = Client.Account.ActiveGiftChests.Count > 0 ? "giftChestOccupied" : "giftChestEmpty"
-            });
-            
-            if (owner.IsNotCombatMapArea)
-                AddSafeAreaNotifications();
-
-            Quests.MakeQuestGiver(this);
-
-            // daily quest stuff
-            /* var date = DateTime.UtcNow.ToShortDateString().Replace("/", "");
-            var folder = $"{Manager.Config.serverSettings.resourceFolder}/data/quests/{date}";
-            if (!Directory.Exists(folder))
-                MakeDailyQuest(folder);
-
-            var dq = new DailyQuest();
-            var quest = dq.Load($"{folder}/quest.json");
-
-            if (!Quests.HasAccountQuest(quest.Id) && !Client.Account.DailyQuestsCompleted.Contains(int.Parse(date)))
-                Quests.AddAccountQuest(quest, true);*/
-
-            if (Client.Account.AccountMails != null)
-            {
-                AddUpdateMails();
-                if (Client.Account.AccountMails.Count > 0)
-                {
-                    var accMails = Client.Account.AccountMails
-                        .Where(m => m.CharacterId == -1 || m.CharacterId == Client.Character.CharId);
-                    Client.SendPacket(new GlobalNotification
-                    {
-                        Text = $"Mail ({accMails.Count()})"
-                    });
-                }
-            }
-
-            // spawn pet if player has one attached
-            SpawnPet(owner);
-
             base.Init(owner);
         }
 
-        public void SpawnPet(World owner)
-        {
-            if (PetData == null) return;
-            if (PlayerPet != null)
-            {
-                PlayerPet.Owner.LeaveWorld(PlayerPet);
-                PlayerPet.Dispose();
-                PlayerPet = null;
-                return;
-            }
-
-            var objType = PetData.ObjectType;
-            if (!Manager.Resources.GameData.ObjectDescs.TryGetValue(objType, out var objDesc) || !objDesc.IsPet) return;
-
-            PlayerPet = Resolve(owner.Manager, objType);
-            PlayerPet.Move(X, Y);
-            Owner.EnterWorld(PlayerPet);
-            PlayerPet.PetData = PetData;
-            PlayerPet.SetPlayerOwner(this);
-        }
-
-        private void AddSafeAreaNotifications()
-        {
-        }
-
-        private void AddUpdateMails()
-        {
-            var updates = Manager.Resources.UpdateList;
-            for (var i = 0; i < updates.Count; i++)
-            {
-                var addTime = DateTime.ParseExact(updates[i].AddTime, "MM/dd/yyyy HH:mm:ss 'GMT'K",
-                    CultureInfo.InvariantCulture).ToUnixTimestamp();
-                var endTime = DateTime.ParseExact(updates[i].EndTime, "MM/dd/yyyy HH:mm:ss 'GMT'K",
-                    CultureInfo.InvariantCulture).ToUnixTimestamp();
-                if (!Mails.HasMail(updates[i].Id) &&
-                    addTime < DateTime.UtcNow.ToUnixTimestamp() &&
-                    endTime > DateTime.UtcNow.ToUnixTimestamp())
-                {
-                    var mail = new AccountMail
-                    {
-                        Id = updates[i].Id,
-                        CharacterId = -1,
-                        AddTime = addTime,
-                        EndTime = endTime,
-                        Content = updates[i].Content
-                    };
-                    Mails.Add(mail);
-                }
-            }
-        }
-
-        private void MakeDailyQuest(string folder)
-        {
-            Directory.CreateDirectory(folder);
-
-            var rnd = MathUtils.Next(2, 7);
-            var rndLoots = Manager.Resources.GameData.Items.ToList().Where(pair =>
-                pair.Value.Tier < 8 && pair.Value.Tier > 4 ||
-                QuestGiverContent.TierFourLoot.Contains(pair.Value.ObjectId)).ToList();
-
-            var loots = new List<string>();
-            for (var i = 0; i < rnd; i++)
-            {
-                loots.Add(rndLoots.PickRandom().Value.ObjectId);
-            }
-
-            File.WriteAllText($"{folder}/quest.json",
-                JsonConvert.SerializeObject(Quests.GenerateQuest(-1, 100, 8, items: loots.ToArray(), hours: 24),
-                    Utils.SerializerSettings()));
-        }
-
+        
         public override void Tick(RealmTime time)
         {
-            if (!KeepAlive(time) || Client.State == ProtocolState.Reconnecting)
+            if (!KeepAlive(time))
                 return;
 
             CheckTradeTimeout(time);
-            HandleQuest(time);
 
-            if (!HasConditionEffect(ConditionEffects.Paused))
-            {
-                HandleRegen(time);
-                HandleEffects(time);
-                //HandleOceanTrenchGround(time);
-                TickActivateEffects(time);
-                FameCounter.Tick(time);
-                Quests.Tick(time);
-                Mails.Tick(time);
-                // if (AvailableQuests.Length + CharacterQuests.Length < 3)
-                    // Quests.QuestGiverTick(time);
+            HandleRegen(time);
+            HandleEffects(time);
+            //HandleOceanTrenchGround(time);
+            TickActivateEffects(time);
+            FameCounter.Tick(time);
 
-                TickPassiveEffects();
-            }
-
+            TickPassiveEffects();
             base.Tick(time);
 
             SendUpdate(time);
@@ -819,14 +502,11 @@ namespace GameServer.realm.entities.player
 
         private void TickPassiveEffects()
         {
-            if (HasConditionEffect(ConditionEffects.Suppressed))
-                return;
-
             for (var i = 0; i < 6; i++)
             {
-                if (Inventory[i].Item == null)
+                if (Inventory[i] == null)
                     continue;
-                switch (Inventory[i].Item.Power)
+                switch (Inventory[i].Power)
                 {
                     case "Lifeline" when (double)HP / Stats.Base[0] <= 0.3 && !OnCooldown(i):
                         var shieldAmt = Stats[3] + Stats[0] / 2;
@@ -847,10 +527,10 @@ namespace GameServer.realm.entities.player
             var sum = 0;
             for (var i = 0; i < 6; i++)
             {
-                if (Inventory[i].Item == null)
+                if (Inventory[i] == null)
                     continue;
 
-                sum += Inventory[i].Item.XpBonus;
+                sum += Inventory[i].XpBonus;
             }
 
             XpBoostItem = sum;
@@ -933,32 +613,12 @@ namespace GameServer.realm.entities.player
             if (removeNegative)
             {
                 ApplyConditionEffect(NegativeEffs);
-                ApplyConditionEffect(ConditionEffectIndex.Renewed, 2500);
-                ApplyConditionEffect(ConditionEffectIndex.Paralyzed, 500);
             }
 
-            HandleQuest(time, true, position);
-
-            var id = IsControlling ? SpectateTarget.Id : Id;
-            var tpPkts = new Packet[]
-            {
-                new Goto()
-                {
-                    ObjectId = id,
-                    Pos = position
-                },
-                new ShowEffect()
-                {
-                    EffectType = EffectType.Teleport,
-                    TargetObjectId = id,
-                    Pos1 = position,
-                    Color = new ARGB(0xFFFFFFFF)
-                }
-            };
-            foreach (var plr in Owner.Players.Values)
-            {
+            foreach (var plr in Owner.Players.Values) {
                 plr.AwaitGotoAck(time.TotalElapsedMs);
-                plr.Client.SendPackets(tpPkts);
+                plr.Client.SendGoto(Id, position.X, position.Y);
+                plr.Client.SendShowEffect(EffectType.Teleport, Id, position.X, position.Y, 0, 0, 0xFFFFFF);
             }
         }
 
@@ -985,27 +645,9 @@ namespace GameServer.realm.entities.player
                     return;
                 }
 
-                if (HasConditionEffect(ConditionEffects.Paused))
-                {
-                    SendError("Cannot teleport while paused.");
-                    return;
-                }
-
                 if (obj is not Player)
                 {
                     SendError("Can only teleport to players.");
-                    return;
-                }
-
-                if (obj.HasConditionEffect(ConditionEffects.Invisible))
-                {
-                    SendError("Cannot teleport to an invisible player.");
-                    return;
-                }
-
-                if (obj.HasConditionEffect(ConditionEffects.Paused))
-                {
-                    SendError("Cannot teleport to a paused player.");
                     return;
                 }
             }
@@ -1015,10 +657,7 @@ namespace GameServer.realm.entities.player
 
         public bool IsInvulnerable()
         {
-            if (HasConditionEffect(ConditionEffects.Paused) ||
-                HasConditionEffect(ConditionEffects.Stasis) ||
-                HasConditionEffect(ConditionEffects.Invincible) ||
-                HasConditionEffect(ConditionEffects.Invulnerable))
+            if (HasConditionEffect(ConditionEffects.Invulnerable))
                 return true;
             return false;
         }
@@ -1052,15 +691,9 @@ namespace GameServer.realm.entities.player
 
             HandleEffectsOnHit(projectile, time);
 
-            Owner.BroadcastPacketNearby(new Damage()
-            {
-                TargetId = this.Id,
-                Effects = HasConditionEffect(ConditionEffects.Invincible) ? 0 : projectile.ConditionEffects,
-                DamageAmount = dmgAmount,
-                Kill = HP <= 0,
-                BulletId = projectile.BulletId,
-                ObjectId = projectile.ProjectileOwner.Self.Id
-            }, this, this);
+            foreach (var p in Owner.Players.Values)
+                if (MathUtils.DistSqr(X, Y, p.X, p.Y) < 16 * 16)
+                    p.Client.SendDamage(Id, projectile.ConditionEffects, dmgAmount, HP <= 0, projectile.BulletId, projectile.ProjectileOwner.Self.Id);
 
             if (HP <= 0)
                 Death(projectile.ProjectileOwner.Self.ObjectDesc.DisplayId ??
@@ -1072,14 +705,12 @@ namespace GameServer.realm.entities.player
 
         private void HandleEffectsOnHit(Projectile projectile, RealmTime time)
         {
-            if (HasConditionEffect(ConditionEffects.Suppressed))
-                return;
             var pos = new Position() { X = X, Y = Y };
             for (var i = 0; i < 6; i++)
             {
-                if (Inventory[i].Item == null)
+                if (Inventory[i] == null)
                     continue;
-                switch (Inventory[i].Item.Power)
+                switch (Inventory[i].Power)
                 {
                     case "Demonic Wrath" when (double)HP / Stats.Base[0] <= 0.4 && !OnCooldown(i):
                         DamageBlast(2500, 6, pos, time);
@@ -1118,15 +749,9 @@ namespace GameServer.realm.entities.player
 
             HandleEffectsOnDamage();
 
-            Owner.BroadcastPacketNearby(new Damage()
-            {
-                TargetId = Id,
-                Effects = 0,
-                DamageAmount = (ushort)dmg,
-                Kill = HP <= 0,
-                BulletId = 0,
-                ObjectId = src.Id
-            }, this, this);
+            foreach (var p in Owner.Players.Values)
+                if (MathUtils.DistSqr(X, Y, p.X, p.Y) < 16 * 16)
+                    p.Client.SendDamage(Id, 0, (ushort)dmg, HP <= 0, 0, src.Id);
 
             if (HP <= 0)
                 Death(src.ObjectDesc.DisplayId ??
@@ -1136,13 +761,11 @@ namespace GameServer.realm.entities.player
 
         private void HandleEffectsOnDamage()
         {
-            if (HasConditionEffect(ConditionEffects.Suppressed))
-                return;
             for (var i = 0; i < 6; i++)
             {
-                if (Inventory[i].Item == null)
+                if (Inventory[i] == null)
                     continue;
-                switch (Inventory[i].Item.Power)
+                switch (Inventory[i].Power)
                 {
                     case "Godly Vigor":
                         SetCooldown(i, 10);
@@ -1283,13 +906,7 @@ namespace GameServer.realm.entities.player
         private void ReconnectToNexus()
         {
             HP = 1;
-            _client.Reconnect(new Reconnect()
-            {
-                Host = "",
-                Port = 2050,
-                GameId = World.Realm,
-                Name = "Nexus"
-            });
+            _client.Reconnect("Nexus", World.Realm);
         }
 
         private void AnnounceDeath(string killer)
@@ -1381,7 +998,7 @@ namespace GameServer.realm.entities.player
 
         public void Death(string killer, Entity entity = null, WmapTile tile = null, bool rekt = false)
         {
-            if (_client.State == ProtocolState.Disconnected || Client.State == ProtocolState.Reconnecting || _dead)
+            if (_dead)
                 return;
 
             if (tile != null && (tile.Spawned || tile.DevSpawned))
@@ -1407,13 +1024,7 @@ namespace GameServer.realm.entities.player
             GenerateGravestone();
             AnnounceDeath(killer);
 
-            _client.SendPacket(new Death()
-            {
-                AccountId = AccountId.ToString(),
-                CharId = _client.Character.CharId,
-                KilledBy = killer,
-                ZombieId = -1
-            });
+            _client.SendDeath(AccountId, _client.Character.CharId, killer);
 
             Owner.Timers.Add(new WorldTimer(1000, (w, t) =>
             {
@@ -1440,13 +1051,7 @@ namespace GameServer.realm.entities.player
             if (!CheckLimitedWorlds(world))
                 return;
 
-            Client.Reconnect(new Reconnect()
-            {
-                Host = "",
-                Port = 2050,
-                GameId = world.Id,
-                Name = world.Name
-            });
+            Client.Reconnect(world.Name, world.Id);
         }
 
         public void Reconnect(object portal, World world)
@@ -1460,13 +1065,7 @@ namespace GameServer.realm.entities.player
                 if (!CheckLimitedWorlds(world))
                     return;
 
-                Client.Reconnect(new Reconnect()
-                {
-                    Host = "",
-                    Port = 2050,
-                    GameId = world.Id,
-                    Name = world.Name
-                });
+                Client.Reconnect(world.Name, world.Id);
             }
         }
         
@@ -1476,13 +1075,10 @@ namespace GameServer.realm.entities.player
             {
                 return;
             }
-
-            Owner.BroadcastPacket(new Notification
-            {
-                Color = new ARGB(color),
-                ObjectId = IsControlling ? SpectateTarget.Id : Id,
-                Message = "fn>" + notif
-            }, null);
+            
+            foreach (var p in Owner.Players.Values)
+                if (MathUtils.DistSqr(X, Y, p.X, p.Y) < 16 * 16)
+                    p.Client.SendNotification(Id, notif, color);
         }
 
         public int GetCurrency(CurrencyType currency)
@@ -1493,10 +1089,6 @@ namespace GameServer.realm.entities.player
                     return Credits;
                 case CurrencyType.Fame:
                     return CurrentFame;
-                case CurrencyType.UnholyEssence:
-                    return UnholyEssence;
-                case CurrencyType.DivineEssence:
-                    return DivineEssence;
                 default:
                     return 0;
             }
@@ -1512,12 +1104,6 @@ namespace GameServer.realm.entities.player
                 case CurrencyType.Fame:
                     CurrentFame = amount;
                     break;
-                case CurrencyType.UnholyEssence:
-                    UnholyEssence = amount;
-                    break;
-                case CurrencyType.DivineEssence:
-                    DivineEssence = amount;
-                    break;
             }
         }
 
@@ -1532,13 +1118,9 @@ namespace GameServer.realm.entities.player
                 base.Move(x, y);
             }
 
-            if ((int)X != Sight.LastX || (int)Y != Sight.LastY)
-            {
+            if ((int)X != Sight.LastX || (int)Y != Sight.LastY) {
                 if (IsNoClipping())
-                {
-                    _client.Manager.Logic.AddPendingAction(t => _client.Disconnect());
-                }
-
+                    _client.Disconnect();
                 Sight.UpdateCount++;
             }
         }
@@ -1546,12 +1128,6 @@ namespace GameServer.realm.entities.player
         public override void Dispose()
         {
             base.Dispose();
-            if (SpectateTarget != null)
-            {
-                SpectateTarget.FocusLost -= ResetFocus;
-                SpectateTarget.Controller = null;
-            }
-
             _clientEntities.Dispose();
         }
 
@@ -1577,12 +1153,6 @@ namespace GameServer.realm.entities.player
         public void RestoreDefaultSkin()
         {
             Skin = _originalSkin;
-        }
-
-        public void DropNextRandom(int times = 1)
-        {
-            for (var i = 0; i < times; i++)
-                Client.ClientRandom.NextInt();
         }
     }
 }

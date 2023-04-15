@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using common;
-using common.resources;
+using Shared;
+using Shared.resources;
 
-namespace common
+namespace Shared
 {
     public class FameStats
     {

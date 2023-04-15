@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace common
+namespace Shared
 {
     public enum Channel
     {

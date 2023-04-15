@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using common.resources;
+using Shared.resources;
 using Ionic.Zlib;
 using Newtonsoft.Json;
 
-namespace common.terrain
+namespace Shared.terrain
 {
     public struct obj
     {

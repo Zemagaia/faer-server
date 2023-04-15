@@ -7,7 +7,7 @@ using System.Xml.Linq;
 using System.Xml.XPath;
 using NLog;
 
-namespace common.resources
+namespace Shared.resources
 {
     public class XmlData : IDisposable
     {
@@ -150,10 +150,7 @@ namespace common.resources
 
             addition = new XElement("ExtData");
 
-            string basePath = Utils.GetBasePath(path);
-
-            // load additional xmls into GameXmls string array
-            LoadXmls(basePath + "/testingxmls", "*.xml");
+            string basePath = path;
 
             // compress GameXmls for getServerXmls query
             // - only want to compress additional xml content

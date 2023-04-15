@@ -1,6 +1,5 @@
 ﻿using System.Xml.Linq;
-using common;
-using GameServer.networking.packets.outgoing;
+using Shared;
 using GameServer.realm;
 using GameServer.realm.entities.player;
 
@@ -39,8 +38,7 @@ namespace GameServer.logic.behaviors
             {
                 foreach (var entity in host.GetNearestEntities(_range, null, true).OfType<Player>())
                 {
-                    if ((host.AttackTarget != null && host.AttackTarget != entity) ||
-                        entity.HasConditionEffect(ConditionEffects.Stupefied))
+                    if ((host.AttackTarget != null && host.AttackTarget != entity))
                         continue;
                     int maxMp = entity.Stats[1];
                     int newMp = Math.Min(entity.MP + _healAmount, maxMp);

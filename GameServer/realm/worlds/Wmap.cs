@@ -1,6 +1,6 @@
-﻿using common;
-using common.resources;
-using common.terrain;
+﻿using Shared;
+using Shared.resources;
+using Shared.terrain;
 using DungeonGenerator.Dungeon;
 using GameServer.realm.entities;
 using GameServer.realm.entities.vendors;
@@ -84,21 +84,7 @@ namespace GameServer.realm.worlds
             Region = _originalDesc.Region;
             Elevation = _originalDesc.Elevation;
 
-            if (map != null)
-                InitConnection(map, x, y);
-
             UpdateCount++;
-        }
-
-        public void InitConnection(Wmap map, int x, int y)
-        {
-            if (ObjDesc == null || !ObjDesc.Connects || ObjCfg.Contains("conn:"))
-                return;
-
-            var connStr = ConnectionComputer.GetConnString(
-                (dx, dy) => map.Contains(x + dx, y + dy) &&
-                            map[x + dx, y + dy].ObjType == ObjDesc.ObjectType);
-            ObjCfg = $"{ObjCfg};{connStr};";
         }
 
         public void CopyTo(WmapTile tile)
@@ -139,10 +125,6 @@ namespace GameServer.realm.worlds
                         case "eff":
                             stats.Add(new KeyValuePair<StatsType, object>(StatsType.Effects, Utils.FromString(kv[1])));
                             break;
-                        case "conn":
-                            stats.Add(new KeyValuePair<StatsType, object>(StatsType.ObjectConnection,
-                                Utils.FromString(kv[1])));
-                            break;
                         case "mtype":
                             stats.Add(new KeyValuePair<StatsType, object>(StatsType.MerchantMerchandiseType,
                                 Utils.FromString(kv[1])));
@@ -159,19 +141,6 @@ namespace GameServer.realm.worlds
                             stats.Add(new KeyValuePair<StatsType, object>(StatsType.MerchantRemainingCount,
                                 Utils.FromString(kv[1])));
                             break;
-                        case "mtime":
-                            stats.Add(new KeyValuePair<StatsType, object>(StatsType.MerchantRemainingMinute,
-                                Utils.FromString(kv[1])));
-                            break;
-                        case "mdisc":
-                            stats.Add(new KeyValuePair<StatsType, object>(StatsType.MerchantDiscount,
-                                Utils.FromString(kv[1])));
-                            break;
-                        case "mrank":
-                        case "stars":
-                            stats.Add(new KeyValuePair<StatsType, object>(StatsType.SellableRankRequirement,
-                                Utils.FromString(kv[1])));
-                            break;
                     }
                 }
 
@@ -181,11 +150,8 @@ namespace GameServer.realm.worlds
                 Stats = new ObjectStats()
                 {
                     Id = ObjId,
-                    Position = new Position()
-                    {
-                        X = x + 0.5f,
-                        Y = y + 0.5f
-                    },
+                    X = x + 0.5f,
+                    Y = y + 0.5f,
                     StatTypes = stats.ToArray()
                 }
             };
@@ -222,8 +188,8 @@ namespace GameServer.realm.worlds
 
         public WmapTile this[int x, int y]
         {
-            get { return _tiles[x, y]; }
-            set { _tiles[x, y] = value; }
+            get => _tiles[x, y];
+            set => _tiles[x, y] = value;
         }
 
         public Wmap(XmlData dat)
@@ -317,10 +283,6 @@ namespace GameServer.realm.worlds
                     _tiles[x, y] = tile;
                 }
 
-                for (var x = 0; x < Width; x++)
-                for (var y = 0; y < Height; y++)
-                    _tiles[x, y].InitConnection(this, x, y);
-
                 _entities = entities.ToArray();
                 return enCount;
             }
@@ -383,10 +345,6 @@ namespace GameServer.realm.worlds
                 _tiles[x, y] = tile;
             }
 
-            for (var x = 0; x < Width; x++)
-            for (var y = 0; y < Height; y++)
-                _tiles[x, y].InitConnection(this, x, y);
-
             _entities = entities.ToArray();
             return enCount;
         }
@@ -416,10 +374,6 @@ namespace GameServer.realm.worlds
                             case "eff":
                                 entity.ConditionEffects = (ConditionEffects)ulong.Parse(kv[1]);
                                 break;
-                            case "conn":
-                                (entity as ConnectedObject).Connection =
-                                    ConnectionInfo.Infos[(uint)Utils.FromString(kv[1])];
-                                break;
                             case "mtype":
                                 (entity as Merchant).Item = (ushort)Utils.FromString(kv[1]);
                                 break;
@@ -431,15 +385,6 @@ namespace GameServer.realm.worlds
                                 break;
                             case "mamnt":
                                 (entity as Merchant).Count = Utils.FromString(kv[1]);
-                                break;
-                            case "mtime":
-                                (entity as Merchant).TimeLeft = Utils.FromString(kv[1]);
-                                break;
-                            case "mdisc": // not implemented
-                                break;
-                            case "mrank":
-                            case "stars": // provided for backwards compatibility with older maps
-                                (entity as SellableObject).RankReq = Utils.FromString(kv[1]);
                                 break;
                             case "mtax":
                                 (entity as SellableObject).Tax = Utils.FromString(kv[1]);

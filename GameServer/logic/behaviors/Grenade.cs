@@ -1,6 +1,5 @@
 ﻿using System.Xml.Linq;
-using common;
-using GameServer.networking.packets.outgoing;
+using Shared;
 using GameServer.realm;
 using GameServer.realm.entities.player;
 
@@ -58,9 +57,6 @@ namespace GameServer.logic.behaviors
 
             if (cool <= 0)
             {
-                if (host.HasConditionEffect(ConditionEffects.Stunned))
-                    return;
-
                 var player = host.AttackTarget ?? host.GetNearestEntity(range, true);
 
                 if (host.TauntedPlayerNearby(range))
@@ -97,9 +93,7 @@ namespace GameServer.logic.behaviors
                                 ? (1d - (double)((Player)p).Stats[13] / 100)
                                 : 1d;
                             ((IPlayer)p).Damage(damage, host, noDef);
-                            if (!p.HasConditionEffect(ConditionEffects.Invincible) &&
-                                !p.HasConditionEffect(ConditionEffects.Stasis))
-                                p.ApplyConditionEffect(effect, (int)(Math.Max(1, effectDuration * tenacity)));
+                            p.ApplyConditionEffect(effect, (int)(Math.Max(1, effectDuration * tenacity)));
                         });
                     }));
                 }

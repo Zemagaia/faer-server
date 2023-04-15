@@ -1,6 +1,5 @@
 ﻿using System.Xml.Linq;
-using common;
-using GameServer.networking.packets.outgoing;
+using Shared;
 using GameServer.realm;
 using GameServer.realm.worlds;
 
@@ -35,13 +34,7 @@ namespace GameServer.logic.behaviors
             {
                 foreach (var player in owner.Players.Values)
                 {
-                    player.Client.Reconnect(new Reconnect()
-                    {
-                        Host = "",
-                        Port = 2050,
-                        GameId = World.Realm,
-                        Name = "Nexus"
-                    });
+                    player.Client.Reconnect("Nexus", World.Realm);
                 }
             }));
         }

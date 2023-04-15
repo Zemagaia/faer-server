@@ -1,7 +1,8 @@
-﻿using common;
-using common.resources;
+﻿using Shared;
+using Shared.resources;
 using GameServer.realm.entities.player;
 using GameServer.realm.worlds;
+using wServer.realm;
 
 namespace GameServer.realm
 {
@@ -45,9 +46,6 @@ namespace GameServer.realm
 
         public float GetAttackDamage(ProjectileDesc desc, bool isAbility = false)
         {
-            if (Owner.HasConditionEffect(ConditionEffects.Blind))
-                return 0;
-
             var attackMult = 1f;
             if (!isAbility)
             {
@@ -59,9 +57,6 @@ namespace GameServer.realm
             }
 
             var ret = Owner.Client.ClientRandom.Next(desc.MinDamage, desc.MaxDamage) * attackMult;
-            if (Owner.HasConditionEffect(ConditionEffects.Brave))
-                ret *= 1.5f;
-
             ret += CriticalModifier(ret);
 
             return ret;
@@ -74,13 +69,13 @@ namespace GameServer.realm
             float ret = 0;
             var roll = Owner.Client.ClientRandom.Next(0, 1000);
             var chance = (1 + criticalStrike) * 10 > 500 ? 500 : (int)(1 + criticalStrike) * 10;
-            if (roll > chance || Owner.HasConditionEffect(ConditionEffects.Unsteady))
+            if (roll > chance)
                 return ret;
             for (var i = 0; i < 6; i++)
             {
-                if (Owner.Inventory[i].Item == null)
+                if (Owner.Inventory[i] == null)
                     continue;
-                switch (Owner.Inventory[i].Item.Power)
+                switch (Owner.Inventory[i].Power)
                 {
                     case "Rotting Touch":
                         ret += strength / 2;
@@ -106,12 +101,7 @@ namespace GameServer.realm
                     ret = limit;
             }
 
-            if (host.HasConditionEffect(ConditionEffects.Curse))
-                ret = (int)(ret * 1.20);
-            if (host.HasConditionEffect(ConditionEffects.Petrify))
-                ret = (int)(ret * 0.9);
-            if (host.HasConditionEffect(ConditionEffects.Invulnerable) ||
-                host.HasConditionEffect(ConditionEffects.Invincible))
+            if (host.HasConditionEffect(ConditionEffects.Invulnerable))
                 ret = 0;
             return ret;
         }
@@ -129,12 +119,7 @@ namespace GameServer.realm
                     ret = limit;
             }
 
-            if (host.HasConditionEffect(ConditionEffects.Curse))
-                ret = (int)(ret * 1.20);
-            if (host.HasConditionEffect(ConditionEffects.Petrify))
-                ret = (int)(ret * 0.9);
-            if (host.HasConditionEffect(ConditionEffects.Invulnerable) ||
-                host.HasConditionEffect(ConditionEffects.Invincible))
+            if (host.HasConditionEffect(ConditionEffects.Invulnerable))
                 ret = 0;
             return ret;
         }
@@ -151,12 +136,7 @@ namespace GameServer.realm
                     ret = limit;
             }
 
-            if (Owner.HasConditionEffect(ConditionEffects.Curse))
-                ret = (int)(ret * 1.20);
-            if (Owner.HasConditionEffect(ConditionEffects.Petrify))
-                ret = (int)(ret * 0.9);
-            if (Owner.HasConditionEffect(ConditionEffects.Invulnerable) ||
-                Owner.HasConditionEffect(ConditionEffects.Invincible))
+            if (Owner.HasConditionEffect(ConditionEffects.Invulnerable))
                 ret = 0;
             return ret;
         }
@@ -165,10 +145,6 @@ namespace GameServer.realm
         {
             float agility = this[4] <= 384 ? this[4] : 384;
             var ret = 4 + 5.6f * (agility / 75f);
-            if (Owner.HasConditionEffect(ConditionEffects.Swift))
-                ret *= 1.5f;
-            if (Owner.HasConditionEffect(ConditionEffects.Slow))
-                ret = 4;
             return ret * tile.TileDesc.Speed;
         }
 
@@ -184,11 +160,7 @@ namespace GameServer.realm
         public float GetMpRegen()
         {
             var intelligence = this[7] <= 384 ? this[7] : 384;
-            if (Owner.HasConditionEffect(ConditionEffects.Stupefied))
-                return 0;
-
-            int multiplier = Owner.HasConditionEffect(ConditionEffects.Enlightened) ? 2 : 1;
-            return (0.5f + intelligence * .06f) * multiplier;
+            return 0.5f + intelligence * .06f;
         }
 
         /*public float Dex()
@@ -293,9 +265,6 @@ namespace GameServer.realm
 
             private static int GetArmorForType(DamageTypes damageType, Entity entity, Player hitter = null)
             {
-                if (entity.HasConditionEffect(ConditionEffects.Unarmored))
-                    return 0;
-
                 // calculate armor for players
                 if (entity is Player p)
                 {

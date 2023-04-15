@@ -1,6 +1,5 @@
-﻿using common;
-using common.resources;
-using GameServer.networking.packets.outgoing;
+﻿using Shared;
+using Shared.resources;
 using GameServer.realm;
 using GameServer.realm.entities;
 using GameServer.realm.entities.player;
@@ -132,7 +131,7 @@ namespace GameServer.logic.loot
             }
 
             var container = new Container(enemy.Manager, bag, 1000 * 60, true);
-            container.Inventory.SetItems(items);
+            container.Inventory.SetItems(items.ToArray());
             container.BagOwners = owners.Select(x => x.AccountId).ToArray();
             container.Move(
                 enemy.X + (float)((Rand.NextDouble() * 2 - 1) * 0.5),

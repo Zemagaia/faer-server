@@ -1,4 +1,4 @@
-﻿using common.resources;
+﻿using Shared.resources;
 using GameServer.realm.entities.player;
 
 namespace GameServer.realm
@@ -14,8 +14,8 @@ namespace GameServer.realm
 
         public int Count
         {
-            get { return _count.GetValue(); }
-            set { _count.SetValue(value); }
+            get => _count.GetValue();
+            set => _count.SetValue(value);
         }
 
         public ItemStacker(Player owner, int slot, ushort objectType, int count, int maxCount)

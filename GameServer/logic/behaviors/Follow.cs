@@ -1,5 +1,5 @@
 ﻿using System.Xml.Linq;
-using common;
+using Shared;
 using GameServer.realm;
 
 namespace GameServer.logic.behaviors
@@ -50,10 +50,7 @@ namespace GameServer.logic.behaviors
             else s = (FollowState)state;
 
             Status = CycleStatus.NotStarted;
-
-            if (host.HasConditionEffect(ConditionEffects.Paralyzed))
-                return;
-
+            
             var player = host.AttackTarget ?? host.GetNearestEntity(acquireRange, null);
 
             Vector2 vect;

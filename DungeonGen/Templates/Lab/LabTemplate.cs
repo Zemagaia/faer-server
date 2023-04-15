@@ -59,42 +59,21 @@ namespace DungeonGenerator.Templates.Lab
             MapTemplate = ReadTemplate(typeof(LabTemplate));
         }
 
-        public override int MaxDepth
-        {
-            get { return 20; }
-        }
+        public override int MaxDepth => 20;
 
         NormDist targetDepth;
 
-        public override NormDist TargetDepth
-        {
-            get { return targetDepth; }
-        }
+        public override NormDist TargetDepth => targetDepth;
 
-        public override NormDist SpecialRmCount
-        {
-            get { return null; }
-        }
+        public override NormDist SpecialRmCount => null;
 
-        public override NormDist SpecialRmDepthDist
-        {
-            get { return null; }
-        }
+        public override NormDist SpecialRmDepthDist => null;
 
-        public override Range RoomSeparation
-        {
-            get { return new Range(6, 8); }
-        }
+        public override Range RoomSeparation => new Range(6, 8);
 
-        public override int CorridorWidth
-        {
-            get { return 4; }
-        }
+        public override int CorridorWidth => 4;
 
-        public override Range NumRoomRate
-        {
-            get { return new Range(2, 3); }
-        }
+        public override Range NumRoomRate => new Range(2, 3);
 
         bool generatedEvilRoom;
 

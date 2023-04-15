@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using common;
-using common.resources;
+﻿using System.Collections;
+using Shared;
+using Shared.resources;
 using GameServer;
 using GameServer.realm;
 using GameServer.realm.entities.player;
@@ -104,15 +102,15 @@ namespace wServer.realm
             return ((IEnumerable<Item>)_changedItems).GetEnumerator();
         }
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
             return _changedItems.GetEnumerator();
         }
 
         public Item this[int index]
         {
-            get { return _changedItems[index]; }
-            set { _changedItems[index] = value; }
+            get => _changedItems[index];
+            set => _changedItems[index] = value;
         }
     }
 
@@ -161,7 +159,7 @@ namespace wServer.realm
 
         public Item this[int index]
         {
-            get { return _items[index]; }
+            get => _items[index];
             set
             {
                 _itemTypes[index].SetValue(value?.ObjectType ?? -1);
@@ -195,17 +193,17 @@ namespace wServer.realm
 
         public void SetItems(Item[] items)
         {
-            lock(_invLock)
+            lock (_invLock)
             {
                 var oItems = _items.GetItems();
                 _items.SetItems(items);
                 InventoryChanged?.Invoke(this, new InventoryChangedEventArgs(oItems, _items.GetItems()));
             }
         }
-
+        
         public void SetItems(IEnumerable<ushort> items)
         {
-            lock(_invLock)
+            lock (_invLock)
             {
                 var oItems = _items.GetItems();
                 _items.SetItems(ConvertObjectType2ItemArray(items));
@@ -329,7 +327,7 @@ namespace wServer.realm
             return ((IEnumerable<Item>)_items.GetItems()).GetEnumerator();
         }
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
             return _items.GetItems().GetEnumerator();
         }

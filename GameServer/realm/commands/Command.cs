@@ -62,10 +62,7 @@ namespace GameServer.realm.commands
         private RealmManager _manager;
         private readonly Dictionary<string, Command> _cmds;
 
-        public IDictionary<string, Command> Commands
-        {
-            get { return _cmds; }
-        }
+        public IDictionary<string, Command> Commands => _cmds;
 
         public CommandManager(RealmManager manager)
         {

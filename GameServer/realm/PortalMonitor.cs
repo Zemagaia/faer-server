@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
-using common;
-using common.terrain;
+using Shared;
+using Shared.terrain;
 using GameServer.realm.entities;
 using GameServer.realm.worlds;
 using GameServer.realm.worlds.logic;

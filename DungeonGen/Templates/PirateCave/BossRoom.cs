@@ -33,20 +33,11 @@ namespace DungeonGenerator.Templates.PirateCave
             this.radius = radius;
         }
 
-        public override RoomType Type
-        {
-            get { return RoomType.Target; }
-        }
+        public override RoomType Type => RoomType.Target;
 
-        public override int Width
-        {
-            get { return radius * 2 + 1; }
-        }
+        public override int Width => radius * 2 + 1;
 
-        public override int Height
-        {
-            get { return radius * 2 + 1; }
-        }
+        public override int Height => radius * 2 + 1;
 
         public override void Rasterize(BitmapRasterizer<DungeonTile> rasterizer, Random rand)
         {

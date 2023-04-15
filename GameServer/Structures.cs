@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using common;
-using common.resources;
-using GameServer.realm;
+﻿using GameServer.realm;
 
 namespace GameServer
 {

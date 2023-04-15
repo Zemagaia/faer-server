@@ -1,4 +1,4 @@
-﻿using common;
+﻿using Shared;
 using GameServer.realm.entities.player;
 
 namespace GameServer.realm.entities
@@ -48,8 +48,6 @@ namespace GameServer.realm.entities
 
         private void SetConditions()
         {
-            if (ObjectDesc.Invincible)
-                ApplyConditionEffect(ConditionEffectIndex.Invincible);
             if (ObjectDesc.Invulnerable)
                 ApplyConditionEffect(ConditionEffectIndex.Invulnerable);
         }

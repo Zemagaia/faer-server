@@ -34,20 +34,11 @@ namespace DungeonGenerator.Templates.Abyss
             this.len = len;
         }
 
-        public override RoomType Type
-        {
-            get { return RoomType.Start; }
-        }
+        public override RoomType Type => RoomType.Start;
 
-        public override int Width
-        {
-            get { return len; }
-        }
+        public override int Width => len;
 
-        public override int Height
-        {
-            get { return len; }
-        }
+        public override int Height => len;
 
         public override void Rasterize(BitmapRasterizer<DungeonTile> rasterizer, Random rand)
         {

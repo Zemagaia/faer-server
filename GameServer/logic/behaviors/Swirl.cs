@@ -1,5 +1,5 @@
 ﻿using System.Xml.Linq;
-using common;
+using Shared;
 using GameServer.realm;
 
 namespace GameServer.logic.behaviors
@@ -35,7 +35,7 @@ namespace GameServer.logic.behaviors
             this.targeted = targeted;
         }
 
-        protected override void OnStateEntry(realm.Entity host, realm.RealmTime time, ref object state)
+        protected override void OnStateEntry(Entity host, RealmTime time, ref object state)
         {
             state = new SwirlState()
             {
@@ -49,9 +49,6 @@ namespace GameServer.logic.behaviors
             SwirlState s = (SwirlState)state;
 
             Status = CycleStatus.NotStarted;
-
-            if (host.HasConditionEffect(ConditionEffects.Paralyzed))
-                return;
 
             var period = (int)(1000 * radius / host.GetSpeed(speed) * (2 * Math.PI));
             if (!s.Acquired &&

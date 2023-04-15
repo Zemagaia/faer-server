@@ -5,11 +5,11 @@ using System.Linq;
 using System.IO;
 using System.Text;
 using System.Xml.Linq;
-using common.terrain;
+using Shared.terrain;
 using NLog;
 using Newtonsoft.Json;
 
-namespace common.resources
+namespace Shared.resources
 {
     public struct ProtoWorld
     {

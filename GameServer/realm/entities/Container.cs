@@ -1,6 +1,5 @@
 ﻿using System.Xml.Linq;
-using common;
-using common.resources;
+using Shared;
 using wServer.realm;
 
 namespace GameServer.realm.entities
@@ -22,25 +21,18 @@ namespace GameServer.realm.entities
 
         private void Initialize(RInventory dbLink)
         {
-            if (dbLink != null)
-                Inventory = new Inventory(this, dbLink.Items);
-            else
-                Inventory = new Inventory(this, new Item[0]);
-
-            BagOwners = new int[0];
+            Inventory = new Inventory(this);
+            BagOwners = Array.Empty<int>();
             DbLink = dbLink;
 
             var node = Manager.Resources.GameData.ObjectTypeToElement[ObjectType];
-            SlotTypes = Utils.ResizeArray(node.Element("SlotTypes").Value.CommaToArray<int>(), Inventory.Length);
+            SlotTypes = Utils.ResizeArray(node.Element("SlotTypes").Value.CommaToArray<int>(), 8);
             XElement eq = node.Element("Equipment");
             if (eq != null)
             {
-                var inv = eq.Value.CommaToArray<ushort>().ToArray();
-                Array.Resize(ref inv, Inventory.Length);
-                var items = new Item[inv.Length];
-                for (var i = 0; i < items.Length; i++)
-                    items[i] = inv[i] == ushort.MaxValue ? null : Manager.Resources.GameData.Items[inv[i]];
-                Inventory.SetItems(items);
+                var inv = eq.Value.CommaToArray<ushort>().Select(_ => _ == 0xffff ? null : Manager.Resources.GameData.Items[_]).ToArray();
+                Array.Resize(ref inv, 8);
+                Inventory.SetItems(inv);
             }
         }
 
@@ -48,31 +40,18 @@ namespace GameServer.realm.entities
         public int[] SlotTypes { get; private set; }
         public Inventory Inventory { get; private set; }
         public int[] BagOwners { get; set; }
-
-        protected override void ImportStats(StatsType stats, object val)
-        {
-            if (Inventory == null) return;
-
-            // todo: inventory work
-            switch (stats)
-            {
-                case StatsType.Inventory:
-                    var items = (Item[])val;
-                    for (var i = 0; i < items.Length; i++)
-                        Inventory[i] = items[i];
-                    break;
-                case StatsType.OwnerAccountId: break; // BagOwner = (int)val == -1 ? (int?)null : (int)val; break;
-            }
-
-            base.ImportStats(stats, val);
-        }
-
+        
         protected override void ExportStats(IDictionary<StatsType, object> stats)
         {
             if (Inventory == null) return;
-
-            // todo: inventory work
-            stats[StatsType.Inventory] = Inventory.GetItems();
+            stats[StatsType.Inventory0] = Inventory[0]?.ObjectType ?? -1;
+            stats[StatsType.Inventory1] = Inventory[1]?.ObjectType ?? -1;
+            stats[StatsType.Inventory2] = Inventory[2]?.ObjectType ?? -1;
+            stats[StatsType.Inventory3] = Inventory[3]?.ObjectType ?? -1;
+            stats[StatsType.Inventory4] = Inventory[4]?.ObjectType ?? -1;
+            stats[StatsType.Inventory5] = Inventory[5]?.ObjectType ?? -1;
+            stats[StatsType.Inventory6] = Inventory[6]?.ObjectType ?? -1;
+            stats[StatsType.Inventory7] = Inventory[7]?.ObjectType ?? -1;
             stats[StatsType.OwnerAccountId] = (BagOwners.Length == 1 ? BagOwners[0] : -1).ToString();
             base.ExportStats(stats);
         }

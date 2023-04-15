@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
-using common;
-using common.resources;
+using Shared;
+using Shared.resources;
 using GameServer.logic.loot;
 using GameServer.realm;
 using GameServer.realm.entities;

@@ -1,5 +1,5 @@
-﻿using common;
-using common.resources;
+﻿using Shared;
+using Shared.resources;
 using GameServer.logic.loot;
 
 namespace GameServer.realm.entities.player
@@ -16,7 +16,7 @@ namespace GameServer.realm.entities.player
         {
             for (var i = 0; i < 6; i++)
             {
-                var item = Inventory[i].Item;
+                var item = Inventory[i];
                 if (item == null)
                     continue;
                 ActivateRegularPowers(item.Power);
