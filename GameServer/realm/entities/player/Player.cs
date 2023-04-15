@@ -55,9 +55,9 @@ namespace GameServer.realm.entities.player
             set => _guild.SetValue(value);
         }
 
-        private readonly SV<int> _guildRank;
+        private readonly SV<sbyte> _guildRank;
 
-        public int GuildRank
+        public sbyte GuildRank
         {
             get => _guildRank.GetValue();
             set => _guildRank.SetValue(value);
@@ -95,17 +95,17 @@ namespace GameServer.realm.entities.player
             set => _nameChosen.SetValue(value);
         }
 
-        private readonly SV<int> _texture1;
+        private readonly SV<ushort> _texture1;
 
-        public int Texture1
+        public ushort Texture1
         {
             get => _texture1.GetValue();
             set => _texture1.SetValue(value);
         }
 
-        private readonly SV<int> _texture2;
+        private readonly SV<ushort> _texture2;
 
-        public int Texture2
+        public ushort Texture2
         {
             get => _texture2.GetValue();
             set => _texture2.SetValue(value);
@@ -163,22 +163,6 @@ namespace GameServer.realm.entities.player
             set => _oxygenBar.SetValue(value);
         }
 
-        private readonly SV<int> _lightMax;
-
-        public int LightMax
-        {
-            get => _lightMax.GetValue();
-            init => _lightMax.SetValue(value);
-        }
-
-        private readonly SV<int> _light;
-
-        public int Light
-        {
-            get => _light.GetValue();
-            set => _light.SetValue(value);
-        }
-
         private readonly SV<int> _rank;
 
         public int Rank
@@ -233,26 +217,10 @@ namespace GameServer.realm.entities.player
         public int XpBoostItem { get; set; }
         public int DamageDealt { get; set; }
 
-        private readonly SV<int> _offensiveAbility;
-
-        public int OffensiveAbility
-        {
-            get => _offensiveAbility.GetValue();
-            set => _offensiveAbility.SetValue(value);
-        }
-
-        private readonly SV<int> _defensiveAbility;
-
-        public int DefensiveAbility
-        {
-            get => _defensiveAbility.GetValue();
-            set => _defensiveAbility.SetValue(value);
-        }
-        
         protected override void ExportStats(IDictionary<StatsType, object> stats)
         {
             base.ExportStats(stats);
-            stats[StatsType.AccountId] = AccountId.ToString();
+            stats[StatsType.AccountId] = AccountId;
             stats[StatsType.Guild] = Guild;
             stats[StatsType.GuildRank] = GuildRank;
             stats[StatsType.Texture1] = Texture1;
@@ -283,13 +251,21 @@ namespace GameServer.realm.entities.player
             stats[StatsType.MaxHP] = Stats[0];
             stats[StatsType.MaxMP] = Stats[1];
             stats[StatsType.Strength] = Stats[2];
+            stats[StatsType.Defense] = Stats[3];
+            stats[StatsType.Speed] = Stats[4];
+            stats[StatsType.Sight] = Stats[5];
             stats[StatsType.Stamina] = Stats[6];
-            stats[StatsType.Luck] = Stats[10];
+            stats[StatsType.Luck] = Stats[7];
+            stats[StatsType.Penetration] = Stats[8];
             stats[StatsType.HPBoost] = Stats.Boost[0];
             stats[StatsType.MPBoost] = Stats.Boost[1];
             stats[StatsType.StrengthBonus] = Stats.Boost[2];
+            stats[StatsType.DefenseBonus] = Stats.Boost[3];
+            stats[StatsType.SpeedBonus] = Stats.Boost[4];
+            stats[StatsType.SightBonus] = Stats.Boost[5];
             stats[StatsType.StaminaBonus] = Stats.Boost[6];
-            stats[StatsType.LuckBonus] = Stats.Boost[10];
+            stats[StatsType.LuckBonus] = Stats.Boost[7];
+            stats[StatsType.PenetrationBonus] = Stats.Boost[8];
             stats[StatsType.HealthStackCount] = HealthPots.Count;
             stats[StatsType.MagicStackCount] = MagicPots.Count;
             stats[StatsType.HasBackpack] = (HasBackpack) ? 1 : 0;
@@ -298,7 +274,6 @@ namespace GameServer.realm.entities.player
         public void SaveToCharacter()
         {
             var chr = _client.Character;
-            chr.Fame = Fame;
             chr.HP = Math.Max(1, HP);
             chr.MP = MP;
             chr.Stats = Stats.Base.GetStats();
@@ -313,9 +288,6 @@ namespace GameServer.realm.entities.player
             chr.LDBoostTime = LDBoostTime;
             chr.LTBoostTime = LTBoostTime;
             chr.Items = Inventory.GetItemTypes();
-            chr.Light = Light;
-            chr.OffensiveAbility = OffensiveAbility;
-            chr.DefensiveAbility = DefensiveAbility;
         }
 
         public Player(Client client, bool saveInventory = true)
@@ -332,9 +304,9 @@ namespace GameServer.realm.entities.player
 
             _accountId = new SV<int>(this, StatsType.AccountId, client.Account.AccountId, true);
             _guild = new SV<string>(this, StatsType.Guild, "");
-            _guildRank = new SV<int>(this, StatsType.GuildRank, -1);
-            _texture1 = new SV<int>(this, StatsType.Texture1, client.Character.Tex1);
-            _texture2 = new SV<int>(this, StatsType.Texture2, client.Character.Tex2);
+            _guildRank = new SV<sbyte>(this, StatsType.GuildRank, -1);
+            _texture1 = new SV<ushort>(this, StatsType.Texture1, (ushort)client.Character.Tex1);
+            _texture2 = new SV<ushort>(this, StatsType.Texture2, (ushort)client.Character.Tex2);
             _skin = new SV<ushort>(this, StatsType.Texture, 0);
             _glow = new SV<int>(this, StatsType.Glow, 0);
             _mp = new SV<int>(this, StatsType.MP, client.Character.MP);
@@ -361,7 +333,7 @@ namespace GameServer.realm.entities.player
             if (guild?.Name != null)
             {
                 Guild = guild.Name;
-                GuildRank = client.Account.GuildRank;
+                GuildRank = (sbyte)client.Account.GuildRank;
             }
 
             HealthPots = new ItemStacker(this, 254, 0xaa1,

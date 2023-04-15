@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lDsafpKoAnicTOt0ZYhgpPhH01x17zo9jmuOkxdpyWFR/YvjXPKAW1LVPZKpsUu7mXeAIFv1qyP1oPkVjac28Q==",
+  "dgSpecHash": "rfTXHwyVAm33XWtdMMyYjGX/u8rf1uE3x6p5mhiDZIMuoWv7W42QUzuEAW4Ay7cA3swM2uC0FVSsjl9QrpDAPA==",
   "success": true,
-  "projectFilePath": "/home/a/faer/server/DungeonGen/DungeonGen.csproj",
+  "projectFilePath": "C:\\Users\\fyuwi\\Desktop\\faer-src\\DungeonGen\\DungeonGen.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

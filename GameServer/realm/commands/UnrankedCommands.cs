@@ -649,13 +649,12 @@ namespace GameServer.realm.commands
             player.SendInfo($"HP: {pd.Stats[0].MaxValue - player.Stats.Base[0]}");
             player.SendInfo($"MP: {pd.Stats[1].MaxValue - player.Stats.Base[1]}");
             player.SendInfo($"Strength: {pd.Stats[2].MaxValue - player.Stats.Base[2]}");
-            player.SendInfo($"Armor: {pd.Stats[3].MaxValue - player.Stats.Base[3]}");
-            player.SendInfo($"Agility: {pd.Stats[4].MaxValue - player.Stats.Base[4]}");
-            player.SendInfo($"Dexterity: {pd.Stats[5].MaxValue - player.Stats.Base[5]}");
+            player.SendInfo($"Defense: {pd.Stats[3].MaxValue - player.Stats.Base[3]}");
+            player.SendInfo($"Speed: {pd.Stats[4].MaxValue - player.Stats.Base[4]}");
+            player.SendInfo($"Sight: {pd.Stats[5].MaxValue - player.Stats.Base[5]}");
             player.SendInfo($"Stamina: {pd.Stats[6].MaxValue - player.Stats.Base[6]}");
-            player.SendInfo($"Intelligence: {pd.Stats[7].MaxValue - player.Stats.Base[7]}");
-            player.SendInfo($"Resistance: {pd.Stats[19].MaxValue - player.Stats.Base[19]}");
-            player.SendInfo($"Wit: {pd.Stats[20].MaxValue - player.Stats.Base[20]}");
+            player.SendInfo($"Luck: {pd.Stats[7].MaxValue - player.Stats.Base[7]}");
+            player.SendInfo($"Penetration: {pd.Stats[8].MaxValue - player.Stats.Base[8]}");
 
             return true;
         }

@@ -35,14 +35,6 @@ namespace GameServer.logic
             if (_enemy.ObjectDesc.Quest && _enemy.HP > 0)
                 player.DamageDealt = hitters[player];
 
-            if (!_enemy.HasConditionEffect(ConditionEffects.Invulnerable))
-            {
-                var lifeSteal = player.Stats[15];
-                var manaLeech = player.Stats[16];
-                player.HP += lifeSteal;
-                player.MP += manaLeech;
-            }
-
             LastProjectile = projectile;
             LastHitter = player;
         }
@@ -78,14 +70,6 @@ namespace GameServer.logic
 
             if (enemy.Spawned)
                 return;
-            
-            if (LastHitter != null)
-            {
-                var lifeStealKill = LastHitter.Stats[17];
-                var manaLeechKill = LastHitter.Stats[18];
-                LastHitter.HP += lifeStealKill;
-                LastHitter.MP += manaLeechKill;
-            }
 
             if (enemy.ObjectDesc.Quest)
                 foreach (var player in hitters.Keys)

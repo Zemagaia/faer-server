@@ -525,8 +525,6 @@ public class Client {
             case StatsType.GuildRank:
                 WriteSByte(ref ptr, ref spanRef, Convert.ToSByte(value));
                 return;
-            case StatsType.MaxHP:
-            case StatsType.HP:
             case StatsType.MaxMP:
             case StatsType.MP:
             case StatsType.Strength:
@@ -537,15 +535,6 @@ public class Client {
             case StatsType.Luck:
             case StatsType.Penetration:
             case StatsType.SellablePrice:
-            case StatsType.HPBoost:
-            case StatsType.MPBoost:
-            case StatsType.StrengthBonus:
-            case StatsType.DefenseBonus:
-            case StatsType.SpeedBonus:
-            case StatsType.SightBonus:
-            case StatsType.StaminaBonus:
-            case StatsType.LuckBonus:
-            case StatsType.PenetrationBonus:
                 WriteShort(ref ptr, ref spanRef, Convert.ToInt16(value));
                 return;
             case StatsType.Size:
@@ -572,8 +561,19 @@ public class Client {
             case StatsType.Inv18:
             case StatsType.Inv19:
             case StatsType.Texture:
+            case StatsType.HPBoost:
+            case StatsType.MPBoost:
+            case StatsType.StrengthBonus:
+            case StatsType.DefenseBonus:
+            case StatsType.SpeedBonus:
+            case StatsType.SightBonus:
+            case StatsType.StaminaBonus:
+            case StatsType.LuckBonus:
+            case StatsType.PenetrationBonus:
                 WriteUShort(ref ptr, ref spanRef, Convert.ToUInt16(value));
                 return;
+            case StatsType.MaxHP:
+            case StatsType.HP:
             case StatsType.Condition:
             case StatsType.Gems:
             case StatsType.AccountId:
@@ -963,7 +963,7 @@ public class Client {
         }
 
         if (targetCli != null) {
-            targetCli.Player.GuildRank = rank;
+            targetCli.Player.GuildRank = (sbyte)rank;
         }
 
         if (targetRank < rank) {

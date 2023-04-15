@@ -645,24 +645,6 @@ namespace Shared
             get => GetValue<int>("ltBoost");
             set => SetValue("ltBoost", value);
         }
-
-        public int Light
-        {
-            get => GetValue<int>("light");
-            set => SetValue("light", value);
-        }
-
-        public int OffensiveAbility
-        {
-            get => GetValue<int>("offensiveAbility");
-            set => SetValue("offensiveAbility", value);
-        }
-
-        public int DefensiveAbility
-        {
-            get => GetValue<int>("defensiveAbility");
-            set => SetValue("defensiveAbility", value);
-        }
     }
 
     public class DbDeath : RedisObject

@@ -631,16 +631,15 @@ namespace Shared.resources
         {
             switch (index)
             {
-                case 0: return "MaxHitPoints";
-                case 1: return "MaxMagicPoints";
+                case 0: return "Health";
+                case 1: return "Mana";
                 case 2: return "Strength";
-                case 3: return "Armor";
-                case 4: return "Agility";
-                case 5: return "Dexterity";
+                case 3: return "Defense";
+                case 4: return "Speed";
+                case 5: return "Sight";
                 case 6: return "Stamina";
-                case 7: return "Intelligence";
-                case 19: return "Resistance";
-                case 20: return "Wit";
+                case 7: return "Luck";
+                case 8: return "Penetration";
             }
 
             return null;
@@ -658,7 +657,7 @@ namespace Shared.resources
         {
             SlotTypes = e.GetValue<string>("SlotTypes").CommaToArray<int>();
             Equipment = e.GetValue<string>("Equipment").CommaToArray<ushort>();
-            Stats = new Stat[23];
+            Stats = new Stat[9];
             for (var i = 0; i < Stats.Length; i++)
                 Stats[i] = new Stat(i, e);
             if (e.HasElement("UnlockLevel") || e.HasElement("UnlockCost"))

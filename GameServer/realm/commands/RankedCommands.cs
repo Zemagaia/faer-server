@@ -445,7 +445,7 @@ class GuildRankCommand : Command
         player.SendInfo($"You changed the guildrank of player {acc.Name} to {rank}.");
         var target = player.Manager.Clients.Keys.SingleOrDefault(p => p.Account.AccountId == acc.AccountId);
         if (target?.Player == null) return true;
-        target.Player.GuildRank = rank;
+        target.Player.GuildRank = (sbyte)rank;
         target.Player.SendInfo("Your guild rank was changed");
         return true;
     }
@@ -951,8 +951,7 @@ class MaxCommand : Command
         player.Stats.Base[5] = pd.Stats[5].MaxValue;
         player.Stats.Base[6] = pd.Stats[6].MaxValue;
         player.Stats.Base[7] = pd.Stats[7].MaxValue;
-        player.Stats.Base[19] = pd.Stats[19].MaxValue;
-        player.Stats.Base[20] = pd.Stats[20].MaxValue;
+        player.Stats.Base[8] = pd.Stats[8].MaxValue;
 
         player.SendInfo("Your character stats have been maxed.");
         return true;

@@ -321,18 +321,15 @@ class Character
     public ushort ObjectType { get; private set; }
     public int CurrentFame { get; private set; }
     public ushort[] Equipment { get; private set; }
-    public int MaxHitPoints { get; private set; }
-    public int HitPoints { get; private set; }
-    public int MaxMagicPoints { get; private set; }
-    public int MagicPoints { get; private set; }
+    public int Health { get; private set; }
+    public int Mana { get; private set; }
     public int Strength { get; private set; }
-    public int Armor { get; private set; }
-    public int Agility { get; private set; }
-    public int Dexterity { get; private set; }
+    public int Defense { get; private set; }
+    public int Speed { get; private set; }
+    public int Sight { get; private set; }
     public int Stamina { get; private set; }
-    public int MpRegen { get; private set; }
-    public int Resistance { get; private set; }
-    public int Wit { get; private set; }
+    public int Luck { get; private set; }
+    public int Penetration { get; private set; }
     public int Tex1 { get; private set; }
     public int Tex2 { get; private set; }
     public int Skin { get; private set; }
@@ -349,18 +346,15 @@ class Character
             ObjectType = character.ObjectType,
             CurrentFame = character.Fame,
             Equipment = character.Items,
-            MaxHitPoints = character.Stats[0],
-            MaxMagicPoints = character.Stats[1],
-            /*Strength = character.Stats[2],
-            Armor = character.Stats[3],
-            Agility = character.Stats[4],
-            Dexterity = character.Stats[5],
+            Health = character.Stats[0],
+            Mana = character.Stats[1],
+            Strength = character.Stats[2],
+            Defense = character.Stats[3],
+            Speed = character.Stats[4],
+            Sight = character.Stats[5],
             Stamina = character.Stats[6],
-            MpRegen = character.Stats[7],
-            Resistance = character.Stats[19],
-            Wit = character.Stats[20],*/
-            HitPoints = character.HP,
-            MagicPoints = character.MP,
+            Luck = character.Stats[7],
+            Penetration = character.Stats[8],
             Tex1 = character.Tex1,
             Tex2 = character.Tex2,
             Skin = character.Skin,
@@ -378,25 +372,23 @@ class Character
                 new XAttribute("id", CharacterId),
                 new XElement("ObjectType", ObjectType),
                 new XElement("CurrentFame", CurrentFame),
-                new XElement("MaxHitPoints", MaxHitPoints),
-                new XElement("HitPoints", HitPoints),
-                new XElement("MaxMagicPoints", MaxMagicPoints),
-                new XElement("MagicPoints", MagicPoints),
+                new XElement("Health", Health),
+                new XElement("Mana", Mana),
                 new XElement("Strength", Strength),
-                new XElement("Armor", Armor),
-                new XElement("Agility", Agility),
-                new XElement("Dexterity", Dexterity),
+                new XElement("Defense", Defense),
+                new XElement("Speed", Speed),
+                new XElement("Sight", Sight),
                 new XElement("Stamina", Stamina),
-                new XElement("MpRegen", MpRegen),
-                new XElement("Resistance", Resistance),
-                new XElement("Wit", Wit),
+                new XElement("Luck", Luck),
+                new XElement("Penetration", Penetration),
                 new XElement("Tex1", Tex1),
                 new XElement("Tex2", Tex2),
                 new XElement("Texture", Skin),
                 new XElement("HealthStackCount", HealthStackCount),
                 new XElement("MagicStackCount", MagicStackCount),
                 new XElement("Dead", Dead),
-                new XElement("HasBackpack", (HasBackpack) ? "1" : "0")
+                new XElement("HasBackpack", (HasBackpack) ? "1" : "0"),
+                new XElement("Equipment", Equipment.ToCommaSepString())
             );
     }
 }

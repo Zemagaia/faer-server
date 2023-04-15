@@ -1,22 +1,22 @@
 {
   "version": 2,
-  "dgSpecHash": "j0vHURBxacRq/CQPMRs6pEStpXCBD9zweopMChbFBv+bRd26b9vjkpIqfYk65Nwbl+g9tOS0BdgUfOtynAblhg==",
+  "dgSpecHash": "F35etE1XkseTGvVkiDYgwPVvLqbyM1IzOHlyS2T03K0BGgtYZUKJU0pDR4ARcQ8n3mz7ft9cWdtNse2BNPHTfg==",
   "success": true,
-  "projectFilePath": "/home/a/faer/server/LoginServer/LoginServer.csproj",
+  "projectFilePath": "C:\\Users\\fyuwi\\Desktop\\faer-src\\LoginServer\\LoginServer.csproj",
   "expectedPackageFiles": [
-    "/home/a/.nuget/packages/bouncycastle.netcore/1.9.0/bouncycastle.netcore.1.9.0.nupkg.sha512",
-    "/home/a/.nuget/packages/dynamitey/2.0.10.189/dynamitey.2.0.10.189.nupkg.sha512",
-    "/home/a/.nuget/packages/ionic.zlib/1.9.1.5/ionic.zlib.1.9.1.5.nupkg.sha512",
-    "/home/a/.nuget/packages/microsoft.csharp/4.6.0/microsoft.csharp.4.6.0.nupkg.sha512",
-    "/home/a/.nuget/packages/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "/home/a/.nuget/packages/microsoft.netcore.targets/1.1.0/microsoft.netcore.targets.1.1.0.nupkg.sha512",
-    "/home/a/.nuget/packages/newtonsoft.json/13.0.3-beta1/newtonsoft.json.13.0.3-beta1.nupkg.sha512",
-    "/home/a/.nuget/packages/nlog/5.1.2/nlog.5.1.2.nupkg.sha512",
-    "/home/a/.nuget/packages/pipelines.sockets.unofficial/2.2.2/pipelines.sockets.unofficial.2.2.2.nupkg.sha512",
-    "/home/a/.nuget/packages/stackexchange.redis/2.6.96/stackexchange.redis.2.6.96.nupkg.sha512",
-    "/home/a/.nuget/packages/system.componentmodel/4.3.0/system.componentmodel.4.3.0.nupkg.sha512",
-    "/home/a/.nuget/packages/system.io.pipelines/5.0.1/system.io.pipelines.5.0.1.nupkg.sha512",
-    "/home/a/.nuget/packages/system.runtime/4.3.0/system.runtime.4.3.0.nupkg.sha512"
+    "C:\\Users\\fyuwi\\.nuget\\packages\\bouncycastle.netcore\\1.9.0\\bouncycastle.netcore.1.9.0.nupkg.sha512",
+    "C:\\Users\\fyuwi\\.nuget\\packages\\dynamitey\\2.0.10.189\\dynamitey.2.0.10.189.nupkg.sha512",
+    "C:\\Users\\fyuwi\\.nuget\\packages\\ionic.zlib\\1.9.1.5\\ionic.zlib.1.9.1.5.nupkg.sha512",
+    "C:\\Users\\fyuwi\\.nuget\\packages\\microsoft.csharp\\4.6.0\\microsoft.csharp.4.6.0.nupkg.sha512",
+    "C:\\Users\\fyuwi\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\fyuwi\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
+    "C:\\Users\\fyuwi\\.nuget\\packages\\newtonsoft.json\\13.0.3-beta1\\newtonsoft.json.13.0.3-beta1.nupkg.sha512",
+    "C:\\Users\\fyuwi\\.nuget\\packages\\nlog\\5.1.2\\nlog.5.1.2.nupkg.sha512",
+    "C:\\Users\\fyuwi\\.nuget\\packages\\pipelines.sockets.unofficial\\2.2.2\\pipelines.sockets.unofficial.2.2.2.nupkg.sha512",
+    "C:\\Users\\fyuwi\\.nuget\\packages\\stackexchange.redis\\2.6.96\\stackexchange.redis.2.6.96.nupkg.sha512",
+    "C:\\Users\\fyuwi\\.nuget\\packages\\system.componentmodel\\4.3.0\\system.componentmodel.4.3.0.nupkg.sha512",
+    "C:\\Users\\fyuwi\\.nuget\\packages\\system.io.pipelines\\5.0.1\\system.io.pipelines.5.0.1.nupkg.sha512",
+    "C:\\Users\\fyuwi\\.nuget\\packages\\system.runtime\\4.3.0\\system.runtime.4.3.0.nupkg.sha512"
   ],
   "logs": [
     {

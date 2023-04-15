@@ -844,7 +844,7 @@ namespace Shared
                     playerDesc.Stats[5].StartingValue,
                     playerDesc.Stats[6].StartingValue,
                     playerDesc.Stats[7].StartingValue,
-                    playerDesc.Stats[19].StartingValue,
+                    playerDesc.Stats[8].StartingValue,
                 },
                 HP = playerDesc.Stats[0].StartingValue,
                 MP = playerDesc.Stats[1].StartingValue,
@@ -867,7 +867,7 @@ namespace Shared
                     playerDesc.Stats[5].MaxValue,
                     playerDesc.Stats[6].MaxValue,
                     playerDesc.Stats[7].MaxValue,
-                    playerDesc.Stats[19].MaxValue,
+                    playerDesc.Stats[8].MaxValue,
                 };
                 character.HP = character.Stats[0];
                 character.MP = character.Stats[1];

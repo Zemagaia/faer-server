@@ -42,7 +42,6 @@ namespace Shared.resources
             {
                 ChangePass = new ChangePassword(resourcePath + "/data/changePassword");
 
-                webFiles(resourcePath + "/web");
                 languages(resourcePath + "/data/languages");
                 textures(resourcePath + "/textures"); // needs to be loaded after GameData
 
@@ -69,24 +68,6 @@ namespace Shared.resources
                 var xml = XElement.Parse(File.ReadAllText(xmls[i]));
                 foreach (var elem in xml.Elements().Where(x => x.Name == "BehaviorEntry"))
                     yield return elem;
-            }
-        }
-        
-        private void webFiles(string dir)
-        {
-            Log.Info("Loading web data...");
-
-            Dictionary<string, byte[]> webFiles;
-
-            WebFiles = new ReadOnlyDictionary<string, byte[]>(webFiles = new Dictionary<string, byte[]>());
-
-            var files = Directory.EnumerateFiles(dir, "*", SearchOption.AllDirectories);
-            foreach (var file in files)
-            {
-                var webPath = file.Substring(dir.Length, file.Length - dir.Length)
-                    .Replace("\\", "/");
-
-                webFiles[webPath] = File.ReadAllBytes(file);
             }
         }
 

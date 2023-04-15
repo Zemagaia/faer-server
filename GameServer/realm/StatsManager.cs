@@ -8,13 +8,13 @@ namespace GameServer.realm
 {
     public class StatsManager
     {
-        internal const int NumStatTypes = 23;
+        internal const int NumStatTypes = 9;
 
         internal readonly Player Owner;
         internal readonly BaseStatManager Base;
         internal readonly BoostStatManager Boost;
 
-        private readonly SV<int>[] _stats;
+        private readonly SV<short>[] _stats;
 
         public int this[int index] => Base[index] + Boost[index];
 
@@ -24,9 +24,9 @@ namespace GameServer.realm
             Base = new BaseStatManager(this);
             Boost = new BoostStatManager(this);
 
-            _stats = new SV<int>[NumStatTypes];
+            _stats = new SV<short>[NumStatTypes];
             for (var i = 0; i < NumStatTypes; i++)
-                _stats[i] = new SV<int>(Owner, GetStatType(i), this[i],
+                _stats[i] = new SV<short>(Owner, GetStatType(i), (short)this[i],
                     i != 0 && i != 1); // make maxHP and maxMP global update
         }
 
@@ -36,12 +36,12 @@ namespace GameServer.realm
             Boost.ReCalculateValues(e);
 
             for (var i = 0; i < _stats.Length; i++)
-                _stats[i].SetValue(this[i]);
+                _stats[i].SetValue((short)this[i]);
         }
 
         internal void StatChanged(int index)
         {
-            _stats[index].SetValue(this[index]);
+            _stats[index].SetValue((short)this[index]);
         }
 
         public float GetAttackDamage(ProjectileDesc desc, bool isAbility = false)
@@ -187,10 +187,18 @@ namespace GameServer.realm
                     return 1;
                 case StatsType.Strength:
                     return 2;
+                case StatsType.Defense:
+                    return 3;
+                case StatsType.Speed:
+                    return 4;
+                case StatsType.Sight:
+                    return 5;
                 case StatsType.Stamina:
                     return 6;
                 case StatsType.Luck:
-                    return 10;
+                    return 7;
+                case StatsType.Penetration:
+                    return 8;
                 default:
                     return -1;
             }
@@ -206,10 +214,18 @@ namespace GameServer.realm
                     return StatsType.MaxMP;
                 case 2:
                     return StatsType.Strength;
+                case 3:
+                    return StatsType.Defense;
+                case 4:
+                    return StatsType.Speed;
+                case 5:
+                    return StatsType.Sight;
                 case 6:
                     return StatsType.Stamina;
-                case 10:
+                case 7:
                     return StatsType.Luck;
+                case 8:
+                    return StatsType.Penetration;
                 default:
                     return StatsType.None;
             }
@@ -225,10 +241,18 @@ namespace GameServer.realm
                     return StatsType.MPBoost;
                 case 2:
                     return StatsType.StrengthBonus;
+                case 3:
+                    return StatsType.DefenseBonus;
+                case 4:
+                    return StatsType.SpeedBonus;
+                case 5:
+                    return StatsType.SightBonus;
                 case 6:
                     return StatsType.StaminaBonus;
-                case 10:
+                case 7:
                     return StatsType.LuckBonus;
+                case 8:
+                    return StatsType.PenetrationBonus;
                 default:
                     return StatsType.None;
             }

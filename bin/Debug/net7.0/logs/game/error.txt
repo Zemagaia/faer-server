@@ -273,3 +273,632 @@
 2023-04-15 14:37:12.8491|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Circlet" to shop. Item does not exist.
 2023-04-15 14:37:12.8491|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
 2023-04-15 14:37:12.8491|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
+2023-04-15 19:54:48.3752|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Plated Dagger" to shop. Item does not exist.
+2023-04-15 19:54:48.3752|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby-Reinforced Longbow" to shop. Item does not exist.
+2023-04-15 19:54:48.3752|ERROR|Shared.resources.MerchantList|Failed when adding "Staff of Diabolic Secrets" to shop. Item does not exist.
+2023-04-15 19:54:48.3752|ERROR|Shared.resources.MerchantList|Failed when adding "Wand of Dark Magic" to shop. Item does not exist.
+2023-04-15 19:54:48.3752|ERROR|Shared.resources.MerchantList|Failed when adding "Adamant Great Sword" to shop. Item does not exist.
+2023-04-15 19:54:48.3752|ERROR|Shared.resources.MerchantList|Failed when adding "Demon's Edge" to shop. Item does not exist.
+2023-04-15 19:54:48.3752|ERROR|Shared.resources.MerchantList|Failed when adding "Cloak of the Red Agent" to shop. Item does not exist.
+2023-04-15 19:54:48.3752|ERROR|Shared.resources.MerchantList|Failed when adding "Quiver of the Crimson Elf" to shop. Item does not exist.
+2023-04-15 19:54:48.3752|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Nova Spell" to shop. Item does not exist.
+2023-04-15 19:54:48.3752|ERROR|Shared.resources.MerchantList|Failed when adding "Tome of Divine Favor" to shop. Item does not exist.
+2023-04-15 19:54:48.3752|ERROR|Shared.resources.MerchantList|Failed when adding "Helm of the Great General" to shop. Item does not exist.
+2023-04-15 19:54:48.3752|ERROR|Shared.resources.MerchantList|Failed when adding "Colossus Shield" to shop. Item does not exist.
+2023-04-15 19:54:48.3752|ERROR|Shared.resources.MerchantList|Failed when adding "Seal of the Holy Warrior" to shop. Item does not exist.
+2023-04-15 19:54:48.3752|ERROR|Shared.resources.MerchantList|Failed when adding "Nightwing Vial" to shop. Item does not exist.
+2023-04-15 19:54:48.3752|ERROR|Shared.resources.MerchantList|Failed when adding "Lifedrinker Skull" to shop. Item does not exist.
+2023-04-15 19:54:48.3752|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Orb" to shop. Item does not exist.
+2023-04-15 19:54:48.3752|ERROR|Shared.resources.MerchantList|Failed when adding "Scepter of Skybolts" to shop. Item does not exist.
+2023-04-15 19:54:48.3752|ERROR|Shared.resources.MerchantList|Failed when adding "Doom Circle" to shop. Item does not exist.
+2023-04-15 19:54:48.3752|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Totem" to shop. Item does not exist.
+2023-04-15 19:54:48.3752|ERROR|Shared.resources.MerchantList|Failed when adding "Deck of the Ancient" to shop. Item does not exist.
+2023-04-15 19:54:48.3752|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Rune" to shop. Item does not exist.
+2023-04-15 19:54:48.3752|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Conjurer" to shop. Item does not exist.
+2023-04-15 19:54:48.3752|ERROR|Shared.resources.MerchantList|Failed when adding "Gold-Studded Armor" to shop. Item does not exist.
+2023-04-15 19:54:48.3752|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Chestplate" to shop. Item does not exist.
+2023-04-15 19:54:48.3752|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Grand Sorcerer" to shop. Item does not exist.
+2023-04-15 19:54:48.3752|ERROR|Shared.resources.MerchantList|Failed when adding "Wyvern Skin Armor" to shop. Item does not exist.
+2023-04-15 19:54:48.3752|ERROR|Shared.resources.MerchantList|Failed when adding "Dragonscale Chestplate" to shop. Item does not exist.
+2023-04-15 19:54:48.3752|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Ring" to shop. Item does not exist.
+2023-04-15 19:54:48.3752|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Circlet" to shop. Item does not exist.
+2023-04-15 19:54:48.3752|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
+2023-04-15 19:54:48.3752|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
+2023-04-15 19:56:22.5795|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Plated Dagger" to shop. Item does not exist.
+2023-04-15 19:56:22.5795|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby-Reinforced Longbow" to shop. Item does not exist.
+2023-04-15 19:56:22.5795|ERROR|Shared.resources.MerchantList|Failed when adding "Staff of Diabolic Secrets" to shop. Item does not exist.
+2023-04-15 19:56:22.5795|ERROR|Shared.resources.MerchantList|Failed when adding "Wand of Dark Magic" to shop. Item does not exist.
+2023-04-15 19:56:22.5795|ERROR|Shared.resources.MerchantList|Failed when adding "Adamant Great Sword" to shop. Item does not exist.
+2023-04-15 19:56:22.5795|ERROR|Shared.resources.MerchantList|Failed when adding "Demon's Edge" to shop. Item does not exist.
+2023-04-15 19:56:22.5795|ERROR|Shared.resources.MerchantList|Failed when adding "Cloak of the Red Agent" to shop. Item does not exist.
+2023-04-15 19:56:22.5795|ERROR|Shared.resources.MerchantList|Failed when adding "Quiver of the Crimson Elf" to shop. Item does not exist.
+2023-04-15 19:56:22.5795|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Nova Spell" to shop. Item does not exist.
+2023-04-15 19:56:22.5795|ERROR|Shared.resources.MerchantList|Failed when adding "Tome of Divine Favor" to shop. Item does not exist.
+2023-04-15 19:56:22.5795|ERROR|Shared.resources.MerchantList|Failed when adding "Helm of the Great General" to shop. Item does not exist.
+2023-04-15 19:56:22.5795|ERROR|Shared.resources.MerchantList|Failed when adding "Colossus Shield" to shop. Item does not exist.
+2023-04-15 19:56:22.5795|ERROR|Shared.resources.MerchantList|Failed when adding "Seal of the Holy Warrior" to shop. Item does not exist.
+2023-04-15 19:56:22.5795|ERROR|Shared.resources.MerchantList|Failed when adding "Nightwing Vial" to shop. Item does not exist.
+2023-04-15 19:56:22.5795|ERROR|Shared.resources.MerchantList|Failed when adding "Lifedrinker Skull" to shop. Item does not exist.
+2023-04-15 19:56:22.5795|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Orb" to shop. Item does not exist.
+2023-04-15 19:56:22.5795|ERROR|Shared.resources.MerchantList|Failed when adding "Scepter of Skybolts" to shop. Item does not exist.
+2023-04-15 19:56:22.5795|ERROR|Shared.resources.MerchantList|Failed when adding "Doom Circle" to shop. Item does not exist.
+2023-04-15 19:56:22.5795|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Totem" to shop. Item does not exist.
+2023-04-15 19:56:22.5795|ERROR|Shared.resources.MerchantList|Failed when adding "Deck of the Ancient" to shop. Item does not exist.
+2023-04-15 19:56:22.5795|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Rune" to shop. Item does not exist.
+2023-04-15 19:56:22.5795|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Conjurer" to shop. Item does not exist.
+2023-04-15 19:56:22.5795|ERROR|Shared.resources.MerchantList|Failed when adding "Gold-Studded Armor" to shop. Item does not exist.
+2023-04-15 19:56:22.5795|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Chestplate" to shop. Item does not exist.
+2023-04-15 19:56:22.5795|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Grand Sorcerer" to shop. Item does not exist.
+2023-04-15 19:56:22.5795|ERROR|Shared.resources.MerchantList|Failed when adding "Wyvern Skin Armor" to shop. Item does not exist.
+2023-04-15 19:56:22.5795|ERROR|Shared.resources.MerchantList|Failed when adding "Dragonscale Chestplate" to shop. Item does not exist.
+2023-04-15 19:56:22.5795|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Ring" to shop. Item does not exist.
+2023-04-15 19:56:22.5795|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Circlet" to shop. Item does not exist.
+2023-04-15 19:56:22.5795|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
+2023-04-15 19:56:22.5795|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
+2023-04-15 20:15:49.1543|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Plated Dagger" to shop. Item does not exist.
+2023-04-15 20:15:49.1543|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby-Reinforced Longbow" to shop. Item does not exist.
+2023-04-15 20:15:49.1543|ERROR|Shared.resources.MerchantList|Failed when adding "Staff of Diabolic Secrets" to shop. Item does not exist.
+2023-04-15 20:15:49.1543|ERROR|Shared.resources.MerchantList|Failed when adding "Wand of Dark Magic" to shop. Item does not exist.
+2023-04-15 20:15:49.1543|ERROR|Shared.resources.MerchantList|Failed when adding "Adamant Great Sword" to shop. Item does not exist.
+2023-04-15 20:15:49.1543|ERROR|Shared.resources.MerchantList|Failed when adding "Demon's Edge" to shop. Item does not exist.
+2023-04-15 20:15:49.1543|ERROR|Shared.resources.MerchantList|Failed when adding "Cloak of the Red Agent" to shop. Item does not exist.
+2023-04-15 20:15:49.1543|ERROR|Shared.resources.MerchantList|Failed when adding "Quiver of the Crimson Elf" to shop. Item does not exist.
+2023-04-15 20:15:49.1543|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Nova Spell" to shop. Item does not exist.
+2023-04-15 20:15:49.1543|ERROR|Shared.resources.MerchantList|Failed when adding "Tome of Divine Favor" to shop. Item does not exist.
+2023-04-15 20:15:49.1543|ERROR|Shared.resources.MerchantList|Failed when adding "Helm of the Great General" to shop. Item does not exist.
+2023-04-15 20:15:49.1543|ERROR|Shared.resources.MerchantList|Failed when adding "Colossus Shield" to shop. Item does not exist.
+2023-04-15 20:15:49.1543|ERROR|Shared.resources.MerchantList|Failed when adding "Seal of the Holy Warrior" to shop. Item does not exist.
+2023-04-15 20:15:49.1543|ERROR|Shared.resources.MerchantList|Failed when adding "Nightwing Vial" to shop. Item does not exist.
+2023-04-15 20:15:49.1543|ERROR|Shared.resources.MerchantList|Failed when adding "Lifedrinker Skull" to shop. Item does not exist.
+2023-04-15 20:15:49.1543|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Orb" to shop. Item does not exist.
+2023-04-15 20:15:49.1543|ERROR|Shared.resources.MerchantList|Failed when adding "Scepter of Skybolts" to shop. Item does not exist.
+2023-04-15 20:15:49.1543|ERROR|Shared.resources.MerchantList|Failed when adding "Doom Circle" to shop. Item does not exist.
+2023-04-15 20:15:49.1543|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Totem" to shop. Item does not exist.
+2023-04-15 20:15:49.1543|ERROR|Shared.resources.MerchantList|Failed when adding "Deck of the Ancient" to shop. Item does not exist.
+2023-04-15 20:15:49.1543|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Rune" to shop. Item does not exist.
+2023-04-15 20:15:49.1543|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Conjurer" to shop. Item does not exist.
+2023-04-15 20:15:49.1543|ERROR|Shared.resources.MerchantList|Failed when adding "Gold-Studded Armor" to shop. Item does not exist.
+2023-04-15 20:15:49.1543|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Chestplate" to shop. Item does not exist.
+2023-04-15 20:15:49.1543|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Grand Sorcerer" to shop. Item does not exist.
+2023-04-15 20:15:49.1543|ERROR|Shared.resources.MerchantList|Failed when adding "Wyvern Skin Armor" to shop. Item does not exist.
+2023-04-15 20:15:49.1543|ERROR|Shared.resources.MerchantList|Failed when adding "Dragonscale Chestplate" to shop. Item does not exist.
+2023-04-15 20:15:49.1543|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Ring" to shop. Item does not exist.
+2023-04-15 20:15:49.1543|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Circlet" to shop. Item does not exist.
+2023-04-15 20:15:49.1543|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
+2023-04-15 20:15:49.1543|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
+2023-04-15 20:16:05.0692|ERROR|GameServer.realm.worlds.World|Value was either too large or too small for an Int16.
+   at System.Convert.ThrowInt16OverflowException()
+   at System.Convert.ToInt16(Int32 value)
+   at GameServer.Client.SendUpdate(TileData[] tiles, ObjectDef[] newObjs, Int32[] drops) in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 500
+   at GameServer.realm.entities.player.Player.SendUpdate(RealmTime time) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.Update.cs:line 172
+   at GameServer.realm.entities.player.Player.Tick(RealmTime time) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 468
+   at GameServer.realm.worlds.World.Tick(RealmTime time) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\worlds\World.cs:line 578
+2023-04-15 20:16:05.0692|ERROR|GameServer.realm.worlds.World|Object already added into collision map.
+   at GameServer.realm.CollisionMap`1.Insert(T obj) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\Collision.cs:line 86
+   at GameServer.realm.worlds.World.EnterWorld(Entity entity) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\worlds\World.cs:line 355
+   at GameServer.realm.ConnectManager.Reconnect(Client client, Int32 gameId) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\ConnectManager.cs:line 56
+   at GameServer.Client.Reconnect(String name, Int32 gameId) in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 610
+   at GameServer.realm.entities.player.Player.ReconnectToNexus() in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 867
+   at GameServer.realm.entities.player.Player.Rekted(Boolean rekt) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 827
+   at GameServer.realm.entities.player.Player.Death(String killer, Entity entity, WmapTile tile, Boolean rekt) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 944
+   at GameServer.realm.entities.player.Player.Tick(RealmTime time) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 473
+   at GameServer.realm.worlds.World.Tick(RealmTime time) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\worlds\World.cs:line 578
+2023-04-15 20:16:05.0893|ERROR|GameServer.Client|Object reference not set to an instance of an object.
+   at GameServer.realm.entities.player.Player.get_Fame() in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 46
+   at GameServer.realm.entities.player.Player.SaveToCharacter() in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 301
+   at GameServer.Client.Save() in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 1621
+   at GameServer.Client.Disconnect(String reason) in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 1602
+2023-04-15 20:16:05.0893|ERROR|GameServer.Client|Could not send data to Fiow (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 128
+2023-04-15 20:17:11.4558|ERROR|GameServer.realm.worlds.World|Value was either too large or too small for an Int16.
+   at System.Convert.ThrowInt16OverflowException()
+   at System.Convert.ToInt16(Int32 value)
+   at GameServer.Client.SendUpdate(TileData[] tiles, ObjectDef[] newObjs, Int32[] drops) in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 500
+   at GameServer.realm.entities.player.Player.SendUpdate(RealmTime time) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.Update.cs:line 172
+   at GameServer.realm.entities.player.Player.Tick(RealmTime time) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 468
+   at GameServer.realm.worlds.World.Tick(RealmTime time) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\worlds\World.cs:line 578
+2023-04-15 20:17:11.5608|ERROR|GameServer.realm.worlds.World|Object already added into collision map.
+   at GameServer.realm.CollisionMap`1.Insert(T obj) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\Collision.cs:line 86
+   at GameServer.realm.worlds.World.EnterWorld(Entity entity) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\worlds\World.cs:line 355
+   at GameServer.realm.ConnectManager.Reconnect(Client client, Int32 gameId) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\ConnectManager.cs:line 56
+   at GameServer.Client.Reconnect(String name, Int32 gameId) in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 610
+   at GameServer.realm.entities.player.Player.ReconnectToNexus() in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 867
+   at GameServer.realm.entities.player.Player.Rekted(Boolean rekt) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 827
+   at GameServer.realm.entities.player.Player.Death(String killer, Entity entity, WmapTile tile, Boolean rekt) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 944
+   at GameServer.realm.entities.player.Player.Tick(RealmTime time) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 473
+   at GameServer.realm.worlds.World.Tick(RealmTime time) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\worlds\World.cs:line 578
+2023-04-15 20:17:11.6082|ERROR|GameServer.Client|Object reference not set to an instance of an object.
+   at GameServer.realm.entities.player.Player.get_Fame() in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 46
+   at GameServer.realm.entities.player.Player.SaveToCharacter() in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 301
+   at GameServer.Client.Save() in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 1621
+   at GameServer.Client.Disconnect(String reason) in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 1602
+2023-04-15 20:17:11.6082|ERROR|GameServer.Client|Could not send data to Fiow (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 128
+2023-04-15 20:25:24.9243|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Plated Dagger" to shop. Item does not exist.
+2023-04-15 20:25:24.9243|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby-Reinforced Longbow" to shop. Item does not exist.
+2023-04-15 20:25:24.9243|ERROR|Shared.resources.MerchantList|Failed when adding "Staff of Diabolic Secrets" to shop. Item does not exist.
+2023-04-15 20:25:24.9243|ERROR|Shared.resources.MerchantList|Failed when adding "Wand of Dark Magic" to shop. Item does not exist.
+2023-04-15 20:25:24.9243|ERROR|Shared.resources.MerchantList|Failed when adding "Adamant Great Sword" to shop. Item does not exist.
+2023-04-15 20:25:24.9243|ERROR|Shared.resources.MerchantList|Failed when adding "Demon's Edge" to shop. Item does not exist.
+2023-04-15 20:25:24.9243|ERROR|Shared.resources.MerchantList|Failed when adding "Cloak of the Red Agent" to shop. Item does not exist.
+2023-04-15 20:25:24.9243|ERROR|Shared.resources.MerchantList|Failed when adding "Quiver of the Crimson Elf" to shop. Item does not exist.
+2023-04-15 20:25:24.9243|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Nova Spell" to shop. Item does not exist.
+2023-04-15 20:25:24.9243|ERROR|Shared.resources.MerchantList|Failed when adding "Tome of Divine Favor" to shop. Item does not exist.
+2023-04-15 20:25:24.9243|ERROR|Shared.resources.MerchantList|Failed when adding "Helm of the Great General" to shop. Item does not exist.
+2023-04-15 20:25:24.9243|ERROR|Shared.resources.MerchantList|Failed when adding "Colossus Shield" to shop. Item does not exist.
+2023-04-15 20:25:24.9243|ERROR|Shared.resources.MerchantList|Failed when adding "Seal of the Holy Warrior" to shop. Item does not exist.
+2023-04-15 20:25:24.9243|ERROR|Shared.resources.MerchantList|Failed when adding "Nightwing Vial" to shop. Item does not exist.
+2023-04-15 20:25:24.9243|ERROR|Shared.resources.MerchantList|Failed when adding "Lifedrinker Skull" to shop. Item does not exist.
+2023-04-15 20:25:24.9243|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Orb" to shop. Item does not exist.
+2023-04-15 20:25:24.9243|ERROR|Shared.resources.MerchantList|Failed when adding "Scepter of Skybolts" to shop. Item does not exist.
+2023-04-15 20:25:24.9243|ERROR|Shared.resources.MerchantList|Failed when adding "Doom Circle" to shop. Item does not exist.
+2023-04-15 20:25:24.9243|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Totem" to shop. Item does not exist.
+2023-04-15 20:25:24.9243|ERROR|Shared.resources.MerchantList|Failed when adding "Deck of the Ancient" to shop. Item does not exist.
+2023-04-15 20:25:24.9243|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Rune" to shop. Item does not exist.
+2023-04-15 20:25:24.9243|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Conjurer" to shop. Item does not exist.
+2023-04-15 20:25:24.9243|ERROR|Shared.resources.MerchantList|Failed when adding "Gold-Studded Armor" to shop. Item does not exist.
+2023-04-15 20:25:24.9243|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Chestplate" to shop. Item does not exist.
+2023-04-15 20:25:24.9243|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Grand Sorcerer" to shop. Item does not exist.
+2023-04-15 20:25:24.9243|ERROR|Shared.resources.MerchantList|Failed when adding "Wyvern Skin Armor" to shop. Item does not exist.
+2023-04-15 20:25:24.9243|ERROR|Shared.resources.MerchantList|Failed when adding "Dragonscale Chestplate" to shop. Item does not exist.
+2023-04-15 20:25:24.9243|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Ring" to shop. Item does not exist.
+2023-04-15 20:25:24.9243|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Circlet" to shop. Item does not exist.
+2023-04-15 20:25:24.9243|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
+2023-04-15 20:25:24.9243|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
+2023-04-15 20:25:50.9972|ERROR|GameServer.realm.worlds.World|Value was either too large or too small for an Int16.
+   at System.Convert.ThrowInt16OverflowException()
+   at System.Convert.ToInt16(Int32 value)
+   at GameServer.Client.SendUpdate(TileData[] tiles, ObjectDef[] newObjs, Int32[] drops) in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 500
+   at GameServer.realm.entities.player.Player.SendUpdate(RealmTime time) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.Update.cs:line 172
+   at GameServer.realm.entities.player.Player.Tick(RealmTime time) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 467
+   at GameServer.realm.worlds.World.Tick(RealmTime time) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\worlds\World.cs:line 578
+2023-04-15 20:25:51.1543|ERROR|GameServer.realm.worlds.World|Object already added into collision map.
+   at GameServer.realm.CollisionMap`1.Insert(T obj) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\Collision.cs:line 86
+   at GameServer.realm.worlds.World.EnterWorld(Entity entity) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\worlds\World.cs:line 355
+   at GameServer.realm.ConnectManager.Reconnect(Client client, Int32 gameId) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\ConnectManager.cs:line 56
+   at GameServer.Client.Reconnect(String name, Int32 gameId) in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 610
+   at GameServer.realm.entities.player.Player.ReconnectToNexus() in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 866
+   at GameServer.realm.entities.player.Player.Rekted(Boolean rekt) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 826
+   at GameServer.realm.entities.player.Player.Death(String killer, Entity entity, WmapTile tile, Boolean rekt) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 943
+   at GameServer.realm.entities.player.Player.Tick(RealmTime time) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 472
+   at GameServer.realm.worlds.World.Tick(RealmTime time) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\worlds\World.cs:line 578
+2023-04-15 20:25:51.1714|ERROR|GameServer.realm.worlds.World|Value was either too large or too small for an Int16.
+   at System.Convert.ThrowInt16OverflowException()
+   at System.Convert.ToInt16(Int32 value)
+   at GameServer.Client.SendUpdate(TileData[] tiles, ObjectDef[] newObjs, Int32[] drops) in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 500
+   at GameServer.realm.entities.player.Player.SendUpdate(RealmTime time) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.Update.cs:line 172
+   at GameServer.realm.entities.player.Player.Tick(RealmTime time) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 467
+   at GameServer.realm.worlds.World.Tick(RealmTime time) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\worlds\World.cs:line 578
+2023-04-15 20:25:51.6839|ERROR|GameServer.Client|Object reference not set to an instance of an object.
+   at GameServer.realm.entities.player.Player.get_Light() in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 178
+   at GameServer.realm.entities.player.Player.SaveToCharacter() in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 315
+   at GameServer.Client.Save() in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 1621
+   at GameServer.Client.Disconnect(String reason) in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 1602
+2023-04-15 20:33:46.0355|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Plated Dagger" to shop. Item does not exist.
+2023-04-15 20:33:46.0355|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby-Reinforced Longbow" to shop. Item does not exist.
+2023-04-15 20:33:46.0355|ERROR|Shared.resources.MerchantList|Failed when adding "Staff of Diabolic Secrets" to shop. Item does not exist.
+2023-04-15 20:33:46.0355|ERROR|Shared.resources.MerchantList|Failed when adding "Wand of Dark Magic" to shop. Item does not exist.
+2023-04-15 20:33:46.0355|ERROR|Shared.resources.MerchantList|Failed when adding "Adamant Great Sword" to shop. Item does not exist.
+2023-04-15 20:33:46.0355|ERROR|Shared.resources.MerchantList|Failed when adding "Demon's Edge" to shop. Item does not exist.
+2023-04-15 20:33:46.0355|ERROR|Shared.resources.MerchantList|Failed when adding "Cloak of the Red Agent" to shop. Item does not exist.
+2023-04-15 20:33:46.0355|ERROR|Shared.resources.MerchantList|Failed when adding "Quiver of the Crimson Elf" to shop. Item does not exist.
+2023-04-15 20:33:46.0355|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Nova Spell" to shop. Item does not exist.
+2023-04-15 20:33:46.0355|ERROR|Shared.resources.MerchantList|Failed when adding "Tome of Divine Favor" to shop. Item does not exist.
+2023-04-15 20:33:46.0355|ERROR|Shared.resources.MerchantList|Failed when adding "Helm of the Great General" to shop. Item does not exist.
+2023-04-15 20:33:46.0355|ERROR|Shared.resources.MerchantList|Failed when adding "Colossus Shield" to shop. Item does not exist.
+2023-04-15 20:33:46.0355|ERROR|Shared.resources.MerchantList|Failed when adding "Seal of the Holy Warrior" to shop. Item does not exist.
+2023-04-15 20:33:46.0355|ERROR|Shared.resources.MerchantList|Failed when adding "Nightwing Vial" to shop. Item does not exist.
+2023-04-15 20:33:46.0355|ERROR|Shared.resources.MerchantList|Failed when adding "Lifedrinker Skull" to shop. Item does not exist.
+2023-04-15 20:33:46.0355|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Orb" to shop. Item does not exist.
+2023-04-15 20:33:46.0355|ERROR|Shared.resources.MerchantList|Failed when adding "Scepter of Skybolts" to shop. Item does not exist.
+2023-04-15 20:33:46.0355|ERROR|Shared.resources.MerchantList|Failed when adding "Doom Circle" to shop. Item does not exist.
+2023-04-15 20:33:46.0355|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Totem" to shop. Item does not exist.
+2023-04-15 20:33:46.0355|ERROR|Shared.resources.MerchantList|Failed when adding "Deck of the Ancient" to shop. Item does not exist.
+2023-04-15 20:33:46.0355|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Rune" to shop. Item does not exist.
+2023-04-15 20:33:46.0355|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Conjurer" to shop. Item does not exist.
+2023-04-15 20:33:46.0355|ERROR|Shared.resources.MerchantList|Failed when adding "Gold-Studded Armor" to shop. Item does not exist.
+2023-04-15 20:33:46.0355|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Chestplate" to shop. Item does not exist.
+2023-04-15 20:33:46.0355|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Grand Sorcerer" to shop. Item does not exist.
+2023-04-15 20:33:46.0355|ERROR|Shared.resources.MerchantList|Failed when adding "Wyvern Skin Armor" to shop. Item does not exist.
+2023-04-15 20:33:46.0355|ERROR|Shared.resources.MerchantList|Failed when adding "Dragonscale Chestplate" to shop. Item does not exist.
+2023-04-15 20:33:46.0355|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Ring" to shop. Item does not exist.
+2023-04-15 20:33:46.0355|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Circlet" to shop. Item does not exist.
+2023-04-15 20:33:46.0355|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
+2023-04-15 20:33:46.0355|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
+2023-04-15 20:34:29.0929|ERROR|GameServer.Client|Could not send data to Fiow (127.0.0.1): System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at GameServer.realm.BaseStatManager.SetWeaponDamage(InventoryChangedEventArgs e) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\BaseStatManager.cs:line 53
+   at GameServer.realm.BaseStatManager.ReCalculateValues(InventoryChangedEventArgs e) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\BaseStatManager.cs:line 38
+   at GameServer.realm.BaseStatManager..ctor(StatsManager parent) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\BaseStatManager.cs:line 18
+   at GameServer.realm.StatsManager..ctor(Player owner) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\StatsManager.cs:line 24
+   at GameServer.realm.entities.player.Player..ctor(Client client, Boolean saveInventory) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 401
+   at GameServer.realm.ConnectManager.Connect(Client client, Int32 gameId, Int32 charId) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\ConnectManager.cs:line 125
+   at GameServer.Client.Receive() in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 128
+2023-04-15 20:37:54.6028|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Plated Dagger" to shop. Item does not exist.
+2023-04-15 20:37:54.6028|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby-Reinforced Longbow" to shop. Item does not exist.
+2023-04-15 20:37:54.6028|ERROR|Shared.resources.MerchantList|Failed when adding "Staff of Diabolic Secrets" to shop. Item does not exist.
+2023-04-15 20:37:54.6028|ERROR|Shared.resources.MerchantList|Failed when adding "Wand of Dark Magic" to shop. Item does not exist.
+2023-04-15 20:37:54.6028|ERROR|Shared.resources.MerchantList|Failed when adding "Adamant Great Sword" to shop. Item does not exist.
+2023-04-15 20:37:54.6028|ERROR|Shared.resources.MerchantList|Failed when adding "Demon's Edge" to shop. Item does not exist.
+2023-04-15 20:37:54.6028|ERROR|Shared.resources.MerchantList|Failed when adding "Cloak of the Red Agent" to shop. Item does not exist.
+2023-04-15 20:37:54.6028|ERROR|Shared.resources.MerchantList|Failed when adding "Quiver of the Crimson Elf" to shop. Item does not exist.
+2023-04-15 20:37:54.6028|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Nova Spell" to shop. Item does not exist.
+2023-04-15 20:37:54.6028|ERROR|Shared.resources.MerchantList|Failed when adding "Tome of Divine Favor" to shop. Item does not exist.
+2023-04-15 20:37:54.6028|ERROR|Shared.resources.MerchantList|Failed when adding "Helm of the Great General" to shop. Item does not exist.
+2023-04-15 20:37:54.6028|ERROR|Shared.resources.MerchantList|Failed when adding "Colossus Shield" to shop. Item does not exist.
+2023-04-15 20:37:54.6028|ERROR|Shared.resources.MerchantList|Failed when adding "Seal of the Holy Warrior" to shop. Item does not exist.
+2023-04-15 20:37:54.6028|ERROR|Shared.resources.MerchantList|Failed when adding "Nightwing Vial" to shop. Item does not exist.
+2023-04-15 20:37:54.6028|ERROR|Shared.resources.MerchantList|Failed when adding "Lifedrinker Skull" to shop. Item does not exist.
+2023-04-15 20:37:54.6028|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Orb" to shop. Item does not exist.
+2023-04-15 20:37:54.6028|ERROR|Shared.resources.MerchantList|Failed when adding "Scepter of Skybolts" to shop. Item does not exist.
+2023-04-15 20:37:54.6028|ERROR|Shared.resources.MerchantList|Failed when adding "Doom Circle" to shop. Item does not exist.
+2023-04-15 20:37:54.6028|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Totem" to shop. Item does not exist.
+2023-04-15 20:37:54.6028|ERROR|Shared.resources.MerchantList|Failed when adding "Deck of the Ancient" to shop. Item does not exist.
+2023-04-15 20:37:54.6028|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Rune" to shop. Item does not exist.
+2023-04-15 20:37:54.6028|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Conjurer" to shop. Item does not exist.
+2023-04-15 20:37:54.6028|ERROR|Shared.resources.MerchantList|Failed when adding "Gold-Studded Armor" to shop. Item does not exist.
+2023-04-15 20:37:54.6028|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Chestplate" to shop. Item does not exist.
+2023-04-15 20:37:54.6028|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Grand Sorcerer" to shop. Item does not exist.
+2023-04-15 20:37:54.6028|ERROR|Shared.resources.MerchantList|Failed when adding "Wyvern Skin Armor" to shop. Item does not exist.
+2023-04-15 20:37:54.6028|ERROR|Shared.resources.MerchantList|Failed when adding "Dragonscale Chestplate" to shop. Item does not exist.
+2023-04-15 20:37:54.6028|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Ring" to shop. Item does not exist.
+2023-04-15 20:37:54.6028|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Circlet" to shop. Item does not exist.
+2023-04-15 20:37:54.6028|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
+2023-04-15 20:37:54.6028|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
+2023-04-15 20:38:26.9432|ERROR|GameServer.Client|Object reference not set to an instance of an object.
+   at GameServer.realm.entities.player.Player.get_Light() in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 178
+   at GameServer.realm.entities.player.Player.SaveToCharacter() in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 323
+   at GameServer.Client.Save() in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 1621
+   at GameServer.Client.Disconnect(String reason) in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 1602
+2023-04-15 20:38:26.9473|ERROR|GameServer.realm.worlds.World|Index was outside the bounds of the array.
+   at GameServer.realm.BaseStatManager.get_Item(Int32 index) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\BaseStatManager.cs:line 28
+   at GameServer.realm.entities.player.Player.<GenerateGravestone>b__243_0(Stat t, Int32 i) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 756
+   at System.Linq.Enumerable.WhereIterator[TSource](IEnumerable`1 source, Func`3 predicate)+MoveNext()
+   at System.Linq.Enumerable.Count[TSource](IEnumerable`1 source)
+   at GameServer.realm.entities.player.Player.GenerateGravestone(Boolean phantomDeath) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 756
+   at GameServer.realm.entities.player.Player.Rekted(Boolean rekt) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 833
+   at GameServer.realm.entities.player.Player.Death(String killer, Entity entity, WmapTile tile, Boolean rekt) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 951
+   at GameServer.realm.entities.player.Player.Tick(RealmTime time) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 480
+   at GameServer.realm.worlds.World.Tick(RealmTime time) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\worlds\World.cs:line 578
+2023-04-15 20:40:18.0215|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Plated Dagger" to shop. Item does not exist.
+2023-04-15 20:40:18.0215|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby-Reinforced Longbow" to shop. Item does not exist.
+2023-04-15 20:40:18.0215|ERROR|Shared.resources.MerchantList|Failed when adding "Staff of Diabolic Secrets" to shop. Item does not exist.
+2023-04-15 20:40:18.0215|ERROR|Shared.resources.MerchantList|Failed when adding "Wand of Dark Magic" to shop. Item does not exist.
+2023-04-15 20:40:18.0215|ERROR|Shared.resources.MerchantList|Failed when adding "Adamant Great Sword" to shop. Item does not exist.
+2023-04-15 20:40:18.0215|ERROR|Shared.resources.MerchantList|Failed when adding "Demon's Edge" to shop. Item does not exist.
+2023-04-15 20:40:18.0215|ERROR|Shared.resources.MerchantList|Failed when adding "Cloak of the Red Agent" to shop. Item does not exist.
+2023-04-15 20:40:18.0215|ERROR|Shared.resources.MerchantList|Failed when adding "Quiver of the Crimson Elf" to shop. Item does not exist.
+2023-04-15 20:40:18.0215|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Nova Spell" to shop. Item does not exist.
+2023-04-15 20:40:18.0215|ERROR|Shared.resources.MerchantList|Failed when adding "Tome of Divine Favor" to shop. Item does not exist.
+2023-04-15 20:40:18.0215|ERROR|Shared.resources.MerchantList|Failed when adding "Helm of the Great General" to shop. Item does not exist.
+2023-04-15 20:40:18.0215|ERROR|Shared.resources.MerchantList|Failed when adding "Colossus Shield" to shop. Item does not exist.
+2023-04-15 20:40:18.0215|ERROR|Shared.resources.MerchantList|Failed when adding "Seal of the Holy Warrior" to shop. Item does not exist.
+2023-04-15 20:40:18.0220|ERROR|Shared.resources.MerchantList|Failed when adding "Nightwing Vial" to shop. Item does not exist.
+2023-04-15 20:40:18.0220|ERROR|Shared.resources.MerchantList|Failed when adding "Lifedrinker Skull" to shop. Item does not exist.
+2023-04-15 20:40:18.0220|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Orb" to shop. Item does not exist.
+2023-04-15 20:40:18.0220|ERROR|Shared.resources.MerchantList|Failed when adding "Scepter of Skybolts" to shop. Item does not exist.
+2023-04-15 20:40:18.0220|ERROR|Shared.resources.MerchantList|Failed when adding "Doom Circle" to shop. Item does not exist.
+2023-04-15 20:40:18.0220|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Totem" to shop. Item does not exist.
+2023-04-15 20:40:18.0220|ERROR|Shared.resources.MerchantList|Failed when adding "Deck of the Ancient" to shop. Item does not exist.
+2023-04-15 20:40:18.0220|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Rune" to shop. Item does not exist.
+2023-04-15 20:40:18.0220|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Conjurer" to shop. Item does not exist.
+2023-04-15 20:40:18.0220|ERROR|Shared.resources.MerchantList|Failed when adding "Gold-Studded Armor" to shop. Item does not exist.
+2023-04-15 20:40:18.0220|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Chestplate" to shop. Item does not exist.
+2023-04-15 20:40:18.0220|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Grand Sorcerer" to shop. Item does not exist.
+2023-04-15 20:40:18.0220|ERROR|Shared.resources.MerchantList|Failed when adding "Wyvern Skin Armor" to shop. Item does not exist.
+2023-04-15 20:40:18.0220|ERROR|Shared.resources.MerchantList|Failed when adding "Dragonscale Chestplate" to shop. Item does not exist.
+2023-04-15 20:40:18.0220|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Ring" to shop. Item does not exist.
+2023-04-15 20:40:18.0220|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Circlet" to shop. Item does not exist.
+2023-04-15 20:40:18.0220|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
+2023-04-15 20:40:18.0220|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
+2023-04-15 20:40:38.5193|ERROR|GameServer.realm.worlds.World|Index was outside the bounds of the array.
+   at GameServer.realm.BaseStatManager.get_Item(Int32 index) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\BaseStatManager.cs:line 28
+   at GameServer.realm.entities.player.Player.<GenerateGravestone>b__222_0(Stat t, Int32 i) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 721
+   at System.Linq.Enumerable.WhereIterator[TSource](IEnumerable`1 source, Func`3 predicate)+MoveNext()
+   at System.Linq.Enumerable.Count[TSource](IEnumerable`1 source)
+   at GameServer.realm.entities.player.Player.GenerateGravestone(Boolean phantomDeath) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 721
+   at GameServer.realm.entities.player.Player.Rekted(Boolean rekt) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 798
+   at GameServer.realm.entities.player.Player.Death(String killer, Entity entity, WmapTile tile, Boolean rekt) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 916
+   at GameServer.realm.entities.player.Player.Tick(RealmTime time) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 445
+   at GameServer.realm.worlds.World.Tick(RealmTime time) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\worlds\World.cs:line 578
+2023-04-15 20:43:32.6872|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Plated Dagger" to shop. Item does not exist.
+2023-04-15 20:43:32.6872|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby-Reinforced Longbow" to shop. Item does not exist.
+2023-04-15 20:43:32.6872|ERROR|Shared.resources.MerchantList|Failed when adding "Staff of Diabolic Secrets" to shop. Item does not exist.
+2023-04-15 20:43:32.6872|ERROR|Shared.resources.MerchantList|Failed when adding "Wand of Dark Magic" to shop. Item does not exist.
+2023-04-15 20:43:32.6872|ERROR|Shared.resources.MerchantList|Failed when adding "Adamant Great Sword" to shop. Item does not exist.
+2023-04-15 20:43:32.6872|ERROR|Shared.resources.MerchantList|Failed when adding "Demon's Edge" to shop. Item does not exist.
+2023-04-15 20:43:32.6872|ERROR|Shared.resources.MerchantList|Failed when adding "Cloak of the Red Agent" to shop. Item does not exist.
+2023-04-15 20:43:32.6872|ERROR|Shared.resources.MerchantList|Failed when adding "Quiver of the Crimson Elf" to shop. Item does not exist.
+2023-04-15 20:43:32.6872|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Nova Spell" to shop. Item does not exist.
+2023-04-15 20:43:32.6872|ERROR|Shared.resources.MerchantList|Failed when adding "Tome of Divine Favor" to shop. Item does not exist.
+2023-04-15 20:43:32.6872|ERROR|Shared.resources.MerchantList|Failed when adding "Helm of the Great General" to shop. Item does not exist.
+2023-04-15 20:43:32.6872|ERROR|Shared.resources.MerchantList|Failed when adding "Colossus Shield" to shop. Item does not exist.
+2023-04-15 20:43:32.6872|ERROR|Shared.resources.MerchantList|Failed when adding "Seal of the Holy Warrior" to shop. Item does not exist.
+2023-04-15 20:43:32.6872|ERROR|Shared.resources.MerchantList|Failed when adding "Nightwing Vial" to shop. Item does not exist.
+2023-04-15 20:43:32.6872|ERROR|Shared.resources.MerchantList|Failed when adding "Lifedrinker Skull" to shop. Item does not exist.
+2023-04-15 20:43:32.6872|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Orb" to shop. Item does not exist.
+2023-04-15 20:43:32.6872|ERROR|Shared.resources.MerchantList|Failed when adding "Scepter of Skybolts" to shop. Item does not exist.
+2023-04-15 20:43:32.6872|ERROR|Shared.resources.MerchantList|Failed when adding "Doom Circle" to shop. Item does not exist.
+2023-04-15 20:43:32.6872|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Totem" to shop. Item does not exist.
+2023-04-15 20:43:32.6872|ERROR|Shared.resources.MerchantList|Failed when adding "Deck of the Ancient" to shop. Item does not exist.
+2023-04-15 20:43:32.6872|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Rune" to shop. Item does not exist.
+2023-04-15 20:43:32.6872|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Conjurer" to shop. Item does not exist.
+2023-04-15 20:43:32.6872|ERROR|Shared.resources.MerchantList|Failed when adding "Gold-Studded Armor" to shop. Item does not exist.
+2023-04-15 20:43:32.6872|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Chestplate" to shop. Item does not exist.
+2023-04-15 20:43:32.6872|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Grand Sorcerer" to shop. Item does not exist.
+2023-04-15 20:43:32.6872|ERROR|Shared.resources.MerchantList|Failed when adding "Wyvern Skin Armor" to shop. Item does not exist.
+2023-04-15 20:43:32.6872|ERROR|Shared.resources.MerchantList|Failed when adding "Dragonscale Chestplate" to shop. Item does not exist.
+2023-04-15 20:43:32.6872|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Ring" to shop. Item does not exist.
+2023-04-15 20:43:32.6872|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Circlet" to shop. Item does not exist.
+2023-04-15 20:43:32.6872|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
+2023-04-15 20:43:32.6872|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
+2023-04-15 20:44:05.5849|ERROR|GameServer.realm.worlds.World|Index was outside the bounds of the array.
+   at GameServer.realm.BaseStatManager.get_Item(Int32 index) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\BaseStatManager.cs:line 28
+   at GameServer.realm.entities.player.Player.<GenerateGravestone>b__222_0(Stat t, Int32 i) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 721
+   at System.Linq.Enumerable.WhereIterator[TSource](IEnumerable`1 source, Func`3 predicate)+MoveNext()
+   at System.Linq.Enumerable.Count[TSource](IEnumerable`1 source)
+   at GameServer.realm.entities.player.Player.GenerateGravestone(Boolean phantomDeath) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 721
+   at GameServer.realm.entities.player.Player.Rekted(Boolean rekt) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 798
+   at GameServer.realm.entities.player.Player.Death(String killer, Entity entity, WmapTile tile, Boolean rekt) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 916
+   at GameServer.realm.entities.player.Player.Tick(RealmTime time) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\entities\player\Player.cs:line 445
+   at GameServer.realm.worlds.World.Tick(RealmTime time) in C:\Users\fyuwi\Desktop\faer-src\GameServer\realm\worlds\World.cs:line 578
+2023-04-15 20:46:20.7693|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Plated Dagger" to shop. Item does not exist.
+2023-04-15 20:46:20.7693|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby-Reinforced Longbow" to shop. Item does not exist.
+2023-04-15 20:46:20.7693|ERROR|Shared.resources.MerchantList|Failed when adding "Staff of Diabolic Secrets" to shop. Item does not exist.
+2023-04-15 20:46:20.7693|ERROR|Shared.resources.MerchantList|Failed when adding "Wand of Dark Magic" to shop. Item does not exist.
+2023-04-15 20:46:20.7693|ERROR|Shared.resources.MerchantList|Failed when adding "Adamant Great Sword" to shop. Item does not exist.
+2023-04-15 20:46:20.7693|ERROR|Shared.resources.MerchantList|Failed when adding "Demon's Edge" to shop. Item does not exist.
+2023-04-15 20:46:20.7693|ERROR|Shared.resources.MerchantList|Failed when adding "Cloak of the Red Agent" to shop. Item does not exist.
+2023-04-15 20:46:20.7693|ERROR|Shared.resources.MerchantList|Failed when adding "Quiver of the Crimson Elf" to shop. Item does not exist.
+2023-04-15 20:46:20.7693|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Nova Spell" to shop. Item does not exist.
+2023-04-15 20:46:20.7693|ERROR|Shared.resources.MerchantList|Failed when adding "Tome of Divine Favor" to shop. Item does not exist.
+2023-04-15 20:46:20.7693|ERROR|Shared.resources.MerchantList|Failed when adding "Helm of the Great General" to shop. Item does not exist.
+2023-04-15 20:46:20.7693|ERROR|Shared.resources.MerchantList|Failed when adding "Colossus Shield" to shop. Item does not exist.
+2023-04-15 20:46:20.7693|ERROR|Shared.resources.MerchantList|Failed when adding "Seal of the Holy Warrior" to shop. Item does not exist.
+2023-04-15 20:46:20.7693|ERROR|Shared.resources.MerchantList|Failed when adding "Nightwing Vial" to shop. Item does not exist.
+2023-04-15 20:46:20.7693|ERROR|Shared.resources.MerchantList|Failed when adding "Lifedrinker Skull" to shop. Item does not exist.
+2023-04-15 20:46:20.7693|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Orb" to shop. Item does not exist.
+2023-04-15 20:46:20.7693|ERROR|Shared.resources.MerchantList|Failed when adding "Scepter of Skybolts" to shop. Item does not exist.
+2023-04-15 20:46:20.7693|ERROR|Shared.resources.MerchantList|Failed when adding "Doom Circle" to shop. Item does not exist.
+2023-04-15 20:46:20.7693|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Totem" to shop. Item does not exist.
+2023-04-15 20:46:20.7693|ERROR|Shared.resources.MerchantList|Failed when adding "Deck of the Ancient" to shop. Item does not exist.
+2023-04-15 20:46:20.7693|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Rune" to shop. Item does not exist.
+2023-04-15 20:46:20.7693|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Conjurer" to shop. Item does not exist.
+2023-04-15 20:46:20.7693|ERROR|Shared.resources.MerchantList|Failed when adding "Gold-Studded Armor" to shop. Item does not exist.
+2023-04-15 20:46:20.7693|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Chestplate" to shop. Item does not exist.
+2023-04-15 20:46:20.7693|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Grand Sorcerer" to shop. Item does not exist.
+2023-04-15 20:46:20.7693|ERROR|Shared.resources.MerchantList|Failed when adding "Wyvern Skin Armor" to shop. Item does not exist.
+2023-04-15 20:46:20.7693|ERROR|Shared.resources.MerchantList|Failed when adding "Dragonscale Chestplate" to shop. Item does not exist.
+2023-04-15 20:46:20.7693|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Ring" to shop. Item does not exist.
+2023-04-15 20:46:20.7693|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Circlet" to shop. Item does not exist.
+2023-04-15 20:46:20.7693|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
+2023-04-15 20:46:20.7693|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
+2023-04-15 20:47:06.8438|ERROR|GameServer.Client|Could not send data to Fiow (127.0.0.1): System.Net.Sockets.SocketException (10053): De software op uw hostcomputer heeft een verbinding verbroken.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.CreateException(SocketError error, Boolean forAsyncThrow)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ReceiveAsync(Socket socket, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.ReceiveAsync(Memory`1 buffer, SocketFlags socketFlags, Boolean fromNetworkStream, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.ReceiveAsync(Memory`1 buffer, CancellationToken cancellationToken)
+   at GameServer.Client.Receive() in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 126
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.AsyncStateMachineBox`1.MoveNext(Thread threadPoolThread)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.InvokeContinuation(Action`1 continuation, Object state, Boolean forceAsync, Boolean requiresExecutionContextFlow)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.OnCompleted(SocketAsyncEventArgs _)
+   at System.Net.Sockets.SocketAsyncEventArgs.<>c.<.cctor>b__176_0(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* nativeOverlapped)
+   at System.Threading.ThreadPoolTypedWorkItemQueue`2.System.Threading.IThreadPoolWorkItem.Execute()
+   at System.Threading.ThreadPoolWorkQueue.Dispatch()
+   at System.Threading.PortableThreadPool.WorkerThread.WorkerThreadStart()
+--- End of stack trace from previous location ---
+   at GameServer.Client.Receive() in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 126
+2023-04-15 20:48:17.9476|ERROR|GameServer.Client|Could not send data to Fiow (127.0.0.1): System.Net.Sockets.SocketException (10053): De software op uw hostcomputer heeft een verbinding verbroken.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.CreateException(SocketError error, Boolean forAsyncThrow)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ReceiveAsync(Socket socket, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.ReceiveAsync(Memory`1 buffer, CancellationToken cancellationToken)
+   at GameServer.Client.Receive() in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 126
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.AsyncStateMachineBox`1.MoveNext(Thread threadPoolThread)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.InvokeContinuation(Action`1 continuation, Object state, Boolean forceAsync, Boolean requiresExecutionContextFlow)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.OnCompleted(SocketAsyncEventArgs _)
+   at System.Net.Sockets.SocketAsyncEventArgs.<>c.<.cctor>b__176_0(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* nativeOverlapped)
+   at System.Threading.ThreadPoolTypedWorkItemQueue`2.System.Threading.IThreadPoolWorkItem.Execute()
+   at System.Threading.ThreadPoolWorkQueue.Dispatch()
+   at System.Threading.PortableThreadPool.WorkerThread.WorkerThreadStart()
+--- End of stack trace from previous location ---
+   at GameServer.Client.Receive() in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 126
+2023-04-15 20:52:36.1177|ERROR|GameServer.Client|Could not send data to Fiow (127.0.0.1): System.Net.Sockets.SocketException (10053): De software op uw hostcomputer heeft een verbinding verbroken.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.CreateException(SocketError error, Boolean forAsyncThrow)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ReceiveAsync(Socket socket, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.ReceiveAsync(Memory`1 buffer, CancellationToken cancellationToken)
+   at GameServer.Client.Receive() in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 126
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.AsyncStateMachineBox`1.MoveNext(Thread threadPoolThread)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.InvokeContinuation(Action`1 continuation, Object state, Boolean forceAsync, Boolean requiresExecutionContextFlow)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.OnCompleted(SocketAsyncEventArgs _)
+   at System.Net.Sockets.SocketAsyncEventArgs.<>c.<.cctor>b__176_0(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* nativeOverlapped)
+   at System.Threading.ThreadPoolTypedWorkItemQueue`2.System.Threading.IThreadPoolWorkItem.Execute()
+   at System.Threading.ThreadPoolWorkQueue.Dispatch()
+   at System.Threading.PortableThreadPool.WorkerThread.WorkerThreadStart()
+--- End of stack trace from previous location ---
+   at GameServer.Client.Receive() in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 126
+2023-04-15 20:53:00.1884|ERROR|GameServer.Client|Could not send data to Fiow (127.0.0.1): System.Net.Sockets.SocketException (10053): De software op uw hostcomputer heeft een verbinding verbroken.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.CreateException(SocketError error, Boolean forAsyncThrow)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ReceiveAsync(Socket socket, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.ReceiveAsync(Memory`1 buffer, CancellationToken cancellationToken)
+   at GameServer.Client.Receive() in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 126
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.AsyncStateMachineBox`1.MoveNext(Thread threadPoolThread)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.InvokeContinuation(Action`1 continuation, Object state, Boolean forceAsync, Boolean requiresExecutionContextFlow)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.OnCompleted(SocketAsyncEventArgs _)
+   at System.Net.Sockets.SocketAsyncEventArgs.<>c.<.cctor>b__176_0(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* nativeOverlapped)
+   at System.Threading.ThreadPoolTypedWorkItemQueue`2.System.Threading.IThreadPoolWorkItem.Execute()
+   at System.Threading.ThreadPoolWorkQueue.Dispatch()
+   at System.Threading.PortableThreadPool.WorkerThread.WorkerThreadStart()
+--- End of stack trace from previous location ---
+   at GameServer.Client.Receive() in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 126
+2023-04-15 20:53:01.2793|ERROR|GameServer.Client|Could not send data to Fiow (127.0.0.1): System.Net.Sockets.SocketException (10053): De software op uw hostcomputer heeft een verbinding verbroken.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.CreateException(SocketError error, Boolean forAsyncThrow)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ReceiveAsync(Socket socket, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.ReceiveAsync(Memory`1 buffer, CancellationToken cancellationToken)
+   at GameServer.Client.Receive() in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 126
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.AsyncStateMachineBox`1.MoveNext(Thread threadPoolThread)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.InvokeContinuation(Action`1 continuation, Object state, Boolean forceAsync, Boolean requiresExecutionContextFlow)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.OnCompleted(SocketAsyncEventArgs _)
+   at System.Net.Sockets.SocketAsyncEventArgs.<>c.<.cctor>b__176_0(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* nativeOverlapped)
+   at System.Threading.ThreadPoolTypedWorkItemQueue`2.System.Threading.IThreadPoolWorkItem.Execute()
+   at System.Threading.ThreadPoolWorkQueue.Dispatch()
+   at System.Threading.PortableThreadPool.WorkerThread.WorkerThreadStart()
+--- End of stack trace from previous location ---
+   at GameServer.Client.Receive() in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 126
+2023-04-15 20:54:04.8555|ERROR|GameServer.Client|Could not send data to Fiow (127.0.0.1): System.Net.Sockets.SocketException (10053): De software op uw hostcomputer heeft een verbinding verbroken.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.CreateException(SocketError error, Boolean forAsyncThrow)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ReceiveAsync(Socket socket, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.ReceiveAsync(Memory`1 buffer, CancellationToken cancellationToken)
+   at GameServer.Client.Receive() in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 126
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.AsyncStateMachineBox`1.MoveNext(Thread threadPoolThread)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.InvokeContinuation(Action`1 continuation, Object state, Boolean forceAsync, Boolean requiresExecutionContextFlow)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.OnCompleted(SocketAsyncEventArgs _)
+   at System.Net.Sockets.SocketAsyncEventArgs.<>c.<.cctor>b__176_0(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* nativeOverlapped)
+   at System.Threading.ThreadPoolTypedWorkItemQueue`2.System.Threading.IThreadPoolWorkItem.Execute()
+   at System.Threading.ThreadPoolWorkQueue.Dispatch()
+   at System.Threading.PortableThreadPool.WorkerThread.WorkerThreadStart()
+--- End of stack trace from previous location ---
+   at GameServer.Client.Receive() in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 126
+2023-04-15 20:55:35.2252|ERROR|GameServer.Client|Could not send data to Fiow (127.0.0.1): System.Net.Sockets.SocketException (10053): De software op uw hostcomputer heeft een verbinding verbroken.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.CreateException(SocketError error, Boolean forAsyncThrow)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ReceiveAsync(Socket socket, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.ReceiveAsync(Memory`1 buffer, CancellationToken cancellationToken)
+   at GameServer.Client.Receive() in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 126
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.AsyncStateMachineBox`1.MoveNext(Thread threadPoolThread)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.InvokeContinuation(Action`1 continuation, Object state, Boolean forceAsync, Boolean requiresExecutionContextFlow)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.OnCompleted(SocketAsyncEventArgs _)
+   at System.Net.Sockets.SocketAsyncEventArgs.<>c.<.cctor>b__176_0(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* nativeOverlapped)
+   at System.Threading.ThreadPoolTypedWorkItemQueue`2.System.Threading.IThreadPoolWorkItem.Execute()
+   at System.Threading.ThreadPoolWorkQueue.Dispatch()
+   at System.Threading.PortableThreadPool.WorkerThread.WorkerThreadStart()
+--- End of stack trace from previous location ---
+   at GameServer.Client.Receive() in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 126
+2023-04-15 20:58:10.0394|ERROR|GameServer.Client|Could not send data to Fiow (127.0.0.1): System.Net.Sockets.SocketException (10053): De software op uw hostcomputer heeft een verbinding verbroken.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.CreateException(SocketError error, Boolean forAsyncThrow)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ReceiveAsync(Socket socket, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.ReceiveAsync(Memory`1 buffer, CancellationToken cancellationToken)
+   at GameServer.Client.Receive() in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 126
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.AsyncStateMachineBox`1.MoveNext(Thread threadPoolThread)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.InvokeContinuation(Action`1 continuation, Object state, Boolean forceAsync, Boolean requiresExecutionContextFlow)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.OnCompleted(SocketAsyncEventArgs _)
+   at System.Net.Sockets.SocketAsyncEventArgs.<>c.<.cctor>b__176_0(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* nativeOverlapped)
+   at System.Threading.ThreadPoolTypedWorkItemQueue`2.System.Threading.IThreadPoolWorkItem.Execute()
+   at System.Threading.ThreadPoolWorkQueue.Dispatch()
+   at System.Threading.PortableThreadPool.WorkerThread.WorkerThreadStart()
+--- End of stack trace from previous location ---
+   at GameServer.Client.Receive() in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 126
+2023-04-15 21:00:03.6819|ERROR|GameServer.Client|Could not send data to Fiow (127.0.0.1): System.Net.Sockets.SocketException (10053): De software op uw hostcomputer heeft een verbinding verbroken.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.CreateException(SocketError error, Boolean forAsyncThrow)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ReceiveAsync(Socket socket, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.ReceiveAsync(Memory`1 buffer, CancellationToken cancellationToken)
+   at GameServer.Client.Receive() in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 126
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.AsyncStateMachineBox`1.MoveNext(Thread threadPoolThread)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.InvokeContinuation(Action`1 continuation, Object state, Boolean forceAsync, Boolean requiresExecutionContextFlow)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.OnCompleted(SocketAsyncEventArgs _)
+   at System.Net.Sockets.SocketAsyncEventArgs.<>c.<.cctor>b__176_0(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* nativeOverlapped)
+   at System.Threading.ThreadPoolTypedWorkItemQueue`2.System.Threading.IThreadPoolWorkItem.Execute()
+   at System.Threading.ThreadPoolWorkQueue.Dispatch()
+   at System.Threading.PortableThreadPool.WorkerThread.WorkerThreadStart()
+--- End of stack trace from previous location ---
+   at GameServer.Client.Receive() in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 126
+2023-04-15 21:09:05.4926|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Plated Dagger" to shop. Item does not exist.
+2023-04-15 21:09:05.4926|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby-Reinforced Longbow" to shop. Item does not exist.
+2023-04-15 21:09:05.4926|ERROR|Shared.resources.MerchantList|Failed when adding "Staff of Diabolic Secrets" to shop. Item does not exist.
+2023-04-15 21:09:05.4926|ERROR|Shared.resources.MerchantList|Failed when adding "Wand of Dark Magic" to shop. Item does not exist.
+2023-04-15 21:09:05.4926|ERROR|Shared.resources.MerchantList|Failed when adding "Adamant Great Sword" to shop. Item does not exist.
+2023-04-15 21:09:05.4926|ERROR|Shared.resources.MerchantList|Failed when adding "Demon's Edge" to shop. Item does not exist.
+2023-04-15 21:09:05.4926|ERROR|Shared.resources.MerchantList|Failed when adding "Cloak of the Red Agent" to shop. Item does not exist.
+2023-04-15 21:09:05.4926|ERROR|Shared.resources.MerchantList|Failed when adding "Quiver of the Crimson Elf" to shop. Item does not exist.
+2023-04-15 21:09:05.4926|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Nova Spell" to shop. Item does not exist.
+2023-04-15 21:09:05.4926|ERROR|Shared.resources.MerchantList|Failed when adding "Tome of Divine Favor" to shop. Item does not exist.
+2023-04-15 21:09:05.4926|ERROR|Shared.resources.MerchantList|Failed when adding "Helm of the Great General" to shop. Item does not exist.
+2023-04-15 21:09:05.4926|ERROR|Shared.resources.MerchantList|Failed when adding "Colossus Shield" to shop. Item does not exist.
+2023-04-15 21:09:05.4926|ERROR|Shared.resources.MerchantList|Failed when adding "Seal of the Holy Warrior" to shop. Item does not exist.
+2023-04-15 21:09:05.4926|ERROR|Shared.resources.MerchantList|Failed when adding "Nightwing Vial" to shop. Item does not exist.
+2023-04-15 21:09:05.4926|ERROR|Shared.resources.MerchantList|Failed when adding "Lifedrinker Skull" to shop. Item does not exist.
+2023-04-15 21:09:05.4926|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Orb" to shop. Item does not exist.
+2023-04-15 21:09:05.4926|ERROR|Shared.resources.MerchantList|Failed when adding "Scepter of Skybolts" to shop. Item does not exist.
+2023-04-15 21:09:05.4926|ERROR|Shared.resources.MerchantList|Failed when adding "Doom Circle" to shop. Item does not exist.
+2023-04-15 21:09:05.4926|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Totem" to shop. Item does not exist.
+2023-04-15 21:09:05.4926|ERROR|Shared.resources.MerchantList|Failed when adding "Deck of the Ancient" to shop. Item does not exist.
+2023-04-15 21:09:05.4926|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Rune" to shop. Item does not exist.
+2023-04-15 21:09:05.4926|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Conjurer" to shop. Item does not exist.
+2023-04-15 21:09:05.4926|ERROR|Shared.resources.MerchantList|Failed when adding "Gold-Studded Armor" to shop. Item does not exist.
+2023-04-15 21:09:05.4926|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Chestplate" to shop. Item does not exist.
+2023-04-15 21:09:05.4926|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Grand Sorcerer" to shop. Item does not exist.
+2023-04-15 21:09:05.4926|ERROR|Shared.resources.MerchantList|Failed when adding "Wyvern Skin Armor" to shop. Item does not exist.
+2023-04-15 21:09:05.4926|ERROR|Shared.resources.MerchantList|Failed when adding "Dragonscale Chestplate" to shop. Item does not exist.
+2023-04-15 21:09:05.4926|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Ring" to shop. Item does not exist.
+2023-04-15 21:09:05.4926|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Circlet" to shop. Item does not exist.
+2023-04-15 21:09:05.4926|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
+2023-04-15 21:09:05.4926|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
+2023-04-15 21:09:35.0461|ERROR|GameServer.Client|Could not send data to Fiow (127.0.0.1): System.Net.Sockets.SocketException (10053): De software op uw hostcomputer heeft een verbinding verbroken.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.CreateException(SocketError error, Boolean forAsyncThrow)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ReceiveAsync(Socket socket, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.ReceiveAsync(Memory`1 buffer, SocketFlags socketFlags, Boolean fromNetworkStream, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.ReceiveAsync(Memory`1 buffer, CancellationToken cancellationToken)
+   at GameServer.Client.Receive() in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 126
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.AsyncStateMachineBox`1.MoveNext(Thread threadPoolThread)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.InvokeContinuation(Action`1 continuation, Object state, Boolean forceAsync, Boolean requiresExecutionContextFlow)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.OnCompleted(SocketAsyncEventArgs _)
+   at System.Net.Sockets.SocketAsyncEventArgs.<>c.<.cctor>b__176_0(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* nativeOverlapped)
+   at System.Threading.ThreadPoolTypedWorkItemQueue`2.System.Threading.IThreadPoolWorkItem.Execute()
+   at System.Threading.ThreadPoolWorkQueue.Dispatch()
+   at System.Threading.PortableThreadPool.WorkerThread.WorkerThreadStart()
+--- End of stack trace from previous location ---
+   at GameServer.Client.Receive() in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 126
+2023-04-15 21:10:53.5179|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Plated Dagger" to shop. Item does not exist.
+2023-04-15 21:10:53.5179|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby-Reinforced Longbow" to shop. Item does not exist.
+2023-04-15 21:10:53.5179|ERROR|Shared.resources.MerchantList|Failed when adding "Staff of Diabolic Secrets" to shop. Item does not exist.
+2023-04-15 21:10:53.5179|ERROR|Shared.resources.MerchantList|Failed when adding "Wand of Dark Magic" to shop. Item does not exist.
+2023-04-15 21:10:53.5179|ERROR|Shared.resources.MerchantList|Failed when adding "Adamant Great Sword" to shop. Item does not exist.
+2023-04-15 21:10:53.5179|ERROR|Shared.resources.MerchantList|Failed when adding "Demon's Edge" to shop. Item does not exist.
+2023-04-15 21:10:53.5179|ERROR|Shared.resources.MerchantList|Failed when adding "Cloak of the Red Agent" to shop. Item does not exist.
+2023-04-15 21:10:53.5179|ERROR|Shared.resources.MerchantList|Failed when adding "Quiver of the Crimson Elf" to shop. Item does not exist.
+2023-04-15 21:10:53.5179|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Nova Spell" to shop. Item does not exist.
+2023-04-15 21:10:53.5179|ERROR|Shared.resources.MerchantList|Failed when adding "Tome of Divine Favor" to shop. Item does not exist.
+2023-04-15 21:10:53.5179|ERROR|Shared.resources.MerchantList|Failed when adding "Helm of the Great General" to shop. Item does not exist.
+2023-04-15 21:10:53.5179|ERROR|Shared.resources.MerchantList|Failed when adding "Colossus Shield" to shop. Item does not exist.
+2023-04-15 21:10:53.5179|ERROR|Shared.resources.MerchantList|Failed when adding "Seal of the Holy Warrior" to shop. Item does not exist.
+2023-04-15 21:10:53.5179|ERROR|Shared.resources.MerchantList|Failed when adding "Nightwing Vial" to shop. Item does not exist.
+2023-04-15 21:10:53.5179|ERROR|Shared.resources.MerchantList|Failed when adding "Lifedrinker Skull" to shop. Item does not exist.
+2023-04-15 21:10:53.5179|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Orb" to shop. Item does not exist.
+2023-04-15 21:10:53.5179|ERROR|Shared.resources.MerchantList|Failed when adding "Scepter of Skybolts" to shop. Item does not exist.
+2023-04-15 21:10:53.5179|ERROR|Shared.resources.MerchantList|Failed when adding "Doom Circle" to shop. Item does not exist.
+2023-04-15 21:10:53.5179|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Totem" to shop. Item does not exist.
+2023-04-15 21:10:53.5179|ERROR|Shared.resources.MerchantList|Failed when adding "Deck of the Ancient" to shop. Item does not exist.
+2023-04-15 21:10:53.5179|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Rune" to shop. Item does not exist.
+2023-04-15 21:10:53.5179|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Conjurer" to shop. Item does not exist.
+2023-04-15 21:10:53.5179|ERROR|Shared.resources.MerchantList|Failed when adding "Gold-Studded Armor" to shop. Item does not exist.
+2023-04-15 21:10:53.5179|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Chestplate" to shop. Item does not exist.
+2023-04-15 21:10:53.5179|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Grand Sorcerer" to shop. Item does not exist.
+2023-04-15 21:10:53.5179|ERROR|Shared.resources.MerchantList|Failed when adding "Wyvern Skin Armor" to shop. Item does not exist.
+2023-04-15 21:10:53.5179|ERROR|Shared.resources.MerchantList|Failed when adding "Dragonscale Chestplate" to shop. Item does not exist.
+2023-04-15 21:10:53.5179|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Ring" to shop. Item does not exist.
+2023-04-15 21:10:53.5179|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Circlet" to shop. Item does not exist.
+2023-04-15 21:10:53.5179|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
+2023-04-15 21:10:53.5179|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
+2023-04-15 21:11:25.9202|ERROR|GameServer.Client|Could not send data to Fiow (127.0.0.1): System.Net.Sockets.SocketException (10053): De software op uw hostcomputer heeft een verbinding verbroken.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.CreateException(SocketError error, Boolean forAsyncThrow)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ReceiveAsync(Socket socket, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.ReceiveAsync(Memory`1 buffer, SocketFlags socketFlags, Boolean fromNetworkStream, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.ReceiveAsync(Memory`1 buffer, CancellationToken cancellationToken)
+   at GameServer.Client.Receive() in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 126
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.AsyncStateMachineBox`1.MoveNext(Thread threadPoolThread)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.InvokeContinuation(Action`1 continuation, Object state, Boolean forceAsync, Boolean requiresExecutionContextFlow)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.OnCompleted(SocketAsyncEventArgs _)
+   at System.Net.Sockets.SocketAsyncEventArgs.<>c.<.cctor>b__176_0(UInt32 errorCode, UInt32 numBytes, NativeOverlapped* nativeOverlapped)
+   at System.Threading.ThreadPoolTypedWorkItemQueue`2.System.Threading.IThreadPoolWorkItem.Execute()
+   at System.Threading.ThreadPoolWorkQueue.Dispatch()
+   at System.Threading.PortableThreadPool.WorkerThread.WorkerThreadStart()
+--- End of stack trace from previous location ---
+   at GameServer.Client.Receive() in C:\Users\fyuwi\Desktop\faer-src\GameServer\Client.cs:line 126

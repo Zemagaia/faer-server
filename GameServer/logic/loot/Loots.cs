@@ -86,7 +86,7 @@ namespace GameServer.logic.loot
                     i.Populate(enemy.Manager, enemy, dat, Rand, consideration);
 
                 var lootDropBoost = dat.Item1.LDBoostTime > 0 ? 1.5 : 1;
-                var luckStatBoost = 1 + dat.Item1.Stats[10] / 100.0;
+                var luckStatBoost = 1 + dat.Item1.Stats[7] / 100.0;
                 var globalLBoost = DateTime.UtcNow.ToUnixTimestamp() < Constants.EventEnds.ToUnixTimestamp()
                     ? Constants.GlobalLootBoost ?? 1
                     : 1;
