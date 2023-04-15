@@ -302,9 +302,16 @@ namespace Shared
             return x.Contains("x") ? Convert.ToInt32(x, 16) : int.Parse(x);
         }
 
+        
+        
         public static ConditionEffectIndex GetEffect(string val)
         {
             return (ConditionEffectIndex)Enum.Parse(typeof(ConditionEffectIndex), val.Trim());
+        }
+        
+        public static bool TryGetEffect(string val, out ConditionEffectIndex effect)
+        {
+            return Enum.TryParse(val.Trim(), out effect);
         }
 
         public static T GetValue<T>(this XElement e, string n, T def = default(T))

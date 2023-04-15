@@ -178,17 +178,16 @@ namespace Shared.resources
             if (e.HasAttribute("effect"))
             {
                 var val = e.GetAttribute<string>("effect");
-                if (val.Contains(","))
+
+                if (Utils.TryGetEffect(val, out var r))
+                    ConditionEffect = r;
+                else
                 {
                     var effects = val.Trim().Split(",");
                     
                     TotemEffects = new TotemEffect[effects.Length];
                     for (var i = 0; i < effects.Length; i++)
                         TotemEffects[i] = new TotemEffect(effects[i].Trim());
-                }
-                else
-                {
-                    ConditionEffect = Utils.GetEffect(val);
                 }
             }
 
