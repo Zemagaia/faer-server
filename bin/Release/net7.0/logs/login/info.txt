@@ -1,0 +1,64 @@
+2023-04-15 11:07:50.3468|INFO|Shared.resources.AppSettings|Loading app settings...
+2023-04-15 11:08:25.3236|INFO|Shared.resources.AppSettings|Loading app settings...
+2023-04-15 11:08:25.3457|INFO|Shared.resources.XmlData|Loading xml data...
+2023-04-15 11:08:25.3701|FATAL|LoginServer.Program|System.IO.DirectoryNotFoundException: Could not find a part of the path '/home/a/faer/server/bin/Release/net7.0/server/bin/Release/net7.0/resources/xmls'.
+   at System.IO.Enumeration.FileSystemEnumerator`1.CreateDirectoryHandle(String path, Boolean ignoreNotFound)
+   at System.IO.Enumeration.FileSystemEnumerator`1.Init()
+   at System.IO.Enumeration.FileSystemEnumerable`1..ctor(String directory, FindTransform transform, EnumerationOptions options, Boolean isNormalized)
+   at System.IO.Enumeration.FileSystemEnumerableFactory.UserFiles(String directory, String expression, EnumerationOptions options)
+   at System.IO.Directory.InternalEnumeratePaths(String path, String searchPattern, SearchTarget searchTarget, EnumerationOptions options)
+   at Shared.resources.XmlData.LoadXmls(String basePath, String ext) in /home/a/faer/server/Shared/resources/XmlData.cs:line 181
+   at Shared.resources.XmlData..ctor(String path) in /home/a/faer/server/Shared/resources/XmlData.cs:line 161
+   at Shared.resources.Resources..ctor(String resourcePath, Boolean wServer) in /home/a/faer/server/Shared/resources/Resources.cs:line 36
+   at LoginServer.Program.Main(String[] args) in /home/a/faer/server/LoginServer/Program.cs:line 32
+2023-04-15 11:14:25.4798|INFO|Shared.resources.AppSettings|Loading app settings...
+2023-04-15 11:14:56.6330|INFO|Shared.resources.AppSettings|Loading app settings...
+2023-04-15 11:14:56.6570|INFO|Shared.resources.XmlData|Loading xml data...
+2023-04-15 11:14:56.7138|FATAL|LoginServer.Program|System.ArgumentException: Requested value 'Slowed' was not found.
+   at System.Enum.TryParseByName(RuntimeType enumType, ReadOnlySpan`1 value, Boolean ignoreCase, Boolean throwOnFailure, UInt64& result)
+   at System.Enum.TryParseInt32Enum(RuntimeType enumType, ReadOnlySpan`1 value, Int32 minInclusive, Int32 maxInclusive, Boolean ignoreCase, Boolean throwOnFailure, TypeCode type, Int32& result)
+   at System.Enum.TryParse(Type enumType, ReadOnlySpan`1 value, Boolean ignoreCase, Boolean throwOnFailure, Object& result)
+   at System.Enum.Parse(Type enumType, String value)
+   at Shared.Utils.GetEffect(String val) in /home/a/faer/server/Shared/Utils.cs:line 307
+   at Shared.resources.ConditionEffect..ctor(XElement e) in /home/a/faer/server/Shared/resources/XmlDescriptors.cs:line 22
+   at Shared.resources.ProjectileDesc..ctor(XElement e) in /home/a/faer/server/Shared/resources/XmlDescriptors.cs:line 76
+   at Shared.resources.ObjectDesc..ctor(UInt16 type, XElement e) in /home/a/faer/server/Shared/resources/XmlDescriptors.cs:line 766
+   at Shared.resources.XmlData.AddObjects(XElement root) in /home/a/faer/server/Shared/resources/XmlData.cs:line 292
+   at Shared.resources.XmlData.ProcessXml(XElement root) in /home/a/faer/server/Shared/resources/XmlData.cs:line 420
+   at Shared.resources.XmlData.LoadXmls(String basePath, String ext) in /home/a/faer/server/Shared/resources/XmlData.cs:line 187
+   at Shared.resources.XmlData..ctor(String path) in /home/a/faer/server/Shared/resources/XmlData.cs:line 161
+   at Shared.resources.Resources..ctor(String resourcePath, Boolean wServer) in /home/a/faer/server/Shared/resources/Resources.cs:line 36
+   at LoginServer.Program.Main(String[] args) in /home/a/faer/server/LoginServer/Program.cs:line 32
+2023-04-15 11:31:02.8274|INFO|Shared.resources.AppSettings|Loading app settings...
+2023-04-15 11:31:02.8473|INFO|Shared.resources.XmlData|Loading xml data...
+2023-04-15 11:32:36.0497|INFO|Shared.resources.AppSettings|Loading app settings...
+2023-04-15 11:32:36.0764|INFO|Shared.resources.XmlData|Loading xml data...
+2023-04-15 11:32:36.1246|FATAL|LoginServer.Program|System.ArgumentException: Requested value 'Bloodstone' was not found.
+   at System.Enum.TryParseByName(RuntimeType enumType, ReadOnlySpan`1 value, Boolean ignoreCase, Boolean throwOnFailure, UInt64& result)
+   at System.Enum.TryParseInt32Enum(RuntimeType enumType, ReadOnlySpan`1 value, Int32 minInclusive, Int32 maxInclusive, Boolean ignoreCase, Boolean throwOnFailure, TypeCode type, Int32& result)
+   at System.Enum.TryParse(Type enumType, ReadOnlySpan`1 value, Boolean ignoreCase, Boolean throwOnFailure, Object& result)
+   at System.Enum.Parse(Type enumType, String value)
+   at Shared.resources.ActivateEffect..ctor(XElement e) in /home/a/faer/server/Shared/resources/XmlDescriptors.cs:line 158
+   at Shared.resources.Item..ctor(UInt16 type, XElement e) in /home/a/faer/server/Shared/resources/XmlDescriptors.cs:line 414
+   at Shared.resources.XmlData.AddObjects(XElement root) in /home/a/faer/server/Shared/resources/XmlData.cs:line 263
+   at Shared.resources.XmlData.ProcessXml(XElement root) in /home/a/faer/server/Shared/resources/XmlData.cs:line 420
+   at Shared.resources.XmlData.LoadXmls(String basePath, String ext) in /home/a/faer/server/Shared/resources/XmlData.cs:line 187
+   at Shared.resources.XmlData..ctor(String path) in /home/a/faer/server/Shared/resources/XmlData.cs:line 161
+   at Shared.resources.Resources..ctor(String resourcePath, Boolean wServer) in /home/a/faer/server/Shared/resources/Resources.cs:line 36
+   at LoginServer.Program.Main(String[] args) in /home/a/faer/server/LoginServer/Program.cs:line 32
+2023-04-15 11:33:12.3274|INFO|Shared.resources.AppSettings|Loading app settings...
+2023-04-15 11:33:12.3503|INFO|Shared.resources.XmlData|Loading xml data...
+2023-04-15 11:33:12.4025|FATAL|LoginServer.Program|System.ArgumentException: Requested value 'Healing,+5DEF' was not found.
+   at System.Enum.TryParseByName(RuntimeType enumType, ReadOnlySpan`1 value, Boolean ignoreCase, Boolean throwOnFailure, UInt64& result)
+   at System.Enum.TryParseInt32Enum(RuntimeType enumType, ReadOnlySpan`1 value, Int32 minInclusive, Int32 maxInclusive, Boolean ignoreCase, Boolean throwOnFailure, TypeCode type, Int32& result)
+   at System.Enum.TryParse(Type enumType, ReadOnlySpan`1 value, Boolean ignoreCase, Boolean throwOnFailure, Object& result)
+   at System.Enum.Parse(Type enumType, String value)
+   at Shared.Utils.GetEffect(String val) in /home/a/faer/server/Shared/Utils.cs:line 307
+   at Shared.resources.ActivateEffect..ctor(XElement e) in /home/a/faer/server/Shared/resources/XmlDescriptors.cs:line 175
+   at Shared.resources.Item..ctor(UInt16 type, XElement e) in /home/a/faer/server/Shared/resources/XmlDescriptors.cs:line 414
+   at Shared.resources.XmlData.AddObjects(XElement root) in /home/a/faer/server/Shared/resources/XmlData.cs:line 263
+   at Shared.resources.XmlData.ProcessXml(XElement root) in /home/a/faer/server/Shared/resources/XmlData.cs:line 420
+   at Shared.resources.XmlData.LoadXmls(String basePath, String ext) in /home/a/faer/server/Shared/resources/XmlData.cs:line 187
+   at Shared.resources.XmlData..ctor(String path) in /home/a/faer/server/Shared/resources/XmlData.cs:line 161
+   at Shared.resources.Resources..ctor(String resourcePath, Boolean wServer) in /home/a/faer/server/Shared/resources/Resources.cs:line 36
+   at LoginServer.Program.Main(String[] args) in /home/a/faer/server/LoginServer/Program.cs:line 32

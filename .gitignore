@@ -15,20 +15,10 @@ Thumbs.db
 *.userprefs
 
 # Build results
-[Dd]ebug/
-[Dd]ebugPublic/
-[Rr]elease/
-[Rr]eleases/
 x64/
 x86/
 build/
 bld/
-# Quick hack to ignore all files, but not folders and their insides (like the resources folder)
-[Bb]in/*.*
-[Bb]in/client/
-[Bb]in/logs/
-[Bb]in/_test/
-[Bb]in/resources/data/quests
 [Oo]bj/
 
 # Visual Studio 2015 cache/options directory

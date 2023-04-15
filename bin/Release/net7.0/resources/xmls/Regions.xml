@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Regions>
+  <Region type="0x01" id="Spawn">
+    <Color>0x00FF00</Color>
+  </Region>
+  <Region type="0x02" id="Store 1">
+    <Color>0xFFDCF3</Color>
+  </Region>
+  <Region type="0x03" id="Store 2">
+    <Color>0xD9FFF3</Color>
+  </Region>
+  <Region type="0x04" id="Store 3">
+    <Color>0xC6B1FF</Color>
+  </Region>
+  <Region type="0x05" id="Stash">
+    <Color>0x828492</Color>
+  </Region>
+  <Region type="0x06" id="Event 1">
+    <Color>0xFFFF00</Color>
+  </Region>
+  <Region type="0x07" id="Event 2">
+    <Color>0xFFFF00</Color>
+  </Region>
+  <Region type="0x08" id="Event 3">
+    <Color>0xFFFF00</Color>
+  </Region>
+</Regions>

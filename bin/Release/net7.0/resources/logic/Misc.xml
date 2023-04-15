@@ -1,0 +1,7 @@
+<BehaviorEntries>
+    <BehaviorEntry id="White Fountain">
+        <State id="root">
+            <Behavior range="7.5">HealPlayer</Behavior>
+        </State>
+    </BehaviorEntry> 
+</BehaviorEntries>
