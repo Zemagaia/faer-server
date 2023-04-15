@@ -179,3 +179,289 @@
 2023-04-15 14:04:50.3405|INFO|Shared.ISManager|Localhost (World, d8d99228-92de-4045-ba65-7f913be1ec34) joined the network.
 2023-04-15 14:04:50.3405|INFO|GameServer.logic.BehaviorDb|Loaded 1 XML Behaviors
 2023-04-15 14:04:50.3405|INFO|GameServer.logic.BehaviorDb|Behavior Database initialized...
+2023-04-15 14:11:18.6738|INFO|Shared.resources.AppSettings|Loading app settings...
+2023-04-15 14:11:18.6920|INFO|Shared.resources.XmlData|Loading xml data...
+2023-04-15 14:11:18.7722|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Plated Dagger" to shop. Item does not exist.
+2023-04-15 14:11:18.7722|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby-Reinforced Longbow" to shop. Item does not exist.
+2023-04-15 14:11:18.7722|ERROR|Shared.resources.MerchantList|Failed when adding "Staff of Diabolic Secrets" to shop. Item does not exist.
+2023-04-15 14:11:18.7722|ERROR|Shared.resources.MerchantList|Failed when adding "Wand of Dark Magic" to shop. Item does not exist.
+2023-04-15 14:11:18.7722|ERROR|Shared.resources.MerchantList|Failed when adding "Adamant Great Sword" to shop. Item does not exist.
+2023-04-15 14:11:18.7722|ERROR|Shared.resources.MerchantList|Failed when adding "Demon's Edge" to shop. Item does not exist.
+2023-04-15 14:11:18.7722|ERROR|Shared.resources.MerchantList|Failed when adding "Cloak of the Red Agent" to shop. Item does not exist.
+2023-04-15 14:11:18.7722|ERROR|Shared.resources.MerchantList|Failed when adding "Quiver of the Crimson Elf" to shop. Item does not exist.
+2023-04-15 14:11:18.7722|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Nova Spell" to shop. Item does not exist.
+2023-04-15 14:11:18.7722|ERROR|Shared.resources.MerchantList|Failed when adding "Tome of Divine Favor" to shop. Item does not exist.
+2023-04-15 14:11:18.7722|ERROR|Shared.resources.MerchantList|Failed when adding "Helm of the Great General" to shop. Item does not exist.
+2023-04-15 14:11:18.7722|ERROR|Shared.resources.MerchantList|Failed when adding "Colossus Shield" to shop. Item does not exist.
+2023-04-15 14:11:18.7722|ERROR|Shared.resources.MerchantList|Failed when adding "Seal of the Holy Warrior" to shop. Item does not exist.
+2023-04-15 14:11:18.7722|ERROR|Shared.resources.MerchantList|Failed when adding "Nightwing Vial" to shop. Item does not exist.
+2023-04-15 14:11:18.7722|ERROR|Shared.resources.MerchantList|Failed when adding "Lifedrinker Skull" to shop. Item does not exist.
+2023-04-15 14:11:18.7722|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Orb" to shop. Item does not exist.
+2023-04-15 14:11:18.7722|ERROR|Shared.resources.MerchantList|Failed when adding "Scepter of Skybolts" to shop. Item does not exist.
+2023-04-15 14:11:18.7722|ERROR|Shared.resources.MerchantList|Failed when adding "Doom Circle" to shop. Item does not exist.
+2023-04-15 14:11:18.7722|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Totem" to shop. Item does not exist.
+2023-04-15 14:11:18.7722|ERROR|Shared.resources.MerchantList|Failed when adding "Deck of the Ancient" to shop. Item does not exist.
+2023-04-15 14:11:18.7722|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Rune" to shop. Item does not exist.
+2023-04-15 14:11:18.7722|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Conjurer" to shop. Item does not exist.
+2023-04-15 14:11:18.7722|ERROR|Shared.resources.MerchantList|Failed when adding "Gold-Studded Armor" to shop. Item does not exist.
+2023-04-15 14:11:18.7722|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Chestplate" to shop. Item does not exist.
+2023-04-15 14:11:18.7722|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Grand Sorcerer" to shop. Item does not exist.
+2023-04-15 14:11:18.7722|ERROR|Shared.resources.MerchantList|Failed when adding "Wyvern Skin Armor" to shop. Item does not exist.
+2023-04-15 14:11:18.7722|ERROR|Shared.resources.MerchantList|Failed when adding "Dragonscale Chestplate" to shop. Item does not exist.
+2023-04-15 14:11:18.7722|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Ring" to shop. Item does not exist.
+2023-04-15 14:11:18.7722|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Circlet" to shop. Item does not exist.
+2023-04-15 14:11:18.7722|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
+2023-04-15 14:11:18.7722|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
+2023-04-15 14:11:18.7722|INFO|Shared.resources.XmlData|Finish loading game data.
+2023-04-15 14:11:18.7722|INFO|Shared.resources.XmlData|262 Items
+2023-04-15 14:11:18.7722|INFO|Shared.resources.XmlData|81 Tiles
+2023-04-15 14:11:18.7722|INFO|Shared.resources.XmlData|312 Objects
+2023-04-15 14:11:18.7722|INFO|Shared.resources.XmlData|9 Skins
+2023-04-15 14:11:18.7722|INFO|Shared.resources.XmlData|0 Equipment Sets
+2023-04-15 14:11:18.7722|INFO|Shared.resources.XmlData|9 Classes
+2023-04-15 14:11:18.7722|INFO|Shared.resources.XmlData|9 Portals
+2023-04-15 14:11:18.7722|INFO|Shared.resources.XmlData|1 Merchants
+2023-04-15 14:11:18.7722|INFO|Shared.resources.XmlData|0 Remote Textures
+2023-04-15 14:11:18.7722|INFO|Shared.resources.XmlData|0 Additions
+2023-04-15 14:11:18.7987|INFO|Shared.resources.WorldData|Initializing world data: Nexus.jw 1/1...
+2023-04-15 14:22:47.4260|INFO|Shared.resources.AppSettings|Loading app settings...
+2023-04-15 14:22:47.4452|INFO|Shared.resources.XmlData|Loading xml data...
+2023-04-15 14:22:47.5253|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Plated Dagger" to shop. Item does not exist.
+2023-04-15 14:22:47.5253|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby-Reinforced Longbow" to shop. Item does not exist.
+2023-04-15 14:22:47.5253|ERROR|Shared.resources.MerchantList|Failed when adding "Staff of Diabolic Secrets" to shop. Item does not exist.
+2023-04-15 14:22:47.5253|ERROR|Shared.resources.MerchantList|Failed when adding "Wand of Dark Magic" to shop. Item does not exist.
+2023-04-15 14:22:47.5253|ERROR|Shared.resources.MerchantList|Failed when adding "Adamant Great Sword" to shop. Item does not exist.
+2023-04-15 14:22:47.5253|ERROR|Shared.resources.MerchantList|Failed when adding "Demon's Edge" to shop. Item does not exist.
+2023-04-15 14:22:47.5253|ERROR|Shared.resources.MerchantList|Failed when adding "Cloak of the Red Agent" to shop. Item does not exist.
+2023-04-15 14:22:47.5253|ERROR|Shared.resources.MerchantList|Failed when adding "Quiver of the Crimson Elf" to shop. Item does not exist.
+2023-04-15 14:22:47.5253|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Nova Spell" to shop. Item does not exist.
+2023-04-15 14:22:47.5253|ERROR|Shared.resources.MerchantList|Failed when adding "Tome of Divine Favor" to shop. Item does not exist.
+2023-04-15 14:22:47.5253|ERROR|Shared.resources.MerchantList|Failed when adding "Helm of the Great General" to shop. Item does not exist.
+2023-04-15 14:22:47.5253|ERROR|Shared.resources.MerchantList|Failed when adding "Colossus Shield" to shop. Item does not exist.
+2023-04-15 14:22:47.5253|ERROR|Shared.resources.MerchantList|Failed when adding "Seal of the Holy Warrior" to shop. Item does not exist.
+2023-04-15 14:22:47.5253|ERROR|Shared.resources.MerchantList|Failed when adding "Nightwing Vial" to shop. Item does not exist.
+2023-04-15 14:22:47.5253|ERROR|Shared.resources.MerchantList|Failed when adding "Lifedrinker Skull" to shop. Item does not exist.
+2023-04-15 14:22:47.5253|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Orb" to shop. Item does not exist.
+2023-04-15 14:22:47.5253|ERROR|Shared.resources.MerchantList|Failed when adding "Scepter of Skybolts" to shop. Item does not exist.
+2023-04-15 14:22:47.5253|ERROR|Shared.resources.MerchantList|Failed when adding "Doom Circle" to shop. Item does not exist.
+2023-04-15 14:22:47.5253|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Totem" to shop. Item does not exist.
+2023-04-15 14:22:47.5253|ERROR|Shared.resources.MerchantList|Failed when adding "Deck of the Ancient" to shop. Item does not exist.
+2023-04-15 14:22:47.5253|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Rune" to shop. Item does not exist.
+2023-04-15 14:22:47.5258|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Conjurer" to shop. Item does not exist.
+2023-04-15 14:22:47.5258|ERROR|Shared.resources.MerchantList|Failed when adding "Gold-Studded Armor" to shop. Item does not exist.
+2023-04-15 14:22:47.5258|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Chestplate" to shop. Item does not exist.
+2023-04-15 14:22:47.5258|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Grand Sorcerer" to shop. Item does not exist.
+2023-04-15 14:22:47.5258|ERROR|Shared.resources.MerchantList|Failed when adding "Wyvern Skin Armor" to shop. Item does not exist.
+2023-04-15 14:22:47.5258|ERROR|Shared.resources.MerchantList|Failed when adding "Dragonscale Chestplate" to shop. Item does not exist.
+2023-04-15 14:22:47.5258|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Ring" to shop. Item does not exist.
+2023-04-15 14:22:47.5258|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Circlet" to shop. Item does not exist.
+2023-04-15 14:22:47.5258|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
+2023-04-15 14:22:47.5258|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
+2023-04-15 14:22:47.5258|INFO|Shared.resources.XmlData|Finish loading game data.
+2023-04-15 14:22:47.5258|INFO|Shared.resources.XmlData|262 Items
+2023-04-15 14:22:47.5258|INFO|Shared.resources.XmlData|81 Tiles
+2023-04-15 14:22:47.5258|INFO|Shared.resources.XmlData|312 Objects
+2023-04-15 14:22:47.5258|INFO|Shared.resources.XmlData|9 Skins
+2023-04-15 14:22:47.5258|INFO|Shared.resources.XmlData|0 Equipment Sets
+2023-04-15 14:22:47.5258|INFO|Shared.resources.XmlData|9 Classes
+2023-04-15 14:22:47.5258|INFO|Shared.resources.XmlData|9 Portals
+2023-04-15 14:22:47.5258|INFO|Shared.resources.XmlData|1 Merchants
+2023-04-15 14:22:47.5258|INFO|Shared.resources.XmlData|0 Remote Textures
+2023-04-15 14:22:47.5258|INFO|Shared.resources.XmlData|0 Additions
+2023-04-15 14:22:47.5822|INFO|Shared.resources.WorldData|Initializing world data: Nexus.jw 1/1...
+2023-04-15 14:25:57.2548|INFO|Shared.resources.AppSettings|Loading app settings...
+2023-04-15 14:25:57.2738|INFO|Shared.resources.XmlData|Loading xml data...
+2023-04-15 14:25:57.3544|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Plated Dagger" to shop. Item does not exist.
+2023-04-15 14:25:57.3545|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby-Reinforced Longbow" to shop. Item does not exist.
+2023-04-15 14:25:57.3545|ERROR|Shared.resources.MerchantList|Failed when adding "Staff of Diabolic Secrets" to shop. Item does not exist.
+2023-04-15 14:25:57.3545|ERROR|Shared.resources.MerchantList|Failed when adding "Wand of Dark Magic" to shop. Item does not exist.
+2023-04-15 14:25:57.3545|ERROR|Shared.resources.MerchantList|Failed when adding "Adamant Great Sword" to shop. Item does not exist.
+2023-04-15 14:25:57.3545|ERROR|Shared.resources.MerchantList|Failed when adding "Demon's Edge" to shop. Item does not exist.
+2023-04-15 14:25:57.3545|ERROR|Shared.resources.MerchantList|Failed when adding "Cloak of the Red Agent" to shop. Item does not exist.
+2023-04-15 14:25:57.3545|ERROR|Shared.resources.MerchantList|Failed when adding "Quiver of the Crimson Elf" to shop. Item does not exist.
+2023-04-15 14:25:57.3545|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Nova Spell" to shop. Item does not exist.
+2023-04-15 14:25:57.3545|ERROR|Shared.resources.MerchantList|Failed when adding "Tome of Divine Favor" to shop. Item does not exist.
+2023-04-15 14:25:57.3545|ERROR|Shared.resources.MerchantList|Failed when adding "Helm of the Great General" to shop. Item does not exist.
+2023-04-15 14:25:57.3545|ERROR|Shared.resources.MerchantList|Failed when adding "Colossus Shield" to shop. Item does not exist.
+2023-04-15 14:25:57.3545|ERROR|Shared.resources.MerchantList|Failed when adding "Seal of the Holy Warrior" to shop. Item does not exist.
+2023-04-15 14:25:57.3545|ERROR|Shared.resources.MerchantList|Failed when adding "Nightwing Vial" to shop. Item does not exist.
+2023-04-15 14:25:57.3545|ERROR|Shared.resources.MerchantList|Failed when adding "Lifedrinker Skull" to shop. Item does not exist.
+2023-04-15 14:25:57.3545|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Orb" to shop. Item does not exist.
+2023-04-15 14:25:57.3545|ERROR|Shared.resources.MerchantList|Failed when adding "Scepter of Skybolts" to shop. Item does not exist.
+2023-04-15 14:25:57.3545|ERROR|Shared.resources.MerchantList|Failed when adding "Doom Circle" to shop. Item does not exist.
+2023-04-15 14:25:57.3545|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Totem" to shop. Item does not exist.
+2023-04-15 14:25:57.3545|ERROR|Shared.resources.MerchantList|Failed when adding "Deck of the Ancient" to shop. Item does not exist.
+2023-04-15 14:25:57.3545|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Rune" to shop. Item does not exist.
+2023-04-15 14:25:57.3545|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Conjurer" to shop. Item does not exist.
+2023-04-15 14:25:57.3545|ERROR|Shared.resources.MerchantList|Failed when adding "Gold-Studded Armor" to shop. Item does not exist.
+2023-04-15 14:25:57.3545|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Chestplate" to shop. Item does not exist.
+2023-04-15 14:25:57.3545|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Grand Sorcerer" to shop. Item does not exist.
+2023-04-15 14:25:57.3545|ERROR|Shared.resources.MerchantList|Failed when adding "Wyvern Skin Armor" to shop. Item does not exist.
+2023-04-15 14:25:57.3545|ERROR|Shared.resources.MerchantList|Failed when adding "Dragonscale Chestplate" to shop. Item does not exist.
+2023-04-15 14:25:57.3545|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Ring" to shop. Item does not exist.
+2023-04-15 14:25:57.3545|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Circlet" to shop. Item does not exist.
+2023-04-15 14:25:57.3545|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
+2023-04-15 14:25:57.3545|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
+2023-04-15 14:25:57.3545|INFO|Shared.resources.XmlData|Finish loading game data.
+2023-04-15 14:25:57.3545|INFO|Shared.resources.XmlData|262 Items
+2023-04-15 14:25:57.3545|INFO|Shared.resources.XmlData|81 Tiles
+2023-04-15 14:25:57.3545|INFO|Shared.resources.XmlData|312 Objects
+2023-04-15 14:25:57.3545|INFO|Shared.resources.XmlData|9 Skins
+2023-04-15 14:25:57.3545|INFO|Shared.resources.XmlData|0 Equipment Sets
+2023-04-15 14:25:57.3545|INFO|Shared.resources.XmlData|9 Classes
+2023-04-15 14:25:57.3545|INFO|Shared.resources.XmlData|9 Portals
+2023-04-15 14:25:57.3545|INFO|Shared.resources.XmlData|1 Merchants
+2023-04-15 14:25:57.3545|INFO|Shared.resources.XmlData|0 Remote Textures
+2023-04-15 14:25:57.3545|INFO|Shared.resources.XmlData|0 Additions
+2023-04-15 14:25:57.3806|INFO|Shared.resources.WorldData|Initializing world data: Nexus.jw 1/1...
+2023-04-15 14:28:22.7703|INFO|Shared.resources.AppSettings|Loading app settings...
+2023-04-15 14:28:22.7881|INFO|Shared.resources.XmlData|Loading xml data...
+2023-04-15 14:28:22.8686|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Plated Dagger" to shop. Item does not exist.
+2023-04-15 14:28:22.8686|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby-Reinforced Longbow" to shop. Item does not exist.
+2023-04-15 14:28:22.8686|ERROR|Shared.resources.MerchantList|Failed when adding "Staff of Diabolic Secrets" to shop. Item does not exist.
+2023-04-15 14:28:22.8686|ERROR|Shared.resources.MerchantList|Failed when adding "Wand of Dark Magic" to shop. Item does not exist.
+2023-04-15 14:28:22.8686|ERROR|Shared.resources.MerchantList|Failed when adding "Adamant Great Sword" to shop. Item does not exist.
+2023-04-15 14:28:22.8686|ERROR|Shared.resources.MerchantList|Failed when adding "Demon's Edge" to shop. Item does not exist.
+2023-04-15 14:28:22.8686|ERROR|Shared.resources.MerchantList|Failed when adding "Cloak of the Red Agent" to shop. Item does not exist.
+2023-04-15 14:28:22.8686|ERROR|Shared.resources.MerchantList|Failed when adding "Quiver of the Crimson Elf" to shop. Item does not exist.
+2023-04-15 14:28:22.8686|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Nova Spell" to shop. Item does not exist.
+2023-04-15 14:28:22.8686|ERROR|Shared.resources.MerchantList|Failed when adding "Tome of Divine Favor" to shop. Item does not exist.
+2023-04-15 14:28:22.8686|ERROR|Shared.resources.MerchantList|Failed when adding "Helm of the Great General" to shop. Item does not exist.
+2023-04-15 14:28:22.8686|ERROR|Shared.resources.MerchantList|Failed when adding "Colossus Shield" to shop. Item does not exist.
+2023-04-15 14:28:22.8686|ERROR|Shared.resources.MerchantList|Failed when adding "Seal of the Holy Warrior" to shop. Item does not exist.
+2023-04-15 14:28:22.8686|ERROR|Shared.resources.MerchantList|Failed when adding "Nightwing Vial" to shop. Item does not exist.
+2023-04-15 14:28:22.8686|ERROR|Shared.resources.MerchantList|Failed when adding "Lifedrinker Skull" to shop. Item does not exist.
+2023-04-15 14:28:22.8686|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Orb" to shop. Item does not exist.
+2023-04-15 14:28:22.8686|ERROR|Shared.resources.MerchantList|Failed when adding "Scepter of Skybolts" to shop. Item does not exist.
+2023-04-15 14:28:22.8686|ERROR|Shared.resources.MerchantList|Failed when adding "Doom Circle" to shop. Item does not exist.
+2023-04-15 14:28:22.8686|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Totem" to shop. Item does not exist.
+2023-04-15 14:28:22.8686|ERROR|Shared.resources.MerchantList|Failed when adding "Deck of the Ancient" to shop. Item does not exist.
+2023-04-15 14:28:22.8686|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Rune" to shop. Item does not exist.
+2023-04-15 14:28:22.8686|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Conjurer" to shop. Item does not exist.
+2023-04-15 14:28:22.8686|ERROR|Shared.resources.MerchantList|Failed when adding "Gold-Studded Armor" to shop. Item does not exist.
+2023-04-15 14:28:22.8686|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Chestplate" to shop. Item does not exist.
+2023-04-15 14:28:22.8686|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Grand Sorcerer" to shop. Item does not exist.
+2023-04-15 14:28:22.8686|ERROR|Shared.resources.MerchantList|Failed when adding "Wyvern Skin Armor" to shop. Item does not exist.
+2023-04-15 14:28:22.8686|ERROR|Shared.resources.MerchantList|Failed when adding "Dragonscale Chestplate" to shop. Item does not exist.
+2023-04-15 14:28:22.8686|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Ring" to shop. Item does not exist.
+2023-04-15 14:28:22.8686|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Circlet" to shop. Item does not exist.
+2023-04-15 14:28:22.8686|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
+2023-04-15 14:28:22.8686|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
+2023-04-15 14:28:22.8686|INFO|Shared.resources.XmlData|Finish loading game data.
+2023-04-15 14:28:22.8686|INFO|Shared.resources.XmlData|262 Items
+2023-04-15 14:28:22.8686|INFO|Shared.resources.XmlData|81 Tiles
+2023-04-15 14:28:22.8686|INFO|Shared.resources.XmlData|312 Objects
+2023-04-15 14:28:22.8686|INFO|Shared.resources.XmlData|9 Skins
+2023-04-15 14:28:22.8686|INFO|Shared.resources.XmlData|0 Equipment Sets
+2023-04-15 14:28:22.8686|INFO|Shared.resources.XmlData|9 Classes
+2023-04-15 14:28:22.8686|INFO|Shared.resources.XmlData|9 Portals
+2023-04-15 14:28:22.8686|INFO|Shared.resources.XmlData|1 Merchants
+2023-04-15 14:28:22.8686|INFO|Shared.resources.XmlData|0 Remote Textures
+2023-04-15 14:28:22.8686|INFO|Shared.resources.XmlData|0 Additions
+2023-04-15 14:28:22.8932|INFO|Shared.resources.WorldData|Initializing world data: Nexus.jw 1/1...
+2023-04-15 14:29:26.4652|INFO|Shared.resources.AppSettings|Loading app settings...
+2023-04-15 14:29:26.4840|INFO|Shared.resources.XmlData|Loading xml data...
+2023-04-15 14:29:26.5680|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Plated Dagger" to shop. Item does not exist.
+2023-04-15 14:29:26.5680|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby-Reinforced Longbow" to shop. Item does not exist.
+2023-04-15 14:29:26.5680|ERROR|Shared.resources.MerchantList|Failed when adding "Staff of Diabolic Secrets" to shop. Item does not exist.
+2023-04-15 14:29:26.5680|ERROR|Shared.resources.MerchantList|Failed when adding "Wand of Dark Magic" to shop. Item does not exist.
+2023-04-15 14:29:26.5680|ERROR|Shared.resources.MerchantList|Failed when adding "Adamant Great Sword" to shop. Item does not exist.
+2023-04-15 14:29:26.5680|ERROR|Shared.resources.MerchantList|Failed when adding "Demon's Edge" to shop. Item does not exist.
+2023-04-15 14:29:26.5680|ERROR|Shared.resources.MerchantList|Failed when adding "Cloak of the Red Agent" to shop. Item does not exist.
+2023-04-15 14:29:26.5680|ERROR|Shared.resources.MerchantList|Failed when adding "Quiver of the Crimson Elf" to shop. Item does not exist.
+2023-04-15 14:29:26.5680|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Nova Spell" to shop. Item does not exist.
+2023-04-15 14:29:26.5680|ERROR|Shared.resources.MerchantList|Failed when adding "Tome of Divine Favor" to shop. Item does not exist.
+2023-04-15 14:29:26.5680|ERROR|Shared.resources.MerchantList|Failed when adding "Helm of the Great General" to shop. Item does not exist.
+2023-04-15 14:29:26.5680|ERROR|Shared.resources.MerchantList|Failed when adding "Colossus Shield" to shop. Item does not exist.
+2023-04-15 14:29:26.5680|ERROR|Shared.resources.MerchantList|Failed when adding "Seal of the Holy Warrior" to shop. Item does not exist.
+2023-04-15 14:29:26.5680|ERROR|Shared.resources.MerchantList|Failed when adding "Nightwing Vial" to shop. Item does not exist.
+2023-04-15 14:29:26.5680|ERROR|Shared.resources.MerchantList|Failed when adding "Lifedrinker Skull" to shop. Item does not exist.
+2023-04-15 14:29:26.5680|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Orb" to shop. Item does not exist.
+2023-04-15 14:29:26.5680|ERROR|Shared.resources.MerchantList|Failed when adding "Scepter of Skybolts" to shop. Item does not exist.
+2023-04-15 14:29:26.5680|ERROR|Shared.resources.MerchantList|Failed when adding "Doom Circle" to shop. Item does not exist.
+2023-04-15 14:29:26.5680|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Totem" to shop. Item does not exist.
+2023-04-15 14:29:26.5680|ERROR|Shared.resources.MerchantList|Failed when adding "Deck of the Ancient" to shop. Item does not exist.
+2023-04-15 14:29:26.5680|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Rune" to shop. Item does not exist.
+2023-04-15 14:29:26.5680|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Conjurer" to shop. Item does not exist.
+2023-04-15 14:29:26.5680|ERROR|Shared.resources.MerchantList|Failed when adding "Gold-Studded Armor" to shop. Item does not exist.
+2023-04-15 14:29:26.5680|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Chestplate" to shop. Item does not exist.
+2023-04-15 14:29:26.5680|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Grand Sorcerer" to shop. Item does not exist.
+2023-04-15 14:29:26.5680|ERROR|Shared.resources.MerchantList|Failed when adding "Wyvern Skin Armor" to shop. Item does not exist.
+2023-04-15 14:29:26.5680|ERROR|Shared.resources.MerchantList|Failed when adding "Dragonscale Chestplate" to shop. Item does not exist.
+2023-04-15 14:29:26.5680|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Ring" to shop. Item does not exist.
+2023-04-15 14:29:26.5680|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Circlet" to shop. Item does not exist.
+2023-04-15 14:29:26.5680|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
+2023-04-15 14:29:26.5680|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
+2023-04-15 14:29:26.5680|INFO|Shared.resources.XmlData|Finish loading game data.
+2023-04-15 14:29:26.5680|INFO|Shared.resources.XmlData|262 Items
+2023-04-15 14:29:26.5680|INFO|Shared.resources.XmlData|81 Tiles
+2023-04-15 14:29:26.5680|INFO|Shared.resources.XmlData|312 Objects
+2023-04-15 14:29:26.5680|INFO|Shared.resources.XmlData|9 Skins
+2023-04-15 14:29:26.5680|INFO|Shared.resources.XmlData|0 Equipment Sets
+2023-04-15 14:29:26.5680|INFO|Shared.resources.XmlData|9 Classes
+2023-04-15 14:29:26.5680|INFO|Shared.resources.XmlData|9 Portals
+2023-04-15 14:29:26.5680|INFO|Shared.resources.XmlData|1 Merchants
+2023-04-15 14:29:26.5680|INFO|Shared.resources.XmlData|0 Remote Textures
+2023-04-15 14:29:26.5680|INFO|Shared.resources.XmlData|0 Additions
+2023-04-15 14:29:26.5947|INFO|Shared.resources.WorldData|Initializing world data: Nexus.jw 1/1...
+2023-04-15 14:30:41.7816|INFO|Shared.resources.AppSettings|Loading app settings...
+2023-04-15 14:30:41.8004|INFO|Shared.resources.XmlData|Loading xml data...
+2023-04-15 14:37:12.8491|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Plated Dagger" to shop. Item does not exist.
+2023-04-15 14:37:12.8491|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby-Reinforced Longbow" to shop. Item does not exist.
+2023-04-15 14:37:12.8491|ERROR|Shared.resources.MerchantList|Failed when adding "Staff of Diabolic Secrets" to shop. Item does not exist.
+2023-04-15 14:37:12.8491|ERROR|Shared.resources.MerchantList|Failed when adding "Wand of Dark Magic" to shop. Item does not exist.
+2023-04-15 14:37:12.8491|ERROR|Shared.resources.MerchantList|Failed when adding "Adamant Great Sword" to shop. Item does not exist.
+2023-04-15 14:37:12.8491|ERROR|Shared.resources.MerchantList|Failed when adding "Demon's Edge" to shop. Item does not exist.
+2023-04-15 14:37:12.8491|ERROR|Shared.resources.MerchantList|Failed when adding "Cloak of the Red Agent" to shop. Item does not exist.
+2023-04-15 14:37:12.8491|ERROR|Shared.resources.MerchantList|Failed when adding "Quiver of the Crimson Elf" to shop. Item does not exist.
+2023-04-15 14:37:12.8491|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Nova Spell" to shop. Item does not exist.
+2023-04-15 14:37:12.8491|ERROR|Shared.resources.MerchantList|Failed when adding "Tome of Divine Favor" to shop. Item does not exist.
+2023-04-15 14:37:12.8491|ERROR|Shared.resources.MerchantList|Failed when adding "Helm of the Great General" to shop. Item does not exist.
+2023-04-15 14:37:12.8491|ERROR|Shared.resources.MerchantList|Failed when adding "Colossus Shield" to shop. Item does not exist.
+2023-04-15 14:37:12.8491|ERROR|Shared.resources.MerchantList|Failed when adding "Seal of the Holy Warrior" to shop. Item does not exist.
+2023-04-15 14:37:12.8491|ERROR|Shared.resources.MerchantList|Failed when adding "Nightwing Vial" to shop. Item does not exist.
+2023-04-15 14:37:12.8491|ERROR|Shared.resources.MerchantList|Failed when adding "Lifedrinker Skull" to shop. Item does not exist.
+2023-04-15 14:37:12.8491|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Orb" to shop. Item does not exist.
+2023-04-15 14:37:12.8491|ERROR|Shared.resources.MerchantList|Failed when adding "Scepter of Skybolts" to shop. Item does not exist.
+2023-04-15 14:37:12.8491|ERROR|Shared.resources.MerchantList|Failed when adding "Doom Circle" to shop. Item does not exist.
+2023-04-15 14:37:12.8491|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Totem" to shop. Item does not exist.
+2023-04-15 14:37:12.8491|ERROR|Shared.resources.MerchantList|Failed when adding "Deck of the Ancient" to shop. Item does not exist.
+2023-04-15 14:37:12.8491|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Rune" to shop. Item does not exist.
+2023-04-15 14:37:12.8491|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Conjurer" to shop. Item does not exist.
+2023-04-15 14:37:12.8491|ERROR|Shared.resources.MerchantList|Failed when adding "Gold-Studded Armor" to shop. Item does not exist.
+2023-04-15 14:37:12.8491|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Chestplate" to shop. Item does not exist.
+2023-04-15 14:37:12.8491|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Grand Sorcerer" to shop. Item does not exist.
+2023-04-15 14:37:12.8491|ERROR|Shared.resources.MerchantList|Failed when adding "Wyvern Skin Armor" to shop. Item does not exist.
+2023-04-15 14:37:12.8491|ERROR|Shared.resources.MerchantList|Failed when adding "Dragonscale Chestplate" to shop. Item does not exist.
+2023-04-15 14:37:12.8491|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Ring" to shop. Item does not exist.
+2023-04-15 14:37:12.8491|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Circlet" to shop. Item does not exist.
+2023-04-15 14:37:12.8491|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
+2023-04-15 14:37:12.8491|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
+2023-04-15 14:37:12.8491|INFO|Shared.resources.XmlData|Finish loading game data.
+2023-04-15 14:37:12.8491|INFO|Shared.resources.XmlData|262 Items
+2023-04-15 14:37:12.8491|INFO|Shared.resources.XmlData|81 Tiles
+2023-04-15 14:37:12.8491|INFO|Shared.resources.XmlData|312 Objects
+2023-04-15 14:37:12.8491|INFO|Shared.resources.XmlData|9 Skins
+2023-04-15 14:37:12.8491|INFO|Shared.resources.XmlData|0 Equipment Sets
+2023-04-15 14:37:12.8491|INFO|Shared.resources.XmlData|9 Classes
+2023-04-15 14:37:12.8491|INFO|Shared.resources.XmlData|9 Portals
+2023-04-15 14:37:12.8491|INFO|Shared.resources.XmlData|1 Merchants
+2023-04-15 14:37:12.8491|INFO|Shared.resources.XmlData|0 Remote Textures
+2023-04-15 14:37:12.8491|INFO|Shared.resources.XmlData|0 Additions
+2023-04-15 14:37:12.8891|INFO|Shared.resources.WorldData|Initializing world data: Nexus.jw 1/1...
+2023-04-15 14:37:23.2736|INFO|Shared.Database|Initializing Database...
+2023-04-15 14:37:23.4692|INFO|GameServer.realm.RealmManager|Initializing Realm Manager...
+2023-04-15 14:37:23.4692|INFO|Shared.ISManager|Server's Id is 94bae4c7-4639-42b2-aa8f-dcee3f925bb7
+2023-04-15 14:37:23.5020|INFO|GameServer.logic.BehaviorDb|Initializing Behavior Database...
+2023-04-15 14:37:23.5020|INFO|Shared.ISManager|Localhost (World, 94bae4c7-4639-42b2-aa8f-dcee3f925bb7) joined the network.
+2023-04-15 14:37:23.5133|INFO|GameServer.logic.BehaviorDb|Loaded 1 XML Behaviors
+2023-04-15 14:37:23.5133|INFO|GameServer.logic.BehaviorDb|Behavior Database initialized...
+2023-04-15 14:37:23.5133|INFO|GameServer.realm.PortalMonitor|Initalizing Portal Monitor...
+2023-04-15 14:37:23.5330|INFO|GameServer.realm.worlds.World|Loading map for world -2(Nexus)...
+2023-04-15 14:37:23.5581|INFO|GameServer.realm.RealmManager|World -2(Nexus) added. 1 Worlds existing.
+2023-04-15 14:37:23.5581|INFO|GameServer.realm.RealmManager|Realm Manager initialized.
+2023-04-15 14:37:23.5581|INFO|GameServer.realm.RealmManager|Starting Realm Manager...
+2023-04-15 14:37:23.5581|INFO|GameServer.realm.RealmManager|Realm Manager started.
+2023-04-15 14:37:23.5581|INFO|GameServer.Server|Starting server...
+2023-04-15 14:37:23.5581|INFO|GameServer.realm.LogicTicker|Logic loop started.
+2023-04-15 14:37:23.5759|INFO|GameServer.Server|Listening on port 2050...

@@ -25,3 +25,10 @@
    at Shared.resources.XmlData..ctor(String path) in C:\Users\Slendergo\Documents\GitHub\Faer\faer-src\Shared\resources\XmlData.cs:line 161
    at Shared.resources.Resources..ctor(String resourcePath, Boolean wServer) in C:\Users\Slendergo\Documents\GitHub\Faer\faer-src\Shared\resources\Resources.cs:line 36
    at GameServer.Program.Main(String[] args) in C:\Users\Slendergo\Documents\GitHub\Faer\faer-src\GameServer\Program.cs:line 32
+2023-04-15 14:25:57.4153|FATAL|GameServer.Program|System.Collections.Generic.KeyNotFoundException: The given key '256' was not present in the dictionary.
+   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   at Shared.terrain.Json2Wmap.Convert(XmlData data, String json) in C:\Users\Slendergo\Documents\GitHub\Faer\faer-src\Shared\terrain\Json2Wmap.cs:line 66
+   at Shared.resources.WorldData.LoadWorldsAndSetpieces(XmlData gameData, String basePath, List`1 setpieces, Dictionary`2 worlds) in C:\Users\Slendergo\Documents\GitHub\Faer\faer-src\Shared\resources\WorldData.cs:line 232
+   at Shared.resources.WorldData..ctor(String dir, XmlData gameData) in C:\Users\Slendergo\Documents\GitHub\Faer\faer-src\Shared\resources\WorldData.cs:line 158
+   at Shared.resources.Resources..ctor(String resourcePath, Boolean wServer) in C:\Users\Slendergo\Documents\GitHub\Faer\faer-src\Shared\resources\Resources.cs:line 55
+   at GameServer.Program.Main(String[] args) in C:\Users\Slendergo\Documents\GitHub\Faer\faer-src\GameServer\Program.cs:line 32

@@ -90,7 +90,7 @@ namespace GameServer.realm
                 case ServerMode.Nexus:
                 case ServerMode.Realm:
                     InitializeGlobalWorlds();
-                    AddWorld("Realm", true);
+                    AddWorld("Nexus", false);
                     break;
             }
 

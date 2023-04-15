@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net;
 using Shared.resources;
 using Ionic.Zlib;
 using Newtonsoft.Json;
@@ -63,7 +64,7 @@ namespace Shared.terrain
                 for (int y = 0; y < obj.height; y++)
                 for (int x = 0; x < obj.width; x++)
                 {
-                    tiles[x, y] = tileDict[rdr.ReadInt16()];
+                    tiles[x, y] = tileDict[IPAddress.NetworkToHostOrder(rdr.ReadInt16())];
                 }
 
             return WorldMapExporter.Export(tiles);
