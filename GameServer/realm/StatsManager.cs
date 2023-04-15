@@ -181,9 +181,9 @@ namespace GameServer.realm
         {
             switch (stat)
             {
-                case StatsType.MaximumHP:
+                case StatsType.MaxHP:
                     return 0;
-                case StatsType.MaximumMP:
+                case StatsType.MaxMP:
                     return 1;
                 case StatsType.Strength:
                     return 2;
@@ -201,9 +201,9 @@ namespace GameServer.realm
             switch (stat)
             {
                 case 0:
-                    return StatsType.MaximumHP;
+                    return StatsType.MaxHP;
                 case 1:
-                    return StatsType.MaximumMP;
+                    return StatsType.MaxMP;
                 case 2:
                     return StatsType.Strength;
                 case 6:

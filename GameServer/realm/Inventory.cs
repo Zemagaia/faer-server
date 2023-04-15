@@ -128,9 +128,9 @@ namespace wServer.realm
 
             for (var i = 0; i < items.Length; i++)
             {
-                var sti = (int)StatsType.Inventory0 + i;
+                var sti = (int)StatsType.Inv0 + i;
                 if (i >= 12)
-                    sti = (int)StatsType.BackPack0 + i - 12;
+                    sti = (int)StatsType.Inv12 + i - 12;
 
                 _itemTypes[i] = new SV<int>(
                     container as Entity,

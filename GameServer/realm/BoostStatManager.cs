@@ -82,10 +82,10 @@ namespace GameServer.realm
                                 _player.Size = ae.Size;
                                 break;
                             case ActivateEffects.IncrementStat:
-                                IncrementBoost((StatsType)ae.Stats, ae.Amount);
+                                IncrementBoost((StatsType)ae.Stats, (int)ae.Amount);
                                 break;
                             case ActivateEffects.FixedStat:
-                                FixedStat((StatsType)ae.Stats, ae.Amount);
+                                FixedStat((StatsType)ae.Stats, (int)ae.Amount);
                                 break;
                             case ActivateEffects.ConditionEffectSelf:
                                 _player.ApplyConditionEffect(ae.ConditionEffect.Value);

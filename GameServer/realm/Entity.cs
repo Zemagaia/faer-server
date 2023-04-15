@@ -133,7 +133,7 @@ namespace GameServer.realm
             _altTextureIndex = new SV<int>(this, StatsType.AltTextureIndex, -1);
             _x = new SV<float>(this, StatsType.None, 0);
             _y = new SV<float>(this, StatsType.None, 0);
-            _conditionEffects1 = new SV<int>(this, StatsType.Effects, 0);
+            _conditionEffects1 = new SV<int>(this, StatsType.Condition, 0);
 
             ObjectType = objType;
             Manager = manager;
@@ -170,7 +170,7 @@ namespace GameServer.realm
                 case StatsType.Name: Name = (string)val; break;
                 case StatsType.Size: Size = (int)val; break;
                 case StatsType.AltTextureIndex: AltTextureIndex = (int)val; break;
-                case StatsType.Effects: ConditionEffects = (ConditionEffects)(ulong)val; break;
+                case StatsType.Condition: ConditionEffects = (ConditionEffects)(ulong)val; break;
             }
         }
 
@@ -179,7 +179,7 @@ namespace GameServer.realm
             stats[StatsType.Name] = Name;
             stats[StatsType.Size] = Size;
             stats[StatsType.AltTextureIndex] = AltTextureIndex;
-            stats[StatsType.Effects] = _conditionEffects1.GetValue();
+            stats[StatsType.Condition] = _conditionEffects1.GetValue();
         }
 
         public void FromDefinition(ObjectDef def)

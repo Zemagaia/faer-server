@@ -51,7 +51,7 @@ namespace GameServer.realm.entities.vendors
             : base(manager, objType, null, true, false, false)
         {
             _price = new SV<int>(this, StatsType.SellablePrice, 0);
-            _currency = new SV<CurrencyType>(this, StatsType.SellablePriceCurrency, 0);
+            _currency = new SV<CurrencyType>(this, StatsType.MerchPrice, 0);
         }
 
         public virtual void Buy(Player player)
@@ -62,7 +62,7 @@ namespace GameServer.realm.entities.vendors
         protected override void ExportStats(IDictionary<StatsType, object> stats)
         {
             stats[StatsType.SellablePrice] = Price;
-            stats[StatsType.SellablePriceCurrency] = (int)Currency;
+            stats[StatsType.MerchPrice] = (int)Currency;
             base.ExportStats(stats);
         }
 
@@ -73,7 +73,7 @@ namespace GameServer.realm.entities.vendors
                 case StatsType.SellablePrice:
                     Price = (int)val;
                     break;
-                case StatsType.SellablePriceCurrency:
+                case StatsType.MerchPrice:
                     Currency = (CurrencyType)val;
                     break;
             }

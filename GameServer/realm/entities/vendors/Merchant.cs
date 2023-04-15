@@ -31,15 +31,15 @@ namespace GameServer.realm.entities.vendors
         protected Merchant(RealmManager manager, ushort objType)
             : base(manager, objType)
         {
-            _item = new SV<ushort>(this, StatsType.MerchantMerchandiseType, 0x1400);
-            _count = new SV<int>(this, StatsType.MerchantRemainingCount, -1);
+            _item = new SV<ushort>(this, StatsType.MerchType, 0x1400);
+            _count = new SV<int>(this, StatsType.MerchCount, -1);
             Rotate = true;
         }
 
         protected override void ExportStats(IDictionary<StatsType, object> stats)
         {
-            stats[StatsType.MerchantMerchandiseType] = (int)Item;
-            stats[StatsType.MerchantRemainingCount] = Count;
+            stats[StatsType.MerchType] = (int)Item;
+            stats[StatsType.MerchCount] = Count;
             base.ExportStats(stats);
         }
 
@@ -47,10 +47,10 @@ namespace GameServer.realm.entities.vendors
         {
             switch (stats)
             {
-                case StatsType.MerchantMerchandiseType:
+                case StatsType.MerchType:
                     Item = (ushort)val;
                     break;
-                case StatsType.MerchantRemainingCount:
+                case StatsType.MerchCount:
                     Count = (int)val;
                     break;
             }

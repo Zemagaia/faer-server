@@ -11,3 +11,16 @@
 /home/a/faer/server/DungeonGen/obj/Debug/net7.0/refint/DungeonGen.dll
 /home/a/faer/server/DungeonGen/obj/Debug/net7.0/DungeonGen.pdb
 /home/a/faer/server/DungeonGen/obj/Debug/net7.0/ref/DungeonGen.dll
+C:\Users\Slendergo\Documents\GitHub\Faer\faer-src\bin\Debug\net7.0\DungeonGen.deps.json
+C:\Users\Slendergo\Documents\GitHub\Faer\faer-src\bin\Debug\net7.0\DungeonGen.dll
+C:\Users\Slendergo\Documents\GitHub\Faer\faer-src\bin\Debug\net7.0\DungeonGen.pdb
+C:\Users\Slendergo\Documents\GitHub\Faer\faer-src\DungeonGen\obj\Debug\net7.0\DungeonGen.csproj.AssemblyReference.cache
+C:\Users\Slendergo\Documents\GitHub\Faer\faer-src\DungeonGen\obj\Debug\net7.0\DungeonGen.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Slendergo\Documents\GitHub\Faer\faer-src\DungeonGen\obj\Debug\net7.0\DungeonGen.AssemblyInfoInputs.cache
+C:\Users\Slendergo\Documents\GitHub\Faer\faer-src\DungeonGen\obj\Debug\net7.0\DungeonGen.AssemblyInfo.cs
+C:\Users\Slendergo\Documents\GitHub\Faer\faer-src\DungeonGen\obj\Debug\net7.0\DungeonGen.csproj.CoreCompileInputs.cache
+C:\Users\Slendergo\Documents\GitHub\Faer\faer-src\DungeonGen\obj\Debug\net7.0\DungeonGen.csproj.CopyComplete
+C:\Users\Slendergo\Documents\GitHub\Faer\faer-src\DungeonGen\obj\Debug\net7.0\DungeonGen.dll
+C:\Users\Slendergo\Documents\GitHub\Faer\faer-src\DungeonGen\obj\Debug\net7.0\refint\DungeonGen.dll
+C:\Users\Slendergo\Documents\GitHub\Faer\faer-src\DungeonGen\obj\Debug\net7.0\DungeonGen.pdb
+C:\Users\Slendergo\Documents\GitHub\Faer\faer-src\DungeonGen\obj\Debug\net7.0\ref\DungeonGen.dll

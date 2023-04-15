@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Xml.Linq;
 using Shared.terrain;
 using NLog;
+using Dynamitey.Internal.Optimization;
 
 namespace Shared.resources
 {
@@ -97,7 +99,7 @@ namespace Shared.resources
     {
         public readonly ActivateEffects Effect;
         public readonly int Stats;
-        public readonly int Amount;
+        public readonly float Amount;
         public readonly float Range;
         public readonly float DurationSec;
         public readonly int DurationMS;
@@ -153,6 +155,8 @@ namespace Shared.resources
         public readonly int WisPerTarget;
         public readonly DamageTypes DamageType;
 
+        public readonly TotemEffect[] TotemEffects;
+        
         public ActivateEffect(XElement e)
         {
             Effect = (ActivateEffects)Enum.Parse(typeof(ActivateEffects), e.Value);
@@ -163,7 +167,7 @@ namespace Shared.resources
             if (e.HasAttribute("statId"))
                 Stats = e.GetAttribute<int>("statId");
 
-            Amount = e.GetAttribute<int>("amount");
+            Amount = e.GetAttribute<float>("amount");
             Range = e.GetAttribute<float>("range");
 
             DurationSec = e.GetAttribute<float>("duration");
@@ -172,7 +176,21 @@ namespace Shared.resources
                 DurationMS = (int)(e.GetAttribute<float>("duration2") * 1000);
 
             if (e.HasAttribute("effect"))
-                ConditionEffect = Utils.GetEffect(e.GetAttribute<string>("effect"));
+            {
+                var val = e.GetAttribute<string>("effect");
+                if (val.Contains(","))
+                {
+                    var effects = val.Trim().Split(",");
+                    
+                    TotemEffects = new TotemEffect[effects.Length];
+                    for (var i = 0; i < effects.Length; i++)
+                        TotemEffects[i] = new TotemEffect(effects[i].Trim());
+                }
+                else
+                {
+                    ConditionEffect = Utils.GetEffect(val);
+                }
+            }
 
             if (e.HasAttribute("condEffect"))
                 ConditionEffect = Utils.GetEffect(e.GetAttribute<string>("condEffect"));

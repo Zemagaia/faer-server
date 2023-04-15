@@ -44,14 +44,14 @@ namespace GameServer.realm.entities
         protected override void ExportStats(IDictionary<StatsType, object> stats)
         {
             if (Inventory == null) return;
-            stats[StatsType.Inventory0] = Inventory[0]?.ObjectType ?? -1;
-            stats[StatsType.Inventory1] = Inventory[1]?.ObjectType ?? -1;
-            stats[StatsType.Inventory2] = Inventory[2]?.ObjectType ?? -1;
-            stats[StatsType.Inventory3] = Inventory[3]?.ObjectType ?? -1;
-            stats[StatsType.Inventory4] = Inventory[4]?.ObjectType ?? -1;
-            stats[StatsType.Inventory5] = Inventory[5]?.ObjectType ?? -1;
-            stats[StatsType.Inventory6] = Inventory[6]?.ObjectType ?? -1;
-            stats[StatsType.Inventory7] = Inventory[7]?.ObjectType ?? -1;
+            stats[StatsType.Inv0] = Inventory[0]?.ObjectType ?? -1;
+            stats[StatsType.Inv1] = Inventory[1]?.ObjectType ?? -1;
+            stats[StatsType.Inv2] = Inventory[2]?.ObjectType ?? -1;
+            stats[StatsType.Inv3] = Inventory[3]?.ObjectType ?? -1;
+            stats[StatsType.Inv4] = Inventory[4]?.ObjectType ?? -1;
+            stats[StatsType.Inv5] = Inventory[5]?.ObjectType ?? -1;
+            stats[StatsType.Inv6] = Inventory[6]?.ObjectType ?? -1;
+            stats[StatsType.Inv7] = Inventory[7]?.ObjectType ?? -1;
             stats[StatsType.OwnerAccountId] = (BagOwners.Length == 1 ? BagOwners[0] : -1).ToString();
             base.ExportStats(stats);
         }

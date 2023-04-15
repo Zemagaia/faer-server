@@ -581,7 +581,7 @@ namespace GameServer.realm.entities.player
             var statInfo = Manager.Resources.GameData.Classes[ObjectType].Stats;
             string itemName = string.IsNullOrEmpty(item.DisplayName) ? item.ObjectId : item.DisplayName;
 
-            Stats.Base[idx] += eff.Amount;
+            Stats.Base[idx] += (int)eff.Amount;
             if (Stats.Base[idx] < statInfo[idx].MaxValue)
                 SendInfo(
                     $"{itemName} Consumed. {(statInfo[idx].MaxValue - Stats.Base[idx]) / eff.Amount} left to max.");
@@ -607,7 +607,7 @@ namespace GameServer.realm.entities.player
         private void AEFixedStat(RealmTime time, Item item, Position target, ActivateEffect eff)
         {
             var idx = StatsManager.GetStatIndex((StatsType)eff.Stats);
-            Stats.Base[idx] = eff.Amount;
+            Stats.Base[idx] = (int)eff.Amount;
         }
 
         private void AETeleport(RealmTime time, Item item, Position target, ActivateEffect eff)
@@ -618,7 +618,7 @@ namespace GameServer.realm.entities.player
         private void AEMagicNova(RealmTime time, Item item, Position target, ActivateEffect eff)
         {
             this.AOE(eff.Range, true, player =>
-                    ActivateHealMp(player as Player, eff.Amount));
+                    ActivateHealMp(player as Player, (int)eff.Amount));
                 foreach (var p in Owner.Players.Values)
                     if (MathUtils.DistSqr(p.X, Y, X, Y) < RadiusSqr) 
                         p.Client.SendShowEffect(EffectType.AreaBlast, Id, eff.Range, eff.Range, 0 ,0, 0xFFFFFFFF);
@@ -626,7 +626,7 @@ namespace GameServer.realm.entities.player
 
         private void AEMagic(RealmTime time, Item item, Position target, ActivateEffect eff)
         {
-            ActivateHealMp(this, eff.Amount);
+            ActivateHealMp(this, (int)eff.Amount);
         }
 
         private void AEHealNova(RealmTime time, Item item, Position target, ActivateEffect eff)
@@ -639,7 +639,7 @@ namespace GameServer.realm.entities.player
                 this.AOE(range, true, player =>
                 {
                     if (!player.HasConditionEffect(ConditionEffects.Sick))
-                        ActivateHealHp(player as Player, amount);
+                        ActivateHealHp(player as Player, (int)amount);
                 });
                 
                 foreach (var p in Owner.Players.Values)
@@ -652,7 +652,7 @@ namespace GameServer.realm.entities.player
         {
             if (!HasConditionEffect(ConditionEffects.Sick))
             {
-                ActivateHealHp(this, eff.Amount);
+                ActivateHealHp(this, (int)eff.Amount);
             }
         }
 
@@ -663,7 +663,7 @@ namespace GameServer.realm.entities.player
 
             this.AOE(range, true, player =>
             {
-                player.ApplyConditionEffect(new ConditionEffect
+                player.ApplyConditionEffect(new ConditionEffect()
                 {
                     Effect = eff.ConditionEffect.Value,
                     DurationMS = duration
@@ -695,7 +695,7 @@ namespace GameServer.realm.entities.player
         private void AEStatBoostAura(RealmTime time, Item item, Position target, ActivateEffect eff)
         {
             var idx = StatsManager.GetStatIndex((StatsType)eff.Stats);
-            var amount = eff.Amount;
+            var amount = (int)eff.Amount;
             var duration = eff.DurationMS;
             var range = eff.Range;
 
@@ -705,7 +705,7 @@ namespace GameServer.realm.entities.player
                 ((Player)player).Stats.ReCalculateValues();
 
                 if (idx == 12)
-                    ShieldDamage = ShieldDamage - eff.Amount >= 0 ? ShieldDamage - eff.Amount : 0;
+                    ShieldDamage = ShieldDamage - amount >= 0 ? ShieldDamage - amount : 0;
 
                 // hack job to allow instant heal of nostack boosts
                 if (eff.NoStack && amount > 0 && idx == 0)
@@ -731,10 +731,10 @@ namespace GameServer.realm.entities.player
         private void AEStatBoostSelf(RealmTime time, Item item, Position target, ActivateEffect eff)
         {
             var idx = StatsManager.GetStatIndex((StatsType)eff.Stats);
-            var s = eff.Amount;
+            var s = (int)eff.Amount;
             Stats.Boost.ActivateBoost[idx].Push(s, eff.NoStack);
             if (idx == 12)
-                ShieldDamage = ShieldDamage - eff.Amount >= 0 ? ShieldDamage - eff.Amount : 0;
+                ShieldDamage = ShieldDamage - s >= 0 ? ShieldDamage - s : 0;
             Stats.ReCalculateValues();
             Owner.Timers.Add(new WorldTimer(eff.DurationMS, (_, _) =>
             {

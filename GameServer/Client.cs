@@ -515,8 +515,8 @@ public class Client {
             case StatsType.HasBackpack:
                 WriteBool(ref ptr, ref spanRef, Convert.ToInt32(value) == 1);
                 return;
-            case StatsType.SellablePriceCurrency:
-            case StatsType.MerchantRemainingCount:
+            case StatsType.MerchPrice:
+            case StatsType.MerchCount:
             case StatsType.Tier:
             case StatsType.HealthStackCount:
             case StatsType.MagicStackCount:
@@ -525,9 +525,9 @@ public class Client {
             case StatsType.GuildRank:
                 WriteSByte(ref ptr, ref spanRef, Convert.ToSByte(value));
                 return;
-            case StatsType.MaximumHP:
+            case StatsType.MaxHP:
             case StatsType.HP:
-            case StatsType.MaximumMP:
+            case StatsType.MaxMP:
             case StatsType.MP:
             case StatsType.Strength:
             case StatsType.Defense:
@@ -549,32 +549,32 @@ public class Client {
                 WriteShort(ref ptr, ref spanRef, Convert.ToInt16(value));
                 return;
             case StatsType.Size:
-            case StatsType.Inventory0:
-            case StatsType.Inventory1:
-            case StatsType.Inventory2:
-            case StatsType.Inventory3:
-            case StatsType.Inventory4:
-            case StatsType.Inventory5:
-            case StatsType.Inventory6:
-            case StatsType.Inventory7:
-            case StatsType.Inventory8:
-            case StatsType.Inventory9:
-            case StatsType.Inventory10:
-            case StatsType.Inventory11:
-            case StatsType.MerchantMerchandiseType:
+            case StatsType.Inv0:
+            case StatsType.Inv1:
+            case StatsType.Inv2:
+            case StatsType.Inv3:
+            case StatsType.Inv4:
+            case StatsType.Inv5:
+            case StatsType.Inv6:
+            case StatsType.Inv7:
+            case StatsType.Inv8:
+            case StatsType.Inv9:
+            case StatsType.Inv10:
+            case StatsType.Inv11:
+            case StatsType.MerchType:
             case StatsType.AltTextureIndex:
-            case StatsType.BackPack0:
-            case StatsType.BackPack1:
-            case StatsType.BackPack2:
-            case StatsType.BackPack3:
-            case StatsType.BackPack4:
-            case StatsType.BackPack5:
-            case StatsType.BackPack6:
-            case StatsType.BackPack7:
-            case StatsType.Skin:
+            case StatsType.Inv12:
+            case StatsType.Inv13:
+            case StatsType.Inv14:
+            case StatsType.Inv15:
+            case StatsType.Inv16:
+            case StatsType.Inv17:
+            case StatsType.Inv18:
+            case StatsType.Inv19:
+            case StatsType.Texture:
                 WriteUShort(ref ptr, ref spanRef, Convert.ToUInt16(value));
                 return;
-            case StatsType.Effects:
+            case StatsType.Condition:
             case StatsType.Gems:
             case StatsType.AccountId:
             case StatsType.Gold:

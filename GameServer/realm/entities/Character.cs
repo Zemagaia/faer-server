@@ -26,7 +26,7 @@ namespace GameServer.realm.entities
             : base(manager, objType)
         {
             _hp = new SV<int>(this, StatsType.HP, 0);
-            _maximumHP = new SV<int>(this, StatsType.MaximumHP, 0);
+            _maximumHP = new SV<int>(this, StatsType.MaxHP, 0);
 
             if (ObjectDesc != null)
             {
@@ -55,7 +55,7 @@ namespace GameServer.realm.entities
         protected override void ImportStats(StatsType stats, object val)
         {
             if (stats == StatsType.HP) HP = (int)val;
-            else if (stats == StatsType.MaximumHP) MaximumHP = (int)val;
+            else if (stats == StatsType.MaxHP) MaximumHP = (int)val;
             base.ImportStats(stats, val);
         }
 
@@ -63,7 +63,7 @@ namespace GameServer.realm.entities
         {
             stats[StatsType.HP] = HP;
             if (this is not Player)
-                stats[StatsType.MaximumHP] = MaximumHP;
+                stats[StatsType.MaxHP] = MaximumHP;
             base.ExportStats(stats);
         }
     }

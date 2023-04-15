@@ -304,9 +304,7 @@ namespace Shared
 
         public static ConditionEffectIndex GetEffect(string val)
         {
-            ConditionEffectIndex ret =
-                (ConditionEffectIndex)Enum.Parse(typeof(ConditionEffectIndex), val.Replace(" ", ""));
-            return ret;
+            return (ConditionEffectIndex)Enum.Parse(typeof(ConditionEffectIndex), val.Trim());
         }
 
         public static T GetValue<T>(this XElement e, string n, T def = default(T))

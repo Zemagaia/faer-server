@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Xml.Linq;
+using NLog.LayoutRenderers;
+using StackExchange.Redis;
 
 namespace Shared
 { 
@@ -92,6 +95,12 @@ namespace Shared
     
     public enum ActivateEffects
     {
+        OpenPortal,
+        TierIncrease,
+        Cage,
+        Clock,
+        HitMultiplier,
+        DamageMultiplier,
         StatBoostSelf,
         StatBoostAura,
         ConditionEffectAura,
@@ -111,5 +120,26 @@ namespace Shared
         Backpack,
         UnlockEmote,
         Bloodstone
+    }
+
+    public struct TotemEffect
+    {
+        public ConditionEffectIndex? ConditionEffect;
+        public int StatType;
+        public int Value;
+
+        public TotemEffect(string val)
+        {
+            if (Enum.TryParse(val, out ConditionEffectIndex conditionEffect))
+            {
+                ConditionEffect = conditionEffect;
+                return;
+            }
+
+            // todo
+            var newVal = val.Replace("+", "");
+            // StatType = GetStatType(newVal);
+            // Value = int.Parse(newVal);
+        }
     }
 }

@@ -113,7 +113,7 @@ namespace GameServer.realm.worlds
                         case "hp":
                             var hp = Utils.FromString(kv[1]);
                             stats.Add(new KeyValuePair<StatsType, object>(StatsType.HP, hp));
-                            stats.Add(new KeyValuePair<StatsType, object>(StatsType.MaximumHP, hp));
+                            stats.Add(new KeyValuePair<StatsType, object>(StatsType.MaxHP, hp));
                             break;
                         case "name":
                             stats.Add(new KeyValuePair<StatsType, object>(StatsType.Name, kv[1]));
@@ -123,10 +123,10 @@ namespace GameServer.realm.worlds
                                 Math.Min(500, Utils.FromString(kv[1]))));
                             break;
                         case "eff":
-                            stats.Add(new KeyValuePair<StatsType, object>(StatsType.Effects, Utils.FromString(kv[1])));
+                            stats.Add(new KeyValuePair<StatsType, object>(StatsType.Condition, Utils.FromString(kv[1])));
                             break;
                         case "mtype":
-                            stats.Add(new KeyValuePair<StatsType, object>(StatsType.MerchantMerchandiseType,
+                            stats.Add(new KeyValuePair<StatsType, object>(StatsType.MerchType,
                                 Utils.FromString(kv[1])));
                             break;
                         case "mcost":
@@ -134,11 +134,11 @@ namespace GameServer.realm.worlds
                                 Math.Max(0, Utils.FromString(kv[1]))));
                             break;
                         case "mcur":
-                            stats.Add(new KeyValuePair<StatsType, object>(StatsType.SellablePriceCurrency,
+                            stats.Add(new KeyValuePair<StatsType, object>(StatsType.MerchPrice,
                                 Utils.FromString(kv[1])));
                             break;
                         case "mamnt":
-                            stats.Add(new KeyValuePair<StatsType, object>(StatsType.MerchantRemainingCount,
+                            stats.Add(new KeyValuePair<StatsType, object>(StatsType.MerchCount,
                                 Utils.FromString(kv[1])));
                             break;
                     }

@@ -1,0 +1,12 @@
+2023-04-15 11:12:10.8073|INFO|Shared.resources.AppSettings|Loading app settings...
+2023-04-15 11:12:10.8325|INFO|Shared.resources.XmlData|Loading xml data...
+2023-04-15 11:12:10.8509|FATAL|LoginServer.Program|System.IO.DirectoryNotFoundException: Could not find a part of the path '/home/a/faer/server/bin/Release/net7.0/server/bin/Release/net7.0/resources/xmls'.
+   at System.IO.Enumeration.FileSystemEnumerator`1.CreateDirectoryHandle(String path, Boolean ignoreNotFound)
+   at System.IO.Enumeration.FileSystemEnumerator`1.Init()
+   at System.IO.Enumeration.FileSystemEnumerable`1..ctor(String directory, FindTransform transform, EnumerationOptions options, Boolean isNormalized)
+   at System.IO.Enumeration.FileSystemEnumerableFactory.UserFiles(String directory, String expression, EnumerationOptions options)
+   at System.IO.Directory.InternalEnumeratePaths(String path, String searchPattern, SearchTarget searchTarget, EnumerationOptions options)
+   at Shared.resources.XmlData.LoadXmls(String basePath, String ext) in /home/a/faer/server/Shared/resources/XmlData.cs:line 181
+   at Shared.resources.XmlData..ctor(String path) in /home/a/faer/server/Shared/resources/XmlData.cs:line 161
+   at Shared.resources.Resources..ctor(String resourcePath, Boolean wServer) in /home/a/faer/server/Shared/resources/Resources.cs:line 36
+   at LoginServer.Program.Main(String[] args) in /home/a/faer/server/LoginServer/Program.cs:line 32
