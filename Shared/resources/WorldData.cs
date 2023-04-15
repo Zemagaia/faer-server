@@ -28,8 +28,6 @@ namespace Shared.resources
         public string[] maps;
         public string[] music;
         public byte[][] wmap;
-        public bool scoutQuestActive;
-        public string overseer;
         public string spawnSetpieces;
     }
 

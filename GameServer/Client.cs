@@ -1504,7 +1504,7 @@ public class Client {
         }
 
         Player.SetDefaultSkin(skinId);
-        Player.SetDefaultSize(skinSize);
+        Player.SetDefaultSize((ushort) skinSize);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -79,7 +79,7 @@ namespace GameServer.realm
                         {
                             case ActivateEffects.ChangeSkin:
                                 _player.Skin = ae.SkinType;
-                                _player.Size = ae.Size;
+                                _player.Size = (ushort) ae.Size;
                                 break;
                             case ActivateEffects.IncrementStat:
                                 IncrementBoost((StatsType)ae.Stats, (int)ae.Amount);

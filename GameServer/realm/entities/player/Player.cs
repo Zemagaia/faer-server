@@ -31,22 +31,6 @@ namespace GameServer.realm.entities.player
             set => _accountId.SetValue(value);
         }
 
-        private readonly SV<int> _experience;
-
-        public int Experience
-        {
-            get => _experience.GetValue();
-            set => _experience.SetValue(value);
-        }
-
-        private readonly SV<int> _level;
-
-        public int Level
-        {
-            get => _level.GetValue();
-            set => _level.SetValue(value);
-        }
-
         private readonly SV<int> _currentFame;
 
         public int CurrentFame
@@ -127,10 +111,10 @@ namespace GameServer.realm.entities.player
             set => _texture2.SetValue(value);
         }
 
-        private int _originalSkin;
-        private readonly SV<int> _skin;
+        private ushort _originalSkin;
+        private readonly SV<ushort> _skin;
 
-        public int Skin
+        public ushort Skin
         {
             get => _skin.GetValue();
             set => _skin.SetValue(value);
@@ -276,26 +260,26 @@ namespace GameServer.realm.entities.player
             stats[StatsType.Texture] = Skin;
             stats[StatsType.Glow] = Glow;
             stats[StatsType.MP] = MP;
-            stats[StatsType.Inv0] = Inventory[0]?.ObjectType ?? -1;
-            stats[StatsType.Inv1] = Inventory[1]?.ObjectType ?? -1;
-            stats[StatsType.Inv2] = Inventory[2]?.ObjectType ?? -1;
-            stats[StatsType.Inv3] = Inventory[3]?.ObjectType ?? -1;
-            stats[StatsType.Inv4] = Inventory[4]?.ObjectType ?? -1;
-            stats[StatsType.Inv5] = Inventory[5]?.ObjectType ?? -1;
-            stats[StatsType.Inv6] = Inventory[6]?.ObjectType ?? -1;
-            stats[StatsType.Inv7] = Inventory[7]?.ObjectType ?? -1;
-            stats[StatsType.Inv8] = Inventory[8]?.ObjectType ?? -1;
-            stats[StatsType.Inv9] = Inventory[9]?.ObjectType ?? -1;
-            stats[StatsType.Inv10] = Inventory[10]?.ObjectType ?? -1;
-            stats[StatsType.Inv11] = Inventory[11]?.ObjectType ?? -1;
-            stats[StatsType.Inv12] = Inventory[12]?.ObjectType ?? -1;
-            stats[StatsType.Inv13] = Inventory[13]?.ObjectType ?? -1;
-            stats[StatsType.Inv14] = Inventory[14]?.ObjectType ?? -1;
-            stats[StatsType.Inv15] = Inventory[15]?.ObjectType ?? -1;
-            stats[StatsType.Inv16] = Inventory[16]?.ObjectType ?? -1;
-            stats[StatsType.Inv17] = Inventory[17]?.ObjectType ?? -1;
-            stats[StatsType.Inv18] = Inventory[18]?.ObjectType ?? -1;
-            stats[StatsType.Inv19] = Inventory[19]?.ObjectType ?? -1;
+            stats[StatsType.Inv0] = Inventory[0]?.ObjectType ?? ushort.MaxValue;
+            stats[StatsType.Inv1] = Inventory[1]?.ObjectType ?? ushort.MaxValue;
+            stats[StatsType.Inv2] = Inventory[2]?.ObjectType ?? ushort.MaxValue;
+            stats[StatsType.Inv3] = Inventory[3]?.ObjectType ?? ushort.MaxValue;
+            stats[StatsType.Inv4] = Inventory[4]?.ObjectType ?? ushort.MaxValue;
+            stats[StatsType.Inv5] = Inventory[5]?.ObjectType ?? ushort.MaxValue;
+            stats[StatsType.Inv6] = Inventory[6]?.ObjectType ?? ushort.MaxValue;
+            stats[StatsType.Inv7] = Inventory[7]?.ObjectType ?? ushort.MaxValue;
+            stats[StatsType.Inv8] = Inventory[8]?.ObjectType ?? ushort.MaxValue;
+            stats[StatsType.Inv9] = Inventory[9]?.ObjectType ?? ushort.MaxValue;
+            stats[StatsType.Inv10] = Inventory[10]?.ObjectType ?? ushort.MaxValue;
+            stats[StatsType.Inv11] = Inventory[11]?.ObjectType ?? ushort.MaxValue;
+            stats[StatsType.Inv12] = Inventory[12]?.ObjectType ?? ushort.MaxValue;
+            stats[StatsType.Inv13] = Inventory[13]?.ObjectType ?? ushort.MaxValue;
+            stats[StatsType.Inv14] = Inventory[14]?.ObjectType ?? ushort.MaxValue;
+            stats[StatsType.Inv15] = Inventory[15]?.ObjectType ?? ushort.MaxValue;
+            stats[StatsType.Inv16] = Inventory[16]?.ObjectType ?? ushort.MaxValue;
+            stats[StatsType.Inv17] = Inventory[17]?.ObjectType ?? ushort.MaxValue;
+            stats[StatsType.Inv18] = Inventory[18]?.ObjectType ?? ushort.MaxValue;
+            stats[StatsType.Inv19] = Inventory[19]?.ObjectType ?? ushort.MaxValue;
             stats[StatsType.MaxHP] = Stats[0];
             stats[StatsType.MaxMP] = Stats[1];
             stats[StatsType.Strength] = Stats[2];
@@ -314,8 +298,6 @@ namespace GameServer.realm.entities.player
         public void SaveToCharacter()
         {
             var chr = _client.Character;
-            chr.Level = Level;
-            chr.Experience = Experience;
             chr.Fame = Fame;
             chr.HP = Math.Max(1, HP);
             chr.MP = MP;
@@ -323,7 +305,6 @@ namespace GameServer.realm.entities.player
             chr.Tex1 = Texture1;
             chr.Tex2 = Texture2;
             chr.Skin = _originalSkin;
-            chr.FameStats = FameCounter.Stats.Write();
             chr.LastSeen = DateTime.Now;
             chr.HealthStackCount = HealthPots.Count;
             chr.MagicStackCount = MagicPots.Count;
@@ -354,7 +335,7 @@ namespace GameServer.realm.entities.player
             _guildRank = new SV<int>(this, StatsType.GuildRank, -1);
             _texture1 = new SV<int>(this, StatsType.Texture1, client.Character.Tex1);
             _texture2 = new SV<int>(this, StatsType.Texture2, client.Character.Tex2);
-            _skin = new SV<int>(this, StatsType.Texture, 0);
+            _skin = new SV<ushort>(this, StatsType.Texture, 0);
             _glow = new SV<int>(this, StatsType.Glow, 0);
             _mp = new SV<int>(this, StatsType.MP, client.Character.MP);
             _hasBackpack = new SV<bool>(this, StatsType.HasBackpack, client.Character.HasBackpack, true);
@@ -372,7 +353,7 @@ namespace GameServer.realm.entities.player
             {
                 SetDefaultSkin(s);
                 PrevSkin = client.Character.Skin;
-                SetDefaultSize(gameData.Skins[s].Size);
+                SetDefaultSize((ushort) gameData.Skins[s].Size);
                 PrevSize = gameData.Skins[s].Size;
             }
 
@@ -383,9 +364,9 @@ namespace GameServer.realm.entities.player
                 GuildRank = client.Account.GuildRank;
             }
 
-            HealthPots = new ItemStacker(this, 254, 0x14E2,
+            HealthPots = new ItemStacker(this, 254, 0xaa1,
                 client.Character.HealthStackCount, settings.MaxStackablePotions);
-            MagicPots = new ItemStacker(this, 255, 0x14E3,
+            MagicPots = new ItemStacker(this, 255, 0xaa2,
                 client.Character.MagicStackCount, settings.MaxStackablePotions);
             Stacks = new ItemStacker[] { HealthPots, MagicPots };
 
@@ -421,12 +402,12 @@ namespace GameServer.realm.entities.player
                     .SingleOrDefault(e => e.SkinType == skin);
 
                 if (ae != null)
-                    Size = ae.Size;
+                    Size = (ushort) ae.Size;
             }
 
             // override size
             if (Client.Account.Size > 0)
-                Size = Client.Account.Size;
+                Size = (ushort) Client.Account.Size;
 
             Manager.Database.IsMuted(client.IP)
                 .ContinueWith(t => { Muted = !Client.Account.Admin && t.IsCompleted && t.Result; });
@@ -443,7 +424,6 @@ namespace GameServer.realm.entities.player
         }
 
         byte[,] tiles;
-        public FameCounter FameCounter { get; private set; }
 
         public Entity SpectateTarget { get; set; }
         public bool IsControlling => SpectateTarget != null && !(SpectateTarget is Player);
@@ -465,8 +445,6 @@ namespace GameServer.realm.entities.player
             Move(x + 0.5f, y + 0.5f);
             tiles = new byte[owner.Map.Width, owner.Map.Height];
 
-            FameCounter = new FameCounter(this);
-
             if (owner.Name.Equals("OceanTrench"))
                 OxygenBar = 100;
 
@@ -484,11 +462,7 @@ namespace GameServer.realm.entities.player
 
             HandleRegen(time);
             HandleEffects(time);
-            //HandleOceanTrenchGround(time);
-            TickActivateEffects(time);
-            FameCounter.Tick(time);
 
-            TickPassiveEffects();
             base.Tick(time);
 
             SendUpdate(time);
@@ -539,10 +513,6 @@ namespace GameServer.realm.entities.player
         void TickActivateEffects(RealmTime time)
         {
             var dt = time.ElapsedMsDelta;
-
-            if (XPBoostTime != 0)
-                if (Level >= 300)
-                    XPBoostTime = 0;
 
             if (XPBoostTime > 0)
                 XPBoostTime = Math.Max(XPBoostTime - dt, 0);
@@ -607,7 +577,6 @@ namespace GameServer.realm.entities.player
 
                 SetTPDisabledPeriod();
                 SetNewbiePeriod();
-                FameCounter.Teleport();
             }
 
             if (removeNegative)
@@ -821,17 +790,6 @@ namespace GameServer.realm.entities.player
                 default:
                     objType = 0x0424;
                     time = 300000;
-                    if (Level < 20)
-                    {
-                        objType = 0x0423;
-                        time = 60000;
-                    }
-
-                    if (Level <= 1)
-                    {
-                        objType = 0x0422;
-                        time = 30000;
-                    }
 
                     break;
             }
@@ -951,7 +909,7 @@ namespace GameServer.realm.entities.player
             }
 
             var deathMessage =
-                $"{Name} [Level {Level}, {_client.Character.FinalFame} Fame, {maxed}/9] {deathmsgVariations.PickRandom()}";
+                $"{Name} [{_client.Character.FinalFame} Fame, {maxed}/9] {deathmsgVariations.PickRandom()}";
 
             // notable deaths
             if (notableDeath && !Client.Account.Admin)
@@ -964,35 +922,10 @@ namespace GameServer.realm.entities.player
 
             var pGuild = Client.Account.GuildId;
 
-            // guild case, only for level 25 or higher
-            if (pGuild > 0 && Level >= 25)
+            
+            foreach (var i in Owner.Players.Values)
             {
-                foreach (var w in Manager.Worlds.Values)
-                {
-                    foreach (var p in w.Players.Values)
-                    {
-                        if (p.Client.Account.GuildId == pGuild)
-                        {
-                            p.SendGuildDeath(deathMessage);
-                        }
-                    }
-                }
-
-                foreach (var i in Owner.Players.Values)
-                {
-                    if (i.Client.Account.GuildId != pGuild)
-                    {
-                        i.SendInfo(deathMessage);
-                    }
-                }
-            }
-            // guildless case
-            else
-            {
-                foreach (var i in Owner.Players.Values)
-                {
-                    i.SendInfo(deathMessage);
-                }
+                i.SendInfo(deathMessage);
             }
         }
 
@@ -1019,7 +952,7 @@ namespace GameServer.realm.entities.player
 
             SaveToCharacter();
             Manager.Database.Death(Manager.Resources.GameData, _client.Account,
-                _client.Character, FameCounter.Stats, killer);
+                _client.Character, killer);
 
             GenerateGravestone();
             AnnounceDeath(killer);
@@ -1037,12 +970,6 @@ namespace GameServer.realm.entities.player
 
         private bool CheckLimitedWorlds(World world)
         {
-            if (world.Name == "Sex Land" && Level < 300)
-            {
-                SendError("no");
-                return false;
-            }
-
             return true;
         }
 
@@ -1144,7 +1071,7 @@ namespace GameServer.realm.entities.player
             }
         }
 
-        public void SetDefaultSkin(int skin)
+        public void SetDefaultSkin(ushort skin)
         {
             _originalSkin = skin;
             Skin = skin;

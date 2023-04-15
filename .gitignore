@@ -1,3 +1,13 @@
+GameServer.dll
+LoginServer.dll
+Shared.dll
+DungeonGen.dll
+project.assets.json
+project.nuget.cache
+*.props
+*.cache
+*.nuget.dgspec.json
+rider.project.restore.info
 
 #ignore thumbnails created by windows
 Thumbs.db

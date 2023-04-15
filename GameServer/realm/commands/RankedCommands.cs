@@ -275,7 +275,7 @@ class SpawnCommand : Command
                     }
 
                     if (size != null)
-                        enemy.SetDefaultSize(size.Value);
+                        enemy.SetDefaultSize((ushort) size.Value);
 
                     if (target == true)
                         enemy.AttackTarget = player;
@@ -793,7 +793,7 @@ class SizeCommand : Command
         if (size == 0)
             target.RestoreDefaultSize();
         else
-            target.Size = size;
+            target.Size = (ushort) size;
 
         return true;
     }
@@ -927,7 +927,7 @@ class ReSkinCommand : Command
 
         player.SetDefaultSkin(skin);
         player.PrevSkin = skin;
-        player.SetDefaultSize(size);
+        player.SetDefaultSize((ushort) size);
         player.PrevSize = size;
         return true;
     }
@@ -958,52 +958,6 @@ class MaxCommand : Command
         return true;
     }
 }
-
-/*class ResetServerFame : Command
-{
-    public ResetServerFame() : base("resetFame", permLevel: 100) { }
-
-    // resets leaderboards, account stars, and account fame to 0
-    protected override bool Process(Player player, RealmTime time, string args)
-    {
-        // needed to make sure characters connected have fame reset properly
-        foreach (var client in player.Manager.Clients.Values)
-        {
-            client.Player.Experience = 0;
-            client.Player.Fame = 0;
-            client.Character.Experience = 0;
-            client.Character.Fame = 0;
-        }
-
-        Program.Stop();
-
-        player.Manager.Database.ResetFame();
-        return true;
-    }
-}*/
-
-/*
-class WipeServer : Command
-{
-    public WipeServer() : base("wipeServer", permLevel: 100) { }
-
-    protected override bool Process(Player player, RealmTime time, string args)
-    {
-        // close all worlds / disconnect all players
-        foreach (var w in player.Manager.Worlds.Values)
-        {
-            w.Closed = true;
-            foreach (var p in w.Players.Values)
-                p.Client.Disconnect();
-        }
-
-        player.Manager.Database.Wipe(player.Manager.Resources.GameData);
-
-        Program.Stop();
-        return true;
-    }
-}
-*/
 
 class RankCommand : Command
 {

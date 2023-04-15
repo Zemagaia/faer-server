@@ -17,36 +17,6 @@ namespace GameServer.realm.entities.player
 
         void HandleEffects(RealmTime time)
         {
-            if (PassiveCooldown[PassiveSlot] == 0)
-            {
-                RegularPassives();
-                PassiveCooldown[PassiveSlot] = 250;
-            }
-
-            ShieldMax = Stats[12];
-            Shield = Stats[12] - ShieldDamage;
-
-            if (ShieldDamage < 0)
-            {
-                ShieldDamage = 0;
-            }
-
-
-            if (_isDrainingMana)
-            {
-                MP = Math.Max(0, (int)(MP - _manaDrain * time.ElapsedMsDelta / 1000f));
-
-                if (MP == 0)
-                    _isDrainingMana = false;
-            }
-
-            if (Light > LightMax)
-            {
-                Light = LightMax;
-            }
-
-            //WIP(?): certain immunities if you have shield points
-
             if (_client.Account.Hidden && !HasConditionEffect(ConditionEffects.Hidden))
             {
                 ApplyConditionEffect(ConditionEffectIndex.Hidden);
@@ -78,17 +48,6 @@ namespace GameServer.realm.entities.player
                 _canTpCooldownTime -= time.ElapsedMsDelta;
                 if (_canTpCooldownTime < 0)
                     _canTpCooldownTime = 0;
-            }
-
-            // for individual effects
-            for (int i = 0; i < PassiveCooldown.Length; i++)
-            {
-                if (PassiveCooldown[i] > 0)
-                {
-                    PassiveCooldown[i] -= time.ElapsedMsDelta;
-                    if (PassiveCooldown[i] < 0)
-                        PassiveCooldown[i] = 0;
-                }
             }
         }
 

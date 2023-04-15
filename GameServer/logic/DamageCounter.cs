@@ -45,8 +45,6 @@ namespace GameServer.logic
 
             LastProjectile = projectile;
             LastHitter = player;
-
-            player.FameCounter.Hit(projectile, _enemy);
         }
 
         public Tuple<Player, int>[] GetPlayerData()
@@ -92,9 +90,6 @@ namespace GameServer.logic
             if (enemy.ObjectDesc.Quest)
                 foreach (var player in hitters.Keys)
                     player.DamageDealt = 0;
-
-            if (enemy.Owner.Overseer != null)
-                enemy.Owner.EnemyKilled(enemy, (Parent ?? this).LastHitter);
         }
         
         public void TransferData(DamageCounter dc)

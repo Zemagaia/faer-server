@@ -604,28 +604,6 @@ namespace GameServer.realm.commands
         }
     }
 
-    /*  class NpeCommand : Command
-      {
-          public NpeCommand() : base("npe") { }
-  
-          protected override bool Process(Player player, RealmTime time, string args)
-          {
-              player.Stats[0] = 100;
-              player.Stats[1] = 100;
-              player.Stats[2] = 10;
-              player.Stats[3] = 0;
-              player.Stats[4] = 10;
-              player.Stats[5] = 10;
-              player.Stats[6] = 10;
-              player.Stats[7] = 10;
-              player.Level = 1;
-              player.Experience = 0;
-              
-              player.SendInfo("You character stats, level, and experience has be npe'ified.");
-              return true;
-          }
-      }
-      */
     class PositionCommand : Command
     {
         public PositionCommand() : base("pos", aliases: "position")

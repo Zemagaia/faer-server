@@ -369,7 +369,7 @@ namespace GameServer.realm.worlds
                                 entity.Name = kv[1];
                                 break;
                             case "size":
-                                entity.SetDefaultSize(Math.Min(500, Utils.FromString(kv[1])));
+                                entity.SetDefaultSize((ushort) Math.Min(500, Utils.FromString(kv[1])));
                                 break;
                             case "eff":
                                 entity.ConditionEffects = (ConditionEffects)ulong.Parse(kv[1]);

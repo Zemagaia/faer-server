@@ -112,21 +112,6 @@ namespace GameServer.realm.entities.player
                                 return;
                             }
 
-                            if (slotType > 0)
-                            {
-                                FameCounter.UseAbility();
-                            }
-                            else
-                            {
-                                if (item.ActivateEffects.Any(eff => eff.Effect == ActivateEffects.Heal ||
-                                                                    eff.Effect == ActivateEffects.HealNova ||
-                                                                    eff.Effect == ActivateEffects.Magic ||
-                                                                    eff.Effect == ActivateEffects.MagicNova))
-                                {
-                                    FameCounter.DrinkPot();
-                                }
-                            }
-
                             Activate(Manager.Logic.WorldTime, item, new Position {X=x, Y=y}, 0, 0, slot == 1);
                         });
                         task.ContinueWith(e =>
@@ -134,15 +119,6 @@ namespace GameServer.realm.entities.player
                             TaskContinuationOptions.OnlyOnFaulted);
                         return;
                     }
-
-                    if (slotType > 0)
-                    {
-                        FameCounter.UseAbility();
-                    }
-                }
-                else
-                {
-                    FameCounter.DrinkPot();
                 }
 
                 if (item.Consumable || item.SlotType == slotType)
@@ -537,11 +513,11 @@ namespace GameServer.realm.entities.player
                 _skinSet = true;
             }
             SetDefaultSkin(id);
-            SetDefaultSize(eff.TransformationSkinSize);
+            SetDefaultSize((ushort) eff.TransformationSkinSize);
             Owner.Timers.Add(new WorldTimer(duration, (_, _) =>
             {
-                SetDefaultSkin(PrevSkin);
-                SetDefaultSize(PrevSize == 0 ? 100 : PrevSize);
+                SetDefaultSkin((ushort) PrevSkin);
+                SetDefaultSize((ushort) (PrevSize == 0 ? 100 : PrevSize));
                 _skinSet = false;
             }));
         }

@@ -41,11 +41,11 @@ namespace GameServer.realm
         public bool Spawned;
         public bool DevSpawned;
         public bool GivesNoXp;
-        private int _originalSize;
+        private ushort _originalSize;
 
         private readonly SV<string> _name;
-        private readonly SV<int> _size;
-        private readonly SV<int> _altTextureIndex;
+        private readonly SV<ushort> _size;
+        private readonly SV<ushort> _altTextureIndex;
         private readonly SV<float> _x;
         private readonly SV<float> _y;
         private readonly SV<int> _conditionEffects1;
@@ -58,13 +58,13 @@ namespace GameServer.realm
             set => _name.SetValue(value);
         }
 
-        public int Size
+        public ushort Size
         {
             get => _size.GetValue();
             set => _size.SetValue(value);
         }
 
-        public int AltTextureIndex
+        public ushort AltTextureIndex
         {
             get => _altTextureIndex.GetValue();
             set => _altTextureIndex.SetValue(value);
@@ -128,9 +128,9 @@ namespace GameServer.realm
         protected Entity(RealmManager manager, ushort objType)
         {
             _name = new SV<string>(this, StatsType.Name, "");
-            _size = new SV<int>(this, StatsType.Size, 100);
+            _size = new SV<ushort>(this, StatsType.Size, 100);
             _originalSize = 100;
-            _altTextureIndex = new SV<int>(this, StatsType.AltTextureIndex, -1);
+            _altTextureIndex = new SV<ushort>(this, StatsType.AltTextureIndex, 0);
             _x = new SV<float>(this, StatsType.None, 0);
             _y = new SV<float>(this, StatsType.None, 0);
             _conditionEffects1 = new SV<int>(this, StatsType.Condition, 0);
@@ -168,8 +168,8 @@ namespace GameServer.realm
             switch (stats)
             {
                 case StatsType.Name: Name = (string)val; break;
-                case StatsType.Size: Size = (int)val; break;
-                case StatsType.AltTextureIndex: AltTextureIndex = (int)val; break;
+                case StatsType.Size: Size = (ushort)val; break;
+                case StatsType.AltTextureIndex: AltTextureIndex = (ushort)val; break;
                 case StatsType.Condition: ConditionEffects = (ConditionEffects)(ulong)val; break;
             }
         }
@@ -831,7 +831,7 @@ namespace GameServer.realm
             return !HasConditionEffect(ConditionEffects.Hidden);
         }
 
-        public void SetDefaultSize(int size)
+        public void SetDefaultSize(ushort size)
         {
             _originalSize = size;
             Size = size;

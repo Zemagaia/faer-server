@@ -108,7 +108,7 @@ namespace GameServer.realm
                             case "name":
                                 entity.Name = kv[1]; break;
                             case "size":
-                                entity.Size = Utils.FromString(kv[1]); break;
+                                entity.Size = (ushort) Utils.FromString(kv[1]); break;
                             case "eff":
                                 entity.ConditionEffects = (ConditionEffects)Utils.FromString(kv[1]); break;
                             //case "mtype":

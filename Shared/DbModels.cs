@@ -507,29 +507,7 @@ namespace Shared
                     BestFame = 0
                 }));
         }
-
-        public void Update(DbChar character)
-        {
-            var field = character.ObjectType.ToString();
-            var finalFame = Math.Max(character.Fame, character.FinalFame);
-            string json = GetValue<string>(field);
-            if (json == null)
-                SetValue(field, JsonConvert.SerializeObject(new DbClassStatsEntry
-                {
-                    BestLevel = character.Level,
-                    BestFame = finalFame
-                }));
-            else
-            {
-                var entry = JsonConvert.DeserializeObject<DbClassStatsEntry>(json);
-                if (character.Level > entry.BestLevel)
-                    entry.BestLevel = character.Level;
-                if (finalFame > entry.BestFame)
-                    entry.BestFame = finalFame;
-                SetValue(field, JsonConvert.SerializeObject(entry));
-            }
-        }
-
+        
         public DbClassStatsEntry this[ushort type]
         {
             get
@@ -559,19 +537,7 @@ namespace Shared
             get => GetValue<ushort>("charType");
             init => SetValue("charType", value);
         }
-
-        public int Level
-        {
-            get => GetValue<int>("level");
-            set => SetValue("level", value);
-        }
-
-        public int Experience
-        {
-            get => GetValue<int>("exp");
-            set => SetValue("exp", value);
-        }
-
+        
         public int Fame
         {
             get => GetValue<int>("fame");
@@ -625,13 +591,7 @@ namespace Shared
             get => GetValue<int>("skin");
             set => SetValue("skin", value);
         }
-
-        public byte[] FameStats
-        {
-            get => GetValue<byte[]>("fameStats");
-            set => SetValue("fameStats", value);
-        }
-
+        
         public DateTime CreateTime
         {
             get => GetValue<DateTime>("createTime");
@@ -721,12 +681,6 @@ namespace Shared
         {
             get => GetValue<ushort>("objType");
             init => SetValue("objType", value);
-        }
-
-        public int Level
-        {
-            get => GetValue<int>("level");
-            init => SetValue("level", value);
         }
 
         public int TotalFame

@@ -832,8 +832,6 @@ namespace Shared
             character = new DbChar(acc, newId)
             {
                 ObjectType = type,
-                Level = newCharacters.Level,
-                Experience = 0,
                 Fame = 0,
                 Items = InitInventory(playerDesc.Equipment),
                 Stats = new int[]
@@ -853,7 +851,6 @@ namespace Shared
                 Tex1 = 0,
                 Tex2 = 0,
                 Skin = skinType,
-                FameStats = new byte[0],
                 CreateTime = DateTime.Now,
                 LastSeen = DateTime.Now
             };
@@ -916,15 +913,14 @@ namespace Shared
             _db.ListRemoveAsync("dead." + acc.AccountId, buff);
         }
 
-        public void Death(XmlData dat, DbAccount acc, DbChar character, FameStats stats, string killer)
+        public void Death(XmlData dat, DbAccount acc, DbChar character, string killer)
         {
             character.Dead = true;
             var classStats = new DbClassStats(acc);
 
             // calculate total fame given bonuses
             bool firstBorn;
-            var finalFame = stats.CalculateTotal(dat, character,
-                classStats, out firstBorn);
+            var finalFame = 0;
 
             // save character
             character.FinalFame = finalFame;
@@ -933,10 +929,8 @@ namespace Shared
             var death = new DbDeath(acc, character.CharId)
             {
                 ObjectType = character.ObjectType,
-                Level = character.Level,
                 TotalFame = finalFame,
                 Killer = killer,
-                FirstBorn = firstBorn,
                 DeathTime = DateTime.UtcNow
             };
             death.FlushAsync();
@@ -1062,9 +1056,7 @@ namespace Shared
             foreach (var @char in chars)
             {
                 var c = new DbChar(acc, @char);
-                var f = FameStats.Read(c.FameStats);
-
-                Death(dat, acc, c, f, killer);
+                Death(dat, acc, c, killer);
             }
 
             var accountSettings = Resources.Settings.Accounts;

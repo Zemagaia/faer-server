@@ -8,6 +8,7 @@ using Shared;
 using NLog;
 using Shared.resources;
 using StackExchange.Redis;
+using ServerType = Shared.ServerType;
 
 namespace LoginServer; 
 
@@ -63,7 +64,7 @@ public class Program
 				var req = ctx.Request;
 				var resp = ctx.Response;
 				if (req.HttpMethod == "GET")
-					break;
+					continue;
         					
 				resp.StatusCode = 200;
 				resp.ContentType = "text/plain";
@@ -71,8 +72,7 @@ public class Program
 				using (var reader = new StreamReader(req.InputStream, req.ContentEncoding))
 					query = HttpUtility.ParseQueryString(reader.ReadToEnd());
         					
-				var rawUrl = req.RawUrl;
-				var result = rawUrl switch {
+				var result = req.RawUrl switch {
 					"/account/changePassword" => HandleAccountChangePassword(query["email"], query["password"], query["newPassword"]), 
 					"/account/purchaseCharSlot" => HandleAccountPurchaseCharSlot(query["email"], query["password"]), 
 					"/account/purchaseSkin" => HandleAccountPurchaseSkin(query["email"], query["password"], query["skinType"]), 
@@ -85,19 +85,25 @@ public class Program
 					"/guild/getBoard" => HandleGetBoard(query["email"], query["password"]), 
 					"/guild/listMembers" => HandleListMembers(query["email"], query["password"]), 
 					"/guild/setBoard" => HandleSetBoard(query["email"], query["password"], query["board"]), 
-					_ => "", 
+					_ => HandleUnknown(req.RawUrl, req.RemoteEndPoint?.Address.ToString())
 				};
-                            
+				
 				using var writer = new StreamWriter(resp.OutputStream, req.ContentEncoding);
 				writer.Write(result);
 			}
 		}
 	}
+	
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static string HandleUnknown(string endpoint, string ip) {
+		Log.Error("Invalid endpoint " + endpoint + ", IP: " + ip);
+		return "<Error>Invalid endpoint</Error>";
+	}
         
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static string HandleAccountChangePassword(string guid, string password, string newPassword) {
 		var status = Database.Verify(guid, password, out var val);
-		if ((int)status > 0)
+		if (status != LoginStatus.OK)
 			return "<Error>" + status.GetInfo() + "</Error>";
         		
 		Database.ChangePassword(guid, newPassword);
@@ -107,7 +113,7 @@ public class Program
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static string HandleAccountPurchaseCharSlot(string guid, string password) {
 		var status = Database.Verify(guid, password, out var acc);
-		if ((int)status > 0)
+		if (status != LoginStatus.OK)
 			return "<Error>" + status.GetInfo() + "</Error>";
         		
 		using var i = Database.Lock(acc);
@@ -140,16 +146,14 @@ public class Program
 	private static string HandleAccountPurchaseSkin(string guid, string password, string skinType)
 	{
 		var status = Database.Verify(guid, password, out var acc);
-		if ((int)status > 0)
-		{
+		if (status != LoginStatus.OK)
 			return "<Error>" + status.GetInfo() + "</Error>";
-		}
+		
 		var parsedType = (ushort)Utils.GetInt(skinType);
 		var skinDesc = Resources.GameData.Skins[parsedType];
 		if (skinDesc.Cost > acc.Fame)
-		{
 			return "<Error>Failed to purchase skin</Error>";
-		}
+		
 		Database.PurchaseSkin(acc, parsedType, skinDesc.Cost);
 		return "<Success />";
 	}
@@ -181,7 +185,7 @@ public class Program
 			while ((lockToken = Database.AcquireLock("regLock")) == null) { }
                     
 			var s = Database.Register(email, password, username, out _);
-			return (int)s == 0 ? "<Success />" : "<Error>" + s.GetInfo() + "</Error>";
+			return s == RegisterStatus.OK ? "<Success />" : "<Error>" + s.GetInfo() + "</Error>";
 		} finally {
 			if (lockToken != null) {
 				Database.ReleaseLock("regLock", lockToken);
@@ -191,8 +195,9 @@ public class Program
         
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static string HandleAccountVerify(string guid, string password) {
+		Log.Error($"acc/verify {guid} {password}");
 		var status = Database.Verify(guid, password, out var acc);
-		if ((int)status == 0)
+		if (status == LoginStatus.OK)
 			return Account.FromDb(acc).ToXml().ToString();
         		
 		return "<Error>" + status.GetInfo() + "</Error>";
@@ -208,18 +213,20 @@ public class Program
         
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static string HandleCharList(string guid, string password) {
+		Log.Error($"char/list {guid} {password}");
+
 		var status = Database.Verify(guid, password, out var acc);
-		if ((int)status != 0 && (int)status != 1)
-			return "<Error>" + status.GetInfo() + "</Error>";
-        		
-		if ((int)status == 1)
+		if (status == LoginStatus.InvalidCredentials)
 			return "<Error>Invalid account</Error>";
-        		
+		
+		if (status != LoginStatus.OK)
+			return "<Error>" + status.GetInfo() + "</Error>";
+
 		var list = CharList.FromDb(Database, acc);
 		list.Servers = new List<ServerItem>();
 		var serverList = ISManager.GetServerList();
 		foreach (var server in serverList)
-			if ((int)server.type == 1)
+			if (server.type == ServerType.World)
 				list.Servers.Add(new ServerItem {
 					Name = server.name,
 					Lat = server.coordinates.latitude,
@@ -237,7 +244,7 @@ public class Program
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static string HandleCharDelete(string guid, string password, string charId) {
 		var status = Database.Verify(guid, password, out var acc);
-		if ((int)status > 0)
+		if (status != LoginStatus.OK)
 			return "<Error>" + status.GetInfo() + "</Error>";
         		
 		using var i = Database.Lock(acc);
@@ -251,7 +258,7 @@ public class Program
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static string HandleGetBoard(string guid, string password) {
 		var status = Database.Verify(guid, password, out var acc);
-		if ((int)status == 0)
+		if (status != LoginStatus.OK)
 			return acc.GuildId <= 0 ? "<Error>Not in guild</Error>" : Database.GetGuild(acc.GuildId).Board;
         		
 		return "<Error>" + status.GetInfo() + "</Error>";
@@ -260,7 +267,7 @@ public class Program
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static string HandleListMembers(string guid, string password) {
 		var status = Database.Verify(guid, password, out var acc);
-		if ((int)status == 0)
+		if (status == LoginStatus.OK)
 			return acc.GuildId <= 0 ? "<Error>Not in guild</Error>" : 
 				Guild.FromDb(Database, Database.GetGuild(acc.GuildId)).ToXml().ToString();
         		
@@ -270,7 +277,7 @@ public class Program
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static string HandleSetBoard(string guid, string password, string board) {
 		var status = Database.Verify(guid, password, out var acc);
-		if ((int)status > 0)
+		if (status != LoginStatus.OK)
 			return "<Error>" + status.GetInfo() + "</Error>";
         		
 		if (acc.GuildId <= 0 || acc.GuildRank < 20)

@@ -143,9 +143,7 @@ namespace GameServer.realm.entities.player
                 });
                 tiles[x, y] = tile.UpdateCount;
             }
-
-            FameCounter.TileSent(tilesUpdate.Count);
-
+            
             // get list of new static objects to add
             var staticsUpdate = GetNewStatics(sCircle).ToArray();
 

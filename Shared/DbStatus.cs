@@ -48,7 +48,7 @@ namespace Shared
             switch (status)
             {
                 case LoginStatus.InvalidCredentials:
-                    return "Bad Login";
+                    return "Invalid Login";
                 case LoginStatus.AccountNotExists:
                     return "Bad Login";
                 case LoginStatus.OK:

@@ -136,7 +136,7 @@ namespace GameServer.logic.loot
             container.Move(
                 enemy.X + (float)((Rand.NextDouble() * 2 - 1) * 0.5),
                 enemy.Y + (float)((Rand.NextDouble() * 2 - 1) * 0.5));
-            container.SetDefaultSize(bagType > 3 ? 110 : 80);
+            container.SetDefaultSize((ushort) (bagType > 3 ? 110 : 80));
             enemy.Owner.EnterWorld(container);
             container.AlwaysTick = true;
         }

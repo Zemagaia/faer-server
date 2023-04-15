@@ -37,10 +37,10 @@ namespace GameServer.logic.behaviors
                 var size = host.Size;
                 if (size != target)
                 {
-                    size += rate;
+                    size = (ushort) (size + rate);
                     if ((rate > 0 && size > target) ||
                         (rate < 0 && size < target))
-                        size = target;
+                        size = (ushort) target;
 
                     host.Size = size;
                 }

@@ -250,11 +250,6 @@ namespace GameServer.realm
         void OnWorldAdded(World world)
         {
             world.Manager = this;
-            if (world.Proto.overseer != null)
-            {
-                world.Overseer = new Overseer(world, world.Proto.overseer);
-                world.Overseer.Init();
-            }
 
             if (world.Proto.spawnSetpieces != null)
             {

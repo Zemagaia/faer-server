@@ -61,8 +61,6 @@ namespace GameServer.realm.worlds
 
         private long _elapsedTime;
         private int _totalConnects;
-        private Task _overseerTask;
-        public Overseer Overseer;
 
         public int TotalConnects => _totalConnects;
 
@@ -405,18 +403,12 @@ namespace GameServer.realm.worlds
         {
             if (entity is Player)
             {
-                Player dummy;
-                Players.TryRemove(entity.Id, out dummy);
+                Players.TryRemove(entity.Id, out var player);
                 PlayersCollision.Remove(entity);
 
                 // if in trade, cancel it...
-                if (dummy.tradeTarget != null)
-                    dummy.CancelTrade();
-
-                if (dummy.PlayerPet != null)
-                {
-                    LeaveWorld(dummy.PlayerPet);
-                }
+                if (player?.tradeTarget != null)
+                    player.CancelTrade();
             }
             // for enemies
             else if (entity is Enemy e)
@@ -556,17 +548,6 @@ namespace GameServer.realm.worlds
                 _elapsedTime += time.ElapsedMsDelta;
 
                 if (IsLimbo) return;
-                if (!Deleted)
-                {
-                    if (_overseerTask != null && !_overseerTask.IsCompleted)
-                    {
-                        return;
-                    }
-
-                    _overseerTask = Task.Factory.StartNew(() => { Overseer?.Tick(time); }).ContinueWith(e =>
-                            Log.Error(e.Exception.InnerException.ToString()),
-                        TaskContinuationOptions.OnlyOnFaulted);
-                }
 
                 if (!Persist && (this is Vault ? _elapsedTime > 5000 : _elapsedTime > 60000) && Players.Count <= 0)
                 {
@@ -574,6 +555,32 @@ namespace GameServer.realm.worlds
                     return;
                 }
 
+                lock (_deleteLock)
+                {
+                    if (Deleted)
+                        return;
+
+                    if (EnemiesCollision != null)
+                    {
+                        foreach (var i in EnemiesCollision.GetActiveChunks(PlayersCollision))
+                            i.Tick(time);
+                    }
+                    else
+                    {
+                        foreach (var i in Enemies)
+                            i.Value.Tick(time);
+                    
+                        foreach (var i in StaticObjects)
+                            i.Value.Tick(time);
+                    }
+                
+                    foreach (var i in Players)
+                        i.Value.Tick(time);
+
+                    foreach (var i in Projectiles)
+                        i.Value.Tick(time);
+                }
+            
                 for (var i = Timers.Count - 1; i >= 0; i--)
                     try
                     {
@@ -594,41 +601,6 @@ namespace GameServer.realm.worlds
             }
         }
 
-        public void TickLogic(RealmTime time)
-        {
-            lock (_deleteLock)
-            {
-                if (Deleted)
-                    return;
-
-                if (EnemiesCollision != null)
-                {
-                    foreach (var i in EnemiesCollision.GetActiveChunks(PlayersCollision))
-                        i.Tick(time);
-                }
-                else
-                {
-                    foreach (var i in Enemies)
-                        i.Value.Tick(time);
-                    
-                    foreach (var i in StaticObjects)
-                        i.Value.Tick(time);
-                }
-                
-                if (QuestTracker != null)
-                    QuestTracker.TickState(time);
-                
-                foreach (var i in Players)
-                    i.Value.Tick(time);
-                
-                foreach (var i in Pets)
-                    i.Value.Tick(time);
-                
-                foreach (var i in Projectiles)
-                    i.Value.Tick(time);
-            }
-        }
-
         public Projectile GetProjectile(int objectId, int bulletId)
         {
             var entity = GetEntity(objectId) as IProjectileOwner;
@@ -637,13 +609,6 @@ namespace GameServer.realm.worlds
                 : Projectiles.SingleOrDefault(p =>
                     p.Value.ProjectileOwner.Self.Id == objectId &&
                     p.Value.BulletId == bulletId).Value;
-        }
-        
-        public void EnemyKilled(Enemy enemy, Player killer)
-        {
-            if (enemy.Spawned || enemy.DevSpawned)
-                return;
-            Overseer?.OnEnemyKilled(enemy, killer);
         }
     }
 }

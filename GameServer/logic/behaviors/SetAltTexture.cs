@@ -42,7 +42,7 @@ namespace GameServer.logic.behaviors
             };
             if (host.AltTextureIndex != _indexMin)
             {
-                host.AltTextureIndex = _indexMin;
+                host.AltTextureIndex = (ushort) _indexMin;
                 (state as TextureState).currentTexture = _indexMin;
             }
         }
@@ -57,7 +57,7 @@ namespace GameServer.logic.behaviors
             if (textState.remainingTime <= 0)
             {
                 var newTexture = textState.currentTexture > _indexMax ? _indexMin : textState.currentTexture + 1;
-                host.AltTextureIndex = newTexture;
+                host.AltTextureIndex = (ushort) newTexture;
                 textState.currentTexture = newTexture;
                 textState.remainingTime = _cooldown.Next(Random);
             }

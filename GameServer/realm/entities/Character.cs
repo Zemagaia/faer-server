@@ -34,10 +34,10 @@ namespace GameServer.realm.entities
                 {
                     var step = Random.Next(0, (ObjectDesc.MaxSize - ObjectDesc.MinSize) / ObjectDesc.SizeStep + 1) *
                                ObjectDesc.SizeStep;
-                    SetDefaultSize(ObjectDesc.MinSize + step);
+                    SetDefaultSize((ushort) (ObjectDesc.MinSize + step));
                 }
                 else
-                    SetDefaultSize(ObjectDesc.MinSize);
+                    SetDefaultSize((ushort) ObjectDesc.MinSize);
 
                 SetConditions();
 
