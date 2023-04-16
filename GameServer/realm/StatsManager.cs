@@ -46,45 +46,7 @@ namespace GameServer.realm
 
         public float GetAttackDamage(ProjectileDesc desc, bool isAbility = false)
         {
-            var attackMult = 1f;
-            if (!isAbility)
-            {
-                var isMagic = (desc.DamageType & Constants.MagicTypes) != 0;
-                var power = isMagic ? Math.Min(this[20], 384) : Math.Min(this[2], 384);
-                if (Owner.HasConditionEffect(ConditionEffects.Weak))
-                    power = 0;
-                attackMult = 0.5f + power / 50f;
-            }
-
-            var ret = Owner.Client.ClientRandom.Next(desc.MinDamage, desc.MaxDamage) * attackMult;
-            ret += CriticalModifier(ret);
-
-            return ret;
-        }
-
-        private float CriticalModifier(float damage)
-        {
-            float criticalStrike = this[14];
-            float strength = this[2] <= 384 ? this[2] : 384;
-            float ret = 0;
-            var roll = Owner.Client.ClientRandom.Next(0, 1000);
-            var chance = (1 + criticalStrike) * 10 > 500 ? 500 : (int)(1 + criticalStrike) * 10;
-            if (roll > chance)
-                return ret;
-            for (var i = 0; i < 6; i++)
-            {
-                if (Owner.Inventory[i] == null)
-                    continue;
-                switch (Owner.Inventory[i].Power)
-                {
-                    case "Rotting Touch":
-                        ret += strength / 2;
-                        continue;
-                }
-            }
-
-            ret += damage * 0.67f;
-            return ret;
+            return desc.Damage;
         }
 
         // for enemies - multiple damages and damage types

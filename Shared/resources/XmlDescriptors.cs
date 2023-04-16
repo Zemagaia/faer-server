@@ -35,8 +35,7 @@ namespace Shared.resources
         public readonly float LifetimeMS;
         public readonly float Speed;
         public readonly int Size;
-        public readonly int MinDamage;
-        public readonly int MaxDamage;
+        public readonly int Damage;
 
         public readonly bool MultiHit;
         public readonly bool PassesCover;
@@ -66,12 +65,7 @@ namespace Shared.resources
 
             var dmg = e.Element("Damage");
             if (dmg != null)
-                MinDamage = MaxDamage = e.GetValue<int>("Damage");
-            else
-            {
-                MinDamage = e.GetValue<int>("MinDamage");
-                MaxDamage = e.GetValue<int>("MaxDamage");
-            }
+                Damage = e.GetValue<int>("Damage");
 
             List<ConditionEffect> effects = new();
             foreach (var i in e.Elements("ConditionEffect"))

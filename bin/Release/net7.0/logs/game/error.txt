@@ -3883,3 +3883,1744 @@
    at GameServer.realm.entities.player.Player.SendUpdate(RealmTime time) in /home/a/faer/server/GameServer/realm/entities/player/Player.Update.cs:line 172
    at GameServer.realm.entities.player.Player.Tick(RealmTime time) in /home/a/faer/server/GameServer/realm/entities/player/Player.cs:line 468
    at GameServer.realm.worlds.World.Tick(RealmTime time) in /home/a/faer/server/GameServer/realm/worlds/World.cs:line 602
+2023-04-15 20:02:03.2059|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Plated Dagger" to shop. Item does not exist.
+2023-04-15 20:02:03.2059|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby-Reinforced Longbow" to shop. Item does not exist.
+2023-04-15 20:02:03.2059|ERROR|Shared.resources.MerchantList|Failed when adding "Staff of Diabolic Secrets" to shop. Item does not exist.
+2023-04-15 20:02:03.2059|ERROR|Shared.resources.MerchantList|Failed when adding "Wand of Dark Magic" to shop. Item does not exist.
+2023-04-15 20:02:03.2059|ERROR|Shared.resources.MerchantList|Failed when adding "Adamant Great Sword" to shop. Item does not exist.
+2023-04-15 20:02:03.2062|ERROR|Shared.resources.MerchantList|Failed when adding "Demon's Edge" to shop. Item does not exist.
+2023-04-15 20:02:03.2062|ERROR|Shared.resources.MerchantList|Failed when adding "Cloak of the Red Agent" to shop. Item does not exist.
+2023-04-15 20:02:03.2062|ERROR|Shared.resources.MerchantList|Failed when adding "Quiver of the Crimson Elf" to shop. Item does not exist.
+2023-04-15 20:02:03.2062|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Nova Spell" to shop. Item does not exist.
+2023-04-15 20:02:03.2062|ERROR|Shared.resources.MerchantList|Failed when adding "Tome of Divine Favor" to shop. Item does not exist.
+2023-04-15 20:02:03.2062|ERROR|Shared.resources.MerchantList|Failed when adding "Helm of the Great General" to shop. Item does not exist.
+2023-04-15 20:02:03.2062|ERROR|Shared.resources.MerchantList|Failed when adding "Colossus Shield" to shop. Item does not exist.
+2023-04-15 20:02:03.2062|ERROR|Shared.resources.MerchantList|Failed when adding "Seal of the Holy Warrior" to shop. Item does not exist.
+2023-04-15 20:02:03.2062|ERROR|Shared.resources.MerchantList|Failed when adding "Nightwing Vial" to shop. Item does not exist.
+2023-04-15 20:02:03.2062|ERROR|Shared.resources.MerchantList|Failed when adding "Lifedrinker Skull" to shop. Item does not exist.
+2023-04-15 20:02:03.2062|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Orb" to shop. Item does not exist.
+2023-04-15 20:02:03.2062|ERROR|Shared.resources.MerchantList|Failed when adding "Scepter of Skybolts" to shop. Item does not exist.
+2023-04-15 20:02:03.2062|ERROR|Shared.resources.MerchantList|Failed when adding "Doom Circle" to shop. Item does not exist.
+2023-04-15 20:02:03.2062|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Totem" to shop. Item does not exist.
+2023-04-15 20:02:03.2062|ERROR|Shared.resources.MerchantList|Failed when adding "Deck of the Ancient" to shop. Item does not exist.
+2023-04-15 20:02:03.2062|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Rune" to shop. Item does not exist.
+2023-04-15 20:02:03.2062|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Conjurer" to shop. Item does not exist.
+2023-04-15 20:02:03.2062|ERROR|Shared.resources.MerchantList|Failed when adding "Gold-Studded Armor" to shop. Item does not exist.
+2023-04-15 20:02:03.2062|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Chestplate" to shop. Item does not exist.
+2023-04-15 20:02:03.2062|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Grand Sorcerer" to shop. Item does not exist.
+2023-04-15 20:02:03.2062|ERROR|Shared.resources.MerchantList|Failed when adding "Wyvern Skin Armor" to shop. Item does not exist.
+2023-04-15 20:02:03.2062|ERROR|Shared.resources.MerchantList|Failed when adding "Dragonscale Chestplate" to shop. Item does not exist.
+2023-04-15 20:02:03.2062|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Ring" to shop. Item does not exist.
+2023-04-15 20:02:03.2062|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Circlet" to shop. Item does not exist.
+2023-04-15 20:02:03.2062|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
+2023-04-15 20:02:03.2062|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
+2023-04-15 20:02:03.4897|ERROR|GameServer.realm.setpieces.SetPieces|Could not find setpiece data for realm
+2023-04-15 20:02:10.4942|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Plated Dagger" to shop. Item does not exist.
+2023-04-15 20:02:10.4945|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby-Reinforced Longbow" to shop. Item does not exist.
+2023-04-15 20:02:10.4945|ERROR|Shared.resources.MerchantList|Failed when adding "Staff of Diabolic Secrets" to shop. Item does not exist.
+2023-04-15 20:02:10.4945|ERROR|Shared.resources.MerchantList|Failed when adding "Wand of Dark Magic" to shop. Item does not exist.
+2023-04-15 20:02:10.4945|ERROR|Shared.resources.MerchantList|Failed when adding "Adamant Great Sword" to shop. Item does not exist.
+2023-04-15 20:02:10.4945|ERROR|Shared.resources.MerchantList|Failed when adding "Demon's Edge" to shop. Item does not exist.
+2023-04-15 20:02:10.4945|ERROR|Shared.resources.MerchantList|Failed when adding "Cloak of the Red Agent" to shop. Item does not exist.
+2023-04-15 20:02:10.4945|ERROR|Shared.resources.MerchantList|Failed when adding "Quiver of the Crimson Elf" to shop. Item does not exist.
+2023-04-15 20:02:10.4945|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Nova Spell" to shop. Item does not exist.
+2023-04-15 20:02:10.4945|ERROR|Shared.resources.MerchantList|Failed when adding "Tome of Divine Favor" to shop. Item does not exist.
+2023-04-15 20:02:10.4945|ERROR|Shared.resources.MerchantList|Failed when adding "Helm of the Great General" to shop. Item does not exist.
+2023-04-15 20:02:10.4945|ERROR|Shared.resources.MerchantList|Failed when adding "Colossus Shield" to shop. Item does not exist.
+2023-04-15 20:02:10.4945|ERROR|Shared.resources.MerchantList|Failed when adding "Seal of the Holy Warrior" to shop. Item does not exist.
+2023-04-15 20:02:10.4945|ERROR|Shared.resources.MerchantList|Failed when adding "Nightwing Vial" to shop. Item does not exist.
+2023-04-15 20:02:10.4945|ERROR|Shared.resources.MerchantList|Failed when adding "Lifedrinker Skull" to shop. Item does not exist.
+2023-04-15 20:02:10.4945|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Orb" to shop. Item does not exist.
+2023-04-15 20:02:10.4945|ERROR|Shared.resources.MerchantList|Failed when adding "Scepter of Skybolts" to shop. Item does not exist.
+2023-04-15 20:02:10.4945|ERROR|Shared.resources.MerchantList|Failed when adding "Doom Circle" to shop. Item does not exist.
+2023-04-15 20:02:10.4945|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Totem" to shop. Item does not exist.
+2023-04-15 20:02:10.4945|ERROR|Shared.resources.MerchantList|Failed when adding "Deck of the Ancient" to shop. Item does not exist.
+2023-04-15 20:02:10.4945|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Rune" to shop. Item does not exist.
+2023-04-15 20:02:10.4945|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Conjurer" to shop. Item does not exist.
+2023-04-15 20:02:10.4945|ERROR|Shared.resources.MerchantList|Failed when adding "Gold-Studded Armor" to shop. Item does not exist.
+2023-04-15 20:02:10.4945|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Chestplate" to shop. Item does not exist.
+2023-04-15 20:02:10.4945|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Grand Sorcerer" to shop. Item does not exist.
+2023-04-15 20:02:10.4945|ERROR|Shared.resources.MerchantList|Failed when adding "Wyvern Skin Armor" to shop. Item does not exist.
+2023-04-15 20:02:10.4945|ERROR|Shared.resources.MerchantList|Failed when adding "Dragonscale Chestplate" to shop. Item does not exist.
+2023-04-15 20:02:10.4945|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Ring" to shop. Item does not exist.
+2023-04-15 20:02:10.4945|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Circlet" to shop. Item does not exist.
+2023-04-15 20:02:10.4945|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
+2023-04-15 20:02:10.4945|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
+2023-04-15 20:02:10.7668|ERROR|GameServer.realm.setpieces.SetPieces|Could not find setpiece data for realm
+2023-04-15 20:02:21.6139|ERROR|GameServer.realm.worlds.World|Value was either too large or too small for an Int16.
+   at System.Convert.ThrowInt16OverflowException()
+   at System.Convert.ToInt16(Int32 value)
+   at GameServer.Client.SendUpdate(TileData[] tiles, ObjectDef[] newObjs, Int32[] drops) in /home/a/faer/server/GameServer/Client.cs:line 500
+   at GameServer.realm.entities.player.Player.SendUpdate(RealmTime time) in /home/a/faer/server/GameServer/realm/entities/player/Player.Update.cs:line 172
+   at GameServer.realm.entities.player.Player.Tick(RealmTime time) in /home/a/faer/server/GameServer/realm/entities/player/Player.cs:line 468
+   at GameServer.realm.worlds.World.Tick(RealmTime time) in /home/a/faer/server/GameServer/realm/worlds/World.cs:line 602
+2023-04-15 20:02:21.6934|ERROR|GameServer.Client|Object reference not set to an instance of an object.
+   at GameServer.realm.entities.player.Player.get_Fame() in /home/a/faer/server/GameServer/realm/entities/player/Player.cs:line 46
+   at GameServer.realm.entities.player.Player.SaveToCharacter() in /home/a/faer/server/GameServer/realm/entities/player/Player.cs:line 300
+   at GameServer.Client.Save() in /home/a/faer/server/GameServer/Client.cs:line 1621
+   at GameServer.Client.Disconnect(String reason) in /home/a/faer/server/GameServer/Client.cs:line 1602
+2023-04-15 20:02:21.6956|ERROR|GameServer.realm.worlds.World|Object already added into collision map.
+   at GameServer.realm.CollisionMap`1.Insert(T obj) in /home/a/faer/server/GameServer/realm/Collision.cs:line 86
+   at GameServer.realm.worlds.World.EnterWorld(Entity entity) in /home/a/faer/server/GameServer/realm/worlds/World.cs:line 355
+   at GameServer.realm.ConnectManager.Reconnect(Client client, Int32 gameId) in /home/a/faer/server/GameServer/realm/ConnectManager.cs:line 56
+   at GameServer.Client.Reconnect(String name, Int32 gameId) in /home/a/faer/server/GameServer/Client.cs:line 610
+   at GameServer.realm.entities.player.Player.ReconnectToNexus() in /home/a/faer/server/GameServer/realm/entities/player/Player.cs:line 867
+   at GameServer.realm.entities.player.Player.Rekted(Boolean rekt) in /home/a/faer/server/GameServer/realm/entities/player/Player.cs:line 827
+   at GameServer.realm.entities.player.Player.Death(String killer, Entity entity, WmapTile tile, Boolean rekt) in /home/a/faer/server/GameServer/realm/entities/player/Player.cs:line 944
+   at GameServer.realm.entities.player.Player.Tick(RealmTime time) in /home/a/faer/server/GameServer/realm/entities/player/Player.cs:line 473
+   at GameServer.realm.worlds.World.Tick(RealmTime time) in /home/a/faer/server/GameServer/realm/worlds/World.cs:line 602
+2023-04-15 20:02:21.7006|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 128
+2023-04-15 20:02:21.7869|ERROR|GameServer.realm.worlds.World|Value was either too large or too small for an Int16.
+   at System.Convert.ThrowInt16OverflowException()
+   at System.Convert.ToInt16(Int32 value)
+   at GameServer.Client.SendUpdate(TileData[] tiles, ObjectDef[] newObjs, Int32[] drops) in /home/a/faer/server/GameServer/Client.cs:line 500
+   at GameServer.realm.entities.player.Player.SendUpdate(RealmTime time) in /home/a/faer/server/GameServer/realm/entities/player/Player.Update.cs:line 172
+   at GameServer.realm.entities.player.Player.Tick(RealmTime time) in /home/a/faer/server/GameServer/realm/entities/player/Player.cs:line 468
+   at GameServer.realm.worlds.World.Tick(RealmTime time) in /home/a/faer/server/GameServer/realm/worlds/World.cs:line 602
+2023-04-15 21:19:27.2508|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Plated Dagger" to shop. Item does not exist.
+2023-04-15 21:19:27.2508|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby-Reinforced Longbow" to shop. Item does not exist.
+2023-04-15 21:19:27.2508|ERROR|Shared.resources.MerchantList|Failed when adding "Staff of Diabolic Secrets" to shop. Item does not exist.
+2023-04-15 21:19:27.2508|ERROR|Shared.resources.MerchantList|Failed when adding "Wand of Dark Magic" to shop. Item does not exist.
+2023-04-15 21:19:27.2508|ERROR|Shared.resources.MerchantList|Failed when adding "Adamant Great Sword" to shop. Item does not exist.
+2023-04-15 21:19:27.2508|ERROR|Shared.resources.MerchantList|Failed when adding "Demon's Edge" to shop. Item does not exist.
+2023-04-15 21:19:27.2508|ERROR|Shared.resources.MerchantList|Failed when adding "Cloak of the Red Agent" to shop. Item does not exist.
+2023-04-15 21:19:27.2508|ERROR|Shared.resources.MerchantList|Failed when adding "Quiver of the Crimson Elf" to shop. Item does not exist.
+2023-04-15 21:19:27.2508|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Nova Spell" to shop. Item does not exist.
+2023-04-15 21:19:27.2508|ERROR|Shared.resources.MerchantList|Failed when adding "Tome of Divine Favor" to shop. Item does not exist.
+2023-04-15 21:19:27.2508|ERROR|Shared.resources.MerchantList|Failed when adding "Helm of the Great General" to shop. Item does not exist.
+2023-04-15 21:19:27.2508|ERROR|Shared.resources.MerchantList|Failed when adding "Colossus Shield" to shop. Item does not exist.
+2023-04-15 21:19:27.2508|ERROR|Shared.resources.MerchantList|Failed when adding "Seal of the Holy Warrior" to shop. Item does not exist.
+2023-04-15 21:19:27.2508|ERROR|Shared.resources.MerchantList|Failed when adding "Nightwing Vial" to shop. Item does not exist.
+2023-04-15 21:19:27.2508|ERROR|Shared.resources.MerchantList|Failed when adding "Lifedrinker Skull" to shop. Item does not exist.
+2023-04-15 21:19:27.2508|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Orb" to shop. Item does not exist.
+2023-04-15 21:19:27.2508|ERROR|Shared.resources.MerchantList|Failed when adding "Scepter of Skybolts" to shop. Item does not exist.
+2023-04-15 21:19:27.2508|ERROR|Shared.resources.MerchantList|Failed when adding "Doom Circle" to shop. Item does not exist.
+2023-04-15 21:19:27.2513|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Totem" to shop. Item does not exist.
+2023-04-15 21:19:27.2513|ERROR|Shared.resources.MerchantList|Failed when adding "Deck of the Ancient" to shop. Item does not exist.
+2023-04-15 21:19:27.2513|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Rune" to shop. Item does not exist.
+2023-04-15 21:19:27.2513|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Conjurer" to shop. Item does not exist.
+2023-04-15 21:19:27.2513|ERROR|Shared.resources.MerchantList|Failed when adding "Gold-Studded Armor" to shop. Item does not exist.
+2023-04-15 21:19:27.2513|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Chestplate" to shop. Item does not exist.
+2023-04-15 21:19:27.2513|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Grand Sorcerer" to shop. Item does not exist.
+2023-04-15 21:19:27.2513|ERROR|Shared.resources.MerchantList|Failed when adding "Wyvern Skin Armor" to shop. Item does not exist.
+2023-04-15 21:19:27.2513|ERROR|Shared.resources.MerchantList|Failed when adding "Dragonscale Chestplate" to shop. Item does not exist.
+2023-04-15 21:19:27.2513|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Ring" to shop. Item does not exist.
+2023-04-15 21:19:27.2513|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Circlet" to shop. Item does not exist.
+2023-04-15 21:19:27.2513|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
+2023-04-15 21:19:27.2513|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
+2023-04-15 21:19:27.5333|ERROR|GameServer.realm.setpieces.SetPieces|Could not find setpiece data for realm
+2023-04-15 21:20:03.7285|ERROR|GameServer.realm.worlds.World|Object already added into collision map.
+   at GameServer.realm.CollisionMap`1.Insert(T obj) in /home/a/faer/server/GameServer/realm/Collision.cs:line 86
+   at GameServer.realm.worlds.World.EnterWorld(Entity entity) in /home/a/faer/server/GameServer/realm/worlds/World.cs:line 355
+   at GameServer.realm.ConnectManager.Reconnect(Client client, Int32 gameId) in /home/a/faer/server/GameServer/realm/ConnectManager.cs:line 56
+   at GameServer.Client.Reconnect(String name, Int32 gameId) in /home/a/faer/server/GameServer/Client.cs:line 610
+   at GameServer.realm.entities.player.Player.ReconnectToNexus() in /home/a/faer/server/GameServer/realm/entities/player/Player.cs:line 839
+   at GameServer.realm.entities.player.Player.Rekted(Boolean rekt) in /home/a/faer/server/GameServer/realm/entities/player/Player.cs:line 799
+   at GameServer.realm.entities.player.Player.Death(String killer, Entity entity, WmapTile tile, Boolean rekt) in /home/a/faer/server/GameServer/realm/entities/player/Player.cs:line 916
+   at GameServer.realm.entities.player.Player.Tick(RealmTime time) in /home/a/faer/server/GameServer/realm/entities/player/Player.cs:line 445
+   at GameServer.realm.worlds.World.Tick(RealmTime time) in /home/a/faer/server/GameServer/realm/worlds/World.cs:line 602
+2023-04-15 21:21:22.8709|ERROR|GameServer.realm.worlds.World|Object reference not set to an instance of an object.
+   at GameServer.realm.ConnectManager.Reconnect(Client client, Int32 gameId) in /home/a/faer/server/GameServer/realm/ConnectManager.cs:line 54
+   at GameServer.Client.Reconnect(String name, Int32 gameId) in /home/a/faer/server/GameServer/Client.cs:line 610
+   at GameServer.realm.entities.player.Player.ReconnectToNexus() in /home/a/faer/server/GameServer/realm/entities/player/Player.cs:line 839
+   at GameServer.realm.entities.player.Player.Rekted(Boolean rekt) in /home/a/faer/server/GameServer/realm/entities/player/Player.cs:line 799
+   at GameServer.realm.entities.player.Player.Death(String killer, Entity entity, WmapTile tile, Boolean rekt) in /home/a/faer/server/GameServer/realm/entities/player/Player.cs:line 916
+   at GameServer.realm.entities.player.Player.Tick(RealmTime time) in /home/a/faer/server/GameServer/realm/entities/player/Player.cs:line 445
+   at GameServer.realm.worlds.World.Tick(RealmTime time) in /home/a/faer/server/GameServer/realm/worlds/World.cs:line 602
+2023-04-15 21:22:28.2383|ERROR|GameServer.realm.worlds.World|Object already added into collision map.
+   at GameServer.realm.CollisionMap`1.Insert(T obj) in /home/a/faer/server/GameServer/realm/Collision.cs:line 86
+   at GameServer.realm.worlds.World.EnterWorld(Entity entity) in /home/a/faer/server/GameServer/realm/worlds/World.cs:line 355
+   at GameServer.realm.ConnectManager.Reconnect(Client client, Int32 gameId) in /home/a/faer/server/GameServer/realm/ConnectManager.cs:line 56
+   at GameServer.Client.Reconnect(String name, Int32 gameId) in /home/a/faer/server/GameServer/Client.cs:line 610
+   at GameServer.realm.entities.player.Player.ReconnectToNexus() in /home/a/faer/server/GameServer/realm/entities/player/Player.cs:line 839
+   at GameServer.realm.entities.player.Player.Rekted(Boolean rekt) in /home/a/faer/server/GameServer/realm/entities/player/Player.cs:line 799
+   at GameServer.realm.entities.player.Player.Death(String killer, Entity entity, WmapTile tile, Boolean rekt) in /home/a/faer/server/GameServer/realm/entities/player/Player.cs:line 916
+   at GameServer.realm.entities.player.Player.Tick(RealmTime time) in /home/a/faer/server/GameServer/realm/entities/player/Player.cs:line 445
+   at GameServer.realm.worlds.World.Tick(RealmTime time) in /home/a/faer/server/GameServer/realm/worlds/World.cs:line 602
+2023-04-15 21:26:31.9927|ERROR|GameServer.realm.worlds.World|Object already added into collision map.
+   at GameServer.realm.CollisionMap`1.Insert(T obj) in /home/a/faer/server/GameServer/realm/Collision.cs:line 86
+   at GameServer.realm.worlds.World.EnterWorld(Entity entity) in /home/a/faer/server/GameServer/realm/worlds/World.cs:line 355
+   at GameServer.realm.ConnectManager.Reconnect(Client client, Int32 gameId) in /home/a/faer/server/GameServer/realm/ConnectManager.cs:line 56
+   at GameServer.Client.Reconnect(String name, Int32 gameId) in /home/a/faer/server/GameServer/Client.cs:line 610
+   at GameServer.realm.entities.player.Player.ReconnectToNexus() in /home/a/faer/server/GameServer/realm/entities/player/Player.cs:line 839
+   at GameServer.realm.entities.player.Player.Rekted(Boolean rekt) in /home/a/faer/server/GameServer/realm/entities/player/Player.cs:line 799
+   at GameServer.realm.entities.player.Player.Death(String killer, Entity entity, WmapTile tile, Boolean rekt) in /home/a/faer/server/GameServer/realm/entities/player/Player.cs:line 934
+   at GameServer.realm.worlds.World.Tick(RealmTime time) in /home/a/faer/server/GameServer/realm/worlds/World.cs:line 602
+2023-04-15 21:27:33.2833|ERROR|GameServer.realm.worlds.World|Object already added into collision map.
+   at GameServer.realm.CollisionMap`1.Insert(T obj) in /home/a/faer/server/GameServer/realm/Collision.cs:line 86
+   at GameServer.realm.worlds.World.EnterWorld(Entity entity) in /home/a/faer/server/GameServer/realm/worlds/World.cs:line 355
+   at GameServer.realm.ConnectManager.Reconnect(Client client, Int32 gameId) in /home/a/faer/server/GameServer/realm/ConnectManager.cs:line 56
+   at GameServer.Client.Reconnect(String name, Int32 gameId) in /home/a/faer/server/GameServer/Client.cs:line 610
+   at GameServer.realm.entities.player.Player.ReconnectToNexus() in /home/a/faer/server/GameServer/realm/entities/player/Player.cs:line 839
+   at GameServer.realm.entities.player.Player.Rekted(Boolean rekt) in /home/a/faer/server/GameServer/realm/entities/player/Player.cs:line 799
+   at GameServer.realm.entities.player.Player.Death(String killer, Entity entity, WmapTile tile, Boolean rekt) in /home/a/faer/server/GameServer/realm/entities/player/Player.cs:line 934
+   at GameServer.realm.worlds.World.Tick(RealmTime time) in /home/a/faer/server/GameServer/realm/worlds/World.cs:line 602
+2023-04-15 21:32:33.2214|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 128
+2023-04-15 21:32:40.2297|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 128
+2023-04-15 21:34:07.8447|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 128
+2023-04-15 21:34:50.6848|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 128
+2023-04-15 21:36:23.3245|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 128
+2023-04-15 21:41:54.9728|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 128
+2023-04-15 21:43:52.5359|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 137
+2023-04-15 21:44:31.7940|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 137
+2023-04-15 21:46:14.3627|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 137
+2023-04-15 21:46:22.6644|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 137
+2023-04-15 22:07:11.5089|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Plated Dagger" to shop. Item does not exist.
+2023-04-15 22:07:11.5089|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby-Reinforced Longbow" to shop. Item does not exist.
+2023-04-15 22:07:11.5089|ERROR|Shared.resources.MerchantList|Failed when adding "Staff of Diabolic Secrets" to shop. Item does not exist.
+2023-04-15 22:07:11.5089|ERROR|Shared.resources.MerchantList|Failed when adding "Wand of Dark Magic" to shop. Item does not exist.
+2023-04-15 22:07:11.5089|ERROR|Shared.resources.MerchantList|Failed when adding "Adamant Great Sword" to shop. Item does not exist.
+2023-04-15 22:07:11.5089|ERROR|Shared.resources.MerchantList|Failed when adding "Demon's Edge" to shop. Item does not exist.
+2023-04-15 22:07:11.5089|ERROR|Shared.resources.MerchantList|Failed when adding "Cloak of the Red Agent" to shop. Item does not exist.
+2023-04-15 22:07:11.5089|ERROR|Shared.resources.MerchantList|Failed when adding "Quiver of the Crimson Elf" to shop. Item does not exist.
+2023-04-15 22:07:11.5089|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Nova Spell" to shop. Item does not exist.
+2023-04-15 22:07:11.5089|ERROR|Shared.resources.MerchantList|Failed when adding "Tome of Divine Favor" to shop. Item does not exist.
+2023-04-15 22:07:11.5089|ERROR|Shared.resources.MerchantList|Failed when adding "Helm of the Great General" to shop. Item does not exist.
+2023-04-15 22:07:11.5089|ERROR|Shared.resources.MerchantList|Failed when adding "Colossus Shield" to shop. Item does not exist.
+2023-04-15 22:07:11.5089|ERROR|Shared.resources.MerchantList|Failed when adding "Seal of the Holy Warrior" to shop. Item does not exist.
+2023-04-15 22:07:11.5089|ERROR|Shared.resources.MerchantList|Failed when adding "Nightwing Vial" to shop. Item does not exist.
+2023-04-15 22:07:11.5089|ERROR|Shared.resources.MerchantList|Failed when adding "Lifedrinker Skull" to shop. Item does not exist.
+2023-04-15 22:07:11.5089|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Orb" to shop. Item does not exist.
+2023-04-15 22:07:11.5089|ERROR|Shared.resources.MerchantList|Failed when adding "Scepter of Skybolts" to shop. Item does not exist.
+2023-04-15 22:07:11.5089|ERROR|Shared.resources.MerchantList|Failed when adding "Doom Circle" to shop. Item does not exist.
+2023-04-15 22:07:11.5089|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Totem" to shop. Item does not exist.
+2023-04-15 22:07:11.5089|ERROR|Shared.resources.MerchantList|Failed when adding "Deck of the Ancient" to shop. Item does not exist.
+2023-04-15 22:07:11.5089|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Rune" to shop. Item does not exist.
+2023-04-15 22:07:11.5089|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Conjurer" to shop. Item does not exist.
+2023-04-15 22:07:11.5089|ERROR|Shared.resources.MerchantList|Failed when adding "Gold-Studded Armor" to shop. Item does not exist.
+2023-04-15 22:07:11.5089|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Chestplate" to shop. Item does not exist.
+2023-04-15 22:07:11.5089|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Grand Sorcerer" to shop. Item does not exist.
+2023-04-15 22:07:11.5089|ERROR|Shared.resources.MerchantList|Failed when adding "Wyvern Skin Armor" to shop. Item does not exist.
+2023-04-15 22:07:11.5089|ERROR|Shared.resources.MerchantList|Failed when adding "Dragonscale Chestplate" to shop. Item does not exist.
+2023-04-15 22:07:11.5089|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Ring" to shop. Item does not exist.
+2023-04-15 22:07:11.5089|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Circlet" to shop. Item does not exist.
+2023-04-15 22:07:11.5089|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
+2023-04-15 22:07:11.5089|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
+2023-04-15 22:07:11.8042|ERROR|GameServer.realm.setpieces.SetPieces|Could not find setpiece data for realm
+2023-04-15 22:07:26.9095|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 128
+2023-04-16 07:38:47.5621|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Plated Dagger" to shop. Item does not exist.
+2023-04-16 07:38:47.5621|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby-Reinforced Longbow" to shop. Item does not exist.
+2023-04-16 07:38:47.5621|ERROR|Shared.resources.MerchantList|Failed when adding "Staff of Diabolic Secrets" to shop. Item does not exist.
+2023-04-16 07:38:47.5621|ERROR|Shared.resources.MerchantList|Failed when adding "Wand of Dark Magic" to shop. Item does not exist.
+2023-04-16 07:38:47.5621|ERROR|Shared.resources.MerchantList|Failed when adding "Adamant Great Sword" to shop. Item does not exist.
+2023-04-16 07:38:47.5621|ERROR|Shared.resources.MerchantList|Failed when adding "Demon's Edge" to shop. Item does not exist.
+2023-04-16 07:38:47.5621|ERROR|Shared.resources.MerchantList|Failed when adding "Cloak of the Red Agent" to shop. Item does not exist.
+2023-04-16 07:38:47.5621|ERROR|Shared.resources.MerchantList|Failed when adding "Quiver of the Crimson Elf" to shop. Item does not exist.
+2023-04-16 07:38:47.5621|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Nova Spell" to shop. Item does not exist.
+2023-04-16 07:38:47.5621|ERROR|Shared.resources.MerchantList|Failed when adding "Tome of Divine Favor" to shop. Item does not exist.
+2023-04-16 07:38:47.5621|ERROR|Shared.resources.MerchantList|Failed when adding "Helm of the Great General" to shop. Item does not exist.
+2023-04-16 07:38:47.5621|ERROR|Shared.resources.MerchantList|Failed when adding "Colossus Shield" to shop. Item does not exist.
+2023-04-16 07:38:47.5621|ERROR|Shared.resources.MerchantList|Failed when adding "Seal of the Holy Warrior" to shop. Item does not exist.
+2023-04-16 07:38:47.5621|ERROR|Shared.resources.MerchantList|Failed when adding "Nightwing Vial" to shop. Item does not exist.
+2023-04-16 07:38:47.5621|ERROR|Shared.resources.MerchantList|Failed when adding "Lifedrinker Skull" to shop. Item does not exist.
+2023-04-16 07:38:47.5621|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Orb" to shop. Item does not exist.
+2023-04-16 07:38:47.5621|ERROR|Shared.resources.MerchantList|Failed when adding "Scepter of Skybolts" to shop. Item does not exist.
+2023-04-16 07:38:47.5621|ERROR|Shared.resources.MerchantList|Failed when adding "Doom Circle" to shop. Item does not exist.
+2023-04-16 07:38:47.5621|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Totem" to shop. Item does not exist.
+2023-04-16 07:38:47.5621|ERROR|Shared.resources.MerchantList|Failed when adding "Deck of the Ancient" to shop. Item does not exist.
+2023-04-16 07:38:47.5621|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Rune" to shop. Item does not exist.
+2023-04-16 07:38:47.5621|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Conjurer" to shop. Item does not exist.
+2023-04-16 07:38:47.5621|ERROR|Shared.resources.MerchantList|Failed when adding "Gold-Studded Armor" to shop. Item does not exist.
+2023-04-16 07:38:47.5621|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Chestplate" to shop. Item does not exist.
+2023-04-16 07:38:47.5621|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Grand Sorcerer" to shop. Item does not exist.
+2023-04-16 07:38:47.5621|ERROR|Shared.resources.MerchantList|Failed when adding "Wyvern Skin Armor" to shop. Item does not exist.
+2023-04-16 07:38:47.5621|ERROR|Shared.resources.MerchantList|Failed when adding "Dragonscale Chestplate" to shop. Item does not exist.
+2023-04-16 07:38:47.5621|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Ring" to shop. Item does not exist.
+2023-04-16 07:38:47.5621|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Circlet" to shop. Item does not exist.
+2023-04-16 07:38:47.5621|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
+2023-04-16 07:38:47.5621|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
+2023-04-16 07:38:47.8450|ERROR|GameServer.realm.setpieces.SetPieces|Could not find setpiece data for realm
+2023-04-16 07:39:07.6414|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 128
+2023-04-16 07:43:41.8882|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 128
+2023-04-16 07:44:53.1681|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 128
+2023-04-16 07:45:00.6748|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 128
+2023-04-16 07:54:01.6792|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 128
+2023-04-16 07:58:07.4926|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 128
+2023-04-16 08:01:33.8551|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 128
+2023-04-16 08:11:45.4816|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 128
+2023-04-16 08:12:34.5494|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 128
+2023-04-16 08:15:06.3506|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 128
+2023-04-16 08:15:45.8959|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 128
+2023-04-16 08:15:54.0072|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 137
+2023-04-16 08:16:41.6566|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 137
+2023-04-16 08:16:59.0793|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 137
+2023-04-16 08:17:44.1254|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 137
+2023-04-16 08:18:17.1602|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 137
+2023-04-16 11:00:56.3459|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Plated Dagger" to shop. Item does not exist.
+2023-04-16 11:00:56.3459|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby-Reinforced Longbow" to shop. Item does not exist.
+2023-04-16 11:00:56.3459|ERROR|Shared.resources.MerchantList|Failed when adding "Staff of Diabolic Secrets" to shop. Item does not exist.
+2023-04-16 11:00:56.3459|ERROR|Shared.resources.MerchantList|Failed when adding "Wand of Dark Magic" to shop. Item does not exist.
+2023-04-16 11:00:56.3459|ERROR|Shared.resources.MerchantList|Failed when adding "Adamant Great Sword" to shop. Item does not exist.
+2023-04-16 11:00:56.3459|ERROR|Shared.resources.MerchantList|Failed when adding "Demon's Edge" to shop. Item does not exist.
+2023-04-16 11:00:56.3459|ERROR|Shared.resources.MerchantList|Failed when adding "Cloak of the Red Agent" to shop. Item does not exist.
+2023-04-16 11:00:56.3459|ERROR|Shared.resources.MerchantList|Failed when adding "Quiver of the Crimson Elf" to shop. Item does not exist.
+2023-04-16 11:00:56.3459|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Nova Spell" to shop. Item does not exist.
+2023-04-16 11:00:56.3459|ERROR|Shared.resources.MerchantList|Failed when adding "Tome of Divine Favor" to shop. Item does not exist.
+2023-04-16 11:00:56.3459|ERROR|Shared.resources.MerchantList|Failed when adding "Helm of the Great General" to shop. Item does not exist.
+2023-04-16 11:00:56.3459|ERROR|Shared.resources.MerchantList|Failed when adding "Colossus Shield" to shop. Item does not exist.
+2023-04-16 11:00:56.3459|ERROR|Shared.resources.MerchantList|Failed when adding "Seal of the Holy Warrior" to shop. Item does not exist.
+2023-04-16 11:00:56.3459|ERROR|Shared.resources.MerchantList|Failed when adding "Nightwing Vial" to shop. Item does not exist.
+2023-04-16 11:00:56.3459|ERROR|Shared.resources.MerchantList|Failed when adding "Lifedrinker Skull" to shop. Item does not exist.
+2023-04-16 11:00:56.3459|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Orb" to shop. Item does not exist.
+2023-04-16 11:00:56.3459|ERROR|Shared.resources.MerchantList|Failed when adding "Scepter of Skybolts" to shop. Item does not exist.
+2023-04-16 11:00:56.3459|ERROR|Shared.resources.MerchantList|Failed when adding "Doom Circle" to shop. Item does not exist.
+2023-04-16 11:00:56.3459|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Totem" to shop. Item does not exist.
+2023-04-16 11:00:56.3464|ERROR|Shared.resources.MerchantList|Failed when adding "Deck of the Ancient" to shop. Item does not exist.
+2023-04-16 11:00:56.3464|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Rune" to shop. Item does not exist.
+2023-04-16 11:00:56.3464|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Conjurer" to shop. Item does not exist.
+2023-04-16 11:00:56.3464|ERROR|Shared.resources.MerchantList|Failed when adding "Gold-Studded Armor" to shop. Item does not exist.
+2023-04-16 11:00:56.3464|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Chestplate" to shop. Item does not exist.
+2023-04-16 11:00:56.3464|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Grand Sorcerer" to shop. Item does not exist.
+2023-04-16 11:00:56.3464|ERROR|Shared.resources.MerchantList|Failed when adding "Wyvern Skin Armor" to shop. Item does not exist.
+2023-04-16 11:00:56.3464|ERROR|Shared.resources.MerchantList|Failed when adding "Dragonscale Chestplate" to shop. Item does not exist.
+2023-04-16 11:00:56.3464|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Ring" to shop. Item does not exist.
+2023-04-16 11:00:56.3464|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Circlet" to shop. Item does not exist.
+2023-04-16 11:00:56.3464|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
+2023-04-16 11:00:56.3464|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
+2023-04-16 11:00:56.6666|ERROR|GameServer.realm.setpieces.SetPieces|Could not find setpiece data for realm
+2023-04-16 11:01:32.7899|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 128
+2023-04-16 11:02:34.8756|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 128
+2023-04-16 11:04:52.0158|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 128
+2023-04-16 11:05:44.4727|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 128
+2023-04-16 11:06:35.7249|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 128
+2023-04-16 11:06:51.4373|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 128
+2023-04-16 11:07:35.4868|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 128
+2023-04-16 11:08:07.4222|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 128
+2023-04-16 11:08:10.0250|ERROR|GameServer.Client|Could not send data to dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 128
+2023-04-16 11:10:34.3260|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Plated Dagger" to shop. Item does not exist.
+2023-04-16 11:10:34.3260|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby-Reinforced Longbow" to shop. Item does not exist.
+2023-04-16 11:10:34.3260|ERROR|Shared.resources.MerchantList|Failed when adding "Staff of Diabolic Secrets" to shop. Item does not exist.
+2023-04-16 11:10:34.3260|ERROR|Shared.resources.MerchantList|Failed when adding "Wand of Dark Magic" to shop. Item does not exist.
+2023-04-16 11:10:34.3260|ERROR|Shared.resources.MerchantList|Failed when adding "Adamant Great Sword" to shop. Item does not exist.
+2023-04-16 11:10:34.3260|ERROR|Shared.resources.MerchantList|Failed when adding "Demon's Edge" to shop. Item does not exist.
+2023-04-16 11:10:34.3260|ERROR|Shared.resources.MerchantList|Failed when adding "Cloak of the Red Agent" to shop. Item does not exist.
+2023-04-16 11:10:34.3260|ERROR|Shared.resources.MerchantList|Failed when adding "Quiver of the Crimson Elf" to shop. Item does not exist.
+2023-04-16 11:10:34.3263|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Nova Spell" to shop. Item does not exist.
+2023-04-16 11:10:34.3263|ERROR|Shared.resources.MerchantList|Failed when adding "Tome of Divine Favor" to shop. Item does not exist.
+2023-04-16 11:10:34.3263|ERROR|Shared.resources.MerchantList|Failed when adding "Helm of the Great General" to shop. Item does not exist.
+2023-04-16 11:10:34.3263|ERROR|Shared.resources.MerchantList|Failed when adding "Colossus Shield" to shop. Item does not exist.
+2023-04-16 11:10:34.3263|ERROR|Shared.resources.MerchantList|Failed when adding "Seal of the Holy Warrior" to shop. Item does not exist.
+2023-04-16 11:10:34.3263|ERROR|Shared.resources.MerchantList|Failed when adding "Nightwing Vial" to shop. Item does not exist.
+2023-04-16 11:10:34.3263|ERROR|Shared.resources.MerchantList|Failed when adding "Lifedrinker Skull" to shop. Item does not exist.
+2023-04-16 11:10:34.3263|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Orb" to shop. Item does not exist.
+2023-04-16 11:10:34.3263|ERROR|Shared.resources.MerchantList|Failed when adding "Scepter of Skybolts" to shop. Item does not exist.
+2023-04-16 11:10:34.3263|ERROR|Shared.resources.MerchantList|Failed when adding "Doom Circle" to shop. Item does not exist.
+2023-04-16 11:10:34.3263|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Totem" to shop. Item does not exist.
+2023-04-16 11:10:34.3263|ERROR|Shared.resources.MerchantList|Failed when adding "Deck of the Ancient" to shop. Item does not exist.
+2023-04-16 11:10:34.3263|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Rune" to shop. Item does not exist.
+2023-04-16 11:10:34.3263|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Conjurer" to shop. Item does not exist.
+2023-04-16 11:10:34.3263|ERROR|Shared.resources.MerchantList|Failed when adding "Gold-Studded Armor" to shop. Item does not exist.
+2023-04-16 11:10:34.3263|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Chestplate" to shop. Item does not exist.
+2023-04-16 11:10:34.3263|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Grand Sorcerer" to shop. Item does not exist.
+2023-04-16 11:10:34.3263|ERROR|Shared.resources.MerchantList|Failed when adding "Wyvern Skin Armor" to shop. Item does not exist.
+2023-04-16 11:10:34.3263|ERROR|Shared.resources.MerchantList|Failed when adding "Dragonscale Chestplate" to shop. Item does not exist.
+2023-04-16 11:10:34.3263|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Ring" to shop. Item does not exist.
+2023-04-16 11:10:34.3263|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Circlet" to shop. Item does not exist.
+2023-04-16 11:10:34.3263|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
+2023-04-16 11:10:34.3263|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
+2023-04-16 11:10:34.6082|ERROR|GameServer.realm.setpieces.SetPieces|Could not find setpiece data for realm
+2023-04-16 11:10:40.0511|ERROR|GameServer.Client|Reading Hello
+2023-04-16 11:10:40.2507|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:10:40.2631|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:10:40.2798|ERROR|GameServer.Client|Could not receive data from dramintus (127.0.0.1): System.Exception: Receive buffer attempted to read out of bounds
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 128
+2023-04-16 11:13:43.0575|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Plated Dagger" to shop. Item does not exist.
+2023-04-16 11:13:43.0575|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby-Reinforced Longbow" to shop. Item does not exist.
+2023-04-16 11:13:43.0575|ERROR|Shared.resources.MerchantList|Failed when adding "Staff of Diabolic Secrets" to shop. Item does not exist.
+2023-04-16 11:13:43.0575|ERROR|Shared.resources.MerchantList|Failed when adding "Wand of Dark Magic" to shop. Item does not exist.
+2023-04-16 11:13:43.0575|ERROR|Shared.resources.MerchantList|Failed when adding "Adamant Great Sword" to shop. Item does not exist.
+2023-04-16 11:13:43.0575|ERROR|Shared.resources.MerchantList|Failed when adding "Demon's Edge" to shop. Item does not exist.
+2023-04-16 11:13:43.0575|ERROR|Shared.resources.MerchantList|Failed when adding "Cloak of the Red Agent" to shop. Item does not exist.
+2023-04-16 11:13:43.0575|ERROR|Shared.resources.MerchantList|Failed when adding "Quiver of the Crimson Elf" to shop. Item does not exist.
+2023-04-16 11:13:43.0575|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Nova Spell" to shop. Item does not exist.
+2023-04-16 11:13:43.0575|ERROR|Shared.resources.MerchantList|Failed when adding "Tome of Divine Favor" to shop. Item does not exist.
+2023-04-16 11:13:43.0575|ERROR|Shared.resources.MerchantList|Failed when adding "Helm of the Great General" to shop. Item does not exist.
+2023-04-16 11:13:43.0575|ERROR|Shared.resources.MerchantList|Failed when adding "Colossus Shield" to shop. Item does not exist.
+2023-04-16 11:13:43.0575|ERROR|Shared.resources.MerchantList|Failed when adding "Seal of the Holy Warrior" to shop. Item does not exist.
+2023-04-16 11:13:43.0575|ERROR|Shared.resources.MerchantList|Failed when adding "Nightwing Vial" to shop. Item does not exist.
+2023-04-16 11:13:43.0575|ERROR|Shared.resources.MerchantList|Failed when adding "Lifedrinker Skull" to shop. Item does not exist.
+2023-04-16 11:13:43.0575|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Orb" to shop. Item does not exist.
+2023-04-16 11:13:43.0575|ERROR|Shared.resources.MerchantList|Failed when adding "Scepter of Skybolts" to shop. Item does not exist.
+2023-04-16 11:13:43.0575|ERROR|Shared.resources.MerchantList|Failed when adding "Doom Circle" to shop. Item does not exist.
+2023-04-16 11:13:43.0575|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Totem" to shop. Item does not exist.
+2023-04-16 11:13:43.0575|ERROR|Shared.resources.MerchantList|Failed when adding "Deck of the Ancient" to shop. Item does not exist.
+2023-04-16 11:13:43.0575|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Rune" to shop. Item does not exist.
+2023-04-16 11:13:43.0575|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Conjurer" to shop. Item does not exist.
+2023-04-16 11:13:43.0575|ERROR|Shared.resources.MerchantList|Failed when adding "Gold-Studded Armor" to shop. Item does not exist.
+2023-04-16 11:13:43.0575|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Chestplate" to shop. Item does not exist.
+2023-04-16 11:13:43.0575|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Grand Sorcerer" to shop. Item does not exist.
+2023-04-16 11:13:43.0575|ERROR|Shared.resources.MerchantList|Failed when adding "Wyvern Skin Armor" to shop. Item does not exist.
+2023-04-16 11:13:43.0575|ERROR|Shared.resources.MerchantList|Failed when adding "Dragonscale Chestplate" to shop. Item does not exist.
+2023-04-16 11:13:43.0575|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Ring" to shop. Item does not exist.
+2023-04-16 11:13:43.0575|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Circlet" to shop. Item does not exist.
+2023-04-16 11:13:43.0575|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
+2023-04-16 11:13:43.0584|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
+2023-04-16 11:13:43.6784|ERROR|GameServer.realm.setpieces.SetPieces|Could not find setpiece data for realm
+2023-04-16 11:13:44.8473|ERROR|GameServer.Client|Reading Hello
+2023-04-16 11:13:45.1269|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:13:45.1357|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:13:45.1369|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:45.1369|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:45.1876|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:13:45.1876|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:45.1876|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:45.2854|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:13:45.2854|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:45.2854|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:45.3864|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:13:45.3864|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:45.3864|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:45.4862|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:13:45.4867|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:45.4867|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:45.5863|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:13:45.5866|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:45.5866|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:45.6933|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:13:45.6933|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:45.6933|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:45.7859|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:13:45.7859|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:45.7859|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:45.8868|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:13:45.8868|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:45.8868|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:45.9897|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:13:45.9897|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:45.9897|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:46.0861|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:13:46.0861|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:46.0864|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:46.1856|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:13:46.1856|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:46.1856|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:46.2853|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:13:46.2853|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:46.2853|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:46.3864|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:13:46.3864|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:46.3864|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:46.4871|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:13:46.4871|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:46.4871|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:46.5867|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:13:46.5867|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:46.5867|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:46.6857|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:13:46.6857|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:46.6857|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:46.7871|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:13:46.7871|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:46.7871|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:46.8866|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:13:46.8866|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:46.8866|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:46.9863|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:13:46.9865|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:46.9865|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:47.0860|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:13:47.0860|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:47.0860|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:47.1860|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:13:47.1860|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:47.1860|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:47.2872|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:13:47.2872|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:47.2872|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:47.3864|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:13:47.3864|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:47.3864|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:47.4868|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:13:47.4868|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:47.4868|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:47.5865|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:13:47.5865|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:47.5865|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:47.6873|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:13:47.6873|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:47.6873|ERROR|GameServer.Client|Reading 0
+2023-04-16 11:13:47.7210|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:13:47.7511|ERROR|GameServer.Client|Could not receive data from dramintus (127.0.0.1): System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at GameServer.realm.StatsManager.get_Item(Int32 index) in /home/a/faer/server/GameServer/realm/StatsManager.cs:line 19
+   at GameServer.realm.StatsManager.CriticalModifier(Single damage) in /home/a/faer/server/GameServer/realm/StatsManager.cs:line 67
+   at GameServer.realm.StatsManager.GetAttackDamage(ProjectileDesc desc, Boolean isAbility) in /home/a/faer/server/GameServer/realm/StatsManager.cs:line 60
+   at GameServer.realm.entities.player.Player.PlayerShootProjectile(Byte id, ProjectileDesc desc, UInt16 objType, Int64 time, Single x, Single y, Single angle, Int32 projectileId) in /home/a/faer/server/GameServer/realm/entities/player/Player.Projectiles.cs:line 12
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 128
+2023-04-16 11:16:08.7440|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Plated Dagger" to shop. Item does not exist.
+2023-04-16 11:16:08.7444|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby-Reinforced Longbow" to shop. Item does not exist.
+2023-04-16 11:16:08.7444|ERROR|Shared.resources.MerchantList|Failed when adding "Staff of Diabolic Secrets" to shop. Item does not exist.
+2023-04-16 11:16:08.7444|ERROR|Shared.resources.MerchantList|Failed when adding "Wand of Dark Magic" to shop. Item does not exist.
+2023-04-16 11:16:08.7444|ERROR|Shared.resources.MerchantList|Failed when adding "Adamant Great Sword" to shop. Item does not exist.
+2023-04-16 11:16:08.7444|ERROR|Shared.resources.MerchantList|Failed when adding "Demon's Edge" to shop. Item does not exist.
+2023-04-16 11:16:08.7444|ERROR|Shared.resources.MerchantList|Failed when adding "Cloak of the Red Agent" to shop. Item does not exist.
+2023-04-16 11:16:08.7444|ERROR|Shared.resources.MerchantList|Failed when adding "Quiver of the Crimson Elf" to shop. Item does not exist.
+2023-04-16 11:16:08.7444|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Nova Spell" to shop. Item does not exist.
+2023-04-16 11:16:08.7444|ERROR|Shared.resources.MerchantList|Failed when adding "Tome of Divine Favor" to shop. Item does not exist.
+2023-04-16 11:16:08.7444|ERROR|Shared.resources.MerchantList|Failed when adding "Helm of the Great General" to shop. Item does not exist.
+2023-04-16 11:16:08.7444|ERROR|Shared.resources.MerchantList|Failed when adding "Colossus Shield" to shop. Item does not exist.
+2023-04-16 11:16:08.7444|ERROR|Shared.resources.MerchantList|Failed when adding "Seal of the Holy Warrior" to shop. Item does not exist.
+2023-04-16 11:16:08.7444|ERROR|Shared.resources.MerchantList|Failed when adding "Nightwing Vial" to shop. Item does not exist.
+2023-04-16 11:16:08.7444|ERROR|Shared.resources.MerchantList|Failed when adding "Lifedrinker Skull" to shop. Item does not exist.
+2023-04-16 11:16:08.7444|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Orb" to shop. Item does not exist.
+2023-04-16 11:16:08.7444|ERROR|Shared.resources.MerchantList|Failed when adding "Scepter of Skybolts" to shop. Item does not exist.
+2023-04-16 11:16:08.7444|ERROR|Shared.resources.MerchantList|Failed when adding "Doom Circle" to shop. Item does not exist.
+2023-04-16 11:16:08.7444|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Totem" to shop. Item does not exist.
+2023-04-16 11:16:08.7444|ERROR|Shared.resources.MerchantList|Failed when adding "Deck of the Ancient" to shop. Item does not exist.
+2023-04-16 11:16:08.7444|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Rune" to shop. Item does not exist.
+2023-04-16 11:16:08.7444|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Conjurer" to shop. Item does not exist.
+2023-04-16 11:16:08.7444|ERROR|Shared.resources.MerchantList|Failed when adding "Gold-Studded Armor" to shop. Item does not exist.
+2023-04-16 11:16:08.7444|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Chestplate" to shop. Item does not exist.
+2023-04-16 11:16:08.7444|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Grand Sorcerer" to shop. Item does not exist.
+2023-04-16 11:16:08.7444|ERROR|Shared.resources.MerchantList|Failed when adding "Wyvern Skin Armor" to shop. Item does not exist.
+2023-04-16 11:16:08.7444|ERROR|Shared.resources.MerchantList|Failed when adding "Dragonscale Chestplate" to shop. Item does not exist.
+2023-04-16 11:16:08.7444|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Ring" to shop. Item does not exist.
+2023-04-16 11:16:08.7444|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Circlet" to shop. Item does not exist.
+2023-04-16 11:16:08.7444|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
+2023-04-16 11:16:08.7444|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
+2023-04-16 11:16:09.0466|ERROR|GameServer.realm.setpieces.SetPieces|Could not find setpiece data for realm
+2023-04-16 11:16:11.1448|ERROR|GameServer.Client|Reading Hello
+2023-04-16 11:16:11.4256|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:16:11.4349|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:16:11.4549|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:16:11.5539|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:16:11.6567|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:16:11.7541|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:16:11.8546|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:16:11.9532|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:16:12.0533|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:16:12.1467|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:16:12.1696|ERROR|GameServer.Client|Could not receive data from dramintus (127.0.0.1): System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at GameServer.realm.BaseStatManager.get_Item(Int32 index) in /home/a/faer/server/GameServer/realm/BaseStatManager.cs:line 28
+   at GameServer.realm.StatsManager.get_Item(Int32 index) in /home/a/faer/server/GameServer/realm/StatsManager.cs:line 19
+   at GameServer.realm.StatsManager.CriticalModifier(Single damage) in /home/a/faer/server/GameServer/realm/StatsManager.cs:line 67
+   at GameServer.realm.StatsManager.GetAttackDamage(ProjectileDesc desc, Boolean isAbility) in /home/a/faer/server/GameServer/realm/StatsManager.cs:line 60
+   at GameServer.realm.entities.player.Player.PlayerShootProjectile(Byte id, ProjectileDesc desc, UInt16 objType, Int64 time, Single x, Single y, Single angle, Int32 projectileId) in /home/a/faer/server/GameServer/realm/entities/player/Player.Projectiles.cs:line 12
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 128
+2023-04-16 11:18:25.9404|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Plated Dagger" to shop. Item does not exist.
+2023-04-16 11:18:25.9404|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby-Reinforced Longbow" to shop. Item does not exist.
+2023-04-16 11:18:25.9404|ERROR|Shared.resources.MerchantList|Failed when adding "Staff of Diabolic Secrets" to shop. Item does not exist.
+2023-04-16 11:18:25.9404|ERROR|Shared.resources.MerchantList|Failed when adding "Wand of Dark Magic" to shop. Item does not exist.
+2023-04-16 11:18:25.9404|ERROR|Shared.resources.MerchantList|Failed when adding "Adamant Great Sword" to shop. Item does not exist.
+2023-04-16 11:18:25.9404|ERROR|Shared.resources.MerchantList|Failed when adding "Demon's Edge" to shop. Item does not exist.
+2023-04-16 11:18:25.9404|ERROR|Shared.resources.MerchantList|Failed when adding "Cloak of the Red Agent" to shop. Item does not exist.
+2023-04-16 11:18:25.9404|ERROR|Shared.resources.MerchantList|Failed when adding "Quiver of the Crimson Elf" to shop. Item does not exist.
+2023-04-16 11:18:25.9404|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Nova Spell" to shop. Item does not exist.
+2023-04-16 11:18:25.9404|ERROR|Shared.resources.MerchantList|Failed when adding "Tome of Divine Favor" to shop. Item does not exist.
+2023-04-16 11:18:25.9404|ERROR|Shared.resources.MerchantList|Failed when adding "Helm of the Great General" to shop. Item does not exist.
+2023-04-16 11:18:25.9404|ERROR|Shared.resources.MerchantList|Failed when adding "Colossus Shield" to shop. Item does not exist.
+2023-04-16 11:18:25.9404|ERROR|Shared.resources.MerchantList|Failed when adding "Seal of the Holy Warrior" to shop. Item does not exist.
+2023-04-16 11:18:25.9404|ERROR|Shared.resources.MerchantList|Failed when adding "Nightwing Vial" to shop. Item does not exist.
+2023-04-16 11:18:25.9404|ERROR|Shared.resources.MerchantList|Failed when adding "Lifedrinker Skull" to shop. Item does not exist.
+2023-04-16 11:18:25.9404|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Orb" to shop. Item does not exist.
+2023-04-16 11:18:25.9404|ERROR|Shared.resources.MerchantList|Failed when adding "Scepter of Skybolts" to shop. Item does not exist.
+2023-04-16 11:18:25.9404|ERROR|Shared.resources.MerchantList|Failed when adding "Doom Circle" to shop. Item does not exist.
+2023-04-16 11:18:25.9404|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Totem" to shop. Item does not exist.
+2023-04-16 11:18:25.9404|ERROR|Shared.resources.MerchantList|Failed when adding "Deck of the Ancient" to shop. Item does not exist.
+2023-04-16 11:18:25.9404|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Rune" to shop. Item does not exist.
+2023-04-16 11:18:25.9404|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Conjurer" to shop. Item does not exist.
+2023-04-16 11:18:25.9404|ERROR|Shared.resources.MerchantList|Failed when adding "Gold-Studded Armor" to shop. Item does not exist.
+2023-04-16 11:18:25.9404|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Chestplate" to shop. Item does not exist.
+2023-04-16 11:18:25.9404|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Grand Sorcerer" to shop. Item does not exist.
+2023-04-16 11:18:25.9404|ERROR|Shared.resources.MerchantList|Failed when adding "Wyvern Skin Armor" to shop. Item does not exist.
+2023-04-16 11:18:25.9404|ERROR|Shared.resources.MerchantList|Failed when adding "Dragonscale Chestplate" to shop. Item does not exist.
+2023-04-16 11:18:25.9404|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Ring" to shop. Item does not exist.
+2023-04-16 11:18:25.9404|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Circlet" to shop. Item does not exist.
+2023-04-16 11:18:25.9404|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
+2023-04-16 11:18:25.9404|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
+2023-04-16 11:18:26.3584|ERROR|GameServer.realm.setpieces.SetPieces|Could not find setpiece data for realm
+2023-04-16 11:18:29.2053|ERROR|GameServer.Client|Reading Hello
+2023-04-16 11:18:29.4156|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:29.4249|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:29.4670|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:29.5660|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:29.6660|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:29.7649|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:29.8651|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:29.9653|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:30.0650|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:30.1257|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:30.1276|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:30.1276|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:30.1651|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:30.2694|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:30.3252|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:30.3252|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:30.3252|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:30.3678|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:30.4654|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:30.5261|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:30.5265|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:30.5265|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:30.5650|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:30.6647|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:30.7266|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:30.7266|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:30.7266|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:30.7660|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:30.8670|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:30.9266|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:30.9266|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:30.9266|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:30.9665|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:31.0662|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:31.1253|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:31.1253|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:31.1253|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:31.1664|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:31.2656|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:31.3255|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:31.3255|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:31.3255|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:31.3661|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:31.4662|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:31.5263|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:31.5267|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:31.5267|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:31.5657|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:31.7095|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:31.7265|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:31.7265|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:31.7265|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:31.7657|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:31.8662|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:31.9265|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:31.9265|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:31.9265|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:31.9670|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:32.0676|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:32.1254|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:32.1254|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:32.1254|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:32.1680|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:32.2675|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:32.3676|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:32.4684|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:32.4684|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:32.5679|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:32.5686|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:32.6672|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:32.6672|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:32.7685|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:32.7685|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:32.8680|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:32.8712|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:32.9671|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:32.9671|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:33.0670|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:33.0670|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:33.1672|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:33.1672|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:33.2682|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:33.2689|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:33.3669|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:33.3669|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:33.4674|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:33.4702|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:33.5673|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:33.5673|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:33.6666|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:33.6666|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:33.7685|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:33.7685|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:33.8670|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:33.8670|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:33.9684|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:33.9684|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:34.0682|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:34.0690|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:34.1694|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:34.1694|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:34.2693|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:34.3699|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:34.4684|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:34.5690|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:34.6690|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:34.7694|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:34.8686|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:34.8686|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:34.9692|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:34.9692|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:35.0689|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:35.0689|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:35.2111|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:35.2111|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:35.2693|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:35.2693|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:35.3694|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:35.3694|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:35.4685|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:35.4685|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:35.5695|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:35.5695|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:35.6689|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:35.6689|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:35.7694|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:35.7694|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:35.8691|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:35.8691|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:35.9696|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:35.9696|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:36.0685|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:36.0685|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:36.1697|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:36.1706|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:36.3122|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:36.3124|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:36.3706|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:36.3706|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:36.4689|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:36.5696|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:36.5708|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:36.6700|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:36.6708|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:36.7697|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:36.7704|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:36.8703|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:36.8709|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:36.9702|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:36.9709|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:37.0694|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:37.0694|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:37.1702|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:37.1708|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:37.2717|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:37.2725|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:37.3701|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:37.4717|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:37.4747|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:37.5708|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:37.6707|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:37.6707|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:37.7706|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:37.8711|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:37.8711|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:37.9710|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:37.9710|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:38.0709|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:38.0709|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:38.1706|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:38.1706|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:38.2712|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:38.2712|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:38.3721|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:38.3732|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:38.5006|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:38.5043|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:38.5716|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:38.5727|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:38.6724|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:38.7719|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:38.7745|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:38.8729|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:38.8729|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:38.9716|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:38.9727|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:39.0718|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:39.0728|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:39.1716|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:39.1716|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:39.2729|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:39.2729|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:39.3726|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:39.3726|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:39.4717|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:39.4726|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:39.5719|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:39.5729|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:39.6713|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:39.7732|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:39.7732|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:39.8716|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:39.8728|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:39.9724|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:39.9724|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:40.0717|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:40.1731|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:40.1731|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:40.2717|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:40.2731|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:40.3729|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:40.3729|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:40.4373|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:40.4373|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:40.4373|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:40.4732|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:40.4732|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:40.5740|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:40.5749|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:40.6472|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:40.6472|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:40.6472|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:40.6736|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:40.7733|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:40.7745|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:40.8472|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:40.8472|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:40.8472|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:40.8732|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:40.8732|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:40.9726|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:40.9726|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:41.0465|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:41.0465|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:41.0465|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:41.0728|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:41.0728|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:41.1731|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:41.1731|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:41.2463|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:41.2467|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:41.2467|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:41.2731|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:41.2731|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:41.3728|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:41.3728|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:41.4475|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:41.4475|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:41.4475|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:41.4733|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:41.5730|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:41.6475|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:41.6475|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:41.6475|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:41.6734|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:41.7728|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:41.8831|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:41.8831|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:41.8831|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:41.8831|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:41.9726|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:42.0734|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:42.0734|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:42.0834|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:42.0834|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:42.0834|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:42.1735|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:42.1735|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:42.2729|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:42.2729|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:42.2835|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:42.2835|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:42.2835|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:42.3729|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:42.3729|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:42.4730|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:42.4730|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:42.4844|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:42.4844|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:42.4844|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:42.5729|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:42.6726|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:42.6846|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:42.6846|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:42.6846|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:42.7726|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:42.7726|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:42.8738|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:42.8770|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:42.8842|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:42.8844|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:42.8844|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:42.9728|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:42.9728|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:43.0736|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:43.0736|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:43.0830|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:43.0830|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:43.0830|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:43.1900|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:43.1913|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:43.2730|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:43.2730|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:43.2832|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:43.2832|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:43.2832|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:43.3727|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:43.3727|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:43.4732|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:43.4732|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:43.4842|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:43.4844|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:43.4844|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:43.5732|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:43.5732|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:43.6736|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:43.6846|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:43.6846|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:43.6846|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:43.7728|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:43.7728|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:43.8752|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:43.8752|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:43.8842|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:43.8844|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:43.8844|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:43.9727|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:43.9727|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:44.0731|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:44.0731|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:44.0835|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:44.0835|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:44.0835|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:44.1729|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:44.2729|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:44.2833|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:44.2833|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:44.2833|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:44.3738|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:44.4741|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:44.4748|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:44.4855|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:44.4855|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:44.4855|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:44.5740|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:44.5746|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:44.6733|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:44.6733|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:44.6855|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:44.6855|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:44.6855|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:44.7738|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:44.8742|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:44.8748|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:44.8854|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:44.8854|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:44.8854|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:44.9744|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:44.9744|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:45.0734|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:45.0844|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:45.0844|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:45.0844|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:45.1740|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:45.1749|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:45.2741|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:45.2749|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:45.2842|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:45.2842|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:45.2842|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:45.3751|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:45.3751|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:45.4736|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:45.4746|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:45.4852|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:45.4852|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:45.4852|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:45.5740|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:45.5746|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:45.6739|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:45.6747|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:45.6855|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:45.6855|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:45.6855|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:45.7752|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:45.7752|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:45.8754|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:45.8754|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:45.8855|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:45.8855|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:45.8855|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:45.9761|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:46.0756|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:46.0842|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:46.0845|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:46.0845|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:46.1917|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:46.2760|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:46.2843|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:46.2845|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:46.2845|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:46.3762|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:46.4765|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:46.4855|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:46.4855|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:46.4855|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:46.5775|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:46.5775|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:46.6769|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:46.6769|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:46.6852|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:46.6852|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:46.6852|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:46.7768|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:46.7768|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:46.8772|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:46.8772|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:46.8850|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:46.8850|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:46.8850|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:46.9783|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:46.9791|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:47.0799|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:47.0804|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:47.0843|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:47.0845|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:47.0845|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:47.1775|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:47.1775|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:47.2781|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:47.2789|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:47.2841|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:47.2844|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:47.2844|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:47.3771|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:47.3771|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:47.4780|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:47.4785|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:47.4851|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:47.4851|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:47.4851|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:47.5776|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:47.5776|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:47.6994|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:47.6994|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:47.6994|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:47.6994|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:47.7007|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:47.7778|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:47.7778|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:47.8773|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:47.8773|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:47.9000|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:47.9000|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:47.9003|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:47.9779|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:47.9785|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:48.0773|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:48.0773|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:48.0991|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:48.0991|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:48.0991|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:48.1791|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:48.1791|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:48.2777|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:48.2784|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:48.2992|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:48.2992|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:48.2992|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:48.3775|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:48.3775|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:48.4783|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:48.4787|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:48.5004|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:48.5004|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:48.5004|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:48.5778|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:48.5784|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:48.6783|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:48.6790|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:48.7004|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:48.7004|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:48.7004|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:48.7774|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:48.7774|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:48.8779|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:48.8786|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:48.9000|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:48.9000|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:48.9000|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:48.9782|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:48.9788|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:49.0782|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:49.0786|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:49.0996|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:49.0996|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:49.0996|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:49.1900|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:49.1915|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:49.2780|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:49.2784|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:49.2996|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:49.2996|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:49.2996|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:49.3781|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:49.4788|ERROR|GameServer.Client|Reading UpdateAck
+2023-04-16 11:18:49.4788|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:49.5015|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:49.5015|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:49.5015|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:18:49.5786|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:49.6788|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:49.7795|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:49.8793|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:49.9798|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:50.0787|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:50.1797|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:50.2794|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:50.3802|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:50.4796|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:50.5796|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:50.6794|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:50.7793|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:50.8801|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:50.9795|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:51.0799|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:51.1790|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:51.2796|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:51.3799|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:51.4796|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:51.5792|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:51.6798|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:51.7801|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:51.8820|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:51.9798|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:52.1172|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:52.1798|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:52.2799|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:52.3801|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:52.4796|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:52.5799|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:52.6795|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:52.7799|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:52.8796|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:52.9807|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:53.0810|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:53.1808|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:53.2813|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:53.3804|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:53.4809|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:53.5811|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:53.6805|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:53.7807|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:53.8810|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:53.9830|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:54.0842|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:54.1596|ERROR|GameServer.Client|Reading PlayerText
+2023-04-16 11:18:54.2034|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:54.2813|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:54.3823|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:54.4815|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:54.5817|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:54.6812|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:54.7817|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:54.8817|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:54.9848|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:55.0811|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:55.1815|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:55.2820|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:55.3812|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:55.4815|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:55.5822|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:55.6813|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:55.7819|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:55.8816|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:55.9826|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:56.0828|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:56.1827|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:56.2832|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:56.3836|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:56.4831|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:56.5835|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:56.6844|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:56.7842|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:56.8841|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:56.9845|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:57.0834|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:57.1839|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:57.2844|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:57.3845|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:57.4845|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:57.5849|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:57.6840|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:57.7847|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:57.8867|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:57.9841|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:58.0847|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:58.1851|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:58.2850|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:58.3860|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:58.4857|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:58.5853|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:58.6858|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:58.7863|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:58.8866|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:58.9873|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:59.0862|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:59.1864|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:59.2871|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:59.3864|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:59.4872|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:59.5864|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:59.6865|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:59.7866|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:59.8862|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:18:59.9864|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:00.0871|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:00.1867|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:00.2871|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:00.3870|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:00.4872|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:00.5867|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:00.6867|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:00.7872|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:00.8866|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:00.9871|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:01.0868|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:01.1868|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:01.2877|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:01.3861|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:01.4882|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:01.5875|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:01.6867|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:01.7869|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:01.8866|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:01.9872|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:02.0866|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:02.1874|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:02.2878|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:02.3877|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:02.4879|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:02.5864|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:02.6871|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:02.7864|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:02.8876|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:02.9867|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:03.0871|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:03.1870|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:03.2869|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:03.3873|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:03.4872|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:03.5869|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:03.6875|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:03.7863|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:03.8870|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:03.9879|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:04.0870|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:04.1869|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:04.2873|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:04.3885|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:04.4878|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:04.5879|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:04.6885|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:04.7887|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:04.8890|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:04.9885|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:05.0891|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:05.1883|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:05.2887|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:05.3890|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:05.4890|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:05.5889|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:05.6891|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:05.7887|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:05.8891|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:05.9897|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:06.0898|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:06.1896|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:06.2900|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:06.4189|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:06.4905|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:06.5912|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:06.6909|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:06.7918|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:06.9175|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:06.9917|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:07.0917|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:07.1918|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:07.2921|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:07.3919|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:07.4927|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:07.5912|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:07.6919|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:07.7917|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:07.8913|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:08.0060|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:08.0922|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:08.1919|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:08.2922|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:08.3921|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:08.4935|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:08.5928|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:08.6928|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:08.7931|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:08.8930|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:08.9946|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:09.1078|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:09.1977|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:09.2942|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:09.3952|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:09.4958|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:09.5941|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:09.6960|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:09.7986|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:09.8971|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:09.9960|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:10.0991|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:10.1972|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:10.2968|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:10.3990|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:10.4975|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:10.5974|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:10.6999|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:10.7992|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:10.9011|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:10.9975|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:11.0994|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:11.2004|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:11.3802|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:11.4002|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:11.4992|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:11.5987|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:11.6989|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:11.7987|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:11.8980|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:11.9984|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:12.0991|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:12.2003|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:12.2993|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:12.3995|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:12.4995|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:12.5990|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:12.6985|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:12.7993|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:12.8986|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:13.0004|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:13.0998|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:13.1984|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:13.2995|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:13.3993|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:13.4985|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:13.5991|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:13.6986|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:13.7993|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:13.8992|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:13.9989|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:14.0990|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:14.1994|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:14.3003|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:14.3997|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:14.4999|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:14.5994|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:14.6993|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:14.8005|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:14.9059|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:14.9999|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:15.1006|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:15.1997|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:15.3005|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:15.3991|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:15.4999|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:15.6000|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:15.6994|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:15.8001|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:15.8996|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:16.0002|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:16.0997|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:16.2005|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:16.3019|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:16.4014|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:16.5538|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:16.6007|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:16.7008|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:16.8002|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:16.9006|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:17.0000|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:17.1017|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:17.2001|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:17.3008|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:17.4008|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:17.5005|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:17.6010|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:17.7012|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:17.8015|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:17.9024|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:18.0015|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:18.1025|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:18.2583|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:18.3015|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:18.4026|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:18.5016|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:18.6030|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:18.7018|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:18.8026|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:18.9015|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:19.0016|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:19.1023|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:19.2015|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:19.3022|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:19.4011|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:19.5017|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:19.6020|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:19.7155|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:19.8020|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:19.9021|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:20.0025|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:20.1016|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:20.2020|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:20.3017|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:20.4033|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:20.5030|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:20.6040|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:20.7062|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:20.8061|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:20.9071|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:21.0068|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:21.1071|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:21.2629|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:21.3064|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:21.4067|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:21.5070|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:21.6069|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:21.7067|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:21.8067|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:21.9068|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:22.0068|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:22.1070|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:22.2068|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:22.3074|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:22.4082|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:22.5072|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:22.6080|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:22.7073|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:22.8079|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:22.9073|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:23.0081|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:23.1084|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:23.2090|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:23.3081|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:23.4090|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:23.5082|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:23.6088|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:23.7090|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:23.8086|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:23.9086|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:24.0571|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:24.1084|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:24.2087|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:24.3088|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:24.4107|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:24.5097|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:24.6097|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:24.7099|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:24.8105|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:24.9095|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:25.0099|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:25.1095|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:25.2098|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:25.3102|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:25.4110|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:25.5102|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:25.6135|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:25.7104|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:25.8107|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:25.9104|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:26.0106|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:26.1114|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:26.2106|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:26.3114|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:26.4111|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:26.5105|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:26.6104|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:26.7114|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:26.8108|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:26.9103|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:27.0109|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:27.1319|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:27.2104|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:27.3109|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:27.4104|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:27.5106|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:27.6118|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:27.7112|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:27.8099|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:27.9110|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:28.0106|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:28.1103|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:28.2110|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:28.3112|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:28.4123|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:28.5114|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:28.6742|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:28.7118|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:28.8128|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:28.9159|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:29.0160|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:29.1137|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:29.2142|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:29.3134|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:29.4137|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:29.5138|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:29.6137|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:29.7133|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:29.8136|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:29.9137|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:30.0139|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:30.1142|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:30.2130|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:30.3463|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:30.4137|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:30.5136|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:30.6138|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:30.7133|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:30.8137|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:30.9140|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:31.0140|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:31.1142|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:31.2150|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:31.3152|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:31.4163|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:31.5161|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:31.6158|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:31.7170|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:31.8161|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:31.9156|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:32.0164|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:32.1151|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:32.2161|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:32.3156|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:32.4163|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:32.5148|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:32.6171|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:32.7158|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:32.8164|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:32.9167|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:33.0173|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:33.1180|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:33.2177|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:33.3177|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:33.4183|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:33.5176|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:33.6177|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:33.7171|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:33.8174|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:33.9179|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:34.0173|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:34.1171|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:34.2184|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:34.3179|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:34.4173|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:34.5183|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:34.6176|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:34.7180|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:34.8176|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:34.9530|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:35.0181|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:35.1184|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:35.2188|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:35.3189|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:35.4195|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:35.5200|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:35.6197|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:35.7198|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:35.8193|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:35.9195|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:36.0201|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:36.1194|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:36.2197|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:36.3197|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:36.4223|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:36.5198|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:36.6204|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:36.7215|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:36.8216|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:36.9207|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:37.0209|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:37.1218|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:37.2216|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:37.3224|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:37.4209|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:37.5219|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:37.6222|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:37.7216|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:37.8220|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:37.9223|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:38.0232|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:38.1522|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:38.2233|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:38.3236|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:38.4244|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:38.5244|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:38.6236|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:38.7240|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:38.8236|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:38.9250|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:39.0251|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:39.1249|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:39.2251|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:39.3254|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:39.4251|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:39.5243|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:39.6874|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:39.7290|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:39.8257|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:39.9253|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:40.0252|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:40.1261|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:40.2263|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:40.3264|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:40.4253|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:40.5258|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:40.6261|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:40.7254|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:40.8261|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:40.9261|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:41.0258|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:41.1287|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:41.2249|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:41.3265|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:41.4260|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:41.5260|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:41.6266|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:41.7266|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:41.8266|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:41.9559|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:42.0275|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:42.1267|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:42.2264|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:42.3270|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:42.4276|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:42.5277|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:42.6284|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:42.7283|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:42.8275|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:42.9284|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:43.0286|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:43.1286|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:43.2291|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:43.3286|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:43.4290|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:43.5290|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:43.6292|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:43.7411|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:43.8283|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:43.9297|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:44.0285|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:44.1294|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:44.2284|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:44.3311|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:44.4311|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:44.5296|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:44.6297|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:44.7286|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:44.8294|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:44.9299|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:45.0288|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:45.1345|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:45.2310|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:45.3290|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:45.4291|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:45.5294|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:45.6289|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:45.7307|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:45.8305|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:45.9319|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:46.0291|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:46.0741|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:19:46.0744|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:19:46.0744|ERROR|GameServer.Client|Reading PlayerShoot
+2023-04-16 11:19:46.1314|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:46.2319|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:46.3320|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:46.4322|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:46.5307|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:46.6320|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:46.8063|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:46.8307|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:46.9310|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:47.0339|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:47.1329|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:47.2333|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:47.3342|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:47.4323|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:47.5337|ERROR|GameServer.Client|Reading Move
+2023-04-16 11:19:56.0076|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Plated Dagger" to shop. Item does not exist.
+2023-04-16 11:19:56.0076|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby-Reinforced Longbow" to shop. Item does not exist.
+2023-04-16 11:19:56.0076|ERROR|Shared.resources.MerchantList|Failed when adding "Staff of Diabolic Secrets" to shop. Item does not exist.
+2023-04-16 11:19:56.0076|ERROR|Shared.resources.MerchantList|Failed when adding "Wand of Dark Magic" to shop. Item does not exist.
+2023-04-16 11:19:56.0076|ERROR|Shared.resources.MerchantList|Failed when adding "Adamant Great Sword" to shop. Item does not exist.
+2023-04-16 11:19:56.0076|ERROR|Shared.resources.MerchantList|Failed when adding "Demon's Edge" to shop. Item does not exist.
+2023-04-16 11:19:56.0076|ERROR|Shared.resources.MerchantList|Failed when adding "Cloak of the Red Agent" to shop. Item does not exist.
+2023-04-16 11:19:56.0076|ERROR|Shared.resources.MerchantList|Failed when adding "Quiver of the Crimson Elf" to shop. Item does not exist.
+2023-04-16 11:19:56.0076|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Nova Spell" to shop. Item does not exist.
+2023-04-16 11:19:56.0076|ERROR|Shared.resources.MerchantList|Failed when adding "Tome of Divine Favor" to shop. Item does not exist.
+2023-04-16 11:19:56.0076|ERROR|Shared.resources.MerchantList|Failed when adding "Helm of the Great General" to shop. Item does not exist.
+2023-04-16 11:19:56.0076|ERROR|Shared.resources.MerchantList|Failed when adding "Colossus Shield" to shop. Item does not exist.
+2023-04-16 11:19:56.0076|ERROR|Shared.resources.MerchantList|Failed when adding "Seal of the Holy Warrior" to shop. Item does not exist.
+2023-04-16 11:19:56.0076|ERROR|Shared.resources.MerchantList|Failed when adding "Nightwing Vial" to shop. Item does not exist.
+2023-04-16 11:19:56.0076|ERROR|Shared.resources.MerchantList|Failed when adding "Lifedrinker Skull" to shop. Item does not exist.
+2023-04-16 11:19:56.0076|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Orb" to shop. Item does not exist.
+2023-04-16 11:19:56.0076|ERROR|Shared.resources.MerchantList|Failed when adding "Scepter of Skybolts" to shop. Item does not exist.
+2023-04-16 11:19:56.0076|ERROR|Shared.resources.MerchantList|Failed when adding "Doom Circle" to shop. Item does not exist.
+2023-04-16 11:19:56.0076|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Totem" to shop. Item does not exist.
+2023-04-16 11:19:56.0076|ERROR|Shared.resources.MerchantList|Failed when adding "Deck of the Ancient" to shop. Item does not exist.
+2023-04-16 11:19:56.0076|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Rune" to shop. Item does not exist.
+2023-04-16 11:19:56.0085|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Conjurer" to shop. Item does not exist.
+2023-04-16 11:19:56.0085|ERROR|Shared.resources.MerchantList|Failed when adding "Gold-Studded Armor" to shop. Item does not exist.
+2023-04-16 11:19:56.0085|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Chestplate" to shop. Item does not exist.
+2023-04-16 11:19:56.0085|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Grand Sorcerer" to shop. Item does not exist.
+2023-04-16 11:19:56.0085|ERROR|Shared.resources.MerchantList|Failed when adding "Wyvern Skin Armor" to shop. Item does not exist.
+2023-04-16 11:19:56.0085|ERROR|Shared.resources.MerchantList|Failed when adding "Dragonscale Chestplate" to shop. Item does not exist.
+2023-04-16 11:19:56.0085|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Ring" to shop. Item does not exist.
+2023-04-16 11:19:56.0085|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Circlet" to shop. Item does not exist.
+2023-04-16 11:19:56.0085|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
+2023-04-16 11:19:56.0085|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
+2023-04-16 11:19:56.5774|ERROR|GameServer.realm.setpieces.SetPieces|Could not find setpiece data for realm
+2023-04-16 11:21:18.1601|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Plated Dagger" to shop. Item does not exist.
+2023-04-16 11:21:18.1601|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby-Reinforced Longbow" to shop. Item does not exist.
+2023-04-16 11:21:18.1601|ERROR|Shared.resources.MerchantList|Failed when adding "Staff of Diabolic Secrets" to shop. Item does not exist.
+2023-04-16 11:21:18.1601|ERROR|Shared.resources.MerchantList|Failed when adding "Wand of Dark Magic" to shop. Item does not exist.
+2023-04-16 11:21:18.1601|ERROR|Shared.resources.MerchantList|Failed when adding "Adamant Great Sword" to shop. Item does not exist.
+2023-04-16 11:21:18.1601|ERROR|Shared.resources.MerchantList|Failed when adding "Demon's Edge" to shop. Item does not exist.
+2023-04-16 11:21:18.1601|ERROR|Shared.resources.MerchantList|Failed when adding "Cloak of the Red Agent" to shop. Item does not exist.
+2023-04-16 11:21:18.1604|ERROR|Shared.resources.MerchantList|Failed when adding "Quiver of the Crimson Elf" to shop. Item does not exist.
+2023-04-16 11:21:18.1604|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Nova Spell" to shop. Item does not exist.
+2023-04-16 11:21:18.1604|ERROR|Shared.resources.MerchantList|Failed when adding "Tome of Divine Favor" to shop. Item does not exist.
+2023-04-16 11:21:18.1604|ERROR|Shared.resources.MerchantList|Failed when adding "Helm of the Great General" to shop. Item does not exist.
+2023-04-16 11:21:18.1604|ERROR|Shared.resources.MerchantList|Failed when adding "Colossus Shield" to shop. Item does not exist.
+2023-04-16 11:21:18.1604|ERROR|Shared.resources.MerchantList|Failed when adding "Seal of the Holy Warrior" to shop. Item does not exist.
+2023-04-16 11:21:18.1604|ERROR|Shared.resources.MerchantList|Failed when adding "Nightwing Vial" to shop. Item does not exist.
+2023-04-16 11:21:18.1604|ERROR|Shared.resources.MerchantList|Failed when adding "Lifedrinker Skull" to shop. Item does not exist.
+2023-04-16 11:21:18.1604|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Orb" to shop. Item does not exist.
+2023-04-16 11:21:18.1604|ERROR|Shared.resources.MerchantList|Failed when adding "Scepter of Skybolts" to shop. Item does not exist.
+2023-04-16 11:21:18.1604|ERROR|Shared.resources.MerchantList|Failed when adding "Doom Circle" to shop. Item does not exist.
+2023-04-16 11:21:18.1604|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Totem" to shop. Item does not exist.
+2023-04-16 11:21:18.1604|ERROR|Shared.resources.MerchantList|Failed when adding "Deck of the Ancient" to shop. Item does not exist.
+2023-04-16 11:21:18.1604|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Rune" to shop. Item does not exist.
+2023-04-16 11:21:18.1604|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Conjurer" to shop. Item does not exist.
+2023-04-16 11:21:18.1604|ERROR|Shared.resources.MerchantList|Failed when adding "Gold-Studded Armor" to shop. Item does not exist.
+2023-04-16 11:21:18.1604|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Chestplate" to shop. Item does not exist.
+2023-04-16 11:21:18.1604|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Grand Sorcerer" to shop. Item does not exist.
+2023-04-16 11:21:18.1604|ERROR|Shared.resources.MerchantList|Failed when adding "Wyvern Skin Armor" to shop. Item does not exist.
+2023-04-16 11:21:18.1604|ERROR|Shared.resources.MerchantList|Failed when adding "Dragonscale Chestplate" to shop. Item does not exist.
+2023-04-16 11:21:18.1604|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Ring" to shop. Item does not exist.
+2023-04-16 11:21:18.1604|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Circlet" to shop. Item does not exist.
+2023-04-16 11:21:18.1604|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
+2023-04-16 11:21:18.1604|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
+2023-04-16 11:21:18.4248|ERROR|GameServer.realm.setpieces.SetPieces|Could not find setpiece data for realm

@@ -195,7 +195,6 @@ public class Program
         
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static string HandleAccountVerify(string guid, string password) {
-		Log.Error($"acc/verify {guid} {password}");
 		var status = Database.Verify(guid, password, out var acc);
 		if (status == LoginStatus.OK)
 			return Account.FromDb(acc).ToXml().ToString();
@@ -213,8 +212,6 @@ public class Program
         
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static string HandleCharList(string guid, string password) {
-		Log.Error($"char/list {guid} {password}");
-
 		var status = Database.Verify(guid, password, out var acc);
 		if (status == LoginStatus.InvalidCredentials)
 			return "<Error>Invalid account</Error>";

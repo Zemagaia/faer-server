@@ -132,7 +132,7 @@ public class Client {
             Disconnect();
             if (e is not SocketException se || (se.SocketErrorCode != SocketError.ConnectionReset &&
                                                 se.SocketErrorCode != SocketError.Shutdown))
-                Log.Error($"Could not send data to {Account?.Name ?? "[unconnected]"} ({IP}): {e}");
+                Log.Error($"Could not receive data from {Account?.Name ?? "[unconnected]"} ({IP}): {e}");
         }
     }
 
@@ -398,6 +398,10 @@ public class Client {
         WriteByte(ref ptr, ref spanRef, bubbleTime);
         WriteString(ref ptr, ref spanRef, recipient);
         WriteString(ref ptr, ref spanRef, text);
+        if (text != "")
+            WriteUInt(ref ptr, ref spanRef, textColor);
+        if (name != "")
+            WriteUInt(ref ptr, ref spanRef, nameColor);
         TrySend(ptr);
     }
 
@@ -747,7 +751,7 @@ public class Client {
                     ProcessJoinGuild(ReadString(ref ptr, ref spanRef, len));
                     break;
                 case PacketId.Move:
-                    ProcessMove(ReadInt(ref ptr, ref spanRef, len), ReadInt(ref ptr, ref spanRef, len),
+                    ProcessMove(ReadByte(ref ptr, ref spanRef, len), ReadInt(ref ptr, ref spanRef, len),
                         ReadFloat(ref ptr, ref spanRef, len), ReadFloat(ref ptr, ref spanRef, len),
                         ReadTimedPosArray(ref ptr, ref spanRef, len));
                     break;
@@ -929,9 +933,9 @@ public class Client {
             return;
         }
 
-        var targetCli = Manager.Clients.Keys.SingleOrDefault((Client c) => c.Account.AccountId == targetId);
+        var targetCli = Manager.Clients.Keys.SingleOrDefault(c => c.Account.AccountId == targetId);
         var targetAcnt =
-            ((targetCli != null) ? targetCli.Account : Manager.Database.GetAccount(targetId, (string) null));
+            ((targetCli != null) ? targetCli.Account : Manager.Database.GetAccount(targetId));
         if (Account.GuildId <= 0 || Account.GuildRank < 20 ||
             Account.GuildRank <= targetAcnt.GuildRank || Account.GuildRank < rank || rank == 40 ||
             Account.GuildId != targetAcnt.GuildId) {
@@ -1190,7 +1194,7 @@ public class Client {
             return;
         }
 
-        var targetAccount = Manager.Database.GetAccount(targetAccId, (string) null);
+        var targetAccount = Manager.Database.GetAccount(targetAccId);
         if (Account.GuildRank >= 20 && Account.GuildId == targetAccount.GuildId &&
             Account.GuildRank > targetAccount.GuildRank) {
             if (!Manager.Database.RemoveFromGuild(targetAccount)) {
@@ -1242,7 +1246,7 @@ public class Client {
 
         Manager.Database.LogAccountByIp(IP, acc.AccountId);
         acc.IP = IP;
-        ((RedisObject) acc).FlushAsync((ITransaction) null);
+        acc.FlushAsync();
         Account = acc;
         if (createChar) {
             var status = Manager.Database.CreateCharacter(Manager.Resources.GameData, acc, charType, skinType, out var character);
@@ -1401,7 +1405,7 @@ public class Client {
             return;
         }
 
-        var guildResult = Manager.Database.AddGuildMember(guild, Account, false);
+        var guildResult = Manager.Database.AddGuildMember(guild, Account);
         if ((int) guildResult > 0) {
             Player.SendError("Could not join guild. (" + guildResult + ")");
             return;
@@ -1413,14 +1417,14 @@ public class Client {
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void ProcessMove(int tickId, int time, float x, float y, TimedPosition[] records) {
-        if (Player?.Owner != null && !(x < 0f) && !(x >= (float) Player.Owner.Map.Width) && !(y < 0f) &&
-            !(y >= (float) Player.Owner.Map.Height)) {
-            Player.MoveReceived(Manager.Logic.WorldTime, tickId, time);
-            if (x != Player.X || y != Player.Y) {
-                Player.Move(x, y);
-            }
-        }
+    private void ProcessMove(byte tickId, int time, float x, float y, TimedPosition[] records) {
+        if (Player?.Owner == null || x < 0f || x >= Player.Owner.Map.Width || y < 0f ||
+            y >= Player.Owner.Map.Height) 
+            return;
+        Player.MoveReceived(Manager.Logic.WorldTime, tickId, time);
+        // ReSharper disable once CompareOfFloatsByEqualityOperator
+        if (x != Player.X || y != Player.Y)
+            Player.Move(x, y);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1478,7 +1482,7 @@ public class Client {
         }
 
         var gameData = Manager.Resources.GameData;
-        ((RedisObject) Account).Reload("skins");
+        Account.Reload("skins");
         ushort[] ownedSkins = Account.Skins;
         var currentClass = Player.ObjectType;
         var skinData = gameData.Skins;
@@ -1514,7 +1518,7 @@ public class Client {
                 Account.VaultSkin = skinId;
             }*/
 
-            ((RedisObject) Account).FlushAsync((ITransaction) null);
+            Account.FlushAsync();
         }
     }
 
@@ -1620,7 +1624,7 @@ public class Client {
 
         Player.SaveToCharacter();
         acc.RefreshLastSeen();
-        ((RedisObject) acc).FlushAsync((ITransaction) null);
+        acc.FlushAsync();
         Manager.Database.SaveCharacter(acc, Character, true)
             .ContinueWith(delegate { Manager.Database.ReleaseLock(acc); });
     }

@@ -627,37 +627,35 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\fyuwi\\.nuget\\packages\\": {}
+    "/home/a/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\fyuwi\\Desktop\\faer-src\\GameServer\\GameServer.csproj",
+      "projectUniqueName": "/home/a/faer/server/GameServer/GameServer.csproj",
       "projectName": "GameServer",
-      "projectPath": "C:\\Users\\fyuwi\\Desktop\\faer-src\\GameServer\\GameServer.csproj",
-      "packagesPath": "C:\\Users\\fyuwi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\fyuwi\\Desktop\\faer-src\\GameServer\\obj\\",
+      "projectPath": "/home/a/faer/server/GameServer/GameServer.csproj",
+      "packagesPath": "/home/a/.nuget/packages/",
+      "outputPath": "/home/a/faer/server/GameServer/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\fyuwi\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/home/a/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\fyuwi\\Desktop\\faer-src\\DungeonGen\\DungeonGen.csproj": {
-              "projectPath": "C:\\Users\\fyuwi\\Desktop\\faer-src\\DungeonGen\\DungeonGen.csproj"
+            "/home/a/faer/server/DungeonGen/DungeonGen.csproj": {
+              "projectPath": "/home/a/faer/server/DungeonGen/DungeonGen.csproj"
             },
-            "C:\\Users\\fyuwi\\Desktop\\faer-src\\Shared\\Shared.csproj": {
-              "projectPath": "C:\\Users\\fyuwi\\Desktop\\faer-src\\Shared\\Shared.csproj"
+            "/home/a/faer/server/Shared/Shared.csproj": {
+              "projectPath": "/home/a/faer/server/Shared/Shared.csproj"
             }
           }
         }
@@ -697,7 +695,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.105/RuntimeIdentifierGraph.json"
       }
     }
   },

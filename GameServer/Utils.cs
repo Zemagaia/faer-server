@@ -48,7 +48,7 @@ namespace GameServer
 		{
 			throw new Exception("Receive buffer attempted to read out of bounds");
 		}
-		short i = Unsafe.ReadUnaligned<short>(ref Unsafe.Add(ref spanRef, ptr));
+		var i = Unsafe.ReadUnaligned<short>(ref Unsafe.Add(ref spanRef, ptr));
 		ptr += 2;
 		return i;
 	}
@@ -60,7 +60,7 @@ namespace GameServer
 		{
 			throw new Exception("Receive buffer attempted to read out of bounds");
 		}
-		ushort i = Unsafe.ReadUnaligned<ushort>(ref Unsafe.Add(ref spanRef, ptr));
+		var i = Unsafe.ReadUnaligned<ushort>(ref Unsafe.Add(ref spanRef, ptr));
 		ptr += 2;
 		return i;
 	}
@@ -72,7 +72,7 @@ namespace GameServer
 		{
 			throw new Exception("Receive buffer attempted to read out of bounds");
 		}
-		int i = Unsafe.ReadUnaligned<int>(ref Unsafe.Add(ref spanRef, ptr));
+		var i = Unsafe.ReadUnaligned<int>(ref Unsafe.Add(ref spanRef, ptr));
 		ptr += 4;
 		return i;
 	}
@@ -84,7 +84,7 @@ namespace GameServer
 		{
 			throw new Exception("Receive buffer attempted to read out of bounds");
 		}
-		uint i = Unsafe.ReadUnaligned<uint>(ref Unsafe.Add(ref spanRef, ptr));
+		var i = Unsafe.ReadUnaligned<uint>(ref Unsafe.Add(ref spanRef, ptr));
 		ptr += 4;
 		return i;
 	}
@@ -96,7 +96,7 @@ namespace GameServer
 		{
 			throw new Exception("Receive buffer attempted to read out of bounds");
 		}
-		float i = Unsafe.ReadUnaligned<float>(ref Unsafe.Add(ref spanRef, ptr));
+		var i = Unsafe.ReadUnaligned<float>(ref Unsafe.Add(ref spanRef, ptr));
 		ptr += 4;
 		return i;
 	}
@@ -108,7 +108,7 @@ namespace GameServer
 		{
 			throw new Exception("Receive buffer attempted to read out of bounds");
 		}
-		ushort i = Unsafe.ReadUnaligned<ushort>(ref Unsafe.Add(ref spanRef, ptr));
+		var i = Unsafe.ReadUnaligned<ushort>(ref Unsafe.Add(ref spanRef, ptr));
 		if (ptr + 2 + i > len)
 		{
 			throw new Exception("Receive buffer attempted to read out of bounds");
@@ -126,13 +126,13 @@ namespace GameServer
 		{
 			throw new Exception("Receive buffer attempted to read out of bounds");
 		}
-		short arrLen = Unsafe.ReadUnaligned<short>(ref Unsafe.Add(ref spanRef, ptr));
+		var arrLen = Unsafe.ReadUnaligned<short>(ref Unsafe.Add(ref spanRef, ptr));
 		if (ptr + 2 + arrLen > len)
 		{
 			throw new Exception("Receive buffer attempted to read out of bounds");
 		}
-		bool[] ret = new bool[arrLen];
-		for (int i = 0; i < arrLen; i++)
+		var ret = new bool[arrLen];
+		for (var i = 0; i < arrLen; i++)
 		{
 			ret[i] = Unsafe.ReadUnaligned<bool>(ref Unsafe.Add(ref spanRef, ptr++));
 		}
@@ -143,24 +143,21 @@ namespace GameServer
 	public static TimedPosition[] ReadTimedPosArray(ref int ptr, ref byte spanRef, int len)
 	{
 		if (ptr + 2 > len)
-		{
 			throw new Exception("Receive buffer attempted to read out of bounds");
-		}
-		short arrLen = Unsafe.ReadUnaligned<short>(ref Unsafe.Add(ref spanRef, ptr));
-		if (ptr + 2 + arrLen > len)
-		{
+		
+		var arrLen = Unsafe.ReadUnaligned<short>(ref Unsafe.Add(ref spanRef, ptr));
+		ptr += 2;
+		if (ptr + arrLen > len)
 			throw new Exception("Receive buffer attempted to read out of bounds");
-		}
-		TimedPosition[] ret = new TimedPosition[arrLen];
-		for (int i = 0; i < arrLen; i++)
-		{
-			ret[i] = new TimedPosition
-			{
+		
+		var ret = new TimedPosition[arrLen];
+		for (var i = 0; i < arrLen; i++)
+			ret[i] = new TimedPosition {
 				Time = ReadInt(ref ptr, ref spanRef, len),
 				X = ReadFloat(ref ptr, ref spanRef, len),
 				Y = ReadFloat(ref ptr, ref spanRef, len)
 			};
-		}
+		
 		return ret;
 	}
 
@@ -267,7 +264,7 @@ namespace GameServer
 			throw new Exception("Send buffer attempted to write out of bounds");
 		}
 		WriteUShort(ref ptr, ref spanRef, (ushort)s.Length);
-		foreach (char b in s)
+		foreach (var b in s)
 		{
 			WriteChar(ref ptr, ref spanRef, b);
 		}
@@ -278,9 +275,9 @@ namespace GameServer
         public static T RandomElement<T>(this IEnumerable<T> source,
             Random rng)
         {
-            T current = default(T);
-            int count = 0;
-            foreach (T element in source)
+            var current = default(T);
+            var count = 0;
+            foreach (var element in source)
             {
                 count++;
                 if (rng.Next(count) == 0)
@@ -333,7 +330,7 @@ namespace GameServer
 
         private static int ApproximateNthPrime(int nn)
         {
-            double n = (double)nn;
+            var n = (double)nn;
             double p;
             if (nn >= 7022)
                 p = n * Math.Log(n) + n * (Math.Log(Math.Log(n)) - 0.9385);
