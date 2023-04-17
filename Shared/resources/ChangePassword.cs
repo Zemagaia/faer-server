@@ -14,12 +14,10 @@ namespace Shared.resources
 
         public ChangePassword(string dir)
         {
-            var basePath = Path.Combine(Utils.GetAssemblyDirectory(), dir);
-
-            _requestEmail = File.ReadAllText(Path.Combine(basePath, "request.txt"));
-            _resetEmail = File.ReadAllText(Path.Combine(basePath, "reset.txt"));
-            _resetHtml = File.ReadAllText(Path.Combine(basePath, "reset.html"));
-            _resetErrorHtml = File.ReadAllText(Path.Combine(basePath, "resetError.html"));
+            _requestEmail = File.ReadAllText(Path.Combine(dir, "request.txt"));
+            _resetEmail = File.ReadAllText(Path.Combine(dir, "reset.txt"));
+            _resetHtml = File.ReadAllText(Path.Combine(dir, "reset.html"));
+            _resetErrorHtml = File.ReadAllText(Path.Combine(dir, "resetError.html"));
         }
 
         public string GetRequestEmail(string link)

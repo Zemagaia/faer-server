@@ -227,13 +227,12 @@ namespace GameServer.realm
                 {
                     string from = manager.Database.ResolveIgn(e.Content.From);
                     string to = manager.Database.ResolveIgn(e.Content.To);
-                    bool filtered = manager.Resources.FilterList.Any(r => r.IsMatch(e.Content.Text));
                     foreach (var i in manager.Clients.Keys
                         .Where(x => x.Player != null)
                         .Where(x => !x.Account.IgnoreList.Contains(e.Content.From))
                         .Where(x => x.Account.AccountId == e.Content.From ||
                                     x.Account.AccountId == e.Content.To &&
-                                    (!filtered || x.Account.IP == e.Content.SrcIP))
+                                    (x.Account.IP == e.Content.SrcIP))
                         .Select(x => x.Player))
                     {
                         i.TellReceived(

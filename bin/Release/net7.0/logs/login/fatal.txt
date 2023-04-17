@@ -1,0 +1,22 @@
+2023-04-17 18:24:14.4492|FATAL|LoginServer.Program|System.IO.DirectoryNotFoundException: Could not find a part of the path '/home/a/faer/server/bin/Release/net7.0/server/bin/Release/net7.0/resources/data/changePassword/request.txt'.
+   at Interop.ThrowExceptionForIoErrno(ErrorInfo errorInfo, String path, Boolean isDirError)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String path, OpenFlags flags, Int32 mode, Func`4 createOpenException)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, UnixFileMode openPermissions, Int64& fileLength, UnixFileMode& filePermissions, Func`4 createOpenException)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, Int64 preallocationSize)
+   at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Encoding encoding, Int32 bufferSize)
+   at System.IO.File.ReadAllText(String path, Encoding encoding)
+   at Shared.resources.ChangePassword..ctor(String dir) in /home/a/faer/server/Shared/resources/ChangePassword.cs:line 19
+   at Shared.resources.Resources..ctor(String resourcePath, Boolean wServer) in /home/a/faer/server/Shared/resources/Resources.cs:line 43
+   at LoginServer.Program.Main(String[] args) in /home/a/faer/server/LoginServer/Program.cs:line 33
+2023-04-17 18:27:50.4403|FATAL|LoginServer.Program|System.IO.DirectoryNotFoundException: Could not find a part of the path '/home/a/faer/server/bin/Release/net7.0/server/bin/Release/net7.0/resources/data/changePassword/request.txt'.
+   at Interop.ThrowExceptionForIoErrno(ErrorInfo errorInfo, String path, Boolean isDirError)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String path, OpenFlags flags, Int32 mode, Func`4 createOpenException)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, UnixFileMode openPermissions, Int64& fileLength, UnixFileMode& filePermissions, Func`4 createOpenException)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, Int64 preallocationSize)
+   at System.IO.StreamReader.ValidateArgsAndOpenPath(String path, Encoding encoding, Int32 bufferSize)
+   at System.IO.File.ReadAllText(String path, Encoding encoding)
+   at Shared.resources.ChangePassword..ctor(String dir) in /home/a/faer/server/Shared/resources/ChangePassword.cs:line 19
+   at Shared.resources.Resources..ctor(String resourcePath, Boolean wServer) in /home/a/faer/server/Shared/resources/Resources.cs:line 31
+   at LoginServer.Program.Main(String[] args) in /home/a/faer/server/LoginServer/Program.cs:line 33

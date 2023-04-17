@@ -22,7 +22,7 @@ namespace GameServer
             Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
             Thread.CurrentThread.Name = "Entry";
 
-            Config = args.Length > 0 ? ServerConfig.ReadFile(args[0]) : ServerConfig.ReadFile("gameServer.json");
+            Config = args.Length > 0 ? ServerConfig.ReadFile(args[0] + "/gameServer.json") : ServerConfig.ReadFile("gameServer.json");
 
             LogManager.Configuration.Variables["logDirectory"] = Config.serverSettings.logFolder + "/game";
             LogManager.Configuration.Variables["buildConfig"] = Utils.GetBuildConfig();

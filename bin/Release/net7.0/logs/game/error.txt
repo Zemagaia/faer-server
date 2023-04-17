@@ -5624,3 +5624,13 @@
 2023-04-16 11:21:18.1604|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
 2023-04-16 11:21:18.1604|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
 2023-04-16 11:21:18.4248|ERROR|GameServer.realm.setpieces.SetPieces|Could not find setpiece data for realm
+2023-04-16 12:34:19.8278|ERROR|GameServer.Client|Could not receive data from dramintus (127.0.0.1): System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at GameServer.realm.StatsManager.get_Item(Int32 index) in /home/a/faer/server/GameServer/realm/StatsManager.cs:line 19
+   at GameServer.realm.entities.player.Player.Activate(RealmTime time, Item item, Position target, Byte activateId, Int32 clientTime, Boolean isAbility) in /home/a/faer/server/GameServer/realm/entities/player/Player.UseItem.cs:line 158
+   at GameServer.realm.entities.player.Player.UseItem(Int32 objId, Int32 slot, Single x, Single y) in /home/a/faer/server/GameServer/realm/entities/player/Player.UseItem.cs:line 125
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 137
+2023-04-16 12:34:57.5951|ERROR|GameServer.Client|Could not receive data from dramintus (127.0.0.1): System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at GameServer.realm.StatsManager.get_Item(Int32 index) in /home/a/faer/server/GameServer/realm/StatsManager.cs:line 19
+   at GameServer.realm.entities.player.Player.Activate(RealmTime time, Item item, Position target, Byte activateId, Int32 clientTime, Boolean isAbility) in /home/a/faer/server/GameServer/realm/entities/player/Player.UseItem.cs:line 158
+   at GameServer.realm.entities.player.Player.UseItem(Int32 objId, Int32 slot, Single x, Single y) in /home/a/faer/server/GameServer/realm/entities/player/Player.UseItem.cs:line 125
+   at GameServer.Client.Receive() in /home/a/faer/server/GameServer/Client.cs:line 137
