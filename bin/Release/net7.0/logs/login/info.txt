@@ -319,3 +319,113 @@
 2023-04-17 18:28:58.1807|INFO|Shared.ISManager|Server's Id is 04c475cc-d57b-469f-8170-22070210a35e
 2023-04-17 18:28:58.2175|INFO|LoginServer.Program|Listening at address 127.0.0.1:8080...
 2023-04-17 18:28:58.2286|INFO|Shared.ISManager|AppEngine (Account, 04c475cc-d57b-469f-8170-22070210a35e) joined the network.
+2023-04-17 18:58:46.8552|INFO|Shared.resources.AppSettings|Loading app settings...
+2023-04-17 18:58:46.8834|INFO|Shared.resources.XmlData|Loading xml data...
+2023-04-17 18:58:46.9641|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Plated Dagger" to shop. Item does not exist.
+2023-04-17 18:58:46.9641|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby-Reinforced Longbow" to shop. Item does not exist.
+2023-04-17 18:58:46.9641|ERROR|Shared.resources.MerchantList|Failed when adding "Staff of Diabolic Secrets" to shop. Item does not exist.
+2023-04-17 18:58:46.9641|ERROR|Shared.resources.MerchantList|Failed when adding "Wand of Dark Magic" to shop. Item does not exist.
+2023-04-17 18:58:46.9641|ERROR|Shared.resources.MerchantList|Failed when adding "Adamant Great Sword" to shop. Item does not exist.
+2023-04-17 18:58:46.9641|ERROR|Shared.resources.MerchantList|Failed when adding "Demon's Edge" to shop. Item does not exist.
+2023-04-17 18:58:46.9641|ERROR|Shared.resources.MerchantList|Failed when adding "Cloak of the Red Agent" to shop. Item does not exist.
+2023-04-17 18:58:46.9641|ERROR|Shared.resources.MerchantList|Failed when adding "Quiver of the Crimson Elf" to shop. Item does not exist.
+2023-04-17 18:58:46.9641|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Nova Spell" to shop. Item does not exist.
+2023-04-17 18:58:46.9641|ERROR|Shared.resources.MerchantList|Failed when adding "Tome of Divine Favor" to shop. Item does not exist.
+2023-04-17 18:58:46.9641|ERROR|Shared.resources.MerchantList|Failed when adding "Helm of the Great General" to shop. Item does not exist.
+2023-04-17 18:58:46.9641|ERROR|Shared.resources.MerchantList|Failed when adding "Colossus Shield" to shop. Item does not exist.
+2023-04-17 18:58:46.9641|ERROR|Shared.resources.MerchantList|Failed when adding "Seal of the Holy Warrior" to shop. Item does not exist.
+2023-04-17 18:58:46.9641|ERROR|Shared.resources.MerchantList|Failed when adding "Nightwing Vial" to shop. Item does not exist.
+2023-04-17 18:58:46.9641|ERROR|Shared.resources.MerchantList|Failed when adding "Lifedrinker Skull" to shop. Item does not exist.
+2023-04-17 18:58:46.9641|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Orb" to shop. Item does not exist.
+2023-04-17 18:58:46.9641|ERROR|Shared.resources.MerchantList|Failed when adding "Scepter of Skybolts" to shop. Item does not exist.
+2023-04-17 18:58:46.9641|ERROR|Shared.resources.MerchantList|Failed when adding "Doom Circle" to shop. Item does not exist.
+2023-04-17 18:58:46.9641|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Totem" to shop. Item does not exist.
+2023-04-17 18:58:46.9641|ERROR|Shared.resources.MerchantList|Failed when adding "Deck of the Ancient" to shop. Item does not exist.
+2023-04-17 18:58:46.9641|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Rune" to shop. Item does not exist.
+2023-04-17 18:58:46.9641|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Conjurer" to shop. Item does not exist.
+2023-04-17 18:58:46.9641|ERROR|Shared.resources.MerchantList|Failed when adding "Gold-Studded Armor" to shop. Item does not exist.
+2023-04-17 18:58:46.9641|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Chestplate" to shop. Item does not exist.
+2023-04-17 18:58:46.9641|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Grand Sorcerer" to shop. Item does not exist.
+2023-04-17 18:58:46.9641|ERROR|Shared.resources.MerchantList|Failed when adding "Wyvern Skin Armor" to shop. Item does not exist.
+2023-04-17 18:58:46.9641|ERROR|Shared.resources.MerchantList|Failed when adding "Dragonscale Chestplate" to shop. Item does not exist.
+2023-04-17 18:58:46.9641|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Ring" to shop. Item does not exist.
+2023-04-17 18:58:46.9641|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Circlet" to shop. Item does not exist.
+2023-04-17 18:58:46.9641|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
+2023-04-17 18:58:46.9641|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
+2023-04-17 18:58:46.9641|INFO|Shared.resources.XmlData|Finish loading game data.
+2023-04-17 18:58:46.9641|INFO|Shared.resources.XmlData|262 Items
+2023-04-17 18:58:46.9658|INFO|Shared.resources.XmlData|81 Tiles
+2023-04-17 18:58:46.9658|INFO|Shared.resources.XmlData|312 Objects
+2023-04-17 18:58:46.9658|INFO|Shared.resources.XmlData|9 Skins
+2023-04-17 18:58:46.9658|INFO|Shared.resources.XmlData|0 Equipment Sets
+2023-04-17 18:58:46.9658|INFO|Shared.resources.XmlData|9 Classes
+2023-04-17 18:58:46.9658|INFO|Shared.resources.XmlData|9 Portals
+2023-04-17 18:58:46.9658|INFO|Shared.resources.XmlData|1 Merchants
+2023-04-17 18:58:46.9658|INFO|Shared.resources.XmlData|0 Remote Textures
+2023-04-17 18:58:46.9658|INFO|Shared.resources.XmlData|0 Additions
+2023-04-17 18:58:46.9708|INFO|Shared.Database|Initializing Database...
+2023-04-17 18:58:47.1048|INFO|Shared.ISManager|Server's Id is 6ae7336c-6fba-438f-9a01-5ba9e0abb46f
+2023-04-17 18:58:47.1545|INFO|LoginServer.Program|Listening at address 127.0.0.1:8080...
+2023-04-17 18:58:47.1666|INFO|Shared.ISManager|Localhost (World, 861f0cbf-b798-4448-a60d-154382344d31) joined the network.
+2023-04-17 18:58:47.1666|INFO|Shared.ISManager|AppEngine (Account, 6ae7336c-6fba-438f-9a01-5ba9e0abb46f) joined the network.
+2023-04-17 19:01:32.1073|INFO|Shared.resources.AppSettings|Loading app settings...
+2023-04-17 19:01:32.1246|INFO|Shared.resources.XmlData|Loading xml data...
+2023-04-17 19:01:32.1934|INFO|Shared.resources.XmlData|Finish loading game data.
+2023-04-17 19:01:32.1937|INFO|Shared.resources.XmlData|262 Items
+2023-04-17 19:01:32.1937|INFO|Shared.resources.XmlData|81 Tiles
+2023-04-17 19:01:32.1937|INFO|Shared.resources.XmlData|312 Objects
+2023-04-17 19:01:32.1937|INFO|Shared.resources.XmlData|9 Skins
+2023-04-17 19:01:32.1937|INFO|Shared.resources.XmlData|0 Equipment Sets
+2023-04-17 19:01:32.1937|INFO|Shared.resources.XmlData|9 Classes
+2023-04-17 19:01:32.1937|INFO|Shared.resources.XmlData|9 Portals
+2023-04-17 19:01:32.1937|INFO|Shared.resources.XmlData|1 Merchants
+2023-04-17 19:01:32.1937|INFO|Shared.resources.XmlData|0 Remote Textures
+2023-04-17 19:01:32.1937|INFO|Shared.resources.XmlData|0 Additions
+2023-04-17 19:01:32.1976|INFO|Shared.Database|Initializing Database...
+2023-04-17 19:01:32.3282|INFO|Shared.ISManager|Server's Id is ed17ec16-9b00-44f3-8653-fc6cc222c203
+2023-04-17 19:01:32.3645|INFO|LoginServer.Program|Listening at address 127.0.0.1:8080...
+2023-04-17 19:01:32.3765|INFO|Shared.ISManager|Localhost (World, 861f0cbf-b798-4448-a60d-154382344d31) joined the network.
+2023-04-17 19:01:32.3765|INFO|Shared.ISManager|AppEngine (Account, ed17ec16-9b00-44f3-8653-fc6cc222c203) joined the network.
+2023-04-17 19:01:48.3373|INFO|Shared.ISManager|Localhost (World, 9ebcecf1-08ad-45ce-9edc-e017ee9bbccc) joined the network.
+2023-04-17 19:02:06.3606|INFO|Shared.ISManager|Localhost (World, 861f0cbf-b798-4448-a60d-154382344d31) timed out.
+2023-04-17 19:06:47.2640|INFO|Shared.resources.AppSettings|Loading app settings...
+2023-04-17 19:06:47.2809|INFO|Shared.resources.XmlData|Loading xml data...
+2023-04-17 19:06:47.3526|INFO|Shared.resources.XmlData|Finish loading game data.
+2023-04-17 19:06:47.3526|INFO|Shared.resources.XmlData|262 Items
+2023-04-17 19:06:47.3526|INFO|Shared.resources.XmlData|81 Tiles
+2023-04-17 19:06:47.3526|INFO|Shared.resources.XmlData|312 Objects
+2023-04-17 19:06:47.3526|INFO|Shared.resources.XmlData|9 Skins
+2023-04-17 19:06:47.3526|INFO|Shared.resources.XmlData|0 Equipment Sets
+2023-04-17 19:06:47.3526|INFO|Shared.resources.XmlData|9 Classes
+2023-04-17 19:06:47.3526|INFO|Shared.resources.XmlData|9 Portals
+2023-04-17 19:06:47.3526|INFO|Shared.resources.XmlData|1 Merchants
+2023-04-17 19:06:47.3526|INFO|Shared.resources.XmlData|0 Remote Textures
+2023-04-17 19:06:47.3526|INFO|Shared.resources.XmlData|0 Additions
+2023-04-17 19:06:47.3578|INFO|Shared.Database|Initializing Database...
+2023-04-17 19:06:47.4892|INFO|Shared.ISManager|Server's Id is d24a8d15-4860-4722-a1c0-3792ecc7bea9
+2023-04-17 19:06:47.5280|INFO|LoginServer.Program|Listening at address 127.0.0.1:8080...
+2023-04-17 19:06:47.5377|INFO|Shared.ISManager|AppEngine (Account, d24a8d15-4860-4722-a1c0-3792ecc7bea9) joined the network.
+2023-04-17 19:06:47.5377|INFO|Shared.ISManager|Localhost (World, 1e80fd9a-7cab-4e6a-b423-a12b8e39391b) joined the network.
+2023-04-17 19:08:15.2455|INFO|Shared.ISManager|Localhost (World, 6b9ed1bb-3b4b-4603-8406-f8d2d3dfa471) joined the network.
+2023-04-17 19:08:35.5241|INFO|Shared.ISManager|Localhost (World, 1e80fd9a-7cab-4e6a-b423-a12b8e39391b) timed out.
+2023-04-17 19:09:25.4457|INFO|Shared.ISManager|Localhost (World, 6b9ed1bb-3b4b-4603-8406-f8d2d3dfa471) left the network.
+2023-04-17 19:09:37.2197|INFO|Shared.ISManager|Localhost (World, 00bf2ce0-9a1f-418b-8d6b-d241af509475) joined the network.
+2023-04-17 19:11:03.5227|INFO|Shared.ISManager|Localhost (World, 00bf2ce0-9a1f-418b-8d6b-d241af509475) timed out.
+2023-04-17 19:14:13.5299|INFO|Shared.resources.AppSettings|Loading app settings...
+2023-04-17 19:14:13.5606|INFO|Shared.resources.XmlData|Loading xml data...
+2023-04-17 19:14:13.6385|INFO|Shared.resources.XmlData|Finish loading game data.
+2023-04-17 19:14:13.6385|INFO|Shared.resources.XmlData|262 Items
+2023-04-17 19:14:13.6385|INFO|Shared.resources.XmlData|81 Tiles
+2023-04-17 19:14:13.6385|INFO|Shared.resources.XmlData|312 Objects
+2023-04-17 19:14:13.6385|INFO|Shared.resources.XmlData|9 Skins
+2023-04-17 19:14:13.6385|INFO|Shared.resources.XmlData|0 Equipment Sets
+2023-04-17 19:14:13.6385|INFO|Shared.resources.XmlData|9 Classes
+2023-04-17 19:14:13.6385|INFO|Shared.resources.XmlData|9 Portals
+2023-04-17 19:14:13.6385|INFO|Shared.resources.XmlData|1 Merchants
+2023-04-17 19:14:13.6385|INFO|Shared.resources.XmlData|0 Remote Textures
+2023-04-17 19:14:13.6385|INFO|Shared.resources.XmlData|0 Additions
+2023-04-17 19:14:13.6458|INFO|Shared.Database|Initializing Database...
+2023-04-17 19:14:13.7718|INFO|Shared.ISManager|Server's Id is 5adeff29-2e13-477d-a2b3-fabed9449dca
+2023-04-17 19:14:13.8076|INFO|LoginServer.Program|Listening at address 127.0.0.1:8080...
+2023-04-17 19:14:13.8195|INFO|Shared.ISManager|AppEngine (Account, 5adeff29-2e13-477d-a2b3-fabed9449dca) joined the network.
+2023-04-17 19:14:15.9330|INFO|Shared.ISManager|Localhost (World, 5dfb8785-62e2-4243-a54c-b75934a5450c) joined the network.

@@ -66,21 +66,6 @@ namespace GameServer.realm.entities.vendors
             base.ExportStats(stats);
         }
 
-        protected override void ImportStats(StatsType stats, object val)
-        {
-            switch (stats)
-            {
-                case StatsType.SellablePrice:
-                    Price = (int)val;
-                    break;
-                case StatsType.MerchPrice:
-                    Currency = (CurrencyType)val;
-                    break;
-            }
-
-            base.ImportStats(stats, val);
-        }
-
         protected BuyResult ValidateCustomer(Player player)
         {
             if (Owner is Test)

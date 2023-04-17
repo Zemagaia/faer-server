@@ -136,49 +136,13 @@ namespace GameServer.realm.entities.player
         private void Activate(RealmTime time, Item item, Position target, byte activateId,
             int clientTime, bool isAbility)
         {
-            if (IsInvalidTime(time.TotalElapsedMs, clientTime))
-                return;
-
-            var activate = activateId > 1 ? item.ActivateEffects2 : item.ActivateEffects;
-            var tolerance = 0.98;
-            var lastUse = _clientNextUse;
-            if (activate != null && isAbility &&
-                ((activateId == 1 && clientTime > _clientNextUse) || _clientNextUse == 0) &&
-                ((activateId == 2 && clientTime > _clientNextUse2) || _clientNextUse2 == 0))
-            {
-                if (activateId == 1)
-                {
-                    if (_clientNextUse == 0) _clientNextUse = clientTime;
-                    _coolDown = item.Cooldown * 1000 * (100f / (100 + Stats[11]));
-                    _clientNextUse = (long)(clientTime + _coolDown * tolerance);
-                }
-                else
-                {
-                    if (_clientNextUse2 == 0) _clientNextUse = clientTime;
-                    _clientNextUse2 = (long)(clientTime + item.Cooldown2 * 1000 * (100f / (100 + Stats[11])) * tolerance);
-                }
-            }
-            else if (isAbility && (clientTime < _clientNextUse || activate == null))
-                return;
-
-            // Handle item powers
-            if (isAbility)
-            {
-                if (!HandleEffectsOnActivate(item, target, MathUtils.Random, clientTime, lastUse))
-                {
-                    return;
-                }
-            }
+            // todo new cd check
+            var activate = item.ActivateEffects;
 
             if (activate == item.ActivateEffects)
             {
                 MP -= item.MpCost;
                 HP -= item.HpCost;
-            }
-            
-            if (activate == item.ActivateEffects2)
-            {
-                MP -= item.MpCost2;
             }
 
             foreach (var eff in activate)

@@ -520,12 +520,12 @@ public class Client {
                 WriteBool(ref ptr, ref spanRef, Convert.ToInt32(value) == 1);
                 return;
             case StatsType.MerchPrice:
-            case StatsType.MerchCount:
             case StatsType.Tier:
             case StatsType.HealthStackCount:
             case StatsType.MagicStackCount:
                 WriteByte(ref ptr, ref spanRef, Convert.ToByte(value));
                 return;
+            case StatsType.MerchCount:
             case StatsType.GuildRank:
                 WriteSByte(ref ptr, ref spanRef, Convert.ToSByte(value));
                 return;

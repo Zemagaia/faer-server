@@ -31,7 +31,7 @@ namespace GameServer.realm.entities.vendors
         protected Merchant(RealmManager manager, ushort objType)
             : base(manager, objType)
         {
-            _item = new SV<ushort>(this, StatsType.MerchType, 0x1400);
+            _item = new SV<ushort>(this, StatsType.MerchType, 0xaa1);
             _count = new SV<int>(this, StatsType.MerchCount, -1);
             Rotate = true;
         }
@@ -42,22 +42,7 @@ namespace GameServer.realm.entities.vendors
             stats[StatsType.MerchCount] = Count;
             base.ExportStats(stats);
         }
-
-        protected override void ImportStats(StatsType stats, object val)
-        {
-            switch (stats)
-            {
-                case StatsType.MerchType:
-                    Item = (ushort)val;
-                    break;
-                case StatsType.MerchCount:
-                    Count = (int)val;
-                    break;
-            }
-
-            base.ImportStats(stats, val);
-        }
-
+        
         /*public override void Tick(RealmTime time)
         {
             base.Tick(time);

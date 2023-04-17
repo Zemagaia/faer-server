@@ -287,55 +287,26 @@ namespace Shared.resources
         public readonly bool Usable;
         public readonly int BagType;
         public readonly int MpCost;
-        public readonly int MpCost2;
-        public readonly int MpEndCost;
-        public readonly int MpEndCost2;
         public readonly int XpBonus;
         public readonly int NumProjectiles;
         public readonly float ArcGap;
-        public readonly float ArcGap1;
-        public readonly float ArcGap2;
-        public readonly int NumProjectiles1;
-        public readonly int NumProjectiles2;
-        public readonly bool DualShooting;
         public readonly bool Consumable;
         public readonly bool Potion;
         public readonly string DisplayId;
         public readonly string DisplayName;
-        public readonly string SuccessorId;
         public readonly bool Untradable;
-        public readonly bool Undead;
-        public readonly bool PUndead;
-        public readonly bool SUndead;
         public readonly float Cooldown;
-        public readonly float Cooldown2;
         public readonly bool Resurrects;
         public readonly int Texture1;
         public readonly int Texture2;
-        public readonly bool Secret;
-        public readonly int FeedPower;
-        public readonly bool Untiered;
-
-        public readonly int LevelRequirement;
 
         public readonly string Power;
-        public readonly int LightCost;
-        public readonly int LightEndCost;
         public readonly int HpCost;
-        public readonly float MinQuality;
-        public readonly float MaxQuality;
-        public readonly int Quantity;
-        public readonly int MaxQuantity;
-
-        public readonly bool Rune;
 
         public readonly KeyValuePair<int, int>[] StatsBoost;
         public readonly KeyValuePair<int, float>[] StatsBoostPerc;
         public readonly ActivateEffect[] ActivateEffects;
-        public readonly ActivateEffect[] ActivateEffects2;
         public readonly ProjectileDesc[] Projectiles;
-        public readonly RuneBoosts RuneBoosts;
-
         public Item(ushort type, XElement e)
         {
             ObjectType = type;
@@ -343,53 +314,26 @@ namespace Shared.resources
             SlotType = e.GetValue<int>("SlotType");
             if (e.HasElement("Tier"))
                 Tier = e.GetValue<string>("Tier");
-            else
-                Untiered = true;
             Description = e.GetValue<string>("Description");
             RateOfFire = e.GetValue<float>("RateOfFire", 1);
             Usable = e.HasElement("Usable");
             BagType = e.GetValue<int>("BagType");
             MpCost = e.GetValue<int>("MpCost");
-            MpEndCost = e.GetValue<int>("MpEndCost");
             XpBonus = e.GetValue<int>("XpBonus");
             NumProjectiles = e.GetValue("NumProjectiles", 1);
-            NumProjectiles1 = e.GetValue("NumProjectiles1", 1);
-            NumProjectiles2 = e.GetValue("NumProjectiles2", 1);
             ArcGap = e.GetValue("ArcGap", 11.25f);
-            ArcGap1 = e.GetValue("ArcGap1", 11.25f);
-            ArcGap2 = e.GetValue("ArcGap2", 11.25f);
-            DualShooting = e.HasElement("DualShooting");
             Consumable = e.HasElement("Consumable");
             Potion = e.HasElement("Potion");
             DisplayId = e.GetValue<string>("DisplayId");
             DisplayName = string.IsNullOrWhiteSpace(DisplayId) ? ObjectId : DisplayId;
-            FeedPower = e.GetValue<int>("FeedPower");
-            SuccessorId = e.GetValue<string>("SuccessorId");
-            Untradable = e.HasElement("Soulbound");
-            Undead = e.HasElement("Undead");
-            PUndead = e.HasElement("PUndead");
-            SUndead = e.HasElement("SUndead");
-            Secret = e.HasElement("Secret");
+            Untradable = e.HasElement("Untradable");
             Cooldown = e.GetValue("Cooldown", 0.5f);
             Resurrects = e.HasElement("Resurrects");
             Texture1 = e.GetValue<int>("Tex1");
             Texture2 = e.GetValue<int>("Tex2");
-            LevelRequirement = e.GetValue<int>("LevelReq");
             Power = e.GetValue<string>("Power");
-            MpCost2 = e.GetValue<int>("MpCost2");
-            MpEndCost2 = e.GetValue<int>("MpEndCost2");
-            LightCost = e.GetValue<int>("LightCost");
-            LightEndCost = e.GetValue<int>("LightEndCost");
             HpCost = e.GetValue<int>("HpCost");
-            MinQuality = e.GetValue("MinQuality", 0.85f);
-            MaxQuality = e.GetValue("MaxQuality", 1.16f); // 1.15f
-            if (Potion)
-                MaxQuality = MinQuality = 1;
-            Quantity = e.GetValue<int>("Quantity");
-            MaxQuantity = e.GetValue<int>("MaxQuantity");
-            Rune = e.HasElement("Rune");
-            Cooldown2 = e.GetValue("Cooldown2", 0.5f);
-            
+
             var stats = new List<KeyValuePair<int, int>>();
             foreach (var i in e.Elements("ActivateOnEquip"))
             {
@@ -429,13 +373,6 @@ namespace Shared.resources
             foreach (var i in e.Elements("Projectile"))
                 projs.Add(new ProjectileDesc(i));
             Projectiles = projs.ToArray();
-
-            var activate2 = new List<ActivateEffect>();
-            foreach (var i in e.Elements("Activate2"))
-                activate2.Add(new ActivateEffect(i));
-            ActivateEffects2 = activate2.ToArray();
-
-            RuneBoosts = e.HasElement("RuneBoosts") ? new RuneBoosts(e.Element("RuneBoosts")) : null;
         }
     }
 

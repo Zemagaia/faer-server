@@ -66,8 +66,8 @@ namespace GameServer.logic
             if (BehaviorDb.InitGameData.IdToObjectType.TryGetValue(id, out var ret))
                 return ret;
 
-            ret = BehaviorDb.InitGameData.IdToObjectType["Pirate"];
-            Log.Warn($"Object type '{id}' not found. Using Pirate ({ret.To4Hex()}).");
+            ret = BehaviorDb.InitGameData.IdToObjectType["Crocodile"];
+            Log.Warn($"Object type '{id}' not found. Using Crocodile ({ret.To4Hex()}).");
             return ret;
         }
 

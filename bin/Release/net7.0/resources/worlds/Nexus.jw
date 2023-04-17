@@ -7,6 +7,5 @@
 	"difficulty": -1,
 	"background": 0,
 	"maps": ["Nexus.jm"],
-	"music": [""],
-	"spawnSetpieces": "realm"
+	"music": [""]
 }

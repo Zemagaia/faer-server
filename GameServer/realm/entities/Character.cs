@@ -52,13 +52,6 @@ namespace GameServer.realm.entities
                 ApplyConditionEffect(ConditionEffectIndex.Invulnerable);
         }
 
-        protected override void ImportStats(StatsType stats, object val)
-        {
-            if (stats == StatsType.HP) HP = (int)val;
-            else if (stats == StatsType.MaxHP) MaximumHP = (int)val;
-            base.ImportStats(stats, val);
-        }
-
         protected override void ExportStats(IDictionary<StatsType, object> stats)
         {
             stats[StatsType.HP] = HP;

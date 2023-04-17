@@ -162,18 +162,7 @@ namespace GameServer.realm
                 _effects = new int[EffectCount];
             }
         }
-
-        protected virtual void ImportStats(StatsType stats, object val)
-        {
-            switch (stats)
-            {
-                case StatsType.Name: Name = (string)val; break;
-                case StatsType.Size: Size = (ushort)val; break;
-                case StatsType.AltTextureIndex: AltTextureIndex = (ushort)val; break;
-                case StatsType.Condition: ConditionEffects = (ConditionEffects)(ulong)val; break;
-            }
-        }
-
+        
         protected virtual void ExportStats(IDictionary<StatsType, object> stats)
         {
             stats[StatsType.Name] = Name;
@@ -181,24 +170,7 @@ namespace GameServer.realm
             stats[StatsType.AltTextureIndex] = AltTextureIndex;
             stats[StatsType.Condition] = _conditionEffects1.GetValue();
         }
-
-        public void FromDefinition(ObjectDef def)
-        {
-            ObjectType = def.ObjectType;
-            ImportStats(def.Stats);
-        }
-
-        public void ImportStats(ObjectStats stat)
-        {
-            Id = stat.Id;
-            (this is Enemy ? Owner.EnemiesCollision : Owner.PlayersCollision)
-                .Move(this, stat.X, stat.Y);
-            X = stat.X;
-            Y = stat.Y;
-            foreach (var i in stat.StatTypes)
-                ImportStats(i.Key, i.Value);
-        }
-
+        
         public ObjectStats ExportStats()
         {
             var stats = new Dictionary<StatsType, object>();
