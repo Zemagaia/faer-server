@@ -114,7 +114,7 @@ namespace GameServer.realm.entities.player
                 _statUpdates.Clear();
             }
             
-            _client.SendNewTick((byte) (++TickId % 256), time.ElapsedMsDelta, _updateStatuses);
+            _client.SendNewTick((byte) (++TickId % 256), (byte) Manager.TPS, _updateStatuses);
             AwaitMove(TickId);
         }
 
