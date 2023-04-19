@@ -144,6 +144,8 @@
                 chunks[x, y] = obj.CollisionNode.Remove();
             else
                 obj.CollisionNode.Remove();
+            obj.CollisionNode = null;
+            obj.Parent = null;
         }
 
         public IEnumerable<T> HitTest(Position pos, double radius)
