@@ -409,6 +409,9 @@ namespace GameServer.realm.worlds
                 // if in trade, cancel it...
                 if (player?.tradeTarget != null)
                     player.CancelTrade();
+                
+                player.CollisionNode = null;
+                player.Parent = null;
             }
             // for enemies
             else if (entity is Enemy e)

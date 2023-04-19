@@ -1101,7 +1101,7 @@ public class Client {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessEscape() {
         if (Player?.Owner != null) {
-            Reconnect("Hub", -2);
+            Reconnect("Nexus", -2);
         }
     }
 

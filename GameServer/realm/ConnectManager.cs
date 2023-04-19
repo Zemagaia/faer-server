@@ -20,16 +20,21 @@ namespace GameServer.realm
 
 	public static void Reconnect(Client client, int gameId)
 	{
+		Player player = client.Player;
+		World currentWorld = client.Player.Owner;
+		
 		World world = client.Manager.GetWorld(gameId);
 		if (world == null || world.Deleted)
 		{
 			client.SendText("*Error*", 0, 0, "", "World does not exist.");
 			world = client.Manager.GetWorld(-2);
 		}
+		
 		if (world.IsLimbo)
 		{
 			world = world.GetInstance(client);
 		}
+		
 		if (!world.AllowedAccess(client))
 		{
 			client.SendText("*Error*", 0, 0, "", "Access denied");
@@ -40,6 +45,7 @@ namespace GameServer.realm
 			}
 			world = client.Manager.GetWorld(-2);
 		}
+		
 		int mapSize = Math.Max(world.Map.Width, world.Map.Height);
 		client.SendMapInfo(mapSize, mapSize, world.Name, world.SBName, world.Difficulty, world.Background, world.AllowTeleport, world.ShowDisplays);
 		client.SendAccountList(0, client.Account.LockList);
@@ -51,11 +57,16 @@ namespace GameServer.realm
 				client.SendFailure("Character is dead");
 				return;
 			}
-			client.Player.Owner.LeaveWorld(client.Player);
-			//client.Player.DisposeUpdate();
-			client.SendCreateSuccess(client.Manager.Worlds[world.Id].EnterWorld(client.Player), client.Character.CharId);
-			client.Manager.Clients[client].WorldInstance = client.Player.Owner.Id;
-			client.Manager.Clients[client].WorldName = client.Player.Owner.Name;
+
+			currentWorld.LeaveWorld(player);
+			//player.DisposeUpdate();
+
+			var objectId = world.EnterWorld(player);
+			client.SendCreateSuccess(objectId, client.Character.CharId);
+			
+			var playerInfo = client.Manager.Clients[client];
+			playerInfo.WorldInstance = world.Id;
+			playerInfo.WorldName = world.Name;
 		}
 		else
 		{
