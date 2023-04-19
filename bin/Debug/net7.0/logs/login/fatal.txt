@@ -25,3 +25,13 @@
    at Shared.resources.Resources.webFiles(String dir) in C:\Users\fyuwi\Desktop\faer-src\Shared\resources\Resources.cs:line 83
    at Shared.resources.Resources..ctor(String resourcePath, Boolean wServer) in C:\Users\fyuwi\Desktop\faer-src\Shared\resources\Resources.cs:line 45
    at LoginServer.Program.Main(String[] args) in C:\Users\fyuwi\Desktop\faer-src\LoginServer\Program.cs:line 33
+2023-04-19 18:33:16.9136|FATAL|LoginServer.Program|System.Net.HttpListenerException (5): Access is denied.
+   at System.Net.HttpListener.AddPrefixCore(String registeredPrefix)
+   at System.Net.HttpListener.AddAllPrefixes()
+   at System.Net.HttpListener.Start()
+   at LoginServer.Program.Main(String[] args)
+2023-04-19 18:34:08.5979|FATAL|LoginServer.Program|System.Net.HttpListenerException (5): Access is denied.
+   at System.Net.HttpListener.AddPrefixCore(String registeredPrefix)
+   at System.Net.HttpListener.AddAllPrefixes()
+   at System.Net.HttpListener.Start()
+   at LoginServer.Program.Main(String[] args)

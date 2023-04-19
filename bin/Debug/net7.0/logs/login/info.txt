@@ -703,3 +703,198 @@
 2023-04-15 21:10:56.5855|INFO|Shared.ISManager|Localhost (World, 1fed7529-b6d5-457f-beb6-749ad91d19f2) joined the network.
 2023-04-15 21:11:14.9095|ERROR|LoginServer.Program|acc/verify admin@hotmail.com 1320046500
 2023-04-15 21:11:14.9482|ERROR|LoginServer.Program|char/list admin@hotmail.com 1320046500
+2023-04-19 18:33:16.4019|INFO|Shared.resources.AppSettings|Loading app settings...
+2023-04-19 18:33:16.4241|INFO|Shared.resources.XmlData|Loading xml data...
+2023-04-19 18:33:16.6434|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Plated Dagger" to shop. Item does not exist.
+2023-04-19 18:33:16.6434|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby-Reinforced Longbow" to shop. Item does not exist.
+2023-04-19 18:33:16.6434|ERROR|Shared.resources.MerchantList|Failed when adding "Staff of Diabolic Secrets" to shop. Item does not exist.
+2023-04-19 18:33:16.6434|ERROR|Shared.resources.MerchantList|Failed when adding "Wand of Dark Magic" to shop. Item does not exist.
+2023-04-19 18:33:16.6434|ERROR|Shared.resources.MerchantList|Failed when adding "Adamant Great Sword" to shop. Item does not exist.
+2023-04-19 18:33:16.6434|ERROR|Shared.resources.MerchantList|Failed when adding "Demon's Edge" to shop. Item does not exist.
+2023-04-19 18:33:16.6434|ERROR|Shared.resources.MerchantList|Failed when adding "Cloak of the Red Agent" to shop. Item does not exist.
+2023-04-19 18:33:16.6434|ERROR|Shared.resources.MerchantList|Failed when adding "Quiver of the Crimson Elf" to shop. Item does not exist.
+2023-04-19 18:33:16.6434|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Nova Spell" to shop. Item does not exist.
+2023-04-19 18:33:16.6434|ERROR|Shared.resources.MerchantList|Failed when adding "Tome of Divine Favor" to shop. Item does not exist.
+2023-04-19 18:33:16.6434|ERROR|Shared.resources.MerchantList|Failed when adding "Helm of the Great General" to shop. Item does not exist.
+2023-04-19 18:33:16.6434|ERROR|Shared.resources.MerchantList|Failed when adding "Colossus Shield" to shop. Item does not exist.
+2023-04-19 18:33:16.6434|ERROR|Shared.resources.MerchantList|Failed when adding "Seal of the Holy Warrior" to shop. Item does not exist.
+2023-04-19 18:33:16.6434|ERROR|Shared.resources.MerchantList|Failed when adding "Nightwing Vial" to shop. Item does not exist.
+2023-04-19 18:33:16.6434|ERROR|Shared.resources.MerchantList|Failed when adding "Lifedrinker Skull" to shop. Item does not exist.
+2023-04-19 18:33:16.6434|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Orb" to shop. Item does not exist.
+2023-04-19 18:33:16.6434|ERROR|Shared.resources.MerchantList|Failed when adding "Scepter of Skybolts" to shop. Item does not exist.
+2023-04-19 18:33:16.6434|ERROR|Shared.resources.MerchantList|Failed when adding "Doom Circle" to shop. Item does not exist.
+2023-04-19 18:33:16.6434|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Totem" to shop. Item does not exist.
+2023-04-19 18:33:16.6434|ERROR|Shared.resources.MerchantList|Failed when adding "Deck of the Ancient" to shop. Item does not exist.
+2023-04-19 18:33:16.6434|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Rune" to shop. Item does not exist.
+2023-04-19 18:33:16.6434|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Conjurer" to shop. Item does not exist.
+2023-04-19 18:33:16.6434|ERROR|Shared.resources.MerchantList|Failed when adding "Gold-Studded Armor" to shop. Item does not exist.
+2023-04-19 18:33:16.6434|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Chestplate" to shop. Item does not exist.
+2023-04-19 18:33:16.6434|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Grand Sorcerer" to shop. Item does not exist.
+2023-04-19 18:33:16.6434|ERROR|Shared.resources.MerchantList|Failed when adding "Wyvern Skin Armor" to shop. Item does not exist.
+2023-04-19 18:33:16.6434|ERROR|Shared.resources.MerchantList|Failed when adding "Dragonscale Chestplate" to shop. Item does not exist.
+2023-04-19 18:33:16.6434|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Ring" to shop. Item does not exist.
+2023-04-19 18:33:16.6434|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Circlet" to shop. Item does not exist.
+2023-04-19 18:33:16.6434|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
+2023-04-19 18:33:16.6434|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
+2023-04-19 18:33:16.6434|INFO|Shared.resources.XmlData|Finish loading game data.
+2023-04-19 18:33:16.6434|INFO|Shared.resources.XmlData|262 Items
+2023-04-19 18:33:16.6434|INFO|Shared.resources.XmlData|81 Tiles
+2023-04-19 18:33:16.6434|INFO|Shared.resources.XmlData|312 Objects
+2023-04-19 18:33:16.6434|INFO|Shared.resources.XmlData|9 Skins
+2023-04-19 18:33:16.6434|INFO|Shared.resources.XmlData|0 Equipment Sets
+2023-04-19 18:33:16.6434|INFO|Shared.resources.XmlData|9 Classes
+2023-04-19 18:33:16.6434|INFO|Shared.resources.XmlData|9 Portals
+2023-04-19 18:33:16.6434|INFO|Shared.resources.XmlData|1 Merchants
+2023-04-19 18:33:16.6434|INFO|Shared.resources.XmlData|0 Remote Textures
+2023-04-19 18:33:16.6434|INFO|Shared.resources.XmlData|0 Additions
+2023-04-19 18:33:16.7149|INFO|Shared.Database|Initializing Database...
+2023-04-19 18:33:16.8665|INFO|Shared.ISManager|Server's Id is a03426ea-2bee-438b-8eb3-79385b984094
+2023-04-19 18:33:16.9047|INFO|Shared.ISManager|AppEngine (Account, a03426ea-2bee-438b-8eb3-79385b984094) joined the network.
+2023-04-19 18:33:16.9136|FATAL|LoginServer.Program|System.Net.HttpListenerException (5): Access is denied.
+   at System.Net.HttpListener.AddPrefixCore(String registeredPrefix)
+   at System.Net.HttpListener.AddAllPrefixes()
+   at System.Net.HttpListener.Start()
+   at LoginServer.Program.Main(String[] args)
+2023-04-19 18:34:08.4136|INFO|Shared.resources.AppSettings|Loading app settings...
+2023-04-19 18:34:08.4266|INFO|Shared.resources.XmlData|Loading xml data...
+2023-04-19 18:34:08.4840|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Plated Dagger" to shop. Item does not exist.
+2023-04-19 18:34:08.4840|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby-Reinforced Longbow" to shop. Item does not exist.
+2023-04-19 18:34:08.4840|ERROR|Shared.resources.MerchantList|Failed when adding "Staff of Diabolic Secrets" to shop. Item does not exist.
+2023-04-19 18:34:08.4840|ERROR|Shared.resources.MerchantList|Failed when adding "Wand of Dark Magic" to shop. Item does not exist.
+2023-04-19 18:34:08.4840|ERROR|Shared.resources.MerchantList|Failed when adding "Adamant Great Sword" to shop. Item does not exist.
+2023-04-19 18:34:08.4840|ERROR|Shared.resources.MerchantList|Failed when adding "Demon's Edge" to shop. Item does not exist.
+2023-04-19 18:34:08.4840|ERROR|Shared.resources.MerchantList|Failed when adding "Cloak of the Red Agent" to shop. Item does not exist.
+2023-04-19 18:34:08.4840|ERROR|Shared.resources.MerchantList|Failed when adding "Quiver of the Crimson Elf" to shop. Item does not exist.
+2023-04-19 18:34:08.4840|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Nova Spell" to shop. Item does not exist.
+2023-04-19 18:34:08.4840|ERROR|Shared.resources.MerchantList|Failed when adding "Tome of Divine Favor" to shop. Item does not exist.
+2023-04-19 18:34:08.4840|ERROR|Shared.resources.MerchantList|Failed when adding "Helm of the Great General" to shop. Item does not exist.
+2023-04-19 18:34:08.4840|ERROR|Shared.resources.MerchantList|Failed when adding "Colossus Shield" to shop. Item does not exist.
+2023-04-19 18:34:08.4840|ERROR|Shared.resources.MerchantList|Failed when adding "Seal of the Holy Warrior" to shop. Item does not exist.
+2023-04-19 18:34:08.4840|ERROR|Shared.resources.MerchantList|Failed when adding "Nightwing Vial" to shop. Item does not exist.
+2023-04-19 18:34:08.4840|ERROR|Shared.resources.MerchantList|Failed when adding "Lifedrinker Skull" to shop. Item does not exist.
+2023-04-19 18:34:08.4840|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Orb" to shop. Item does not exist.
+2023-04-19 18:34:08.4840|ERROR|Shared.resources.MerchantList|Failed when adding "Scepter of Skybolts" to shop. Item does not exist.
+2023-04-19 18:34:08.4840|ERROR|Shared.resources.MerchantList|Failed when adding "Doom Circle" to shop. Item does not exist.
+2023-04-19 18:34:08.4840|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Totem" to shop. Item does not exist.
+2023-04-19 18:34:08.4840|ERROR|Shared.resources.MerchantList|Failed when adding "Deck of the Ancient" to shop. Item does not exist.
+2023-04-19 18:34:08.4840|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Rune" to shop. Item does not exist.
+2023-04-19 18:34:08.4840|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Conjurer" to shop. Item does not exist.
+2023-04-19 18:34:08.4840|ERROR|Shared.resources.MerchantList|Failed when adding "Gold-Studded Armor" to shop. Item does not exist.
+2023-04-19 18:34:08.4840|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Chestplate" to shop. Item does not exist.
+2023-04-19 18:34:08.4840|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Grand Sorcerer" to shop. Item does not exist.
+2023-04-19 18:34:08.4840|ERROR|Shared.resources.MerchantList|Failed when adding "Wyvern Skin Armor" to shop. Item does not exist.
+2023-04-19 18:34:08.4840|ERROR|Shared.resources.MerchantList|Failed when adding "Dragonscale Chestplate" to shop. Item does not exist.
+2023-04-19 18:34:08.4840|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Ring" to shop. Item does not exist.
+2023-04-19 18:34:08.4840|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Circlet" to shop. Item does not exist.
+2023-04-19 18:34:08.4840|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
+2023-04-19 18:34:08.4840|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
+2023-04-19 18:34:08.4840|INFO|Shared.resources.XmlData|Finish loading game data.
+2023-04-19 18:34:08.4840|INFO|Shared.resources.XmlData|262 Items
+2023-04-19 18:34:08.4840|INFO|Shared.resources.XmlData|81 Tiles
+2023-04-19 18:34:08.4840|INFO|Shared.resources.XmlData|312 Objects
+2023-04-19 18:34:08.4840|INFO|Shared.resources.XmlData|9 Skins
+2023-04-19 18:34:08.4840|INFO|Shared.resources.XmlData|0 Equipment Sets
+2023-04-19 18:34:08.4840|INFO|Shared.resources.XmlData|9 Classes
+2023-04-19 18:34:08.4840|INFO|Shared.resources.XmlData|9 Portals
+2023-04-19 18:34:08.4840|INFO|Shared.resources.XmlData|1 Merchants
+2023-04-19 18:34:08.4840|INFO|Shared.resources.XmlData|0 Remote Textures
+2023-04-19 18:34:08.4840|INFO|Shared.resources.XmlData|0 Additions
+2023-04-19 18:34:08.4892|INFO|Shared.Database|Initializing Database...
+2023-04-19 18:34:08.5684|INFO|Shared.ISManager|Server's Id is e875b755-9947-42fc-8168-7388bfab4deb
+2023-04-19 18:34:08.5979|FATAL|LoginServer.Program|System.Net.HttpListenerException (5): Access is denied.
+   at System.Net.HttpListener.AddPrefixCore(String registeredPrefix)
+   at System.Net.HttpListener.AddAllPrefixes()
+   at System.Net.HttpListener.Start()
+   at LoginServer.Program.Main(String[] args)
+2023-04-19 18:34:08.5979|INFO|Shared.ISManager|AppEngine (Account, e875b755-9947-42fc-8168-7388bfab4deb) joined the network.
+2023-04-19 18:34:18.3555|INFO|Shared.resources.AppSettings|Loading app settings...
+2023-04-19 18:34:18.3708|INFO|Shared.resources.XmlData|Loading xml data...
+2023-04-19 18:34:18.4361|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Plated Dagger" to shop. Item does not exist.
+2023-04-19 18:34:18.4361|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby-Reinforced Longbow" to shop. Item does not exist.
+2023-04-19 18:34:18.4361|ERROR|Shared.resources.MerchantList|Failed when adding "Staff of Diabolic Secrets" to shop. Item does not exist.
+2023-04-19 18:34:18.4361|ERROR|Shared.resources.MerchantList|Failed when adding "Wand of Dark Magic" to shop. Item does not exist.
+2023-04-19 18:34:18.4361|ERROR|Shared.resources.MerchantList|Failed when adding "Adamant Great Sword" to shop. Item does not exist.
+2023-04-19 18:34:18.4361|ERROR|Shared.resources.MerchantList|Failed when adding "Demon's Edge" to shop. Item does not exist.
+2023-04-19 18:34:18.4361|ERROR|Shared.resources.MerchantList|Failed when adding "Cloak of the Red Agent" to shop. Item does not exist.
+2023-04-19 18:34:18.4361|ERROR|Shared.resources.MerchantList|Failed when adding "Quiver of the Crimson Elf" to shop. Item does not exist.
+2023-04-19 18:34:18.4361|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Nova Spell" to shop. Item does not exist.
+2023-04-19 18:34:18.4361|ERROR|Shared.resources.MerchantList|Failed when adding "Tome of Divine Favor" to shop. Item does not exist.
+2023-04-19 18:34:18.4361|ERROR|Shared.resources.MerchantList|Failed when adding "Helm of the Great General" to shop. Item does not exist.
+2023-04-19 18:34:18.4361|ERROR|Shared.resources.MerchantList|Failed when adding "Colossus Shield" to shop. Item does not exist.
+2023-04-19 18:34:18.4361|ERROR|Shared.resources.MerchantList|Failed when adding "Seal of the Holy Warrior" to shop. Item does not exist.
+2023-04-19 18:34:18.4361|ERROR|Shared.resources.MerchantList|Failed when adding "Nightwing Vial" to shop. Item does not exist.
+2023-04-19 18:34:18.4361|ERROR|Shared.resources.MerchantList|Failed when adding "Lifedrinker Skull" to shop. Item does not exist.
+2023-04-19 18:34:18.4361|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Orb" to shop. Item does not exist.
+2023-04-19 18:34:18.4361|ERROR|Shared.resources.MerchantList|Failed when adding "Scepter of Skybolts" to shop. Item does not exist.
+2023-04-19 18:34:18.4361|ERROR|Shared.resources.MerchantList|Failed when adding "Doom Circle" to shop. Item does not exist.
+2023-04-19 18:34:18.4361|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Totem" to shop. Item does not exist.
+2023-04-19 18:34:18.4361|ERROR|Shared.resources.MerchantList|Failed when adding "Deck of the Ancient" to shop. Item does not exist.
+2023-04-19 18:34:18.4361|ERROR|Shared.resources.MerchantList|Failed when adding "T6 Rune" to shop. Item does not exist.
+2023-04-19 18:34:18.4361|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Conjurer" to shop. Item does not exist.
+2023-04-19 18:34:18.4361|ERROR|Shared.resources.MerchantList|Failed when adding "Gold-Studded Armor" to shop. Item does not exist.
+2023-04-19 18:34:18.4361|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Chestplate" to shop. Item does not exist.
+2023-04-19 18:34:18.4361|ERROR|Shared.resources.MerchantList|Failed when adding "Robe of the Grand Sorcerer" to shop. Item does not exist.
+2023-04-19 18:34:18.4361|ERROR|Shared.resources.MerchantList|Failed when adding "Wyvern Skin Armor" to shop. Item does not exist.
+2023-04-19 18:34:18.4361|ERROR|Shared.resources.MerchantList|Failed when adding "Dragonscale Chestplate" to shop. Item does not exist.
+2023-04-19 18:34:18.4361|ERROR|Shared.resources.MerchantList|Failed when adding "Golden Ring" to shop. Item does not exist.
+2023-04-19 18:34:18.4361|ERROR|Shared.resources.MerchantList|Failed when adding "Ruby Circlet" to shop. Item does not exist.
+2023-04-19 18:34:18.4361|ERROR|Shared.resources.MerchantList|Failed when adding "Magic Potion" to shop. Item does not exist.
+2023-04-19 18:34:18.4361|ERROR|Shared.resources.MerchantList|Failed when adding "Health Potion" to shop. Item does not exist.
+2023-04-19 18:34:18.4361|INFO|Shared.resources.XmlData|Finish loading game data.
+2023-04-19 18:34:18.4361|INFO|Shared.resources.XmlData|262 Items
+2023-04-19 18:34:18.4361|INFO|Shared.resources.XmlData|81 Tiles
+2023-04-19 18:34:18.4361|INFO|Shared.resources.XmlData|312 Objects
+2023-04-19 18:34:18.4361|INFO|Shared.resources.XmlData|9 Skins
+2023-04-19 18:34:18.4361|INFO|Shared.resources.XmlData|0 Equipment Sets
+2023-04-19 18:34:18.4361|INFO|Shared.resources.XmlData|9 Classes
+2023-04-19 18:34:18.4361|INFO|Shared.resources.XmlData|9 Portals
+2023-04-19 18:34:18.4361|INFO|Shared.resources.XmlData|1 Merchants
+2023-04-19 18:34:18.4361|INFO|Shared.resources.XmlData|0 Remote Textures
+2023-04-19 18:34:18.4361|INFO|Shared.resources.XmlData|0 Additions
+2023-04-19 18:34:18.4423|INFO|Shared.Database|Initializing Database...
+2023-04-19 18:34:18.5404|INFO|Shared.ISManager|Server's Id is bb6742d5-f268-4243-8d36-60c8600d03a4
+2023-04-19 18:34:18.5767|INFO|LoginServer.Program|Listening at address 127.0.0.1:8080...
+2023-04-19 18:34:18.5811|INFO|Shared.ISManager|AppEngine (Account, bb6742d5-f268-4243-8d36-60c8600d03a4) joined the network.
+2023-04-19 18:34:53.9529|ERROR|LoginServer.Program|acc/verify test@gmail.com 12345
+2023-04-19 18:34:53.9813|ERROR|LoginServer.Program|char/list test@gmail.com 12345
+2023-04-19 18:35:33.7110|ERROR|LoginServer.Program|acc/verify test@gmail.com 12345
+2023-04-19 18:35:33.7110|ERROR|LoginServer.Program|char/list test@gmail.com 12345
+2023-04-19 18:35:56.0339|INFO|Shared.ISManager|Localhost (World, f8bd80af-a631-4d06-89e5-d708172ccd28) joined the network.
+2023-04-19 18:36:04.0216|ERROR|LoginServer.Program|acc/verify test@gmail.com 12345
+2023-04-19 18:36:04.0216|ERROR|LoginServer.Program|char/list test@gmail.com 12345
+2023-04-19 18:37:47.4963|ERROR|LoginServer.Program|acc/verify test@gmail.com 12345
+2023-04-19 18:37:47.4963|ERROR|LoginServer.Program|char/list test@gmail.com 12345
+2023-04-19 18:40:17.2414|INFO|Shared.ISManager|Localhost (World, e723178b-536b-4a00-8983-b581204b28ca) joined the network.
+2023-04-19 18:40:38.5694|INFO|Shared.ISManager|Localhost (World, f8bd80af-a631-4d06-89e5-d708172ccd28) timed out.
+2023-04-19 18:41:52.5695|INFO|Shared.ISManager|Localhost (World, e723178b-536b-4a00-8983-b581204b28ca) timed out.
+2023-04-19 18:41:55.1548|INFO|Shared.ISManager|Localhost (World, efe902ad-7307-4b70-a543-25441b1721c4) joined the network.
+2023-04-19 18:45:50.5684|INFO|Shared.ISManager|Localhost (World, efe902ad-7307-4b70-a543-25441b1721c4) timed out.
+2023-04-19 18:46:18.4046|INFO|Shared.ISManager|Localhost (World, efe902ad-7307-4b70-a543-25441b1721c4) re-joined the network.
+2023-04-19 18:47:00.0651|INFO|Shared.ISManager|Localhost (World, 7771fbf1-e568-427a-87e8-2d76dc556432) joined the network.
+2023-04-19 18:47:24.5690|INFO|Shared.ISManager|Localhost (World, efe902ad-7307-4b70-a543-25441b1721c4) timed out.
+2023-04-19 18:49:08.5682|INFO|Shared.ISManager|Localhost (World, 7771fbf1-e568-427a-87e8-2d76dc556432) timed out.
+2023-04-19 19:00:15.4972|INFO|Shared.ISManager|Localhost (World, 1399d51c-13a4-4d42-8124-8feb62109c31) joined the network.
+2023-04-19 19:01:28.6700|INFO|Shared.ISManager|Localhost (World, 8d38f35e-76f3-4b9d-ab80-28fb47bbfbff) joined the network.
+2023-04-19 19:01:40.5682|INFO|Shared.ISManager|Localhost (World, 1399d51c-13a4-4d42-8124-8feb62109c31) timed out.
+2023-04-19 19:02:26.5676|INFO|Shared.ISManager|Localhost (World, 8d38f35e-76f3-4b9d-ab80-28fb47bbfbff) timed out.
+2023-04-19 19:03:50.5137|INFO|Shared.ISManager|Localhost (World, 8d38f35e-76f3-4b9d-ab80-28fb47bbfbff) re-joined the network.
+2023-04-19 19:04:24.5676|INFO|Shared.ISManager|Localhost (World, 8d38f35e-76f3-4b9d-ab80-28fb47bbfbff) timed out.
+2023-04-19 19:06:22.2121|INFO|Shared.ISManager|Localhost (World, 5ee27484-0ba5-43d9-bb03-df20dd5a4272) joined the network.
+2023-04-19 19:07:44.5683|INFO|Shared.ISManager|Localhost (World, 5ee27484-0ba5-43d9-bb03-df20dd5a4272) timed out.
+2023-04-19 19:08:08.8048|INFO|Shared.ISManager|Localhost (World, 5ee27484-0ba5-43d9-bb03-df20dd5a4272) re-joined the network.
+2023-04-19 19:08:19.7385|INFO|Shared.ISManager|Localhost (World, cb428603-08b4-4456-ba67-acf1757bcfca) joined the network.
+2023-04-19 19:08:42.5683|INFO|Shared.ISManager|Localhost (World, 5ee27484-0ba5-43d9-bb03-df20dd5a4272) timed out.
+2023-04-19 19:10:54.1861|INFO|Shared.ISManager|Localhost (World, 995ea9b6-d31f-4a10-b3fe-0516dce6a630) joined the network.
+2023-04-19 19:11:18.5690|INFO|Shared.ISManager|Localhost (World, cb428603-08b4-4456-ba67-acf1757bcfca) timed out.
+2023-04-19 19:12:06.3832|INFO|Shared.ISManager|Localhost (World, f24792a0-b067-42dd-8c6f-bcc5257c3e67) joined the network.
+2023-04-19 19:12:30.5694|INFO|Shared.ISManager|Localhost (World, 995ea9b6-d31f-4a10-b3fe-0516dce6a630) timed out.
+2023-04-19 19:16:20.4414|ERROR|LoginServer.Program|acc/verify test@gmail.com 12345
+2023-04-19 19:16:20.4414|ERROR|LoginServer.Program|char/list test@gmail.com 12345
+2023-04-19 19:16:22.2118|INFO|Shared.ISManager|Localhost (World, 67b19177-f8eb-42bd-bda4-02e38d82004f) joined the network.
+2023-04-19 19:16:44.5692|INFO|Shared.ISManager|Localhost (World, f24792a0-b067-42dd-8c6f-bcc5257c3e67) timed out.
+2023-04-19 19:20:38.0566|ERROR|LoginServer.Program|acc/verify test@gmail.com 12345
+2023-04-19 19:20:38.0566|ERROR|LoginServer.Program|char/list test@gmail.com 12345
+2023-04-19 19:22:15.6955|ERROR|LoginServer.Program|acc/verify test@gmail.com 12345
+2023-04-19 19:22:15.6955|ERROR|LoginServer.Program|char/list test@gmail.com 12345
+2023-04-19 19:23:57.2748|ERROR|LoginServer.Program|acc/verify test@gmail.com 12345
+2023-04-19 19:23:57.2748|ERROR|LoginServer.Program|char/list test@gmail.com 12345
