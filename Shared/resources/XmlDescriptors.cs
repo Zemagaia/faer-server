@@ -504,7 +504,7 @@ namespace Shared.resources
         {
             SlotTypes = e.GetValue<string>("SlotTypes").CommaToArray<int>();
             Equipment = e.GetValue<string>("Equipment").CommaToArray<ushort>();
-            Stats = new Stat[9];
+            Stats = new Stat[13];
             for (var i = 0; i < Stats.Length; i++)
                 Stats[i] = new Stat(i, e);
             if (e.HasElement("UnlockLevel") || e.HasElement("UnlockCost"))
