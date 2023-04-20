@@ -453,29 +453,21 @@ namespace Shared.resources
     public class Stat
     {
         public readonly string Type;
-        public readonly int MaxValue;
+        public readonly int[] MaxValues;
         public readonly int StartingValue;
-        public readonly int MinIncrease;
-        public readonly int MaxIncrease;
 
         public Stat(int index, XElement e)
         {
             Type = StatIndexToName(index);
             var x = e.Element(Type);
-            if (x != null)
-            {
-                StartingValue = int.Parse(x.Value);
-                MaxValue = x.GetAttribute<int>("max");
-            }
-
-            var y = e.Elements("LevelIncrease");
-            foreach (var s in y)
-                if (s.Value == Type)
-                {
-                    MinIncrease = s.GetAttribute<int>("min");
-                    MaxIncrease = s.GetAttribute<int>("max");
-                    break;
-                }
+            if (x == null)
+                return;
+            
+            StartingValue = int.Parse(x.Value);
+            // wack todo
+            MaxValues = new int[2];
+            MaxValues[0] = x.GetAttribute<int>("t1");
+            MaxValues[1] = x.GetAttribute<int>("t2");
         }
 
         private static string StatIndexToName(int index)
@@ -485,12 +477,16 @@ namespace Shared.resources
                 case 0: return "Health";
                 case 1: return "Mana";
                 case 2: return "Strength";
-                case 3: return "Defense";
-                case 4: return "Speed";
-                case 5: return "Sight";
-                case 6: return "Stamina";
-                case 7: return "Luck";
-                case 8: return "Penetration";
+                case 3: return "Wit";
+                case 4: return "Defense";
+                case 5: return "Resistance";
+                case 6: return "Speed";
+                case 7: return "Haste";
+                case 8: return "Stamina";
+                case 9: return "Intelligence";
+                case 10: return "Piercing";
+                case 11: return "Penetration";
+                case 12: return "Tenacity";
             }
 
             return null;

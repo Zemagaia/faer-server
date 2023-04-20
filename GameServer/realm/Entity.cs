@@ -750,7 +750,7 @@ namespace GameServer.realm
                 double tenMod;
                 if (Constants.NegativeEffsIdx.Contains(i.Effect) && duration != -1)
                 {
-                    tenMod = 1d - (this is Player p ? (double)p.Stats[13] / 100 : (double)ObjectDesc.Tenacity / 100);
+                    tenMod = 1d - (this is Player p ? (double)p.Stats[12] / 100 : (double)ObjectDesc.Tenacity / 100);
                     _effects[eff] = (int)Math.Max(1, duration * tenMod);
                 }
                 else

@@ -828,13 +828,12 @@ namespace Shared
 
             var newId = (int)_db.HashIncrement(acc.Key, "nextCharId");
 
-            var newCharacters = Resources.Settings.Characters;
             character = new DbChar(acc, newId)
             {
                 ObjectType = type,
                 Fame = 0,
                 Items = InitInventory(playerDesc.Equipment),
-                Stats = new int[]
+                Stats = new[]
                 {
                     playerDesc.Stats[0].StartingValue,
                     playerDesc.Stats[1].StartingValue,
@@ -845,6 +844,10 @@ namespace Shared
                     playerDesc.Stats[6].StartingValue,
                     playerDesc.Stats[7].StartingValue,
                     playerDesc.Stats[8].StartingValue,
+                    playerDesc.Stats[9].StartingValue,
+                    playerDesc.Stats[10].StartingValue,
+                    playerDesc.Stats[11].StartingValue,
+                    playerDesc.Stats[12].StartingValue
                 },
                 HP = playerDesc.Stats[0].StartingValue,
                 MP = playerDesc.Stats[1].StartingValue,
@@ -854,24 +857,6 @@ namespace Shared
                 CreateTime = DateTime.Now,
                 LastSeen = DateTime.Now
             };
-
-            if (newCharacters.Maxed)
-            {
-                character.Stats = new int[]
-                {
-                    playerDesc.Stats[0].MaxValue,
-                    playerDesc.Stats[1].MaxValue,
-                    playerDesc.Stats[2].MaxValue,
-                    playerDesc.Stats[3].MaxValue,
-                    playerDesc.Stats[4].MaxValue,
-                    playerDesc.Stats[5].MaxValue,
-                    playerDesc.Stats[6].MaxValue,
-                    playerDesc.Stats[7].MaxValue,
-                    playerDesc.Stats[8].MaxValue,
-                };
-                character.HP = character.Stats[0];
-                character.MP = character.Stats[1];
-            }
 
             character.FlushAsync();
             _db.SetAdd("alive." + acc.AccountId, BitConverter.GetBytes(newId));

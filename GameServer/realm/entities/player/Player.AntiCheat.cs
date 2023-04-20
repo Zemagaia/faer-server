@@ -23,13 +23,6 @@ namespace GameServer.realm.entities.player
         public int AcMoveInfractions;
         private int _acMoveRefreshTime;
 
-        public double DexRateOfFire()
-        {
-            var dex = Stats[5] <= 384 ? Stats[5] : 384;
-            var rof = 0.0015 + (dex / 75.0) * (0.008 - 0.0015);
-            return rof;
-        }
-
         public bool IsNoClipping()
         {
             if (Owner == null || !TileOccupied(RealX, RealY) && !TileFullOccupied(RealX, RealY))

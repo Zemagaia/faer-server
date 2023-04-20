@@ -453,3 +453,126 @@
 2023-04-18 13:00:43.3979|INFO|Shared.ISManager|Localhost (World, 9c5871df-75aa-455c-9253-85c05ce45ab3) timed out.
 2023-04-18 13:07:53.1860|INFO|Shared.ISManager|Localhost (World, 467808c7-4267-4f22-8819-ca06038ad24a) joined the network.
 2023-04-18 13:08:19.4006|INFO|Shared.ISManager|Localhost (World, 4ef8729f-08bb-46de-a6cf-e1222ff8ff15) timed out.
+2023-04-18 17:23:23.5680|INFO|Shared.resources.AppSettings|Loading app settings...
+2023-04-18 17:23:23.5963|INFO|Shared.resources.XmlData|Loading xml data...
+2023-04-18 17:23:23.6730|INFO|Shared.resources.XmlData|Finish loading game data.
+2023-04-18 17:23:23.6730|INFO|Shared.resources.XmlData|262 Items
+2023-04-18 17:23:23.6730|INFO|Shared.resources.XmlData|81 Tiles
+2023-04-18 17:23:23.6730|INFO|Shared.resources.XmlData|312 Objects
+2023-04-18 17:23:23.6730|INFO|Shared.resources.XmlData|9 Skins
+2023-04-18 17:23:23.6730|INFO|Shared.resources.XmlData|0 Equipment Sets
+2023-04-18 17:23:23.6730|INFO|Shared.resources.XmlData|9 Classes
+2023-04-18 17:23:23.6730|INFO|Shared.resources.XmlData|9 Portals
+2023-04-18 17:23:23.6730|INFO|Shared.resources.XmlData|1 Merchants
+2023-04-18 17:23:23.6730|INFO|Shared.resources.XmlData|0 Remote Textures
+2023-04-18 17:23:23.6730|INFO|Shared.resources.XmlData|0 Additions
+2023-04-18 17:23:23.6831|INFO|Shared.Database|Initializing Database...
+2023-04-18 17:23:23.8180|INFO|Shared.ISManager|Server's Id is b0e9af7a-d5e1-4699-8c53-447bd8f85095
+2023-04-18 17:23:23.8574|INFO|LoginServer.Program|Listening at address 127.0.0.1:8080...
+2023-04-18 17:23:23.8693|INFO|Shared.ISManager|AppEngine (Account, b0e9af7a-d5e1-4699-8c53-447bd8f85095) joined the network.
+2023-04-18 17:23:32.9060|INFO|Shared.ISManager|Localhost (World, 785d1371-6335-466f-a25e-80e13ff854cd) joined the network.
+2023-04-18 19:45:16.0115|INFO|Shared.resources.AppSettings|Loading app settings...
+2023-04-18 19:45:16.0391|INFO|Shared.resources.XmlData|Loading xml data...
+2023-04-18 19:45:16.1192|INFO|Shared.resources.XmlData|Finish loading game data.
+2023-04-18 19:45:16.1192|INFO|Shared.resources.XmlData|262 Items
+2023-04-18 19:45:16.1192|INFO|Shared.resources.XmlData|81 Tiles
+2023-04-18 19:45:16.1192|INFO|Shared.resources.XmlData|312 Objects
+2023-04-18 19:45:16.1192|INFO|Shared.resources.XmlData|9 Skins
+2023-04-18 19:45:16.1192|INFO|Shared.resources.XmlData|0 Equipment Sets
+2023-04-18 19:45:16.1192|INFO|Shared.resources.XmlData|9 Classes
+2023-04-18 19:45:16.1192|INFO|Shared.resources.XmlData|9 Portals
+2023-04-18 19:45:16.1192|INFO|Shared.resources.XmlData|1 Merchants
+2023-04-18 19:45:16.1192|INFO|Shared.resources.XmlData|0 Remote Textures
+2023-04-18 19:45:16.1192|INFO|Shared.resources.XmlData|0 Additions
+2023-04-18 19:45:16.1301|INFO|Shared.Database|Initializing Database...
+2023-04-18 19:45:16.2755|INFO|Shared.ISManager|Server's Id is 6e7db54d-3621-428b-a21f-eb2ceedcb7ae
+2023-04-18 19:45:16.3149|INFO|LoginServer.Program|Listening at address 127.0.0.1:8080...
+2023-04-18 19:45:16.3269|INFO|Shared.ISManager|AppEngine (Account, 6e7db54d-3621-428b-a21f-eb2ceedcb7ae) joined the network.
+2023-04-19 13:36:42.2406|INFO|Shared.resources.AppSettings|Loading app settings...
+2023-04-19 13:36:42.2679|INFO|Shared.resources.XmlData|Loading xml data...
+2023-04-19 13:36:42.3413|INFO|Shared.resources.XmlData|Finish loading game data.
+2023-04-19 13:36:42.3413|INFO|Shared.resources.XmlData|262 Items
+2023-04-19 13:36:42.3417|INFO|Shared.resources.XmlData|81 Tiles
+2023-04-19 13:36:42.3417|INFO|Shared.resources.XmlData|312 Objects
+2023-04-19 13:36:42.3417|INFO|Shared.resources.XmlData|9 Skins
+2023-04-19 13:36:42.3417|INFO|Shared.resources.XmlData|0 Equipment Sets
+2023-04-19 13:36:42.3417|INFO|Shared.resources.XmlData|9 Classes
+2023-04-19 13:36:42.3417|INFO|Shared.resources.XmlData|9 Portals
+2023-04-19 13:36:42.3417|INFO|Shared.resources.XmlData|1 Merchants
+2023-04-19 13:36:42.3417|INFO|Shared.resources.XmlData|0 Remote Textures
+2023-04-19 13:36:42.3417|INFO|Shared.resources.XmlData|0 Additions
+2023-04-19 13:36:42.3513|INFO|Shared.Database|Initializing Database...
+2023-04-19 13:36:42.4812|INFO|Shared.ISManager|Server's Id is 01a6442e-ecfd-4543-b1c0-949bd67bba78
+2023-04-19 13:36:42.5239|INFO|LoginServer.Program|Listening at address 127.0.0.1:8080...
+2023-04-19 13:36:42.5357|INFO|Shared.ISManager|AppEngine (Account, 01a6442e-ecfd-4543-b1c0-949bd67bba78) joined the network.
+2023-04-19 13:36:47.8250|INFO|Shared.ISManager|Localhost (World, 3f8eaa1e-c326-4c45-8be6-f7126553f771) joined the network.
+2023-04-20 13:09:09.1603|INFO|Shared.resources.AppSettings|Loading app settings...
+2023-04-20 13:09:09.1823|INFO|Shared.resources.XmlData|Loading xml data...
+2023-04-20 13:09:09.2473|FATAL|LoginServer.Program|System.Xml.XmlException: 't1' is an unexpected token. Expecting whitespace. Line 22, position 19.
+   at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.Throw(String res, String arg)
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Xml.Linq.XContainer.ReadContentFrom(XmlReader r)
+   at System.Xml.Linq.XElement.ReadElementFrom(XmlReader r, LoadOptions o)
+   at System.Xml.Linq.XElement.Load(XmlReader reader, LoadOptions options)
+   at System.Xml.Linq.XElement.Parse(String text, LoadOptions options)
+   at Shared.resources.XmlData.LoadXmls(String basePath, String ext) in /home/a/faer/server/Shared/resources/XmlData.cs:line 187
+   at Shared.resources.XmlData..ctor(String path) in /home/a/faer/server/Shared/resources/XmlData.cs:line 161
+   at Shared.resources.Resources..ctor(String resourcePath, Boolean wServer) in /home/a/faer/server/Shared/resources/Resources.cs:line 27
+   at LoginServer.Program.Main(String[] args) in /home/a/faer/server/LoginServer/Program.cs:line 33
+2023-04-20 13:12:34.9261|INFO|Shared.resources.AppSettings|Loading app settings...
+2023-04-20 13:12:34.9434|INFO|Shared.resources.XmlData|Loading xml data...
+2023-04-20 13:12:35.0110|INFO|Shared.resources.XmlData|Finish loading game data.
+2023-04-20 13:12:35.0114|INFO|Shared.resources.XmlData|262 Items
+2023-04-20 13:12:35.0114|INFO|Shared.resources.XmlData|81 Tiles
+2023-04-20 13:12:35.0114|INFO|Shared.resources.XmlData|312 Objects
+2023-04-20 13:12:35.0114|INFO|Shared.resources.XmlData|9 Skins
+2023-04-20 13:12:35.0114|INFO|Shared.resources.XmlData|0 Equipment Sets
+2023-04-20 13:12:35.0114|INFO|Shared.resources.XmlData|9 Classes
+2023-04-20 13:12:35.0114|INFO|Shared.resources.XmlData|9 Portals
+2023-04-20 13:12:35.0114|INFO|Shared.resources.XmlData|1 Merchants
+2023-04-20 13:12:35.0114|INFO|Shared.resources.XmlData|0 Remote Textures
+2023-04-20 13:12:35.0114|INFO|Shared.resources.XmlData|0 Additions
+2023-04-20 13:12:35.0189|INFO|Shared.Database|Initializing Database...
+2023-04-20 13:12:35.1445|INFO|Shared.ISManager|Server's Id is 46c0162f-0e01-4cef-9bb2-50f4fe1b6a07
+2023-04-20 13:12:35.1833|INFO|LoginServer.Program|Listening at address 127.0.0.1:8080...
+2023-04-20 13:12:35.1943|INFO|Shared.ISManager|AppEngine (Account, 46c0162f-0e01-4cef-9bb2-50f4fe1b6a07) joined the network.
+2023-04-20 13:12:43.3144|INFO|Shared.ISManager|Localhost (World, 70841998-ebbf-4c09-b6d5-52e68bd737d2) joined the network.
+2023-04-20 13:31:21.3260|INFO|Shared.resources.AppSettings|Loading app settings...
+2023-04-20 13:31:21.3553|INFO|Shared.resources.XmlData|Loading xml data...
+2023-04-20 13:31:21.4293|INFO|Shared.resources.XmlData|Finish loading game data.
+2023-04-20 13:31:21.4293|INFO|Shared.resources.XmlData|262 Items
+2023-04-20 13:31:21.4293|INFO|Shared.resources.XmlData|81 Tiles
+2023-04-20 13:31:21.4293|INFO|Shared.resources.XmlData|312 Objects
+2023-04-20 13:31:21.4293|INFO|Shared.resources.XmlData|9 Skins
+2023-04-20 13:31:21.4293|INFO|Shared.resources.XmlData|0 Equipment Sets
+2023-04-20 13:31:21.4293|INFO|Shared.resources.XmlData|9 Classes
+2023-04-20 13:31:21.4293|INFO|Shared.resources.XmlData|9 Portals
+2023-04-20 13:31:21.4293|INFO|Shared.resources.XmlData|1 Merchants
+2023-04-20 13:31:21.4293|INFO|Shared.resources.XmlData|0 Remote Textures
+2023-04-20 13:31:21.4293|INFO|Shared.resources.XmlData|0 Additions
+2023-04-20 13:31:21.4348|INFO|Shared.Database|Initializing Database...
+2023-04-20 13:31:21.5508|INFO|Shared.ISManager|Server's Id is d933fe9c-3290-4471-a53d-0a733ec8b18f
+2023-04-20 13:31:21.5977|INFO|LoginServer.Program|Listening at address 127.0.0.1:8080...
+2023-04-20 13:31:21.6021|INFO|Shared.ISManager|AppEngine (Account, d933fe9c-3290-4471-a53d-0a733ec8b18f) joined the network.
+2023-04-20 13:31:21.6021|INFO|Shared.ISManager|Localhost (World, ed1f8309-0d12-47f5-b148-a7a3f20a2820) joined the network.
+2023-04-20 14:09:22.4275|INFO|Shared.resources.AppSettings|Loading app settings...
+2023-04-20 14:09:22.4506|INFO|Shared.resources.XmlData|Loading xml data...
+2023-04-20 14:09:22.5254|INFO|Shared.resources.XmlData|Finish loading game data.
+2023-04-20 14:09:22.5254|INFO|Shared.resources.XmlData|262 Items
+2023-04-20 14:09:22.5254|INFO|Shared.resources.XmlData|81 Tiles
+2023-04-20 14:09:22.5254|INFO|Shared.resources.XmlData|312 Objects
+2023-04-20 14:09:22.5254|INFO|Shared.resources.XmlData|9 Skins
+2023-04-20 14:09:22.5254|INFO|Shared.resources.XmlData|0 Equipment Sets
+2023-04-20 14:09:22.5254|INFO|Shared.resources.XmlData|9 Classes
+2023-04-20 14:09:22.5254|INFO|Shared.resources.XmlData|9 Portals
+2023-04-20 14:09:22.5254|INFO|Shared.resources.XmlData|1 Merchants
+2023-04-20 14:09:22.5254|INFO|Shared.resources.XmlData|0 Remote Textures
+2023-04-20 14:09:22.5254|INFO|Shared.resources.XmlData|0 Additions
+2023-04-20 14:09:22.5355|INFO|Shared.Database|Initializing Database...
+2023-04-20 14:09:22.6517|INFO|Shared.ISManager|Server's Id is 9376741b-2459-4fb7-bf37-8228b62e8204
+2023-04-20 14:09:22.6906|INFO|LoginServer.Program|Listening at address 127.0.0.1:8080...
+2023-04-20 14:09:22.7026|INFO|Shared.ISManager|AppEngine (Account, 9376741b-2459-4fb7-bf37-8228b62e8204) joined the network.
+2023-04-20 14:09:33.4263|INFO|Shared.ISManager|Localhost (World, 8d7afd6c-db5e-4ccd-ac94-54ae1548ab0f) joined the network.

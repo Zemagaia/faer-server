@@ -170,9 +170,9 @@ class GuildIdentity
 
 class ClassStatsEntry
 {
-    public ushort ObjectType { get; private set; }
-    public int BestLevel { get; private set; }
-    public int BestFame { get; private set; }
+    public ushort ObjectType { get; private init; }
+    public int BestLevel { get; private init; }
+    public int BestFame { get; private init; }
 
     public static ClassStatsEntry FromDb(ushort objType, DbClassStatsEntry entry)
     {
@@ -198,8 +198,8 @@ class ClassStatsEntry
 class Stats
 {
     public int BestCharFame { get; private set; }
-    public int TotalFame { get; private set; }
-    public int Fame { get; private set; }
+    public int TotalFame { get; private init; }
+    public int Fame { get; private init; }
 
     Dictionary<ushort, ClassStatsEntry> entries;
 
@@ -239,29 +239,29 @@ class Stats
 
 class Account
 {
-    public int AccountId { get; private set; }
+    public int AccountId { get; private init; }
     public string Name { get; init; }
         
-    public bool Admin { get; private set; }
-    public int Rank { get; private set; }
+    public bool Admin { get; private init; }
+    public int Rank { get; private init; }
 
-    public int Credits { get; private set; }
-    public int NextCharSlotPrice { get; private set; }
-    public int CharSlotCurrency { get; private set; }
-    public string MenuMusic { get; private set; }
-    public string DeadMusic { get; private set; }
-    public int MapMinRank { get; private set; }
-    public int SpriteMinRank { get; private set; }
+    public int Credits { get; private init; }
+    public int NextCharSlotPrice { get; private init; }
+    public int CharSlotCurrency { get; private init; }
+    public string MenuMusic { get; private init; }
+    public string DeadMusic { get; private init; }
+    public int MapMinRank { get; private init; }
+    public int SpriteMinRank { get; private init; }
 
-    public Stats Stats { get; private set; }
-    public GuildIdentity Guild { get; private set; }
+    public Stats Stats { get; private init; }
+    public GuildIdentity Guild { get; private init; }
 
-    public ushort[] Skins { get; private set; }
+    public ushort[] Skins { get; private init; }
 
-    public bool Banned { get; private set; }
-    public string BanReasons { get; private set; }
-    public int BanLiftTime { get; private set; }
-    public int LastSeen { get; private set; }
+    public bool Banned { get; private init; }
+    public string BanReasons { get; private init; }
+    public int BanLiftTime { get; private init; }
+    public int LastSeen { get; private init; }
 
     public static Account FromDb(DbAccount acc)
     {
@@ -317,26 +317,30 @@ class Account
 
 class Character
 {
-    public int CharacterId { get; private set; }
-    public ushort ObjectType { get; private set; }
-    public int CurrentFame { get; private set; }
-    public ushort[] Equipment { get; private set; }
-    public int Health { get; private set; }
-    public int Mana { get; private set; }
-    public int Strength { get; private set; }
-    public int Defense { get; private set; }
-    public int Speed { get; private set; }
-    public int Sight { get; private set; }
-    public int Stamina { get; private set; }
-    public int Luck { get; private set; }
-    public int Penetration { get; private set; }
-    public int Tex1 { get; private set; }
-    public int Tex2 { get; private set; }
-    public int Skin { get; private set; }
-    public int HealthStackCount { get; private set; }
-    public int MagicStackCount { get; private set; }
-    public bool Dead { get; private set; }
-    public bool HasBackpack { get; private set; }
+    public int CharacterId { get; private init; }
+    public ushort ObjectType { get; private init; }
+    public int CurrentFame { get; private init; }
+    public ushort[] Equipment { get; private init; }
+    public int Health { get; private init; }
+    public int Mana { get; private init; }
+    public int Strength { get; private init; }
+    public int Wit { get; private init; }
+    public int Defense { get; private init; }
+    public int Resistance { get; private init; }
+    public int Speed { get; private init; }
+    public int Haste { get; private init; }
+    public int Stamina { get; private init; }
+    public int Intelligence { get; private init; }
+    public int Piercing { get; private init; }
+    public int Penetration { get; private init; }
+    public int Tenacity { get; private init; }
+    public int Tex1 { get; private init; }
+    public int Tex2 { get; private init; }
+    public int Skin { get; private init; }
+    public int HealthStackCount { get; private init; }
+    public int MagicStackCount { get; private init; }
+    public bool Dead { get; private init; }
+    public bool HasBackpack { get; private init; }
 
     public static Character FromDb(DbChar character, bool dead)
     {
@@ -349,12 +353,16 @@ class Character
             Health = character.Stats[0],
             Mana = character.Stats[1],
             Strength = character.Stats[2],
-            Defense = character.Stats[3],
-            Speed = character.Stats[4],
-            Sight = character.Stats[5],
-            Stamina = character.Stats[6],
-            Luck = character.Stats[7],
-            Penetration = character.Stats[8],
+            Wit = character.Stats[3],
+            Defense = character.Stats[4],
+            Resistance = character.Stats[5],
+            Speed = character.Stats[6],
+            Haste = character.Stats[7],
+            Stamina = character.Stats[8],
+            Intelligence = character.Stats[9],
+            Piercing = character.Stats[10],
+            Penetration = character.Stats[11],
+            Tenacity = character.Stats[12],
             Tex1 = character.Tex1,
             Tex2 = character.Tex2,
             Skin = character.Skin,
@@ -375,12 +383,16 @@ class Character
                 new XElement("Health", Health),
                 new XElement("Mana", Mana),
                 new XElement("Strength", Strength),
+                new XElement("Wit", Wit),
                 new XElement("Defense", Defense),
+                new XElement("Resistance", Resistance),
                 new XElement("Speed", Speed),
-                new XElement("Sight", Sight),
+                new XElement("Haste", Haste),
                 new XElement("Stamina", Stamina),
-                new XElement("Luck", Luck),
+                new XElement("Intelligence", Intelligence),
+                new XElement("Piercing", Piercing),
                 new XElement("Penetration", Penetration),
+                new XElement("Tenacity", Tenacity),
                 new XElement("Tex1", Tex1),
                 new XElement("Tex2", Tex2),
                 new XElement("Texture", Skin),
@@ -405,7 +417,7 @@ class ClassAvailability
     private static IDictionary<ushort, string> _classes;
     private static IDictionary<string, string> _classAvailability;
 
-    public Dictionary<string, string> Classes { get; private set; }
+    public Dictionary<string, string> Classes { get; private init; }
 
     static ClassAvailability()
     {
@@ -520,18 +532,18 @@ class MaxClassLevelList
 
 class CharList
 {
-    public Character[] Characters { get; private set; }
-    public int NextCharId { get; private set; }
-    public int MaxNumChars { get; private set; }
+    public Character[] Characters { get; private init; }
+    public int NextCharId { get; private init; }
+    public int MaxNumChars { get; private init; }
 
-    public Account Account { get; private set; }
+    public Account Account { get; private init; }
 
-    public IEnumerable<NewsItem> News { get; private set; }
+    public IEnumerable<NewsItem> News { get; private init; }
     public List<ServerItem> Servers { get; set; }
 
-    public ClassAvailability ClassesAvailable { get; private set; }
+    public ClassAvailability ClassesAvailable { get; private init; }
 
-    public MaxClassLevelList MaxLevelList { get; private set; }
+    public MaxClassLevelList MaxLevelList { get; private init; }
 
     public double? Lat { get; set; }
     public double? Long { get; set; }
@@ -598,14 +610,14 @@ class CharList
 
 class FameListEntry
 {
-    public int AccountId { get; private set; }
-    public int CharId { get; private set; }
-    public string Name { get; private set; }
-    public ushort ObjectType { get; private set; }
-    public int Tex1 { get; private set; }
-    public int Tex2 { get; private set; }
-    public int Skin { get; private set; }
-    public int TotalFame { get; private set; }
+    public int AccountId { get; private init; }
+    public int CharId { get; private init; }
+    public string Name { get; private init; }
+    public ushort ObjectType { get; private init; }
+    public int Tex1 { get; private init; }
+    public int Tex2 { get; private init; }
+    public int Skin { get; private init; }
+    public int TotalFame { get; private init; }
 
     public static FameListEntry FromDb(DbChar character)
     {

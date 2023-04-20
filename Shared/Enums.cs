@@ -64,13 +64,7 @@ namespace Shared
     {
         True = 0,
         Physical = 1 << 0,
-        Earth = 1 << 1,
-        Air = 1 << 2,
-        Profane = 1 << 3,
-        Magical = 1 << 4,
-        Water = 1 << 5,
-        Fire = 1 << 6,
-        Holy = 1 << 7
+        Magical = 1 << 1
     }
     
     public enum EffectType

@@ -71,22 +71,6 @@ namespace GameServer.realm.entities.player
             set => _credits.SetValue(value);
         }
 
-        private readonly SV<int> _unholyEssence;
-
-        public int UnholyEssence
-        {
-            get => _unholyEssence.GetValue();
-            set => _unholyEssence.SetValue(value);
-        }
-
-        private readonly SV<int> _divineEssence;
-
-        public int DivineEssence
-        {
-            get => _divineEssence.GetValue();
-            set => _divineEssence.SetValue(value);
-        }
-
         private readonly SV<bool> _nameChosen;
 
         public bool NameChosen
@@ -194,13 +178,18 @@ namespace GameServer.realm.entities.player
             get => _shieldMax.GetValue();
             set => _shieldMax.SetValue(value);
         }
+        
+        private readonly SV<int> _tier;
+
+        public int Tier
+        {
+            get => _tier.GetValue();
+            set => _tier.SetValue(value);
+        }
 
         public int XPBoostTime { get; set; }
         public int LDBoostTime { get; set; }
         public int LTBoostTime { get; set; }
-        public ushort SetSkin { get; set; }
-        public int SetSkinSize { get; set; }
-        public Entity PlayerPet { get; set; }
         public int? GuildInvite { get; set; }
         public bool Muted { get; set; }
 
@@ -251,24 +240,33 @@ namespace GameServer.realm.entities.player
             stats[StatsType.MaxHP] = Stats[0];
             stats[StatsType.MaxMP] = Stats[1];
             stats[StatsType.Strength] = Stats[2];
-            stats[StatsType.Defense] = Stats[3];
-            stats[StatsType.Speed] = Stats[4];
-            stats[StatsType.Sight] = Stats[5];
-            stats[StatsType.Stamina] = Stats[6];
-            stats[StatsType.Luck] = Stats[7];
-            stats[StatsType.Penetration] = Stats[8];
+            stats[StatsType.Wit] = Stats[3];
+            stats[StatsType.Defense] = Stats[4];
+            stats[StatsType.Resistance] = Stats[5];
+            stats[StatsType.Speed] = Stats[6];
+            stats[StatsType.Haste] = Stats[7];
+            stats[StatsType.Stamina] = Stats[8];
+            stats[StatsType.Intelligence] = Stats[9];
+            stats[StatsType.Piercing] = Stats[10];
+            stats[StatsType.Penetration] = Stats[11];
+            stats[StatsType.Tenacity] = Stats[12];
             stats[StatsType.HPBoost] = Stats.Boost[0];
             stats[StatsType.MPBoost] = Stats.Boost[1];
             stats[StatsType.StrengthBonus] = Stats.Boost[2];
-            stats[StatsType.DefenseBonus] = Stats.Boost[3];
-            stats[StatsType.SpeedBonus] = Stats.Boost[4];
-            stats[StatsType.SightBonus] = Stats.Boost[5];
-            stats[StatsType.StaminaBonus] = Stats.Boost[6];
-            stats[StatsType.LuckBonus] = Stats.Boost[7];
-            stats[StatsType.PenetrationBonus] = Stats.Boost[8];
+            stats[StatsType.WitBonus] = Stats.Boost[3];
+            stats[StatsType.DefenseBonus] = Stats.Boost[4];
+            stats[StatsType.ResistanceBonus] = Stats.Boost[5];
+            stats[StatsType.SpeedBonus] = Stats.Boost[6];
+            stats[StatsType.HasteBonus] = Stats.Boost[7];
+            stats[StatsType.StaminaBonus] = Stats.Boost[8];
+            stats[StatsType.IntelligenceBonus] = Stats.Boost[9];
+            stats[StatsType.PiercingBonus] = Stats.Boost[10];
+            stats[StatsType.PenetrationBonus] = Stats.Boost[11];
+            stats[StatsType.TenacityBonus] = Stats.Boost[12];
             stats[StatsType.HealthStackCount] = HealthPots.Count;
             stats[StatsType.MagicStackCount] = MagicPots.Count;
-            stats[StatsType.HasBackpack] = (HasBackpack) ? 1 : 0;
+            stats[StatsType.HasBackpack] = HasBackpack ? 1 : 0;
+            stats[StatsType.Tier] = Tier;
         }
 
         public void SaveToCharacter()
@@ -288,6 +286,7 @@ namespace GameServer.realm.entities.player
             chr.LDBoostTime = LDBoostTime;
             chr.LTBoostTime = LTBoostTime;
             chr.Items = Inventory.GetItemTypes();
+            chr.Tier = Tier;
         }
 
         public Player(Client client, bool saveInventory = true)
@@ -311,6 +310,7 @@ namespace GameServer.realm.entities.player
             _glow = new SV<int>(this, StatsType.Glow, 0);
             _mp = new SV<int>(this, StatsType.MP, client.Character.MP);
             _hasBackpack = new SV<bool>(this, StatsType.HasBackpack, client.Character.HasBackpack, true);
+            _tier = new SV<int>(this, StatsType.Tier, 1, true);
             
             Name = client.Account.Name;
             HP = client.Character.HP;
@@ -443,28 +443,6 @@ namespace GameServer.realm.entities.player
             if (HP <= 0)
             {
                 Death("Unknown", rekt: true);
-            }
-        }
-
-        private void TickPassiveEffects()
-        {
-            for (var i = 0; i < 6; i++)
-            {
-                if (Inventory[i] == null)
-                    continue;
-                switch (Inventory[i].Power)
-                {
-                    case "Lifeline" when (double)HP / Stats.Base[0] <= 0.3 && !OnCooldown(i):
-                        var shieldAmt = Stats[3] + Stats[0] / 2;
-                        StatBoostSelf(12, shieldAmt, 15);
-                        StatBoostSelf(15, 15, 15);
-                        SetCooldown(i, 300);
-                        continue;
-                    case "Godly Vigor" when !Owner.IsNotCombatMapArea && !OnCooldown(i):
-                        HealSelf(Stats[0] / 4, true);
-                        SetCooldown(i, 10);
-                        continue;
-                }
             }
         }
 
@@ -630,8 +608,6 @@ namespace GameServer.realm.entities.player
 
             ApplyConditionEffect(projectile.ProjDesc.Effects);
 
-            HandleEffectsOnHit(projectile, time);
-
             foreach (var p in Owner.Players.Values)
                 if (MathUtils.DistSqr(X, Y, p.X, p.Y) < 16 * 16)
                     p.Client.SendDamage(Id, projectile.ConditionEffects, dmgAmount, HP <= 0, projectile.BulletId, projectile.ProjectileOwner.Self.Id);
@@ -643,32 +619,7 @@ namespace GameServer.realm.entities.player
 
             return base.HitByProjectile(projectile, time);
         }
-
-        private void HandleEffectsOnHit(Projectile projectile, RealmTime time)
-        {
-            var pos = new Position() { X = X, Y = Y };
-            for (var i = 0; i < 6; i++)
-            {
-                if (Inventory[i] == null)
-                    continue;
-                switch (Inventory[i].Power)
-                {
-                    case "Demonic Wrath" when (double)HP / Stats.Base[0] <= 0.4 && !OnCooldown(i):
-                        DamageBlast(2500, 6, pos, time);
-                        SetCooldown(i, 60);
-                        continue;
-                    case "Thorns" when (double)HP / Stats.Base[0] <= 0.6 && !OnCooldown(i):
-                        var amount = 50 + Stats[3];
-                        ((Enemy)projectile.ProjectileOwner).Damage(this, time, amount, true);
-                        SetCooldown(i, 0.5f);
-                        continue;
-                    case "Godly Vigor":
-                        SetCooldown(i, 10);
-                        continue;
-                }
-            }
-        }
-
+        
         public void Damage(int dmg, Entity src, bool noDef = false)
         {
             if (IsInvulnerable())
@@ -687,9 +638,7 @@ namespace GameServer.realm.entities.player
             }
             else
                 HP -= dmg;
-
-            HandleEffectsOnDamage();
-
+            
             foreach (var p in Owner.Players.Values)
                 if (MathUtils.DistSqr(X, Y, p.X, p.Y) < 16 * 16)
                     p.Client.SendDamage(Id, 0, (ushort)dmg, HP <= 0, 0, src.Id);
@@ -700,25 +649,10 @@ namespace GameServer.realm.entities.player
                     src);
         }
 
-        private void HandleEffectsOnDamage()
-        {
-            for (var i = 0; i < 6; i++)
-            {
-                if (Inventory[i] == null)
-                    continue;
-                switch (Inventory[i].Power)
-                {
-                    case "Godly Vigor":
-                        SetCooldown(i, 10);
-                        continue;
-                }
-            }
-        }
-
         private void GenerateGravestone(bool phantomDeath = false)
         {
             var playerDesc = Manager.Resources.GameData.Classes[ObjectType];
-            var maxed = playerDesc.Stats.Where((t, i) => Stats.Base[i] >= t.MaxValue).Count();
+            var maxed = playerDesc.Stats.Where((t, i) => Stats.Base[i] >= t.MaxValues[Tier - 1]).Count();
             ushort objType;
             int time;
             switch (maxed)
@@ -842,7 +776,7 @@ namespace GameServer.realm.entities.player
         private void AnnounceDeath(string killer)
         {
             var playerDesc = Manager.Resources.GameData.Classes[ObjectType];
-            var maxed = playerDesc.Stats.Where((t, i) => Stats.Base[i] >= t.MaxValue && (i < 8 || i > 18)).Count();
+            var maxed = playerDesc.Stats.Where((t, i) => Stats.Base[i] >= t.MaxValues[Tier - 1] && (i < 8 || i > 18)).Count();
             var notableDeath = maxed >= 6 || Fame >= 1000;
 
             List<string> deathmsgVariations = new();

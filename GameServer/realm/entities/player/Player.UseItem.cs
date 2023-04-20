@@ -128,7 +128,6 @@ namespace GameServer.realm.entities.player
             }
         }
 
-        private long _clientNextUse;
         private long _clientNextUse2;
         private double _coolDown;
         public int NextAttackMpRefill;
@@ -206,83 +205,7 @@ namespace GameServer.realm.entities.player
                 }
             }
         }
-
-        private bool HandleEffectsOnActivate(Item item, Position target, Random rnd, int clientTime, long lastUse)
-        {
-            // ability should never be null since it's being used
-            // do pillar of flame before since weapons might activate
-            // even though you didn't have enough mp/hp to activate the ability
-            if (!HandlePillarOfFlame(item, clientTime, lastUse)) return false;
-
-            for (var i = 0; i < 6; i++)
-            {
-                if (Inventory[i] == null)
-                {
-                    continue;
-                }
-
-                HandleRegularActivatePowers(target, rnd, i);
-            }
-
-            return true;
-        }
-
-        private void HandleRegularActivatePowers(Position target, Random rnd, int i)
-        {
-            switch (Inventory[i].Power)
-            {
-                case "Vindictive Wraith":
-                    if (rnd.NextDouble() <= 0.4)
-                    {
-                        SpawnAlly(target, "Ally Vengeful Spirit", 10.4f);
-                    }
-
-                    return;
-                case "Intervention" when !OnCooldown(i):
-                    if (rnd.NextDouble() <= 0.05)
-                    {
-                        HealNova(150, 4);
-                        SetCooldown(i, 5);
-                    }
-
-                    return;
-                case "Unholy Knowledge" when !OnCooldown(i):
-                    StatBoostSelf(16, 3, 5);
-                    SetCooldown(i, (float)_coolDown);
-                    return;
-                case "Arcane Refill" when !OnCooldown(i):
-                    if (NextAttackMpRefill == 0)
-                    {
-                        NextAttackMpRefill = (int)(Stats[1] * ((double)Stats[7] / 2 / 100));
-                    }
-
-                    SetCooldown(i, (float)_coolDown);
-                    return;
-            }
-        }
-
-        private bool HandlePillarOfFlame(Item item, int clientTime, long lastUse)
-        {
-            if (Inventory[2].Power == "Pillar of Flame")
-            {
-                _flamePillarState = Math.Min(3, _flamePillarState + 1);
-                if (lastUse + _coolDown * 2 < clientTime)
-                {
-                    _flamePillarState = 0;
-                }
-
-                if (MP < item.MpCost + _flamePillarState * 20)
-                {
-                    Client.SendInvResult(1);
-                    return false;
-                }
-
-                MP -= _flamePillarState * 20;
-            }
-
-            return true;
-        }
-
+        
         private void RefundItem(Item item, string message = "")
         {
             if (!string.IsNullOrWhiteSpace(message))
@@ -519,29 +442,17 @@ namespace GameServer.realm.entities.player
         {
             var idx = StatsManager.GetStatIndex((StatsType)eff.Stats);
             var statInfo = Manager.Resources.GameData.Classes[ObjectType].Stats;
-            string itemName = string.IsNullOrEmpty(item.DisplayName) ? item.ObjectId : item.DisplayName;
+            var itemName = string.IsNullOrEmpty(item.DisplayName) ? item.ObjectId : item.DisplayName;
 
             Stats.Base[idx] += (int)eff.Amount;
-            if (Stats.Base[idx] < statInfo[idx].MaxValue)
+            if (Stats.Base[idx] < statInfo[idx].MaxValues[Tier - 1])
                 SendInfo(
-                    $"{itemName} Consumed. {(statInfo[idx].MaxValue - Stats.Base[idx]) / eff.Amount} left to max.");
-            else if (Stats.Base[idx] >= statInfo[idx].MaxValue)
+                    $"{itemName} Consumed. {(statInfo[idx].MaxValues[Tier - 1] - Stats.Base[idx]) / eff.Amount} left to max.");
+            else if (Stats.Base[idx] >= statInfo[idx].MaxValues[Tier - 1])
                 SendInfo($"{itemName} Consumed. You are now maxed on this stat.");
 
-            if (Stats.Base[idx] > statInfo[idx].MaxValue)
-            {
-                Stats.Base[idx] = statInfo[idx].MaxValue;
-
-                // disallow pot boosting
-                // pot boosting
-                /*
-                var boostAmount = 1;
-                if (idx == 0 || idx == 1)
-                    boostAmount = 20;
-                Stats.Boost.ActivateBoost[idx].AddOffset(boostAmount);
-                Stats.ReCalculateValues();
-                */
-            }
+            if (Stats.Base[idx] > statInfo[idx].MaxValues[Tier - 1])
+                Stats.Base[idx] = statInfo[idx].MaxValues[Tier - 1];
         }
 
         private void AEFixedStat(RealmTime time, Item item, Position target, ActivateEffect eff)

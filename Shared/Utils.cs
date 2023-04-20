@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Globalization;
-using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Xml.Linq;
-using Shared.resources;
-using Dynamitey;
 using Ionic.Zlib;
 using Newtonsoft.Json;
 
@@ -68,7 +61,7 @@ namespace Shared
         public static T[] ResizeArray<T>(T[] array, int newSize)
         {
             var inventory = new T[newSize];
-            for (int i = 0; i < (array.Length > inventory.Length ? inventory.Length : array.Length); i++)
+            for (var i = 0; i < (array.Length > inventory.Length ? inventory.Length : array.Length); i++)
                 inventory[i] = array[i];
 
             return inventory;
@@ -129,11 +122,11 @@ namespace Shared
 
         public static string ToCommaSepString<T>(this T[] arr)
         {
-            StringBuilder ret = new StringBuilder();
+            var ret = new StringBuilder();
             for (var i = 0; i < arr.Length; i++)
             {
                 if (i != 0) ret.Append(", ");
-                ret.Append(arr[i].ToString());
+                ret.Append(arr[i]);
             }
 
             return ret.ToString();
@@ -145,13 +138,13 @@ namespace Shared
                 return x.Split(',').Select(_ => (T)(object)(ushort)FromString(_.Trim())).ToArray();
             if (typeof(T) == typeof(string))
                 return x.Split(',').Select(_ => (T)(object)_.Trim()).ToArray();
-            else //assume int
-                return x.Split(',').Select(_ => (T)(object)FromString(_.Trim())).ToArray();
+            //assume int
+            return x.Split(',').Select(_ => (T)(object)FromString(_.Trim())).ToArray();
         }
 
         public static byte[] SHA1(string val)
         {
-            SHA1Managed sha1 = new SHA1Managed();
+            var sha1 = new SHA1Managed();
             return sha1.ComputeHash(Encoding.UTF8.GetBytes(val));
         }
 
@@ -169,15 +162,15 @@ namespace Shared
         public static void Shuffle<T>(this IList<T> list)
         {
             var provider = new RNGCryptoServiceProvider();
-            int n = list.Count;
+            var n = list.Count;
             while (n > 1)
             {
                 var box = new byte[1];
                 do provider.GetBytes(box);
                 while (!(box[0] < n * (Byte.MaxValue / n)));
-                int k = (box[0] % n);
+                var k = (box[0] % n);
                 n--;
-                T value = list[k];
+                var value = list[k];
                 list[k] = list[n];
                 list[n] = value;
             }
@@ -221,14 +214,14 @@ namespace Shared
 
         public static string GetDescription(this Enum value)
         {
-            Type type = value.GetType();
-            string name = Enum.GetName(type, value);
+            var type = value.GetType();
+            var name = Enum.GetName(type, value);
             if (name != null)
             {
-                FieldInfo field = type.GetField(name);
+                var field = type.GetField(name);
                 if (field != null)
                 {
-                    DescriptionAttribute attr =
+                    var attr =
                         Attribute.GetCustomAttribute(field,
                             typeof(DescriptionAttribute)) as DescriptionAttribute;
                     return attr?.Description;
@@ -257,10 +250,10 @@ namespace Shared
         // https://www.codeproject.com/Articles/770323/How-to-Convert-a-Date-Time-to-X-minutes-ago-in-Csh
         public static string TimeAgo(DateTime dt)
         {
-            TimeSpan span = DateTime.Now - dt;
+            var span = DateTime.Now - dt;
             if (span.Days > 365)
             {
-                int years = (span.Days / 365);
+                var years = (span.Days / 365);
                 if (span.Days % 365 != 0)
                     years += 1;
                 return $"{years} {(years == 1 ? "year" : "years")} ago";
@@ -268,7 +261,7 @@ namespace Shared
 
             if (span.Days > 30)
             {
-                int months = (span.Days / 30);
+                var months = (span.Days / 30);
                 if (span.Days % 31 != 0)
                     months += 1;
                 return $"{months} {(months == 1 ? "month" : "months")} ago";
@@ -319,21 +312,21 @@ namespace Shared
             if (e.Element(n) == null)
                 return def;
 
-            string val = e.Element(n).Value;
+            var val = e.Element(n).Value;
             var t = typeof(T);
             if (t == typeof(string))
                 return (T)Convert.ChangeType(val, t);
-            else if (t == typeof(ushort))
+            if (t == typeof(ushort))
                 return (T)Convert.ChangeType(Convert.ToUInt16(val, 16), t);
-            else if (t == typeof(int))
+            if (t == typeof(int))
                 return (T)Convert.ChangeType(GetInt(val), t);
-            else if (t == typeof(uint))
+            if (t == typeof(uint))
                 return (T)Convert.ChangeType(Convert.ToUInt32(val, 16), t);
-            else if (t == typeof(double))
+            if (t == typeof(double))
                 return (T)Convert.ChangeType(double.Parse(val, CultureInfo.InvariantCulture), t);
-            else if (t == typeof(float))
+            if (t == typeof(float))
                 return (T)Convert.ChangeType(float.Parse(val, CultureInfo.InvariantCulture), t);
-            else if (t == typeof(bool))
+            if (t == typeof(bool))
                 return (T)Convert.ChangeType(string.IsNullOrWhiteSpace(val) || bool.Parse(val), t);
 
             return def;
@@ -344,21 +337,21 @@ namespace Shared
             if (e.Attribute(n) == null)
                 return def;
 
-            string val = e.Attribute(n).Value;
+            var val = e.Attribute(n).Value;
             var t = typeof(T);
             if (t == typeof(string))
                 return (T)Convert.ChangeType(val, t);
-            else if (t == typeof(ushort))
+            if (t == typeof(ushort))
                 return (T)Convert.ChangeType(Convert.ToUInt16(val, 16), t);
-            else if (t == typeof(int))
+            if (t == typeof(int))
                 return (T)Convert.ChangeType(GetInt(val), t);
-            else if (t == typeof(uint))
+            if (t == typeof(uint))
                 return (T)Convert.ChangeType(Convert.ToUInt32(val, 16), t);
-            else if (t == typeof(double))
+            if (t == typeof(double))
                 return (T)Convert.ChangeType(double.Parse(val, CultureInfo.InvariantCulture), t);
-            else if (t == typeof(float))
+            if (t == typeof(float))
                 return (T)Convert.ChangeType(float.Parse(val, CultureInfo.InvariantCulture), t);
-            else if (t == typeof(bool))
+            if (t == typeof(bool))
                 return (T)Convert.ChangeType(string.IsNullOrWhiteSpace(val) || bool.Parse(val), t);
 
             return def;

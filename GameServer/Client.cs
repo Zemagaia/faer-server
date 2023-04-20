@@ -533,12 +533,29 @@ public class Client {
             case StatsType.MaxMP:
             case StatsType.MP:
             case StatsType.Strength:
+            case StatsType.Wit:
             case StatsType.Defense:
+            case StatsType.Resistance:
             case StatsType.Speed:
-            case StatsType.Sight:
+            case StatsType.Haste:
             case StatsType.Stamina:
-            case StatsType.Luck:
+            case StatsType.Intelligence:
+            case StatsType.Piercing:
             case StatsType.Penetration:
+            case StatsType.Tenacity:
+            case StatsType.HPBoost:
+            case StatsType.MPBoost:
+            case StatsType.StrengthBonus:
+            case StatsType.WitBonus:
+            case StatsType.DefenseBonus:
+            case StatsType.ResistanceBonus:
+            case StatsType.SpeedBonus:
+            case StatsType.HasteBonus:
+            case StatsType.StaminaBonus:
+            case StatsType.IntelligenceBonus:
+            case StatsType.PiercingBonus:
+            case StatsType.PenetrationBonus:
+            case StatsType.TenacityBonus:
             case StatsType.SellablePrice:
                 WriteShort(ref ptr, ref spanRef, Convert.ToInt16(value));
                 return;
@@ -566,15 +583,6 @@ public class Client {
             case StatsType.Inv18:
             case StatsType.Inv19:
             case StatsType.Texture:
-            case StatsType.HPBoost:
-            case StatsType.MPBoost:
-            case StatsType.StrengthBonus:
-            case StatsType.DefenseBonus:
-            case StatsType.SpeedBonus:
-            case StatsType.SightBonus:
-            case StatsType.StaminaBonus:
-            case StatsType.LuckBonus:
-            case StatsType.PenetrationBonus:
                 WriteUShort(ref ptr, ref spanRef, Convert.ToUInt16(value));
                 return;
             case StatsType.MaxHP:

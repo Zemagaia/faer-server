@@ -103,7 +103,7 @@ namespace GameServer.logic.behaviors
                         if (entity is Player p && _players)
                         {
                             var tenacity = Constants.NegativeEffsIdx.Contains(_effect)
-                                ? 1d - (double)p.Stats[13] / 100
+                                ? 1d - (double)p.Stats[12] / 100
                                 : 1d;
                             ((IPlayer)p).Damage(_damage, host, _noDef);
                             p.ApplyConditionEffect(_effect, (int)(Math.Max(1, _effectDuration * tenacity)));

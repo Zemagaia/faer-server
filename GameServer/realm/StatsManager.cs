@@ -8,7 +8,7 @@ namespace GameServer.realm
 {
     public class StatsManager
     {
-        internal const int NumStatTypes = 9;
+        internal const int NumStatTypes = 13;
 
         internal readonly Player Owner;
         internal readonly BaseStatManager Base;
@@ -105,14 +105,13 @@ namespace GameServer.realm
 
         public float GetSpeed(WmapTile tile)
         {
-            float agility = this[4] <= 384 ? this[4] : 384;
-            var ret = 4 + 5.6f * (agility / 75f);
+            var ret = 4 + 5.6f * (this[6] / 75f);
             return ret * tile.TileDesc.Speed;
         }
 
         public float GetHpRegen()
         {
-            var stamina = this[6] <= 384 ? this[6] : 384;
+            var stamina = this[8];
             if (Owner.HasConditionEffect(ConditionEffects.Sick))
                 stamina = 0;
 
@@ -121,8 +120,7 @@ namespace GameServer.realm
 
         public float GetMpRegen()
         {
-            var intelligence = this[7] <= 384 ? this[7] : 384;
-            return 0.5f + intelligence * .06f;
+            return 0.5f + this[9] * .06f;
         }
 
         /*public float Dex()
@@ -139,85 +137,62 @@ namespace GameServer.realm
             return ret;
         }*/
 
-        public static int GetStatIndex(StatsType stat)
-        {
-            switch (stat)
-            {
-                case StatsType.MaxHP:
-                    return 0;
-                case StatsType.MaxMP:
-                    return 1;
-                case StatsType.Strength:
-                    return 2;
-                case StatsType.Defense:
-                    return 3;
-                case StatsType.Speed:
-                    return 4;
-                case StatsType.Sight:
-                    return 5;
-                case StatsType.Stamina:
-                    return 6;
-                case StatsType.Luck:
-                    return 7;
-                case StatsType.Penetration:
-                    return 8;
-                default:
-                    return -1;
-            }
+        public static int GetStatIndex(StatsType stat) {
+#pragma warning disable CS8509
+            return stat switch {
+#pragma warning restore CS8509
+                StatsType.MaxHP => 0,
+                StatsType.MaxMP => 1,
+                StatsType.Strength => 2,
+                StatsType.Wit => 3,
+                StatsType.Defense => 4,
+                StatsType.Resistance => 5,
+                StatsType.Speed => 6,
+                StatsType.Haste => 7,
+                StatsType.Stamina => 8,
+                StatsType.Intelligence => 9,
+                StatsType.Piercing => 10,
+                StatsType.Penetration => 11,
+                StatsType.Tenacity => 12
+            };
         }
 
-        public static StatsType GetStatType(int stat)
-        {
-            switch (stat)
-            {
-                case 0:
-                    return StatsType.MaxHP;
-                case 1:
-                    return StatsType.MaxMP;
-                case 2:
-                    return StatsType.Strength;
-                case 3:
-                    return StatsType.Defense;
-                case 4:
-                    return StatsType.Speed;
-                case 5:
-                    return StatsType.Sight;
-                case 6:
-                    return StatsType.Stamina;
-                case 7:
-                    return StatsType.Luck;
-                case 8:
-                    return StatsType.Penetration;
-                default:
-                    return StatsType.None;
-            }
+        public static StatsType GetStatType(int stat) {
+            return stat switch {
+                0 => StatsType.MaxHP,
+                1 => StatsType.MaxMP,
+                2 => StatsType.Strength, 
+                3 => StatsType.Wit,
+                4 => StatsType.Defense,
+                5 => StatsType.Resistance,
+                6 => StatsType.Speed,
+                7 => StatsType.Haste,
+                8 => StatsType.Stamina,
+                9 => StatsType.Intelligence,
+                10 => StatsType.Piercing,
+                11 => StatsType.Penetration,
+                12 => StatsType.Tenacity,
+                _ => StatsType.None
+            };
         }
 
-        public static StatsType GetBoostStatType(int stat)
-        {
-            switch (stat)
-            {
-                case 0:
-                    return StatsType.HPBoost;
-                case 1:
-                    return StatsType.MPBoost;
-                case 2:
-                    return StatsType.StrengthBonus;
-                case 3:
-                    return StatsType.DefenseBonus;
-                case 4:
-                    return StatsType.SpeedBonus;
-                case 5:
-                    return StatsType.SightBonus;
-                case 6:
-                    return StatsType.StaminaBonus;
-                case 7:
-                    return StatsType.LuckBonus;
-                case 8:
-                    return StatsType.PenetrationBonus;
-                default:
-                    return StatsType.None;
-            }
+        public static StatsType GetBoostStatType(int stat) {
+            return stat switch {
+                0 => StatsType.HPBoost,
+                1 => StatsType.MPBoost,
+                2 => StatsType.StrengthBonus, 
+                3 => StatsType.WitBonus,
+                4 => StatsType.DefenseBonus,
+                5 => StatsType.ResistanceBonus,
+                6 => StatsType.SpeedBonus,
+                7 => StatsType.HasteBonus,
+                8 => StatsType.StaminaBonus,
+                9 => StatsType.IntelligenceBonus,
+                10 => StatsType.PiercingBonus,
+                11 => StatsType.PenetrationBonus,
+                12 => StatsType.TenacityBonus,
+                _ => StatsType.None
+            };
         }
 
         public class DamageUtils
@@ -254,8 +229,8 @@ namespace GameServer.realm
                 // calculate armor for players
                 if (entity is Player p)
                 {
-                    var isMagic = (damageType & Constants.MagicTypes) != 0;
-                    return isMagic ? Math.Min(p.Stats[19], 384) : Math.Min(p.Stats[3], 384);
+                    var isMagic = (damageType & DamageTypes.Magical) != 0;
+                    return isMagic ? Math.Min(p.Stats[3], 384) : Math.Min(p.Stats[2], 384);
                 }
 
                 // finally calculate armor for enemies - hitter should never be null 
@@ -268,46 +243,18 @@ namespace GameServer.realm
 
                 // calculate global modifiers
                 if (entity.HasConditionEffect(ConditionEffects.Armored))
-                    armor *= 2;
+                    armor = (int) (armor * 1.25);
 
-                var lethality = hitter.Stats[21];
-                var piercing = hitter.Stats[22];
+                var penetration = hitter.Stats[11];
+                var piercing = hitter.Stats[10];
 
                 // def calculation from incoming damage type
-                // earth > air
-                // water > fire
-                // profane = holy
                 return damageType switch
                 {
-                    DamageTypes.Physical => Math.Max(0, armor - lethality),
-                    DamageTypes.Earth => Math.Max(0, armor + desc.EarthResistance - desc.AirResistance + desc.FireResistance - lethality),
-                    DamageTypes.Air => Math.Max(0, armor + desc.AirResistance + desc.EarthResistance - desc.WaterResistance - lethality),
-                    DamageTypes.Profane => Math.Max(0, armor + desc.ProfaneResistance - desc.HolyResistance - lethality),
+                    DamageTypes.Physical => Math.Max(0, armor - penetration),
                     DamageTypes.Magical => Math.Max(0, resistance - piercing),
-                    DamageTypes.Water => Math.Max(0, resistance + desc.WaterResistance - desc.FireResistance + desc.AirResistance - piercing),
-                    DamageTypes.Fire => Math.Max(0, resistance + desc.FireResistance + desc.WaterResistance - desc.EarthResistance - piercing),
-                    DamageTypes.Holy => Math.Max(0, resistance + desc.HolyResistance - desc.ProfaneResistance - piercing),
                     _ => 0
                 };
-            }
-
-            /// <summary>
-            /// Returns added values from <b>adder</b> into <b>source</b>
-            /// </summary>
-            internal static int[] Add(int[] source, int[] adder)
-            {
-                if (adder.Length > source.Length)
-                {
-                    source = Utils.ResizeArray(source, adder.Length);
-                }
-
-                var ret = source;
-                for (var i = 0; i < ret.Length; i++)
-                {
-                    ret[i] += adder[i];
-                }
-
-                return ret;
             }
         }
     }

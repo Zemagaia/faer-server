@@ -86,14 +86,13 @@ namespace GameServer.logic.loot
                     i.Populate(enemy.Manager, enemy, dat, Rand, consideration);
 
                 var lootDropBoost = dat.Item1.LDBoostTime > 0 ? 1.5 : 1;
-                var luckStatBoost = 1 + dat.Item1.Stats[7] / 100.0;
                 var globalLBoost = DateTime.UtcNow.ToUnixTimestamp() < Constants.EventEnds.ToUnixTimestamp()
                     ? Constants.GlobalLootBoost ?? 1
                     : 1;
 
                 var playerLoot = new List<Item>();
                 foreach (var i in consideration)
-                    if (Rand.NextDouble() < i.Probability * lootDropBoost * luckStatBoost * globalLBoost)
+                    if (Rand.NextDouble() < i.Probability * lootDropBoost * globalLBoost)
                         playerLoot.Add(i.Item);
                 if (playerLoot.Count > 0)
                     AddBagToWorld(enemy, playerLoot, new[] { dat.Item1 });

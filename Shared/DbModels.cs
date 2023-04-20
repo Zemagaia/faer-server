@@ -645,6 +645,11 @@ namespace Shared
             get => GetValue<int>("ltBoost");
             set => SetValue("ltBoost", value);
         }
+        
+        public int Tier {
+            get => GetValue<int>("tier");
+            set => SetValue("tier", value);
+        }
     }
 
     public class DbDeath : RedisObject

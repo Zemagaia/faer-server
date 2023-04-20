@@ -636,30 +636,6 @@ namespace GameServer.realm.commands
         }
     }
 
-    class LefttoMaxCommand : Command
-    {
-        public LefttoMaxCommand() : base("lefttomax")
-        {
-        }
-
-        protected override bool Process(Player player, RealmTime time, string args)
-        {
-            var pd = player.Manager.Resources.GameData.Classes[player.ObjectType];
-
-            player.SendInfo($"HP: {pd.Stats[0].MaxValue - player.Stats.Base[0]}");
-            player.SendInfo($"MP: {pd.Stats[1].MaxValue - player.Stats.Base[1]}");
-            player.SendInfo($"Strength: {pd.Stats[2].MaxValue - player.Stats.Base[2]}");
-            player.SendInfo($"Defense: {pd.Stats[3].MaxValue - player.Stats.Base[3]}");
-            player.SendInfo($"Speed: {pd.Stats[4].MaxValue - player.Stats.Base[4]}");
-            player.SendInfo($"Sight: {pd.Stats[5].MaxValue - player.Stats.Base[5]}");
-            player.SendInfo($"Stamina: {pd.Stats[6].MaxValue - player.Stats.Base[6]}");
-            player.SendInfo($"Luck: {pd.Stats[7].MaxValue - player.Stats.Base[7]}");
-            player.SendInfo($"Penetration: {pd.Stats[8].MaxValue - player.Stats.Base[8]}");
-
-            return true;
-        }
-    }
-
     class WhoCommand : Command
     {
         public WhoCommand() : base("who")

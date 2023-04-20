@@ -86,16 +86,6 @@ namespace GameServer.realm.entities
             if (!HasConditionEffect(ConditionEffects.Invulnerable))
                 HP -= dmg;
             ApplyConditionEffect(projectile.ProjDesc.Effects);
-
-            // Stheno's Kiss
-            if (!HasConditionEffect(ConditionEffects.Invulnerable) &&
-                p.Inventory[1].Power == "Stheno's Kiss" && !p.OnCooldown(0))
-            {
-                for (var i = 0; i < 5; i++)
-                    Owner.Timers.Add(new WorldTimer(1000 * i, (_, t) => Damage(p, t, 200, false, true)));
-
-                p.SetCooldown(0, 15);
-            }
             
             foreach (var plr in Owner.Players.Values)
                 if (MathUtils.DistSqr(X, Y, plr.X, plr.Y) < 16 * 16)
