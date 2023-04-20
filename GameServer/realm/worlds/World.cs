@@ -18,7 +18,7 @@ namespace GameServer.realm.worlds
         protected static readonly Random Rand = new((int)DateTime.Now.Ticks);
 
         public const int Tutorial = -1;
-        public const int Realm = -2;
+        public const int Hub = -2;
         public const int Vault = -3;
         public const int Tinker = -4;
         public const int GuildHall = -5;
@@ -603,8 +603,7 @@ namespace GameServer.realm.worlds
 
         public Projectile GetProjectile(int objectId, int bulletId)
         {
-            var entity = GetEntity(objectId) as IProjectileOwner;
-            return entity != null
+            return GetEntity(objectId) is IProjectileOwner entity
                 ? entity.Projectiles[bulletId]
                 : Projectiles.SingleOrDefault(p =>
                     p.Value.ProjectileOwner.Self.Id == objectId &&

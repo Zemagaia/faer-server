@@ -5,16 +5,16 @@ using GameServer.realm.worlds;
 
 namespace GameServer.logic.behaviors
 {
-    class SendToNexus : Behavior
+    class SendToHub : Behavior
     {
         private double _delay;
 
-        public SendToNexus(XElement e)
+        public SendToHub(XElement e)
         {
             _delay = e.ParseFloat("@delay", 5);
         }
 
-        public SendToNexus(double delay = 5)
+        public SendToHub(double delay = 5)
         {
             _delay = delay;
         }
@@ -34,7 +34,7 @@ namespace GameServer.logic.behaviors
             {
                 foreach (var player in owner.Players.Values)
                 {
-                    player.Client.Reconnect("Nexus", World.Realm);
+                    player.Client.Reconnect("Hub", World.Hub);
                 }
             }));
         }

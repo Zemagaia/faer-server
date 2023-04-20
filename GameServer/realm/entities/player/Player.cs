@@ -7,16 +7,13 @@ using Newtonsoft.Json;
 using NLog;
 using wServer.realm;
 
-namespace GameServer.realm.entities.player
-{
-    interface IPlayer
-    {
+namespace GameServer.realm.entities.player {
+    interface IPlayer {
         void Damage(int dmg, Entity src, bool noDef);
         bool IsVisibleToEnemy();
     }
 
-    public partial class Player : Character, IContainer, IPlayer
-    {
+    public partial class Player : Character, IContainer, IPlayer {
         new static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
         private readonly Client _client;
@@ -25,72 +22,63 @@ namespace GameServer.realm.entities.player
         //Stats
         private readonly SV<int> _accountId;
 
-        public int AccountId
-        {
+        public int AccountId {
             get => _accountId.GetValue();
             set => _accountId.SetValue(value);
         }
 
         private readonly SV<int> _currentFame;
 
-        public int CurrentFame
-        {
+        public int CurrentFame {
             get => _currentFame.GetValue();
             set => _currentFame.SetValue(value);
         }
 
         private readonly SV<int> _fame;
 
-        public int Fame
-        {
+        public int Fame {
             get => _fame.GetValue();
             set => _fame.SetValue(value);
         }
 
         private readonly SV<string> _guild;
 
-        public string Guild
-        {
+        public string Guild {
             get => _guild.GetValue();
             set => _guild.SetValue(value);
         }
 
         private readonly SV<sbyte> _guildRank;
 
-        public sbyte GuildRank
-        {
+        public sbyte GuildRank {
             get => _guildRank.GetValue();
             set => _guildRank.SetValue(value);
         }
 
         private readonly SV<int> _credits;
 
-        public int Credits
-        {
+        public int Credits {
             get => _credits.GetValue();
             set => _credits.SetValue(value);
         }
 
         private readonly SV<bool> _nameChosen;
 
-        public bool NameChosen
-        {
+        public bool NameChosen {
             get => _nameChosen.GetValue();
             set => _nameChosen.SetValue(value);
         }
 
         private readonly SV<ushort> _texture1;
 
-        public ushort Texture1
-        {
+        public ushort Texture1 {
             get => _texture1.GetValue();
             set => _texture1.SetValue(value);
         }
 
         private readonly SV<ushort> _texture2;
 
-        public ushort Texture2
-        {
+        public ushort Texture2 {
             get => _texture2.GetValue();
             set => _texture2.SetValue(value);
         }
@@ -98,8 +86,7 @@ namespace GameServer.realm.entities.player
         private ushort _originalSkin;
         private readonly SV<ushort> _skin;
 
-        public ushort Skin
-        {
+        public ushort Skin {
             get => _skin.GetValue();
             set => _skin.SetValue(value);
         }
@@ -109,82 +96,86 @@ namespace GameServer.realm.entities.player
 
         private readonly SV<int> _glow;
 
-        public int Glow
-        {
+        public int Glow {
             get => _glow.GetValue();
             set => _glow.SetValue(value);
         }
 
         private readonly SV<int> _mp;
 
-        public int MP
-        {
+        public int MP {
             get => _mp.GetValue();
             set => _mp.SetValue(value);
         }
 
         private readonly SV<bool> _hasBackpack;
 
-        public bool HasBackpack
-        {
+        public bool HasBackpack {
             get => _hasBackpack.GetValue();
             set => _hasBackpack.SetValue(value);
         }
 
         private readonly SV<bool> _xpBoosted;
 
-        public bool XPBoosted
-        {
+        public bool XPBoosted {
             get => _xpBoosted.GetValue();
             set => _xpBoosted.SetValue(value);
         }
 
         private readonly SV<int> _oxygenBar;
 
-        public int OxygenBar
-        {
+        public int OxygenBar {
             get => _oxygenBar.GetValue();
             set => _oxygenBar.SetValue(value);
         }
 
         private readonly SV<int> _rank;
 
-        public int Rank
-        {
+        public int Rank {
             get => _rank.GetValue();
             set => _rank.SetValue(value);
         }
 
         private readonly SV<int> _admin;
 
-        public int Admin
-        {
+        public int Admin {
             get => _admin.GetValue();
             set => _admin.SetValue(value);
         }
 
         private readonly SV<int> _shield;
 
-        public int Shield
-        {
+        public int Shield {
             get => _shield.GetValue();
             set => _shield.SetValue(value);
         }
 
         private readonly SV<int> _shieldMax;
 
-        public int ShieldMax
-        {
+        public int ShieldMax {
             get => _shieldMax.GetValue();
             set => _shieldMax.SetValue(value);
         }
-        
+
         private readonly SV<int> _tier;
 
-        public int Tier
-        {
+        public int Tier {
             get => _tier.GetValue();
             set => _tier.SetValue(value);
+        }
+        
+        private readonly SV<float> _hitMult;
+
+        public float HitMultiplier {
+            get => _hitMult.GetValue();
+            set => _hitMult.SetValue(value);
+        }
+        
+        private readonly SV<float> _dmgMult;
+
+        public float DamageMultiplier {
+            get => _dmgMult.GetValue();
+            set => _dmgMult.SetValue(value);
         }
 
         public int XPBoostTime { get; set; }
@@ -206,8 +197,7 @@ namespace GameServer.realm.entities.player
         public int XpBoostItem { get; set; }
         public int DamageDealt { get; set; }
 
-        protected override void ExportStats(IDictionary<StatsType, object> stats)
-        {
+        protected override void ExportStats(IDictionary<StatsType, object> stats) {
             base.ExportStats(stats);
             stats[StatsType.AccountId] = AccountId;
             stats[StatsType.Guild] = Guild;
@@ -266,11 +256,12 @@ namespace GameServer.realm.entities.player
             stats[StatsType.HealthStackCount] = HealthPots.Count;
             stats[StatsType.MagicStackCount] = MagicPots.Count;
             stats[StatsType.HasBackpack] = HasBackpack ? 1 : 0;
+            stats[StatsType.HitMultiplier] = HitMultiplier;
+            stats[StatsType.DamageMultiplier] = DamageMultiplier;
             stats[StatsType.Tier] = Tier;
         }
 
-        public void SaveToCharacter()
-        {
+        public void SaveToCharacter() {
             var chr = _client.Character;
             chr.HP = Math.Max(1, HP);
             chr.MP = MP;
@@ -290,8 +281,7 @@ namespace GameServer.realm.entities.player
         }
 
         public Player(Client client, bool saveInventory = true)
-            : base(client.Manager, client.Character.ObjectType)
-        {
+            : base(client.Manager, client.Character.ObjectType) {
             var settings = Manager.Resources.Settings;
             var gameData = Manager.Resources.GameData;
 
@@ -304,14 +294,16 @@ namespace GameServer.realm.entities.player
             _accountId = new SV<int>(this, StatsType.AccountId, client.Account.AccountId, true);
             _guild = new SV<string>(this, StatsType.Guild, "");
             _guildRank = new SV<sbyte>(this, StatsType.GuildRank, -1);
-            _texture1 = new SV<ushort>(this, StatsType.Texture1, (ushort)client.Character.Tex1);
-            _texture2 = new SV<ushort>(this, StatsType.Texture2, (ushort)client.Character.Tex2);
+            _texture1 = new SV<ushort>(this, StatsType.Texture1, (ushort) client.Character.Tex1);
+            _texture2 = new SV<ushort>(this, StatsType.Texture2, (ushort) client.Character.Tex2);
             _skin = new SV<ushort>(this, StatsType.Texture, 0);
             _glow = new SV<int>(this, StatsType.Glow, 0);
             _mp = new SV<int>(this, StatsType.MP, client.Character.MP);
             _hasBackpack = new SV<bool>(this, StatsType.HasBackpack, client.Character.HasBackpack, true);
             _tier = new SV<int>(this, StatsType.Tier, 1, true);
-            
+            _hitMult = new SV<float>(this, StatsType.HitMultiplier, 1, true);
+            _dmgMult = new SV<float>(this, StatsType.DamageMultiplier, 1, true);
+
             Name = client.Account.Name;
             HP = client.Character.HP;
             ConditionEffects = 0;
@@ -320,9 +312,8 @@ namespace GameServer.realm.entities.player
             LDBoostTime = client.Character.LDBoostTime;
             LTBoostTime = client.Character.LTBoostTime;
 
-            var s = (ushort)client.Character.Skin;
-            if (gameData.Skins.Keys.Contains(s))
-            {
+            var s = (ushort) client.Character.Skin;
+            if (gameData.Skins.Keys.Contains(s)) {
                 SetDefaultSkin(s);
                 PrevSkin = client.Character.Skin;
                 SetDefaultSize((ushort) gameData.Skins[s].Size);
@@ -330,17 +321,16 @@ namespace GameServer.realm.entities.player
             }
 
             var guild = Manager.Database.GetGuild(client.Account.GuildId);
-            if (guild?.Name != null)
-            {
+            if (guild?.Name != null) {
                 Guild = guild.Name;
-                GuildRank = (sbyte)client.Account.GuildRank;
+                GuildRank = (sbyte) client.Account.GuildRank;
             }
 
             HealthPots = new ItemStacker(this, 254, 0xaa1,
                 client.Character.HealthStackCount, settings.MaxStackablePotions);
             MagicPots = new ItemStacker(this, 255, 0xaa2,
                 client.Character.MagicStackCount, settings.MaxStackablePotions);
-            Stacks = new ItemStacker[] { HealthPots, MagicPots };
+            Stacks = new ItemStacker[] {HealthPots, MagicPots};
 
             // inventory setup
             DbLink = new DbCharInv(Client.Account, Client.Character.CharId);
@@ -350,25 +340,23 @@ namespace GameServer.realm.entities.player
                     .Select(_ => (_ == 0xffff || !gameData.Items.ContainsKey(_)) ? null : gameData.Items[_])
                     .ToArray(),
                     20));
-            
+
             if (!saveInventory)
                 DbLink = null;
 
-            Inventory.InventoryChanged += (_, e) =>
-            {
+            Inventory.InventoryChanged += (_, e) => {
                 Stats.ReCalculateValues(e);
                 SetItemXpBoost();
             };
-            
+
             SlotTypes = Utils.ResizeArray(
                 gameData.Classes[ObjectType].SlotTypes,
                 settings.InventorySize);
             Stats = new StatsManager(this);
 
             // set size of player if using set skin
-            var skin = (ushort)Skin;
-            if (gameData.SkinTypeToEquipSetType.ContainsKey(skin))
-            {
+            var skin = (ushort) Skin;
+            if (gameData.SkinTypeToEquipSetType.ContainsKey(skin)) {
                 var setType = gameData.SkinTypeToEquipSetType[skin];
                 var ae = gameData.EquipmentSets[setType].ActivateOnEquipAll
                     .SingleOrDefault(e => e.SkinType == skin);
@@ -385,13 +373,12 @@ namespace GameServer.realm.entities.player
                 .ContinueWith(t => { Muted = !Client.Account.Admin && t.IsCompleted && t.Result; });
 
             Manager.Database.IsLegend(AccountId)
-                .ContinueWith(t =>
-                {
+                .ContinueWith(t => {
                     Glow = t.Result && client.Account.GlowColor == 0
                         ? 0xFF0000
                         : client.Account.GlowColor;
                 });
-            
+
             SetItemXpBoost();
         }
 
@@ -399,15 +386,13 @@ namespace GameServer.realm.entities.player
 
         public Entity SpectateTarget { get; set; }
         public bool IsControlling => SpectateTarget != null && !(SpectateTarget is Player);
-        
 
-        public override void Init(World owner)
-        {
+
+        public override void Init(World owner) {
             var x = 0;
             var y = 0;
             var spawnRegions = owner.GetSpawnPoints();
-            if (spawnRegions.Any())
-            {
+            if (spawnRegions.Any()) {
                 var rand = new Random();
                 var sRegion = spawnRegions.ElementAt(rand.Next(0, spawnRegions.Length));
                 x = sRegion.Key.X;
@@ -424,9 +409,8 @@ namespace GameServer.realm.entities.player
             base.Init(owner);
         }
 
-        
-        public override void Tick(RealmTime time)
-        {
+
+        public override void Tick(RealmTime time) {
             if (!KeepAlive(time))
                 return;
 
@@ -436,21 +420,19 @@ namespace GameServer.realm.entities.player
             HandleEffects(time);
 
             base.Tick(time);
+            if (_hpHistory != null)
+                _hpHistory[++_hpIdx] = HP;
 
             SendUpdate(time);
             SendNewTick(time);
 
             if (HP <= 0)
-            {
                 Death("Unknown", rekt: true);
-            }
         }
 
-        private void SetItemXpBoost()
-        {
+        private void SetItemXpBoost() {
             var sum = 0;
-            for (var i = 0; i < 6; i++)
-            {
+            for (var i = 0; i < 6; i++) {
                 if (Inventory[i] == null)
                     continue;
 
@@ -460,8 +442,7 @@ namespace GameServer.realm.entities.player
             XpBoostItem = sum;
         }
 
-        void TickActivateEffects(RealmTime time)
-        {
+        void TickActivateEffects(RealmTime time) {
             var dt = time.ElapsedMsDelta;
 
             if (XPBoostTime > 0)
@@ -479,17 +460,14 @@ namespace GameServer.realm.entities.player
         float _hpRegenCounter;
         float _mpRegenCounter;
 
-        void HandleRegen(RealmTime time)
-        {
+        void HandleRegen(RealmTime time) {
             // hp regen
             if (HP == Stats[0] || !CanHpRegen())
                 _hpRegenCounter = 0;
-            else
-            {
+            else {
                 _hpRegenCounter += Stats.GetHpRegen() * time.ElapsedMsDelta / 1000f;
-                var regen = (int)_hpRegenCounter;
-                if (regen > 0)
-                {
+                var regen = (int) _hpRegenCounter;
+                if (regen > 0) {
                     HP = Math.Min(Stats[0], HP + regen);
                     _hpRegenCounter -= regen;
                 }
@@ -498,29 +476,25 @@ namespace GameServer.realm.entities.player
             // mp regen
             if (MP == Stats[1] || !CanMpRegen())
                 _mpRegenCounter = 0;
-            else
-            {
+            else {
                 _mpRegenCounter += Stats.GetMpRegen() * time.ElapsedMsDelta / 1000f;
-                var regen = (int)_mpRegenCounter;
-                if (regen > 0)
-                {
+                var regen = (int) _mpRegenCounter;
+                if (regen > 0) {
                     MP = Math.Min(Stats[1], MP + regen);
                     _mpRegenCounter -= regen;
                 }
             }
         }
 
-        public void TeleportPosition(RealmTime time, float x, float y, bool ignoreRestrictions = false, bool removeNegative = false)
-        {
-            TeleportPosition(time, new Position() { X = x, Y = y }, ignoreRestrictions, removeNegative);
+        public void TeleportPosition(RealmTime time, float x, float y, bool ignoreRestrictions = false,
+            bool removeNegative = false) {
+            TeleportPosition(time, new Position() {X = x, Y = y}, ignoreRestrictions, removeNegative);
         }
 
-        public void TeleportPosition(RealmTime time, Position position, bool ignoreRestrictions = false, bool removeNegative = false)
-        {
-            if (!ignoreRestrictions)
-            {
-                if (!TPCooledDown())
-                {
+        public void TeleportPosition(RealmTime time, Position position, bool ignoreRestrictions = false,
+            bool removeNegative = false) {
+            if (!ignoreRestrictions) {
+                if (!TPCooledDown()) {
                     SendError("Too soon to teleport again!");
                     return;
                 }
@@ -529,8 +503,7 @@ namespace GameServer.realm.entities.player
                 SetNewbiePeriod();
             }
 
-            if (removeNegative)
-            {
+            if (removeNegative) {
                 ApplyConditionEffect(NegativeEffs);
             }
 
@@ -541,31 +514,25 @@ namespace GameServer.realm.entities.player
             }
         }
 
-        public void Teleport(RealmTime time, int objId, bool ignoreRestrictions = false)
-        {
+        public void Teleport(RealmTime time, int objId, bool ignoreRestrictions = false) {
             var obj = Owner.GetEntity(objId);
-            if (obj == null)
-            {
+            if (obj == null) {
                 SendError("Target does not exist.");
                 return;
             }
 
-            if (!ignoreRestrictions)
-            {
-                if (Id == objId)
-                {
+            if (!ignoreRestrictions) {
+                if (Id == objId) {
                     SendInfo("You are already at yourself, and always will be!");
                     return;
                 }
 
-                if (!Owner.AllowTeleport)
-                {
+                if (!Owner.AllowTeleport) {
                     SendError("Cannot teleport here.");
                     return;
                 }
 
-                if (obj is not Player)
-                {
+                if (obj is not Player) {
                     SendError("Can only teleport to players.");
                     return;
                 }
@@ -574,43 +541,25 @@ namespace GameServer.realm.entities.player
             TeleportPosition(time, obj.X, obj.Y, ignoreRestrictions);
         }
 
-        public bool IsInvulnerable()
-        {
+        public bool IsInvulnerable() {
             if (HasConditionEffect(ConditionEffects.Invulnerable))
                 return true;
             return false;
         }
 
-        public override bool HitByProjectile(Projectile projectile, RealmTime time)
-        {
-            ushort dmgAmount;
+        public override bool HitByProjectile(Projectile projectile, RealmTime time) {
             if (projectile.ProjectileOwner is Player || IsInvulnerable())
                 return false;
 
-            var truedmg = (int)Stats.GetDefenseDamage(projectile.Damage, projectile.DamageType, true);
-            var dmg = (int)Stats.GetDefenseDamage(projectile.Damage,projectile.DamageType);
-            if (Shield > 0)
-                dmgAmount = (ushort)truedmg;
-            else
-                dmgAmount = (ushort)dmg;
-
-            var limit = (int)Math.Min(ShieldMax + 100, ShieldMax * 1.3);
-            if (Shield > 0)
-                ShieldDamage += truedmg;
-            else if (ShieldDamage + truedmg <= limit)
-            {
-                // more accurate... maybe
-                ShieldDamage += truedmg;
-                HP -= dmg;
-            }
-            else
-                HP -= dmg;
+            var dmg = (int)(Stats.GetDefenseDamage(projectile.Damage, projectile.DamageType) * HitMultiplier);
+            HP -= dmg;
 
             ApplyConditionEffect(projectile.ProjDesc.Effects);
 
             foreach (var p in Owner.Players.Values)
                 if (MathUtils.DistSqr(X, Y, p.X, p.Y) < 16 * 16)
-                    p.Client.SendDamage(Id, projectile.ConditionEffects, dmgAmount, HP <= 0, projectile.BulletId, projectile.ProjectileOwner.Self.Id);
+                    p.Client.SendDamage(Id, projectile.ConditionEffects, (ushort) dmg, HP <= 0, projectile.BulletId,
+                        projectile.ProjectileOwner.Self.Id);
 
             if (HP <= 0)
                 Death(projectile.ProjectileOwner.Self.ObjectDesc.DisplayId ??
@@ -619,29 +568,17 @@ namespace GameServer.realm.entities.player
 
             return base.HitByProjectile(projectile, time);
         }
-        
-        public void Damage(int dmg, Entity src, bool noDef = false)
-        {
+
+        public void Damage(int dmg, Entity src, bool noDef = false) {
             if (IsInvulnerable())
                 return;
 
-            dmg = (int)Stats.GetDefenseDamage(dmg, DamageTypes.Magical, noDef);
-            var truedmg = (int)Stats.GetDefenseDamage(dmg, DamageTypes.Magical, true);
-            var limit = (int)Math.Min(ShieldMax + 100, ShieldMax * 1.3);
-            if (Shield > 0)
-                ShieldDamage += truedmg;
-            else if (ShieldDamage + truedmg <= limit)
-            {
-                // more accurate... maybe
-                ShieldDamage += truedmg;
-                HP -= dmg;
-            }
-            else
-                HP -= dmg;
-            
+            dmg = (int)(Stats.GetDefenseDamage(dmg, DamageTypes.Physical, noDef) * HitMultiplier);
+            HP -= dmg;
+
             foreach (var p in Owner.Players.Values)
                 if (MathUtils.DistSqr(X, Y, p.X, p.Y) < 16 * 16)
-                    p.Client.SendDamage(Id, 0, (ushort)dmg, HP <= 0, 0, src.Id);
+                    p.Client.SendDamage(Id, 0, (ushort) dmg, HP <= 0, 0, src.Id);
 
             if (HP <= 0)
                 Death(src.ObjectDesc.DisplayId ??
@@ -649,14 +586,12 @@ namespace GameServer.realm.entities.player
                     src);
         }
 
-        private void GenerateGravestone(bool phantomDeath = false)
-        {
+        private void GenerateGravestone(bool phantomDeath = false) {
             var playerDesc = Manager.Resources.GameData.Classes[ObjectType];
             var maxed = playerDesc.Stats.Where((t, i) => Stats.Base[i] >= t.MaxValues[Tier - 1]).Count();
             ushort objType;
             int time;
-            switch (maxed)
-            {
+            switch (maxed) {
                 case 9:
                     objType = 0x042C;
                     time = 600000;
@@ -706,10 +641,8 @@ namespace GameServer.realm.entities.player
             Owner.EnterWorld(obj);
         }
 
-        private bool NonPermaKillEnemy(Entity entity, string killer)
-        {
-            if (entity == null)
-            {
+        private bool NonPermaKillEnemy(Entity entity, string killer) {
+            if (entity == null) {
                 return false;
             }
 
@@ -724,8 +657,7 @@ namespace GameServer.realm.entities.player
             return true;
         }
 
-        private bool Rekted(bool rekt)
-        {
+        private bool Rekted(bool rekt) {
             if (!rekt)
                 return false;
 
@@ -734,8 +666,7 @@ namespace GameServer.realm.entities.player
             return true;
         }
 
-        private bool TestWorld(string killer)
-        {
+        private bool TestWorld(string killer) {
             if (!(Owner is Test))
                 return false;
 
@@ -746,10 +677,8 @@ namespace GameServer.realm.entities.player
 
         private bool _dead;
 
-        private bool Resurrection()
-        {
-            for (var i = 0; i < 6; i++)
-            {
+        private bool Resurrection() {
+            for (var i = 0; i < 6; i++) {
                 var item = Inventory[i];
 
                 if (item == null || !item.Resurrects)
@@ -767,49 +696,45 @@ namespace GameServer.realm.entities.player
             return false;
         }
 
-        private void ReconnectToNexus()
-        {
+        private void ReconnectToNexus() {
             HP = 1;
-            _client.Reconnect("Nexus", World.Realm);
+            _client.Reconnect("Hub", World.Hub);
         }
 
-        private void AnnounceDeath(string killer)
-        {
+        private void AnnounceDeath(string killer) {
             var playerDesc = Manager.Resources.GameData.Classes[ObjectType];
-            var maxed = playerDesc.Stats.Where((t, i) => Stats.Base[i] >= t.MaxValues[Tier - 1] && (i < 8 || i > 18)).Count();
+            var maxed = playerDesc.Stats.Where((t, i) => Stats.Base[i] >= t.MaxValues[Tier - 1] && (i < 8 || i > 18))
+                .Count();
             var notableDeath = maxed >= 6 || Fame >= 1000;
 
             List<string> deathmsgVariations = new();
 
-            string[] commonDeathMsgs =
-            {
+            string[] commonDeathMsgs = {
                 $"was slain by {killer}", $"was killed by {killer}", $"died to {killer}", $"was massacred by {killer}",
                 $"couldn't handle {killer}", $"was taken care of by {killer}", $"was engraved 6 feet under by {killer}",
                 $"expired thanks to {killer}", $"departed when fighting {killer}",
                 $"is no more thanks to {killer}", $"couldn't take care of {killer}", $"couldn't kill {killer}",
                 $"was too kind when facing {killer}", $"got the worst death message variation when dueling {killer}",
                 $"was permanently eliminated by {killer}", $"got banished from the world of the living by {killer}",
-                $"proved Oryx's point by dying to {killer}", $"got smashed by {killer}", $"was deleted by {killer}", 
+                $"proved Oryx's point by dying to {killer}", $"got smashed by {killer}", $"was deleted by {killer}",
                 $"lost the life or death duel against {killer}"
             };
             deathmsgVariations.AddRange(commonDeathMsgs);
-            if (notableDeath)
-            {
+            if (notableDeath) {
                 #region Notable Death death message variations
 
-                deathmsgVariations.AddRange(new []
-                    {
-                        $"took the L against {killer}",
-                        $"rage quit thanks to {killer}",
-                        $"left the server thanks to {killer}",
-                        $"was timed out by {killer}",
-                        $"has a skill issue and can't kill {killer}",
-                        $"is trippin', {killer}!",
-                        $"got soft wiped by {killer}",
-                        $"was weaker than {killer}",
-                        $"got slam dunked by {killer}",
-                        $"lost all that they had thanks to {killer}"
-                    });
+                deathmsgVariations.AddRange(new[] {
+                    $"took the L against {killer}",
+                    $"rage quit thanks to {killer}",
+                    $"left the server thanks to {killer}",
+                    $"was timed out by {killer}",
+                    $"has a skill issue and can't kill {killer}",
+                    $"is trippin', {killer}!",
+                    $"got soft wiped by {killer}",
+                    $"was weaker than {killer}",
+                    $"got slam dunked by {killer}",
+                    $"lost all that they had thanks to {killer}"
+                });
 
                 #endregion
             }
@@ -818,8 +743,7 @@ namespace GameServer.realm.entities.player
                 $"{Name} [{_client.Character.FinalFame} Fame, {maxed}/9] {deathmsgVariations.PickRandom()}";
 
             // notable deaths
-            if (notableDeath && !Client.Account.Admin)
-            {
+            if (notableDeath && !Client.Account.Admin) {
                 foreach (var w in Manager.Worlds.Values)
                 foreach (var p in w.Players.Values)
                     p.SendHelp(deathMessage);
@@ -828,20 +752,17 @@ namespace GameServer.realm.entities.player
 
             var pGuild = Client.Account.GuildId;
 
-            
-            foreach (var i in Owner.Players.Values)
-            {
+
+            foreach (var i in Owner.Players.Values) {
                 i.SendInfo(deathMessage);
             }
         }
 
-        public void Death(string killer, Entity entity = null, WmapTile tile = null, bool rekt = false)
-        {
+        public void Death(string killer, Entity entity = null, WmapTile tile = null, bool rekt = false) {
             if (_dead)
                 return;
 
-            if (tile != null && (tile.Spawned || tile.DevSpawned))
-            {
+            if (tile != null && (tile.Spawned || tile.DevSpawned)) {
                 rekt = true;
             }
 
@@ -865,8 +786,7 @@ namespace GameServer.realm.entities.player
 
             _client.SendDeath(AccountId, _client.Character.CharId, killer);
 
-            Owner.Timers.Add(new WorldTimer(1000, (w, t) =>
-            {
+            Owner.Timers.Add(new WorldTimer(1000, (w, t) => {
                 if (_client.Player != this)
                     return;
 
@@ -874,50 +794,42 @@ namespace GameServer.realm.entities.player
             }));
         }
 
-        private bool CheckLimitedWorlds(World world)
-        {
+        private bool CheckLimitedWorlds(World world) {
             return true;
         }
 
-        public void Reconnect(World world)
-        {
+        public void Reconnect(World world) {
             if (!CheckLimitedWorlds(world))
                 return;
 
             Client.Reconnect(world.Name, world.Id);
         }
 
-        public void Reconnect(object portal, World world)
-        {
-            ((Portal)portal).WorldInstanceSet -= Reconnect;
+        public void Reconnect(object portal, World world) {
+            ((Portal) portal).WorldInstanceSet -= Reconnect;
 
             if (world == null)
                 SendError("Portal Not Implemented!");
-            else
-            {
+            else {
                 if (!CheckLimitedWorlds(world))
                     return;
 
                 Client.Reconnect(world.Name, world.Id);
             }
         }
-        
-        private void ShowNotification(string notif, uint color = 0xFF00FF00)
-        {
-            if (Owner is null)
-            {
+
+        private void ShowNotification(string notif, uint color = 0xFF00FF00) {
+            if (Owner is null) {
                 return;
             }
-            
+
             foreach (var p in Owner.Players.Values)
                 if (MathUtils.DistSqr(X, Y, p.X, p.Y) < 16 * 16)
                     p.Client.SendNotification(Id, notif, color);
         }
 
-        public int GetCurrency(CurrencyType currency)
-        {
-            switch (currency)
-            {
+        public int GetCurrency(CurrencyType currency) {
+            switch (currency) {
                 case CurrencyType.Gold:
                     return Credits;
                 case CurrencyType.Fame:
@@ -927,10 +839,8 @@ namespace GameServer.realm.entities.player
             }
         }
 
-        public void SetCurrency(CurrencyType currency, int amount)
-        {
-            switch (currency)
-            {
+        public void SetCurrency(CurrencyType currency, int amount) {
+            switch (currency) {
                 case CurrencyType.Gold:
                     Credits = amount;
                     break;
@@ -940,51 +850,33 @@ namespace GameServer.realm.entities.player
             }
         }
 
-        public override void Move(float x, float y)
-        {
-            if (SpectateTarget != null && !(SpectateTarget is Player))
-            {
-                SpectateTarget.MoveEntity(x, y);
-            }
-            else
-            {
-                base.Move(x, y);
-            }
-
-            if ((int)X != Sight.LastX || (int)Y != Sight.LastY) {
-                if (IsNoClipping())
-                    _client.Disconnect();
+        public override void Move(float x, float y) {
+            base.Move(x, y);
+            if ((int) X != Sight.LastX || (int) Y != Sight.LastY)
                 Sight.UpdateCount++;
-            }
         }
 
-        public override void Dispose()
-        {
+        public override void Dispose() {
             base.Dispose();
             _clientEntities.Dispose();
         }
 
         // allow other admins to see hidden people
-        public override bool CanBeSeenBy(Player player)
-        {
-            if (Client?.Account != null && Client.Account.Hidden)
-            {
+        public override bool CanBeSeenBy(Player player) {
+            if (Client?.Account != null && Client.Account.Hidden) {
                 return player.Admin != 0;
             }
-            else
-            {
+            else {
                 return true;
             }
         }
 
-        public void SetDefaultSkin(ushort skin)
-        {
+        public void SetDefaultSkin(ushort skin) {
             _originalSkin = skin;
             Skin = skin;
         }
 
-        public void RestoreDefaultSkin()
-        {
+        public void RestoreDefaultSkin() {
             Skin = _originalSkin;
         }
     }

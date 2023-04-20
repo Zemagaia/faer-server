@@ -576,3 +576,103 @@
 2023-04-20 14:09:22.6906|INFO|LoginServer.Program|Listening at address 127.0.0.1:8080...
 2023-04-20 14:09:22.7026|INFO|Shared.ISManager|AppEngine (Account, 9376741b-2459-4fb7-bf37-8228b62e8204) joined the network.
 2023-04-20 14:09:33.4263|INFO|Shared.ISManager|Localhost (World, 8d7afd6c-db5e-4ccd-ac94-54ae1548ab0f) joined the network.
+2023-04-20 16:44:12.5337|INFO|Shared.resources.AppSettings|Loading app settings...
+2023-04-20 16:44:12.5547|INFO|Shared.resources.XmlData|Loading xml data...
+2023-04-20 16:44:12.6287|INFO|Shared.resources.XmlData|Finish loading game data.
+2023-04-20 16:44:12.6287|INFO|Shared.resources.XmlData|262 Items
+2023-04-20 16:44:12.6291|INFO|Shared.resources.XmlData|81 Tiles
+2023-04-20 16:44:12.6291|INFO|Shared.resources.XmlData|312 Objects
+2023-04-20 16:44:12.6291|INFO|Shared.resources.XmlData|9 Skins
+2023-04-20 16:44:12.6291|INFO|Shared.resources.XmlData|0 Equipment Sets
+2023-04-20 16:44:12.6291|INFO|Shared.resources.XmlData|9 Classes
+2023-04-20 16:44:12.6291|INFO|Shared.resources.XmlData|9 Portals
+2023-04-20 16:44:12.6291|INFO|Shared.resources.XmlData|1 Merchants
+2023-04-20 16:44:12.6291|INFO|Shared.resources.XmlData|0 Remote Textures
+2023-04-20 16:44:12.6291|INFO|Shared.resources.XmlData|0 Additions
+2023-04-20 16:44:12.6356|INFO|Shared.Database|Initializing Database...
+2023-04-20 16:44:12.7648|INFO|Shared.ISManager|Server's Id is 2efb50b9-7255-48bf-8675-4c04271ad7af
+2023-04-20 16:44:12.8026|INFO|LoginServer.Program|Listening at address 127.0.0.1:8080...
+2023-04-20 16:44:12.8135|INFO|Shared.ISManager|AppEngine (Account, 2efb50b9-7255-48bf-8675-4c04271ad7af) joined the network.
+2023-04-20 16:44:22.0400|INFO|Shared.ISManager|Localhost (World, 7c1d1cd0-5bb5-4c4d-a6f9-7da99b6a6ab8) joined the network.
+2023-04-20 16:44:52.7985|INFO|Shared.ISManager|Localhost (World, 7c1d1cd0-5bb5-4c4d-a6f9-7da99b6a6ab8) timed out.
+2023-04-20 16:49:15.7223|INFO|Shared.resources.AppSettings|Loading app settings...
+2023-04-20 16:49:15.7405|INFO|Shared.resources.XmlData|Loading xml data...
+2023-04-20 16:49:15.8105|INFO|Shared.resources.XmlData|Finish loading game data.
+2023-04-20 16:49:15.8105|INFO|Shared.resources.XmlData|262 Items
+2023-04-20 16:49:15.8105|INFO|Shared.resources.XmlData|81 Tiles
+2023-04-20 16:49:15.8105|INFO|Shared.resources.XmlData|312 Objects
+2023-04-20 16:49:15.8105|INFO|Shared.resources.XmlData|9 Skins
+2023-04-20 16:49:15.8105|INFO|Shared.resources.XmlData|0 Equipment Sets
+2023-04-20 16:49:15.8105|INFO|Shared.resources.XmlData|9 Classes
+2023-04-20 16:49:15.8105|INFO|Shared.resources.XmlData|9 Portals
+2023-04-20 16:49:15.8105|INFO|Shared.resources.XmlData|1 Merchants
+2023-04-20 16:49:15.8105|INFO|Shared.resources.XmlData|0 Remote Textures
+2023-04-20 16:49:15.8111|INFO|Shared.resources.XmlData|0 Additions
+2023-04-20 16:49:15.8182|INFO|Shared.Database|Initializing Database...
+2023-04-20 16:49:15.9502|INFO|Shared.ISManager|Server's Id is 5fa88efd-95c6-444d-b085-55f613d32d29
+2023-04-20 16:49:15.9929|INFO|LoginServer.Program|Listening at address 127.0.0.1:8080...
+2023-04-20 16:49:16.0044|INFO|Shared.ISManager|AppEngine (Account, 5fa88efd-95c6-444d-b085-55f613d32d29) joined the network.
+2023-04-20 16:49:18.0204|INFO|Shared.ISManager|Localhost (World, c68f3f90-ade4-4caf-be9f-5d1e776fbf1d) joined the network.
+2023-04-20 17:02:37.6241|INFO|Shared.resources.AppSettings|Loading app settings...
+2023-04-20 17:02:37.6425|INFO|Shared.resources.XmlData|Loading xml data...
+2023-04-20 17:02:37.7131|INFO|Shared.resources.XmlData|Finish loading game data.
+2023-04-20 17:02:37.7131|INFO|Shared.resources.XmlData|262 Items
+2023-04-20 17:02:37.7131|INFO|Shared.resources.XmlData|81 Tiles
+2023-04-20 17:02:37.7131|INFO|Shared.resources.XmlData|312 Objects
+2023-04-20 17:02:37.7131|INFO|Shared.resources.XmlData|9 Skins
+2023-04-20 17:02:37.7131|INFO|Shared.resources.XmlData|0 Equipment Sets
+2023-04-20 17:02:37.7131|INFO|Shared.resources.XmlData|9 Classes
+2023-04-20 17:02:37.7131|INFO|Shared.resources.XmlData|9 Portals
+2023-04-20 17:02:37.7131|INFO|Shared.resources.XmlData|1 Merchants
+2023-04-20 17:02:37.7131|INFO|Shared.resources.XmlData|0 Remote Textures
+2023-04-20 17:02:37.7131|INFO|Shared.resources.XmlData|0 Additions
+2023-04-20 17:02:37.7202|INFO|Shared.Database|Initializing Database...
+2023-04-20 17:02:37.8563|INFO|Shared.ISManager|Server's Id is 0d34f4b9-2587-4f8b-a6ea-e478b3b58d04
+2023-04-20 17:02:37.9090|INFO|LoginServer.Program|Listening at address 127.0.0.1:8080...
+2023-04-20 17:02:37.9189|INFO|Shared.ISManager|AppEngine (Account, 0d34f4b9-2587-4f8b-a6ea-e478b3b58d04) joined the network.
+2023-04-20 17:02:39.8184|INFO|Shared.ISManager|Localhost (World, 2fad9858-5902-4a6c-8635-18fdf816075e) joined the network.
+2023-04-20 17:06:41.1404|INFO|Shared.ISManager|Localhost (World, 1ae2dc37-e5a2-4123-9606-ab767184c932) joined the network.
+2023-04-20 17:07:01.9050|INFO|Shared.ISManager|Localhost (World, 2fad9858-5902-4a6c-8635-18fdf816075e) timed out.
+2023-04-20 17:08:12.1381|INFO|Shared.ISManager|Localhost (World, 070fd1d2-a7e2-480d-98e0-d80348b0d079) joined the network.
+2023-04-20 17:08:35.9018|INFO|Shared.ISManager|Localhost (World, 1ae2dc37-e5a2-4123-9606-ab767184c932) timed out.
+2023-04-20 17:14:52.4875|INFO|Shared.ISManager|Localhost (World, 7abf8409-07b0-45a1-848e-8258df9b20be) joined the network.
+2023-04-20 17:15:11.9018|INFO|Shared.ISManager|Localhost (World, 070fd1d2-a7e2-480d-98e0-d80348b0d079) timed out.
+2023-04-20 17:16:07.3012|INFO|Shared.ISManager|Localhost (World, 66c5c244-b110-42bd-a8c2-ff6cb90d197b) joined the network.
+2023-04-20 17:16:29.9034|INFO|Shared.ISManager|Localhost (World, 7abf8409-07b0-45a1-848e-8258df9b20be) timed out.
+2023-04-20 17:17:14.5294|INFO|Shared.ISManager|Localhost (World, c2940223-bb50-4119-a4a5-21272783726d) joined the network.
+2023-04-20 17:17:35.9042|INFO|Shared.ISManager|Localhost (World, 66c5c244-b110-42bd-a8c2-ff6cb90d197b) timed out.
+2023-04-20 17:19:13.8969|INFO|Shared.ISManager|Localhost (World, bbe2de55-f523-42b2-b7b7-855d4cf1a021) joined the network.
+2023-04-20 17:19:35.9029|INFO|Shared.ISManager|Localhost (World, c2940223-bb50-4119-a4a5-21272783726d) timed out.
+2023-04-20 17:21:11.6011|INFO|Shared.ISManager|Localhost (World, cccafcc2-eb49-44b5-9067-24b51a8b493e) joined the network.
+2023-04-20 17:21:33.9040|INFO|Shared.ISManager|Localhost (World, bbe2de55-f523-42b2-b7b7-855d4cf1a021) timed out.
+2023-04-20 17:23:17.6272|INFO|Shared.ISManager|Localhost (World, db1e8e25-8f55-4ef9-8ec2-43e7e70f79c3) joined the network.
+2023-04-20 17:23:37.9042|INFO|Shared.ISManager|Localhost (World, cccafcc2-eb49-44b5-9067-24b51a8b493e) timed out.
+2023-04-20 17:24:11.1831|INFO|Shared.ISManager|Localhost (World, 223778a8-2dc6-449e-b23f-03b7e5166bd8) joined the network.
+2023-04-20 17:24:27.9018|INFO|Shared.ISManager|Localhost (World, db1e8e25-8f55-4ef9-8ec2-43e7e70f79c3) timed out.
+2023-04-20 17:36:09.9185|INFO|Shared.ISManager|Localhost (World, 726580c4-20bf-4296-9395-e1794f08eaef) joined the network.
+2023-04-20 17:36:18.6937|FATAL|LoginServer.Program|System.NullReferenceException: Object reference not set to an instance of an object.
+   at StackExchange.Redis.RedisValue.op_Implicit(String value) in /_/src/StackExchange.Redis/RedisValue.cs:line 540
+   at Shared.RedisObject.SetValue[T] in /home/a/faer/server/Shared/DbModels.cs:line 154
+   at Shared.DbAccount.set_Skins in /home/a/faer/server/Shared/DbModels.cs:line 400
+   at Shared.Database.Verify(DbAccount uuid, SByte password, Boolean acc, Int32, Int16) in /home/a/faer/server/Shared/Database.cs:line 84
+   at LoginServer.Program.Main(String[] args) in /home/a/faer/server/LoginServer/Program.cs:line 81
+2023-04-20 17:36:46.7769|INFO|Shared.resources.AppSettings|Loading app settings...
+2023-04-20 17:36:46.7952|INFO|Shared.resources.XmlData|Loading xml data...
+2023-04-20 17:36:46.8679|INFO|Shared.resources.XmlData|Finish loading game data.
+2023-04-20 17:36:46.8679|INFO|Shared.resources.XmlData|262 Items
+2023-04-20 17:36:46.8679|INFO|Shared.resources.XmlData|81 Tiles
+2023-04-20 17:36:46.8679|INFO|Shared.resources.XmlData|312 Objects
+2023-04-20 17:36:46.8679|INFO|Shared.resources.XmlData|9 Skins
+2023-04-20 17:36:46.8679|INFO|Shared.resources.XmlData|0 Equipment Sets
+2023-04-20 17:36:46.8679|INFO|Shared.resources.XmlData|9 Classes
+2023-04-20 17:36:46.8679|INFO|Shared.resources.XmlData|9 Portals
+2023-04-20 17:36:46.8679|INFO|Shared.resources.XmlData|1 Merchants
+2023-04-20 17:36:46.8679|INFO|Shared.resources.XmlData|0 Remote Textures
+2023-04-20 17:36:46.8679|INFO|Shared.resources.XmlData|0 Additions
+2023-04-20 17:36:46.8742|INFO|Shared.Database|Initializing Database...
+2023-04-20 17:36:47.0047|INFO|Shared.ISManager|Server's Id is 373e2b9e-0f9a-4f44-a7b4-cf56e74c2442
+2023-04-20 17:36:47.0445|INFO|LoginServer.Program|Listening at address 127.0.0.1:8080...
+2023-04-20 17:36:47.0560|INFO|Shared.ISManager|Localhost (World, 726580c4-20bf-4296-9395-e1794f08eaef) joined the network.
+2023-04-20 17:36:47.0645|INFO|Shared.ISManager|AppEngine (Account, 373e2b9e-0f9a-4f44-a7b4-cf56e74c2442) joined the network.
+2023-04-20 17:38:52.4935|INFO|Shared.ISManager|Localhost (World, fb9f6619-5157-4096-b40a-031f96c58014) joined the network.
+2023-04-20 17:38:57.0390|INFO|Shared.ISManager|Localhost (World, 726580c4-20bf-4296-9395-e1794f08eaef) timed out.

@@ -73,13 +73,13 @@ namespace GameServer.realm
         {
             var limit = damage * 0.25f; //0.15f;
             float ret = damage;
-            // DamageTypes 0 is the projectile's DamageType
+            /*// DamageTypes 0 is the projectile's DamageType
             if (damageType != DamageTypes.True)
             {
                 ret = DamageUtils.GetDamage(host, damage, damageType, hitter);
                 if (ret < limit)
                     ret = limit;
-            }
+            }*/
 
             if (host.HasConditionEffect(ConditionEffects.Invulnerable))
                 ret = 0;
@@ -172,6 +172,25 @@ namespace GameServer.realm
                 10 => StatsType.Piercing,
                 11 => StatsType.Penetration,
                 12 => StatsType.Tenacity,
+                _ => StatsType.None
+            };
+        }
+        
+        public static StatsType GetStatTypeShort(string stat) {
+            return stat switch {
+                "HP" => StatsType.MaxHP,
+                "MP" => StatsType.MaxMP,  
+                "STR" => StatsType.Strength, 
+                "WIT" => StatsType.Wit,
+                "DEF" => StatsType.Defense,
+                "RES" => StatsType.Resistance,
+                "SPD" => StatsType.Speed,
+                "HST" => StatsType.Haste,
+                "STM" => StatsType.Stamina,
+                "INT" => StatsType.Intelligence,
+                "PRC" => StatsType.Piercing,
+                "PEN" => StatsType.Penetration,
+                "TEN" => StatsType.Tenacity,
                 _ => StatsType.None
             };
         }

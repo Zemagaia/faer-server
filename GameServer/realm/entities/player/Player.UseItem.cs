@@ -1,33 +1,28 @@
-﻿using Shared;
+﻿using Dynamitey.Internal.Optimization;
+using Shared;
 using Shared.resources;
 using GameServer.realm.worlds;
 using GameServer.realm.worlds.logic;
 using wServer.realm;
 
-namespace GameServer.realm.entities.player
-{
-    partial class Player
-    {
+namespace GameServer.realm.entities.player {
+    partial class Player {
         public const int MaxAbilityDist = 14;
 
         public static readonly ConditionEffect[] NegativeEffs = {
-            new()
-            {
+            new() {
                 Effect = ConditionEffectIndex.Slowed,
                 DurationMS = 0
             },
-            new()
-            {
+            new() {
                 Effect = ConditionEffectIndex.Weak,
                 DurationMS = 0
             },
-            new()
-            {
+            new() {
                 Effect = ConditionEffectIndex.Bleeding,
                 DurationMS = 0
             },
-            new()
-            {
+            new() {
                 Effect = ConditionEffectIndex.Sick,
                 DurationMS = 0
             }
@@ -37,19 +32,15 @@ namespace GameServer.realm.entities.player
         private bool _skinSet;
         private int _flamePillarState;
 
-        public void UseItem(int objId, int slot, float x, float y)
-        {
-            lock (_useLock)
-            {
+        public void UseItem(int objId, int slot, float x, float y) {
+            lock (_useLock) {
                 var entity = Owner.GetEntity(objId);
-                if (entity == null)
-                {
+                if (entity == null) {
                     Client.SendInvResult(1);
                     return;
                 }
 
-                if (entity is Player && objId != Id)
-                {
+                if (entity is Player && objId != Id) {
                     Client.SendInvResult(1);
                     return;
                 }
@@ -57,8 +48,7 @@ namespace GameServer.realm.entities.player
                 var container = entity as IContainer;
 
                 // eheh no more clearing BBQ loot bags
-                if (this.Dist(entity) > 3)
-                {
+                if (this.Dist(entity) > 3) {
                     Client.SendInvResult(1);
                     return;
                 }
@@ -67,8 +57,7 @@ namespace GameServer.realm.entities.player
 
                 // get item
                 Item item = null;
-                foreach (var stack in Stacks.Where(stack => stack.Slot == slot))
-                {
+                foreach (var stack in Stacks.Where(stack => stack.Slot == slot)) {
                     item = stack.Pull();
 
                     if (item == null)
@@ -76,8 +65,7 @@ namespace GameServer.realm.entities.player
                     break;
                 }
 
-                if (item == null)
-                {
+                if (item == null) {
                     if (container == null)
                         return;
 
@@ -93,26 +81,24 @@ namespace GameServer.realm.entities.player
 
                 // use item
                 var slotType = 10;
-                if (slot < cInv.Length)
-                {
+                if (slot < cInv.Length) {
                     slotType = container.SlotTypes[slot];
 
-                    if (item.Consumable)
-                    {
+                    if (item.Consumable) {
                         var db = Manager.Database;
-                        
+
                         var trans = db.Conn.CreateTransaction();
                         var task = trans.ExecuteAsync();
-                        task.ContinueWith(t =>
-                        {
+                        task.ContinueWith(t => {
                             var success = !t.IsCanceled && t.Result;
-                            if (!success || !Inventory.Execute(cInv)) // can result in the loss of an item if inv trans fails...
+                            if (!success ||
+                                !Inventory.Execute(cInv)) // can result in the loss of an item if inv trans fails...
                             {
                                 entity.ForceUpdate(slot);
                                 return;
                             }
 
-                            Activate(Manager.Logic.WorldTime, item, new Position {X=x, Y=y}, 0, 0, slot == 1);
+                            Activate(Manager.Logic.WorldTime, item, new Position {X = x, Y = y}, 0, 0, slot == 1);
                         });
                         task.ContinueWith(e =>
                                 Log.Error(e.Exception.InnerException.ToString()),
@@ -122,7 +108,7 @@ namespace GameServer.realm.entities.player
                 }
 
                 if (item.Consumable || item.SlotType == slotType)
-                    Activate(Manager.Logic.WorldTime, item, new Position {X=x, Y=y}, 0, 0, slot == 1);
+                    Activate(Manager.Logic.WorldTime, item, new Position {X = x, Y = y}, 0, 0, slot == 1);
                 else
                     Client.SendInvResult(1);
             }
@@ -133,21 +119,17 @@ namespace GameServer.realm.entities.player
         public int NextAttackMpRefill;
 
         private void Activate(RealmTime time, Item item, Position target, byte activateId,
-            int clientTime, bool isAbility)
-        {
+            int clientTime, bool isAbility) {
             // todo new cd check
             var activate = item.ActivateEffects;
 
-            if (activate == item.ActivateEffects)
-            {
+            if (activate == item.ActivateEffects) {
                 MP -= item.MpCost;
                 HP -= item.HpCost;
             }
 
-            foreach (var eff in activate)
-            {
-                switch (eff.Effect)
-                {
+            foreach (var eff in activate) {
+                switch (eff.Effect) {
                     case ActivateEffects.StatBoostSelf:
                         AEStatBoostSelf(time, item, target, eff);
                         break;
@@ -196,8 +178,20 @@ namespace GameServer.realm.entities.player
                     case ActivateEffects.UnlockSkin:
                         AEUnlockSkin(time, item, target, eff);
                         break;
+                    case ActivateEffects.Bloodstone:
+                        AEBloodstone(time, item, target, eff);
+                        break;
                     case ActivateEffects.Totem:
                         AETotem(time, item, target, eff);
+                        break;
+                    case ActivateEffects.Clock:
+                        AEClock(time, item, target, eff);
+                        break;
+                    case ActivateEffects.HitMultiplier:
+                        AEHitMult(time, item, target, eff);
+                        break;
+                    case ActivateEffects.DamageMultiplier:
+                        AEDmgMult(time, item, target, eff);
                         break;
                     default:
                         Log.Warn("Activate effect {0} not implemented.", eff.Effect);
@@ -205,16 +199,14 @@ namespace GameServer.realm.entities.player
                 }
             }
         }
-        
-        private void RefundItem(Item item, string message = "")
-        {
+
+        private void RefundItem(Item item, string message = "") {
             if (!string.IsNullOrWhiteSpace(message))
                 SendError(message);
 
             var slot = Inventory.GetAvailableInventorySlot(item);
 
-            if (slot != -1)
-            {
+            if (slot != -1) {
                 Inventory[slot] = item;
                 return;
             }
@@ -225,17 +217,14 @@ namespace GameServer.realm.entities.player
         }
 
 
-        private void AEUnlockEmote(RealmTime time, Item item, ActivateEffect eff)
-        {
-            if (Owner == null || Owner is Test)
-            {
+        private void AEUnlockEmote(RealmTime time, Item item, ActivateEffect eff) {
+            if (Owner == null || Owner is Test) {
                 SendInfo("Can't use emote unlockers in test worlds.");
                 return;
             }
 
             var emotes = Client.Account.Emotes;
-            if (!emotes.Contains(eff.Id))
-            {
+            if (!emotes.Contains(eff.Id)) {
                 emotes.Add(eff.Id);
                 Client.Account.Emotes = emotes;
                 Client.Account.FlushAsync();
@@ -246,16 +235,13 @@ namespace GameServer.realm.entities.player
             RefundItem(item, "You already have this emote!");
         }
 
-        private void AEUnlockSkin(RealmTime time, Item item, Position target, ActivateEffect eff)
-        {
-            if (Owner == null || Owner is Test)
-            {
+        private void AEUnlockSkin(RealmTime time, Item item, Position target, ActivateEffect eff) {
+            if (Owner == null || Owner is Test) {
                 SendInfo("Can't use skin unlockers in test worlds.");
                 return;
             }
 
-            if (Owner is not Vault)
-            {
+            if (Owner is not Vault) {
                 RefundItem(item, "You can only use this item in your vault.");
                 return;
             }
@@ -263,8 +249,7 @@ namespace GameServer.realm.entities.player
             var acc = Client.Account;
             var ownedSkins = acc.Skins.ToList();
 
-            if (!ownedSkins.Contains(eff.SkinType))
-            {
+            if (!ownedSkins.Contains(eff.SkinType)) {
                 ownedSkins.Add(eff.SkinType);
                 acc.Skins = ownedSkins.ToArray();
                 acc.FlushAsync();
@@ -275,8 +260,7 @@ namespace GameServer.realm.entities.player
             RefundItem(item, "You already have this skin!");
         }
 
-        private void AEUnlockPortal(RealmTime time, Item item, Position target, ActivateEffect eff)
-        {
+        private void AEUnlockPortal(RealmTime time, Item item, Position target, ActivateEffect eff) {
             var gameData = Manager.Resources.GameData;
 
             // find locked portal
@@ -292,23 +276,20 @@ namespace GameServer.realm.entities.player
 
             // get proto of world
             ProtoWorld proto;
-            if (!Manager.Resources.Worlds.Data.TryGetValue(eff.DungeonName, out proto))
-            {
+            if (!Manager.Resources.Worlds.Data.TryGetValue(eff.DungeonName, out proto)) {
                 Log.Error("Unable to unlock portal. \"" + eff.DungeonName + "\" does not exist.");
                 return;
             }
 
-            if (proto.portals == null || proto.portals.Length < 1)
-            {
+            if (proto.portals == null || proto.portals.Length < 1) {
                 Log.Error("World is not associated with any portals.");
                 return;
             }
 
             // create portal of unlocked world
-            var portalType = (ushort)proto.portals[0];
+            var portalType = (ushort) proto.portals[0];
             var uPortal = Resolve(Manager, portalType) as Portal;
-            if (uPortal == null)
-            {
+            if (uPortal == null) {
                 Log.Error("Error creating portal: {0}", portalType);
                 return;
             }
@@ -320,8 +301,7 @@ namespace GameServer.realm.entities.player
             World world;
             if (proto.id < 0)
                 world = Manager.GetWorld(proto.id);
-            else
-            {
+            else {
                 DynamicWorld.TryGetWorld(proto, Client, out world);
                 world = Manager.AddWorld(world ?? new World(proto));
             }
@@ -333,88 +313,100 @@ namespace GameServer.realm.entities.player
                 Owner.LeaveWorld(portal);
             uPortal.Move(portal.X, portal.Y);
             uPortal.Name = uPortalDesc.DisplayId;
-            var uPortalPos = new Position { X = portal.X - .5f, Y = portal.Y - .5f };
+            var uPortalPos = new Position {X = portal.X - .5f, Y = portal.Y - .5f};
             if (!uPortalDesc.NexusPortal || !Manager.Monitor.AddPortal(world.Id, uPortal, uPortalPos))
                 Owner.EnterWorld(uPortal);
 
             // setup timeout
-            if (!uPortalDesc.NexusPortal)
-            {
+            if (!uPortalDesc.NexusPortal) {
                 var timeoutTime = gameData.Portals[portalType].Timeout;
                 Owner.Timers.Add(new WorldTimer(timeoutTime * 1000, (w, _) => w.LeaveWorld(uPortal)));
             }
 
             // announce
-            foreach (var p in Owner.Players.Values)
-            {
+            foreach (var p in Owner.Players.Values) {
                 p.Client.SendNotification(Id, $"Unlocked by {Name}", 0xFF00FF00);
             }
+
             foreach (var player in Owner.Players.Values)
                 player.SendInfo($"{world.SBName} unlocked by {Name}");
         }
 
-        private void AEBackpack(RealmTime time, Item item, Position target, ActivateEffect eff)
-        {
+        private void AEBackpack(RealmTime time, Item item, Position target, ActivateEffect eff) {
             if (HasBackpack)
                 RefundItem(item);
 
             HasBackpack = true;
         }
+        
+        private void AEBloodstone(RealmTime time, Item item, Position target, ActivateEffect eff) {
+            var totalDmg = 0;
+            var enemies = new List<Enemy>();
+            Owner.AOE(target, eff.Radius, false, enemy => {
+                enemies.Add(enemy as Enemy);
+                totalDmg += ((Enemy) enemy).Damage(this, time, (int) eff.Amount, false);
+            });
 
-        private void AETotem(RealmTime time, Item item, Position target, ActivateEffect eff)
-        {
-            var duration = eff.UseWisMod ? (int)(eff.DurationSec * 1000) : eff.DurationMS;
-            duration += _flamePillarState * 1000;
-            for (var i = 0; i < eff.BoostValuesStats.Length; i++)
-            {
-                // Pillar of Flame scale
-                var boost = 0;//ScaleFlamePillar(item, i);
-                var idx = StatsManager.GetStatIndex((StatsType)eff.BoostValuesStats[i]);
-                var amount = eff.BoostValues[i];
-                amount += boost;
+            var players = new List<Player>();
+            this.AOE(eff.Radius, true, player => {
+                if (player.HasConditionEffect(ConditionEffects.Sick)) 
+                    return;
+                
+                players.Add(player as Player);
+                ActivateHealHp(player as Player, Math.Min(totalDmg, eff.TotalDamage));
+            });
 
-                Stats.Boost.ActivateBoost[idx].Push(amount, eff.NoStack);
-                Stats.ReCalculateValues();
-
-                // hack job to allow instant heal of NoStack boosts
-                if (eff.NoStack && amount > 0 && idx == 0)
-                {
-                    HP = Math.Min(Stats[0], HP + amount);
-                }
-
-                Owner.Timers.Add(new WorldTimer(duration, (_, _) =>
-                {
-                    Stats.Boost.ActivateBoost[idx].Pop(amount, eff.NoStack);
-                    Stats.ReCalculateValues();
-                }));
+            
+            Client.SendShowEffect(EffectType.Trail, Id, target.X, target.Y, 0, 0, 0xFF0000);
+            Client.SendShowEffect(EffectType.Diffuse, Id, target.X, target.Y, target.X + eff.Radius, target.Y, 0xFF0000);
+            if (enemies.Count <= 0) 
+                return;
+            
+            for (var i = 0; i < 5; i++) {
+                var a = enemies[Client.StaticRandom.Next(0, enemies.Count)];
+                var b = players[Client.StaticRandom.Next(0, players.Count)];
+                Client.SendShowEffect(EffectType.Flow, b.Id, a.X, a.Y, 0, 0, 0xFFFFFF);
             }
-
-            var dat = Manager.Resources.GameData;
-            ushort id;
-            dat.IdToObjectType.TryGetValue(eff.TransformationSkin, out id);
-
-            if (!_skinSet)
-            {
-                PrevSkin = Skin;
-                PrevSize = Size;
-                _skinSet = true;
-            }
-            SetDefaultSkin(id);
-            SetDefaultSize((ushort) eff.TransformationSkinSize);
-            Owner.Timers.Add(new WorldTimer(duration, (_, _) =>
-            {
-                SetDefaultSkin((ushort) PrevSkin);
-                SetDefaultSize((ushort) (PrevSize == 0 ? 100 : PrevSize));
-                _skinSet = false;
-            }));
         }
 
-        private void AECreate(RealmTime time, Item item, Position target, ActivateEffect eff)
-        {
+        private void AETotem(RealmTime time, Item item, Position target, ActivateEffect eff) {
+            
+        }
+
+        private void AEClock(RealmTime time, Item item, Position target, ActivateEffect eff) {
+            var ticks = (byte) (eff.Amount * Manager.TPS);
+            if (ticks <= 0)
+                return;
+
+            var oldPos = TryGetHistory(ticks);
+            if (oldPos.HasValue && !TileOccupied(oldPos.Value.X, oldPos.Value.Y)) 
+                TeleportPosition(Manager.Logic.WorldTime, oldPos.Value.X, oldPos.Value.Y);
+
+            var oldHp = TryGetHPHistory(ticks) ?? -1;
+            var hpGain = Math.Max(0, oldHp - HP - item.HpCost);
+            if (hpGain > 0) {
+                Owner.Timers.Add(new WorldTimer(1000, (_, _) => {
+                    HP += hpGain;
+                    Client.SendShowEffect(EffectType.Potion, Id, 0f, 0f, 0f, 0f, 0xFFFFFF);
+                    Client.SendNotification(Id, "+" + hpGain, 0x00FF00);
+                }));
+            }
+        }
+
+        private void AEHitMult(RealmTime time, Item item, Position target, ActivateEffect eff) {
+            HitMultiplier = eff.Amount;
+            Owner.Timers.Add(new WorldTimer(eff.DurationMS, (_, _) => { HitMultiplier = 1; }));
+        }
+
+        private void AEDmgMult(RealmTime time, Item item, Position target, ActivateEffect eff) {
+            DamageMultiplier = eff.Amount;
+            Owner.Timers.Add(new WorldTimer(eff.DurationMS, (_, _) => { DamageMultiplier = 1; }));
+        }
+
+        private void AECreate(RealmTime time, Item item, Position target, ActivateEffect eff) {
             var gameData = Manager.Resources.GameData;
 
-            ushort objType;
-            if (!gameData.IdToObjectType.TryGetValue(eff.Id, out objType) ||
+            if (!gameData.IdToObjectType.TryGetValue(eff.Id, out var objType) ||
                 !gameData.Portals.ContainsKey(objType))
                 return; // object not found, ignore
 
@@ -425,26 +417,25 @@ namespace GameServer.realm.entities.player
             Owner.EnterWorld(entity);
             entity.AlwaysTick = true;
 
-            ((Portal)entity).PlayerOpened = true;
-            ((Portal)entity).Opener = Name;
+            ((Portal) entity).PlayerOpened = true;
+            ((Portal) entity).Opener = Name;
 
             Owner.Timers.Add(new WorldTimer(timeoutTime * 1000, (world, _) => world.LeaveWorld(entity)));
 
-            foreach (var p in Owner.Players.Values)
-            {
+            foreach (var p in Owner.Players.Values) {
                 p.Client.SendNotification(Id, $"Opened by" + Name, 0xFF00FF00);
             }
+
             foreach (var player in Owner.Players.Values)
                 player.SendInfo($"{gameData.Portals[objType].DungeonName} opened by {Name}");
         }
 
-        private void AEIncrementStat(RealmTime time, Item item, Position target, ActivateEffect eff)
-        {
-            var idx = StatsManager.GetStatIndex((StatsType)eff.Stats);
+        private void AEIncrementStat(RealmTime time, Item item, Position target, ActivateEffect eff) {
+            var idx = StatsManager.GetStatIndex((StatsType) eff.Stats);
             var statInfo = Manager.Resources.GameData.Classes[ObjectType].Stats;
             var itemName = string.IsNullOrEmpty(item.DisplayName) ? item.ObjectId : item.DisplayName;
 
-            Stats.Base[idx] += (int)eff.Amount;
+            Stats.Base[idx] += (int) eff.Amount;
             if (Stats.Base[idx] < statInfo[idx].MaxValues[Tier - 1])
                 SendInfo(
                     $"{itemName} Consumed. {(statInfo[idx].MaxValues[Tier - 1] - Stats.Base[idx]) / eff.Amount} left to max.");
@@ -455,150 +446,124 @@ namespace GameServer.realm.entities.player
                 Stats.Base[idx] = statInfo[idx].MaxValues[Tier - 1];
         }
 
-        private void AEFixedStat(RealmTime time, Item item, Position target, ActivateEffect eff)
-        {
-            var idx = StatsManager.GetStatIndex((StatsType)eff.Stats);
-            Stats.Base[idx] = (int)eff.Amount;
+        private void AEFixedStat(RealmTime time, Item item, Position target, ActivateEffect eff) {
+            var idx = StatsManager.GetStatIndex((StatsType) eff.Stats);
+            Stats.Base[idx] = (int) eff.Amount;
         }
 
-        private void AETeleport(RealmTime time, Item item, Position target, ActivateEffect eff)
-        {
+        private void AETeleport(RealmTime time, Item item, Position target, ActivateEffect eff) {
             TeleportPosition(time, target, true);
         }
 
-        private void AEMagicNova(RealmTime time, Item item, Position target, ActivateEffect eff)
-        {
+        private void AEMagicNova(RealmTime time, Item item, Position target, ActivateEffect eff) {
             this.AOE(eff.Range, true, player =>
-                    ActivateHealMp(player as Player, (int)eff.Amount));
-                foreach (var p in Owner.Players.Values)
-                    if (MathUtils.DistSqr(p.X, Y, X, Y) < RadiusSqr) 
-                        p.Client.SendShowEffect(EffectType.AreaBlast, Id, eff.Range, eff.Range, 0 ,0, 0xFFFFFFFF);
+                ActivateHealMp(player as Player, (int) eff.Amount));
+            foreach (var p in Owner.Players.Values)
+                if (MathUtils.DistSqr(p.X, Y, X, Y) < RadiusSqr)
+                    p.Client.SendShowEffect(EffectType.AreaBlast, Id, eff.Range, eff.Range, 0, 0, 0xFFFFFFFF);
         }
 
-        private void AEMagic(RealmTime time, Item item, Position target, ActivateEffect eff)
-        {
-            ActivateHealMp(this, (int)eff.Amount);
+        private void AEMagic(RealmTime time, Item item, Position target, ActivateEffect eff) {
+            ActivateHealMp(this, (int) eff.Amount);
         }
 
-        private void AEHealNova(RealmTime time, Item item, Position target, ActivateEffect eff)
-        {
-            if (!HasConditionEffect(ConditionEffects.Sick))
-            {
+        private void AEHealNova(RealmTime time, Item item, Position target, ActivateEffect eff) {
+            if (!HasConditionEffect(ConditionEffects.Sick)) {
                 var amount = eff.Amount;
                 var range = eff.Range;
 
-                this.AOE(range, true, player =>
-                {
+                this.AOE(range, true, player => {
                     if (!player.HasConditionEffect(ConditionEffects.Sick))
-                        ActivateHealHp(player as Player, (int)amount);
+                        ActivateHealHp(player as Player, (int) amount);
                 });
-                
+
                 foreach (var p in Owner.Players.Values)
-                    if (MathUtils.DistSqr(p.X, Y, X, Y) < RadiusSqr) 
-                        p.Client.SendShowEffect(EffectType.AreaBlast, Id, eff.Range, eff.Range, 0 ,0, 0xFFFFFFFF);
+                    if (MathUtils.DistSqr(p.X, Y, X, Y) < RadiusSqr)
+                        p.Client.SendShowEffect(EffectType.AreaBlast, Id, eff.Range, eff.Range, 0, 0, 0xFFFFFFFF);
             }
         }
 
-        private void AEHeal(RealmTime time, Item item, Position target, ActivateEffect eff)
-        {
-            if (!HasConditionEffect(ConditionEffects.Sick))
-            {
-                ActivateHealHp(this, (int)eff.Amount);
+        private void AEHeal(RealmTime time, Item item, Position target, ActivateEffect eff) {
+            if (!HasConditionEffect(ConditionEffects.Sick)) {
+                ActivateHealHp(this, (int) eff.Amount);
             }
         }
 
-        private void AEConditionEffectAura(RealmTime time, Item item, Position target, ActivateEffect eff)
-        {
+        private void AEConditionEffectAura(RealmTime time, Item item, Position target, ActivateEffect eff) {
             var duration = eff.DurationMS;
             var range = eff.Range;
 
-            this.AOE(range, true, player =>
-            {
-                player.ApplyConditionEffect(new ConditionEffect()
-                {
+            this.AOE(range, true, player => {
+                player.ApplyConditionEffect(new ConditionEffect() {
                     Effect = eff.ConditionEffect.Value,
                     DurationMS = duration
                 });
             });
-            foreach (var p in Owner.Players.Values)
-            {
-                if (MathUtils.DistSqr(p.X, Y, X, Y) < RadiusSqr) 
-                    p.Client.SendShowEffect(EffectType.AreaBlast, Id, eff.Range, eff.Range, 0 ,0, 0xFFFFFFFF);
+            foreach (var p in Owner.Players.Values) {
+                if (MathUtils.DistSqr(p.X, Y, X, Y) < RadiusSqr)
+                    p.Client.SendShowEffect(EffectType.AreaBlast, Id, eff.Range, eff.Range, 0, 0, 0xFFFFFFFF);
             }
         }
-        
-        private void AEConditionEffectSelf(RealmTime time, Item item, Position target, ActivateEffect eff)
-        {
+
+        private void AEConditionEffectSelf(RealmTime time, Item item, Position target, ActivateEffect eff) {
             var duration = eff.DurationMS;
 
-            ApplyConditionEffect(new ConditionEffect
-            {
+            ApplyConditionEffect(new ConditionEffect {
                 Effect = eff.ConditionEffect.Value,
                 DurationMS = duration
             });
-            foreach (var p in Owner.Players.Values)
-            {
-                if (MathUtils.DistSqr(p.X, Y, X, Y) < RadiusSqr) 
-                    p.Client.SendShowEffect(EffectType.AreaBlast, Id, eff.Range, eff.Range, 0 ,0, 0xFFFFFFFF);
+            foreach (var p in Owner.Players.Values) {
+                if (MathUtils.DistSqr(p.X, Y, X, Y) < RadiusSqr)
+                    p.Client.SendShowEffect(EffectType.AreaBlast, Id, eff.Range, eff.Range, 0, 0, 0xFFFFFFFF);
             }
         }
 
-        private void AEStatBoostAura(RealmTime time, Item item, Position target, ActivateEffect eff)
-        {
-            var idx = StatsManager.GetStatIndex((StatsType)eff.Stats);
-            var amount = (int)eff.Amount;
+        private void AEStatBoostAura(RealmTime time, Item item, Position target, ActivateEffect eff) {
+            var idx = StatsManager.GetStatIndex((StatsType) eff.Stats);
+            var amount = (int) eff.Amount;
             var duration = eff.DurationMS;
             var range = eff.Range;
 
-            this.AOE(range, true, player =>
-            {
-                ((Player)player).Stats.Boost.ActivateBoost[idx].Push(amount, eff.NoStack);
-                ((Player)player).Stats.ReCalculateValues();
+            this.AOE(range, true, player => {
+                ((Player) player).Stats.Boost.ActivateBoost[idx].Push(amount, eff.NoStack);
+                ((Player) player).Stats.ReCalculateValues();
 
                 if (idx == 12)
                     ShieldDamage = ShieldDamage - amount >= 0 ? ShieldDamage - amount : 0;
 
                 // hack job to allow instant heal of nostack boosts
-                if (eff.NoStack && amount > 0 && idx == 0)
-                {
-                    ((Player)player).HP = Math.Min(((Player)player).Stats[0], ((Player)player).HP + amount);
+                if (eff.NoStack && amount > 0 && idx == 0) {
+                    ((Player) player).HP = Math.Min(((Player) player).Stats[0], ((Player) player).HP + amount);
                 }
 
-                Owner.Timers.Add(new WorldTimer(duration, (_, _) =>
-                {
-                    ((Player)player).Stats.Boost.ActivateBoost[idx].Pop(amount, eff.NoStack);
-                    ((Player)player).Stats.ReCalculateValues();
+                Owner.Timers.Add(new WorldTimer(duration, (_, _) => {
+                    ((Player) player).Stats.Boost.ActivateBoost[idx].Pop(amount, eff.NoStack);
+                    ((Player) player).Stats.ReCalculateValues();
                 }));
             });
 
             if (!eff.NoStack)
-                foreach (var p in Owner.Players.Values)
-                {
-                    if (MathUtils.DistSqr(p.X, Y, X, Y) < RadiusSqr) 
-                        p.Client.SendShowEffect(EffectType.AreaBlast, Id, eff.Range, eff.Range, 0 ,0, 0xFFFFFFFF);
+                foreach (var p in Owner.Players.Values) {
+                    if (MathUtils.DistSqr(p.X, Y, X, Y) < RadiusSqr)
+                        p.Client.SendShowEffect(EffectType.AreaBlast, Id, eff.Range, eff.Range, 0, 0, 0xFFFFFFFF);
                 }
         }
 
-        private void AEStatBoostSelf(RealmTime time, Item item, Position target, ActivateEffect eff)
-        {
-            var idx = StatsManager.GetStatIndex((StatsType)eff.Stats);
-            var s = (int)eff.Amount;
+        private void AEStatBoostSelf(RealmTime time, Item item, Position target, ActivateEffect eff) {
+            var idx = StatsManager.GetStatIndex((StatsType) eff.Stats);
+            var s = (int) eff.Amount;
             Stats.Boost.ActivateBoost[idx].Push(s, eff.NoStack);
-            if (idx == 12)
-                ShieldDamage = ShieldDamage - s >= 0 ? ShieldDamage - s : 0;
             Stats.ReCalculateValues();
-            Owner.Timers.Add(new WorldTimer(eff.DurationMS, (_, _) =>
-            {
+            Owner.Timers.Add(new WorldTimer(eff.DurationMS, (_, _) => {
                 Stats.Boost.ActivateBoost[idx].Pop(s, eff.NoStack);
                 Stats.ReCalculateValues();
             }));
             foreach (var p in Owner.Players.Values)
-                if (MathUtils.DistSqr(p.X, Y, X, Y) < RadiusSqr) 
+                if (MathUtils.DistSqr(p.X, Y, X, Y) < RadiusSqr)
                     p.Client.SendShowEffect(EffectType.Potion, Id, 0, 0, 0, 0, 0xFFFFFFFF);
         }
-        
-        private void ActivateHealHp(Player player, int amount)
-        {
+
+        private void ActivateHealHp(Player player, int amount) {
             var maxHp = player.Stats[0];
             var newHp = Math.Min(maxHp, player.HP + amount);
             if (newHp == player.HP)
@@ -612,13 +577,13 @@ namespace GameServer.realm.entities.player
 
             player.HP = newHp;
         }
-        
+
         private void ActivateHealMp(Player player, int amount) {
             var maxMp = player.Stats[1];
             var newMp = Math.Min(maxMp, player.MP + amount);
             if (newMp == player.MP)
                 return;
-            
+
             foreach (var p in Owner.Players.Values)
                 if (MathUtils.DistSqr(p.X, p.Y, X, Y) < RadiusSqr) {
                     p.Client.SendShowEffect(EffectType.Potion, Id, 0, 0, 0, 0, 0xFFFFFF);
@@ -626,92 +591,6 @@ namespace GameServer.realm.entities.player
                 }
 
             player.MP = newMp;
-        }
-        
-        private void SpawnAlly(Position target, string ally, float duration, bool teleportToOwner = true,
-            bool forceSpawn = false)
-        {
-            if (Owner.Name == "Nexus" && !forceSpawn)
-            {
-                return;
-            }
-
-            var en = Resolve(Owner.Manager, ally);
-
-            en.Move(target.X, target.Y);
-            Owner.EnterWorld(en);
-            en.SetPlayerOwner(this);
-            en.SetPoTp(teleportToOwner);
-            en.AlwaysTick = true;
-            Owner.Timers.Add(new WorldTimer((int)(duration * 1000), (world, _) =>
-            {
-                world.LeaveWorld(en);
-            }));
-        }
-
-        private void HealNova(int amount, float range)
-        {
-            if (!HasConditionEffect(ConditionEffects.Sick))
-            {
-                this.AOE(range, true, player =>
-                {
-                    if (!player.HasConditionEffect(ConditionEffects.Sick))
-                        ActivateHealHp(player as Player, amount);
-                });
-                foreach (var p in Owner.Players.Values)
-                    if (MathUtils.DistSqr(p.X, Y, X, Y) < RadiusSqr) 
-                        p.Client.SendShowEffect(EffectType.AreaBlast, Id, range, range, 0 ,0, 0xCD4D3B);
-            }
-        }
-
-        private bool _godlyVigorFirst = true;
-
-        private void HealSelf(int amount, bool isGodlyVigor = false)
-        {
-            if (isGodlyVigor && _godlyVigorFirst)
-            {
-                _godlyVigorFirst = false;
-                return;
-            }
-
-            if (!HasConditionEffect(ConditionEffects.Sick))
-            {
-                ActivateHealHp(this, amount);
-            }
-        }
-
-        private void StatBoostSelf(int stat, int amount, float durationSec, bool noStack = false)
-        {
-            Stats.Boost.ActivateBoost[stat].Push(amount, noStack);
-            if (stat == 12)
-                ShieldDamage = ShieldDamage - amount >= 0 ? ShieldDamage - amount : 0;
-            Stats.ReCalculateValues();
-            Owner.Timers.Add(new WorldTimer((int)(durationSec * 1000), (_, _) =>
-            {
-                Stats.Boost.ActivateBoost[stat].Pop(amount, noStack);
-                Stats.ReCalculateValues();
-            }));
-            foreach (var p in Owner.Players.Values)
-            {
-                if (MathUtils.DistSqr(p.X, Y, X, Y) < RadiusSqr) 
-                    p.Client.SendShowEffect(EffectType.Potion, Id, 0, 0, 0, 0, 0xFFFFFFFF);
-            }
-        }
-
-        private void DamageBlast(int damage, float range, Position pos, RealmTime time)
-        {
-            foreach (var p in Owner.Players.Values)
-            {
-                if (MathUtils.DistSqr(p.X, Y, X, Y) < RadiusSqr) 
-                    p.Client.SendShowEffect(EffectType.AreaBlast, Id, range, range, 0 ,0, 0xCD4D3B);
-            }
-
-            var enemies = new List<Enemy>();
-            Owner.AOE(pos, range, false, entity => enemies.Add(entity as Enemy));
-
-            if (enemies.Count > 0)
-                foreach (var enemy in enemies)
-                    enemy?.Damage(this, time, damage, true);
         }
     }
 }

@@ -8,10 +8,8 @@ using GameServer.realm.entities.vendors;
 using GameServer.realm.worlds;
 using NLog;
 
-namespace GameServer.realm
-{
-    public partial class Entity : IProjectileOwner, ICollidable<Entity>
-    {
+namespace GameServer.realm {
+    public partial class Entity : IProjectileOwner, ICollidable<Entity> {
         private const int EffectCount = 50;
         private const int ImmunityCount = 8;
 
@@ -31,7 +29,9 @@ namespace GameServer.realm
         private Player _playerOwner;
 
         private readonly Position[] _posHistory;
+        protected int[] _hpHistory;
         private byte _posIdx;
+        protected byte _hpIdx;
         private readonly int[] _effects;
         private bool _tickingEffects;
 
@@ -52,52 +52,43 @@ namespace GameServer.realm
         private readonly SV<int> _conditionEffects2;
         private ConditionEffects _conditionEffects;
 
-        public string Name
-        {
+        public string Name {
             get => _name.GetValue();
             set => _name.SetValue(value);
         }
 
-        public ushort Size
-        {
+        public ushort Size {
             get => _size.GetValue();
             set => _size.SetValue(value);
         }
 
-        public ushort AltTextureIndex
-        {
+        public ushort AltTextureIndex {
             get => _altTextureIndex.GetValue();
             set => _altTextureIndex.SetValue(value);
         }
 
-        public ConditionEffects ConditionEffects
-        {
+        public ConditionEffects ConditionEffects {
             get => _conditionEffects;
-            set
-            {
+            set {
                 _conditionEffects = value;
-                _conditionEffects1?.SetValue((int)value);
-                _conditionEffects2?.SetValue((int)((ulong)value >> 31));
+                _conditionEffects1?.SetValue((int) value);
+                _conditionEffects2?.SetValue((int) ((ulong) value >> 31));
             }
         }
 
         public float RealX => _x.GetValue();
         public float RealY => _y.GetValue();
 
-        public float X
-        {
-            get
-            {
+        public float X {
+            get {
                 var player = this as Player;
                 return player?.SpectateTarget?.RealX ?? _x.GetValue();
             }
             private set => _x.SetValue(value);
         }
 
-        public float Y
-        {
-            get
-            {
+        public float Y {
+            get {
                 var player = this as Player;
                 return player?.SpectateTarget?.RealY ?? _y.GetValue();
             }
@@ -116,17 +107,14 @@ namespace GameServer.realm
         private State _stateEntryCommonRoot;
         private Dictionary<object, object> _states;
 
-        public IDictionary<object, object> StateStorage
-        {
-            get
-            {
+        public IDictionary<object, object> StateStorage {
+            get {
                 if (_states == null) _states = new Dictionary<object, object>();
                 return _states;
             }
         }
-        
-        protected Entity(RealmManager manager, ushort objType)
-        {
+
+        protected Entity(RealmManager manager, ushort objType) {
             _name = new SV<string>(this, StatsType.Name, "");
             _size = new SV<ushort>(this, StatsType.Size, 100);
             _originalSize = 100;
@@ -142,106 +130,91 @@ namespace GameServer.realm
             if (_desc == null)
                 return;
 
-            if (_desc.Player)
-            {
+            if (_desc.Player) {
                 _posHistory = new Position[256];
+                _hpHistory = new int[256];
                 _projectiles = new Projectile[256];
                 _effects = new int[EffectCount];
                 return;
             }
 
-            if (_desc.Enemy && !_desc.Static)
-            {
+            if (_desc.Enemy && !_desc.Static) {
                 _projectiles = new Projectile[256];
                 _effects = new int[EffectCount];
                 return;
             }
 
-            if (_desc.Character)
-            {
+            if (_desc.Character) {
                 _effects = new int[EffectCount];
             }
         }
-        
-        protected virtual void ExportStats(IDictionary<StatsType, object> stats)
-        {
+
+        protected virtual void ExportStats(IDictionary<StatsType, object> stats) {
             stats[StatsType.Name] = Name;
             stats[StatsType.Size] = Size;
             stats[StatsType.AltTextureIndex] = AltTextureIndex;
             stats[StatsType.Condition] = _conditionEffects1.GetValue();
         }
-        
-        public ObjectStats ExportStats()
-        {
+
+        public ObjectStats ExportStats() {
             var stats = new Dictionary<StatsType, object>();
             ExportStats(stats);
 
-            return new ObjectStats()
-            {
+            return new ObjectStats() {
                 Id = Id,
-                X = RealX, 
+                X = RealX,
                 Y = RealY,
                 StatTypes = stats.ToArray()
             };
         }
 
-        public ObjectDef ToDefinition()
-        {
-            return new ObjectDef()
-            {
+        public ObjectDef ToDefinition() {
+            return new ObjectDef() {
                 ObjectType = ObjectType,
                 Stats = ExportStats()
             };
         }
 
-        public Player GetPlayerOwner()
-        {
+        public Player GetPlayerOwner() {
             return _playerOwner;
         }
 
-        public void SetPlayerOwner(Player target)
-        {
+        public void SetPlayerOwner(Player target) {
             _playerOwner = target;
         }
 
-        public virtual void Init(World owner)
-        {
+        public virtual void Init(World owner) {
             Owner = owner;
         }
 
         private bool _poTp;
 
-        public void SetPoTp(bool teleport)
-        {
+        public void SetPoTp(bool teleport) {
             _poTp = teleport;
         }
 
-        public virtual void Tick(RealmTime time)
-        {
+        public virtual void Tick(RealmTime time) {
             if (this is Projectile || Owner == null) return;
-            if (_playerOwner != null)
-            {
-                if (this.Dist(_playerOwner) > 20 && _poTp)
-                {
+            if (_playerOwner != null) {
+                if (this.Dist(_playerOwner) > 20 && _poTp) {
                     Move(_playerOwner.X, _playerOwner.Y);
                 }
             }
 
-            if (CurrentState != null && Owner != null)
-            {
+            if (CurrentState != null && Owner != null) {
                 if (!TickStateManually &&
                     (this.AnyPlayerNearby() || ConditionEffects != 0 || AlwaysTick))
                     TickState(time);
             }
 
             if (_posHistory != null)
-                _posHistory[++_posIdx] = new Position() { X = X, Y = Y };
+                _posHistory[++_posIdx] = new Position {X = X, Y = Y};
+
             if (_effects != null)
                 ProcessConditionEffects(time);
         }
 
-        public void SwitchTo(State state)
-        {
+        public void SwitchTo(State state) {
             var origState = CurrentState;
 
             CurrentState = state;
@@ -251,28 +224,24 @@ namespace GameServer.realm
             _stateEntry = true;
         }
 
-        void GoDeeeeeeeep()
-        {
+        void GoDeeeeeeeep() {
             //always the first deepest sub-state
             if (CurrentState == null) return;
             while (CurrentState.States.Count > 0)
                 CurrentState = CurrentState = CurrentState.States[0];
         }
 
-        public void TickState(RealmTime time)
-        {
-            if (_stateEntry)
-            {
+        public void TickState(RealmTime time) {
+            if (_stateEntry) {
                 //State entry
                 var s = CurrentState;
-                while (s != null && s != _stateEntryCommonRoot)
-                {
+                while (s != null && s != _stateEntryCommonRoot) {
                     foreach (var i in s.Behaviors)
                         i.OnStateEntry(this, time);
-                    
+
                     foreach (var i in s.Transitions)
                         i.OnStateEntry(this, time);
-                    
+
                     s = s.Parent;
                 }
 
@@ -283,18 +252,15 @@ namespace GameServer.realm
             var origState = CurrentState;
             var state = CurrentState;
             bool transited = false;
-            while (state != null)
-            {
+            while (state != null) {
                 if (!transited)
                     foreach (var i in state.Transitions)
-                        if (i.Tick(this, time))
-                        {
+                        if (i.Tick(this, time)) {
                             transited = true;
                             break;
                         }
 
-                foreach (var i in state.Behaviors)
-                {
+                foreach (var i in state.Behaviors) {
                     if (Owner == null) break;
                     i.Tick(this, time);
                 }
@@ -304,12 +270,10 @@ namespace GameServer.realm
                 state = state.Parent;
             }
 
-            if (transited)
-            {
+            if (transited) {
                 //State exit
                 var s = origState;
-                while (s != null && s != _stateEntryCommonRoot)
-                {
+                while (s != null && s != _stateEntryCommonRoot) {
                     foreach (var i in s.Behaviors)
                         i.OnStateExit(this, time);
                     s = s.Parent;
@@ -317,14 +281,12 @@ namespace GameServer.realm
             }
         }
 
-        class FPoint
-        {
+        class FPoint {
             public float X;
             public float Y;
         }
 
-        public void ValidateAndMove(float x, float y)
-        {
+        public void ValidateAndMove(float x, float y) {
             if (Owner == null)
                 return;
 
@@ -333,8 +295,7 @@ namespace GameServer.realm
             Move(pos.X, pos.Y);
         }
 
-        private void ResolveNewLocation(float x, float y, FPoint pos)
-        {
+        private void ResolveNewLocation(float x, float y, FPoint pos) {
             var dx = x - X;
             var dy = y - Y;
 
@@ -342,8 +303,7 @@ namespace GameServer.realm
             if (dx < colSkipBoundary &&
                 dx > -colSkipBoundary &&
                 dy < colSkipBoundary &&
-                dy > -colSkipBoundary)
-            {
+                dy > -colSkipBoundary) {
                 CalcNewLocation(x, y, pos);
                 return;
             }
@@ -355,10 +315,8 @@ namespace GameServer.realm
             pos.Y = Y;
 
             var done = false;
-            while (!done)
-            {
-                if (tds + ds >= 1)
-                {
+            while (!done) {
+                if (tds + ds >= 1) {
                     ds = 1 - tds;
                     done = true;
                 }
@@ -368,44 +326,38 @@ namespace GameServer.realm
             }
         }
 
-        private void CalcNewLocation(float x, float y, FPoint pos)
-        {
+        private void CalcNewLocation(float x, float y, FPoint pos) {
             float fx = 0;
             float fy = 0;
 
-            var isFarX = (X % .5f == 0 && x != X) || (int)(X / .5f) != (int)(x / .5f);
-            var isFarY = (Y % .5f == 0 && y != Y) || (int)(Y / .5f) != (int)(y / .5f);
+            var isFarX = (X % .5f == 0 && x != X) || (int) (X / .5f) != (int) (x / .5f);
+            var isFarY = (Y % .5f == 0 && y != Y) || (int) (Y / .5f) != (int) (y / .5f);
 
-            if ((!isFarX && !isFarY) || RegionUnblocked(x, y))
-            {
+            if ((!isFarX && !isFarY) || RegionUnblocked(x, y)) {
                 pos.X = x;
                 pos.Y = y;
                 return;
             }
 
-            if (isFarX)
-            {
-                fx = (x > X) ? (int)(x * 2) / 2f : (int)(X * 2) / 2f;
-                if ((int)fx > (int)X)
+            if (isFarX) {
+                fx = (x > X) ? (int) (x * 2) / 2f : (int) (X * 2) / 2f;
+                if ((int) fx > (int) X)
                     fx = fx - 0.01f;
             }
 
-            if (isFarY)
-            {
-                fy = (y > Y) ? (int)(y * 2) / 2f : (int)(Y * 2) / 2f;
-                if ((int)fy > (int)Y)
+            if (isFarY) {
+                fy = (y > Y) ? (int) (y * 2) / 2f : (int) (Y * 2) / 2f;
+                if ((int) fy > (int) Y)
                     fy = fy - 0.01f;
             }
 
-            if (!isFarX)
-            {
+            if (!isFarX) {
                 pos.X = x;
                 pos.Y = fy;
                 return;
             }
 
-            if (!isFarY)
-            {
+            if (!isFarY) {
                 pos.X = fx;
                 pos.Y = y;
                 return;
@@ -413,33 +365,27 @@ namespace GameServer.realm
 
             var ax = (x > X) ? x - fx : fx - x;
             var ay = (y > Y) ? y - fy : fy - y;
-            if (ax > ay)
-            {
-                if (RegionUnblocked(x, fy))
-                {
+            if (ax > ay) {
+                if (RegionUnblocked(x, fy)) {
                     pos.X = x;
                     pos.Y = fy;
                     return;
                 }
 
-                if (RegionUnblocked(fx, y))
-                {
+                if (RegionUnblocked(fx, y)) {
                     pos.X = fx;
                     pos.Y = y;
                     return;
                 }
             }
-            else
-            {
-                if (RegionUnblocked(fx, y))
-                {
+            else {
+                if (RegionUnblocked(fx, y)) {
                     pos.X = fx;
                     pos.Y = y;
                     return;
                 }
 
-                if (RegionUnblocked(x, fy))
-                {
+                if (RegionUnblocked(x, fy)) {
                     pos.X = x;
                     pos.Y = fy;
                     return;
@@ -450,26 +396,22 @@ namespace GameServer.realm
             pos.Y = fy;
         }
 
-        private bool RegionUnblocked(float x, float y)
-        {
+        private bool RegionUnblocked(float x, float y) {
             if (TileOccupied(x, y))
                 return false;
 
-            var xFrac = x - (int)x;
-            var yFrac = y - (int)y;
+            var xFrac = x - (int) x;
+            var yFrac = y - (int) y;
 
-            if (xFrac < 0.5)
-            {
+            if (xFrac < 0.5) {
                 if (TileFullOccupied(x - 1, y))
                     return false;
 
-                if (yFrac < 0.5)
-                {
+                if (yFrac < 0.5) {
                     if (TileFullOccupied(x, y - 1) || TileFullOccupied(x - 1, y - 1))
                         return false;
                 }
-                else
-                {
+                else {
                     if (yFrac > 0.5)
                         if (TileFullOccupied(x, y + 1) || TileFullOccupied(x - 1, y + 1))
                             return false;
@@ -478,18 +420,15 @@ namespace GameServer.realm
                 return true;
             }
 
-            if (xFrac > 0.5)
-            {
+            if (xFrac > 0.5) {
                 if (TileFullOccupied(x + 1, y))
                     return false;
 
-                if (yFrac < 0.5)
-                {
+                if (yFrac < 0.5) {
                     if (TileFullOccupied(x, y - 1) || TileFullOccupied(x + 1, y - 1))
                         return false;
                 }
-                else
-                {
+                else {
                     if (yFrac > 0.5)
                         if (TileFullOccupied(x, y + 1) || TileFullOccupied(x + 1, y + 1))
                             return false;
@@ -498,8 +437,7 @@ namespace GameServer.realm
                 return true;
             }
 
-            if (yFrac < 0.5)
-            {
+            if (yFrac < 0.5) {
                 if (TileFullOccupied(x, y - 1))
                     return false;
 
@@ -513,10 +451,9 @@ namespace GameServer.realm
             return true;
         }
 
-        public bool TileOccupied(float x, float y)
-        {
-            var x_ = (int)x;
-            var y_ = (int)y;
+        public bool TileOccupied(float x, float y) {
+            var x_ = (int) x;
+            var y_ = (int) y;
 
             var map = Owner.Map;
 
@@ -529,8 +466,7 @@ namespace GameServer.realm
             if (tileDesc?.NoWalk == true)
                 return true;
 
-            if (tile.ObjType != 0)
-            {
+            if (tile.ObjType != 0) {
                 var objDesc = Manager.Resources.GameData.ObjectDescs[tile.ObjType];
                 if (objDesc?.EnemyOccupySquare == true)
                     return true;
@@ -539,18 +475,16 @@ namespace GameServer.realm
             return false;
         }
 
-        public bool TileFullOccupied(float x, float y)
-        {
-            var xx = (int)x;
-            var yy = (int)y;
+        public bool TileFullOccupied(float x, float y) {
+            var xx = (int) x;
+            var yy = (int) y;
 
             if (!Owner.Map.Contains(xx, yy))
                 return true;
 
             var tile = Owner.Map[xx, yy];
 
-            if (tile.ObjType != 0)
-            {
+            if (tile.ObjType != 0) {
                 var objDesc = Manager.Resources.GameData.ObjectDescs[tile.ObjType];
                 if (objDesc?.FullOccupy == true)
                     return true;
@@ -559,16 +493,14 @@ namespace GameServer.realm
             return false;
         }
 
-        public virtual void Move(float x, float y)
-        {
+        public virtual void Move(float x, float y) {
             if (Controller != null)
                 return;
 
             MoveEntity(x, y);
         }
 
-        public void MoveEntity(float x, float y)
-        {
+        public void MoveEntity(float x, float y) {
             if (Owner != null && this is not Projectile &&
                 (this is not StaticObject staticObject || staticObject.Hittestable))
                 (this is Enemy || this is StaticObject
@@ -579,15 +511,15 @@ namespace GameServer.realm
             Y = y;
         }
 
-        public Position? TryGetHistory(long ticks)
-        {
-            if (_posHistory == null) return null;
-            if (ticks > 255) return null;
-            return _posHistory[(byte)(_posIdx - (byte)ticks)];
+        public Position? TryGetHistory(byte ticks) {
+            return _posHistory?[_posIdx - ticks];
         }
 
-        public static Entity Resolve(RealmManager manager, string name)
-        {
+        protected int? TryGetHPHistory(byte ticks) {
+            return _hpHistory?[_hpIdx - ticks];
+        }
+
+        public static Entity Resolve(RealmManager manager, string name) {
             ushort id;
             if (!manager.Resources.GameData.IdToObjectType.TryGetValue(name, out id))
                 return null;
@@ -595,12 +527,10 @@ namespace GameServer.realm
             return Resolve(manager, id);
         }
 
-        public static Entity Resolve(RealmManager manager, ushort id)
-        {
+        public static Entity Resolve(RealmManager manager, ushort id) {
             var node = manager.Resources.GameData.ObjectTypeToElement[id];
             string type = node.Element("Class").Value;
-            switch (type)
-            {
+            switch (type) {
                 case "Projectile":
                     throw new Exception("Projectile should not instantiated using Entity.Resolve");
                 case "Sign":
@@ -652,19 +582,18 @@ namespace GameServer.realm
         }
 
         public Projectile CreateProjectile(ProjectileDesc desc, ushort container, int dmg, long time, float x, float y,
-            float angle, int projectileId)
-        {
+            float angle, int projectileId) {
             var ret = new Projectile(Manager, desc) //Assume only one
             {
                 ProjectileOwner = this,
                 BulletId = bulletId++,
-                ProjectileId = (byte)projectileId,
+                ProjectileId = (byte) projectileId,
                 Container = container,
                 Damage = dmg,
                 DamageType = desc.DamageType,
 
                 CreationTime = time,
-                StartPos = new Position { X = x, Y = y},
+                StartPos = new Position {X = x, Y = y},
                 Angle = angle,
 
                 X = x,
@@ -676,141 +605,119 @@ namespace GameServer.realm
             return _projectiles[ret.BulletId] = ret;
         }
 
-        public virtual bool HitByProjectile(Projectile projectile, RealmTime time)
-        {
+        public virtual bool HitByProjectile(Projectile projectile, RealmTime time) {
             if (ObjectDesc == null)
                 return true;
 
             return ObjectDesc.Enemy || ObjectDesc.Player;
         }
 
-        public virtual bool HitByProjectile(Projectile projectile, long time)
-        {
+        public virtual bool HitByProjectile(Projectile projectile, long time) {
             if (ObjectDesc == null)
                 return true;
 
             // if they mess around with packets they should get fucked!
-            var player = (Player)this;
-            if (ObjectDesc.Player && (player.AcLastHitTime <= 0 || time > player.AcLastHitTime + 60000))
-            {
+            var player = (Player) this;
+            if (ObjectDesc.Player && (player.AcLastHitTime <= 0 || time > player.AcLastHitTime + 60000)) {
                 player.AcMissedShots++;
                 return false;
             }
 
             var ret = ObjectDesc.Player && (player.AcLastHitTime > 0 || time < player.AcLastHitTime + 60000);
-            if (!ret && player.AcMissedShots < 7)
-            {
+            if (!ret && player.AcMissedShots < 7) {
                 player.AcMissedShots++;
             }
+
             return ret;
         }
 
-        private void ProcessConditionEffects(RealmTime time)
-        {
+        private void ProcessConditionEffects(RealmTime time) {
             if (_effects == null || !_tickingEffects) return;
 
             ConditionEffects newEffects = 0;
             _tickingEffects = false;
-            for (var i = 0; i < _effects.Length; i++)
-            {
-                if (_effects[i] > 0)
-                {
+            for (var i = 0; i < _effects.Length; i++) {
+                if (_effects[i] > 0) {
                     _effects[i] -= time.ElapsedMsDelta;
-                    if (_effects[i] > 0)
-                    {
-                        newEffects |= (ConditionEffects)((ulong)1 << i);
+                    if (_effects[i] > 0) {
+                        newEffects |= (ConditionEffects) ((ulong) 1 << i);
                         _tickingEffects = true;
                     }
-                    else
-                    {
+                    else {
                         _effects[i] = 0;
                     }
                 }
-                else if (_effects[i] == -1)
-                {
-                    newEffects |= (ConditionEffects)((ulong)1 << i);
+                else if (_effects[i] == -1) {
+                    newEffects |= (ConditionEffects) ((ulong) 1 << i);
                 }
             }
 
             ConditionEffects = newEffects;
         }
 
-        public bool HasConditionEffect(ConditionEffects eff)
-        {
+        public bool HasConditionEffect(ConditionEffects eff) {
             return (ConditionEffects & eff) != 0;
         }
 
-        public void ApplyConditionEffect(params ConditionEffect[] effs)
-        {
-            foreach (var i in effs)
-            {
+        public void ApplyConditionEffect(params ConditionEffect[] effs) {
+            foreach (var i in effs) {
                 var duration = i.DurationMS;
 
-                var eff = (int)i.Effect;
+                var eff = (int) i.Effect;
                 double tenMod;
-                if (Constants.NegativeEffsIdx.Contains(i.Effect) && duration != -1)
-                {
-                    tenMod = 1d - (this is Player p ? (double)p.Stats[12] / 100 : (double)ObjectDesc.Tenacity / 100);
-                    _effects[eff] = (int)Math.Max(1, duration * tenMod);
+                if (Constants.NegativeEffsIdx.Contains(i.Effect) && duration != -1) {
+                    tenMod = 1d - (this is Player p ? (double) p.Stats[12] / 100 : (double) ObjectDesc.Tenacity / 100);
+                    _effects[eff] = (int) Math.Max(1, duration * tenMod);
                 }
-                else
-                {
+                else {
                     _effects[eff] = duration;
                 }
 
                 if (duration != 0)
-                    ConditionEffects |= (ConditionEffects)((ulong)1 << eff);
+                    ConditionEffects |= (ConditionEffects) ((ulong) 1 << eff);
             }
 
             _tickingEffects = true;
         }
 
-        public void ApplyConditionEffect(ConditionEffectIndex effect, int durationMs = -1)
-        {
-            var eff = (int)effect;
+        public void ApplyConditionEffect(ConditionEffectIndex effect, int durationMs = -1) {
+            var eff = (int) effect;
 
             _effects[eff] = durationMs;
             if (durationMs != 0)
-                ConditionEffects |= (ConditionEffects)((ulong)1 << eff);
+                ConditionEffects |= (ConditionEffects) ((ulong) 1 << eff);
 
             _tickingEffects = true;
         }
 
-        public void OnChatTextReceived(Player player, string text)
-        {
+        public void OnChatTextReceived(Player player, string text) {
             var state = CurrentState;
-            while (state != null)
-            {
+            while (state != null) {
                 foreach (var t in state.Transitions.OfType<PlayerTextTransition>())
                     t.OnChatReceived(player, text);
                 state = state.Parent;
             }
         }
 
-        public void InvokeStatChange(StatsType t, object val, bool updateSelfOnly = false)
-        {
+        public void InvokeStatChange(StatsType t, object val, bool updateSelfOnly = false) {
             StatChanged?.Invoke(this, new StatChangedEventArgs(t, val, updateSelfOnly));
         }
 
-        public virtual void Dispose()
-        {
+        public virtual void Dispose() {
             Owner = null;
             FocusLost?.Invoke(this, EventArgs.Empty);
         }
 
-        public virtual bool CanBeSeenBy(Player player)
-        {
+        public virtual bool CanBeSeenBy(Player player) {
             return !HasConditionEffect(ConditionEffects.Hidden);
         }
 
-        public void SetDefaultSize(ushort size)
-        {
+        public void SetDefaultSize(ushort size) {
             _originalSize = size;
             Size = size;
         }
 
-        public void RestoreDefaultSize()
-        {
+        public void RestoreDefaultSize() {
             Size = _originalSize;
         }
     }

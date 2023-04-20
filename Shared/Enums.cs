@@ -116,24 +116,40 @@ namespace Shared
         Bloodstone
     }
 
-    public struct TotemEffect
-    {
+    public struct TotemEffect {
         public ConditionEffectIndex? ConditionEffect;
         public int StatType;
         public int Value;
 
-        public TotemEffect(string val)
-        {
-            if (Enum.TryParse(val, out ConditionEffectIndex conditionEffect))
-            {
+        public TotemEffect(string val) {
+            if (Enum.TryParse(val, out ConditionEffectIndex conditionEffect)) {
                 ConditionEffect = conditionEffect;
                 return;
             }
 
-            // todo
-            var newVal = val.Replace("+", "");
-            // StatType = GetStatType(newVal);
-            // Value = int.Parse(newVal);
+            var split = val.Replace("+", "").Split(' ');
+            StatType = GetStatTypeShort(split[1]);
+            Value = int.Parse(split[0]);
+        }
+        
+        // todo this is terrible
+        public static int GetStatTypeShort(string stat) {
+            return stat switch {
+                "HP" => 0,
+                "MP" => 3,  
+                "STR" => 20, 
+                "WIT" => 77,
+                "DEF" => 21,
+                "RES" => 78,
+                "SPD" => 22,
+                "HST" => 79,
+                "STM" => 27,
+                "INT" => 80,
+                "PRC" => 81,
+                "PEN" => 30,
+                "TEN" => 82,
+                _ => 255
+            };
         }
     }
 }

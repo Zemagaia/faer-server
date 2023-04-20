@@ -22,7 +22,7 @@ namespace GameServer.realm.entities
 
         public static int? GetHP(XElement elem)
         {
-            var n = elem.Element("MaxHitPoints");
+            var n = elem.Element("Health");
             if (n != null)
                 return Utils.FromString(n.Value);
             else

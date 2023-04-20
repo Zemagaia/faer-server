@@ -90,13 +90,13 @@ namespace GameServer.realm
                 case ServerMode.Nexus:
                 case ServerMode.Realm:
                     InitializeGlobalWorlds();
-                    AddWorld("Nexus", false);
+                    AddWorld("Hub", false);
                     break;
             }
 
             // add portal monitor to nexus and initialize worlds
-            if (Worlds.ContainsKey(World.Realm))
-                Monitor = new PortalMonitor(this, Worlds[World.Realm]);
+            if (Worlds.ContainsKey(World.Hub))
+                Monitor = new PortalMonitor(this, Worlds[World.Hub]);
             foreach (var world in Worlds.Values)
                 OnWorldAdded(world);
 
@@ -185,7 +185,7 @@ namespace GameServer.realm
             int id;
             if (actAsHub)
             {
-                id = World.Realm;
+                id = World.Hub;
             }
             else
             {
@@ -268,7 +268,7 @@ namespace GameServer.realm
 
         public World GetGameWorld(Client client)
         {
-            return Worlds[World.Realm];
+            return Worlds[World.Hub];
         }
     }
 }

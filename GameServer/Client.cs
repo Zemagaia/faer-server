@@ -1101,15 +1101,14 @@ public class Client {
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessEnemyHit(byte bulletId, int targetId) {
-        if (Player?.Owner != null && Player.Owner.Enemies.TryGetValue(targetId, out var en)) {
+        if (Player?.Owner != null && Player.Owner.Enemies.TryGetValue(targetId, out var en))
             Player._projectiles[bulletId].ForceHit(en, Manager.Logic.WorldTime);
-        }
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessEscape() {
         if (Player?.Owner != null) {
-            Reconnect("Nexus", -2);
+            Reconnect("Hub", -2);
         }
     }
 

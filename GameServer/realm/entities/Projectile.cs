@@ -49,7 +49,7 @@ namespace GameServer.realm.entities
         {
             _elapsed += time.ElapsedMsDelta;
             // if (ProjectileOwner is Player) Console.WriteLine(_elapsed + " " + ProjDesc.LifetimeMS);
-            if (_elapsed >= ProjDesc.LifetimeMS + 100)
+            if (_elapsed >= ProjDesc.LifetimeMS + 1000)
             {
                 Destroy();
                 return;
@@ -126,23 +126,6 @@ namespace GameServer.realm.entities
 
         public void ForceHit(Entity entity, RealmTime time, int cTime = -1)
         {
-            if (cTime > CreationTime)
-            {
-                var elapsed = cTime - CreationTime;
-                if (elapsed > ProjDesc.LifetimeMS)
-                {
-                    return;
-                }
-                
-                var pos = GetPosition(elapsed);
-                var dist = MathsUtils.DistSqr(pos.X, pos.Y, entity.X, entity.Y);
-                // Console.WriteLine($"Times: {cTime}  {CreationTime}  |   {dist}");
-                if (dist > 4)
-                {
-                    return;
-                }
-            }
-
             if (_hit.Add(entity))
                 entity.HitByProjectile(this, time);
 

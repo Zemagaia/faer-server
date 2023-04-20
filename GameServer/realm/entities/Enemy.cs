@@ -54,10 +54,7 @@ namespace GameServer.realm.entities
             DamageTypes damageType = DamageTypes.Magical, params ConditionEffect[] effs)
         {
             if (stat || Owner == null) return 0;
-            dmg = (int)StatsManager.GetDefenseDamage(this, dmg, damageType, from);
-            var effDmg = dmg;
-            if (effDmg > HP)
-                effDmg = HP;
+            dmg = (int)(StatsManager.GetDefenseDamage(this, dmg, damageType, from) * from.DamageMultiplier);
             if (!HasConditionEffect(ConditionEffects.Invulnerable))
                 HP -= dmg;
             ApplyConditionEffect(effs);
@@ -73,7 +70,7 @@ namespace GameServer.realm.entities
                 Death(time);
             }
 
-            return effDmg;
+            return dmg;
         }
 
         public override bool HitByProjectile(Projectile projectile, RealmTime time)
@@ -82,7 +79,7 @@ namespace GameServer.realm.entities
                 projectile.ProjectileOwner is not Player p)
                 return false;
             
-            var dmg = (int)StatsManager.GetDefenseDamage(this, projectile.Damage, projectile.DamageType, p);
+            var dmg = (int)(StatsManager.GetDefenseDamage(this, projectile.Damage, projectile.DamageType, p) * p.DamageMultiplier);
             if (!HasConditionEffect(ConditionEffects.Invulnerable))
                 HP -= dmg;
             ApplyConditionEffect(projectile.ProjDesc.Effects);
@@ -94,9 +91,7 @@ namespace GameServer.realm.entities
             DamageCounter.HitBy(p, time, projectile, dmg);
 
             if (HP < 0 && Owner != null)
-            {
                 Death(time);
-            }
 
             return true;
         }

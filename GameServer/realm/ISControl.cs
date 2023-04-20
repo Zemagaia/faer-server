@@ -74,7 +74,7 @@ namespace GameServer.realm
 
             tmr = new WorldTimer(1000, rebootTick);
             _manager.Chat.Announce("Server rebooting in 30 seconds...", true);
-            _manager.GetWorld(World.Realm).Timers.Add(tmr);
+            _manager.GetWorld(World.Hub).Timers.Add(tmr);
         }
     }
 }

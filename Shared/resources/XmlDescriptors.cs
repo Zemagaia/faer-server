@@ -110,7 +110,6 @@ namespace Shared.resources
         public readonly ushort SkinType;
         public readonly int Size;
         public readonly bool NoStack;
-        public readonly bool UseWisMod;
         public readonly string Target;
         public readonly string Center;
         public readonly int VisualEffect;
@@ -120,8 +119,6 @@ namespace Shared.resources
         public readonly int[] BoostValues;
         public readonly int[] BoostValuesStats;
         public readonly string[] BoostValuesStatsString;
-        public readonly string TransformationSkin;
-        public readonly int TransformationSkinSize;
 
         public readonly string[] ConditionEffects;
         public readonly string StatName;
@@ -146,14 +143,12 @@ namespace Shared.resources
             if (e.HasAttribute("duration2"))
                 DurationMS = (int)(e.GetAttribute<float>("duration2") * 1000);
 
-            if (e.HasAttribute("effect"))
-            {
+            if (e.HasAttribute("effect")) {
                 var val = e.GetAttribute<string>("effect");
 
                 if (Utils.TryGetEffect(val, out var r))
                     ConditionEffect = r;
-                else
-                {
+                else {
                     var effects = val.Trim().Split(",");
                     
                     TotemEffects = new TotemEffect[effects.Length];
@@ -187,7 +182,6 @@ namespace Shared.resources
             SkinType = e.GetAttribute<ushort>("skinType");
             Size = e.GetAttribute<int>("size");
             NoStack = e.GetAttribute<bool>("noStack");
-            UseWisMod = e.GetAttribute<bool>("useWisMod");
             Target = e.GetAttribute<string>("target");
             Center = e.GetAttribute<string>("center");
             VisualEffect = e.GetAttribute<int>("visualEffect");
@@ -200,9 +194,7 @@ namespace Shared.resources
                 BoostValuesStatsString = e.GetAttribute<string>("boostStats").CommaToArray<string>();
                 BoostValuesStats = StatUtils.ArrayStatNameToId(BoostValuesStatsString);
             }
-
-            TransformationSkin = e.GetAttribute<string>("transformSkin");
-            TransformationSkinSize = e.GetAttribute("transformSize", 100);
+            
             if (e.HasAttribute("condEffs"))
                 ConditionEffects = e.GetAttribute<string>("condEffs").CommaToArray<string>();
         }
@@ -550,14 +542,6 @@ namespace Shared.resources
         public readonly bool KeepMinimap;
         public readonly bool Invulnerable;
 
-        // elemental resistances
-        public readonly int EarthResistance;
-        public readonly int AirResistance;
-        public readonly int ProfaneResistance;
-        public readonly int WaterResistance;
-        public readonly int FireResistance;
-        public readonly int HolyResistance;
-
         public ObjectDesc(ushort type, XElement e)
         {
             ObjectType = type;
@@ -570,13 +554,11 @@ namespace Shared.resources
             EnemyOccupySquare = e.HasElement("EnemyOccupySquare");
             BlocksSight = e.HasElement("BlocksSight");
             Enemy = e.HasElement("Enemy");
-            MaxHP = e.GetValue<int>("MaxHitPoints");
+            MaxHP = e.GetValue<int>("Health");
             Armor = e.GetValue<int>("Armor");
             Resistance = e.GetValue<int>("Resistance");
             Tenacity = e.GetValue<int>("Tenacity");
             Agility = e.GetValue("Agility", 50);
-            e.GetValue("XpMult", 1.0f);
-            e.GetValue<int>("PerRealmMax");
             Group = e.GetValue<string>("Group");
             DungeonName = e.GetValue<string>("DungeonName");
             Character = Class.Equals("Character");
@@ -612,13 +594,6 @@ namespace Shared.resources
             Invulnerable = e.HasElement("Invulnerable");
 
             KeepMinimap = e.HasElement("KeepMinimap");
-
-            EarthResistance = e.GetValue("EarthResistance", 0);
-            AirResistance = e.GetValue("AirResistance", 0);
-            ProfaneResistance = e.GetValue("ProfaneResistance", 0);
-            WaterResistance = e.GetValue("WaterResistance", 0);
-            FireResistance = e.GetValue("FireResistance", 0);
-            HolyResistance = e.GetValue("HolyResistance", 0);
         }
     }
     
