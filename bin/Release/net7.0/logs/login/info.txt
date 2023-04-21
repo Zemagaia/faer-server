@@ -755,3 +755,27 @@
 2023-04-21 22:17:01.6424|INFO|Shared.ISManager|Localhost (World, 284ae5c2-0729-4d55-9a45-2c269d3b87f1) joined the network.
 2023-04-21 22:18:01.3594|INFO|Shared.ISManager|Localhost (World, 834dea17-c13e-4e37-927b-4e1c5835f5b9) joined the network.
 2023-04-21 22:18:14.5272|INFO|Shared.ISManager|Localhost (World, 284ae5c2-0729-4d55-9a45-2c269d3b87f1) timed out.
+2023-04-21 22:20:31.3410|INFO|Shared.resources.AppSettings|Loading app settings...
+2023-04-21 22:20:31.3598|INFO|Shared.resources.XmlData|Loading xml data...
+2023-04-21 22:20:31.4328|INFO|Shared.resources.XmlData|Finish loading game data.
+2023-04-21 22:20:31.4328|INFO|Shared.resources.XmlData|262 Items
+2023-04-21 22:20:31.4328|INFO|Shared.resources.XmlData|88 Tiles
+2023-04-21 22:20:31.4328|INFO|Shared.resources.XmlData|317 Objects
+2023-04-21 22:20:31.4328|INFO|Shared.resources.XmlData|9 Skins
+2023-04-21 22:20:31.4328|INFO|Shared.resources.XmlData|0 Equipment Sets
+2023-04-21 22:20:31.4328|INFO|Shared.resources.XmlData|9 Classes
+2023-04-21 22:20:31.4328|INFO|Shared.resources.XmlData|9 Portals
+2023-04-21 22:20:31.4328|INFO|Shared.resources.XmlData|1 Merchants
+2023-04-21 22:20:31.4328|INFO|Shared.resources.XmlData|0 Remote Textures
+2023-04-21 22:20:31.4328|INFO|Shared.resources.XmlData|0 Additions
+2023-04-21 22:20:31.4403|INFO|Shared.Database|Initializing Database...
+2023-04-21 22:20:31.5752|INFO|Shared.ISManager|Server's Id is 89a5c9b9-d028-4333-9cef-22c7a260142b
+2023-04-21 22:20:31.6118|INFO|LoginServer.Program|Listening at address 127.0.0.1:8080...
+2023-04-21 22:20:31.6234|INFO|Shared.ISManager|AppEngine (Account, 89a5c9b9-d028-4333-9cef-22c7a260142b) joined the network.
+2023-04-21 22:20:34.0385|INFO|Shared.ISManager|Localhost (World, 70f077d4-0007-41a3-8257-16d7c9528e23) joined the network.
+2023-04-21 23:18:42.4532|INFO|Shared.ISManager|Localhost (World, ed738a2e-1758-4128-aff3-49c9d529d7a3) joined the network.
+2023-04-21 23:19:09.6096|INFO|Shared.ISManager|Localhost (World, 70f077d4-0007-41a3-8257-16d7c9528e23) timed out.
+2023-04-21 23:22:11.5753|INFO|Shared.ISManager|Localhost (World, 543223da-b080-46d2-9b4c-c4d9f093d499) joined the network.
+2023-04-21 23:22:31.6051|INFO|Shared.ISManager|Localhost (World, ed738a2e-1758-4128-aff3-49c9d529d7a3) timed out.
+2023-04-21 23:23:04.5313|INFO|Shared.ISManager|Localhost (World, 5d7cab25-c0ea-4eb5-ba6a-199f6347f5c9) joined the network.
+2023-04-21 23:23:27.6063|INFO|Shared.ISManager|Localhost (World, 543223da-b080-46d2-9b4c-c4d9f093d499) timed out.

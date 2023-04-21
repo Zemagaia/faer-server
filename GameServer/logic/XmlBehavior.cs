@@ -35,7 +35,7 @@ namespace GameServer.logic
             var children = new List<IStateChildren>();
             foreach (var i in e.Elements("State"))
             {
-                if (i.Elements("State").Count() > 0)
+                if (i.Elements("State").Any())
                     ParseStates(i, results, templates, ref children);
                 foreach (var j in i.Elements("BehaviorTemplate"))
                 {
@@ -44,7 +44,7 @@ namespace GameServer.logic
                         children.AddRange((IStateChildren[])method.Invoke(null, new[] { j }));
                 }
 
-                if (i.Elements("Behavior").Count() > 0)
+                if (i.Elements().Any())
                     ParseBehaviors(i, results, ref children);
 
                 var state = (IStateChildren)Activator.CreateInstance(results.Single(x => x.Name == "State"),
@@ -57,12 +57,12 @@ namespace GameServer.logic
         private static void ParseBehaviors(XElement e, Type[] results, ref List<IStateChildren> behaviors)
         {
             var children = new List<IStateChildren>();
-            foreach (var i in e.Elements("Behavior"))
+            foreach (var i in e.Elements())
             {
-                if (i.Elements("Behavior").Count() > 0)
+                if (i.Elements().Any())
                     ParseBehaviors(i, results, ref children);
 
-                var name = i.Attribute("behavior") != null ? i.GetAttribute<string>("behavior") : i.Value;
+                var name = i.Attribute("behavior") != null ? i.GetAttribute<string>("behavior") : i.Name.ToString();
                 IStateChildren behavior;
                 if (children.Count > 0)
                     behavior = (IStateChildren)Activator.CreateInstance(results.Single(x => x.Name == name), i,
@@ -87,7 +87,7 @@ namespace GameServer.logic
 
             foreach (var i in e.Elements("LootDef"))
             {
-                if (i.Elements("LootDef").Count() > 0)
+                if (i.Elements("LootDef").Any())
                     ParseLoot(i, results, ref children);
 
                 var name = i.Attribute("behavior") != null ? i.GetAttribute<string>("behavior") : i.Value;

@@ -1,7 +1,12 @@
 <BehaviorEntries>
-    <BehaviorEntry id="White Fountain">
+    <BehaviorEntry id="Health Shrine">
         <State id="root">
-            <Behavior range="7.5">HealPlayer</Behavior>
+            <HealPlayer range="3" amount="75"/>
         </State>
-    </BehaviorEntry> 
+    </BehaviorEntry>
+    <BehaviorEntry id="Magic Shrine">
+        <State id="root">
+            <HealPlayerMP range="3" amount="50"/>
+        </State>
+    </BehaviorEntry>
 </BehaviorEntries>
