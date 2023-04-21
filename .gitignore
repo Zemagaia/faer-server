@@ -8,6 +8,10 @@
 *.deps.json
 *.restore.info
 *.dll
+logs/
+GameServer
+LoginServer
+System.Reactive.xml
 !RotMG.Common.dll
 
 #ignore thumbnails created by windows

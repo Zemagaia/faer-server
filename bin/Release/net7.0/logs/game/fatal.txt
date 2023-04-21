@@ -1,5 +1,0 @@
-2023-04-15 16:06:11.1427|FATAL|GameServer.Program|System.IndexOutOfRangeException: Index was outside the bounds of the array.
-   at GameServer.realm.Overseer.Init() in /home/a/faer/server/GameServer/realm/Overseer.cs:line 395
-   at GameServer.realm.RealmManager.OnWorldAdded(World world) in /home/a/faer/server/GameServer/realm/RealmManager.cs:line 256
-   at GameServer.realm.RealmManager..ctor(Resources resources, Database db, ServerConfig config) in /home/a/faer/server/GameServer/realm/RealmManager.cs:line 101
-   at GameServer.Program.Main(String[] args) in /home/a/faer/server/GameServer/Program.cs:line 40
