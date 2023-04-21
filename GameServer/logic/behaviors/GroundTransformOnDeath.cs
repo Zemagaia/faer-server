@@ -52,11 +52,10 @@ namespace GameServer.logic.behaviors
 
                     var tile = map[x, y];
 
-                    if (tileType == tile.TileId)
+                    if (tileType == tile.TileType)
                         return;
 
-                    tile.Spawned = host.Spawned;
-                    tile.TileId = tileType;
+                    tile.TileType = tileType;
                     tile.UpdateCount++;
                     return;
                 }
@@ -69,11 +68,10 @@ namespace GameServer.logic.behaviors
 
                         var tile = map[i, j];
 
-                        if (tileType == tile.TileId)
+                        if (tileType == tile.TileType)
                             continue;
 
-                        tile.Spawned = host.Spawned;
-                        tile.TileId = tileType;
+                        tile.TileType = tileType;
                         tile.UpdateCount++;
                     }
             };

@@ -6,6 +6,6 @@
 	"sbName": "Hub",
 	"difficulty": -1,
 	"background": 0,
-	"maps": ["Hub.jm"],
+	"map": "Hub.fm",
 	"music": [""]
 }

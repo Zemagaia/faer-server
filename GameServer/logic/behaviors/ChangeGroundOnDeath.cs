@@ -50,9 +50,9 @@ namespace GameServer.logic.behaviors
                             foreach (string type in groundToChange)
                             {
                                 int r = Random.Next(targetType.Length);
-                                if (tile.TileId == dat.IdToTileType[type])
+                                if (tile.TileType == dat.IdToTileType[type])
                                 {
-                                    tile.TileId = dat.IdToTileType[targetType[r]];
+                                    tile.TileType = dat.IdToTileType[targetType[r]];
                                     w.Map[x + pos.X, y + pos.Y] = tile;
                                 }
                             }
@@ -60,7 +60,7 @@ namespace GameServer.logic.behaviors
                         else
                         {
                             int r = Random.Next(targetType.Length);
-                            tile.TileId = dat.IdToTileType[targetType[r]];
+                            tile.TileType = dat.IdToTileType[targetType[r]];
                             w.Map[x + pos.X, y + pos.Y] = tile;
                         }
                     }

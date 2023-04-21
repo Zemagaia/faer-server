@@ -31,38 +31,13 @@ namespace GameServer.logic.behaviors
             _targetStateName = targetState;
         }
 
-        protected override void TickCore(Entity host, RealmTime time, ref object state)
-        {
-            switch (_condition.ToLower())
-            {
-                case "closedrealm":
-                case "realmclosed":
-                case "realm closed":
-                case "closed realm":
-                    var owner = host.Owner;
+        protected override void TickCore(Entity host, RealmTime time, ref object state) {
+            _targetState ??= Order.FindState(host.Manager.Behaviors.Definitions[_children].Item1,
+                _targetStateName);
 
-                    if (owner.Closed && owner is Realm)
-                    {
-                        if (_targetState == null)
-                            _targetState = Order.FindState(host.Manager.Behaviors.Definitions[_children].Item1,
-                                _targetStateName);
-
-                        foreach (var i in host.GetNearestEntities(_range, _children))
-                            if (!i.CurrentState.Is(_targetState))
-                                i.SwitchTo(_targetState);
-                    }
-
-                    break;
-                default:
-                    if (_targetState == null)
-                        _targetState = Order.FindState(host.Manager.Behaviors.Definitions[_children].Item1,
-                            _targetStateName);
-
-                    foreach (var i in host.GetNearestEntities(_range, _children))
-                        if (!i.CurrentState.Is(_targetState))
-                            i.SwitchTo(_targetState);
-                    break;
-            }
+            foreach (var i in host.GetNearestEntities(_range, _children))
+                if (!i.CurrentState.Is(_targetState))
+                    i.SwitchTo(_targetState);
         }
     }
 }

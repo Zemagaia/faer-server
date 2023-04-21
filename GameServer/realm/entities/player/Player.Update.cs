@@ -129,17 +129,17 @@ namespace GameServer.realm.entities.player
             {
                 var x = point.X;
                 var y = point.Y;
-                var tile = Owner?.Map[x, y] ?? new WmapTile(new WmapDesc());
+                var tile = Owner?.Map[x, y] ?? new WmapTile();
 
-                if (tile.TileId == 255 ||
+                if (tile.TileType == 255 ||
                     tiles[x, y] >= tile.UpdateCount)
                     continue;
 
-                tilesUpdate.Add(new TileData()
+                tilesUpdate.Add(new TileData
                 {
                     X = (short)x,
                     Y = (short)y,
-                    Tile = tile.TileId
+                    Tile = tile.TileType
                 });
                 tiles[x, y] = tile.UpdateCount;
             }
@@ -266,7 +266,7 @@ namespace GameServer.realm.entities.player
 
             foreach (var i in visibleTiles)
             {
-                var tile = Owner?.Map[i.X, i.Y] ?? new WmapTile(new WmapDesc());
+                var tile = Owner?.Map[i.X, i.Y] ?? new WmapTile();
 
                 if (tile.ObjId != 0 && tile.ObjType != 0 && _clientStatic.Add(i))
                     _newStatics.Add(tile.ToDef(i.X, i.Y));

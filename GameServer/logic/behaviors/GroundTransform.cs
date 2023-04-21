@@ -65,21 +65,17 @@ namespace GameServer.logic.behaviors
 
                 var tile = map[x, y];
 
-                if (tileType == tile.TileId)
+                if (tileType == tile.TileType)
                     return;
 
                 tiles.Add(new TileState()
                 {
-                    TileType = tile.TileId,
+                    TileType = tile.TileType,
                     X = x,
-                    Y = y,
-                    Spawned = tile.Spawned,
-                    DevSpawned = tile.DevSpawned
+                    Y = y
                 });
 
-                tile.Spawned = host.Spawned;
-                tile.DevSpawned = host.DevSpawned;
-                tile.TileId = tileType;
+                tile.TileType = tileType;
                 tile.UpdateCount++;
                 return;
             }
@@ -92,21 +88,17 @@ namespace GameServer.logic.behaviors
 
                 var tile = map[i, j];
 
-                if (tileType == tile.TileId)
+                if (tileType == tile.TileType)
                     continue;
 
                 tiles.Add(new TileState()
                 {
-                    TileType = tile.TileId,
+                    TileType = tile.TileType,
                     X = i,
-                    Y = j,
-                    Spawned = tile.Spawned,
-                    DevSpawned = tile.DevSpawned
+                    Y = j
                 });
 
-                tile.Spawned = host.Spawned;
-                tile.DevSpawned = host.DevSpawned;
-                tile.TileId = tileType;
+                tile.TileType = tileType;
                 tile.UpdateCount++;
             }
 
@@ -129,8 +121,7 @@ namespace GameServer.logic.behaviors
                 var map = host.Owner.Map;
 
                 var curTile = map[x, y];
-                curTile.Spawned = spawned;
-                curTile.TileId = tileType;
+                curTile.TileType = tileType;
                 curTile.UpdateCount++;
             }
         }

@@ -105,9 +105,8 @@ namespace GameServer.realm
                 if (announce)
                     foreach (var w in _manager.Worlds.Values)
                     foreach (var p in w.Players.Values)
-                        p.SendInfo(string.Format("A portal to {0} has opened up{1}.",
-                            (w == world) ? "this land" : world.GetDisplayName(),
-                            (w is Realm) ? "" : " in Realm"));
+                        p.SendInfo(
+                            $"A portal to {((w == world) ? "this land" : world.GetDisplayName())} has opened up.");
                 return true;
             }
         }

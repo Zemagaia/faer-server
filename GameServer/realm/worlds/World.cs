@@ -177,17 +177,16 @@ namespace GameServer.realm.worlds
 
             var proto = Manager.Resources.Worlds[Name];
 
-            if (proto.maps != null && proto.maps.Length <= 0)
+            /*if (proto.maps != null && proto.maps.Length <= 0)
             {
                 var template = DungeonTemplates.GetTemplate(Name);
                 if (template == null)
                     throw new KeyNotFoundException($"Template for {Name} not found.");
                 FromDungeonGen(Rand.Next(), template);
                 return;
-            }
+            }*/
 
-            var map = Rand.Next(0, (proto.maps == null) ? 1 : proto.maps.Length);
-            FromWorldMap(new MemoryStream(proto.wmap[map]));
+            FromWorldMap(new MemoryStream(proto.mapData));
 
             InitShops();
         }
@@ -240,17 +239,6 @@ namespace GameServer.realm.worlds
                         items.AddRange(shop.Items);
                 }
             }
-        }
-
-        protected void LoadMap(string embeddedResource)
-        {
-            if (embeddedResource == null)
-                return;
-            var stream = typeof(RealmManager).Assembly.GetManifestResourceStream(embeddedResource);
-            if (stream == null)
-                throw new ArgumentException("Resource not found", nameof(embeddedResource));
-
-            FromWorldMap(stream);
         }
 
         public bool Delete()
@@ -508,7 +496,7 @@ namespace GameServer.realm.worlds
 
         public void QuakeToWorld(World newWorld)
         {
-            if (!Persist || this is Realm)
+            if (!Persist)
                 Closed = true;
 
             foreach (var p in Players)

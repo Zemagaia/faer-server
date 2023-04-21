@@ -758,11 +758,11 @@ namespace GameServer.realm.entities.player {
             }
         }
 
-        public void Death(string killer, Entity entity = null, WmapTile tile = null, bool rekt = false) {
+        public void Death(string killer, Entity entity = null, WmapTile? tile = null, bool rekt = false) {
             if (_dead)
                 return;
 
-            if (tile != null && (tile.Spawned || tile.DevSpawned)) {
+            if (tile != null) {
                 rekt = true;
             }
 

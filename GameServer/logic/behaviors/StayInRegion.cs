@@ -36,7 +36,6 @@ namespace GameServer.logic.behaviors
 
         protected override void TickCore(Entity host, RealmTime time, ref object state)
         {
-            if (host.Owner is not Realm) return;
             Status = CycleStatus.NotStarted;
             
             if (state is not Vector2)

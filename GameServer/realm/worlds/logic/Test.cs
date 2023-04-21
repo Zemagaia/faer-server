@@ -16,11 +16,11 @@ namespace GameServer.realm.worlds.logic
             blocking = 0,
             difficulty = 0,
             isLimbo = false,
-            maps = Empty<string>.Array,
             persist = false,
             portals = Empty<int>.Array,
             restrictTp = false,
-            wmap = Empty<byte[]>.Array,
+            map = "",
+            mapData = Empty<byte>.Array,
             // to-do: add test music
             music = new[] { "Test" }
         };
@@ -39,7 +39,7 @@ namespace GameServer.realm.worlds.logic
         {
             if (!JsonLoaded)
             {
-                FromWorldMap(new MemoryStream(Json2Wmap.Convert(Manager.Resources.GameData, json)));
+                //FromWorldMap(new MemoryStream(Json2Wmap.Convert(Manager.Resources.GameData, json)));
                 JsonLoaded = true;
             }
 

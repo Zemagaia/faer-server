@@ -65,7 +65,8 @@ namespace Shared.terrain
         Biome_Swamp,
         Biome_Ocean,
         Biome_Ocean_Unwalk,
-        Biome_Deep_Forest
+        Biome_Deep_Forest,
+        FM_Empty = byte.MaxValue
     }
 
     public struct TerrainTile : IEquatable<TerrainTile>

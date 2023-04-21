@@ -1418,12 +1418,6 @@ class QuakeCommand : Command
             return false;
         }
 
-        if (player.Owner is Realm)
-        {
-            player.SendError("Cannot use /quake in Realm.");
-            return false;
-        }
-
         var worldNameProper =
             player.Manager.Resources.Worlds.Data.FirstOrDefault(
                 p => p.Key.Equals(worldName, StringComparison.InvariantCultureIgnoreCase)).Key;
@@ -1848,71 +1842,6 @@ class ForceDungeonInvite : Command
         else
         {
             player.SendError("Specify some players to invite!");
-            return false;
-        }
-    }
-}
-
-class ConvertMap : Command
-{
-    // debug command to convert json maps to wmap (from resources/worlds folder)
-    public ConvertMap() : base("convertmap", 100, listCommand: false)
-    {
-    }
-
-    protected override bool Process(Player player, RealmTime time, string args)
-    {
-        if (!player.Manager.Config.serverSettings.debugMode)
-        {
-            player.SendError($"This command can only be used in debug mode");
-            return false;
-        }
-
-        try
-        {
-            Json2Wmap.Convert(player.Manager.Resources.GameData,
-                player.Manager.Config.serverSettings.resourceFolder
-                + $"/worlds/{args}.jm",
-                player.Manager.Config.serverSettings.resourceFolder
-                + $"/worlds/wmap/{args}_{DateTime.UtcNow.ToUnixTimestamp()}.wmap");
-            player.SendInfo($"Map successfully converted");
-            return true;
-        }
-        catch
-        {
-            player.SendError("Error: Map not found");
-            return false;
-        }
-    }
-}
-
-class SwapMapEndianness : Command
-{
-    // reverse map endianness
-    public SwapMapEndianness() : base("swapmapendianness", 100, listCommand: false)
-    {
-    }
-
-    protected override bool Process(Player player, RealmTime time, string args)
-    {
-        if (!player.Manager.Config.serverSettings.debugMode)
-        {
-            player.SendError($"This command can only be used in debug mode");
-            return false;
-        }
-
-        try
-        {
-            var json = Utils.ReadFile(player.Manager.Config.serverSettings.resourceFolder + $"/worlds/{args}.jm");
-            Utils.WriteFile(
-                player.Manager.Config.serverSettings.resourceFolder + $"/worlds/{args}_little.jm",
-                DungeonGenerator.JsonMap.Save(DungeonGenerator.JsonMap.Load(json)));
-            player.SendInfo($"Map successfully converted");
-            return true;
-        }
-        catch
-        {
-            player.SendError("Error.");
             return false;
         }
     }

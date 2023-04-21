@@ -251,11 +251,6 @@ namespace GameServer.realm
         {
             world.Manager = this;
 
-            if (world.Proto.spawnSetpieces != null)
-            {
-                SetPieces.ApplySetPieces(world, world.Proto.spawnSetpieces);
-            }
-            
             Log.Info("World {0}({1}) added. {2} Worlds existing.", world.Id, world.Name, Worlds.Count);
         }
 

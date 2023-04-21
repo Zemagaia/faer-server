@@ -35,7 +35,7 @@ namespace GameServer.realm.worlds.logic
             if (IsLimbo)
                 return;
 
-            FromWorldMap(new MemoryStream(Manager.Resources.Worlds[Name].wmap[0]));
+            FromWorldMap(new MemoryStream(Manager.Resources.Worlds[Name].mapData));
             InitVault();
             InitShops();
         }

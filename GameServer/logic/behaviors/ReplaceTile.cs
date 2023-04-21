@@ -43,7 +43,7 @@ namespace GameServer.logic.behaviors
                 {
                     var tile = map[x, y];
 
-                    if (tile.TileId != tileId || tile.TileId == replacedTileId)
+                    if (tile.TileType != tileId || tile.TileType == replacedTileId)
                         continue;
 
                     var dx = Math.Abs(x - (int)host.X);
@@ -58,7 +58,7 @@ namespace GameServer.logic.behaviors
                             plr.Sight.UpdateCount++;
                     }
 
-                    tile.TileId = replacedTileId;
+                    tile.TileType = replacedTileId;
                     if (tile.ObjId == 0)
                         tile.ObjId = host.Owner.GetNextEntityId();
                     tile.UpdateCount++;

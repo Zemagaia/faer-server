@@ -122,17 +122,7 @@ namespace GameServer.realm.setpieces
         public static void RenderFromProto(World world, IntPoint pos, ProtoWorld proto)
         {
             var manager = world.Manager;
-
-            // get map stream
-            var map = 0;
-            if (proto.maps != null && proto.maps.Length > 1)
-            {
-                var rnd = new Random();
-                map = rnd.Next(0, proto.maps.Length);
-            }
-
-            var ms = new MemoryStream(proto.wmap[map]);
-
+            var ms = new MemoryStream(proto.mapData);
             var sp = new Wmap(manager.Resources.GameData);
             sp.Load(ms, 0);
             sp.ProjectOntoWorld(world, pos);
@@ -140,16 +130,7 @@ namespace GameServer.realm.setpieces
 
         public static Wmap GetWmap(RealmManager manager, ProtoWorld proto)
         {
-            // get map stream
-            var map = 0;
-            if (proto.maps != null && proto.maps.Length > 1)
-            {
-                var rnd = new Random();
-                map = rnd.Next(0, proto.maps.Length);
-            }
-
-            var ms = new MemoryStream(proto.wmap[map]);
-
+            var ms = new MemoryStream(proto.mapData);
             var wmap = new Wmap(manager.Resources.GameData);
             wmap.Load(ms, 0);
             return wmap;

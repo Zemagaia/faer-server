@@ -30,7 +30,7 @@ namespace GameServer.logic.transitions
 
             var tile = host.Owner.Map[(int)host.X, (int)host.Y];
 
-            return tile.TileId == _groundType;
+            return tile.TileType == _groundType;
         }
     }
 }

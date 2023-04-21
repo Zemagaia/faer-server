@@ -357,19 +357,6 @@ namespace Shared
             return def;
         }
 
-        public static IEnumerable<string[]> ReadFilesAndNames(string basePath, string pattern, SearchOption option = SearchOption.AllDirectories)
-        {
-            var xmls = Directory.EnumerateFiles(basePath, pattern, option).ToArray();
-            for (var i = 0; i < xmls.Length; i++)
-            {
-                yield return new[]
-                {
-                    File.ReadAllText(xmls[i]),
-                    $"{xmls[i].Replace("./resources/worlds/", "").Replace(".jm", "")}"
-                };
-            }
-        }
-        
         public static string ReadFile(string path)
         {
             return File.ReadAllText(path);

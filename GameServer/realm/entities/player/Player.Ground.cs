@@ -47,7 +47,7 @@ namespace GameServer.realm.entities.player
        public void DamagePlayerGround(Position pos, int damage)
         {
             WmapTile tile = Owner.Map[(int)pos.X, (int)pos.Y];
-            TileDesc tileDesc = Manager.Resources.GameData.Tiles[tile.TileId];
+            TileDesc tileDesc = Manager.Resources.GameData.Tiles[tile.TileType];
 
             var limit = (int)Math.Min(ShieldMax + 100, ShieldMax * 1.3);
             if (Shield > 0)

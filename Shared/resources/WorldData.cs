@@ -25,10 +25,9 @@ namespace Shared.resources
         public int blocking;
         public bool setpiece;
         public int[] portals;
-        public string[] maps;
         public string[] music;
-        public byte[][] wmap;
-        public string spawnSetpieces;
+        public string map;
+        public byte[] mapData;
     }
 
     public class TauntData
@@ -206,29 +205,10 @@ namespace Shared.resources
                 if (world.setpiece)
                     setpieces.Add(world.name);
 
-                if (world.maps == null)
-                {
-                    var jm = File.ReadAllText(jwFiles[i].Substring(0, jwFiles[i].Length - 1) + "m");
-                    world.wmap = new byte[1][];
-                    world.wmap[0] = Json2Wmap.Convert(gameData, jm);
-                    worlds.Add(world.name, world);
-                    continue;
-                }
-
-                world.wmap = new byte[world.maps.Length][];
                 var di = Directory.GetParent(jwFiles[i]);
-                for (var j = 0; j < world.maps.Length; j++)
-                {
-                    var mapFile = Path.Combine(di.FullName, world.maps[j]);
-                    if (world.maps[j].EndsWith(".wmap"))
-                    {
-                        world.wmap[j] = File.ReadAllBytes(mapFile);
-                        continue;
-                    }
-
-                    var jm = File.ReadAllText(mapFile);
-                    world.wmap[j] = Json2Wmap.Convert(gameData, jm);
-                }
+                var mapFile = Path.Combine(di.FullName, world.map);
+                if (world.map.EndsWith(".fm"))
+                    world.mapData = File.ReadAllBytes(mapFile);
 
                 worlds.Add(world.name, world);
             }

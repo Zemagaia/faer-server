@@ -462,7 +462,7 @@ namespace GameServer.realm {
 
             var tile = map[x_, y_];
 
-            var tileDesc = Manager.Resources.GameData.Tiles[tile.TileId];
+            var tileDesc = Manager.Resources.GameData.Tiles[tile.TileType];
             if (tileDesc?.NoWalk == true)
                 return true;
 

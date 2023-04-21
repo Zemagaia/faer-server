@@ -75,7 +75,7 @@ namespace DungeonGenerator.Templates
 
         protected static DungeonTile[,] ReadTemplate(Type templateType)
         {
-            var templateName = templateType.Namespace + ".template.jm";
+            var templateName = templateType.Namespace + ".template.fm";
             var stream = templateType.Assembly.GetManifestResourceStream(templateName);
             using (var reader = new StreamReader(stream))
                 return JsonMap.Load(reader.ReadToEnd());
