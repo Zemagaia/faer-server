@@ -121,8 +121,8 @@ namespace DungeonGenerator.Templates.Lab
             int w = rasterizer.Width, h = rasterizer.Height;
             var buf = rasterizer.Bitmap;
 
-            for (int x = bounds.X; x < bounds.MaxX; x++)
-            for (int y = bounds.Y; y < bounds.MaxY; y++)
+            for (var x = bounds.X; x < bounds.MaxX; x++)
+            for (var y = bounds.Y; y < bounds.MaxY; y++)
             {
                 if (buf[x, y].TileType == Space || buf[x, y].Object != null)
                     continue;
@@ -134,14 +134,14 @@ namespace DungeonGenerator.Templates.Lab
 
         internal static void CreateEnemies(BitmapRasterizer<DungeonTile> rasterizer, Rect bounds, Random rand)
         {
-            int numBig = new Range(0, 3).Random(rand);
-            int numSmall = new Range(4, 10).Random(rand);
+            var numBig = new Range(0, 3).Random(rand);
+            var numSmall = new Range(4, 10).Random(rand);
 
             var buf = rasterizer.Bitmap;
             while (numBig > 0 || numSmall > 0)
             {
-                int x = rand.Next(bounds.X, bounds.MaxX);
-                int y = rand.Next(bounds.Y, bounds.MaxY);
+                var x = rand.Next(bounds.X, bounds.MaxX);
+                var y = rand.Next(bounds.Y, bounds.MaxY);
                 if (buf[x, y].TileType == Space || buf[x, y].Object != null)
                     continue;
 

@@ -212,9 +212,9 @@ namespace GameServer.realm.commands
                 return false;
             }
 
-            HashSet<string> invited = new HashSet<string>();
-            HashSet<string> missed = new HashSet<string>();
-            HashSet<string> unable = new HashSet<string>();
+            var invited = new HashSet<string>();
+            var missed = new HashSet<string>();
+            var unable = new HashSet<string>();
 
             if (args.Contains("-g"))
             {
@@ -273,7 +273,7 @@ namespace GameServer.realm.commands
 
             if (players.Length > 0)
             {
-                foreach (string p in players)
+                foreach (var p in players)
                 {
                     if (p.EqualsIgnoreCase(player.Name)) continue;
 
@@ -338,15 +338,15 @@ namespace GameServer.realm.commands
                 return false;
             }
 
-            int index = args.IndexOf(' ');
+            var index = args.IndexOf(' ');
             if (index == -1)
             {
                 player.SendError("Usage: /tell <player name> <text>");
                 return false;
             }
 
-            string playername = args.Substring(0, index);
-            string msg = args.Substring(index + 1);
+            var playername = args.Substring(0, index);
+            var msg = args.Substring(index + 1);
 
             if (player.Name.ToLower() == playername.ToLower())
             {
@@ -402,12 +402,12 @@ namespace GameServer.realm.commands
 
         protected override bool Process(Player player, RealmTime time, string args)
         {
-            StringBuilder sb = new StringBuilder("Available commands: ");
+            var sb = new StringBuilder("Available commands: ");
             var cmds = player.Manager.Commands.Commands.Values.Distinct()
                 .Where(x => x.HasPermission(player) && x.ListCommand)
                 .ToArray();
             Array.Sort(cmds, (c1, c2) => c1.CommandName.CompareTo(c2.CommandName));
-            for (int i = 0; i < cmds.Length; i++)
+            for (var i = 0; i < cmds.Length; i++)
             {
                 if (i != 0) sb.Append(", ");
                 sb.Append(cmds[i].CommandName);
@@ -426,9 +426,6 @@ namespace GameServer.realm.commands
 
         protected override bool Process(Player player, RealmTime time, string playerName)
         {
-            if (player.Owner is Test)
-                return false;
-
             if (String.IsNullOrEmpty(playerName))
             {
                 player.SendError("Usage: /ignore <player name>");
@@ -468,9 +465,6 @@ namespace GameServer.realm.commands
 
         protected override bool Process(Player player, RealmTime time, string playerName)
         {
-            if (player.Owner is Test)
-                return false;
-
             if (String.IsNullOrEmpty(playerName))
             {
                 player.SendError("Usage: /unignore <player name>");
@@ -510,9 +504,6 @@ namespace GameServer.realm.commands
 
         protected override bool Process(Player player, RealmTime time, string playerName)
         {
-            if (player.Owner is Test)
-                return false;
-
             if (String.IsNullOrEmpty(playerName))
             {
                 player.SendError("Usage: /lock <player name>");
@@ -552,9 +543,6 @@ namespace GameServer.realm.commands
 
         protected override bool Process(Player player, RealmTime time, string playerName)
         {
-            if (player.Owner is Test)
-                return false;
-
             if (String.IsNullOrEmpty(playerName))
             {
                 player.SendError("Usage: /unlock <player name>");
@@ -594,10 +582,10 @@ namespace GameServer.realm.commands
 
         protected override bool Process(Player player, RealmTime time, string args)
         {
-            TimeSpan t = TimeSpan.FromMilliseconds(time.TotalElapsedMs);
+            var t = TimeSpan.FromMilliseconds(time.TotalElapsedMs);
 
-            string answer = (t.Days > 0 ? t.Days + "d:" : "") +
-                            string.Format("{0:D2}h:{1:D2}m:{2:D2}s", t.Hours, t.Minutes, t.Seconds);
+            var answer = (t.Days > 0 ? t.Days + "d:" : "") +
+                         string.Format("{0:D2}h:{1:D2}m:{2:D2}s", t.Hours, t.Minutes, t.Seconds);
 
             player.SendInfo("The server has been up for " + answer + ".");
             return true;
@@ -795,9 +783,6 @@ namespace GameServer.realm.commands
 
         protected override bool Process(Player player, RealmTime time, string name)
         {
-            if (player.Owner is Test)
-                return false;
-
             var manager = player.Client.Manager;
 
             // if resigning
@@ -893,9 +878,6 @@ namespace GameServer.realm.commands
 
         protected override bool Process(Player player, RealmTime time, string playerName)
         {
-            if (player.Owner is Test)
-                return false;
-
             if (player.Client.Account.GuildRank < 20)
             {
                 player.SendError("Insufficient privileges.");

@@ -43,9 +43,9 @@ namespace GameServer.logic.behaviors
                 livingChildren = new List<Enemy>(),
                 RemainingTime = _coolDown.Next(Random)
             };
-            for (int i = 0; i < _initialSpawn; i++)
+            for (var i = 0; i < _initialSpawn; i++)
             {
-                Entity entity = Entity.Resolve(host.Manager, _children[Random.Next(0, _children.Count())]);
+                var entity = Entity.Resolve(host.Manager, _children[Random.Next(0, _children.Count())]);
                 entity.GivesNoXp = true;
                 entity.Move(host.X, host.Y);
 
@@ -77,7 +77,7 @@ namespace GameServer.logic.behaviors
             if (spawn == null)
                 return;
 
-            List<Enemy> toRemove = new List<Enemy>();
+            var toRemove = new List<Enemy>();
             foreach (var child in spawn.livingChildren)
                 if (child.HP < 0)
                     toRemove.Add(child);
@@ -86,7 +86,7 @@ namespace GameServer.logic.behaviors
 
             if (spawn.RemainingTime <= 0 && spawn.livingChildren.Count() < _maxChildren)
             {
-                Entity entity = Entity.Resolve(host.Manager, _children[Random.Next(0, _children.Count())]);
+                var entity = Entity.Resolve(host.Manager, _children[Random.Next(0, _children.Count())]);
                 entity.Move(host.X, host.Y);
 
                 var enemyHost = host as Enemy;

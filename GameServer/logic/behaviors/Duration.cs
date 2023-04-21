@@ -37,7 +37,7 @@ namespace GameServer.logic.behaviors
 
         protected override void TickCore(Entity host, RealmTime time, ref object state)
         {
-            int timeElapsed = (int)state;
+            var timeElapsed = (int)state;
             if (timeElapsed <= duration)
             {
                 child.Tick(host, time);

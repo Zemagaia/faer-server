@@ -40,7 +40,7 @@ namespace DungeonGenerator.Dungeon
             int dx = int.MaxValue, dy = int.MaxValue;
             int mx = int.MinValue, my = int.MinValue;
 
-            for (int i = 0; i < rooms.Length; i++)
+            for (var i = 0; i < rooms.Length; i++)
             {
                 var bounds = rooms[i].Bounds;
 
@@ -60,7 +60,7 @@ namespace DungeonGenerator.Dungeon
             Width = mx - dx + Pad * 2;
             Height = my - dy + Pad * 2;
 
-            for (int i = 0; i < rooms.Length; i++)
+            for (var i = 0; i < rooms.Length; i++)
             {
                 var room = rooms[i];
                 var pos = room.Pos;

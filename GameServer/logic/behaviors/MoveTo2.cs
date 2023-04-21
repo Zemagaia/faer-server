@@ -65,7 +65,7 @@ namespace GameServer.logic.behaviors
 
                 if (Math.Abs(X - host.X) > 0.5 || Math.Abs(Y - host.Y) > 0.5)
                 {
-                    Vector2 vect = new Vector2(X, Y) - new Vector2(host.X, host.Y);
+                    var vect = new Vector2(X, Y) - new Vector2(host.X, host.Y);
                     vect.Normalize();
                     vect *= spd;
                     host.Move(host.X + vect.X, host.Y + vect.Y);

@@ -129,8 +129,8 @@ namespace DungeonGenerator
                 case Direction.North:
                 case Direction.South:
                     // North & South
-                    int minX = src.Pos.X + template.CorridorWidth - target.Width;
-                    int maxX = src.Pos.X + src.Width - template.CorridorWidth;
+                    var minX = src.Pos.X + template.CorridorWidth - target.Width;
+                    var maxX = src.Pos.X + src.Width - template.CorridorWidth;
                     x = rand.Next(minX, maxX + 1);
 
                     if (connPt == Direction.South)
@@ -150,8 +150,8 @@ namespace DungeonGenerator
                 case Direction.East:
                 case Direction.West:
                     // East & West
-                    int minY = src.Pos.Y + template.CorridorWidth - target.Height;
-                    int maxY = src.Pos.Y + src.Height - template.CorridorWidth;
+                    var minY = src.Pos.Y + template.CorridorWidth - target.Height;
+                    var maxY = src.Pos.Y + src.Height - template.CorridorWidth;
                     y = rand.Next(minY, maxY + 1);
 
                     if (connPt == Direction.East)
@@ -184,8 +184,8 @@ namespace DungeonGenerator
                 case Direction.North:
                 case Direction.South:
                     // North & South
-                    int minX = src.Pos.X + conn.Item2 + template.CorridorWidth - target.Width;
-                    int maxX = src.Pos.X + conn.Item2;
+                    var minX = src.Pos.X + conn.Item2 + template.CorridorWidth - target.Width;
+                    var maxX = src.Pos.X + conn.Item2;
                     x = rand.Next(minX, maxX + 1);
 
                     if (conn.Item1 == Direction.South)
@@ -203,8 +203,8 @@ namespace DungeonGenerator
                 case Direction.East:
                 case Direction.West:
                     // East & West
-                    int minY = src.Pos.Y + conn.Item2 + template.CorridorWidth - target.Height;
-                    int maxY = src.Pos.Y + conn.Item2;
+                    var minY = src.Pos.Y + conn.Item2 + template.CorridorWidth - target.Height;
+                    var maxY = src.Pos.Y + conn.Item2;
                     y = rand.Next(minY, maxY + 1);
 
                     if (conn.Item1 == Direction.East)
@@ -252,8 +252,8 @@ namespace DungeonGenerator
                 case Direction.North:
                 case Direction.South:
                     // North & South
-                    int minX = src.Pos.X - conn.Item2;
-                    int maxX = src.Pos.X + src.Width - template.CorridorWidth - conn.Item2;
+                    var minX = src.Pos.X - conn.Item2;
+                    var maxX = src.Pos.X + src.Width - template.CorridorWidth - conn.Item2;
                     x = rand.Next(minX, maxX + 1);
 
                     if (conn.Item1 == Direction.North)
@@ -271,8 +271,8 @@ namespace DungeonGenerator
                 case Direction.East:
                 case Direction.West:
                     // East & West
-                    int minY = src.Pos.Y - conn.Item2;
-                    int maxY = src.Pos.Y + src.Height - template.CorridorWidth - conn.Item2;
+                    var minY = src.Pos.Y - conn.Item2;
+                    var maxY = src.Pos.Y + src.Height - template.CorridorWidth - conn.Item2;
                     y = rand.Next(minY, maxY + 1);
 
                     if (conn.Item1 == Direction.West)
@@ -429,8 +429,8 @@ namespace DungeonGenerator
             if (template.SpecialRmCount == null)
                 return;
 
-            int numRooms = (int)template.SpecialRmCount.NextValue();
-            for (int i = 0; i < numRooms; i++)
+            var numRooms = (int)template.SpecialRmCount.NextValue();
+            for (var i = 0; i < numRooms; i++)
             {
                 int targetDepth;
                 do
@@ -438,7 +438,7 @@ namespace DungeonGenerator
                     targetDepth = (int)template.SpecialRmDepthDist.NextValue();
                 } while (targetDepth > maxDepth * 3 / 2);
 
-                bool generated = false;
+                var generated = false;
                 do
                 {
                     var room = rooms[rand.Next(rooms.Count)];
@@ -495,7 +495,7 @@ namespace DungeonGenerator
 
         void GenerateBranches()
         {
-            int numRooms = new Range(minRoomNum, maxRoomNum).Random(rand);
+            var numRooms = new Range(minRoomNum, maxRoomNum).Random(rand);
 
             List<Room> copy;
             while (rooms.Count < numRooms)
@@ -503,7 +503,7 @@ namespace DungeonGenerator
                 copy = new List<Room>(rooms);
                 rand.Shuffle(copy);
 
-                bool worked = false;
+                var worked = false;
                 foreach (var room in copy)
                 {
                     if (rooms.Count > numRooms)
@@ -531,7 +531,7 @@ namespace DungeonGenerator
             {
                 var numBranch = prev.NumBranches.Random(rand);
                 numBranch -= prev.Edges.Count;
-                for (int i = 0; i < numBranch; i++)
+                for (var i = 0; i < numBranch; i++)
                 {
                     var rm = template.CreateNormal(depth, prev);
 

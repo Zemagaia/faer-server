@@ -15,17 +15,8 @@ namespace GameServer.realm.worlds
     public class World
     {
         private static readonly Logger Log = LogManager.GetCurrentClassLogger();
-        protected static readonly Random Rand = new((int)DateTime.Now.Ticks);
 
-        public const int Tutorial = -1;
         public const int Hub = -2;
-        public const int Vault = -3;
-        public const int Tinker = -4;
-        public const int GuildHall = -5;
-        public const int ClothBazaar = -6;
-        public const int PetYard = -7;
-        public const int MarketPlace = -8;
-		public const int Test = -9;
 
         private RealmManager _manager;
 
@@ -81,7 +72,6 @@ namespace GameServer.realm.worlds
         public List<WorldTimer> Timers { get; private set; }
 
         private static int _entityInc;
-        public Entity QuestTracker;
 
         private readonly object _deleteLock = new();
         public readonly ProtoWorld Proto;
@@ -103,10 +93,7 @@ namespace GameServer.realm.worlds
             Opener = "";
 
             var rnd = new Random();
-            if (proto.music != null)
-                Music = proto.music[rnd.Next(0, proto.music.Length)];
-            else
-                Music = "Test";
+            Music = proto.music != null ? proto.music[rnd.Next(0, proto.music.Length)] : "Test";
         }
 
         private void Setup()
@@ -136,9 +123,6 @@ namespace GameServer.realm.worlds
             }
         }
 
-        public bool IsNotCombatMapArea => Id == Vault || Id == GuildHall || Id == ClothBazaar || Id == Tinker ||
-                                          Id == MarketPlace || Id == PetYard;
-
         public virtual bool AllowedAccess(Client client)
         {
             return !Closed || client.Account.Admin;
@@ -154,16 +138,10 @@ namespace GameServer.realm.worlds
             return _spawnPoints;
         }
 
-        public virtual World GetInstance(Client client)
-        {
-            World world;
-            DynamicWorld.TryGetWorld(_manager.Resources.Worlds[Name], client, out world);
-
-            if (world == null)
-                world = new World(_manager.Resources.Worlds[Name]);
-
-            world.IsLimbo = false;
-            return Manager.AddWorld(world);
+        public virtual World GetInstance() {
+            return Manager.AddWorld(new World(_manager.Resources.Worlds[Name]) {
+                IsLimbo = false
+            });
         }
 
         public long GetAge()
@@ -175,7 +153,7 @@ namespace GameServer.realm.worlds
         {
             if (IsLimbo) return;
 
-            var proto = Manager.Resources.Worlds[Name];
+            var proto = Proto;
 
             /*if (proto.maps != null && proto.maps.Length <= 0)
             {
@@ -461,7 +439,7 @@ namespace GameServer.realm.worlds
             {
                 if (i.Value.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase))
                 {
-                    if (!i.Value.NameChosen && !(this is Test))
+                    if (!i.Value.NameChosen)
                         Manager.Database.ReloadAccount(i.Value.Client.Account);
 
                     return i.Value;

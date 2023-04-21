@@ -41,18 +41,18 @@ namespace GameServer.logic.behaviors
 
         protected override void TickCore(Entity host, RealmTime time, ref object state)
         {
-            int cool = (int)state;
+            var cool = (int)state;
 
             if (cool <= 0)
             {
-                Position target = new Position
+                var target = new Position
                 {
                     X = host.X + (float)(range * Math.Cos(angle.Value)),
                     Y = host.Y + (float)(range * Math.Sin(angle.Value)),
                 };
                 host.Owner.Timers.Add(new WorldTimer(0, (world, t) =>
                 {
-                    Entity entity = Entity.Resolve(world.Manager, child);
+                    var entity = Entity.Resolve(world.Manager, child);
                     if (host.Spawned)
                     {
                         entity.Spawned = true;

@@ -113,7 +113,7 @@ namespace GameServer.logic.behaviors
                 taunt = text[Random.Next(text.Length)];
 
             if (taunt.Contains("{PLAYER}")) {
-                Entity player = host.GetNearestEntity(10, null);
+                var player = host.GetNearestEntity(10, null);
                 if (player == null) return;
                 taunt = taunt.Replace("{PLAYER}", player.Name);
             }

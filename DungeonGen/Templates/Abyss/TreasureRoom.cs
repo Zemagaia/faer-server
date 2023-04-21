@@ -46,8 +46,8 @@ namespace DungeonGenerator.Templates.Abyss
 
             var bounds = Bounds;
             var buf = rasterizer.Bitmap;
-            for (int x = bounds.X; x < bounds.MaxX; x++)
-            for (int y = bounds.Y; y < bounds.MaxY; y++)
+            for (var x = bounds.X; x < bounds.MaxX; x++)
+            for (var y = bounds.Y; y < bounds.MaxY; y++)
             {
                 if (buf[x, y].TileType != AbyssTemplate.Space)
                     buf[x, y].Region = "Treasure";

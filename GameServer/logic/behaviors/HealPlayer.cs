@@ -32,7 +32,7 @@ namespace GameServer.logic.behaviors
 
         protected override void TickCore(Entity host, RealmTime time, ref object state)
         {
-            int cool = (int)state;
+            var cool = (int)state;
 
             if (cool <= 0)
             {
@@ -43,12 +43,12 @@ namespace GameServer.logic.behaviors
 
                     if ((host.AttackTarget != null && host.AttackTarget != entity) || entity.HasConditionEffect(ConditionEffects.Sick))
                         continue;
-                    int maxHp = entity.Stats[0];
-                    int newHp = Math.Min(entity.HP + _healAmount, maxHp);
+                    var maxHp = entity.Stats[0];
+                    var newHp = Math.Min(entity.HP + _healAmount, maxHp);
 
                     if (newHp != entity.HP)
                     {
-                        int n = newHp - entity.HP;
+                        var n = newHp - entity.HP;
                         entity.HP = newHp;
                         foreach (var p in host.Owner.Players.Values)
                             if (MathUtils.DistSqr(p.X, p.Y, host.X, host.Y) < 16 * 16)

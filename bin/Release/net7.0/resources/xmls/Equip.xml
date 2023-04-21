@@ -2032,7 +2032,7 @@
         <Item />
         <Texture>
             <Sheet>skinItems</Sheet>
-            <Index>21</Index>
+            <Index>18</Index>
         </Texture>
         <Tier>Epic</Tier>
         <SlotType>10</SlotType>
@@ -2044,7 +2044,7 @@
         <Item />
         <Texture>
             <Sheet>skinItems</Sheet>
-            <Index>42</Index>
+            <Index>36</Index>
         </Texture>
         <Tier>Epic</Tier>
         <SlotType>10</SlotType>
@@ -2056,7 +2056,7 @@
         <Item />
         <Texture>
             <Sheet>skinItems</Sheet>
-            <Index>63</Index>
+            <Index>54</Index>
         </Texture>
         <Tier>Epic</Tier>
         <SlotType>10</SlotType>
@@ -2068,7 +2068,7 @@
         <Item />
         <Texture>
             <Sheet>skinItems</Sheet>
-            <Index>84</Index>
+            <Index>72</Index>
         </Texture>
         <Tier>Epic</Tier>
         <SlotType>10</SlotType>
@@ -2080,7 +2080,7 @@
         <Item />
         <Texture>
             <Sheet>skinItems</Sheet>
-            <Index>105</Index>
+            <Index>90</Index>
         </Texture>
         <Tier>Epic</Tier>
         <SlotType>10</SlotType>
@@ -2092,7 +2092,7 @@
         <Item />
         <Texture>
             <Sheet>skinItems</Sheet>
-            <Index>126</Index>
+            <Index>108</Index>
         </Texture>
         <Tier>Epic</Tier>
         <SlotType>10</SlotType>
@@ -2104,7 +2104,7 @@
         <Item />
         <Texture>
             <Sheet>skinItems</Sheet>
-            <Index>147</Index>
+            <Index>126</Index>
         </Texture>
         <Tier>Epic</Tier>
         <SlotType>10</SlotType>
@@ -2116,7 +2116,7 @@
         <Item />
         <Texture>
             <Sheet>skinItems</Sheet>
-            <Index>168</Index>
+            <Index>144</Index>
         </Texture>
         <Tier>Epic</Tier>
         <SlotType>10</SlotType>

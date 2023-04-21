@@ -26,7 +26,7 @@ namespace GameServer.realm
             for (var i = 0; i < _boostSV.Length; i++)
                 _boostSV[i] = new SV<ushort>(_player, StatsManager.GetBoostStatType(i), _boost[i], i != 0 && i != 1);
             _activateBoost = new ActivateBoost[_boost.Length];
-            for (int i = 0; i < _activateBoost.Length; i++)
+            for (var i = 0; i < _activateBoost.Length; i++)
                 _activateBoost[i] = new ActivateBoost();
             ReCalculateValues();
         }

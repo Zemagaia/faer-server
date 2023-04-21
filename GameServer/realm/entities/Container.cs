@@ -27,7 +27,7 @@ namespace GameServer.realm.entities
 
             var node = Manager.Resources.GameData.ObjectTypeToElement[ObjectType];
             SlotTypes = Utils.ResizeArray(node.Element("SlotTypes").Value.CommaToArray<int>(), 8);
-            XElement eq = node.Element("Equipment");
+            var eq = node.Element("Equipment");
             if (eq != null)
             {
                 var inv = eq.Value.CommaToArray<ushort>().Select(_ => _ == 0xffff ? null : Manager.Resources.GameData.Items[_]).ToArray();

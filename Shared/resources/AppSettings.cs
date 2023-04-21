@@ -57,7 +57,7 @@ namespace Shared.resources
                 var potCostList = new List<int>();
                 foreach (var e in potCosts.XPathSelectElements("//cost"))
                 {
-                    int cost = 0;
+                    var cost = 0;
                     int.TryParse(e.Value, out cost);
                     potCostList.Add(cost);
                 }

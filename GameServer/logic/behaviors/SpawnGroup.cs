@@ -50,7 +50,7 @@ namespace GameServer.logic.behaviors
                 CurrentNumber = initialSpawn,
                 RemainingTime = coolDown.Next(Random)
             };
-            for (int i = 0; i < initialSpawn; i++)
+            for (var i = 0; i < initialSpawn; i++)
             {
                 var x = host.X + (float)(Random.NextDouble() * radius);
                 var y = host.Y + (float)(Random.NextDouble() * radius);
@@ -58,7 +58,7 @@ namespace GameServer.logic.behaviors
                 if (!host.Owner.IsPassable(x, y, true))
                     continue;
 
-                Entity entity = Entity.Resolve(host.Manager, children[Random.Next(children.Length)]);
+                var entity = Entity.Resolve(host.Manager, children[Random.Next(children.Length)]);
                 entity.Move(x, y);
 
                 var enemyHost = host as Enemy;
@@ -92,7 +92,7 @@ namespace GameServer.logic.behaviors
                     return;
                 }
 
-                Entity entity = Entity.Resolve(host.Manager, children[Random.Next(children.Length)]);
+                var entity = Entity.Resolve(host.Manager, children[Random.Next(children.Length)]);
                 entity.Move(x, y);
 
                 var enemyHost = host as Enemy;

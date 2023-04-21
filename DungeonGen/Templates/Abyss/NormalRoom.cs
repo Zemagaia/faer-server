@@ -49,17 +49,17 @@ namespace DungeonGenerator.Templates.Abyss
             });
 
 
-            int numImp = new Range(0, 2).Random(rand);
-            int numDemon = new Range(2, 4).Random(rand);
-            int numBrute = new Range(1, 4).Random(rand);
-            int numSkull = new Range(1, 3).Random(rand);
+            var numImp = new Range(0, 2).Random(rand);
+            var numDemon = new Range(2, 4).Random(rand);
+            var numBrute = new Range(1, 4).Random(rand);
+            var numSkull = new Range(1, 3).Random(rand);
 
             var buf = rasterizer.Bitmap;
             var bounds = Bounds;
             while (numImp > 0 || numDemon > 0 || numBrute > 0 || numSkull > 0)
             {
-                int x = rand.Next(bounds.X, bounds.MaxX);
-                int y = rand.Next(bounds.Y, bounds.MaxY);
+                var x = rand.Next(bounds.X, bounds.MaxX);
+                var y = rand.Next(bounds.Y, bounds.MaxY);
                 if (buf[x, y].Object != null)
                     continue;
 

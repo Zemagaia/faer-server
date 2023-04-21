@@ -41,7 +41,7 @@ namespace GameServer.logic.behaviors
 
         protected override void TickCore(Entity host, RealmTime time, ref object state)
         {
-            BuzzStorage storage = (BuzzStorage)state;
+            var storage = (BuzzStorage)state;
 
             Status = CycleStatus.NotStarted;
             
@@ -63,7 +63,7 @@ namespace GameServer.logic.behaviors
                     storage.RemainingDistance = this.dist;
                     Status = CycleStatus.Completed;
                 }
-                float dist = host.GetSpeed(speed) * (time.ElapsedMsDelta / 1000f);
+                var dist = host.GetSpeed(speed) * (time.ElapsedMsDelta / 1000f);
                 host.ValidateAndMove(host.X + storage.Direction.X * dist, host.Y + storage.Direction.Y * dist);
 
                 storage.RemainingDistance -= dist;

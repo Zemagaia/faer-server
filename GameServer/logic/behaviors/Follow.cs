@@ -91,7 +91,7 @@ namespace GameServer.logic.behaviors
                         vect.X -= Random.Next(-2, 2) / 2f;
                         vect.Y -= Random.Next(-2, 2) / 2f;
                         vect.Normalize();
-                        float dist = host.GetSpeed(speed) * (time.ElapsedMsDelta / 1000f);
+                        var dist = host.GetSpeed(speed) * (time.ElapsedMsDelta / 1000f);
                         host.ValidateAndMove(host.X + vect.X * dist, host.Y + vect.Y * dist);
                     }
                     else

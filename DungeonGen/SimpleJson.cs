@@ -168,7 +168,7 @@ namespace Json
                 throw new ArgumentNullException("obj");
             if (index >= obj.Count)
                 throw new ArgumentOutOfRangeException("index");
-            int i = 0;
+            var i = 0;
             foreach (var o in obj)
                 if (i++ == index)
                     return o.Value;
@@ -277,7 +277,7 @@ namespace Json
         public void CopyTo(KeyValuePair<string, object>[] array, int arrayIndex)
         {
             if (array == null) throw new ArgumentNullException("array");
-            int num = Count;
+            var num = Count;
             foreach (var kvp in this)
             {
                 array[arrayIndex++] = kvp;
@@ -556,11 +556,11 @@ namespace Json
             Justification = "Need to support .NET 2")]
         public static bool TryDeserializeObject(string json, out object obj)
         {
-            bool success = true;
+            var success = true;
             if (json != null)
             {
-                char[] charArray = json.ToCharArray();
-                int index = 0;
+                var charArray = json.ToCharArray();
+                var index = 0;
                 obj = ParseValue(charArray, ref index, ref success);
             }
             else
@@ -571,7 +571,7 @@ namespace Json
 
         public static object DeserializeObject(string json, Type type, IJsonSerializerStrategy jsonSerializerStrategy)
         {
-            object jsonObject = DeserializeObject(json);
+            var jsonObject = DeserializeObject(json);
             return type == null || jsonObject != null && ReflectionUtils.IsAssignableFrom(jsonObject.GetType(), type)
                 ? jsonObject
                 : (jsonSerializerStrategy ?? CurrentJsonSerializerStrategy).DeserializeObject(jsonObject, type);
@@ -601,7 +601,7 @@ namespace Json
         public static string SerializeObject(object json, IJsonSerializerStrategy jsonSerializerStrategy)
         {
             var builder = new StringBuilder(BUILDER_CAPACITY);
-            bool success = SerializeValue(jsonSerializerStrategy, json, builder);
+            var success = SerializeValue(jsonSerializerStrategy, json, builder);
             return (success ? builder.ToString() : null);
         }
 
@@ -618,16 +618,16 @@ namespace Json
             var sb = new StringBuilder();
             char c;
 
-            for (int i = 0; i < jsonString.Length;)
+            for (var i = 0; i < jsonString.Length;)
             {
                 c = jsonString[i++];
 
                 if (c == '\\')
                 {
-                    int remainingLength = jsonString.Length - i;
+                    var remainingLength = jsonString.Length - i;
                     if (remainingLength >= 2)
                     {
-                        char lookahead = jsonString[i];
+                        var lookahead = jsonString[i];
                         if (lookahead == '\\')
                         {
                             sb.Append('\\');
@@ -677,7 +677,7 @@ namespace Json
             // {
             NextToken(json, ref index);
 
-            bool done = false;
+            var done = false;
             while (!done)
             {
                 token = LookAhead(json, index);
@@ -697,7 +697,7 @@ namespace Json
                 else
                 {
                     // name
-                    string name = ParseString(json, ref index, ref success);
+                    var name = ParseString(json, ref index, ref success);
                     if (!success)
                     {
                         success = false;
@@ -713,7 +713,7 @@ namespace Json
                     }
 
                     // value
-                    object value = ParseValue(json, ref index, ref success);
+                    var value = ParseValue(json, ref index, ref success);
                     if (!success)
                     {
                         success = false;
@@ -734,10 +734,10 @@ namespace Json
             // [
             NextToken(json, ref index);
 
-            bool done = false;
+            var done = false;
             while (!done)
             {
-                int token = LookAhead(json, index);
+                var token = LookAhead(json, index);
                 if (token == TOKEN_NONE)
                 {
                     success = false;
@@ -753,7 +753,7 @@ namespace Json
                 }
                 else
                 {
-                    object value = ParseValue(json, ref index, ref success);
+                    var value = ParseValue(json, ref index, ref success);
                     if (!success)
                         return null;
                     array.Add(value);
@@ -801,7 +801,7 @@ namespace Json
 
             // "
             c = json[index++];
-            bool complete = false;
+            var complete = false;
             while (!complete)
             {
                 if (index == json.Length)
@@ -837,7 +837,7 @@ namespace Json
                         s.Append('\t');
                     else if (c == 'u')
                     {
-                        int remainingLength = json.Length - index;
+                        var remainingLength = json.Length - index;
                         if (remainingLength >= 4)
                         {
                             // parse the 32 bit hex into an integer codepoint
@@ -912,8 +912,8 @@ namespace Json
         private static object ParseNumber(char[] json, ref int index, ref bool success)
         {
             EatWhitespace(json, ref index);
-            int lastIndex = GetLastIndexOfNumber(json, index);
-            int charLength = (lastIndex - index) + 1;
+            var lastIndex = GetLastIndexOfNumber(json, index);
+            var charLength = (lastIndex - index) + 1;
             object returnNumber;
             var str = new string(json, index, charLength);
             if (str.IndexOf(".", StringComparison.OrdinalIgnoreCase) != -1 ||
@@ -956,7 +956,7 @@ namespace Json
 
         private static int LookAhead(char[] json, int index)
         {
-            int saveIndex = index;
+            var saveIndex = index;
             return NextToken(json, ref saveIndex);
         }
 
@@ -966,7 +966,7 @@ namespace Json
             EatWhitespace(json, ref index);
             if (index == json.Length)
                 return TOKEN_NONE;
-            char c = json[index];
+            var c = json[index];
             index++;
             switch (c)
             {
@@ -999,7 +999,7 @@ namespace Json
             }
 
             index--;
-            int remainingLength = json.Length - index;
+            var remainingLength = json.Length - index;
             // false
             if (remainingLength >= 5)
             {
@@ -1037,7 +1037,7 @@ namespace Json
         private static bool SerializeValue(IJsonSerializerStrategy jsonSerializerStrategy, object value,
             StringBuilder builder)
         {
-            bool success = true;
+            var success = true;
             var stringValue = value as string;
             if (stringValue != null)
                 success = SerializeString(stringValue, builder);
@@ -1086,13 +1086,13 @@ namespace Json
             IEnumerable values, StringBuilder builder)
         {
             builder.Append("{");
-            IEnumerator ke = keys.GetEnumerator();
-            IEnumerator ve = values.GetEnumerator();
-            bool first = true;
+            var ke = keys.GetEnumerator();
+            var ve = values.GetEnumerator();
+            var first = true;
             while (ke.MoveNext() && ve.MoveNext())
             {
-                object key = ke.Current;
-                object value = ve.Current;
+                var key = ke.Current;
+                var value = ve.Current;
                 if (!first)
                     builder.Append(",");
                 var stringKey = key as string;
@@ -1113,8 +1113,8 @@ namespace Json
             StringBuilder builder)
         {
             builder.Append("[");
-            bool first = true;
-            foreach (object value in anArray)
+            var first = true;
+            foreach (var value in anArray)
             {
                 if (!first)
                     builder.Append(",");
@@ -1140,12 +1140,12 @@ namespace Json
             }
 
             builder.Append('"');
-            int safeCharacterCount = 0;
-            char[] charArray = aString.ToCharArray();
+            var safeCharacterCount = 0;
+            var charArray = aString.ToCharArray();
 
-            for (int i = 0; i < charArray.Length; i++)
+            for (var i = 0; i < charArray.Length; i++)
             {
-                char c = charArray[i];
+                var c = charArray[i];
 
                 // Non ascii characters are fine, buffer them up and send them to the builder
                 // in larger chunks if possible. The escape table is a 1:1 translation table
@@ -1319,11 +1319,11 @@ namespace Json
         {
             IDictionary<string, ReflectionUtils.GetDelegate> result =
                 new Dictionary<string, ReflectionUtils.GetDelegate>();
-            foreach (PropertyInfo propertyInfo in ReflectionUtils.GetProperties(type))
+            foreach (var propertyInfo in ReflectionUtils.GetProperties(type))
             {
                 if (propertyInfo.CanRead)
                 {
-                    MethodInfo getMethod = ReflectionUtils.GetGetterMethodInfo(propertyInfo);
+                    var getMethod = ReflectionUtils.GetGetterMethodInfo(propertyInfo);
                     if (getMethod.IsStatic || !getMethod.IsPublic)
                         continue;
                     result[MapClrMemberNameToJsonFieldName(propertyInfo.Name)] =
@@ -1331,7 +1331,7 @@ namespace Json
                 }
             }
 
-            foreach (FieldInfo fieldInfo in ReflectionUtils.GetFields(type))
+            foreach (var fieldInfo in ReflectionUtils.GetFields(type))
             {
                 if (fieldInfo.IsStatic || !fieldInfo.IsPublic)
                     continue;
@@ -1346,11 +1346,11 @@ namespace Json
         {
             IDictionary<string, KeyValuePair<Type, ReflectionUtils.SetDelegate>> result =
                 new Dictionary<string, KeyValuePair<Type, ReflectionUtils.SetDelegate>>();
-            foreach (PropertyInfo propertyInfo in ReflectionUtils.GetProperties(type))
+            foreach (var propertyInfo in ReflectionUtils.GetProperties(type))
             {
                 if (propertyInfo.CanWrite)
                 {
-                    MethodInfo setMethod = ReflectionUtils.GetSetterMethodInfo(propertyInfo);
+                    var setMethod = ReflectionUtils.GetSetterMethodInfo(propertyInfo);
                     if (setMethod.IsStatic || !setMethod.IsPublic)
                         continue;
                     result[MapClrMemberNameToJsonFieldName(propertyInfo.Name)] =
@@ -1359,7 +1359,7 @@ namespace Json
                 }
             }
 
-            foreach (FieldInfo fieldInfo in ReflectionUtils.GetFields(type))
+            foreach (var fieldInfo in ReflectionUtils.GetFields(type))
             {
                 if (fieldInfo.IsInitOnly || fieldInfo.IsStatic || !fieldInfo.IsPublic)
                     continue;
@@ -1408,7 +1408,7 @@ namespace Json
                         return new Guid(str);
                     if (type == typeof(Uri))
                     {
-                        bool isValid = Uri.IsWellFormedUriString(str, UriKind.RelativeOrAbsolute);
+                        var isValid = Uri.IsWellFormedUriString(str, UriKind.RelativeOrAbsolute);
 
                         Uri result;
                         if (isValid && Uri.TryCreate(str, UriKind.RelativeOrAbsolute, out result))
@@ -1436,8 +1436,8 @@ namespace Json
             else if (value is bool)
                 return value;
 
-            bool valueIsLong = value is long;
-            bool valueIsDouble = value is double;
+            var valueIsLong = value is long;
+            var valueIsDouble = value is double;
             if ((valueIsLong && type == typeof(long)) || (valueIsDouble && type == typeof(double)))
                 return value;
             if ((valueIsDouble && type != typeof(double)) || (valueIsLong && type != typeof(long)))
@@ -1452,16 +1452,16 @@ namespace Json
                 var objects = value as IDictionary<string, object>;
                 if (objects != null)
                 {
-                    IDictionary<string, object> jsonObject = objects;
+                    var jsonObject = objects;
 
                     if (ReflectionUtils.IsTypeDictionary(type))
                     {
                         // if dictionary then
-                        Type[] types = ReflectionUtils.GetGenericTypeArguments(type);
-                        Type keyType = types[0];
-                        Type valueType = types[1];
+                        var types = ReflectionUtils.GetGenericTypeArguments(type);
+                        var keyType = types[0];
+                        var valueType = types[1];
 
-                        Type genericType = typeof(Dictionary<,>).MakeGenericType(keyType, valueType);
+                        var genericType = typeof(Dictionary<,>).MakeGenericType(keyType, valueType);
 
                         var dict = (IDictionary)ConstructorCache[genericType]();
 
@@ -1494,25 +1494,25 @@ namespace Json
                     var valueAsList = value as IList<object>;
                     if (valueAsList != null)
                     {
-                        IList<object> jsonObject = valueAsList;
+                        var jsonObject = valueAsList;
                         IList list = null;
 
                         if (type.IsArray)
                         {
                             list = (IList)ConstructorCache[type](jsonObject.Count);
-                            int i = 0;
-                            foreach (object o in jsonObject)
+                            var i = 0;
+                            foreach (var o in jsonObject)
                                 list[i++] = DeserializeObject(o, type.GetElementType());
                         }
                         else if (ReflectionUtils.IsTypeGenericeCollectionInterface(type) ||
                                  ReflectionUtils.IsAssignableFrom(typeof(IList), type))
                         {
-                            Type innerType = ReflectionUtils.GetGenericListElementType(type);
+                            var innerType = ReflectionUtils.GetGenericListElementType(type);
                             list =
                                 (IList)
                                 (ConstructorCache[type] ?? ConstructorCache[typeof(List<>).MakeGenericType(innerType)])(
                                     jsonObject.Count);
-                            foreach (object o in jsonObject)
+                            foreach (var o in jsonObject)
                                 list.Add(DeserializeObject(o, innerType));
                         }
 
@@ -1537,7 +1537,7 @@ namespace Json
             Justification = "Need to support .NET 2")]
         protected virtual bool TrySerializeKnownTypes(object input, out object output)
         {
-            bool returnValue = true;
+            var returnValue = true;
             if (input is DateTime)
                 output = ((DateTime)input).ToUniversalTime().ToString(Iso8601Format[0], CultureInfo.InvariantCulture);
             else if (input is DateTimeOffset)
@@ -1568,11 +1568,11 @@ namespace Json
         {
             if (input == null) throw new ArgumentNullException("input");
             output = null;
-            Type type = input.GetType();
+            var type = input.GetType();
             if (type.FullName == null)
                 return false;
             IDictionary<string, object> obj = new JsonObject();
-            IDictionary<string, ReflectionUtils.GetDelegate> getters = GetCache[type];
+            var getters = GetCache[type];
             foreach (var getter in getters)
             {
                 if (getter.Value != null)
@@ -1725,7 +1725,7 @@ namespace Json
 #else
                 interfaces = type.GetInterfaces();
 #endif
-                foreach (Type implementedInterface in interfaces)
+                foreach (var implementedInterface in interfaces)
                 {
                     if (IsTypeGeneric(implementedInterface) &&
                         implementedInterface.GetGenericTypeDefinition() == typeof(IList<>))
@@ -1769,7 +1769,7 @@ namespace Json
                 if (!IsTypeGeneric(type))
                     return false;
 
-                Type genericDefinition = type.GetGenericTypeDefinition();
+                var genericDefinition = type.GetGenericTypeDefinition();
 
                 return (genericDefinition == typeof(IList<>)
                         || genericDefinition == typeof(ICollection<>)
@@ -1798,7 +1798,7 @@ namespace Json
                 if (!GetTypeInfo(type).IsGenericType)
                     return false;
 
-                Type genericDefinition = type.GetGenericTypeDefinition();
+                var genericDefinition = type.GetGenericTypeDefinition();
                 return genericDefinition == typeof(IDictionary<,>);
             }
 
@@ -1830,18 +1830,18 @@ namespace Json
 
             public static ConstructorInfo GetConstructorInfo(Type type, params Type[] argsType)
             {
-                IEnumerable<ConstructorInfo> constructorInfos = GetConstructors(type);
+                var constructorInfos = GetConstructors(type);
                 int i;
                 bool matches;
-                foreach (ConstructorInfo constructorInfo in constructorInfos)
+                foreach (var constructorInfo in constructorInfos)
                 {
-                    ParameterInfo[] parameters = constructorInfo.GetParameters();
+                    var parameters = constructorInfo.GetParameters();
                     if (argsType.Length != parameters.Length)
                         continue;
 
                     i = 0;
                     matches = true;
-                    foreach (ParameterInfo parameterInfo in constructorInfo.GetParameters())
+                    foreach (var parameterInfo in constructorInfo.GetParameters())
                     {
                         if (parameterInfo.ParameterType != argsType[i])
                         {
@@ -1920,7 +1920,7 @@ namespace Json
 
             public static ConstructorDelegate GetConstructorByReflection(Type type, params Type[] argsType)
             {
-                ConstructorInfo constructorInfo = GetConstructorInfo(type, argsType);
+                var constructorInfo = GetConstructorInfo(type, argsType);
                 return constructorInfo == null ? null : GetConstructorByReflection(constructorInfo);
             }
 
@@ -1928,27 +1928,27 @@ namespace Json
 
             public static ConstructorDelegate GetConstructorByExpression(ConstructorInfo constructorInfo)
             {
-                ParameterInfo[] paramsInfo = constructorInfo.GetParameters();
-                ParameterExpression param = Expression.Parameter(typeof(object[]), "args");
+                var paramsInfo = constructorInfo.GetParameters();
+                var param = Expression.Parameter(typeof(object[]), "args");
                 var argsExp = new Expression[paramsInfo.Length];
-                for (int i = 0; i < paramsInfo.Length; i++)
+                for (var i = 0; i < paramsInfo.Length; i++)
                 {
                     Expression index = Expression.Constant(i);
-                    Type paramType = paramsInfo[i].ParameterType;
+                    var paramType = paramsInfo[i].ParameterType;
                     Expression paramAccessorExp = Expression.ArrayIndex(param, index);
                     Expression paramCastExp = Expression.Convert(paramAccessorExp, paramType);
                     argsExp[i] = paramCastExp;
                 }
 
-                NewExpression newExp = Expression.New(constructorInfo, argsExp);
-                Expression<Func<object[], object>> lambda = Expression.Lambda<Func<object[], object>>(newExp, param);
-                Func<object[], object> compiledLambda = lambda.Compile();
+                var newExp = Expression.New(constructorInfo, argsExp);
+                var lambda = Expression.Lambda<Func<object[], object>>(newExp, param);
+                var compiledLambda = lambda.Compile();
                 return delegate(object[] args) { return compiledLambda(args); };
             }
 
             public static ConstructorDelegate GetConstructorByExpression(Type type, params Type[] argsType)
             {
-                ConstructorInfo constructorInfo = GetConstructorInfo(type, argsType);
+                var constructorInfo = GetConstructorInfo(type, argsType);
                 return constructorInfo == null ? null : GetConstructorByExpression(constructorInfo);
             }
 
@@ -1974,7 +1974,7 @@ namespace Json
 
             public static GetDelegate GetGetMethodByReflection(PropertyInfo propertyInfo)
             {
-                MethodInfo methodInfo = GetGetterMethodInfo(propertyInfo);
+                var methodInfo = GetGetterMethodInfo(propertyInfo);
                 return delegate(object source) { return methodInfo.Invoke(source, EmptyObjects); };
             }
 
@@ -1987,12 +1987,12 @@ namespace Json
 
             public static GetDelegate GetGetMethodByExpression(PropertyInfo propertyInfo)
             {
-                MethodInfo getMethodInfo = GetGetterMethodInfo(propertyInfo);
-                ParameterExpression instance = Expression.Parameter(typeof(object), "instance");
-                UnaryExpression instanceCast = (!IsValueType(propertyInfo.DeclaringType))
+                var getMethodInfo = GetGetterMethodInfo(propertyInfo);
+                var instance = Expression.Parameter(typeof(object), "instance");
+                var instanceCast = (!IsValueType(propertyInfo.DeclaringType))
                     ? Expression.TypeAs(instance, propertyInfo.DeclaringType)
                     : Expression.Convert(instance, propertyInfo.DeclaringType);
-                Func<object, object> compiled =
+                var compiled =
                     Expression.Lambda<Func<object, object>>(
                             Expression.TypeAs(Expression.Call(instanceCast, getMethodInfo), typeof(object)), instance)
                         .Compile();
@@ -2001,10 +2001,10 @@ namespace Json
 
             public static GetDelegate GetGetMethodByExpression(FieldInfo fieldInfo)
             {
-                ParameterExpression instance = Expression.Parameter(typeof(object), "instance");
-                MemberExpression member =
+                var instance = Expression.Parameter(typeof(object), "instance");
+                var member =
                     Expression.Field(Expression.Convert(instance, fieldInfo.DeclaringType), fieldInfo);
-                GetDelegate compiled =
+                var compiled =
                     Expression.Lambda<GetDelegate>(Expression.Convert(member, typeof(object)), instance).Compile();
                 return delegate(object source) { return compiled(source); };
             }
@@ -2031,7 +2031,7 @@ namespace Json
 
             public static SetDelegate GetSetMethodByReflection(PropertyInfo propertyInfo)
             {
-                MethodInfo methodInfo = GetSetterMethodInfo(propertyInfo);
+                var methodInfo = GetSetterMethodInfo(propertyInfo);
                 return delegate(object source, object value) { methodInfo.Invoke(source, new object[] { value }); };
             }
 
@@ -2044,16 +2044,16 @@ namespace Json
 
             public static SetDelegate GetSetMethodByExpression(PropertyInfo propertyInfo)
             {
-                MethodInfo setMethodInfo = GetSetterMethodInfo(propertyInfo);
-                ParameterExpression instance = Expression.Parameter(typeof(object), "instance");
-                ParameterExpression value = Expression.Parameter(typeof(object), "value");
-                UnaryExpression instanceCast = (!IsValueType(propertyInfo.DeclaringType))
+                var setMethodInfo = GetSetterMethodInfo(propertyInfo);
+                var instance = Expression.Parameter(typeof(object), "instance");
+                var value = Expression.Parameter(typeof(object), "value");
+                var instanceCast = (!IsValueType(propertyInfo.DeclaringType))
                     ? Expression.TypeAs(instance, propertyInfo.DeclaringType)
                     : Expression.Convert(instance, propertyInfo.DeclaringType);
-                UnaryExpression valueCast = (!IsValueType(propertyInfo.PropertyType))
+                var valueCast = (!IsValueType(propertyInfo.PropertyType))
                     ? Expression.TypeAs(value, propertyInfo.PropertyType)
                     : Expression.Convert(value, propertyInfo.PropertyType);
-                Action<object, object> compiled =
+                var compiled =
                     Expression.Lambda<Action<object, object>>(Expression.Call(instanceCast, setMethodInfo, valueCast),
                         new ParameterExpression[] { instance, value }).Compile();
                 return delegate(object source, object val) { compiled(source, val); };
@@ -2061,9 +2061,9 @@ namespace Json
 
             public static SetDelegate GetSetMethodByExpression(FieldInfo fieldInfo)
             {
-                ParameterExpression instance = Expression.Parameter(typeof(object), "instance");
-                ParameterExpression value = Expression.Parameter(typeof(object), "value");
-                Action<object, object> compiled = Expression.Lambda<Action<object, object>>(
+                var instance = Expression.Parameter(typeof(object), "instance");
+                var value = Expression.Parameter(typeof(object), "value");
+                var compiled = Expression.Lambda<Action<object, object>>(
                     Assign(Expression.Field(Expression.Convert(instance, fieldInfo.DeclaringType), fieldInfo),
                         Expression.Convert(value, fieldInfo.FieldType)), instance, value).Compile();
                 return delegate(object source, object val) { compiled(source, val); };
@@ -2074,8 +2074,8 @@ namespace Json
 #if SIMPLE_JSON_TYPEINFO
                 return Expression.Assign(left, right);
 #else
-                MethodInfo assign = typeof(Assigner<>).MakeGenericType(left.Type).GetMethod("Assign");
-                BinaryExpression assignExpr = Expression.Add(left, right, assign);
+                var assign = typeof(Assigner<>).MakeGenericType(left.Type).GetMethod("Assign");
+                var assignExpr = Expression.Add(left, right, assign);
                 return assignExpr;
 #endif
             }
@@ -2113,7 +2113,7 @@ namespace Json
 
                 private TValue AddValue(TKey key)
                 {
-                    TValue value = _valueFactory(key);
+                    var value = _valueFactory(key);
                     lock (_lock)
                     {
                         if (_dictionary == null)

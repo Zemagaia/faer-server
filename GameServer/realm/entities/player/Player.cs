@@ -667,9 +667,6 @@ namespace GameServer.realm.entities.player {
         }
 
         private bool TestWorld(string killer) {
-            if (!(Owner is Test))
-                return false;
-
             GenerateGravestone();
             ReconnectToNexus();
             return true;

@@ -46,9 +46,9 @@ namespace GameServer.logic.behaviors
                 CurrentNumber = _initialSpawn,
                 RemainingTime = _coolDown.Next(Random)
             };
-            for (int i = 0; i < _initialSpawn; i++)
+            for (var i = 0; i < _initialSpawn; i++)
             {
-                Entity entity = Entity.Resolve(host.Manager, _children);
+                var entity = Entity.Resolve(host.Manager, _children);
 
                 entity.Move(
                     (float)(host.X + _relativeTargetLoc.X + .5),
@@ -77,7 +77,7 @@ namespace GameServer.logic.behaviors
 
         protected override void TickCore(Entity host, RealmTime time, ref object state)
         {
-            SpawnState spawn = (SpawnState)state;
+            var spawn = (SpawnState)state;
 
             if (spawn.RemainingTime <= 0 && spawn.CurrentNumber < _maxChildren)
             {
@@ -87,7 +87,7 @@ namespace GameServer.logic.behaviors
                 if (!host.Owner.IsPassable(x, y, true))
                     return;
 
-                Entity entity = Entity.Resolve(host.Manager, _children);
+                var entity = Entity.Resolve(host.Manager, _children);
 
                 entity.Move((float)x, (float)y);
 

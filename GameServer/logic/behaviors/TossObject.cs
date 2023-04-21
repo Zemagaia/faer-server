@@ -114,7 +114,7 @@ namespace GameServer.logic.behaviors
 
         protected override void TickCore(Entity host, RealmTime time, ref object state)
         {
-            int cool = (int)state;
+            var cool = (int)state;
 
             if (cool <= 0)
             {
@@ -124,7 +124,7 @@ namespace GameServer.logic.behaviors
                     return;
                 }
 
-                Entity player = host.GetNearestEntity(_range, null);
+                var player = host.GetNearestEntity(_range, null);
                 if (player != null || _angle != null)
                 {
                     if (_densityRange != null && _maxDensity != null)
@@ -190,7 +190,7 @@ namespace GameServer.logic.behaviors
                         if (!world.IsPassable(target.X, target.Y, true))
                             return;
 
-                        Entity entity = Entity.Resolve(host.Manager, _children[Random.Next(_children.Length)]);
+                        var entity = Entity.Resolve(host.Manager, _children[Random.Next(_children.Length)]);
                         entity.Move(target.X, target.Y);
 
                         if (host.Spawned)

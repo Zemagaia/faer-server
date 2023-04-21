@@ -37,7 +37,7 @@ namespace Shared
 
         public void Publish<T>(Channel channel, T val, string target = null) where T : struct
         {
-            Message<T> message = new Message<T>()
+            var message = new Message<T>()
             {
                 InstId = InstanceId,
                 TargetInst = target,
@@ -52,7 +52,7 @@ namespace Shared
         {
             Database.Sub.Subscribe(channel.ToString(), (s, buff) =>
             {
-                Message<T> message = JsonConvert.DeserializeObject<Message<T>>(
+                var message = JsonConvert.DeserializeObject<Message<T>>(
                     Encoding.UTF8.GetString(buff));
                 if (message.TargetInst != null &&
                     message.TargetInst != InstanceId)

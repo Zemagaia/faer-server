@@ -78,7 +78,7 @@ namespace Shared
 
         public int GetHashCode(object obj)
         {
-            WeakKeyReference<T> weakKey = obj as WeakKeyReference<T>;
+            var weakKey = obj as WeakKeyReference<T>;
             if (weakKey != null) return weakKey.HashCode;
             return this.comparer.GetHashCode((T)obj);
         }
@@ -104,8 +104,8 @@ namespace Shared
         public new bool Equals(object x, object y)
         {
             bool xIsDead, yIsDead;
-            T first = GetTarget(x, out xIsDead);
-            T second = GetTarget(y, out yIsDead);
+            var first = GetTarget(x, out xIsDead);
+            var second = GetTarget(y, out yIsDead);
 
             if (xIsDead)
                 return yIsDead ? x == y : false;
@@ -118,7 +118,7 @@ namespace Shared
 
         private static T GetTarget(object obj, out bool isDead)
         {
-            WeakKeyReference<T> wref = obj as WeakKeyReference<T>;
+            var wref = obj as WeakKeyReference<T>;
             T target;
             if (wref != null)
             {
@@ -256,7 +256,7 @@ namespace Shared
 
             public virtual bool Contains(T item)
             {
-                foreach (T element in this)
+                foreach (var element in this)
                     if (EqualityComparer<T>.Default.Equals(element, item))
                         return true;
                 return false;
@@ -264,7 +264,7 @@ namespace Shared
 
             public IEnumerator<T> GetEnumerator()
             {
-                foreach (KeyValuePair<TKey, TValue> pair in this.dictionary)
+                foreach (var pair in this.dictionary)
                     yield return GetItem(pair);
             }
 
@@ -338,7 +338,7 @@ namespace Shared
                 throw new ArgumentException(
                     "Destination array is not large enough. Check array.Length and arrayIndex.");
 
-            foreach (T item in source)
+            foreach (var item in source)
                 array[arrayIndex++] = item;
         }
     }
@@ -419,11 +419,11 @@ namespace Shared
 
         public override IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
         {
-            foreach (KeyValuePair<object, TValue> kvp in this.dictionary)
+            foreach (var kvp in this.dictionary)
             {
-                WeakReference<TKey> weakKey = (WeakReference<TKey>)(kvp.Key);
-                TValue value = kvp.Value;
-                TKey key = weakKey.Target;
+                var weakKey = (WeakReference<TKey>)(kvp.Key);
+                var value = kvp.Value;
+                var key = weakKey.Target;
                 if (weakKey.IsAlive)
                     yield return new KeyValuePair<TKey, TValue>(key, value);
             }
@@ -436,9 +436,9 @@ namespace Shared
         public void RemoveCollectedEntries()
         {
             List<object> toRemove = null;
-            foreach (KeyValuePair<object, TValue> pair in this.dictionary)
+            foreach (var pair in this.dictionary)
             {
-                WeakReference<TKey> weakKey = (WeakReference<TKey>)(pair.Key);
+                var weakKey = (WeakReference<TKey>)(pair.Key);
 
                 if (!weakKey.IsAlive)
                 {
@@ -450,7 +450,7 @@ namespace Shared
 
             if (toRemove != null)
             {
-                foreach (object key in toRemove)
+                foreach (var key in toRemove)
                     this.dictionary.Remove(key);
             }
         }

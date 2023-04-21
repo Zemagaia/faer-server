@@ -234,7 +234,7 @@ namespace GameServer.realm {
 
         public static int CountEntity(this Entity entity, double dist, ushort? objType) {
             if (entity.Owner == null) return 0;
-            int ret = 0;
+            var ret = 0;
             if (objType == null)
                 foreach (var i in entity.Owner.PlayersCollision.HitTest(entity.X, entity.Y, dist)
                              .Where(e => e is Player)) {
@@ -256,7 +256,7 @@ namespace GameServer.realm {
 
         public static int CountEntity(this Entity entity, double dist, string group) {
             if (entity.Owner == null) return 0;
-            int ret = 0;
+            var ret = 0;
             foreach (var i in entity.Owner.EnemiesCollision.HitTest(entity.X, entity.Y, dist)) {
                 if (i.ObjectDesc == null || i.ObjectDesc.Group != group) continue;
                 var d = i.Dist(entity);

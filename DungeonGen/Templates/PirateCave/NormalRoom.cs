@@ -48,16 +48,16 @@ namespace DungeonGenerator.Templates.PirateCave
                 TileType = PirateCaveTemplate.BrownLines
             });
 
-            int numBoss = new Range(0, 1).Random(rand);
-            int numMinion = new Range(3, 5).Random(rand);
-            int numPet = new Range(0, 2).Random(rand);
+            var numBoss = new Range(0, 1).Random(rand);
+            var numMinion = new Range(3, 5).Random(rand);
+            var numPet = new Range(0, 2).Random(rand);
 
             var buf = rasterizer.Bitmap;
             var bounds = Bounds;
             while (numBoss > 0 || numMinion > 0 || numPet > 0)
             {
-                int x = rand.Next(bounds.X, bounds.MaxX);
-                int y = rand.Next(bounds.Y, bounds.MaxY);
+                var x = rand.Next(bounds.X, bounds.MaxX);
+                var y = rand.Next(bounds.Y, bounds.MaxY);
                 if (buf[x, y].Object != null)
                     continue;
 

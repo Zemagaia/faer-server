@@ -218,11 +218,6 @@ namespace GameServer.realm.entities.player {
 
 
         private void AEUnlockEmote(RealmTime time, Item item, ActivateEffect eff) {
-            if (Owner == null || Owner is Test) {
-                SendInfo("Can't use emote unlockers in test worlds.");
-                return;
-            }
-
             var emotes = Client.Account.Emotes;
             if (!emotes.Contains(eff.Id)) {
                 emotes.Add(eff.Id);
@@ -236,11 +231,6 @@ namespace GameServer.realm.entities.player {
         }
 
         private void AEUnlockSkin(RealmTime time, Item item, Position target, ActivateEffect eff) {
-            if (Owner == null || Owner is Test) {
-                SendInfo("Can't use skin unlockers in test worlds.");
-                return;
-            }
-
             if (Owner is not Vault) {
                 RefundItem(item, "You can only use this item in your vault.");
                 return;
@@ -298,14 +288,7 @@ namespace GameServer.realm.entities.player {
             var uPortalDesc = gameData.Portals[portalType];
 
             // create world
-            World world;
-            if (proto.id < 0)
-                world = Manager.GetWorld(proto.id);
-            else {
-                DynamicWorld.TryGetWorld(proto, Client, out world);
-                world = Manager.AddWorld(world ?? new World(proto));
-            }
-
+            var world = proto.id < 0 ? Manager.GetWorld(proto.id) : Manager.AddWorld(new World(proto));
             uPortal.WorldInstance = world;
 
             // swap portals

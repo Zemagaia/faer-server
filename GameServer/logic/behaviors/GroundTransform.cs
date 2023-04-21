@@ -80,8 +80,8 @@ namespace GameServer.logic.behaviors
                 return;
             }
 
-            for (int i = hx - _radius; i <= hx + _radius; i++)
-            for (int j = hy - _radius; j <= hy + _radius; j++)
+            for (var i = hx - _radius; i <= hx + _radius; i++)
+            for (var j = hy - _radius; j <= hy + _radius; j++)
             {
                 if (!map.Contains(new IntPoint(i, j)))
                     continue;

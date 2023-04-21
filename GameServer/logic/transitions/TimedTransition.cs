@@ -31,7 +31,7 @@ namespace GameServer.logic.transitions
             if (state == null) cool = randomized ? Random.Next(this.time) : this.time;
             else cool = (int)state;
 
-            bool ret = false;
+            var ret = false;
             if (cool <= 0)
             {
                 ret = true;

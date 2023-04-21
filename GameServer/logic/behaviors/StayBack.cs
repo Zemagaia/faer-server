@@ -34,7 +34,7 @@ namespace GameServer.logic.behaviors
 
             Status = CycleStatus.NotStarted;
 
-            Entity e = entity != null ? 
+            var e = entity != null ? 
                 host.GetNearestEntityByName(distance, entity) : 
                 host.GetNearestEntity(distance, null);
 
@@ -43,7 +43,7 @@ namespace GameServer.logic.behaviors
                 Vector2 vect;
                 vect = new Vector2(e.X - host.X, e.Y - host.Y);
                 vect.Normalize();
-                float dist = host.GetSpeed(speed) * (time.ElapsedMsDelta / 1000f);
+                var dist = host.GetSpeed(speed) * (time.ElapsedMsDelta / 1000f);
                 host.ValidateAndMove(host.X + (-vect.X) * dist, host.Y + (-vect.Y) * dist);
 
                 if (cooldown <= 0)

@@ -45,7 +45,7 @@ namespace GameServer.logic.behaviors
             {
                 vect -= new Vector2(host.X, host.Y);
                 vect.Normalize();
-                float dist = host.GetSpeed(speed) * (time.ElapsedMsDelta / 1000f);
+                var dist = host.GetSpeed(speed) * (time.ElapsedMsDelta / 1000f);
                 host.ValidateAndMove(host.X + vect.X * dist, host.Y + vect.Y * dist);
 
                 Status = CycleStatus.InProgress;

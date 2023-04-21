@@ -46,7 +46,7 @@ namespace GameServer.logic.behaviors
 
         protected override void TickCore(Entity host, RealmTime time, ref object state)
         {
-            SwirlState s = (SwirlState)state;
+            var s = (SwirlState)state;
 
             Status = CycleStatus.NotStarted;
 
@@ -100,9 +100,9 @@ namespace GameServer.logic.behaviors
             var angularSpd = spd / radius;
             angle += angularSpd * (time.ElapsedMsDelta / 1000f);
 
-            double x = s.Center.X + Math.Cos(angle) * radius;
-            double y = s.Center.Y + Math.Sin(angle) * radius;
-            Vector2 vect = new Vector2((float)x, (float)y) - new Vector2(host.X, host.Y);
+            var x = s.Center.X + Math.Cos(angle) * radius;
+            var y = s.Center.Y + Math.Sin(angle) * radius;
+            var vect = new Vector2((float)x, (float)y) - new Vector2(host.X, host.Y);
             vect.Normalize();
             vect *= (float)spd * (time.ElapsedMsDelta / 1000f);
 
