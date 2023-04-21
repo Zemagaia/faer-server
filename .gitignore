@@ -1,13 +1,14 @@
-GameServer.dll
-LoginServer.dll
-Shared.dll
-DungeonGen.dll
-project.assets.json
-project.nuget.cache
+*.assets.json
+*.cache
 *.props
 *.cache
+*.pdb
+*.runtimeconfig.json
 *.nuget.dgspec.json
-rider.project.restore.info
+*.deps.json
+*.restore.info
+*.dll
+!RotMG.Common.dll
 
 #ignore thumbnails created by windows
 Thumbs.db
@@ -29,6 +30,7 @@ x64/
 x86/
 build/
 bld/
+Debug/
 [Oo]bj/
 
 # Visual Studio 2015 cache/options directory
