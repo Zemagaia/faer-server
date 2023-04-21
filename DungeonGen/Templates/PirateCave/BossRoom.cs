@@ -52,22 +52,22 @@ namespace DungeonGenerator.Templates.PirateCave
             var r2 = radius * radius;
             var buf = rasterizer.Bitmap;
 
-            for (int x = bounds.X; x < bounds.MaxX; x++)
-            for (int y = bounds.Y; y < bounds.MaxY; y++)
+            for (var x = bounds.X; x < bounds.MaxX; x++)
+            for (var y = bounds.Y; y < bounds.MaxY; y++)
             {
                 if ((x - cX) * (x - cX) + (y - cY) * (y - cY) <= r2)
                     buf[x, y] = tile;
             }
 
-            int numKing = 1;
-            int numBoss = new Range(4, 7).Random(rand);
-            int numMinion = new Range(4, 7).Random(rand);
+            var numKing = 1;
+            var numBoss = new Range(4, 7).Random(rand);
+            var numMinion = new Range(4, 7).Random(rand);
 
             r2 = (radius - 2) * (radius - 2);
             while (numKing > 0 || numBoss > 0 || numMinion > 0)
             {
-                int x = rand.Next(bounds.X, bounds.MaxX);
-                int y = rand.Next(bounds.Y, bounds.MaxY);
+                var x = rand.Next(bounds.X, bounds.MaxX);
+                var y = rand.Next(bounds.Y, bounds.MaxY);
 
                 if ((x - cX) * (x - cX) + (y - cY) * (y - cY) > r2)
                     continue;

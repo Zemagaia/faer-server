@@ -68,8 +68,6 @@ namespace GameServer.realm.entities.vendors
 
         protected BuyResult ValidateCustomer(Player player)
         {
-            if (Owner is Test)
-                return BuyResult.IsTestMap;
             if (player.GetCurrency(Currency) < Price)
                 return BuyResult.InsufficientFunds;
             return BuyResult.Ok;

@@ -27,7 +27,7 @@ namespace GameServer.logic.behaviors
 
         protected override void TickCore(Entity host, RealmTime time, ref object state)
         {
-            bool multiplied = (bool)state;
+            var multiplied = (bool)state;
             if (!multiplied)
             {
                 var newLootValue = host.LootValue * multiplier;

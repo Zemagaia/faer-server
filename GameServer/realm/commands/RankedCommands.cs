@@ -111,7 +111,7 @@ class SpawnCommand : Command
 
                 if (x != null)
                 {
-                    for (int i = 0; i < x.Length && i < count; i++)
+                    for (var i = 0; i < x.Length && i < count; i++)
                     {
                         if (spawn.x[i] > 0 && spawn.x[i] <= player.Owner.Map.Width)
                         {
@@ -122,7 +122,7 @@ class SpawnCommand : Command
 
                 if (y != null)
                 {
-                    for (int i = 0; i < y.Length && i < count; i++)
+                    for (var i = 0; i < y.Length && i < count; i++)
                     {
                         if (spawn.y[i] > 0 && spawn.y[i] <= player.Owner.Map.Height)
                         {
@@ -131,7 +131,7 @@ class SpawnCommand : Command
                     }
                 }
 
-                bool target = false;
+                var target = false;
                 if (spawn.target != null)
                     target = spawn.target.Value;
 
@@ -534,7 +534,7 @@ class TpPosCommand : Command
 
     protected override bool Process(Player player, RealmTime time, string args)
     {
-        string[] coordinates = args.Split(' ');
+        var coordinates = args.Split(' ');
         if (coordinates.Length != 2)
         {
             player.SendError("Invalid coordinates!");
@@ -563,7 +563,7 @@ class TpRelativePosCommand : Command
 
     protected override bool Process(Player player, RealmTime time, string args)
     {
-        string[] coordinates = args.Split(' ');
+        var coordinates = args.Split(' ');
         if (coordinates.Length != 2)
         {
             player.SendError("Invalid coordinates!");
@@ -1393,7 +1393,7 @@ class ClearInvCommand : Command
 
     protected override bool Process(Player player, RealmTime time, string args)
     {
-        for (int i = 4; i < 12; i++)
+        for (var i = 4; i < 12; i++)
             player.Inventory[i] = null;
         player.SendInfo("Inventory Cleared.");
         return true;
@@ -1429,12 +1429,7 @@ class QuakeCommand : Command
             return false;
         }
 
-        World world;
-        {
-            DynamicWorld.TryGetWorld(proto, player.Client, out world);
-            world = player.Manager.AddWorld(world ?? new World(proto));
-        }
-
+        var world = player.Manager.AddWorld(new World(proto));
         player.Owner.QuakeToWorld(world);
         return true;
     }
@@ -1535,7 +1530,7 @@ class LinkCommand : Command
             return false;
 
         var world = player.Owner;
-        if (world.Id < 0 || (player.Rank < 80 && !(world is Test)))
+        if (world.Id < 0 || player.Rank < 80)
         {
             player.SendError("Forbidden.");
             return false;
@@ -1563,7 +1558,7 @@ class UnLinkCommand : Command
             return false;
 
         var world = player.Owner;
-        if (world.Id < 0 || (player.Rank < 80 && !(world is Test)))
+        if (world.Id < 0 || player.Rank < 80)
         {
             player.SendError("Forbidden.");
             return false;

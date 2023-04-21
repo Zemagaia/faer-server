@@ -11,8 +11,8 @@ namespace Shared
 
         public string ReadNullTerminatedString()
         {
-            StringBuilder ret = new StringBuilder();
-            byte b = ReadByte();
+            var ret = new StringBuilder();
+            var b = ReadByte();
             while (b != 0)
             {
                 ret.Append((char)b);

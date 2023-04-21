@@ -22,8 +22,8 @@ namespace GameServer.logic.behaviors
                     if (owner.Name.Contains("DeathArena") || s.Host.Spawned)
                         return;
 
-                    Entity en = s.Host.GetNearestEntity(100, 0x5e4b);
-                    Entity portal = Entity.Resolve(s.Host.Manager, "Realm Portal");
+                    var en = s.Host.GetNearestEntity(100, 0x5e4b);
+                    var portal = Entity.Resolve(s.Host.Manager, "Realm Portal");
 
                     if (en != null)
                         portal.Move(en.X, en.Y);
@@ -40,7 +40,7 @@ namespace GameServer.logic.behaviors
         {
                 if (host.GetNearestEntity(100, 0x5e4b) != null)
                     return;
-                Entity opener = Entity.Resolve(host.Manager, "Realm Portal Opener");
+                var opener = Entity.Resolve(host.Manager, "Realm Portal Opener");
                 host.Owner.EnterWorld(opener);
                 opener.Move(host.X, host.Y);
            

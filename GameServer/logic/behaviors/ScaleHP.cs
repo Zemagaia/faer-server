@@ -57,7 +57,7 @@ namespace GameServer.logic.behaviors
 
         protected override void TickCore(Entity host, RealmTime time, ref object state)
         {
-            ScaleHPState scstate = (ScaleHPState)state;
+            var scstate = (ScaleHPState)state;
             if (scstate.cooldown <= 0)
             {
                 scstate.cooldown = 1000;
@@ -66,7 +66,7 @@ namespace GameServer.logic.behaviors
                 if (scstate.maxHP == 0)
                     scstate.maxHP = (host as Enemy).MaximumHP + maxAdditional;
 
-                int plrCount = 0;
+                var plrCount = 0;
                 foreach (var i in host.Owner.Players)
                 {
                     if (scstate.pNamesCounted.Contains(i.Value.Name)) continue;
@@ -81,18 +81,18 @@ namespace GameServer.logic.behaviors
                 plrCount = scstate.pNamesCounted.Count;
                 if (plrCount > scstate.initialScaleAmount)
                 {
-                    int amountInc = (plrCount - scstate.initialScaleAmount) * amountPerPlayer;
+                    var amountInc = (plrCount - scstate.initialScaleAmount) * amountPerPlayer;
                     scstate.initialScaleAmount += (plrCount - scstate.initialScaleAmount);
 
                     if (maxAdditional != 0)
                         amountInc = Math.Min(maxAdditional, amountInc);
 
                     // ex: Enemy with 4000HP / 8000HP, being increased by 1200
-                    int curHp = (host as Enemy).HP;                             // ex: current hp was 4000HP
-                    int hpMaximum = (host as Enemy).MaximumHP;                  // ex: max hp was 8000HP
-                    double curHpPercent = ((double)curHp / hpMaximum);          // ex: 0.5
-                    int newHpMaximum = (host as Enemy).MaximumHP + amountInc;   // ex: max hp is now 9200HP
-                    int newHp = Convert.ToInt32(newHpMaximum * curHpPercent);   // ex: current has is now 4600HP
+                    var curHp = (host as Enemy).HP;                             // ex: current hp was 4000HP
+                    var hpMaximum = (host as Enemy).MaximumHP;                  // ex: max hp was 8000HP
+                    var curHpPercent = ((double)curHp / hpMaximum);          // ex: 0.5
+                    var newHpMaximum = (host as Enemy).MaximumHP + amountInc;   // ex: max hp is now 9200HP
+                    var newHp = Convert.ToInt32(newHpMaximum * curHpPercent);   // ex: current has is now 4600HP
 
                     if (!scstate.hitMaxHP || healAfterMax)
                     {

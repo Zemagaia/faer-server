@@ -53,11 +53,11 @@ namespace DungeonGenerator.Templates.PirateCave
             var buf = rasterizer.Bitmap;
 
             double pR = rand.NextDouble() * (radius - 2), pA = rand.NextDouble() * 2 * Math.PI;
-            int pX = (int)(cX + Math.Cos(pR) * pR);
-            int pY = (int)(cY + Math.Sin(pR) * pR);
+            var pX = (int)(cX + Math.Cos(pR) * pR);
+            var pY = (int)(cY + Math.Sin(pR) * pR);
 
-            for (int x = bounds.X; x < bounds.MaxX; x++)
-            for (int y = bounds.Y; y < bounds.MaxY; y++)
+            for (var x = bounds.X; x < bounds.MaxX; x++)
+            for (var y = bounds.Y; y < bounds.MaxY; y++)
             {
                 if ((x - cX) * (x - cX) + (y - cY) * (y - cY) <= r2)
                 {

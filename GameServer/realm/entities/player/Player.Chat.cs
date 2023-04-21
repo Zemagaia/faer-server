@@ -30,7 +30,7 @@ namespace GameServer.realm.entities.player
                 }
             }
 
-            string strippedMessage = nonAlphaNum.Replace(message, "").ToLower();
+            var strippedMessage = nonAlphaNum.Replace(message, "").ToLower();
             strippedMessage = repetition.Replace(strippedMessage, "");
 
             if (time - LastMessageTime > 10000)
@@ -43,7 +43,7 @@ namespace GameServer.realm.entities.player
             }
             else
             {
-                int deviation = LevenshteinDistance(LastMessage, strippedMessage);
+                var deviation = LevenshteinDistance(LastMessage, strippedMessage);
                 LastMessageTime = time;
                 LastMessage = strippedMessage;
 
@@ -77,9 +77,9 @@ namespace GameServer.realm.entities.player
 
         public static int LevenshteinDistance(string s, string t)
         {
-            int n = s.Length;
-            int m = t.Length;
-            int[,] d = new int[n + 1, m + 1];
+            var n = s.Length;
+            var m = t.Length;
+            var d = new int[n + 1, m + 1];
 
             if (n == 0)
             {
@@ -91,15 +91,15 @@ namespace GameServer.realm.entities.player
                 return n;
             }
 
-            for (int i = 0; i <= n; d[i, 0] = i++) ;
+            for (var i = 0; i <= n; d[i, 0] = i++) ;
 
-            for (int j = 0; j <= m; d[0, j] = j++) ;
+            for (var j = 0; j <= m; d[0, j] = j++) ;
 
-            for (int i = 1; i <= n; i++)
+            for (var i = 1; i <= n; i++)
             {
-                for (int j = 1; j <= m; j++)
+                for (var j = 1; j <= m; j++)
                 {
-                    int cost = (t[j - 1] == s[i - 1]) ? 0 : 1;
+                    var cost = (t[j - 1] == s[i - 1]) ? 0 : 1;
 
                     d[i, j] = Math.Min(
                         Math.Min(d[i - 1, j] + 1, d[i, j - 1] + 1),

@@ -64,7 +64,7 @@ namespace GameServer.logic.behaviors
 
         protected override void TickCore(Entity host, RealmTime time, ref object state)
         {
-            OrbitState s = (OrbitState)state;
+            var s = (OrbitState)state;
 
             Status = CycleStatus.NotStarted;
             
@@ -80,9 +80,9 @@ namespace GameServer.logic.behaviors
                 var angularSpd = s.Direction * host.GetSpeed(s.Speed) / s.Radius;
                 angle += angularSpd * (time.ElapsedMsDelta / 1000f);
 
-                double x = entity.X + Math.Cos(angle) * s.Radius;
-                double y = entity.Y + Math.Sin(angle) * s.Radius;
-                Vector2 vect = new Vector2((float)x, (float)y) - new Vector2(host.X, host.Y);
+                var x = entity.X + Math.Cos(angle) * s.Radius;
+                var y = entity.Y + Math.Sin(angle) * s.Radius;
+                var vect = new Vector2((float)x, (float)y) - new Vector2(host.X, host.Y);
                 vect.Normalize();
                 vect *= host.GetSpeed(s.Speed) * (time.ElapsedMsDelta / 1000f);
 

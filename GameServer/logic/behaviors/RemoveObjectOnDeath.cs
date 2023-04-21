@@ -28,7 +28,7 @@ namespace GameServer.logic.behaviors
             parent.Death += (sender, e) =>
             {
 
-                XmlData dat = e.Host.Manager.Resources.GameData;
+                var dat = e.Host.Manager.Resources.GameData;
                 var objType = dat.IdToObjectType[_objName];
 
                 var map = e.Host.Owner.Map;

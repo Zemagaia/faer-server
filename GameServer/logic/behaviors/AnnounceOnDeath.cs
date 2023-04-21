@@ -27,7 +27,7 @@ namespace GameServer.logic.behaviors
             parent.Death += (sender, e) =>
             {
 
-                if (e.Host.Spawned || e.Host.Owner is Test) return;
+                if (e.Host.Spawned) return;
 
                 var owner = e.Host.Owner;
                 var players = owner.Players.Values

@@ -24,7 +24,7 @@ namespace GameServer.logic.behaviors
 
         protected override void TickCore(Entity host, RealmTime time, ref object state)
         {
-            Entity entity = Entity.Resolve(host.Manager, target);
+            var entity = Entity.Resolve(host.Manager, target);
             if (entity is Portal
               && host.Owner.Name.Contains("Arena"))
             {

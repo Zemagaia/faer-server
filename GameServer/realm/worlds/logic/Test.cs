@@ -25,7 +25,7 @@ namespace GameServer.realm.worlds.logic
             music = new[] { "Test" }
         };
 
-        public bool JsonLoaded { get; private set; }
+        public bool MapLoaded { get; private set; }
 
         public Test() : base(_testProto)
         {
@@ -35,12 +35,10 @@ namespace GameServer.realm.worlds.logic
         {
         }
 
-        public void LoadJson(string json)
-        {
-            if (!JsonLoaded)
-            {
-                //FromWorldMap(new MemoryStream(Json2Wmap.Convert(Manager.Resources.GameData, json)));
-                JsonLoaded = true;
+        public void LoadMap(byte[] map) {
+            if (!MapLoaded) {
+                FromWorldMap(new MemoryStream(map));
+                MapLoaded = true;
             }
 
             InitShops();

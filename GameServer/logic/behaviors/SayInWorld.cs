@@ -27,8 +27,6 @@ namespace GameServer.logic.behaviors
 
         protected override void OnStateEntry(Entity host, RealmTime time, ref object state)
         {
-            if (host.Owner is Test) return;
-
             var owner = host.Owner;
             var players = owner.Players.Values
                 .Where(p => p.Client != null && p.Admin == 0)

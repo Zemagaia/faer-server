@@ -38,20 +38,20 @@ namespace DungeonGenerator.Templates.Abyss
 
         byte[,] GenerateHeightMap(int w, int h)
         {
-            float[,] map = new float[w, h];
-            int maxR = Math.Min(w, h);
-            int r = Rand.Next(maxR * 1 / 3, maxR * 2 / 3);
-            int r2 = r * r;
+            var map = new float[w, h];
+            var maxR = Math.Min(w, h);
+            var r = Rand.Next(maxR * 1 / 3, maxR * 2 / 3);
+            var r2 = r * r;
 
-            for (int i = 0; i < 200; i++)
+            for (var i = 0; i < 200; i++)
             {
                 int cx = Rand.Next(w), cy = Rand.Next(h);
-                float fact = (float)Rand.NextDouble() * 3 + 1;
+                var fact = (float)Rand.NextDouble() * 3 + 1;
                 if (Rand.Next() % 2 == 0)
                     fact = 1 / fact;
 
-                for (int x = 0; x < w; x++)
-                for (int y = 0; y < h; y++)
+                for (var x = 0; x < w; x++)
+                for (var y = 0; y < h; y++)
                 {
                     var z = r2 - ((x - cx) * (x - cx) / fact + (y - cy) * (y - cy) * fact);
                     if (z < 0)
@@ -61,9 +61,9 @@ namespace DungeonGenerator.Templates.Abyss
             }
 
             float max = 0;
-            float min = float.MaxValue;
-            for (int x = 0; x < w; x++)
-            for (int y = 0; y < h; y++)
+            var min = float.MaxValue;
+            for (var x = 0; x < w; x++)
+            for (var y = 0; y < h; y++)
             {
                 if (map[x, y] > max)
                     max = map[x, y];
@@ -71,11 +71,11 @@ namespace DungeonGenerator.Templates.Abyss
                     min = map[x, y];
             }
 
-            byte[,] norm = new byte[w, h];
-            for (int x = 0; x < w; x++)
-            for (int y = 0; y < h; y++)
+            var norm = new byte[w, h];
+            for (var x = 0; x < w; x++)
+            for (var y = 0; y < h; y++)
             {
-                float normVal = (map[x, y] - min) / (max - min);
+                var normVal = (map[x, y] - min) / (max - min);
                 norm[x, y] = (byte)(normVal * normVal * byte.MaxValue);
             }
 
@@ -95,8 +95,8 @@ namespace DungeonGenerator.Templates.Abyss
             var buf = Rasterizer.Bitmap;
             var hm = GenerateHeightMap(w / Sample + 2, h / Sample + 2);
 
-            for (int x = 0; x < w; x++)
-            for (int y = 0; y < h; y++)
+            for (var x = 0; x < w; x++)
+            for (var y = 0; y < h; y++)
             {
                 if (buf[x, y].TileType == AbyssTemplate.Lava ||
                     buf[x, y].TileType == AbyssTemplate.Space)
@@ -137,8 +137,8 @@ namespace DungeonGenerator.Templates.Abyss
 
             var buf = Rasterizer.Bitmap;
             var pos = startRm.portalPos;
-            for (int dx = -1; dx <= 1; dx++)
-            for (int dy = -1; dy <= 1; dy++)
+            for (var dx = -1; dx <= 1; dx++)
+            for (var dy = -1; dy <= 1; dy++)
             {
                 var tile = buf[pos.X + dx, pos.Y + dy];
                 if (tile.TileType == AbyssTemplate.Lava)
@@ -261,8 +261,8 @@ namespace DungeonGenerator.Templates.Abyss
         {
             var buf = Rasterizer.Bitmap;
             int w = Rasterizer.Width, h = Rasterizer.Height;
-            for (int x = 0; x < w; x++)
-            for (int y = 0; y < h; y++)
+            for (var x = 0; x < w; x++)
+            for (var y = 0; y < h; y++)
             {
                 if (buf[x, y].Object != null && buf[x, y].Object.ObjectType == AbyssTemplate.RedPillar &&
                     Rand.NextDouble() > 0.7)
@@ -293,19 +293,19 @@ namespace DungeonGenerator.Templates.Abyss
             var tmp = (DungeonTile[,])buf.Clone();
             int w = Rasterizer.Width, h = Rasterizer.Height;
 
-            for (int x = 0; x < w; x++)
-            for (int y = 0; y < h; y++)
+            for (var x = 0; x < w; x++)
+            for (var y = 0; y < h; y++)
             {
                 if (buf[x, y].TileType != AbyssTemplate.Space)
                     continue;
 
-                bool notWall = true;
+                var notWall = true;
                 if (x == 0 || y == 0 || x + 1 == w || y + 1 == h)
                     notWall = true;
                 else
                 {
-                    for (int dx = -1; dx <= 1 && notWall; dx++)
-                    for (int dy = -1; dy <= 1 && notWall; dy++)
+                    for (var dx = -1; dx <= 1 && notWall; dx++)
+                    for (var dy = -1; dy <= 1 && notWall; dy++)
                     {
                         if (tmp[x + dx, y + dy].TileType != AbyssTemplate.Space)
                         {

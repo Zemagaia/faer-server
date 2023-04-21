@@ -40,9 +40,9 @@ namespace GameServer.logic.behaviors
 
         protected override void TickCore(Entity host, RealmTime time, ref object state)
         {
-            int period = (int)state;
+            var period = (int)state;
             
-                foreach (Behavior behavior in behaviors)
+                foreach (var behavior in behaviors)
                 {   behavior.Tick(host, time);
                 Status = CycleStatus.InProgress;
 

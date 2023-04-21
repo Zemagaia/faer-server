@@ -150,7 +150,7 @@ namespace Shared.resources
 
             addition = new XElement("ExtData");
 
-            string basePath = path;
+            var basePath = path;
 
             // compress GameXmls for getServerXmls query
             // - only want to compress additional xml content
@@ -324,7 +324,7 @@ namespace Shared.resources
         {
             foreach (var elem in root.XPathSelectElements("//Ground"))
             {
-                string id = elem.Attribute("id").Value;
+                var id = elem.Attribute("id").Value;
 
                 ushort type;
                 var typeAttr = elem.Attribute("type");
@@ -355,7 +355,7 @@ namespace Shared.resources
         {
             foreach (var elem in root.XPathSelectElements("//EquipmentSet"))
             {
-                string id = elem.Attribute("id").Value;
+                var id = elem.Attribute("id").Value;
 
                 ushort type;
                 var typeAttr = elem.Attribute("type");

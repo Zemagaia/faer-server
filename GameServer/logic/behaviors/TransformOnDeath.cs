@@ -41,10 +41,10 @@ namespace GameServer.logic.behaviors
                     {
                         return;
                     }
-                    int count = Random.Next(min, max + 1);
-                    for (int i = 0; i < count; i++)
+                    var count = Random.Next(min, max + 1);
+                    for (var i = 0; i < count; i++)
                     {
-                        Entity entity = Entity.Resolve(e.Host.Manager, target);
+                        var entity = Entity.Resolve(e.Host.Manager, target);
 
                         entity.Move(e.Host.X, e.Host.Y);
 

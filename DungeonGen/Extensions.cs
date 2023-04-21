@@ -10,15 +10,15 @@ namespace DungeonGenerator
             Func<TPixel, bool> transprent = null)
             where TPixel : struct
         {
-            int w = srcRect.MaxX - srcRect.X;
-            int h = srcRect.MaxY - srcRect.Y;
+            var w = srcRect.MaxX - srcRect.X;
+            var h = srcRect.MaxY - srcRect.Y;
             var buf = self.Bitmap;
 
             if (transprent == null)
                 transprent = pix => false;
 
-            for (int x = 0; x < w; x++)
-            for (int y = 0; y < h; y++)
+            for (var x = 0; x < w; x++)
+            for (var y = 0; y < h; y++)
             {
                 var pix = src[x + srcRect.X, y + srcRect.Y];
                 if (transprent(pix))

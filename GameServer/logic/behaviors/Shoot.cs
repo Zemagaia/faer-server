@@ -95,14 +95,14 @@ namespace GameServer.logic.behaviors
             var targetY = target.Y + PREDICT_NUM_TICKS *
                 (target.Y - history.Value.Y);
 
-            float angle = (float)Math.Atan2(targetY - host.Y, targetX - host.X);
+            var angle = (float)Math.Atan2(targetY - host.Y, targetX - host.X);
 
             return angle;
         }
 
         protected override void TickCore(Entity host, RealmTime time, ref object state)
         {
-            int cool = (int?)state ??
+            var cool = (int?)state ??
                        -1; // <-- crashes server due to state being null... patched now but should be looked at.
             Status = CycleStatus.NotStarted;
 
@@ -154,13 +154,13 @@ namespace GameServer.logic.behaviors
                     a += _angleOffset + ((_rotateAngle != null) ? (float)_rotateAngle * _rotateCount : 0);
                     _rotateCount++;
 
-                    int dmg = desc.Damage;
+                    var dmg = desc.Damage;
 
                     var startAngle = a - _shootAngle * (count - 1) / 2;
                     byte prjId = 0;
-                    Position prjPos = new Position() { X = host.X, Y = host.Y };
+                    var prjPos = new Position() { X = host.X, Y = host.Y };
                     var prjs = new Projectile[count];
-                    for (int i = 0; i < count; i++)
+                    for (var i = 0; i < count; i++)
                     {
                         var prj = host.CreateProjectile(
                             desc, host.ObjectType, dmg, time.TotalElapsedMs,

@@ -499,7 +499,7 @@ namespace Shared
         public void Unlock(ushort type)
         {
             var field = type.ToString();
-            string json = GetValue<string>(field);
+            var json = GetValue<string>(field);
             if (json == null)
                 SetValue(field, JsonConvert.SerializeObject(new DbClassStatsEntry
                 {
@@ -512,7 +512,7 @@ namespace Shared
         {
             get
             {
-                string v = GetValue<string>(type.ToString());
+                var v = GetValue<string>(type.ToString());
                 if (v != null) return JsonConvert.DeserializeObject<DbClassStatsEntry>(v);
                 return default;
             }
@@ -711,7 +711,7 @@ namespace Shared
             news = db.SortedSetRangeByRankWithScores("news", 0, count)
                 .Select(x =>
                 {
-                    DbNewsEntry ret = JsonConvert.DeserializeObject<DbNewsEntry>(
+                    var ret = JsonConvert.DeserializeObject<DbNewsEntry>(
                         Encoding.UTF8.GetString(x.Element));
                     ret.Date = new DateTime(1970, 1, 1, 0, 0, 0).AddSeconds(x.Score);
                     return ret;

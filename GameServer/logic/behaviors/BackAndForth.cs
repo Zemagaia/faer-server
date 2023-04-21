@@ -31,7 +31,7 @@ namespace GameServer.logic.behaviors
 
             Status = CycleStatus.NotStarted;
             
-            float moveDist = host.GetSpeed(speed) * (time.ElapsedMsDelta / 1000f);
+            var moveDist = host.GetSpeed(speed) * (time.ElapsedMsDelta / 1000f);
             if (dist > 0)
             {
                 Status = CycleStatus.InProgress;

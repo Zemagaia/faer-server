@@ -611,4 +611,73 @@
             <Index>0x66</Index>
         </Texture>
     </Ground>
+
+    <Ground type="0x70" id="Cove Sand">
+        <Texture>
+            <Sheet>ground</Sheet>
+            <Index>0x6F</Index>
+        </Texture>
+    </Ground>
+    <Ground type="0x71" id="Cove Sand Rough">
+        <RandomTexture>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0x71</Index>
+            </Texture>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0x72</Index>
+            </Texture>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0x73</Index>
+            </Texture>
+        </RandomTexture>
+        <BlendPriority>11</BlendPriority>
+    </Ground>
+    <Ground type="0x72" id="Cove Sand Wet">
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0x70</Index>
+            </Texture>
+    </Ground>
+    <Ground type="0x73" id="Ocean Water Shallow">
+        <Texture>
+            <Sheet>ground</Sheet>
+            <Index>0x74</Index>
+        </Texture>
+        <Animate dx=".3" dy=".3">Wave</Animate>
+        <BlendPriority>98</BlendPriority>
+        <Sink/>
+        <Speed>0.7</Speed>
+    </Ground>
+    <Ground type="0x74" id="Ocean Water Deep">
+        <Texture>
+            <Sheet>ground</Sheet>
+            <Index>0x75</Index>
+        </Texture>
+        <Animate dx=".2" dy=".2">Wave</Animate>
+        <BlendPriority>99</BlendPriority>
+        <Sink/>
+        <NoWalk/>
+    </Ground>
+    <Ground type="0x75" id="Standing Water Shallow">
+        <Texture>
+            <Sheet>ground</Sheet>
+            <Index>0x76</Index>
+        </Texture>
+        <BlendPriority>98</BlendPriority>
+        <Sink/>
+        <Speed>0.7</Speed>
+    </Ground>
+    <Ground type="0x76" id="Standing Water Deep">
+        <Texture>
+            <Sheet>ground</Sheet>
+            <Index>0x77</Index>
+        </Texture>
+        <BlendPriority>99</BlendPriority>
+        <Sink/>
+        <NoWalk/>
+    </Ground>
+
 </GroundTypes>

@@ -60,17 +60,7 @@ namespace GameServer.realm.entities
 
             foreach (var p in Program.Resources.Worlds.Data.Values
                 .Where(p => p.portals != null && p.portals.Contains(ObjectType)))
-            {
-                if (p.id < 0)
-                    world = player.Manager.GetWorld(p.id);
-                else
-                {
-                    DynamicWorld.TryGetWorld(p, player.Client, out world);
-                    world = player.Manager.AddWorld(world ?? new World(p));
-                }
-
-                break;
-            }
+                world = p.id < 0 ? player.Manager.GetWorld(p.id) : player.Manager.AddWorld(new World(p));
 
             if (world == null)
                 return;

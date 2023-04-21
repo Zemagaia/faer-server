@@ -155,10 +155,10 @@
 
         public IEnumerable<T> HitTest(double _x, double _y, double radius)
         {
-            int xl = Math.Max(0, (int)(_x - radius) / CHUNK_SIZE);
-            int xh = Math.Min(cW - 1, (int)(_x + radius) / CHUNK_SIZE);
-            int yl = Math.Max(0, (int)(_y - radius) / CHUNK_SIZE);
-            int yh = Math.Min(cH - 1, (int)(_y + radius) / CHUNK_SIZE);
+            var xl = Math.Max(0, (int)(_x - radius) / CHUNK_SIZE);
+            var xh = Math.Min(cW - 1, (int)(_x + radius) / CHUNK_SIZE);
+            var yl = Math.Max(0, (int)(_y - radius) / CHUNK_SIZE);
+            var yh = Math.Min(cH - 1, (int)(_y + radius) / CHUNK_SIZE);
             for (var y = yl; y <= yh; y++)
             for (var x = xl; x <= xh; x++)
             {
@@ -174,8 +174,8 @@
         public IEnumerable<T> HitTest(double _x, double _y)
         {
             if (_x < 0 || _x >= w || _y <= 0 || _y >= h) yield break;
-            int x = (int)_x / CHUNK_SIZE;
-            int y = (int)_y / CHUNK_SIZE;
+            var x = (int)_x / CHUNK_SIZE;
+            var y = (int)_y / CHUNK_SIZE;
             var node = chunks[x, y];
             while (node != null)
             {
@@ -191,13 +191,13 @@
             if (from.w != this.w || from.h != this.h)
                 throw new ArgumentException("from");
 
-            HashSet<T> ret = new HashSet<T>();
-            for (int y = 0; y < cH; y++)
-            for (int x = 0; x < cW; x++)
+            var ret = new HashSet<T>();
+            for (var y = 0; y < cH; y++)
+            for (var x = 0; x < cW; x++)
                 if (from.chunks[x, y] != null)
                 {
-                    for (int i = -ACTIVE_RADIUS; i <= ACTIVE_RADIUS; i++)
-                    for (int j = -ACTIVE_RADIUS; j <= ACTIVE_RADIUS; j++)
+                    for (var i = -ACTIVE_RADIUS; i <= ACTIVE_RADIUS; i++)
+                    for (var j = -ACTIVE_RADIUS; j <= ACTIVE_RADIUS; j++)
                     {
                         if (x + j < 0 || x + j >= cW || y + i < 0 || y + i >= cH)
                             continue;

@@ -118,7 +118,7 @@ namespace GameServer.realm
             if (String.IsNullOrWhiteSpace(text))
                 return true;
 
-            int id = manager.Database.ResolveId(target);
+            var id = manager.Database.ResolveId(target);
             if (id == 0) return false;
 
             if (!manager.Database.AccountLockExists(id))
@@ -144,7 +144,7 @@ namespace GameServer.realm
 
         public bool Invite(Player src, string target, string dungeon, int wid)
         {
-            int id = manager.Database.ResolveId(target);
+            var id = manager.Database.ResolveId(target);
             if (id == 0) return false;
 
             if (!manager.Database.AccountLockExists(id))
@@ -212,7 +212,7 @@ namespace GameServer.realm
             {
                 case ChatType.Invite:
                 {
-                    string from = manager.Database.ResolveIgn(e.Content.From);
+                    var from = manager.Database.ResolveIgn(e.Content.From);
                     foreach (var i in manager.Clients.Keys
                         .Where(x => x.Player != null)
                         .Where(x => !x.Account.IgnoreList.Contains(e.Content.From))
@@ -225,8 +225,8 @@ namespace GameServer.realm
                     break;
                 case ChatType.Tell:
                 {
-                    string from = manager.Database.ResolveIgn(e.Content.From);
-                    string to = manager.Database.ResolveIgn(e.Content.To);
+                    var from = manager.Database.ResolveIgn(e.Content.From);
+                    var to = manager.Database.ResolveIgn(e.Content.To);
                     foreach (var i in manager.Clients.Keys
                         .Where(x => x.Player != null)
                         .Where(x => !x.Account.IgnoreList.Contains(e.Content.From))
@@ -243,7 +243,7 @@ namespace GameServer.realm
                     break;
                 case ChatType.Guild:
                 {
-                    string from = manager.Database.ResolveIgn(e.Content.From);
+                    var from = manager.Database.ResolveIgn(e.Content.From);
                     foreach (var i in manager.Clients.Keys
                         .Where(x => x.Player != null)
                         .Where(x => !x.Account.IgnoreList.Contains(e.Content.From))

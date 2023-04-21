@@ -50,7 +50,7 @@ namespace GameServer.realm.entities
         {
             if (Vulnerable && projectile.ProjectileOwner is Player p)
             {
-                int dmg = (int)StatsManager.GetDefenseDamage(this, projectile.Damage, projectile.DamageType, p);
+                var dmg = (int)StatsManager.GetDefenseDamage(this, projectile.Damage, projectile.DamageType, p);
                 
                 foreach (var player in Owner.Players.Values)
                 {

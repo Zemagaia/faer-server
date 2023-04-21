@@ -30,7 +30,7 @@ namespace DungeonGenerator
         {
             const uint MODULO = 0xfff1;
             uint A = 1, B = 0;
-            for (int i = 0; i < data.Length; i++)
+            for (var i = 0; i < data.Length; i++)
             {
                 A = (A + data[i]) % MODULO;
                 B = (B + A) % MODULO;
@@ -55,12 +55,12 @@ namespace DungeonGenerator
             const byte CMF = CM | (CINFO << 4);
             const byte FLG = 0xDA;
 
-            byte[] result = new byte[comp.Length + 6];
+            var result = new byte[comp.Length + 6];
             result[0] = CMF;
             result[1] = FLG;
             Buffer.BlockCopy(comp, 0, result, 2, comp.Length);
 
-            uint cksum = ADLER32(buffer);
+            var cksum = ADLER32(buffer);
             var index = result.Length - 4;
             result[index++] = (byte)(cksum >> 24);
             result[index++] = (byte)(cksum >> 16);

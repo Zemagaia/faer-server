@@ -207,7 +207,7 @@ class Stats
 
     public static Stats FromDb(DbAccount acc, DbClassStats stats)
     {
-        Stats ret = new Stats()
+        var ret = new Stats()
         {
             TotalFame = acc.TotalFame,
             Fame = acc.Fame,

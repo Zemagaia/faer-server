@@ -727,3 +727,25 @@
 2023-04-21 13:29:44.8968|INFO|Shared.ISManager|Localhost (kAccount, 4bea8c06-709d-463a-ac31-8969761d6330) joined the network.
 2023-04-21 13:29:47.1455|INFO|Shared.ISManager|Localhost (kAccount, 488930b9-496f-45c2-8e3d-9db4a92c37bb) joined the network.
 2023-04-21 13:30:38.2931|INFO|Shared.ISManager|Localhost (kAccount, 5a0ddcb6-87ef-46f7-989a-b99055ad66f8) joined the network.
+2023-04-21 17:33:56.2575|INFO|Shared.resources.AppSettings|Loading app settings...
+2023-04-21 17:33:56.2795|INFO|Shared.resources.XmlData|Loading xml data...
+2023-04-21 17:33:56.3514|INFO|Shared.resources.XmlData|Finish loading game data.
+2023-04-21 17:33:56.3514|INFO|Shared.resources.XmlData|262 Items
+2023-04-21 17:33:56.3514|INFO|Shared.resources.XmlData|81 Tiles
+2023-04-21 17:33:56.3514|INFO|Shared.resources.XmlData|312 Objects
+2023-04-21 17:33:56.3514|INFO|Shared.resources.XmlData|9 Skins
+2023-04-21 17:33:56.3514|INFO|Shared.resources.XmlData|0 Equipment Sets
+2023-04-21 17:33:56.3514|INFO|Shared.resources.XmlData|9 Classes
+2023-04-21 17:33:56.3514|INFO|Shared.resources.XmlData|9 Portals
+2023-04-21 17:33:56.3514|INFO|Shared.resources.XmlData|1 Merchants
+2023-04-21 17:33:56.3514|INFO|Shared.resources.XmlData|0 Remote Textures
+2023-04-21 17:33:56.3514|INFO|Shared.resources.XmlData|0 Additions
+2023-04-21 17:33:56.3583|INFO|Shared.Database|Initializing Database...
+2023-04-21 17:33:56.4903|INFO|Shared.ISManager|Server's Id is 14a376d2-1d12-45d5-b0f7-ebb60992767f
+2023-04-21 17:33:56.5339|INFO|LoginServer.Program|Listening at address 127.0.0.1:8080...
+2023-04-21 17:33:56.5448|INFO|Shared.ISManager|AppEngine (Account, 14a376d2-1d12-45d5-b0f7-ebb60992767f) joined the network.
+2023-04-21 17:34:06.2472|INFO|Shared.ISManager|Localhost (World, bfc92514-a17a-4ea5-8905-b057138dd832) joined the network.
+2023-04-21 17:54:18.5306|INFO|Shared.ISManager|Localhost (World, bfc92514-a17a-4ea5-8905-b057138dd832) timed out.
+2023-04-21 17:57:35.3543|INFO|Shared.ISManager|Localhost (World, 596fae2a-ac01-4ecf-a664-6df758834132) joined the network.
+2023-04-21 17:58:48.2616|INFO|Shared.ISManager|Localhost (World, 2f57e203-66c7-419c-8a2b-3a40b1f85f2d) joined the network.
+2023-04-21 17:59:16.5286|INFO|Shared.ISManager|Localhost (World, 596fae2a-ac01-4ecf-a664-6df758834132) timed out.

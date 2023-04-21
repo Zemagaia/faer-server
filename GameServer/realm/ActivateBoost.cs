@@ -15,7 +15,7 @@
         public int GetBoost()
         {
             var boost = 0;
-            for (int i = 0; i < _stack.Count; i++)
+            for (var i = 0; i < _stack.Count; i++)
                 boost += (int)(_stack[_stack.Count - 1 - i] * Math.Pow(.5, i));
 
             boost += _base[0];
@@ -59,9 +59,9 @@
         public void PopAll()
         {
             // doing it like this because wserver will throw errors otherwise
-            for (int i = 0; i < _stack.Count; i++)
+            for (var i = 0; i < _stack.Count; i++)
                 _stack[i] = 0;
-            for (int i = 0; i < _base.Count; i++)
+            for (var i = 0; i < _base.Count; i++)
                 _base[i] = 0;
         }
     }

@@ -42,7 +42,7 @@ namespace GameServer.logic.behaviors
             if (index < 0)    //select
             {
                 index = 0;
-                for (int i = 0; i < children.Length; i++)
+                for (var i = 0; i < children.Length; i++)
                 {
                     children[i].Tick(host, time);
                     if (children[i].Status == CycleStatus.InProgress)

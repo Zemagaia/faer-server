@@ -43,8 +43,8 @@ namespace Shared.terrain
             var obj = JsonConvert.DeserializeObject<json_dat>(json);
             var dat = ZlibStream.UncompressBuffer(obj.data);
 
-            Dictionary<short, TerrainTile> tileDict = new Dictionary<short, TerrainTile>();
-            for (int i = 0; i < obj.dict.Length; i++)
+            var tileDict = new Dictionary<short, TerrainTile>();
+            for (var i = 0; i < obj.dict.Length; i++)
             {
                 var o = obj.dict[i];
                 tileDict[(short)i] = new TerrainTile()
@@ -60,9 +60,9 @@ namespace Shared.terrain
             }
 
             var tiles = new TerrainTile[obj.width, obj.height];
-            using (NReader rdr = new NReader(new MemoryStream(dat)))
-                for (int y = 0; y < obj.height; y++)
-                for (int x = 0; x < obj.width; x++)
+            using (var rdr = new NReader(new MemoryStream(dat)))
+                for (var y = 0; y < obj.height; y++)
+                for (var x = 0; x < obj.width; x++)
                 {
                     tiles[x, y] = tileDict[IPAddress.NetworkToHostOrder(rdr.ReadInt16())];
                 }

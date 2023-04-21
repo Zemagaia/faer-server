@@ -27,7 +27,7 @@ namespace GameServer.logic.behaviors
 
                 if (entities != null)
                 {
-                    foreach (Entity ent in entities)
+                    foreach (var ent in entities)
                     {
                         owner.LeaveWorld(ent);
                     }

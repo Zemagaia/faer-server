@@ -251,7 +251,7 @@ namespace GameServer.realm {
 
             var origState = CurrentState;
             var state = CurrentState;
-            bool transited = false;
+            var transited = false;
             while (state != null) {
                 if (!transited)
                     foreach (var i in state.Transitions)
@@ -529,7 +529,7 @@ namespace GameServer.realm {
 
         public static Entity Resolve(RealmManager manager, ushort id) {
             var node = manager.Resources.GameData.ObjectTypeToElement[id];
-            string type = node.Element("Class").Value;
+            var type = node.Element("Class").Value;
             switch (type) {
                 case "Projectile":
                     throw new Exception("Projectile should not instantiated using Entity.Resolve");

@@ -29,7 +29,7 @@ namespace GameServer.logic.behaviors
         protected override void OnStateEntry(Entity host, RealmTime time, ref object state)
         {
             //var objType = GetObjType(_objName);
-            XmlData dat = host.Manager.Resources.GameData;
+            var dat = host.Manager.Resources.GameData;
             var tileId = dat.IdToTileType[_objName];
             var replacedTileId = dat.IdToTileType[_replacedObjName];
 

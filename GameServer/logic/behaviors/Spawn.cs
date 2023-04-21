@@ -47,9 +47,9 @@ namespace GameServer.logic.behaviors
                 CurrentNumber = _initialSpawn,
                 RemainingTime = _coolDown.Next(Random)
             };
-            for (int i = 0; i < _initialSpawn; i++)
+            for (var i = 0; i < _initialSpawn; i++)
             {
-                Entity entity = Entity.Resolve(host.Manager, _children);
+                var entity = Entity.Resolve(host.Manager, _children);
                 entity.Move(host.X, host.Y);
 
                 var enemyHost = host as Enemy;
@@ -83,7 +83,7 @@ namespace GameServer.logic.behaviors
 
             if (spawn.RemainingTime <= 0 && spawn.CurrentNumber < _maxChildren)
             {
-                Entity entity = Entity.Resolve(host.Manager, _children);
+                var entity = Entity.Resolve(host.Manager, _children);
                 entity.Move(host.X, host.Y);
 
                 var enemyHost = host as Enemy;

@@ -38,7 +38,7 @@ namespace DungeonGenerator
 
             public int GetHashCode(DungeonTile obj)
             {
-                int code = (int)obj.TileType.Id;
+                var code = (int)obj.TileType.Id;
                 if (obj.Region != null)
                     code = code * 7 + obj.Region.GetHashCode();
                 if (obj.Object != null)
@@ -89,10 +89,10 @@ namespace DungeonGenerator
                 tiles[id++] = mapTile;
             }
 
-            byte[] data = RotMG.Common.IO.Zlib.Decompress(Convert.FromBase64String((string)map["data"]));
-            int index = 0;
-            for (int y = 0; y < h; y++)
-            for (int x = 0; x < w; x++)
+            var data = RotMG.Common.IO.Zlib.Decompress(Convert.FromBase64String((string)map["data"]));
+            var index = 0;
+            for (var y = 0; y < h; y++)
+            for (var x = 0; x < w; x++)
             {
                 result[x, y] = tiles[(ushort)((data[index++] << 8) | data[index++])];
             }
@@ -106,11 +106,11 @@ namespace DungeonGenerator
 
             var tiles = new JsonArray();
             var indexLookup = new Dictionary<DungeonTile, short>(new TileComparer());
-            byte[] data = new byte[w * h * 2];
-            int ptr = 0;
+            var data = new byte[w * h * 2];
+            var ptr = 0;
 
-            for (int y = 0; y < h; y++)
-            for (int x = 0; x < w; x++)
+            for (var y = 0; y < h; y++)
+            for (var x = 0; x < w; x++)
             {
                 var tile = map[x, y];
                 short index;
@@ -124,7 +124,7 @@ namespace DungeonGenerator
                 data[ptr++] = (byte)(index & 0xff);
             }
 
-            for (int i = 0; i < tiles.Count; i++)
+            for (var i = 0; i < tiles.Count; i++)
             {
                 var tile = (DungeonTile)tiles[i];
 

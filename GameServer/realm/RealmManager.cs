@@ -82,17 +82,8 @@ namespace GameServer.realm
             Behaviors = new BehaviorDb(this);
             Commands = new CommandManager(this);
 
-            var serverMode = config.serverSettings.mode;
-            switch (serverMode)
-            {
-                case ServerMode.Double:
-                case ServerMode.Single:
-                case ServerMode.Nexus:
-                case ServerMode.Realm:
-                    InitializeGlobalWorlds();
-                    AddWorld("Hub", false);
-                    break;
-            }
+            InitializeGlobalWorlds();
+            AddWorld("Hub");
 
             // add portal monitor to nexus and initialize worlds
             if (Worlds.ContainsKey(World.Hub))
@@ -194,8 +185,7 @@ namespace GameServer.realm
                     : Interlocked.Increment(ref _nextWorldId);
             }
 
-            World world;
-            DynamicWorld.TryGetWorld(proto, null, out world);
+            var world = new World(proto);
             if (world != null)
             {
                 AddWorld(id, world);
@@ -226,12 +216,8 @@ namespace GameServer.realm
             return world;
         }
 
-        public World GetWorld(int id)
-        {
-            World ret;
-            if (!Worlds.TryGetValue(id, out ret)) return null;
-            if (ret.Id == 0) return null;
-            return ret;
+        public World GetWorld(int id) {
+            return !Worlds.TryGetValue(id, out var ret) ? null : ret.Id == 0 ? null : ret;
         }
 
         public bool RemoveWorld(World world)

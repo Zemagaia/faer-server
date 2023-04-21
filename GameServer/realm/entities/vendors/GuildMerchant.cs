@@ -15,7 +15,7 @@ namespace GameServer.realm.entities.vendors
         {
             Currency = CurrencyType.Fame;
             Price = Int32.MaxValue; // just in case for some reason _hallType isn't found
-            for (int i = 0; i < _hallTypes.Length; i++)
+            for (var i = 0; i < _hallTypes.Length; i++)
             {
                 if (objType != _hallTypes[i])
                     continue;

@@ -50,11 +50,11 @@ namespace DungeonGenerator.Templates.Abyss
             var buf = rasterizer.Bitmap;
             var bounds = Bounds;
 
-            bool portalPlaced = false;
+            var portalPlaced = false;
             while (!portalPlaced)
             {
-                int x = rand.Next(bounds.X + 2, bounds.MaxX - 4);
-                int y = rand.Next(bounds.Y + 2, bounds.MaxY - 4);
+                var x = rand.Next(bounds.X + 2, bounds.MaxX - 4);
+                var y = rand.Next(bounds.Y + 2, bounds.MaxY - 4);
                 if (buf[x, y].Object != null)
                     continue;
 

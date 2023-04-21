@@ -220,7 +220,7 @@ namespace DungeonGenerator.Templates.Lab
 
                 if (prev != null)
                 {
-                    bool ok = false;
+                    var ok = false;
                     foreach (var conn in prev.ConnectionPoints)
                     {
                         var d = conn.Item1.Reverse();

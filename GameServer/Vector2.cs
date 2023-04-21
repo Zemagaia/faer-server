@@ -149,7 +149,7 @@ namespace GameServer
 
         public static Vector2 Divide(Vector2 value1, float divider)
         {
-            float factor = 1 / divider;
+            var factor = 1 / divider;
             value1.X *= factor;
             value1.Y *= factor;
             return value1;
@@ -157,7 +157,7 @@ namespace GameServer
 
         public static void Divide(ref Vector2 value1, float divider, out Vector2 result)
         {
-            float factor = 1 / divider;
+            var factor = 1 / divider;
             result.X = value1.X * factor;
             result.Y = value1.Y * factor;
         }
@@ -190,7 +190,7 @@ namespace GameServer
         public static Vector2 Reflect(Vector2 vector, Vector2 normal)
         {
             Vector2 result;
-            float val = 2.0f * ((vector.X * normal.X) + (vector.Y * normal.Y));
+            var val = 2.0f * ((vector.X * normal.X) + (vector.Y * normal.Y));
             result.X = vector.X - (normal.X * val);
             result.Y = vector.Y - (normal.Y * val);
             return result;
@@ -198,7 +198,7 @@ namespace GameServer
 
         public static void Reflect(ref Vector2 vector, ref Vector2 normal, out Vector2 result)
         {
-            float val = 2.0f * ((vector.X * normal.X) + (vector.Y * normal.Y));
+            var val = 2.0f * ((vector.X * normal.X) + (vector.Y * normal.Y));
             result.X = vector.X - (normal.X * val);
             result.Y = vector.Y - (normal.Y * val);
         }
@@ -283,16 +283,16 @@ namespace GameServer
 
         public void Normalize()
         {
-            float d = (float)Math.Sqrt((X * X) + (Y * Y));
+            var d = (float)Math.Sqrt((X * X) + (Y * Y));
             if (d == 0) return;
-            float val = 1.0f / d;
+            var val = 1.0f / d;
             X *= val;
             Y *= val;
         }
 
         public static Vector2 Normalize(Vector2 value)
         {
-            float val = 1.0f / (float)Math.Sqrt((value.X * value.X) + (value.Y * value.Y));
+            var val = 1.0f / (float)Math.Sqrt((value.X * value.X) + (value.Y * value.Y));
             value.X *= val;
             value.Y *= val;
             return value;
@@ -300,7 +300,7 @@ namespace GameServer
 
         public static void Normalize(ref Vector2 value, out Vector2 result)
         {
-            float val = 1.0f / (float)Math.Sqrt((value.X * value.X) + (value.Y * value.Y));
+            var val = 1.0f / (float)Math.Sqrt((value.X * value.X) + (value.Y * value.Y));
             result.X = value.X * val;
             result.Y = value.Y * val;
         }
@@ -320,7 +320,7 @@ namespace GameServer
 
         public override string ToString()
         {
-            CultureInfo currentCulture = CultureInfo.CurrentCulture;
+            var currentCulture = CultureInfo.CurrentCulture;
             return string.Format(currentCulture, "{{X:{0} Y:{1}}}", new object[]
             {
                 this.X.ToString(currentCulture), this.Y.ToString(currentCulture)
@@ -402,7 +402,7 @@ namespace GameServer
 
         public static Vector2 operator /(Vector2 value1, float divider)
         {
-            float factor = 1 / divider;
+            var factor = 1 / divider;
             value1.X *= factor;
             value1.Y *= factor;
             return value1;

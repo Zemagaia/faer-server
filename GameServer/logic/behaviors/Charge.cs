@@ -52,7 +52,7 @@ namespace GameServer.logic.behaviors
             {
                 if (s.Direction == Vector2.Zero)
                 {
-                    Entity player = host.GetNearestEntity(_range, _targetPlayers, predicate: (i) => {
+                    var player = host.GetNearestEntity(_range, _targetPlayers, predicate: (i) => {
                         return _targetPlayers ? true : i is Enemy;
                     });
                     if (player != null && player.X != host.X && player.Y != host.Y)
@@ -84,7 +84,7 @@ namespace GameServer.logic.behaviors
 
             if (s.Direction != Vector2.Zero)
             {
-                float dist = host.GetSpeed(_speed) * (time.ElapsedMsDelta / 1000f);
+                var dist = host.GetSpeed(_speed) * (time.ElapsedMsDelta / 1000f);
                 host.ValidateAndMove(host.X + s.Direction.X * dist, host.Y + s.Direction.Y * dist);
                 Status = CycleStatus.InProgress;
             }

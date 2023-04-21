@@ -88,7 +88,8 @@ public enum PacketId : byte {
     PlaySound = 68,
     Reskin = 70,
     ReskinVault = 71,
-    Failure = 72
+    Failure = 72,
+    MapHello = 73
 }
 
 public class Client {
@@ -481,7 +482,7 @@ public class Client {
         WriteByte(ref ptr, ref spanRef, (byte) PacketId.Update);
         WriteShort(ref ptr, ref spanRef, (short) tiles.Length);
         for (var i = 0; i < tiles.Length; i++) {
-            TileData tile = tiles[i];
+            var tile = tiles[i];
             WriteShort(ref ptr, ref spanRef, tile.X);
             WriteShort(ref ptr, ref spanRef, tile.Y);
             WriteUShort(ref ptr, ref spanRef, tile.Tile);
@@ -748,6 +749,18 @@ public class Client {
                     ProcessHello(buildVer, gameId, guid, pwd, chrId, createChar, charType, skinType);
                     break;
                 }
+                case PacketId.MapHello: {
+                    var buildVer = ReadString(ref ptr, ref spanRef, len);
+                    var guid = ReadString(ref ptr, ref spanRef, len);
+                    var pwd = ReadString(ref ptr, ref spanRef, len);
+                    var chrId = ReadShort(ref ptr, ref spanRef, len);
+                    var fm = new byte[ReadUShort(ref ptr, ref spanRef, len)];
+                    // todo memcpy
+                    for (var i = 0; i < fm.Length; i++)
+                        fm[i] = ReadByte(ref ptr, ref spanRef, len);
+                    ProcessMapHello(buildVer, guid, pwd, chrId, fm);
+                    break;
+                }
                 case PacketId.InvDrop:
                     ProcessInvDrop(ReadInt(ref ptr, ref spanRef, len), ReadByte(ref ptr, ref spanRef, len),
                         ReadShort(ref ptr, ref spanRef, len));
@@ -964,7 +977,7 @@ public class Client {
         };
         if (1 == 0) { }
 
-        int targetRank = targetAcnt.GuildRank;
+        var targetRank = targetAcnt.GuildRank;
         if (targetRank == rank) {
             Player.SendError("Player is already a " + text);
             return;
@@ -1229,21 +1242,14 @@ public class Client {
         }
 
         var val = Manager.Database.Verify(guid, pwd, out var acc);
-        if ((int) val == 1 || (int) val == 2) {
+        if (val is LoginStatus.InvalidCredentials or LoginStatus.AccountNotExists) {
             SendFailure("Failed to login: Invalid credentials");
             return;
         }
 
         if (acc.Banned || Manager.Database.IsIpBanned(IP)) {
             SendFailure("Failed to login: Account banned");
-            var log = Log;
-            var defaultInterpolatedStringHandler = new DefaultInterpolatedStringHandler(38, 2);
-            defaultInterpolatedStringHandler.AppendLiteral("Banned user <");
-            defaultInterpolatedStringHandler.AppendFormatted(acc.Name);
-            defaultInterpolatedStringHandler.AppendLiteral("> (ip: ");
-            defaultInterpolatedStringHandler.AppendFormatted(IP);
-            defaultInterpolatedStringHandler.AppendLiteral(") tried to log in.");
-            log.Info(defaultInterpolatedStringHandler.ToStringAndClear());
+            Log.Info($"Banned user <{acc.Name}> (ip: {IP}) tried to log in.");
             return;
         }
 
@@ -1259,14 +1265,14 @@ public class Client {
         if (createChar) {
             var status = Manager.Database.CreateCharacter(Manager.Resources.GameData, acc, charType, skinType,
                 out var character);
-            switch ((int) status) {
-                case 1:
+            switch (status) {
+                case CreateStatus.ReachCharLimit:
                     SendFailure("Too many characters");
                     return;
-                case 2:
+                case CreateStatus.SkinUnavailable:
                     SendFailure("Skin unavailable");
                     return;
-                case 3:
+                case CreateStatus.Locked:
                     SendFailure("Class locked");
                     return;
             }
@@ -1276,6 +1282,39 @@ public class Client {
         }
 
         ConnectManager.Connect(this, gameId, charId);
+    }
+    
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void ProcessMapHello(string buildVer, string guid, string pwd, short charId, byte[] fm) {
+        var version = Manager.Config.serverSettings.version;
+        if (!version.Equals(buildVer)) {
+            SendFailure(version, FailureType.ClientUpdateNeeded);
+            return;
+        }
+
+        var val = Manager.Database.Verify(guid, pwd, out var acc);
+        if (val is LoginStatus.InvalidCredentials or LoginStatus.AccountNotExists) {
+            SendFailure("Failed to login: Invalid credentials");
+            return;
+        }
+
+        if (acc.Banned || Manager.Database.IsIpBanned(IP)) {
+            SendFailure("Failed to login: Account banned");
+            Log.Info($"Banned user <{acc.Name}> (ip: {IP}) tried to log in.");
+            return;
+        }
+
+        if (!acc.Admin && Manager.Config.serverInfo.adminOnly) {
+            SendFailure("Failed to login: Insufficient permissions");
+            return;
+        }
+
+        Manager.Database.LogAccountByIp(IP, acc.AccountId);
+        acc.IP = IP;
+        acc.FlushAsync();
+        Account = acc;
+        
+        ConnectManager.MapConnect(this, charId, fm);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1302,7 +1341,7 @@ public class Client {
             return;
         }
 
-        Item dropItem = con.Inventory[slotId];
+        var dropItem = con.Inventory[slotId];
         con.Inventory[slotId] = null;
         Container container;
         if (dropItem.Untradable || Player.Client.Account.Admin) {
@@ -1364,8 +1403,8 @@ public class Client {
         var queue = new Queue<Action>();
         var conATrans = conA.Inventory.CreateTransaction();
         var conBTrans = conB.Inventory.CreateTransaction();
-        Item itemA = conATrans[slotId1];
-        Item itemB = conBTrans[slotId2];
+        var itemA = conATrans[slotId1];
+        var itemB = conBTrans[slotId2];
         conBTrans[slotId2] = itemA;
         conATrans[slotId1] = itemB;
         if (!ValidateItemSwap(Player, a, itemB)) {
@@ -1492,7 +1531,7 @@ public class Client {
 
         var gameData = Manager.Resources.GameData;
         Account.Reload("skins");
-        ushort[] ownedSkins = Account.Skins;
+        var ownedSkins = Account.Skins;
         var currentClass = Player.ObjectType;
         var skinData = gameData.Skins;
         var skinSize = 100;
@@ -1626,7 +1665,7 @@ public class Client {
 
     private void Save() {
         var acc = Account;
-        if (Character == null || Player == null || Player.Owner is Test) {
+        if (Character == null || Player == null) {
             Manager.Database.ReleaseLock(acc);
             return;
         }

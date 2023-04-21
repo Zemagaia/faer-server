@@ -28,7 +28,7 @@ namespace GameServer.logic.behaviors
 
         protected override void OnStateEntry(Entity host, RealmTime time, ref object state)
         {
-            XmlData dat = host.Manager.Resources.GameData;
+            var dat = host.Manager.Resources.GameData;
             var objId = dat.IdToObjectType[_objName];
             var replacedObjId = dat.IdToObjectType[_replacedObjName];
 

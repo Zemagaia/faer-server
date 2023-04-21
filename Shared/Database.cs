@@ -65,7 +65,7 @@ namespace Shared
             if (info.IsNull)
                 return LoginStatus.AccountNotExists;
 
-            byte[] userPass = Utils.SHA1(password + info.Salt);
+            var userPass = Utils.SHA1(password + info.Salt);
             if (Convert.ToBase64String(userPass) != info.HashedPassword)
                 return LoginStatus.InvalidCredentials;
 
@@ -126,7 +126,7 @@ namespace Shared
         {
             var tran = _db.CreateTransaction();
 
-            string aKey = $"lock:{acc.AccountId}";
+            var aKey = $"lock:{acc.AccountId}";
             tran.AddCondition(Condition.StringEqual(aKey, acc.LockToken));
             tran.KeyDeleteAsync(aKey);
 
@@ -174,7 +174,7 @@ namespace Shared
 
         public string AcquireLock(string key)
         {
-            string lockToken = Guid.NewGuid().ToString();
+            var lockToken = Guid.NewGuid().ToString();
 
             var tran = _db.CreateTransaction();
             tran.AddCondition(Condition.KeyNotExists(key));
@@ -223,12 +223,12 @@ namespace Shared
 
         public void ChangePassword(string uuid, string password)
         {
-            DbLoginInfo login = new DbLoginInfo(_db, uuid);
+            var login = new DbLoginInfo(_db, uuid);
 
-            byte[] x = new byte[0x10];
+            var x = new byte[0x10];
             gen.GetNonZeroBytes(x);
-            string salt = Convert.ToBase64String(x);
-            string hash = Convert.ToBase64String(Utils.SHA1(password + salt));
+            var salt = Convert.ToBase64String(x);
+            var hash = Convert.ToBase64String(Utils.SHA1(password + salt));
 
             login.HashedPassword = hash;
             login.Salt = salt;
@@ -243,7 +243,7 @@ namespace Shared
             if (!_db.HashSet("logins", uuid.ToUpperInvariant(), "{}", When.NotExists))
                 return RegisterStatus.UsedName;
 
-            int newAccId = (int)_db.StringIncrement("nextAccId");
+            var newAccId = (int)_db.StringIncrement("nextAccId");
 
             acc = new DbAccount(_db, newAccId)
             {
@@ -272,19 +272,19 @@ namespace Shared
 
             acc.FlushAsync();
 
-            DbLoginInfo login = new DbLoginInfo(_db, uuid);
+            var login = new DbLoginInfo(_db, uuid);
 
-            byte[] x = new byte[0x10];
+            var x = new byte[0x10];
             gen.GetNonZeroBytes(x);
-            string salt = Convert.ToBase64String(x);
-            string hash = Convert.ToBase64String(Utils.SHA1(password + salt));
+            var salt = Convert.ToBase64String(x);
+            var hash = Convert.ToBase64String(Utils.SHA1(password + salt));
 
             login.HashedPassword = hash;
             login.Salt = salt;
             login.AccountId = acc.AccountId;
             login.Flush();
 
-            DbClassStats stats = new DbClassStats(acc);
+            var stats = new DbClassStats(acc);
             if (newAccounts.ClassesUnlocked)
                 foreach (var @class in Resources.GameData.Classes.Keys)
                     stats.Unlock(@class);
@@ -307,10 +307,10 @@ namespace Shared
 
         public DbAccount GetAccount(string uuid)
         {
-            DbLoginInfo info = new DbLoginInfo(_db, uuid);
+            var info = new DbLoginInfo(_db, uuid);
             if (info.IsNull)
                 return null;
-            DbAccount ret = new DbAccount(_db, info.AccountId);
+            var ret = new DbAccount(_db, info.AccountId);
             if (ret.IsNull)
                 return null;
             return ret;
@@ -508,7 +508,7 @@ namespace Shared
 
         public int ResolveId(string ign)
         {
-            string val = (string)_db.HashGet("names", ign.ToUpperInvariant());
+            var val = (string)_db.HashGet("names", ign.ToUpperInvariant());
             if (val == null)
                 return 0;
             return int.Parse(val);
@@ -562,8 +562,8 @@ namespace Shared
         {
             var trans = transaction ?? _db.CreateTransaction();
 
-            string key = $"account.{accountId}";
-            string[] fields = CurrencyKey[currency];
+            var key = $"account.{accountId}";
+            var fields = CurrencyKey[currency];
 
             if (currency == CurrencyType.GuildFame)
             {
@@ -585,8 +585,8 @@ namespace Shared
         {
             var trans = transaction ?? _db.CreateTransaction();
 
-            string key = acc.Key;
-            string[] fields = CurrencyKey[currency];
+            var key = acc.Key;
+            var fields = CurrencyKey[currency];
 
             if (currency == CurrencyType.GuildFame)
             {
@@ -785,7 +785,7 @@ namespace Shared
         public CreateStatus CreateCharacter(
             XmlData dat, DbAccount acc, ushort type, ushort skinType, out DbChar character)
         {
-            XElement cls = dat.ObjectTypeToElement[type];
+            var cls = dat.ObjectTypeToElement[type];
 
             if (_db.SetLength("alive." + acc.AccountId) >= acc.MaxCharSlot)
             {
@@ -865,16 +865,16 @@ namespace Shared
 
         public DbChar LoadCharacter(DbAccount acc, int charId)
         {
-            DbChar ret = new DbChar(acc, charId);
+            var ret = new DbChar(acc, charId);
             if (ret.IsNull) return null;
             else return ret;
         }
 
         public DbChar LoadCharacter(int accId, int charId)
         {
-            DbAccount acc = new DbAccount(_db, accId);
+            var acc = new DbAccount(_db, accId);
             if (acc.IsNull) return null;
-            DbChar ret = new DbChar(acc, charId);
+            var ret = new DbChar(acc, charId);
             if (ret.IsNull) return null;
             else return ret;
         }

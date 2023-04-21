@@ -11,9 +11,6 @@ namespace GameServer.realm.entities.player
 
         public void RequestTrade(string name)
         {
-            if (Owner is Test)
-                return;
-
             Manager.Database.ReloadAccount(_client.Account);
             var acc = _client.Account;
             
@@ -62,7 +59,7 @@ namespace GameServer.realm.entities.player
                 //target.MonitorTrade();
 
                 var my = new TradeItem[12];
-                for (int i = 0; i < 12; i++)
+                for (var i = 0; i < 12; i++)
                     my[i] = new TradeItem()
                     {
                         Item = Inventory[i].ObjectType,
@@ -71,7 +68,7 @@ namespace GameServer.realm.entities.player
                         Tradeable = Inventory[i] != null && i >= 4 && !Inventory[i].Untradable
                     };
                 var your = new TradeItem[12];
-                for (int i = 0; i < 12; i++)
+                for (var i = 0; i < 12; i++)
                     your[i] = new TradeItem()
                     {
                         Item = target.Inventory[i].ObjectType,
@@ -116,7 +113,7 @@ namespace GameServer.realm.entities.player
 
         void CheckTradeTimeout(RealmTime time)
         {
-            List<Tuple<Player, int>> newState = new List<Tuple<Player, int>>();
+            var newState = new List<Tuple<Player, int>>();
             foreach (var i in potentialTrader)
                 newState.Add(new Tuple<Player, int>(i.Key, i.Value - time.ElapsedMsDelta));
 
