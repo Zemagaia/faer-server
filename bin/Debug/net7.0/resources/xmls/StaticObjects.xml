@@ -921,4 +921,81 @@
         </Texture>
         <Static/>
     </Object>
+    <Object type="0x151" id="Crown Palm Tree">
+        <Class>GameObject</Class>
+        <RandomTexture>
+            <Texture>
+                <Sheet>props16</Sheet>
+                <Index>0x0e</Index>
+            </Texture>
+            <Texture>
+                <Sheet>props16</Sheet>
+                <Index>0x0f</Index>
+            </Texture>
+        </RandomTexture>
+     </Object>
+    <Object type="0x152" id="Crown Cove Small Barrel">
+        <Class>GameObject</Class>
+        <RandomTexture>
+            <Texture>
+                <Sheet>props</Sheet>
+                <Index>0x26</Index>
+            </Texture>
+            <Texture>
+                <Sheet>props</Sheet>
+                <Index>0x27</Index>
+            </Texture>
+            <Texture>
+                <Sheet>props</Sheet>
+                <Index>0x28</Index>
+            </Texture>
+        </RandomTexture>
+        <Static/>
+    </Object>
+    <Object type="0x153" id="Crown Cove Barrel">
+        <Class>GameObject</Class>
+        <RandomTexture>
+            <Texture>
+                <Sheet>props</Sheet>
+                <Index>0x29</Index>
+            </Texture>
+            <Texture>
+                <Sheet>props</Sheet>
+                <Index>0x2A</Index>
+            </Texture>
+        </RandomTexture>
+        <Static/>
+    </Object>
+    <Object type="0x154" id="Crown Cove Treasure">
+        <Class>GameObject</Class>
+        <RandomTexture>
+            <Texture>
+                <Sheet>props</Sheet>
+                <Index>0x2B</Index>
+            </Texture>
+            <Texture>
+                <Sheet>props</Sheet>
+                <Index>0x2C</Index>
+            </Texture>
+            <Texture>
+                <Sheet>props</Sheet>
+                <Index>0x2D</Index>
+            </Texture>
+        </RandomTexture>
+        <Static/>
+    </Object>
+    <Object type="0x155" id="Crown Cove Gold Pile">
+        <Class>GameObject</Class>
+        <RandomTexture>
+            <Texture>
+                <Sheet>props</Sheet>
+                <Index>0x2E</Index>
+            </Texture>
+            <Texture>
+                <Sheet>props</Sheet>
+                <Index>0x2F</Index>
+            </Texture>
+        </RandomTexture>
+        <Static/>
+    </Object>
 </Objects>

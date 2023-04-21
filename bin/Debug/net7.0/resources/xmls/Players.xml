@@ -12,15 +12,19 @@
     <Player />
     <SlotTypes>3, 4, 6, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
     <Equipment>0xa2a, 0xa4a, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
-    <Health max="720">695</Health>
-    <Mana max="225">200</Mana>
-    <Strength max="70">65</Strength>
-    <Defense max="20">15</Defense>
-    <Speed max="50">45</Speed>
-    <Luck max="30">25</Luck>
-    <Stamina max="55">50</Stamina>
-    <Sight max="30">25</Sight>
-    <Penetration max="50">45</Penetration>
+    <Health t2="740" t1="720">695</Health>
+    <Mana t2="240" t1="225">200</Mana>
+    <Strength t2="75" t1="70">65</Strength>
+    <Wit t2="75" t1="70">65</Wit>
+    <Defense t2="25" t1="20">15</Defense>
+    <Resistance t2="25" t1="20">15</Resistance>
+    <Speed t2="55" t1="50">45</Speed>
+    <Haste t2="35" t1="30">25</Haste>
+    <Stamina t2="60" t1="55">50</Stamina>
+    <Intelligence t2="60" t1="55">50</Intelligence>
+    <Piercing t2="35" t1="30">25</Piercing>
+    <Penetration t2="55" t1="50">45</Penetration>
+    <Tenacity t2="55" t1="50">45</Tenacity>
   </Object>
   <Object type="0x0307" id="Blood Mage">
     <Class>Player</Class>
@@ -34,15 +38,19 @@
     <Player />
     <SlotTypes>17, 5, 14, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
     <Equipment>0xa35, 0xa55, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
-    <Health max="950">925</Health>
-    <Mana max="-1">-1</Mana>
-    <Strength max="55">50</Strength>
-    <Defense max="25">20</Defense>
-    <Speed max="55">50</Speed>
-    <Luck max="40">35</Luck>
-    <Stamina max="70">65</Stamina>
-    <Sight max="70">65</Sight>
-    <Penetration max="50">45</Penetration>
+    <Health t2="740" t1="720">695</Health>
+    <Mana t2="240" t1="225">200</Mana>
+    <Strength t2="75" t1="70">65</Strength>
+    <Wit t2="75" t1="70">65</Wit>
+    <Defense t2="25" t1="20">15</Defense>
+    <Resistance t2="25" t1="20">15</Resistance>
+    <Speed t2="55" t1="50">45</Speed>
+    <Haste t2="35" t1="30">25</Haste>
+    <Stamina t2="60" t1="55">50</Stamina>
+    <Intelligence t2="60" t1="55">50</Intelligence>
+    <Piercing t2="35" t1="30">25</Piercing>
+    <Penetration t2="55" t1="50">45</Penetration>
+    <Tenacity t2="55" t1="50">45</Tenacity>
   </Object>
   <Object type="0x030e" id="Shaman">
     <Class>Player</Class>
@@ -56,15 +64,19 @@
     <Player />
     <SlotTypes>17, 8, 14, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
     <Equipment>0xa35, 0xa60, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
-    <Health max="670">645</Health>
-    <Mana max="270">245</Mana>
-    <Strength max="45">40</Strength>
-    <Defense max="15">10</Defense>
-    <Speed max="55">50</Speed>
-    <Luck max="60">75</Luck>
-    <Stamina max="60">55</Stamina>
-    <Sight max="35">30</Sight>
-    <Penetration max="40">35</Penetration>
+    <Health t2="740" t1="720">695</Health>
+    <Mana t2="240" t1="225">200</Mana>
+    <Strength t2="75" t1="70">65</Strength>
+    <Wit t2="75" t1="70">65</Wit>
+    <Defense t2="25" t1="20">15</Defense>
+    <Resistance t2="25" t1="20">15</Resistance>
+    <Speed t2="55" t1="50">45</Speed>
+    <Haste t2="35" t1="30">25</Haste>
+    <Stamina t2="60" t1="55">50</Stamina>
+    <Intelligence t2="60" t1="55">50</Intelligence>
+    <Piercing t2="35" t1="30">25</Piercing>
+    <Penetration t2="55" t1="50">45</Penetration>
+    <Tenacity t2="55" t1="50">45</Tenacity>
   </Object>
   <Object type="0x0310" id="Warlock">
     <Class>Player</Class>
@@ -78,15 +90,19 @@
     <Player />
     <SlotTypes>17, 14, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
     <Equipment>0xa35, 0xa6b, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
-    <Health max="770">745</Health>
-    <Mana max="-1">-1</Mana>
-    <Strength max="60">55</Strength>
-    <Defense max="20">15</Defense>
-    <Speed max="60">55</Speed>
-    <Luck max="40">35</Luck>
-    <Stamina max="55">50</Stamina>
-    <Sight max="55">50</Sight>
-    <Penetration max="65">60</Penetration>
+    <Health t2="740" t1="720">695</Health>
+    <Mana t2="240" t1="225">200</Mana>
+    <Strength t2="75" t1="70">65</Strength>
+    <Wit t2="75" t1="70">65</Wit>
+    <Defense t2="25" t1="20">15</Defense>
+    <Resistance t2="25" t1="20">15</Resistance>
+    <Speed t2="55" t1="50">45</Speed>
+    <Haste t2="35" t1="30">25</Haste>
+    <Stamina t2="60" t1="55">50</Stamina>
+    <Intelligence t2="60" t1="55">50</Intelligence>
+    <Piercing t2="35" t1="30">25</Piercing>
+    <Penetration t2="55" t1="50">45</Penetration>
+    <Tenacity t2="55" t1="50">45</Tenacity>
   </Object>
   <Object type="0x031d" id="Berserker">
     <Class>Player</Class>
@@ -100,15 +116,19 @@
     <Player />
     <SlotTypes>1, 16, 7, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
     <Equipment>0xa00, 0xa76, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
-    <Health max="770">745</Health>
-    <Mana max="160">135</Mana>
-    <Strength max="65">60</Strength>
-    <Defense max="35">30</Defense>
-    <Speed max="55">50</Speed>
-    <Luck max="40">35</Luck>
-    <Stamina max="60">55</Stamina>
-    <Sight max="60">55</Sight>
-    <Penetration max="55">50</Penetration>
+    <Health t2="740" t1="720">695</Health>
+    <Mana t2="240" t1="225">200</Mana>
+    <Strength t2="75" t1="70">65</Strength>
+    <Wit t2="75" t1="70">65</Wit>
+    <Defense t2="25" t1="20">15</Defense>
+    <Resistance t2="25" t1="20">15</Resistance>
+    <Speed t2="55" t1="50">45</Speed>
+    <Haste t2="35" t1="30">25</Haste>
+    <Stamina t2="60" t1="55">50</Stamina>
+    <Intelligence t2="60" t1="55">50</Intelligence>
+    <Piercing t2="35" t1="30">25</Piercing>
+    <Penetration t2="55" t1="50">45</Penetration>
+    <Tenacity t2="55" t1="50">45</Tenacity>
   </Object>
   <Object type="0x031e" id="Juggernaut">
     <Class>Player</Class>
@@ -122,15 +142,19 @@
     <Player />
     <SlotTypes>1, 12, 7, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
     <Equipment>0xa00, 0xa81, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
-    <Health max="950">925</Health>
-    <Mana max="210">185</Mana>
-    <Strength max="55">50</Strength>
-    <Defense max="45">40</Defense>
-    <Speed max="40">35</Speed>
-    <Luck max="55">50</Luck>
-    <Stamina max="65">60</Stamina>
-    <Sight max="70">65</Sight>
-    <Penetration max="50">45</Penetration>
+    <Health t2="740" t1="720">695</Health>
+    <Mana t2="240" t1="225">200</Mana>
+    <Strength t2="75" t1="70">65</Strength>
+    <Wit t2="75" t1="70">65</Wit>
+    <Defense t2="25" t1="20">15</Defense>
+    <Resistance t2="25" t1="20">15</Resistance>
+    <Speed t2="55" t1="50">45</Speed>
+    <Haste t2="35" t1="30">25</Haste>
+    <Stamina t2="60" t1="55">50</Stamina>
+    <Intelligence t2="60" t1="55">50</Intelligence>
+    <Piercing t2="35" t1="30">25</Piercing>
+    <Penetration t2="55" t1="50">45</Penetration>
+    <Tenacity t2="55" t1="50">45</Tenacity>
   </Object>
   <Object type="0x031f" id="Chronomancer">
     <Class>Player</Class>
@@ -144,15 +168,19 @@
     <Player />
     <SlotTypes>17, 15, 14, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
     <Equipment>0xa35, 0xa8b, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
-    <Health max="770">745</Health>
-    <Mana max="225">200</Mana>
-    <Strength max="60">55</Strength>
-    <Defense max="15">10</Defense>
-    <Speed max="55">60</Speed>
-    <Luck max="50">45</Luck>
-    <Stamina max="40">35</Stamina>
-    <Sight max="40">35</Sight>
-    <Penetration max="50">45</Penetration>
+    <Health t2="740" t1="720">695</Health>
+    <Mana t2="240" t1="225">200</Mana>
+    <Strength t2="75" t1="70">65</Strength>
+    <Wit t2="75" t1="70">65</Wit>
+    <Defense t2="25" t1="20">15</Defense>
+    <Resistance t2="25" t1="20">15</Resistance>
+    <Speed t2="55" t1="50">45</Speed>
+    <Haste t2="35" t1="30">25</Haste>
+    <Stamina t2="60" t1="55">50</Stamina>
+    <Intelligence t2="60" t1="55">50</Intelligence>
+    <Piercing t2="35" t1="30">25</Piercing>
+    <Penetration t2="55" t1="50">45</Penetration>
+    <Tenacity t2="55" t1="50">45</Tenacity>
   </Object>
   <Object type="0x0320" id="Falconer">
     <Class>Player</Class>
@@ -166,15 +194,19 @@
     <Player />
     <SlotTypes>19, 6, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
     <Equipment>0xa96, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
-    <Health max="720">695</Health>
-    <Mana max="270">245</Mana>
-    <Strength max="55">50</Strength>
-    <Defense max="35">25</Defense>
-    <Speed max="55">50</Speed>
-    <Luck max="45">40</Luck>
-    <Stamina max="70">65</Stamina>
-    <Sight max="35">30</Sight>
-    <Penetration max="40">35</Penetration>
+    <Health t2="740" t1="720">695</Health>
+    <Mana t2="240" t1="225">200</Mana>
+    <Strength t2="75" t1="70">65</Strength>
+    <Wit t2="75" t1="70">65</Wit>
+    <Defense t2="25" t1="20">15</Defense>
+    <Resistance t2="25" t1="20">15</Resistance>
+    <Speed t2="55" t1="50">45</Speed>
+    <Haste t2="35" t1="30">25</Haste>
+    <Stamina t2="60" t1="55">50</Stamina>
+    <Intelligence t2="60" t1="55">50</Intelligence>
+    <Piercing t2="35" t1="30">25</Piercing>
+    <Penetration t2="55" t1="50">45</Penetration>
+    <Tenacity t2="55" t1="50">45</Tenacity>
   </Object>
   <Object type="0x0321" id="Enigma">
     <Class>Player</Class>
@@ -188,14 +220,18 @@
     <Player />
     <SlotTypes>22, 21, 20, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
     <Equipment>0xa35, 0xa4a, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
-    <Health max="640">615</Health>
-    <Mana max="200">175</Mana>
-    <Strength max="50">45</Strength>
-    <Defense max="20">15</Defense>
-    <Speed max="50">45</Speed>
-    <Luck max="40">35</Luck>
-    <Stamina max="55">50</Stamina>
-    <Sight max="40">35</Sight>
-    <Penetration max="40">35</Penetration>
+    <Health t2="740" t1="720">695</Health>
+    <Mana t2="240" t1="225">200</Mana>
+    <Strength t2="75" t1="70">65</Strength>
+    <Wit t2="75" t1="70">65</Wit>
+    <Defense t2="25" t1="20">15</Defense>
+    <Resistance t2="25" t1="20">15</Resistance>
+    <Speed t2="55" t1="50">45</Speed>
+    <Haste t2="35" t1="30">25</Haste>
+    <Stamina t2="60" t1="55">50</Stamina>
+    <Intelligence t2="60" t1="55">50</Intelligence>
+    <Piercing t2="35" t1="30">25</Piercing>
+    <Penetration t2="55" t1="50">45</Penetration>
+    <Tenacity t2="55" t1="50">45</Tenacity>
   </Object>
 </Objects>
