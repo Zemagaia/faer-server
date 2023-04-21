@@ -154,7 +154,7 @@ namespace terrain
             }
         }
 
-        public void DrawPolygon(double[] points, T val)
+        public void DrawPolygon(double[] points, T val, int size)
         {
             // Use refs for faster access (really important!) speeds up a lot!
             int w = Width;
@@ -169,7 +169,7 @@ namespace terrain
             {
                 double x = points[i];
                 double y = points[i + 1];
-                DrawLineBresenham(prevX, prevY, x, y, val, 3);
+                DrawLineBresenham(prevX, prevY, x, y, val, size);
                 prevX = x;
                 prevY = y;
             }

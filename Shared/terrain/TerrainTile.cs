@@ -66,6 +66,15 @@ namespace Shared.terrain
         Biome_Ocean,
         Biome_Ocean_Unwalk,
         Biome_Deep_Forest,
+
+        Biome_Desert_Encounter_Spawn = 41,
+        Biome_Volacnic_Encounter_Spawn = 42,
+        Biome_Grass_Encounter_Spawn = 43,
+
+        Biome_Desert_Setpiece_Spawn = 44,
+        Biome_Volacnic_Setpiece_Spawn = 45,
+        Biome_Grass_Setpiece_Spawn = 46,
+
         FM_Empty = byte.MaxValue
     }
 

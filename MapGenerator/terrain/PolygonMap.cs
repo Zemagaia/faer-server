@@ -39,6 +39,7 @@ namespace terrain
         public bool IsOcean { get; set; }
         public string Biome { get; set; }
         public Polygon Polygon { get; set; }
+        public TileRegion Region { get; set; }
     }
 
     public class PolygonMap
@@ -273,6 +274,40 @@ namespace terrain
                     }
                 }
             }
+
+            FindLakesAndCoasts();
+        }
+
+        public void FindLakesAndCoasts()
+        {
+            var lake = new HashSet<MapPolygon>(MapPolygons.Where(_ => _.IsWater));
+            var  coast = new HashSet<MapPolygon>();
+            var start = MapPolygons.First(_ => _.Nodes.Any(__ => __.X == -1 && __.Y == -1));
+            _ = lake.Remove(start);
+
+            var q = new Queue<MapPolygon>();
+            q.Enqueue(start);
+            do
+            {
+                var poly = q.Dequeue();
+                foreach (var i in poly.Neighbours)
+                    if (i.IsWater && lake.Contains(i))
+                    {
+                        if (i.Neighbours.Any(_ => !_.IsWater))
+                            _ = coast.Add(i);
+                        _ = lake.Remove(i);
+                        q.Enqueue(i);
+                    }
+            }
+            while (q.Count > 0);
+
+            foreach (var i in lake)
+            {
+                i.IsOcean = false;
+                i.IsCoast =true;
+            }
+            foreach (var i in coast)
+                i.IsCoast = true;
         }
     }
 }
