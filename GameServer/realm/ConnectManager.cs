@@ -67,6 +67,12 @@ namespace GameServer.realm {
         }
         
         public static void MapConnect(Client client, int charId, byte[] fm) {
+            // todo maybe don't allow doctor kischak to save billions of maps on server?
+            var mapFolder = $"{client.Manager.Config.serverSettings.logFolder}/maps";
+            if (!Directory.Exists(mapFolder))
+                Directory.CreateDirectory(mapFolder);
+            File.WriteAllBytes($"{mapFolder}/{client.Account.Name}_{DateTime.Now.Ticks}.fm", fm);
+            
             if (!client.Manager.Database.AcquireLock(client.Account)) {
                 var otherClients = client.Manager.Clients.Keys.Where((Client c) =>
                     c == client || (c.Account != null && c.Account.AccountId == client.Account.AccountId));
