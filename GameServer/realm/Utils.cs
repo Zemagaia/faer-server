@@ -268,8 +268,7 @@ namespace GameServer.realm {
         }
 
         public static float GetSpeed(this Entity entity, float spdMult) {
-            float agility = entity.ObjectDesc.Agility;
-            return entity.HasConditionEffect(ConditionEffects.Slowed) ? 4 : 4 + 5.6f * (agility * spdMult / 75f);
+            return (entity.HasConditionEffect(ConditionEffects.Slowed) ? 4 : 4 + 5.6f) * spdMult;
         }
 
         public static void

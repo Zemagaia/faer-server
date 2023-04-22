@@ -14,74 +14,76 @@ namespace GameServer.logic
         public XmlBehaviorEntry(XElement e, string id)
         {
             Id = id;
-            var behaviorTypes = Assembly.GetCallingAssembly().GetTypes()
+            
+            var behavTypes = Assembly.GetCallingAssembly().GetTypes()
                 .Where(type => typeof(IStateChildren).IsAssignableFrom(type) && !type.IsInterface)
                 .Select(type => type).ToArray();
-            var behaviorTemplateTypes = typeof(BehaviorTemplates).GetMethods(BindingFlags.Public | BindingFlags.Static);
             var lootTypes = Assembly.GetCallingAssembly().GetTypes()
                 .Where(type => typeof(ILootDef).IsAssignableFrom(type) && !type.IsInterface)
                 .Select(type => type).ToArray();
+            
+            var children = new List<IStateChildren>();
             var behaviors = new List<IStateChildren>();
             var loots = new List<ILootDef>();
-            ParseStates(e, behaviorTypes, behaviorTemplateTypes, ref behaviors);
-            ParseLoot(e, lootTypes, ref loots);
+            
+            if (e.Elements("State").Any())
+                ParseStates(e, behavTypes, ref children);
+
+            if (e.Elements().Any(elem => behavTypes.Any(type => type.Name == elem.Name.ToString())))
+                ParseBehaviors(e, behavTypes, ref children);
+
+            var state = (IStateChildren)Activator.CreateInstance(behavTypes.Single(x => x.Name == "State"),
+                "root", children.ToArray());
+            behaviors.Add(state);
+            children.Clear();
+            
+            foreach (var i in e.Elements().Where(elem => lootTypes.Any(type => type.Name == elem.Name.ToString()))) {
+                var behavior = (ILootDef)Activator.CreateInstance(lootTypes.Single(x => x.Name == i.Name.ToString()), i);
+                if (behavior is null)
+                    continue;
+
+                loots.Add(behavior);
+            }
+            
             Behaviors = behaviors.ToArray();
             Loots = loots.ToArray();
         }
 
-        private static void ParseStates(XElement e, Type[] results, MethodInfo[] templates, ref List<IStateChildren> behaviors)
+        private static void ParseStates(XElement e, Type[] behavTypes, ref List<IStateChildren> behaviors)
         {
             var children = new List<IStateChildren>();
             foreach (var i in e.Elements("State"))
             {
                 if (i.Elements("State").Any())
-                    ParseStates(i, results, templates, ref children);
-                foreach (var j in i.Elements("BehaviorTemplate"))
-                {
-                    var method = templates.FirstOrDefault(x => x.Name == j.Value);
-                    if (method != null)
-                        children.AddRange((IStateChildren[])method.Invoke(null, new[] { j }));
-                }
+                    ParseStates(i, behavTypes, ref children);
 
-                if (i.Elements().Any())
-                    ParseBehaviors(i, results, ref children);
+                if (i.Elements().Any(elem => behavTypes.Any(type => type.Name == elem.Name.ToString())))
+                    ParseBehaviors(i, behavTypes, ref children);
 
-                var state = (IStateChildren)Activator.CreateInstance(results.Single(x => x.Name == "State"),
+                var state = (IStateChildren)Activator.CreateInstance(behavTypes.Single(x => x.Name == "State"),
                     i.GetAttribute<string>("id"), children.ToArray());
                 behaviors.Add(state);
                 children.Clear();
             }
         }
 
-        private static void ParseBehaviors(XElement e, Type[] results, ref List<IStateChildren> behaviors)
+        private static void ParseBehaviors(XElement e, Type[] behavTypes, ref List<IStateChildren> behaviors)
         {
             var children = new List<IStateChildren>();
-            foreach (var i in e.Elements().Where(elem => results.Any(type => type.Name == elem.Name.ToString())))
+            foreach (var i in e.Elements().Where(elem => behavTypes.Any(type => type.Name == elem.Name.ToString())))
             {
-                if (i.Elements().Any())
-                    ParseBehaviors(i, results, ref children);
+                if (i.Elements().Any(elem => behavTypes.Any(type => type.Name == elem.Name.ToString())))
+                    ParseBehaviors(i, behavTypes, ref children);
 
                 var name = i.Attribute("behavior") != null ? i.GetAttribute<string>("behavior") : i.Name.ToString();
                 IStateChildren behavior;
                 if (children.Count > 0)
-                    behavior = (IStateChildren)Activator.CreateInstance(results.Single(x => x.Name == name), i,
+                    behavior = (IStateChildren)Activator.CreateInstance(behavTypes.Single(x => x.Name == name), i,
                         children.ToArray());
                 else
-                    behavior = (IStateChildren)Activator.CreateInstance(results.Single(x => x.Name == name), i);
+                    behavior = (IStateChildren)Activator.CreateInstance(behavTypes.Single(x => x.Name == name), i);
                 behaviors.Add(behavior);
                 children.Clear();
-            }
-        }
-
-        private static void ParseLoot(XElement e, Type[] results, ref List<ILootDef> loots)
-        {
-            foreach (var i in e.Elements().Where(elem => results.Any(type => type.Name == elem.Name.ToString())))
-            {
-                var behavior = (ILootDef)Activator.CreateInstance(results.Single(x => x.Name == i.Name.ToString()), i);
-                if (behavior is null)
-                    continue;
-
-                loots.Add(behavior);
             }
         }
     }
