@@ -1,0 +1,43 @@
+<BehaviorEntries>
+  <BehaviorEntry id="Crocodile">
+    <State id="root">
+		  <Follow speed="0.6" acquireRange="9" range="2"/>
+		  <Wander speed="0.4"/>
+		  <Shoot radius="16" count="3" shootAngle="12" projectileIndex="0" cooldown="600"/>
+     	<!--<AoeAttack radius="3" damage="80" cooldown="600" effect="Slowed" effectDuration="500" color="0x01361f"/>-->
+     	<DropPortalOnDeath target="Crown Cove" probability="0.01"/>
+     	<ItemLoot item="Health Vial" probability="0.02"/>
+		  <ItemLoot item="Magic Vial" probability="0.02"/>
+		</State>
+	</BehaviorEntry>
+	<BehaviorEntry id="Spike Ball">
+	  <State id="root">
+		  <Wander speed="0.5"/>
+     	<Shoot radius="16" count="5" shootAngle="72" projectileIndex="0" cooldown="400"/>
+     	<DropPortalOnDeath target="Crown Cove" probability="0.01"/>
+     	<ItemLoot item="Health Vial" probability="0.02"/>
+		  <ItemLoot item="Magic Vial" probability="0.02"/>
+		</State>
+	</BehaviorEntry>
+	<BehaviorEntry id="Goblin Grunt">
+	  <State id="root">
+		  <Charge speed="1.33" range="9" cooldown="1000"/>
+		  <Wander speed="0.33"/>
+     	<Shoot radius="16" count="3" shootAngle="4" projectileIndex="0" cooldown="900"/>
+     	<DropPortalOnDeath target="Crown Cove" probability="0.01"/>
+     	<ItemLoot item="Health Vial" probability="0.02"/>
+		  <ItemLoot item="Magic Vial" probability="0.02"/>
+		</State>
+	</BehaviorEntry>
+	<BehaviorEntry id="Goblin Guard">
+	  <State id="root">
+		  <Orbit speed="0.6" radius="2" acquireRange="6" target="Crocodile"/>
+		  <Orbit speed="0.5" radius="2" acquireRange="6" target="Spike Ball"/>
+		  <Wander speed="0.28"/>
+     	<Shoot radius="16" count="2" shootAngle="5" projectileIndex="0" cooldown="800"/>
+     	<DropPortalOnDeath target="Crown Cove" probability="0.01"/>
+     	<ItemLoot item="Health Vial" probability="0.02"/>
+		  <ItemLoot item="Magic Vial" probability="0.02"/>
+		</State>
+	</BehaviorEntry>
+</BehaviorEntries>
