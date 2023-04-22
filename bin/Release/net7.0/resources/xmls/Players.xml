@@ -52,18 +52,18 @@
     <Penetration t2="55" t1="50">45</Penetration>
     <Tenacity t2="55" t1="50">45</Tenacity>
   </Object>
-  <Object type="0x030e" id="Shaman">
+  <Object type="0x030e" id="Warden">
     <Class>Player</Class>
     <Description>
-      The Shaman is a support class who provides utility for the group.
+      The Warden is a support class who provides utility for the group.
     </Description>
     <AnimatedTexture>
       <Sheet>players</Sheet>
       <Index>2</Index>
     </AnimatedTexture>
     <Player />
-    <SlotTypes>17, 8, 14, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
-    <Equipment>0xa35, 0xa60, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
+    <SlotTypes>3, 8, 6, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
+    <Equipment>0xa2a, 0xa60, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
     <Health t2="740" t1="720">695</Health>
     <Mana t2="240" t1="225">200</Mana>
     <Strength t2="75" t1="70">65</Strength>
@@ -182,18 +182,18 @@
     <Penetration t2="55" t1="50">45</Penetration>
     <Tenacity t2="55" t1="50">45</Tenacity>
   </Object>
-  <Object type="0x0320" id="Falconer">
+  <Object type="0x0320" id="Monk">
     <Class>Player</Class>
     <Description>
-      The Falconer is a weaponless off-tank who commands his birds to do damage.
+      The Monk is a support class who provides protection for the group.
     </Description>
     <AnimatedTexture>
       <Sheet>players</Sheet>
-      <Index>7</Index>
+      <Index>9</Index>
     </AnimatedTexture>
     <Player />
-    <SlotTypes>19, 6, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
-    <Equipment>0xa96, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
+    <SlotTypes>17, 23, 14, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
+    <Equipment>0xa35, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
     <Health t2="740" t1="720">695</Health>
     <Mana t2="240" t1="225">200</Mana>
     <Strength t2="75" t1="70">65</Strength>
@@ -203,7 +203,7 @@
     <Speed t2="55" t1="50">45</Speed>
     <Haste t2="35" t1="30">25</Haste>
     <Stamina t2="60" t1="55">50</Stamina>
-    <Intelligence t2="60" t1="55">50</Intelligence>
+    <Intelligence t2="65" t1="60">50</Intelligence>
     <Piercing t2="35" t1="30">25</Piercing>
     <Penetration t2="55" t1="50">45</Penetration>
     <Tenacity t2="55" t1="50">45</Tenacity>
@@ -220,6 +220,32 @@
     <Player />
     <SlotTypes>22, 21, 20, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
     <Equipment>0xa35, 0xa4a, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
+    <Health t2="740" t1="720">695</Health>
+    <Mana t2="240" t1="225">200</Mana>
+    <Strength t2="75" t1="70">65</Strength>
+    <Wit t2="75" t1="70">65</Wit>
+    <Defense t2="25" t1="20">15</Defense>
+    <Resistance t2="25" t1="20">15</Resistance>
+    <Speed t2="55" t1="50">45</Speed>
+    <Haste t2="35" t1="30">25</Haste>
+    <Stamina t2="60" t1="55">50</Stamina>
+    <Intelligence t2="60" t1="55">50</Intelligence>
+    <Piercing t2="35" t1="30">25</Piercing>
+    <Penetration t2="55" t1="50">45</Penetration>
+    <Tenacity t2="55" t1="50">45</Tenacity>
+  </Object>
+  <Object type="0x0322" id="Plaguebearer">
+    <Class>Player</Class>
+    <Description>
+      The Plaguebearer is a bow class capable of debilitating enemies.
+    </Description>
+    <AnimatedTexture>
+      <Sheet>players</Sheet>
+      <Index>10</Index>
+    </AnimatedTexture>
+    <Player />
+    <SlotTypes>3, 24, 6, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
+    <Equipment>0xa2a, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
     <Health t2="740" t1="720">695</Health>
     <Mana t2="240" t1="225">200</Mana>
     <Strength t2="75" t1="70">65</Strength>
