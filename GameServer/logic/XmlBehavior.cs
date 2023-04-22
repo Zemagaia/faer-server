@@ -24,8 +24,7 @@ namespace GameServer.logic
             var behaviors = new List<IStateChildren>();
             var loots = new List<ILootDef>();
             ParseStates(e, behaviorTypes, behaviorTemplateTypes, ref behaviors);
-            if (e.Elements("LootDef").Count() + e.Elements("LootTemplate").Count() > 0)
-                ParseLoot(e, lootTypes, ref loots);
+            ParseLoot(e, lootTypes, ref loots);
             Behaviors = behaviors.ToArray();
             Loots = loots.ToArray();
         }
@@ -57,7 +56,7 @@ namespace GameServer.logic
         private static void ParseBehaviors(XElement e, Type[] results, ref List<IStateChildren> behaviors)
         {
             var children = new List<IStateChildren>();
-            foreach (var i in e.Elements())
+            foreach (var i in e.Elements().Where(elem => results.Any(type => type.Name == elem.Name.ToString())))
             {
                 if (i.Elements().Any())
                     ParseBehaviors(i, results, ref children);
@@ -76,34 +75,13 @@ namespace GameServer.logic
 
         private static void ParseLoot(XElement e, Type[] results, ref List<ILootDef> loots)
         {
-            var children = new List<ILootDef>();
-            foreach (var j in e.Elements("LootTemplate"))
+            foreach (var i in e.Elements().Where(elem => results.Any(type => type.Name == elem.Name.ToString())))
             {
-                var method = typeof(LootTemplates).GetMethods(BindingFlags.Public | BindingFlags.Static)
-                    .FirstOrDefault(x => x.Name == j.Name);
-                if (method != null)
-                    loots.AddRange((ILootDef[])method.Invoke(null, null));
-            }
-
-            foreach (var i in e.Elements("LootDef"))
-            {
-                if (i.Elements("LootDef").Any())
-                    ParseLoot(i, results, ref children);
-
-                var name = i.Attribute("behavior") != null ? i.GetAttribute<string>("behavior") : i.Value;
-                ILootDef behavior;
-                if (children.Count > 0)
-                    behavior = (ILootDef)Activator.CreateInstance(results.Single(x => x.Name == name), i,
-                        children.ToArray());
-                else
-                    behavior = (ILootDef)Activator.CreateInstance(results.Single(x => x.Name == name), i);
+                var behavior = (ILootDef)Activator.CreateInstance(results.Single(x => x.Name == i.Name.ToString()), i);
                 if (behavior is null)
-                {
                     continue;
-                }
 
                 loots.Add(behavior);
-                children.Clear();
             }
         }
     }

@@ -58,7 +58,7 @@ namespace GameServer.logic
             foreach (var xmlBehavior in dat.RawXmlBehaviors)
             {
                 var entry = new XmlBehaviorEntry(xmlBehavior, xmlBehavior.GetAttribute<string>("id"));
-                var rootState = entry.Behaviors.Where(x => x is State).Select(x => (State)x)
+                var rootState = entry.Behaviors.OfType<State>()
                     .FirstOrDefault(x => x.Name == "root");
                 if (rootState == null)
                 {

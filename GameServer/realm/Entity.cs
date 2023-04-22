@@ -466,13 +466,11 @@ namespace GameServer.realm {
             if (tileDesc?.NoWalk == true)
                 return true;
 
-            if (tile.ObjType != 0) {
-                var objDesc = Manager.Resources.GameData.ObjectDescs[tile.ObjType];
-                if (objDesc?.EnemyOccupySquare == true)
-                    return true;
-            }
-
-            return false;
+            if (tile.ObjType == 0) 
+                return false;
+            
+            var objDesc = Manager.Resources.GameData.ObjectDescs[tile.ObjType];
+            return objDesc?.EnemyOccupySquare == true;
         }
 
         public bool TileFullOccupied(float x, float y) {

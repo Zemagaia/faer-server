@@ -152,9 +152,13 @@ public class Wmap {
                 enCount++;
                 objId = idBase + enCount;
             }
-            
+
+            if (objType == ushort.MaxValue)
+                objType = 0;
+
             if (regionType != TileRegion.FM_Empty)
                 Regions.Add(new IntPoint(x, y), regionType);
+            else regionType = TileRegion.None;
 
             var tile = new WmapTile {
                 TileType = groundType,

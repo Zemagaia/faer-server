@@ -283,60 +283,6 @@ namespace GameServer.logic.loot
         }
     }
 
-    public static class LootTemplates
-    {
-        public static ILootDef StatPots()
-        {
-            return
-                new OnlyOne(
-                    new ItemLoot("Potion of Armor", 1),
-                    new ItemLoot("Potion of Strength", 1),
-                    new ItemLoot("Potion of Agility", 1),
-                    new ItemLoot("Potion of Stamina", 1),
-                    new ItemLoot("Potion of Intelligence", 1),
-                    new ItemLoot("Potion of Dexterity", 1)
-                );
-        }
-
-        public static ILootDef GreaterPots()
-        {
-            return
-                new OnlyOne(
-                    new ItemLoot("Greater Potion of Armor", 1),
-                    new ItemLoot("Greater Potion of Strength", 1),
-                    new ItemLoot("Greater Potion of Agility", 1),
-                    new ItemLoot("Greater Potion of Stamina", 1),
-                    new ItemLoot("Greater Potion of Intelligence", 1),
-                    new ItemLoot("Greater Potion of Dexterity", 1),
-                    new ItemLoot("Greater Potion of Life", 1),
-                    new ItemLoot("Greater Potion of Mana", 1)
-                );
-        }
-
-        public static ILootDef AllPots()
-        {
-            return
-                new OnlyOne(
-                    new ItemLoot("Potion of Armor", 1),
-                    new ItemLoot("Potion of Strength", 1),
-                    new ItemLoot("Potion of Agility", 1),
-                    new ItemLoot("Potion of Stamina", 1),
-                    new ItemLoot("Potion of Intelligence", 1),
-                    new ItemLoot("Potion of Dexterity", 1),
-                    new ItemLoot("Potion of Life", 1),
-                    new ItemLoot("Potion of Mana", 1),
-                    new ItemLoot("Greater Potion of Armor", 1),
-                    new ItemLoot("Greater Potion of Strength", 1),
-                    new ItemLoot("Greater Potion of Agility", 1),
-                    new ItemLoot("Greater Potion of Stamina", 1),
-                    new ItemLoot("Greater Potion of Intelligence", 1),
-                    new ItemLoot("Greater Potion of Dexterity", 1),
-                    new ItemLoot("Greater Potion of Life", 1),
-                    new ItemLoot("Greater Potion of Mana", 1)
-                );
-        }
-    }
-    
     public static class Thresholds
     {
         public const double Legendary = 0.02;

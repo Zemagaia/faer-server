@@ -141,7 +141,7 @@ public class Client {
         Account = null;
         Character = null;
         Player = null;
-        _pingTime = (_pongTime = -1L);
+        _pingTime = _pongTime = -1L;
         Socket = socket;
         try {
             IP = ((IPEndPoint) socket.RemoteEndPoint).Address.ToString();
