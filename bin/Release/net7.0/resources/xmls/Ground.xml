@@ -73,10 +73,24 @@
         <BlendPriority>2</BlendPriority>
     </Ground>
     <Ground type="0x25" id="Cobblestone">
-        <Texture>
-            <Sheet>ground</Sheet>
-            <Index>0x08</Index>
-        </Texture>
+        <RandomTexture>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0x96</Index>
+            </Texture>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0x97</Index>
+            </Texture>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0x98</Index>
+            </Texture>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0x99</Index>
+            </Texture>
+        </RandomTexture>
         <BlendPriority>2</BlendPriority>
     </Ground>
     <Ground type="0x26" id="Magma">
@@ -679,5 +693,53 @@
         <Sink/>
         <NoWalk/>
     </Ground>
-
+    <Ground type="0x77" id="Cobblestone Dark">
+        <RandomTexture>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0x9A</Index>
+            </Texture>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0x9B</Index>
+            </Texture>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0x9C</Index>
+            </Texture>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0x9D</Index>
+            </Texture>
+        </RandomTexture>
+        <BlendPriority>99</BlendPriority>
+    </Ground>
+    <Ground type="0x78" id="Cobblestone Light">
+        <RandomTexture>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0x9E</Index>
+            </Texture>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0x9F</Index>
+            </Texture>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0x100</Index>
+            </Texture>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0x101</Index>
+            </Texture>
+        </RandomTexture>
+        <BlendPriority>2</BlendPriority>
+    </Ground>
+    <Ground type="0x79" id="Sandstone Brick">
+        <Texture>
+            <Sheet>ground</Sheet>
+            <Index>0x102</Index>
+        </Texture>
+        <BlendPriority>2</BlendPriority>
+    </Ground>
 </GroundTypes>
