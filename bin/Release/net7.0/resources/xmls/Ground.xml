@@ -712,7 +712,7 @@
                 <Index>0x9D</Index>
             </Texture>
         </RandomTexture>
-        <BlendPriority>99</BlendPriority>
+        <BlendPriority>2</BlendPriority>
     </Ground>
     <Ground type="0x78" id="Cobblestone Light">
         <RandomTexture>
@@ -726,11 +726,11 @@
             </Texture>
             <Texture>
                 <Sheet>ground</Sheet>
-                <Index>0x100</Index>
+                <Index>0xF0</Index>
             </Texture>
             <Texture>
                 <Sheet>ground</Sheet>
-                <Index>0x101</Index>
+                <Index>0xF1</Index>
             </Texture>
         </RandomTexture>
         <BlendPriority>2</BlendPriority>
@@ -738,7 +738,7 @@
     <Ground type="0x79" id="Sandstone Brick">
         <Texture>
             <Sheet>ground</Sheet>
-            <Index>0x102</Index>
+            <Index>0xF2</Index>
         </Texture>
         <BlendPriority>2</BlendPriority>
     </Ground>
