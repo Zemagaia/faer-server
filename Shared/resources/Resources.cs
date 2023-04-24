@@ -10,7 +10,7 @@ using System.Xml.Linq;
 
 namespace Shared.resources
 {
-    public class Resources : IDisposable
+    public class Resources
     {
         public string ResourcePath { get; private set; }
         public AppSettings Settings { get; private set; }
@@ -51,11 +51,6 @@ namespace Shared.resources
                 foreach (var elem in xml.Elements().Where(x => x.Name == "BehaviorEntry"))
                     yield return elem;
             }
-        }
-        
-        public void Dispose()
-        {
-            GameData.Dispose();
         }
     }
 }

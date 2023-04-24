@@ -20,6 +20,7 @@ public class Program
 	internal static Database Database;
 	internal static ISManager ISManager;
 	private static Hashtable GetFiles;
+	private static string ResourcePath;
         
 	private static void Main(string[] args)
 	{
@@ -29,15 +30,16 @@ public class Program
 		Config = args.Length != 0 ? ServerConfig.ReadFile(args[0] + "/loginServer.json") : ServerConfig.ReadFile("loginServer.json");
 		LogManager.Configuration.Variables["logDirectory"] = (args.Length != 0 ? args[0] + "/" : "") + Config.serverSettings.logFolder + "/login";
 		LogManager.Configuration.Variables["buildConfig"] = Utils.GetBuildConfig();
-                
-		using (Resources = new Resources(args.Length != 0 ? args[0] + "/resources" : Config.serverSettings.resourceFolder, false))
-		using (Database = new Database(
+
+		ResourcePath = args.Length != 0 ? args[0] + "/resources" : Config.serverSettings.resourceFolder;
+		Resources = new Resources(ResourcePath);
+		using var database = Database = new Database(
 			       Config.dbInfo.host,
 			       Config.dbInfo.port,
 			       Config.dbInfo.auth,
 			       Config.dbInfo.index,
-			       Resources)) {
-			/*GetFiles = new Hashtable();
+			       Resources);
+		/*GetFiles = new Hashtable();
 				foreach (KeyValuePair<string, byte[]> f in Resources.WebFiles)
 				{
 					Hashtable getFiles = GetFiles;
@@ -50,47 +52,48 @@ public class Program
 					getFile.ContentType = GetMimeType(extension.Substring(1, extension.Length - 1));
 					getFiles.Add(key, getFile);
 				}*/
-			Config.serverInfo.instanceId = Guid.NewGuid().ToString();
-			ISManager = new ISManager(Database, Config);
-			ISManager.Run();
-			var port = Config.serverInfo.port;
-			var address = Config.serverInfo.bindAddress;
-			using var server = new HttpListener();
-			server.Prefixes.Add($"http://{address}:{port}/");
-			server.Start();
-			Log.Info("Listening at address {0}:{1}...", address, port);
-			while (true) {
-				var ctx = server.GetContext();
-				var req = ctx.Request;
-				var resp = ctx.Response;
-				if (req.HttpMethod == "GET")
-					continue;
+		Config.serverInfo.instanceId = Guid.NewGuid().ToString();
+		ISManager = new ISManager(Database, Config);
+		ISManager.Run();
+		var port = Config.serverInfo.port;
+		var address = Config.serverInfo.bindAddress;
+		using var server = new HttpListener();
+		server.Prefixes.Add($"http://{address}:{port}/");
+		server.Start();
+		Log.Info("Listening at address {0}:{1}...", address, port);
+		while (true) {
+			var ctx = server.GetContext();
+			var req = ctx.Request;
+			var resp = ctx.Response;
+			if (req.HttpMethod == "GET")
+				continue;
         					
-				resp.StatusCode = 200;
-				resp.ContentType = "text/plain";
-				NameValueCollection query;
-				using (var reader = new StreamReader(req.InputStream, req.ContentEncoding))
-					query = HttpUtility.ParseQueryString(reader.ReadToEnd());
+			resp.StatusCode = 200;
+			resp.ContentType = "text/plain";
+			NameValueCollection query;
+			using (var reader = new StreamReader(req.InputStream, req.ContentEncoding))
+				query = HttpUtility.ParseQueryString(reader.ReadToEnd());
         					
-				var result = req.RawUrl switch {
-					"/account/changePassword" => HandleAccountChangePassword(query["email"], query["password"], query["newPassword"]), 
-					"/account/purchaseCharSlot" => HandleAccountPurchaseCharSlot(query["email"], query["password"]), 
-					"/account/purchaseSkin" => HandleAccountPurchaseSkin(query["email"], query["password"], query["skinType"]), 
-					"/account/purchaseVaultSkin" => HandleAccountPurchaseVaultSkin(query["email"], query["password"], query["type"]), 
-					"/account/register" => HandleAccountRegister(query["email"], query["password"], query["username"]), 
-					"/account/verify" => HandleAccountVerify(query["email"], query["password"]), 
-					"/app/init" => HandleAppInit(), 
-					"/char/list" => HandleCharList(query["email"], query["password"]), 
-					"/char/delete" => HandleCharDelete(query["email"], query["password"], query["charId"]), 
-					"/guild/getBoard" => HandleGetBoard(query["email"], query["password"]), 
-					"/guild/listMembers" => HandleListMembers(query["email"], query["password"]), 
-					"/guild/setBoard" => HandleSetBoard(query["email"], query["password"], query["board"]), 
-					_ => HandleUnknown(req.RawUrl, req.RemoteEndPoint?.Address.ToString())
-				};
+			var result = req.RawUrl switch {
+				"/account/changePassword" => HandleAccountChangePassword(query["email"], query["password"], query["newPassword"]), 
+				"/account/purchaseCharSlot" => HandleAccountPurchaseCharSlot(query["email"], query["password"]), 
+				"/account/purchaseSkin" => HandleAccountPurchaseSkin(query["email"], query["password"], query["skinType"]), 
+				"/account/purchaseVaultSkin" => HandleAccountPurchaseVaultSkin(query["email"], query["password"], query["type"]), 
+				"/account/register" => HandleAccountRegister(query["email"], query["password"], query["username"]), 
+				"/account/verify" => HandleAccountVerify(query["email"], query["password"]), 
+				"/app/init" => HandleAppInit(),
+				"/app/uploadBehavior" => HandleAppUploadBehavior(query["email"], query["password"], query["data"], query["name"]),
+				"/app/uploadXml" => HandleAppUploadXml(query["email"], query["password"], query["data"], query["name"]),
+				"/char/list" => HandleCharList(query["email"], query["password"]), 
+				"/char/delete" => HandleCharDelete(query["email"], query["password"], query["charId"]), 
+				"/guild/getBoard" => HandleGetBoard(query["email"], query["password"]), 
+				"/guild/listMembers" => HandleListMembers(query["email"], query["password"]), 
+				"/guild/setBoard" => HandleSetBoard(query["email"], query["password"], query["board"]), 
+				_ => HandleUnknown(req.RawUrl, req.RemoteEndPoint?.Address.ToString())
+			};
 				
-				using var writer = new StreamWriter(resp.OutputStream, req.ContentEncoding);
-				writer.Write(result);
-			}
+			using var writer = new StreamWriter(resp.OutputStream, req.ContentEncoding);
+			writer.Write(result);
 		}
 	}
 	
@@ -208,6 +211,52 @@ public class Program
 		root.Add(new XElement("SkinsList", XElement.Parse(File.ReadAllText(Resources.ResourcePath + "/xml/Skins.xml"))));
 		return root.ToString();*/
 		return "";
+	}
+	
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static string HandleAppUploadBehavior(string guid, string password, string data, string name) {
+		var status = Database.Verify(guid, password, out var acc);
+		if (status == LoginStatus.InvalidCredentials)
+			return "<Error>Invalid account</Error>";
+		
+		if (status != LoginStatus.OK)
+			return "<Error>" + status.GetInfo() + "</Error>";
+
+		if (!acc.Admin)
+			return "<Error>This endpoint is admin only</Error>";
+		
+		var fullPath = ResourcePath + "/logic/" + name;
+		if (!File.Exists(fullPath))
+			return "<Error>Behavior does not already exist</Error>";
+		
+		File.WriteAllText(fullPath, data);
+		Resources.LoadRawXmlBehaviors(ResourcePath);
+		ISManager.Publish(Channel.RebootBehaviors, new RebootBehaviorMsg {_ = 0});
+		
+		return "<Success />";
+	}
+	
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static string HandleAppUploadXml(string guid, string password, string data, string name) {
+		var status = Database.Verify(guid, password, out var acc);
+		if (status == LoginStatus.InvalidCredentials)
+			return "<Error>Invalid account</Error>";
+		
+		if (status != LoginStatus.OK)
+			return "<Error>" + status.GetInfo() + "</Error>";
+
+		if (!acc.Admin)
+			return "<Error>This endpoint is admin only</Error>";
+
+		var fullPath = ResourcePath + "/xmls/" + name;
+		if (!File.Exists(fullPath))
+		    return "<Error>XML does not already exist</Error>";
+
+		File.WriteAllText(fullPath, data);
+		Resources.GameData.ClearDictionaries();
+		Resources.GameData.LoadXmls();
+		
+		return "<Success />";
 	}
         
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -6,7 +6,8 @@ namespace Shared
     {
         [Description("Network")] Network,
         [Description("Control")] Control,
-        [Description("Chat")] Chat
+        [Description("Chat")] Chat,
+        [Description("RebootBehaviors")] RebootBehaviors
     }
 
     public enum ChatType
@@ -59,5 +60,9 @@ namespace Shared
         public string Issuer;
         public string Payload;
         public int Delay;
+    }
+    
+    public struct RebootBehaviorMsg {
+        public byte _;
     }
 }

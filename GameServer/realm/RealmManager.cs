@@ -73,6 +73,7 @@ namespace GameServer.realm
 
             // all these deal with db pub/sub... probably should put more thought into their structure... 
             InterServer = new ISManager(Database, config);
+            InterServer.AddHandler<RebootBehaviorMsg>(Channel.RebootBehaviors, HandleRebootBehaviors);
             ISControl = new ISControl(this);
             Chat = new ChatManager(this);
             DbEvents = new DbEvents(this);
@@ -94,6 +95,10 @@ namespace GameServer.realm
             _initialized = true;
 
             Log.Info("Realm Manager initialized.");
+        }
+        
+        private void HandleRebootBehaviors(object sender, InterServerEventArgs<RebootBehaviorMsg> e) {
+            BehaviorDb.InitDb.InitXmlBehaviors();
         }
 
         private void InitializeGlobalWorlds()
@@ -123,7 +128,6 @@ namespace GameServer.realm
 
             Terminating = true;
             InterServer.Dispose();
-            Resources.Dispose();
 
             Log.Info("Realm Manager stopped.");
         }

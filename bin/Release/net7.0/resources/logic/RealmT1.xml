@@ -1,7 +1,7 @@
 <BehaviorEntries>
   <BehaviorEntry id="Crocodile">
     <Follow speed="0.6" acquireRange="9" range="2"/>
-	  <Wander speed="0.4"/>
+	  <Wander speed="0.5"/>
 	  <Shoot radius="16" count="3" shootAngle="12" projectileIndex="0" cooldown="600"/>
    	<!--<AoeAttack radius="3" damage="80" cooldown="600" effect="Slowed" effectDuration="500" color="0x01361f"/>-->
    	<DropPortalOnDeath target="Crown Cove" probability="0.01"/>

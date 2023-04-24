@@ -354,17 +354,6 @@ namespace GameServer.realm.entities.player {
                 settings.InventorySize);
             Stats = new StatsManager(this);
 
-            // set size of player if using set skin
-            var skin = (ushort) Skin;
-            if (gameData.SkinTypeToEquipSetType.ContainsKey(skin)) {
-                var setType = gameData.SkinTypeToEquipSetType[skin];
-                var ae = gameData.EquipmentSets[setType].ActivateOnEquipAll
-                    .SingleOrDefault(e => e.SkinType == skin);
-
-                if (ae != null)
-                    Size = (ushort) ae.Size;
-            }
-
             // override size
             if (Client.Account.Size > 0)
                 Size = (ushort) Client.Account.Size;

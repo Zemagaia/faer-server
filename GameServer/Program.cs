@@ -29,30 +29,29 @@ namespace GameServer
 
             Config.serverInfo.maxPlayers = Config.serverSettings.maxPlayers;
 
-            using (Resources = new Resources(args.Length != 0 ? args[0] + "/resources" : Config.serverSettings.resourceFolder, true))
-            using (var db = new Database(
+            Resources = new Resources(args.Length != 0 ? args[0] + "/resources" : Config.serverSettings.resourceFolder,  true);
+            using var db = new Database(
                 Config.dbInfo.host,
                 Config.dbInfo.port,
                 Config.dbInfo.auth,
                 Config.dbInfo.index,
-                Resources))
-            {
-                var manager = new RealmManager(Resources, db, Config);
-                manager.Run();
+                Resources);
+            
+            var manager = new RealmManager(Resources, db, Config);
+            manager.Run();
 
-                var server = new Server(manager,
-                    Config.serverInfo.port,
-                    Config.serverSettings.maxConnections);
+            var server = new Server(manager,
+                Config.serverInfo.port,
+                Config.serverSettings.maxConnections);
 
-                Console.CancelKeyPress += delegate { Shutdown.Set(); };
+            Console.CancelKeyPress += delegate { Shutdown.Set(); };
 
-                Shutdown.WaitOne();
+            Shutdown.WaitOne();
 
-                Log.Info("Terminating...");
-                manager.Stop();
-                server.Stop();
-                Log.Info("Server terminated.");
-            }
+            Log.Info("Terminating...");
+            manager.Stop();
+            server.Stop();
+            Log.Info("Server terminated.");
         }
 
         public static void Stop(Task task = null)
