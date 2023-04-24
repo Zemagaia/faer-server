@@ -414,13 +414,12 @@ namespace GameServer.realm {
         public static int[] ABILITY_TYPES = {FLASK_TYPE, BLOODSTONE_TYPE, TOTEM_TYPE, HELM_TYPE, BULWARK_TYPE, CLOCK_TYPE};
 
         public static bool AuditItem(this IContainer container, Item item, int slot) {
-            return item == null || container.SlotTypes[slot] == 0 || item.SlotType == container.SlotTypes[slot];
+            return item == null || container.SlotTypes[slot] == 0 || SlotsMatching(item.SlotType, container.SlotTypes[slot]);
         }
 
         public static bool SlotsMatching(int slot1, int slot2) {
-            if (slot1 == 0 || slot2 == 0) {
+            if (slot1 == 0 || slot2 == 0)
                 return true;
-            }
 
             if ((WEAPON_TYPES.Contains(slot1) && slot2 == ANY_WEAPON_TYPE) ||
                 (WEAPON_TYPES.Contains(slot2) && slot1 == ANY_WEAPON_TYPE) ||
