@@ -4,124 +4,123 @@ using GameServer.realm;
 using GameServer.realm.entities;
 using GameServer.realm.entities.player;
 
-namespace GameServer.logic.behaviors
+namespace GameServer.logic.behaviors; 
+
+internal class EnemyAoe : CycleBehavior
 {
-    class EnemyAoe : CycleBehavior
+    //State storage: cooldown timer
+
+    private readonly float _radius;
+    private readonly int _minDamage;
+    private readonly int _maxDamage;
+    private readonly bool _noDef;
+    private readonly bool _players;
+    private readonly uint _color;
+    private readonly ConditionEffectIndex _effect;
+    private readonly int _effectDuration;
+    private Cooldown _coolDown;
+    private int _damage;
+
+    public EnemyAoe(XElement e)
     {
-        //State storage: cooldown timer
-
-        private readonly float _radius;
-        private readonly int _minDamage;
-        private readonly int _maxDamage;
-        private readonly bool _noDef;
-        private readonly bool _players;
-        private readonly uint _color;
-        private readonly ConditionEffectIndex _effect;
-        private readonly int _effectDuration;
-        private Cooldown _coolDown;
-        private int _damage;
-
-        public EnemyAoe(XElement e)
-        {
-            _radius = e.ParseFloat("@radius");
-            _minDamage = e.ParseInt("@minDamage");
-            _maxDamage = e.ParseInt("@maxDamage");
-            _noDef = e.ParseBool("@noDef");
-            _effect = e.ParseConditionEffect("@effect");
-            _effectDuration = e.ParseInt("@effectDuration");
-            _players = e.ParseBool("@players");
-            _color = e.ParseUInt("@color", undefined: 0xffff0000);
-            _coolDown = new Cooldown().Normalize(e.ParseInt("@coolDown"));
-        }
+        _radius = e.ParseFloat("@radius");
+        _minDamage = e.ParseInt("@minDamage");
+        _maxDamage = e.ParseInt("@maxDamage");
+        _noDef = e.ParseBool("@noDef");
+        _effect = e.ParseConditionEffect("@effect");
+        _effectDuration = e.ParseInt("@effectDuration");
+        _players = e.ParseBool("@players");
+        _color = e.ParseUInt("@color", undefined: 0xffff0000);
+        _coolDown = new Cooldown().Normalize(e.ParseInt("@coolDown"));
+    }
         
-        public EnemyAoe(
-            double radius,
-            int minDamage,
-            int maxDamage,
-            bool noDef = false,
-            ConditionEffectIndex effect = 0,
-            int effectDuration = 0,
-            bool players = true,
-            uint color = 0xff0000,
-            Cooldown coolDown = new())
-        {
-            _radius = (float)radius;
-            _minDamage = minDamage;
-            _maxDamage = maxDamage;
-            _noDef = noDef;
-            _effect = effect;
-            _effectDuration = effectDuration;
-            _players = players;
-            _color = color;
-            _coolDown = coolDown.Normalize();
-        }
+    public EnemyAoe(
+        double radius,
+        int minDamage,
+        int maxDamage,
+        bool noDef = false,
+        ConditionEffectIndex effect = 0,
+        int effectDuration = 0,
+        bool players = true,
+        uint color = 0xff0000,
+        Cooldown coolDown = new())
+    {
+        _radius = (float)radius;
+        _minDamage = minDamage;
+        _maxDamage = maxDamage;
+        _noDef = noDef;
+        _effect = effect;
+        _effectDuration = effectDuration;
+        _players = players;
+        _color = color;
+        _coolDown = coolDown.Normalize();
+    }
 
-        protected override void OnStateEntry(Entity host, RealmTime time, ref object state)
-        {
-            state = 0;
-        }
+    protected override void OnStateEntry(Entity host, RealmTime time, ref object state)
+    {
+        state = 0;
+    }
 
-        protected override void TickCore(Entity host, RealmTime time, ref object state)
-        {
-            var cool = (int)state;
+    protected override void TickCore(Entity host, RealmTime time, ref object state)
+    {
+        var cool = (int)state;
 
-            if (cool <= 0)
+        if (cool <= 0)
+        {
+            _damage = Random.Next(_minDamage, _maxDamage);
+            var player = host.AttackTarget ?? host.GetNearestEntity(_radius * 2, _players);
+
+            if (host.TauntedPlayerNearby(_radius * 2) && _players)
+                player = host.GetNearestTauntedPlayer(_radius * 2);
+
+            if (player != null)
             {
-                _damage = Random.Next(_minDamage, _maxDamage);
-                var player = host.AttackTarget ?? host.GetNearestEntity(_radius * 2, _players);
-
-                if (host.TauntedPlayerNearby(_radius * 2) && _players)
-                    player = host.GetNearestTauntedPlayer(_radius * 2);
-
-                if (player != null)
+                var target = new Position()
                 {
-                    var target = new Position()
-                    {
-                        X = host.X,
-                        Y = host.Y
-                    };
+                    X = host.X,
+                    Y = host.Y
+                };
 
-                    var entities = new List<Entity>();
-                    host.Owner.AOE(target, _radius, _players, en => { entities.Add(en); });
+                var entities = new List<Entity>();
+                host.Owner.AOE(target, _radius, _players, en => { entities.Add(en); });
 
-                    if (_players)
+                if (_players)
                         
-                        foreach (var p in host.Owner.Players.Values)
-                        {
-                            if (p != host && MathUtils.DistSqr(p.X, p.Y, host.X, host.Y) < 16 * 16)
-                                p.Client.SendAOE(target.X, target.Y, _radius, (ushort)_damage, 0, 0, host.ObjectType, _color);
-                        }
-                    else
-                        foreach (var p in host.Owner.Players.Values)
-                        {
-                            if (p != host && MathUtils.DistSqr(p.X, p.Y, host.X, host.Y) < 16 * 16)
-                                p.Client.SendShowEffect(EffectType.AreaBlast, host.Id, _radius, 0, 0, 0, _color);
-                        }
-
-                    foreach (var entity in entities)
+                    foreach (var p in host.Owner.Players.Values)
                     {
-                        if (entity is Player p && _players)
-                        {
-                            var tenacity = Constants.NegativeEffsIdx.Contains(_effect)
-                                ? 1d - (double)p.Stats[12] / 100
-                                : 1d;
-                            ((IPlayer)p).Damage(_damage, host, _noDef);
-                            p.ApplyConditionEffect(_effect, (int)(Math.Max(1, _effectDuration * tenacity)));
-                        }
-                        else if (entity is Enemy e && !_players)
-                        {
-                            e.Damage(host.GetPlayerOwner(), time, _damage, _noDef);
-                            e.ApplyConditionEffect(_effect, _effectDuration);
-                        }
+                        if (p != host && MathUtils.DistSqr(p.X, p.Y, host.X, host.Y) < 16 * 16)
+                            p.Client.SendAOE(target.X, target.Y, _radius, (ushort)_damage, 0, 0, host.ObjectType, _color);
+                    }
+                else
+                    foreach (var p in host.Owner.Players.Values)
+                    {
+                        if (p != host && MathUtils.DistSqr(p.X, p.Y, host.X, host.Y) < 16 * 16)
+                            p.Client.SendShowEffect(EffectType.AreaBlast, host.Id, _radius, 0, 0, 0, _color);
                     }
 
-                    cool = _coolDown.Next(Random);
+                foreach (var entity in entities)
+                {
+                    if (entity is Player p && _players)
+                    {
+                        var tenacity = Constants.NegativeEffsIdx.Contains(_effect)
+                            ? 1d - (double)p.Stats[12] / 100
+                            : 1d;
+                        ((IPlayer)p).Damage(_damage, host, _noDef);
+                        p.ApplyConditionEffect(_effect, (int)(Math.Max(1, _effectDuration * tenacity)));
+                    }
+                    else if (entity is Enemy e && !_players)
+                    {
+                        e.Damage(host.GetPlayerOwner(), time, _damage, _noDef);
+                        e.ApplyConditionEffect(_effect, _effectDuration);
+                    }
                 }
-            }
-            else
-                cool -= time.ElapsedMsDelta;
 
-            state = cool;
+                cool = _coolDown.Next(Random);
+            }
         }
+        else
+            cool -= time.ElapsedMsDelta;
+
+        state = cool;
     }
 }

@@ -1,14 +1,13 @@
-﻿namespace GameServer.logic
-{
-    enum CycleStatus
-    {
-        NotStarted,
-        InProgress,
-        Completed
-    }
+﻿namespace GameServer.logic; 
 
-    abstract class CycleBehavior : Behavior
-    {
-        public CycleStatus Status { get; protected set; }
-    }
+internal enum CycleStatus
+{
+    NotStarted,
+    InProgress,
+    Completed
+}
+
+internal abstract class CycleBehavior : Behavior
+{
+    public CycleStatus Status { get; protected set; }
 }

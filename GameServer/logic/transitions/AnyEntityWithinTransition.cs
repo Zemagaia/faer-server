@@ -2,29 +2,28 @@
 using Shared;
 using GameServer.realm;
 
-namespace GameServer.logic.transitions
+namespace GameServer.logic.transitions; 
+
+internal class AnyEntityWithinTransition : Transition
 {
-    class AnyEntityWithinTransition : Transition
+    //State storage: none
+
+    private readonly int _dist;
+
+    public AnyEntityWithinTransition(XElement e)
+        : base(e.ParseString("@targetState", "root"))
     {
-        //State storage: none
+        _dist = e.ParseInt("@dist");
+    }
 
-        private readonly int _dist;
+    public AnyEntityWithinTransition(int dist, string targetState)
+        : base(targetState)
+    {
+        _dist = dist;
+    }
 
-        public AnyEntityWithinTransition(XElement e)
-            : base(e.ParseString("@targetState", "root"))
-        {
-            _dist = e.ParseInt("@dist");
-        }
-
-        public AnyEntityWithinTransition(int dist, string targetState)
-            : base(targetState)
-        {
-            _dist = dist;
-        }
-
-        protected override bool TickCore(Entity host, RealmTime time, ref object state)
-        {
-            return host.AnyEnemyNearby(_dist) || host.AnyPlayerNearby(_dist);
-        }
+    protected override bool TickCore(Entity host, RealmTime time, ref object state)
+    {
+        return host.AnyEnemyNearby(_dist) || host.AnyPlayerNearby(_dist);
     }
 }

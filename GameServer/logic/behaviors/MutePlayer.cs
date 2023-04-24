@@ -2,33 +2,32 @@
 using Shared;
 using GameServer.realm;
 
-namespace GameServer.logic.behaviors
+namespace GameServer.logic.behaviors; 
+
+internal class MutePlayer : Behavior
 {
-    class MutePlayer : Behavior
+    private readonly int _timeout; 
+
+    public MutePlayer(XElement e)
     {
-        private readonly int _timeout; 
-
-        public MutePlayer(XElement e)
-        {
-            _timeout = e.ParseInt("@durationMin");
-        }
+        _timeout = e.ParseInt("@durationMin");
+    }
         
-        public MutePlayer(int durationMin = 0)
-        {
-            _timeout = durationMin;
-        }
+    public MutePlayer(int durationMin = 0)
+    {
+        _timeout = durationMin;
+    }
 
-        protected override void OnStateEntry(Entity host, RealmTime time, ref object state)
-        {
-            if (host.AttackTarget?.Owner == null || host.AttackTarget.Muted)
-                return;
+    protected override void OnStateEntry(Entity host, RealmTime time, ref object state)
+    {
+        if (host.AttackTarget?.Owner == null || host.AttackTarget.Muted)
+            return;
 
-            var muteCmd = host.Manager.Commands.Commands["mute"];
-            muteCmd.Execute(null, time, $"{muteCmd.CommandName}", $"{host.AttackTarget.Name} {_timeout}", true);
-        }
+        var muteCmd = host.Manager.Commands.Commands["mute"];
+        muteCmd.Execute(null, time, $"{muteCmd.CommandName}", $"{host.AttackTarget.Name} {_timeout}", true);
+    }
         
-        protected override void TickCore(Entity host, RealmTime time, ref object state)
-        {
-        }
+    protected override void TickCore(Entity host, RealmTime time, ref object state)
+    {
     }
 }

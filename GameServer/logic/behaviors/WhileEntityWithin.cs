@@ -2,46 +2,38 @@
 using Shared;
 using GameServer.realm;
 
-namespace GameServer.logic.behaviors
-{
-    class WhileEntityWithin : Behavior
-    {
+namespace GameServer.logic.behaviors;
 
-        Behavior child;
-        string entityName;
-        double range;
+internal class WhileEntityWithin : Behavior {
+    private Behavior[] children;
+    private string entityName;
+    private double range;
+
+    public WhileEntityWithin(XElement e, IStateChildren[] behaviors) {
+        children = new Behavior[behaviors.Length];
+        var filledIdx = 0;
+        for (var i = 0; i < behaviors.Length; i++) {
+            var behav = behaviors[i];
+            if (behav is Behavior behavior)
+                children[filledIdx++] = behavior;
+        }
+
+        Array.Resize(ref children, filledIdx);
+
+        entityName = e.ParseString("@entityName");
+        range = e.ParseFloat("@range");
+    }
+    
+    protected override void OnStateEntry(Entity host, RealmTime time, ref object state) {
+        foreach (var behav in children)
+            behav.OnStateEntry(host, time);
+    }
+
+    protected override void TickCore(Entity host, RealmTime time, ref object state) {
+        if (host.GetNearestEntityByName(range, entityName) == null)
+            return;
         
-        public WhileEntityWithin(XElement e, IStateChildren[] behaviors)
-        {
-            foreach (var behavior in behaviors)
-            {
-                if (behavior is Behavior bh)
-                {
-                    child = bh;
-                    break;
-                }
-            }
-            
-            entityName = e.ParseString("@entityName");
-            range = e.ParseFloat("@range");
-        }
-        
-        public WhileEntityWithin(Behavior child, string entityName, double range)
-        {
-            this.child = child;
-            this.entityName = entityName;
-            this.range = range;
-        }
-
-        protected override void OnStateEntry(Entity host, RealmTime time, ref object state)
-        {
-             child.OnStateEntry(host, time);
-        }
-
-        protected override void TickCore(Entity host, RealmTime time, ref object state)
-        {
-            if(host.GetNearestEntityByName(range, entityName) != null)
-               child.Tick(host, time);
-        }
+        foreach (var behav in children)
+            behav.Tick(host, time);
     }
 }

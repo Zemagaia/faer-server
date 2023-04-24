@@ -2,41 +2,40 @@
 using Shared;
 using GameServer.realm;
 
-namespace GameServer.logic.behaviors
+namespace GameServer.logic.behaviors; 
+
+internal class DestroyOnDeath : Behavior
 {
-    class DestroyOnDeath : Behavior
+    private readonly string _target;
+
+    public DestroyOnDeath(XElement e)
     {
-        private readonly string _target;
-
-        public DestroyOnDeath(XElement e)
-        {
-            _target = e.ParseString("@target");
-        }
+        _target = e.ParseString("@target");
+    }
         
-        public DestroyOnDeath(string target)
-        {
-            _target = target;
-        }
+    public DestroyOnDeath(string target)
+    {
+        _target = target;
+    }
 
-        protected internal override void Resolve(State parent)
+    protected internal override void Resolve(State parent)
+    {
+        parent.Death += (sender, e) =>
         {
-            parent.Death += (sender, e) =>
+            var owner = e.Host.Owner;
+            var entities = e.Host.GetNearestEntitiesByName(250, _target);
+
+            if (entities != null)
             {
-                var owner = e.Host.Owner;
-                var entities = e.Host.GetNearestEntitiesByName(250, _target);
-
-                if (entities != null)
+                foreach (var ent in entities)
                 {
-                    foreach (var ent in entities)
-                    {
-                        owner.LeaveWorld(ent);
-                    }
+                    owner.LeaveWorld(ent);
                 }
-            };
-        }
+            }
+        };
+    }
 
-        protected override void TickCore(Entity host, RealmTime time, ref object state)
-        {
-        }
+    protected override void TickCore(Entity host, RealmTime time, ref object state)
+    {
     }
 }

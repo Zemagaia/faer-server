@@ -23,153 +23,152 @@ using DungeonGenerator.Dungeon;
 using RotMG.Common;
 using RotMG.Common.Rasterizer;
 
-namespace DungeonGenerator.Templates.Lab
+namespace DungeonGenerator.Templates.Lab; 
+
+public class LabTemplate : DungeonTemplate
 {
-    public class LabTemplate : DungeonTemplate
+    internal static readonly TileType LabFloor = new(0x00d3, "Lab Floor");
+    internal static readonly TileType Space = new(0x00fe, "Space");
+
+    internal static readonly ObjectType LabWall = new(0x188c, "Lab Wall");
+    internal static readonly ObjectType DestructibleWall = new(0x18c3, "Lab Destructible Wall");
+    internal static readonly ObjectType Web = new(0x0732, "Spider Web");
+
+    internal static readonly ObjectType[] Big =
     {
-        internal static readonly TileType LabFloor = new(0x00d3, "Lab Floor");
-        internal static readonly TileType Space = new(0x00fe, "Space");
+        new(0x0981, "Escaped Experiment"),
+        new(0x0982, "Enforcer Bot 3000"),
+        new(0x0983, "Crusher Abomination")
+    };
 
-        internal static readonly ObjectType LabWall = new(0x188c, "Lab Wall");
-        internal static readonly ObjectType DestructibleWall = new(0x18c3, "Lab Destructible Wall");
-        internal static readonly ObjectType Web = new(0x0732, "Spider Web");
+    internal static readonly ObjectType[] Small =
+    {
+        new(0x0979, "Mini Bot"),
+        new(0x0980, "Rampage Cyborg")
+    };
 
-        internal static readonly ObjectType[] Big =
+    private static readonly DungeonObject web = new()
+    {
+        ObjectType = Web
+    };
+
+    internal static readonly DungeonTile[,] MapTemplate;
+
+    static LabTemplate()
+    {
+        MapTemplate = ReadTemplate(typeof(LabTemplate));
+    }
+
+    public override int MaxDepth => 20;
+
+    private NormDist targetDepth;
+
+    public override NormDist TargetDepth => targetDepth;
+
+    public override NormDist SpecialRmCount => null;
+
+    public override NormDist SpecialRmDepthDist => null;
+
+    public override Range RoomSeparation => new Range(6, 8);
+
+    public override int CorridorWidth => 4;
+
+    public override Range NumRoomRate => new Range(2, 3);
+
+    private bool generatedEvilRoom;
+
+    public override void Initialize()
+    {
+        targetDepth = new NormDist(3, 10, 7, 15, Rand.Next());
+        generatedEvilRoom = false;
+    }
+
+    public override Room CreateStart(int depth)
+    {
+        return new StartRoom();
+    }
+
+    public override Room CreateTarget(int depth, Room prev)
+    {
+        return new BossRoom();
+    }
+
+    public override Room CreateSpecial(int depth, Room prev)
+    {
+        throw new InvalidOperationException();
+    }
+
+    public override Room CreateNormal(int depth, Room prev)
+    {
+        var rm = new NormalRoom(prev as NormalRoom, Rand, generatedEvilRoom);
+        if ((rm.Flags & NormalRoom.RoomFlags.Evil) != 0)
+            generatedEvilRoom = true;
+        return rm;
+    }
+
+    public override MapCorridor CreateCorridor()
+    {
+        return new Corridor();
+    }
+
+    public override MapRender CreateOverlay()
+    {
+        return new Overlay();
+    }
+
+    internal static void DrawSpiderWeb(BitmapRasterizer<DungeonTile> rasterizer, Rect bounds, Random rand)
+    {
+        int w = rasterizer.Width, h = rasterizer.Height;
+        var buf = rasterizer.Bitmap;
+
+        for (var x = bounds.X; x < bounds.MaxX; x++)
+        for (var y = bounds.Y; y < bounds.MaxY; y++)
         {
-            new(0x0981, "Escaped Experiment"),
-            new(0x0982, "Enforcer Bot 3000"),
-            new(0x0983, "Crusher Abomination")
-        };
+            if (buf[x, y].TileType == Space || buf[x, y].Object != null)
+                continue;
 
-        internal static readonly ObjectType[] Small =
-        {
-            new(0x0979, "Mini Bot"),
-            new(0x0980, "Rampage Cyborg")
-        };
-
-        static readonly DungeonObject web = new()
-        {
-            ObjectType = Web
-        };
-
-        internal static readonly DungeonTile[,] MapTemplate;
-
-        static LabTemplate()
-        {
-            MapTemplate = ReadTemplate(typeof(LabTemplate));
+            if (rand.NextDouble() > 0.99)
+                buf[x, y].Object = web;
         }
+    }
 
-        public override int MaxDepth => 20;
+    internal static void CreateEnemies(BitmapRasterizer<DungeonTile> rasterizer, Rect bounds, Random rand)
+    {
+        var numBig = new Range(0, 3).Random(rand);
+        var numSmall = new Range(4, 10).Random(rand);
 
-        NormDist targetDepth;
-
-        public override NormDist TargetDepth => targetDepth;
-
-        public override NormDist SpecialRmCount => null;
-
-        public override NormDist SpecialRmDepthDist => null;
-
-        public override Range RoomSeparation => new Range(6, 8);
-
-        public override int CorridorWidth => 4;
-
-        public override Range NumRoomRate => new Range(2, 3);
-
-        bool generatedEvilRoom;
-
-        public override void Initialize()
+        var buf = rasterizer.Bitmap;
+        while (numBig > 0 || numSmall > 0)
         {
-            targetDepth = new NormDist(3, 10, 7, 15, Rand.Next());
-            generatedEvilRoom = false;
-        }
+            var x = rand.Next(bounds.X, bounds.MaxX);
+            var y = rand.Next(bounds.Y, bounds.MaxY);
+            if (buf[x, y].TileType == Space || buf[x, y].Object != null)
+                continue;
 
-        public override Room CreateStart(int depth)
-        {
-            return new StartRoom();
-        }
-
-        public override Room CreateTarget(int depth, Room prev)
-        {
-            return new BossRoom();
-        }
-
-        public override Room CreateSpecial(int depth, Room prev)
-        {
-            throw new InvalidOperationException();
-        }
-
-        public override Room CreateNormal(int depth, Room prev)
-        {
-            var rm = new NormalRoom(prev as NormalRoom, Rand, generatedEvilRoom);
-            if ((rm.Flags & NormalRoom.RoomFlags.Evil) != 0)
-                generatedEvilRoom = true;
-            return rm;
-        }
-
-        public override MapCorridor CreateCorridor()
-        {
-            return new Corridor();
-        }
-
-        public override MapRender CreateOverlay()
-        {
-            return new Overlay();
-        }
-
-        internal static void DrawSpiderWeb(BitmapRasterizer<DungeonTile> rasterizer, Rect bounds, Random rand)
-        {
-            int w = rasterizer.Width, h = rasterizer.Height;
-            var buf = rasterizer.Bitmap;
-
-            for (var x = bounds.X; x < bounds.MaxX; x++)
-            for (var y = bounds.Y; y < bounds.MaxY; y++)
+            switch (rand.Next(2))
             {
-                if (buf[x, y].TileType == Space || buf[x, y].Object != null)
-                    continue;
-
-                if (rand.NextDouble() > 0.99)
-                    buf[x, y].Object = web;
-            }
-        }
-
-        internal static void CreateEnemies(BitmapRasterizer<DungeonTile> rasterizer, Rect bounds, Random rand)
-        {
-            var numBig = new Range(0, 3).Random(rand);
-            var numSmall = new Range(4, 10).Random(rand);
-
-            var buf = rasterizer.Bitmap;
-            while (numBig > 0 || numSmall > 0)
-            {
-                var x = rand.Next(bounds.X, bounds.MaxX);
-                var y = rand.Next(bounds.Y, bounds.MaxY);
-                if (buf[x, y].TileType == Space || buf[x, y].Object != null)
-                    continue;
-
-                switch (rand.Next(2))
-                {
-                    case 0:
-                        if (numBig > 0)
+                case 0:
+                    if (numBig > 0)
+                    {
+                        buf[x, y].Object = new DungeonObject
                         {
-                            buf[x, y].Object = new DungeonObject
-                            {
-                                ObjectType = Big[rand.Next(Big.Length)]
-                            };
-                            numBig--;
-                        }
+                            ObjectType = Big[rand.Next(Big.Length)]
+                        };
+                        numBig--;
+                    }
 
-                        break;
-                    case 1:
-                        if (numSmall > 0)
+                    break;
+                case 1:
+                    if (numSmall > 0)
+                    {
+                        buf[x, y].Object = new DungeonObject
                         {
-                            buf[x, y].Object = new DungeonObject
-                            {
-                                ObjectType = Small[rand.Next(Small.Length)]
-                            };
-                            numSmall--;
-                        }
+                            ObjectType = Small[rand.Next(Small.Length)]
+                        };
+                        numSmall--;
+                    }
 
-                        break;
-                }
+                    break;
             }
         }
     }

@@ -2,9 +2,9 @@
 using System.Xml.Linq;
 using Shared;
 
-namespace LoginServer; 
+namespace LoginServer;
 
-class ServerItem
+internal class ServerItem
 {
     public string Name { get; init; }
     public string DNS { get; init; }
@@ -31,7 +31,7 @@ class ServerItem
     }
 }
 
-class NewsItem
+internal class NewsItem
 {
     public string Icon { get; internal init; }
     public string Title { get; internal init; }
@@ -64,7 +64,7 @@ class NewsItem
     }
 }
 
-class GuildMember
+internal class GuildMember
 {
     private string _name;
     private int _rank;
@@ -92,7 +92,7 @@ class GuildMember
     }
 }
 
-class Guild
+internal class Guild
 {
     private int _id;
     private string _name;
@@ -141,7 +141,7 @@ class Guild
     }
 }
 
-class GuildIdentity
+internal class GuildIdentity
 {
     private int _id;
     private string _name;
@@ -168,7 +168,7 @@ class GuildIdentity
     }
 }
 
-class ClassStatsEntry
+internal class ClassStatsEntry
 {
     public ushort ObjectType { get; private init; }
     public int BestLevel { get; private init; }
@@ -195,13 +195,13 @@ class ClassStatsEntry
     }
 }
 
-class Stats
+internal class Stats
 {
     public int BestCharFame { get; private set; }
     public int TotalFame { get; private init; }
     public int Fame { get; private init; }
 
-    Dictionary<ushort, ClassStatsEntry> entries;
+    private Dictionary<ushort, ClassStatsEntry> entries;
 
     public ClassStatsEntry this[ushort objType] => entries[objType];
 
@@ -237,7 +237,7 @@ class Stats
     }
 }
 
-class Account
+internal class Account
 {
     public int AccountId { get; private init; }
     public string Name { get; init; }
@@ -315,7 +315,7 @@ class Account
     }
 }
 
-class Character
+internal class Character
 {
     public int CharacterId { get; private init; }
     public ushort ObjectType { get; private init; }
@@ -405,7 +405,7 @@ class Character
     }
 }
 
-class ClassAvailability
+internal class ClassAvailability
 {
     // Availability is based off DbClassStats class.
     // A player class is available if it has an entry
@@ -467,7 +467,7 @@ class ClassAvailability
     }
 }
 
-class ItemCosts
+internal class ItemCosts
 {
     private static readonly XElement ItemCostsXml;
 
@@ -493,7 +493,7 @@ class ItemCosts
     }
 }
 
-class MaxClassLevelList
+internal class MaxClassLevelList
 {
     private static readonly List<ushort> Classes;
 
@@ -530,7 +530,7 @@ class MaxClassLevelList
     }
 }
 
-class CharList
+internal class CharList
 {
     public Character[] Characters { get; private init; }
     public int NextCharId { get; private init; }
@@ -548,7 +548,7 @@ class CharList
     public double? Lat { get; set; }
     public double? Long { get; set; }
 
-    static IEnumerable<NewsItem> GetItems(Database db, DbAccount acc)
+    private static IEnumerable<NewsItem> GetItems(Database db, DbAccount acc)
     {
         var news = new DbNews(db.Conn, 10).Entries
             .Select(x => NewsItem.FromDb(x)).ToArray();
@@ -608,7 +608,7 @@ class CharList
     }
 }
 
-class FameListEntry
+internal class FameListEntry
 {
     public int AccountId { get; private init; }
     public int CharId { get; private init; }
@@ -651,7 +651,7 @@ class FameListEntry
     }
 }
 
-class FameList
+internal class FameList
 {
     private string _timeSpan;
     private IEnumerable<FameListEntry> _entries;

@@ -3,107 +3,106 @@ using Shared;
 using GameServer.realm;
 using GameServer.realm.entities.player;
 
-namespace GameServer.logic.behaviors
+namespace GameServer.logic.behaviors; 
+
+internal class Grenade : Behavior
 {
-    class Grenade : Behavior
+    //State storage: cooldown timer
+
+    private double range;
+    private float radius;
+    private double? fixedAngle;
+    private int damage;
+    private Cooldown coolDown;
+    private ConditionEffectIndex effect;
+    private int effectDuration;
+    private uint color;
+    private bool noDef;
+
+    public Grenade(XElement e)
     {
-        //State storage: cooldown timer
-
-        double range;
-        float radius;
-        double? fixedAngle;
-        int damage;
-        Cooldown coolDown;
-        ConditionEffectIndex effect;
-        int effectDuration;
-        uint color;
-        private bool noDef;
-
-        public Grenade(XElement e)
-        {
-            radius = e.ParseFloat("@radius");
-            damage = e.ParseInt("@damage");
-            range = e.ParseInt("@range", 5);
-            fixedAngle = (float?)(e.ParseNFloat("@fixedAngle") * Math.PI / 180);
-            coolDown = new Cooldown().Normalize(e.ParseInt("@coolDown", 1000));
-            effect = e.ParseConditionEffect("@effect");
-            effectDuration = e.ParseInt("@effectDuration");
-            color = e.ParseUInt("@color", true, 0xffff0000);
-            noDef = e.ParseBool("@noDef");
-        }
+        radius = e.ParseFloat("@radius");
+        damage = e.ParseInt("@damage");
+        range = e.ParseInt("@range", 5);
+        fixedAngle = (float?)(e.ParseNFloat("@fixedAngle") * Math.PI / 180);
+        coolDown = new Cooldown().Normalize(e.ParseInt("@coolDown", 1000));
+        effect = e.ParseConditionEffect("@effect");
+        effectDuration = e.ParseInt("@effectDuration");
+        color = e.ParseUInt("@color", true, 0xffff0000);
+        noDef = e.ParseBool("@noDef");
+    }
         
-        public Grenade(double radius, int damage, double range = 5, double? fixedAngle = null, Cooldown coolDown = new(),
-            ConditionEffectIndex effect = 0, int effectDuration = 0, uint color = 0xffff0000, bool noDef = false)
-        {
-            this.radius = (float)radius;
-            this.damage = damage;
-            this.range = range;
-            this.fixedAngle = fixedAngle * Math.PI / 180;
-            this.coolDown = coolDown.Normalize();
-            this.effect = effect;
-            this.effectDuration = effectDuration;
-            this.color = color;
-            this.noDef = noDef;
-        }
+    public Grenade(double radius, int damage, double range = 5, double? fixedAngle = null, Cooldown coolDown = new(),
+        ConditionEffectIndex effect = 0, int effectDuration = 0, uint color = 0xffff0000, bool noDef = false)
+    {
+        this.radius = (float)radius;
+        this.damage = damage;
+        this.range = range;
+        this.fixedAngle = fixedAngle * Math.PI / 180;
+        this.coolDown = coolDown.Normalize();
+        this.effect = effect;
+        this.effectDuration = effectDuration;
+        this.color = color;
+        this.noDef = noDef;
+    }
 
-        protected override void OnStateEntry(Entity host, RealmTime time, ref object state)
-        {
-            state = 0;
-        }
+    protected override void OnStateEntry(Entity host, RealmTime time, ref object state)
+    {
+        state = 0;
+    }
 
-        protected override void TickCore(Entity host, RealmTime time, ref object state)
-        {
-            var cool = (int)state;
+    protected override void TickCore(Entity host, RealmTime time, ref object state)
+    {
+        var cool = (int)state;
 
-            if (cool <= 0)
+        if (cool <= 0)
+        {
+            var player = host.AttackTarget ?? host.GetNearestEntity(range, true);
+
+            if (host.TauntedPlayerNearby(range))
+                player = host.GetNearestTauntedPlayer(range);
+
+            if (player != null || fixedAngle != null)
             {
-                var player = host.AttackTarget ?? host.GetNearestEntity(range, true);
-
-                if (host.TauntedPlayerNearby(range))
-                    player = host.GetNearestTauntedPlayer(range);
-
-                if (player != null || fixedAngle != null)
+                Position target;
+                if (fixedAngle != null)
+                    target = new Position()
+                    {
+                        X = (float)(range * Math.Cos(fixedAngle.Value)) + host.X,
+                        Y = (float)(range * Math.Sin(fixedAngle.Value)) + host.Y,
+                    };
+                else
+                    target = new Position()
+                    {
+                        X = player.X,
+                        Y = player.Y,
+                    };
+                foreach (var p in host.Owner.Players.Values)
+                    if (MathUtils.DistSqr(p.X, p.Y, host.X, host.Y) < 16 * 16)
+                        p.Client.SendShowEffect(EffectType.Throw, host.Id, target.X, target.Y, 0, 0, color);
+                    
+                host.Owner.Timers.Add(new WorldTimer(1500, (world, t) =>
                 {
-                    Position target;
-                    if (fixedAngle != null)
-                        target = new Position()
-                        {
-                            X = (float)(range * Math.Cos(fixedAngle.Value)) + host.X,
-                            Y = (float)(range * Math.Sin(fixedAngle.Value)) + host.Y,
-                        };
-                    else
-                        target = new Position()
-                        {
-                            X = player.X,
-                            Y = player.Y,
-                        };
                     foreach (var p in host.Owner.Players.Values)
                         if (MathUtils.DistSqr(p.X, p.Y, host.X, host.Y) < 16 * 16)
-                            p.Client.SendShowEffect(EffectType.Throw, host.Id, target.X, target.Y, 0, 0, color);
-                    
-                    host.Owner.Timers.Add(new WorldTimer(1500, (world, t) =>
+                            p.Client.SendAOE(target.X, target.Y, radius, (ushort)damage, 0, 0, host.ObjectType, color);
+                    world.AOE(target, radius, true, p =>
                     {
-                        foreach (var p in host.Owner.Players.Values)
-                            if (MathUtils.DistSqr(p.X, p.Y, host.X, host.Y) < 16 * 16)
-                                p.Client.SendAOE(target.X, target.Y, radius, (ushort)damage, 0, 0, host.ObjectType, color);
-                        world.AOE(target, radius, true, p =>
-                        {
-                            if (p == null) return;
-                            var tenacity = Constants.NegativeEffsIdx.Contains(effect)
-                                ? (1d - (double)((Player)p).Stats[12] / 100)
-                                : 1d;
-                            ((IPlayer)p).Damage(damage, host, noDef);
-                            p.ApplyConditionEffect(effect, (int)(Math.Max(1, effectDuration * tenacity)));
-                        });
-                    }));
-                }
-
-                cool = coolDown.Next(Random);
+                        if (p == null) return;
+                        var tenacity = Constants.NegativeEffsIdx.Contains(effect)
+                            ? (1d - (double)((Player)p).Stats[12] / 100)
+                            : 1d;
+                        ((IPlayer)p).Damage(damage, host, noDef);
+                        p.ApplyConditionEffect(effect, (int)(Math.Max(1, effectDuration * tenacity)));
+                    });
+                }));
             }
-            else
-                cool -= time.ElapsedMsDelta;
 
-            state = cool;
+            cool = coolDown.Next(Random);
         }
+        else
+            cool -= time.ElapsedMsDelta;
+
+        state = cool;
     }
 }

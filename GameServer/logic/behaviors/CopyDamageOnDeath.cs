@@ -3,42 +3,41 @@ using Shared;
 using GameServer.realm;
 using GameServer.realm.entities;
 
-namespace GameServer.logic.behaviors
+namespace GameServer.logic.behaviors; 
+
+public class CopyDamageOnDeath : Behavior
 {
-    public class CopyDamageOnDeath : Behavior
+    private float dist;
+    private string child;
+
+    public CopyDamageOnDeath(XElement e)
     {
-        private float dist;
-        private string child;
-
-        public CopyDamageOnDeath(XElement e)
-        {
-            dist = e.ParseFloat("@dist");
-            child = e.ParseString("@child");
-        }
+        dist = e.ParseFloat("@dist");
+        child = e.ParseString("@child");
+    }
         
-        public CopyDamageOnDeath(string child, float dist = 50)
-        {
-            this.dist = dist;
-            this.child = child;
-        }
+    public CopyDamageOnDeath(string child, float dist = 50)
+    {
+        this.dist = dist;
+        this.child = child;
+    }
 
-        protected internal override void Resolve(State parent)
+    protected internal override void Resolve(State parent)
+    {
+        parent.Death += (sender, e) =>
         {
-            parent.Death += (sender, e) =>
+            Enemy en;
+            if ((en =
+                    e.Host.GetNearestEntity(dist,
+                        e.Host.Manager.Resources.GameData.IdToObjectType[child]) as Enemy) !=
+                null)
             {
-                Enemy en;
-                if ((en =
-                        e.Host.GetNearestEntity(dist,
-                            e.Host.Manager.Resources.GameData.IdToObjectType[child]) as Enemy) !=
-                    null)
-                {
-                    en.SetDamageCounter((e.Host as Enemy).DamageCounter, en);
-                }
-            };
-        }
+                en.SetDamageCounter((e.Host as Enemy).DamageCounter, en);
+            }
+        };
+    }
 
-        protected override void TickCore(Entity host, RealmTime time, ref object state)
-        {
-        }
+    protected override void TickCore(Entity host, RealmTime time, ref object state)
+    {
     }
 }

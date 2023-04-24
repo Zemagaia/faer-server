@@ -23,41 +23,40 @@ using DungeonGenerator.Dungeon;
 using RotMG.Common;
 using RotMG.Common.Rasterizer;
 
-namespace DungeonGenerator.Templates
+namespace DungeonGenerator.Templates; 
+
+public class MapCorridor
 {
-    public class MapCorridor
+    protected BitmapRasterizer<DungeonTile> Rasterizer { get; private set; }
+    protected DungeonGraph Graph { get; private set; }
+    protected Random Rand { get; private set; }
+
+    internal void Init(BitmapRasterizer<DungeonTile> rasterizer, DungeonGraph graph, Random rand)
     {
-        protected BitmapRasterizer<DungeonTile> Rasterizer { get; private set; }
-        protected DungeonGraph Graph { get; private set; }
-        protected Random Rand { get; private set; }
+        Rasterizer = rasterizer;
+        Graph = graph;
+        Rand = rand;
+    }
 
-        internal void Init(BitmapRasterizer<DungeonTile> rasterizer, DungeonGraph graph, Random rand)
+    public virtual void Rasterize(Room src, Room dst, Point srcPos, Point dstPos)
+    {
+    }
+
+    protected void Default(Point srcPos, Point dstPos, DungeonTile tile)
+    {
+        if (srcPos.X == dstPos.X)
         {
-            Rasterizer = rasterizer;
-            Graph = graph;
-            Rand = rand;
+            if (srcPos.Y > dstPos.Y)
+                Utils.Swap(ref srcPos, ref dstPos);
+            Rasterizer.FillRect(new Rect(srcPos.X, srcPos.Y, srcPos.X + Graph.Template.CorridorWidth, dstPos.Y),
+                tile);
         }
-
-        public virtual void Rasterize(Room src, Room dst, Point srcPos, Point dstPos)
+        else if (srcPos.Y == dstPos.Y)
         {
-        }
-
-        protected void Default(Point srcPos, Point dstPos, DungeonTile tile)
-        {
-            if (srcPos.X == dstPos.X)
-            {
-                if (srcPos.Y > dstPos.Y)
-                    Utils.Swap(ref srcPos, ref dstPos);
-                Rasterizer.FillRect(new Rect(srcPos.X, srcPos.Y, srcPos.X + Graph.Template.CorridorWidth, dstPos.Y),
-                    tile);
-            }
-            else if (srcPos.Y == dstPos.Y)
-            {
-                if (srcPos.X > dstPos.X)
-                    Utils.Swap(ref srcPos, ref dstPos);
-                Rasterizer.FillRect(new Rect(srcPos.X, srcPos.Y, dstPos.X, srcPos.Y + Graph.Template.CorridorWidth),
-                    tile);
-            }
+            if (srcPos.X > dstPos.X)
+                Utils.Swap(ref srcPos, ref dstPos);
+            Rasterizer.FillRect(new Rect(srcPos.X, srcPos.Y, dstPos.X, srcPos.Y + Graph.Template.CorridorWidth),
+                tile);
         }
     }
 }

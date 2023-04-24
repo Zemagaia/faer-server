@@ -2,38 +2,37 @@
 using Shared;
 using GameServer.realm;
 
-namespace GameServer.logic.behaviors
+namespace GameServer.logic.behaviors; 
+
+internal class ChangeMusic : Behavior
 {
-    class ChangeMusic : Behavior
+    //State storage: none
+
+    private readonly string _music;
+
+    public ChangeMusic(XElement e)
     {
-        //State storage: none
-
-        private readonly string _music;
-
-        public ChangeMusic(XElement e)
-        {
-            _music = e.ParseString("@song");
-        }
+        _music = e.ParseString("@song");
+    }
         
-        public ChangeMusic(string song)
+    public ChangeMusic(string song)
+    {
+        _music = song;
+    }
+
+    protected override void TickCore(Entity host, RealmTime time, ref object state)
+    {
+    }
+
+    protected override void OnStateEntry(Entity host, RealmTime time, ref object state)
+    {
+        if (host.Owner.Music != _music)
         {
-            _music = song;
-        }
+            var owner = host.Owner;
 
-        protected override void TickCore(Entity host, RealmTime time, ref object state)
-        {
-        }
+            owner.Music = _music;
 
-        protected override void OnStateEntry(Entity host, RealmTime time, ref object state)
-        {
-            if (host.Owner.Music != _music)
-            {
-                var owner = host.Owner;
-
-                owner.Music = _music;
-
-                var i = 0;
-            }
+            var i = 0;
         }
     }
 }

@@ -15,8 +15,8 @@ using NLog;
 
 namespace GameServer.realm.commands;
 
-class SpawnCommand : Command {
-    static readonly Logger Log = LogManager.GetCurrentClassLogger();
+internal class SpawnCommand : Command {
+    private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     private struct JsonSpawn {
         public string notif;
@@ -256,7 +256,7 @@ class SpawnCommand : Command {
     }
 }
 
-class ClearSpawnsCommand : Command {
+internal class ClearSpawnsCommand : Command {
     public ClearSpawnsCommand() : base("clearspawn", permLevel: 90, true, "cs", "cleardevspawn", "cds") { }
 
     protected override bool Process(Player player, RealmTime time, string args) {
@@ -287,7 +287,7 @@ class ClearSpawnsCommand : Command {
     }
 }
 
-class ClearGravesCommand : Command {
+internal class ClearGravesCommand : Command {
     public ClearGravesCommand() : base("cleargraves", permLevel: 80, aliases: "cgraves") { }
 
     protected override bool Process(Player player, RealmTime time, string args) {
@@ -307,7 +307,7 @@ class ClearGravesCommand : Command {
     }
 }
 
-class ToggleEffCommand : Command {
+internal class ToggleEffCommand : Command {
     public ToggleEffCommand() : base("eff", permLevel: 90) { }
 
     protected override bool Process(Player player, RealmTime time, string args) {
@@ -337,7 +337,7 @@ class ToggleEffCommand : Command {
     }
 }
 
-class GuildRankCommand : Command {
+internal class GuildRankCommand : Command {
     public GuildRankCommand() : base("grank", permLevel: 95) { }
 
     protected override bool Process(Player player, RealmTime time, string args) {
@@ -403,7 +403,7 @@ class GuildRankCommand : Command {
     }
 }
 
-class GimmeCommand : Command {
+internal class GimmeCommand : Command {
     public GimmeCommand() : base("gimme", permLevel: 80, aliases: "give") { }
 
     private string[] BannedItems = {
@@ -449,7 +449,7 @@ class GimmeCommand : Command {
     }
 }
 
-class TpPosCommand : Command {
+internal class TpPosCommand : Command {
     public TpPosCommand() : base("tpPos", permLevel: 90, aliases: "goto") { }
 
     protected override bool Process(Player player, RealmTime time, string args) {
@@ -472,7 +472,7 @@ class TpPosCommand : Command {
     }
 }
 
-class TpRelativePosCommand : Command {
+internal class TpRelativePosCommand : Command {
     public TpRelativePosCommand() : base("move", permLevel: 90) { }
 
     protected override bool Process(Player player, RealmTime time, string args) {
@@ -495,7 +495,7 @@ class TpRelativePosCommand : Command {
     }
 }
 
-class SetpieceCommand : Command {
+internal class SetpieceCommand : Command {
     public SetpieceCommand() : base("setpiece", permLevel: 90) { }
 
     protected override bool Process(Player player, RealmTime time, string setPiece) {
@@ -517,7 +517,7 @@ class SetpieceCommand : Command {
     }
 }
 
-class KillAllCommand : Command {
+internal class KillAllCommand : Command {
     public KillAllCommand() : base("killAll", permLevel: 90, aliases: "ka") { }
 
     protected override bool Process(Player player, RealmTime time, string args) {
@@ -544,7 +544,7 @@ class KillAllCommand : Command {
     }
 }
 
-class KickCommand : Command {
+internal class KickCommand : Command {
     public KickCommand() : base("kick", permLevel: 80) { }
 
     protected override bool Process(Player player, RealmTime time, string args) {
@@ -565,7 +565,7 @@ class KickCommand : Command {
     }
 }
 
-class AnnounceCommand : Command {
+internal class AnnounceCommand : Command {
     public AnnounceCommand() : base("announce", permLevel: 80) { }
 
     protected override bool Process(Player player, RealmTime time, string args) {
@@ -574,7 +574,7 @@ class AnnounceCommand : Command {
     }
 }
 
-class SummonCommand : Command {
+internal class SummonCommand : Command {
     public SummonCommand() : base("summon", permLevel: 90) { }
 
     protected override bool Process(Player player, RealmTime time, string args) {
@@ -596,7 +596,7 @@ class SummonCommand : Command {
     }
 }
 
-class SummonAllCommand : Command {
+internal class SummonAllCommand : Command {
     public SummonAllCommand() : base("summonall", permLevel: 90) { }
 
     protected override bool Process(Player player, RealmTime time, string args) {
@@ -614,7 +614,7 @@ class SummonAllCommand : Command {
     }
 }
 
-class KillPlayerCommand : Command {
+internal class KillPlayerCommand : Command {
     public KillPlayerCommand() : base("killPlayer", permLevel: 100) { }
 
     protected override bool Process(Player player, RealmTime time, string args) {
@@ -632,7 +632,7 @@ class KillPlayerCommand : Command {
     }
 }
 
-class SizeCommand : Command {
+internal class SizeCommand : Command {
     public SizeCommand() : base("size", permLevel: 20) { }
 
     protected override bool Process(Player player, RealmTime time, string args) {
@@ -665,7 +665,7 @@ class SizeCommand : Command {
     }
 }
 
-class RebootCommand : Command {
+internal class RebootCommand : Command {
     // Command actually closes the program.
     // An external program is used to monitor the world server existance.
     // If !exist it automatically restarts it.
@@ -741,7 +741,7 @@ class RebootCommand : Command {
     }
 }
 
-class ReSkinCommand : Command {
+internal class ReSkinCommand : Command {
     public ReSkinCommand() : base("reskin", permLevel: 70) { }
 
     protected override bool Process(Player player, RealmTime time, string args) {
@@ -781,7 +781,7 @@ class ReSkinCommand : Command {
     }
 }
 
-class MaxCommand : Command {
+internal class MaxCommand : Command {
     public MaxCommand() : base("max", permLevel: 80) { }
 
     protected override bool Process(Player player, RealmTime time, string args) {
@@ -795,7 +795,7 @@ class MaxCommand : Command {
     }
 }
 
-class RankCommand : Command {
+internal class RankCommand : Command {
     public RankCommand() : base("rank", permLevel: 100) { }
 
     protected override bool Process(Player player, RealmTime time, string args) {
@@ -843,7 +843,7 @@ class RankCommand : Command {
     }
 }
 
-class MuteCommand : Command {
+internal class MuteCommand : Command {
     private static readonly Regex CmdParams = new(@"^(\w+)( \d+)?$", RegexOptions.IgnoreCase);
 
     private readonly RealmManager _manager;
@@ -936,7 +936,7 @@ class MuteCommand : Command {
     }
 }
 
-class UnMuteCommand : Command {
+internal class UnMuteCommand : Command {
     public UnMuteCommand() : base("unmute", permLevel: 80) { }
 
     protected override bool Process(Player player, RealmTime time, string name) {
@@ -982,7 +982,7 @@ class UnMuteCommand : Command {
     }
 }
 
-class BanAccountCommand : Command {
+internal class BanAccountCommand : Command {
     public BanAccountCommand() : base("ban", permLevel: 80) { }
 
     protected override bool Process(Player player, RealmTime time, string args) {
@@ -1046,7 +1046,7 @@ class BanAccountCommand : Command {
     }
 }
 
-class BanIPCommand : Command {
+internal class BanIPCommand : Command {
     public BanIPCommand() : base("banip", permLevel: 80, aliases: "ipban") { }
 
     protected override bool Process(Player player, RealmTime time, string args) {
@@ -1111,7 +1111,7 @@ class BanIPCommand : Command {
     }
 }
 
-class UnBanAccountCommand : Command {
+internal class UnBanAccountCommand : Command {
     public UnBanAccountCommand() : base("unban", permLevel: 80) { }
 
     protected override bool Process(Player player, RealmTime time, string args) {
@@ -1162,7 +1162,7 @@ class UnBanAccountCommand : Command {
     }
 }
 
-class ClearInvCommand : Command {
+internal class ClearInvCommand : Command {
     public ClearInvCommand() : base("clearinv", permLevel: 80) { }
 
     protected override bool Process(Player player, RealmTime time, string args) {
@@ -1173,7 +1173,7 @@ class ClearInvCommand : Command {
     }
 }
 
-class QuakeCommand : Command {
+internal class QuakeCommand : Command {
     public QuakeCommand() : base("quake", permLevel: 80) { }
 
     protected override bool Process(Player player, RealmTime time, string worldName) {
@@ -1202,7 +1202,7 @@ class QuakeCommand : Command {
     }
 }
 
-class VisitCommand : Command {
+internal class VisitCommand : Command {
     public VisitCommand() : base("visit", permLevel: 80) { }
 
     protected override bool Process(Player player, RealmTime time, string name) {
@@ -1227,7 +1227,7 @@ class VisitCommand : Command {
     }
 }
 
-class HideCommand : Command {
+internal class HideCommand : Command {
     public HideCommand() : base("hide", permLevel: 80, aliases: "h") { }
 
     protected override bool Process(Player player, RealmTime time, string args) {
@@ -1249,7 +1249,7 @@ class HideCommand : Command {
     }
 }
 
-class GlowCommand : Command {
+internal class GlowCommand : Command {
     public GlowCommand() : base("glow", permLevel: 70) { }
 
     protected override bool Process(Player player, RealmTime time, string color) {
@@ -1268,7 +1268,7 @@ class GlowCommand : Command {
     }
 }
 
-class LinkCommand : Command {
+internal class LinkCommand : Command {
     public LinkCommand() : base("link", permLevel: 50) { }
 
     protected override bool Process(Player player, RealmTime time, string args) {
@@ -1290,7 +1290,7 @@ class LinkCommand : Command {
     }
 }
 
-class UnLinkCommand : Command {
+internal class UnLinkCommand : Command {
     public UnLinkCommand() : base("unlink", permLevel: 50) { }
 
     protected override bool Process(Player player, RealmTime time, string args) {
@@ -1312,7 +1312,7 @@ class UnLinkCommand : Command {
     }
 }
 
-class OverrideAccountCommand : Command {
+internal class OverrideAccountCommand : Command {
     public OverrideAccountCommand() : base("override", permLevel: 100) { }
 
     protected override bool Process(Player player, RealmTime time, string name) {
@@ -1336,7 +1336,7 @@ class OverrideAccountCommand : Command {
     }
 }
 
-class RenameCommand : Command {
+internal class RenameCommand : Command {
     public RenameCommand() : base("rename", permLevel: 100) { }
 
     protected override bool Process(Player player, RealmTime time, string args) {
@@ -1395,7 +1395,7 @@ class RenameCommand : Command {
     }
 }
 
-class CompactLOHCommand : Command {
+internal class CompactLOHCommand : Command {
     public CompactLOHCommand() : base("gccollect", aliases: "compactloh", permLevel: 100, listCommand: false) { }
 
     protected override bool Process(Player player, RealmTime time, string name) {
@@ -1406,7 +1406,7 @@ class CompactLOHCommand : Command {
     }
 }
 
-class SetGoldCommand : Command {
+internal class SetGoldCommand : Command {
     public SetGoldCommand() : base("setgold", 90, aliases: "gold") { }
 
     protected override bool Process(Player player, RealmTime time, string args) {
@@ -1423,7 +1423,7 @@ class SetGoldCommand : Command {
     }
 }
 
-class SetFameCommand : Command {
+internal class SetFameCommand : Command {
     public SetFameCommand() : base("setfame", 90, aliases: "fame") { }
 
     protected override bool Process(Player player, RealmTime time, string args) {
@@ -1440,7 +1440,7 @@ class SetFameCommand : Command {
     }
 }
 
-class ForceDungeonInvite : Command {
+internal class ForceDungeonInvite : Command {
     public ForceDungeonInvite() : base("finvite", aliases: "finv", permLevel: 100) { }
 
     protected override bool Process(Player player, RealmTime time, string args) {
@@ -1528,7 +1528,7 @@ class ForceDungeonInvite : Command {
     }
 }
 
-class ReloadBehaviorsCommand : Command {
+internal class ReloadBehaviorsCommand : Command {
     public ReloadBehaviorsCommand() : base("reloadbehaviors", 100, listCommand: false, "rlb") { }
 
     protected override bool Process(Player player, RealmTime time, string args) {
@@ -1538,7 +1538,7 @@ class ReloadBehaviorsCommand : Command {
     }
 }
 
-class ReloadGameDataCommand : Command {
+internal class ReloadGameDataCommand : Command {
     public ReloadGameDataCommand() : base("reloadgamedata", 100, listCommand: false, "rgd") { }
 
     protected override bool Process(Player player, RealmTime time, string args) {

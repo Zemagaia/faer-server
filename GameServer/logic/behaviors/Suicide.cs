@@ -2,25 +2,24 @@
 using GameServer.realm;
 using GameServer.realm.entities;
 
-namespace GameServer.logic.behaviors
+namespace GameServer.logic.behaviors; 
+
+internal class Suicide : Behavior
 {
-    class Suicide : Behavior
+    //State storage: timer
+
+    public Suicide()
     {
-        //State storage: timer
-
-        public Suicide()
-        {
-        }
+    }
         
-        public Suicide(XElement e)
-        {
-        }
+    public Suicide(XElement e)
+    {
+    }
 
-        protected override void TickCore(Entity host, RealmTime time, ref object state)
-        {
-            if (!(host is Enemy))
-                throw new NotSupportedException("Use Decay instead");
-            (host as Enemy).Death(time);
-        }
+    protected override void TickCore(Entity host, RealmTime time, ref object state)
+    {
+        if (!(host is Enemy))
+            throw new NotSupportedException("Use Decay instead");
+        (host as Enemy).Death(time);
     }
 }

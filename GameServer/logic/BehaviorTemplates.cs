@@ -2,16 +2,15 @@
 using Shared;
 using GameServer.logic.behaviors;
 
-namespace GameServer.logic
+namespace GameServer.logic; 
+
+public static class BehaviorTemplates
 {
-    public static class BehaviorTemplates
+    public static IStateChildren[] CrazyShotgun(XElement e)
     {
-        public static IStateChildren[] CrazyShotgun(XElement e)
+        return new []
         {
-            return new []
-            {
-                new Shoot(10, 10, 10, coolDown: e.ParseInt("@coolDown", 1000))
-            };
-        }
+            new Shoot(10, 10, 10, coolDown: e.ParseInt("@coolDown", 1000))
+        };
     }
 }

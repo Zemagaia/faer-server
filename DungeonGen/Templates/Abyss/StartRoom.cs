@@ -22,50 +22,49 @@ using System;
 using DungeonGenerator.Dungeon;
 using RotMG.Common.Rasterizer;
 
-namespace DungeonGenerator.Templates.Abyss
+namespace DungeonGenerator.Templates.Abyss; 
+
+internal class StartRoom : Room
 {
-    internal class StartRoom : Room
+    private readonly int len;
+    internal Point portalPos;
+
+    public StartRoom(int len)
     {
-        readonly int len;
-        internal Point portalPos;
+        this.len = len;
+    }
 
-        public StartRoom(int len)
+    public override RoomType Type => RoomType.Start;
+
+    public override int Width => len;
+
+    public override int Height => len;
+
+    public override void Rasterize(BitmapRasterizer<DungeonTile> rasterizer, Random rand)
+    {
+        rasterizer.FillRect(Bounds, new DungeonTile
         {
-            this.len = len;
-        }
+            TileType = AbyssTemplate.RedSmallChecks
+        });
 
-        public override RoomType Type => RoomType.Start;
+        var buf = rasterizer.Bitmap;
+        var bounds = Bounds;
 
-        public override int Width => len;
-
-        public override int Height => len;
-
-        public override void Rasterize(BitmapRasterizer<DungeonTile> rasterizer, Random rand)
+        var portalPlaced = false;
+        while (!portalPlaced)
         {
-            rasterizer.FillRect(Bounds, new DungeonTile
+            var x = rand.Next(bounds.X + 2, bounds.MaxX - 4);
+            var y = rand.Next(bounds.Y + 2, bounds.MaxY - 4);
+            if (buf[x, y].Object != null)
+                continue;
+
+            buf[x, y].Region = "Spawn";
+            buf[x, y].Object = new DungeonObject
             {
-                TileType = AbyssTemplate.RedSmallChecks
-            });
-
-            var buf = rasterizer.Bitmap;
-            var bounds = Bounds;
-
-            var portalPlaced = false;
-            while (!portalPlaced)
-            {
-                var x = rand.Next(bounds.X + 2, bounds.MaxX - 4);
-                var y = rand.Next(bounds.Y + 2, bounds.MaxY - 4);
-                if (buf[x, y].Object != null)
-                    continue;
-
-                buf[x, y].Region = "Spawn";
-                buf[x, y].Object = new DungeonObject
-                {
-                    ObjectType = AbyssTemplate.CowardicePortal
-                };
-                portalPos = new Point(x, y);
-                portalPlaced = true;
-            }
+                ObjectType = AbyssTemplate.CowardicePortal
+            };
+            portalPos = new Point(x, y);
+            portalPlaced = true;
         }
     }
 }

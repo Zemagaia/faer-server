@@ -8,49 +8,48 @@ using System.Net;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
 
-namespace Shared.resources
+namespace Shared.resources; 
+
+public class Resources
 {
-    public class Resources
+    public string ResourcePath { get; private set; }
+    public AppSettings Settings { get; private set; }
+    public XmlData GameData { get; private set; }
+    public WorldData Worlds { get; private set; }
+    public ChangePassword ChangePass { get; private set; }
+
+    public IEnumerable<XElement> RawXmlBehaviors;
+
+    public Resources(string resourcePath, bool wServer = false)
     {
-        public string ResourcePath { get; private set; }
-        public AppSettings Settings { get; private set; }
-        public XmlData GameData { get; private set; }
-        public WorldData Worlds { get; private set; }
-        public ChangePassword ChangePass { get; private set; }
+        ResourcePath = resourcePath;
+        Settings = new AppSettings(resourcePath + "/data/init.xml");
+        GameData = new XmlData(resourcePath);
 
-        public IEnumerable<XElement> RawXmlBehaviors;
-
-        public Resources(string resourcePath, bool wServer = false)
+        if (!wServer)
         {
-            ResourcePath = resourcePath;
-            Settings = new AppSettings(resourcePath + "/data/init.xml");
-            GameData = new XmlData(resourcePath);
-
-            if (!wServer)
-            {
-                ChangePass = new ChangePassword(resourcePath + "/data/changePassword");
-            }
-            else
-            {
-                LoadRawXmlBehaviors(resourcePath);
-                Worlds = new WorldData(resourcePath + "/worlds", GameData);
-            }
+            ChangePass = new ChangePassword(resourcePath + "/data/changePassword");
         }
-
-        public void LoadRawXmlBehaviors(string path)
+        else
         {
-            RawXmlBehaviors = SetRawXmlBehaviors(path + "/logic");
+            LoadRawXmlBehaviors(resourcePath);
+            Worlds = new WorldData(resourcePath + "/worlds", GameData);
         }
+    }
 
-        private IEnumerable<XElement> SetRawXmlBehaviors(string basePath)
+    public void LoadRawXmlBehaviors(string path)
+    {
+        RawXmlBehaviors = SetRawXmlBehaviors(path + "/logic");
+    }
+
+    private IEnumerable<XElement> SetRawXmlBehaviors(string basePath)
+    {
+        var xmls = Directory.EnumerateFiles(basePath, "*.xml", SearchOption.AllDirectories).ToArray();
+        for (var i = 0; i < xmls.Length; i++)
         {
-            var xmls = Directory.EnumerateFiles(basePath, "*.xml", SearchOption.AllDirectories).ToArray();
-            for (var i = 0; i < xmls.Length; i++)
-            {
-                var xml = XElement.Parse(File.ReadAllText(xmls[i]));
-                foreach (var elem in xml.Elements().Where(x => x.Name == "BehaviorEntry"))
-                    yield return elem;
-            }
+            var xml = XElement.Parse(File.ReadAllText(xmls[i]));
+            foreach (var elem in xml.Elements().Where(x => x.Name == "BehaviorEntry"))
+                yield return elem;
         }
     }
 }

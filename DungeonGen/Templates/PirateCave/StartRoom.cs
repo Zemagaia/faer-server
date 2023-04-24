@@ -22,63 +22,62 @@ using System;
 using DungeonGenerator.Dungeon;
 using RotMG.Common.Rasterizer;
 
-namespace DungeonGenerator.Templates.PirateCave
+namespace DungeonGenerator.Templates.PirateCave; 
+
+internal class StartRoom : Room
 {
-    internal class StartRoom : Room
+    private readonly int radius;
+
+    public StartRoom(int radius)
     {
-        readonly int radius;
+        this.radius = radius;
+    }
 
-        public StartRoom(int radius)
+    public override RoomType Type => RoomType.Start;
+
+    public override int Width => radius * 2 + 1;
+
+    public override int Height => radius * 2 + 1;
+
+    public override void Rasterize(BitmapRasterizer<DungeonTile> rasterizer, Random rand)
+    {
+        var tile = new DungeonTile
         {
-            this.radius = radius;
-        }
+            TileType = PirateCaveTemplate.LightSand
+        };
 
-        public override RoomType Type => RoomType.Start;
+        var cX = Pos.X + radius + 0.5;
+        var cY = Pos.Y + radius + 0.5;
+        var bounds = Bounds;
+        var r2 = radius * radius;
+        var buf = rasterizer.Bitmap;
 
-        public override int Width => radius * 2 + 1;
+        double pR = rand.NextDouble() * (radius - 2), pA = rand.NextDouble() * 2 * Math.PI;
+        var pX = (int)(cX + Math.Cos(pR) * pR);
+        var pY = (int)(cY + Math.Sin(pR) * pR);
 
-        public override int Height => radius * 2 + 1;
-
-        public override void Rasterize(BitmapRasterizer<DungeonTile> rasterizer, Random rand)
+        for (var x = bounds.X; x < bounds.MaxX; x++)
+        for (var y = bounds.Y; y < bounds.MaxY; y++)
         {
-            var tile = new DungeonTile
+            if ((x - cX) * (x - cX) + (y - cY) * (y - cY) <= r2)
             {
-                TileType = PirateCaveTemplate.LightSand
-            };
-
-            var cX = Pos.X + radius + 0.5;
-            var cY = Pos.Y + radius + 0.5;
-            var bounds = Bounds;
-            var r2 = radius * radius;
-            var buf = rasterizer.Bitmap;
-
-            double pR = rand.NextDouble() * (radius - 2), pA = rand.NextDouble() * 2 * Math.PI;
-            var pX = (int)(cX + Math.Cos(pR) * pR);
-            var pY = (int)(cY + Math.Sin(pR) * pR);
-
-            for (var x = bounds.X; x < bounds.MaxX; x++)
-            for (var y = bounds.Y; y < bounds.MaxY; y++)
-            {
-                if ((x - cX) * (x - cX) + (y - cY) * (y - cY) <= r2)
+                buf[x, y] = tile;
+                if (rand.NextDouble() > 0.95)
                 {
-                    buf[x, y] = tile;
-                    if (rand.NextDouble() > 0.95)
-                    {
-                        buf[x, y].Object = new DungeonObject
-                        {
-                            ObjectType = PirateCaveTemplate.PalmTree
-                        };
-                    }
-                }
-
-                if (x == pX && y == pY)
-                {
-                    buf[x, y].Region = "Spawn";
                     buf[x, y].Object = new DungeonObject
                     {
-                        ObjectType = PirateCaveTemplate.CowardicePortal
+                        ObjectType = PirateCaveTemplate.PalmTree
                     };
                 }
+            }
+
+            if (x == pX && y == pY)
+            {
+                buf[x, y].Region = "Spawn";
+                buf[x, y].Object = new DungeonObject
+                {
+                    ObjectType = PirateCaveTemplate.CowardicePortal
+                };
             }
         }
     }

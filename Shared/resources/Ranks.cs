@@ -1,24 +1,23 @@
 ﻿using System.IO;
 using Newtonsoft.Json;
 
-namespace Shared.resources
+namespace Shared.resources; 
+
+public class Ranks
 {
-    public class Ranks
+    public string role { get; set; }
+    public int rank { get; set; }
+
+    public static Ranks[] ReadFile(string fileName)
     {
-        public string role { get; set; }
-        public int rank { get; set; }
-
-        public static Ranks[] ReadFile(string fileName)
+        using (var r = new StreamReader(fileName))
         {
-            using (var r = new StreamReader(fileName))
-            {
-                return ReadJson(r.ReadToEnd());
-            }
+            return ReadJson(r.ReadToEnd());
         }
+    }
 
-        public static Ranks[] ReadJson(string json)
-        {
-            return JsonConvert.DeserializeObject<Ranks[]>(json);
-        }
+    public static Ranks[] ReadJson(string json)
+    {
+        return JsonConvert.DeserializeObject<Ranks[]>(json);
     }
 }

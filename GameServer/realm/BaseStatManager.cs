@@ -1,40 +1,39 @@
 ﻿using Shared;
 using wServer.realm;
 
-namespace GameServer.realm
+namespace GameServer.realm; 
+
+internal class BaseStatManager
 {
-    class BaseStatManager
+    private readonly StatsManager _parent;
+    private readonly int[] _base;
+
+    public BaseStatManager(StatsManager parent)
     {
-        private readonly StatsManager _parent;
-        private readonly int[] _base;
+        _parent = parent;
+        _base = Utils.ResizeArray(
+            parent.Owner.Client.Character.Stats,
+            StatsManager.NumStatTypes);
 
-        public BaseStatManager(StatsManager parent)
+        ReCalculateValues();
+    }
+
+    public int[] GetStats()
+    {
+        return (int[])_base.Clone();
+    }
+
+    public int this[int index]
+    {
+        get => _base[index];
+        set
         {
-            _parent = parent;
-            _base = Utils.ResizeArray(
-                parent.Owner.Client.Character.Stats,
-                StatsManager.NumStatTypes);
-
-            ReCalculateValues();
+            _base[index] = value;
+            _parent.StatChanged(index);
         }
+    }
 
-        public int[] GetStats()
-        {
-            return (int[])_base.Clone();
-        }
-
-        public int this[int index]
-        {
-            get => _base[index];
-            set
-            {
-                _base[index] = value;
-                _parent.StatChanged(index);
-            }
-        }
-
-        protected internal void ReCalculateValues(InventoryChangedEventArgs e = null)
-        {
-        }
+    protected internal void ReCalculateValues(InventoryChangedEventArgs e = null)
+    {
     }
 }

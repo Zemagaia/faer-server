@@ -2,29 +2,28 @@
 using Shared;
 using GameServer.realm;
 
-namespace GameServer.logic.transitions
+namespace GameServer.logic.transitions; 
+
+internal class WorldTransition : Transition
 {
-    class WorldTransition : Transition
+    //State storage: none
+
+    private readonly string _world;
+
+    public WorldTransition(XElement e)
+        : base(e.ParseString("@targetState", "root"))
     {
-        //State storage: none
-
-        private readonly string _world;
-
-        public WorldTransition(XElement e)
-            : base(e.ParseString("@targetState", "root"))
-        {
-            _world = e.ParseString("@world");
-        }
+        _world = e.ParseString("@world");
+    }
         
-        public WorldTransition(string world, string targetState)
-            : base(targetState)
-        {
-            _world = world;
-        }
+    public WorldTransition(string world, string targetState)
+        : base(targetState)
+    {
+        _world = world;
+    }
 
-        protected override bool TickCore(Entity host, RealmTime time, ref object state)
-        {
-            return host.Owner.Name == _world || host.Owner.SBName == _world;
-        }
+    protected override bool TickCore(Entity host, RealmTime time, ref object state)
+    {
+        return host.Owner.Name == _world || host.Owner.SBName == _world;
     }
 }

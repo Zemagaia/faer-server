@@ -22,94 +22,93 @@ using System;
 using DungeonGenerator.Dungeon;
 using RotMG.Common.Rasterizer;
 
-namespace DungeonGenerator.Templates.Abyss
+namespace DungeonGenerator.Templates.Abyss; 
+
+internal class NormalRoom : Room
 {
-    internal class NormalRoom : Room
+    private readonly int w;
+    private readonly int h;
+
+    public NormalRoom(int w, int h)
     {
-        readonly int w;
-        readonly int h;
+        this.w = w;
+        this.h = h;
+    }
 
-        public NormalRoom(int w, int h)
+    public override RoomType Type => RoomType.Normal;
+
+    public override int Width => w;
+
+    public override int Height => h;
+
+    public override void Rasterize(BitmapRasterizer<DungeonTile> rasterizer, Random rand)
+    {
+        rasterizer.FillRect(Bounds, new DungeonTile
         {
-            this.w = w;
-            this.h = h;
-        }
+            TileType = AbyssTemplate.RedSmallChecks
+        });
 
-        public override RoomType Type => RoomType.Normal;
 
-        public override int Width => w;
+        var numImp = new Range(0, 2).Random(rand);
+        var numDemon = new Range(2, 4).Random(rand);
+        var numBrute = new Range(1, 4).Random(rand);
+        var numSkull = new Range(1, 3).Random(rand);
 
-        public override int Height => h;
-
-        public override void Rasterize(BitmapRasterizer<DungeonTile> rasterizer, Random rand)
+        var buf = rasterizer.Bitmap;
+        var bounds = Bounds;
+        while (numImp > 0 || numDemon > 0 || numBrute > 0 || numSkull > 0)
         {
-            rasterizer.FillRect(Bounds, new DungeonTile
+            var x = rand.Next(bounds.X, bounds.MaxX);
+            var y = rand.Next(bounds.Y, bounds.MaxY);
+            if (buf[x, y].Object != null)
+                continue;
+
+            switch (rand.Next(4))
             {
-                TileType = AbyssTemplate.RedSmallChecks
-            });
-
-
-            var numImp = new Range(0, 2).Random(rand);
-            var numDemon = new Range(2, 4).Random(rand);
-            var numBrute = new Range(1, 4).Random(rand);
-            var numSkull = new Range(1, 3).Random(rand);
-
-            var buf = rasterizer.Bitmap;
-            var bounds = Bounds;
-            while (numImp > 0 || numDemon > 0 || numBrute > 0 || numSkull > 0)
-            {
-                var x = rand.Next(bounds.X, bounds.MaxX);
-                var y = rand.Next(bounds.Y, bounds.MaxY);
-                if (buf[x, y].Object != null)
-                    continue;
-
-                switch (rand.Next(4))
-                {
-                    case 0:
-                        if (numImp > 0)
+                case 0:
+                    if (numImp > 0)
+                    {
+                        buf[x, y].Object = new DungeonObject
                         {
-                            buf[x, y].Object = new DungeonObject
-                            {
-                                ObjectType = AbyssTemplate.AbyssImp
-                            };
-                            numImp--;
-                        }
+                            ObjectType = AbyssTemplate.AbyssImp
+                        };
+                        numImp--;
+                    }
 
-                        break;
-                    case 1:
-                        if (numDemon > 0)
+                    break;
+                case 1:
+                    if (numDemon > 0)
+                    {
+                        buf[x, y].Object = new DungeonObject
                         {
-                            buf[x, y].Object = new DungeonObject
-                            {
-                                ObjectType = AbyssTemplate.AbyssDemon[rand.Next(AbyssTemplate.AbyssDemon.Length)]
-                            };
-                            numDemon--;
-                        }
+                            ObjectType = AbyssTemplate.AbyssDemon[rand.Next(AbyssTemplate.AbyssDemon.Length)]
+                        };
+                        numDemon--;
+                    }
 
-                        break;
-                    case 2:
-                        if (numBrute > 0)
+                    break;
+                case 2:
+                    if (numBrute > 0)
+                    {
+                        buf[x, y].Object = new DungeonObject
                         {
-                            buf[x, y].Object = new DungeonObject
-                            {
-                                ObjectType = AbyssTemplate.AbyssBrute[rand.Next(AbyssTemplate.AbyssBrute.Length)]
-                            };
-                            numBrute--;
-                        }
+                            ObjectType = AbyssTemplate.AbyssBrute[rand.Next(AbyssTemplate.AbyssBrute.Length)]
+                        };
+                        numBrute--;
+                    }
 
-                        break;
-                    case 3:
-                        if (numSkull > 0)
+                    break;
+                case 3:
+                    if (numSkull > 0)
+                    {
+                        buf[x, y].Object = new DungeonObject
                         {
-                            buf[x, y].Object = new DungeonObject
-                            {
-                                ObjectType = AbyssTemplate.AbyssBones
-                            };
-                            numSkull--;
-                        }
+                            ObjectType = AbyssTemplate.AbyssBones
+                        };
+                        numSkull--;
+                    }
 
-                        break;
-                }
+                    break;
             }
         }
     }

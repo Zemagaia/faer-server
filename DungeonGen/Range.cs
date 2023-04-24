@@ -20,38 +20,37 @@
 
 using System;
 
-namespace DungeonGenerator
+namespace DungeonGenerator; 
+
+public struct Range
 {
-    public struct Range
+    public static readonly Range Zero = new(0, 0);
+
+    public readonly int Begin;
+    public readonly int End;
+
+    public Range(int begin, int end)
     {
-        public static readonly Range Zero = new(0, 0);
+        if (end < begin)
+            end = begin;
+        Begin = begin;
+        End = end;
+    }
 
-        public readonly int Begin;
-        public readonly int End;
+    public int Random(Random rand)
+    {
+        return rand.Next(Begin, End + 1);
+    }
 
-        public Range(int begin, int end)
-        {
-            if (end < begin)
-                end = begin;
-            Begin = begin;
-            End = end;
-        }
+    public bool IsEmpty => Begin == End;
 
-        public int Random(Random rand)
-        {
-            return rand.Next(Begin, End + 1);
-        }
+    public Range Intersection(Range range)
+    {
+        return new Range(Math.Max(Begin, range.Begin), Math.Min(End, range.End));
+    }
 
-        public bool IsEmpty => Begin == End;
-
-        public Range Intersection(Range range)
-        {
-            return new Range(Math.Max(Begin, range.Begin), Math.Min(End, range.End));
-        }
-
-        public override string ToString()
-        {
-            return string.Format("[{0}, {1}]", Begin, End);
-        }
+    public override string ToString()
+    {
+        return string.Format("[{0}, {1}]", Begin, End);
     }
 }

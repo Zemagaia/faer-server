@@ -1,35 +1,34 @@
 ﻿using DungeonGenerator.Templates;
 
-namespace GameServer.realm.worlds
+namespace GameServer.realm.worlds; 
+
+public static class DungeonTemplates
 {
-    public static class DungeonTemplates
+    private static readonly List<Type> Templates;
+
+    static DungeonTemplates()
     {
-        private static readonly List<Type> Templates;
+        Templates = new List<Type>();
 
-        static DungeonTemplates()
+        var type = typeof(DungeonTemplate);
+        var templates = type.Assembly.GetTypes()
+            .Where(t => type.IsAssignableFrom(t) && type != t);
+
+        foreach (var i in templates)
+            Templates.Add(i);
+    }
+
+    public static DungeonTemplate GetTemplate(string worldName)
+    {
+        var template = $"{worldName}Template";
+        foreach (var type in Templates)
         {
-            Templates = new List<Type>();
+            if (!type.Name.Equals(template))
+                continue;
 
-            var type = typeof(DungeonTemplate);
-            var templates = type.Assembly.GetTypes()
-                .Where(t => type.IsAssignableFrom(t) && type != t);
-
-            foreach (var i in templates)
-                Templates.Add(i);
+            return (DungeonTemplate)Activator.CreateInstance(type);
         }
 
-        public static DungeonTemplate GetTemplate(string worldName)
-        {
-            var template = $"{worldName}Template";
-            foreach (var type in Templates)
-            {
-                if (!type.Name.Equals(template))
-                    continue;
-
-                return (DungeonTemplate)Activator.CreateInstance(type);
-            }
-
-            return null;
-        }
+        return null;
     }
 }

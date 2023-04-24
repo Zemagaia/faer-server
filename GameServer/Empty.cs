@@ -1,7 +1,6 @@
-﻿namespace GameServer
+﻿namespace GameServer; 
+
+internal static class Empty<T>
 {
-    static class Empty<T>
-    {
-        public static T[] Array = new T[0];
-    }
+    public static T[] Array = new T[0];
 }

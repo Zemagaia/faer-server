@@ -2,49 +2,48 @@
 using Shared;
 using GameServer.realm;
 
-namespace GameServer.logic.transitions
+namespace GameServer.logic.transitions; 
+
+internal class EntityNotExistsTransition : Transition
 {
-    class EntityNotExistsTransition : Transition
-    {
-        //State storage: none
+    //State storage: none
 
-        private readonly double _dist;
-        private readonly ushort? _target;
-        private readonly bool _attackTarget;
+    private readonly double _dist;
+    private readonly ushort? _target;
+    private readonly bool _attackTarget;
         
-        public EntityNotExistsTransition(XElement e)
-            : base(e.ParseString("@targetState", "root"))
+    public EntityNotExistsTransition(XElement e)
+        : base(e.ParseString("@targetState", "root"))
+    {
+        _dist = e.ParseFloat("@dist");
+        _target = Behavior.GetObjType(e.ParseString("@target"));
+        _attackTarget = e.ParseBool("@checkAttackTarget");
+    }
+
+    public EntityNotExistsTransition(string target, double dist, string targetState, bool checkAttackTarget = false)
+        : base(targetState)
+    {
+        _dist = dist;
+
+        if (target != null)
+            _target = Behavior.GetObjType(target);
+
+        _attackTarget = checkAttackTarget;
+    }
+
+    protected override bool TickCore(Entity host, RealmTime time, ref object state)
+    {
+        if (_attackTarget)
         {
-            _dist = e.ParseFloat("@dist");
-            _target = Behavior.GetObjType(e.ParseString("@target"));
-            _attackTarget = e.ParseBool("@checkAttackTarget");
-        }
-
-        public EntityNotExistsTransition(string target, double dist, string targetState, bool checkAttackTarget = false)
-            : base(targetState)
-        {
-            _dist = dist;
-
-            if (target != null)
-                _target = Behavior.GetObjType(target);
-
-            _attackTarget = checkAttackTarget;
-        }
-
-        protected override bool TickCore(Entity host, RealmTime time, ref object state)
-        {
-            if (_attackTarget)
+            if (host.AttackTarget == null || !host.Owner.Players.TryGetValue(host.AttackTarget.Id, out _))
             {
-                if (host.AttackTarget == null || !host.Owner.Players.TryGetValue(host.AttackTarget.Id, out _))
-                {
-                    host.AttackTarget = null;
-                    return true;
-                }
-
-                return false;
+                host.AttackTarget = null;
+                return true;
             }
 
-            return host.GetNearestEntity(_dist, _target) == null;
+            return false;
         }
+
+        return host.GetNearestEntity(_dist, _target) == null;
     }
 }

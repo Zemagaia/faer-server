@@ -22,81 +22,80 @@ using System;
 using DungeonGenerator.Dungeon;
 using RotMG.Common.Rasterizer;
 
-namespace DungeonGenerator.Templates.PirateCave
+namespace DungeonGenerator.Templates.PirateCave; 
+
+internal class NormalRoom : Room
 {
-    internal class NormalRoom : Room
+    private readonly int w;
+    private readonly int h;
+
+    public NormalRoom(int w, int h)
     {
-        readonly int w;
-        readonly int h;
+        this.w = w;
+        this.h = h;
+    }
 
-        public NormalRoom(int w, int h)
+    public override RoomType Type => RoomType.Normal;
+
+    public override int Width => w;
+
+    public override int Height => h;
+
+    public override void Rasterize(BitmapRasterizer<DungeonTile> rasterizer, Random rand)
+    {
+        rasterizer.FillRect(Bounds, new DungeonTile
         {
-            this.w = w;
-            this.h = h;
-        }
+            TileType = PirateCaveTemplate.BrownLines
+        });
 
-        public override RoomType Type => RoomType.Normal;
+        var numBoss = new Range(0, 1).Random(rand);
+        var numMinion = new Range(3, 5).Random(rand);
+        var numPet = new Range(0, 2).Random(rand);
 
-        public override int Width => w;
-
-        public override int Height => h;
-
-        public override void Rasterize(BitmapRasterizer<DungeonTile> rasterizer, Random rand)
+        var buf = rasterizer.Bitmap;
+        var bounds = Bounds;
+        while (numBoss > 0 || numMinion > 0 || numPet > 0)
         {
-            rasterizer.FillRect(Bounds, new DungeonTile
+            var x = rand.Next(bounds.X, bounds.MaxX);
+            var y = rand.Next(bounds.Y, bounds.MaxY);
+            if (buf[x, y].Object != null)
+                continue;
+
+            switch (rand.Next(3))
             {
-                TileType = PirateCaveTemplate.BrownLines
-            });
-
-            var numBoss = new Range(0, 1).Random(rand);
-            var numMinion = new Range(3, 5).Random(rand);
-            var numPet = new Range(0, 2).Random(rand);
-
-            var buf = rasterizer.Bitmap;
-            var bounds = Bounds;
-            while (numBoss > 0 || numMinion > 0 || numPet > 0)
-            {
-                var x = rand.Next(bounds.X, bounds.MaxX);
-                var y = rand.Next(bounds.Y, bounds.MaxY);
-                if (buf[x, y].Object != null)
-                    continue;
-
-                switch (rand.Next(3))
-                {
-                    case 0:
-                        if (numBoss > 0)
+                case 0:
+                    if (numBoss > 0)
+                    {
+                        buf[x, y].Object = new DungeonObject
                         {
-                            buf[x, y].Object = new DungeonObject
-                            {
-                                ObjectType = PirateCaveTemplate.Boss[rand.Next(PirateCaveTemplate.Boss.Length)]
-                            };
-                            numBoss--;
-                        }
+                            ObjectType = PirateCaveTemplate.Boss[rand.Next(PirateCaveTemplate.Boss.Length)]
+                        };
+                        numBoss--;
+                    }
 
-                        break;
-                    case 1:
-                        if (numMinion > 0)
+                    break;
+                case 1:
+                    if (numMinion > 0)
+                    {
+                        buf[x, y].Object = new DungeonObject
                         {
-                            buf[x, y].Object = new DungeonObject
-                            {
-                                ObjectType = PirateCaveTemplate.Minion[rand.Next(PirateCaveTemplate.Minion.Length)]
-                            };
-                            numMinion--;
-                        }
+                            ObjectType = PirateCaveTemplate.Minion[rand.Next(PirateCaveTemplate.Minion.Length)]
+                        };
+                        numMinion--;
+                    }
 
-                        break;
-                    case 2:
-                        if (numPet > 0)
+                    break;
+                case 2:
+                    if (numPet > 0)
+                    {
+                        buf[x, y].Object = new DungeonObject
                         {
-                            buf[x, y].Object = new DungeonObject
-                            {
-                                ObjectType = PirateCaveTemplate.Pet[rand.Next(PirateCaveTemplate.Pet.Length)]
-                            };
-                            numPet--;
-                        }
+                            ObjectType = PirateCaveTemplate.Pet[rand.Next(PirateCaveTemplate.Pet.Length)]
+                        };
+                        numPet--;
+                    }
 
-                        break;
-                }
+                    break;
             }
         }
     }

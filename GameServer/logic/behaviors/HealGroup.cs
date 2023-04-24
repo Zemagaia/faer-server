@@ -3,71 +3,70 @@ using Shared;
 using GameServer.realm;
 using GameServer.realm.entities;
 
-namespace GameServer.logic.behaviors
+namespace GameServer.logic.behaviors; 
+
+internal class HealGroup : Behavior
 {
-    class HealGroup : Behavior
+    //State storage: cooldown timer
+
+    private double range;
+    private string group;
+    private Cooldown coolDown;
+    private int? amount;
+
+    public HealGroup(XElement e)
     {
-        //State storage: cooldown timer
-
-        double range;
-        string group;
-        Cooldown coolDown;
-        int? amount;
-
-        public HealGroup(XElement e)
-        {
-            range = e.ParseFloat("@range");
-            group = e.ParseString("@group");
-            amount = e.ParseNInt("@amount");            
-            coolDown = new Cooldown().Normalize(e.ParseInt("@coolDown", 1000));
-        }
+        range = e.ParseFloat("@range");
+        group = e.ParseString("@group");
+        amount = e.ParseNInt("@amount");            
+        coolDown = new Cooldown().Normalize(e.ParseInt("@coolDown", 1000));
+    }
         
-        public HealGroup(double range, string group, Cooldown coolDown = new Cooldown(), int? healAmount = null)
-        {
-            this.range = (float)range;
-            this.group = group;
-            this.coolDown = coolDown.Normalize();
-            this.amount = healAmount;
-        }
+    public HealGroup(double range, string group, Cooldown coolDown = new Cooldown(), int? healAmount = null)
+    {
+        this.range = (float)range;
+        this.group = group;
+        this.coolDown = coolDown.Normalize();
+        this.amount = healAmount;
+    }
 
-        protected override void OnStateEntry(Entity host, RealmTime time, ref object state)
-        {
-            state = 0;
-        }
+    protected override void OnStateEntry(Entity host, RealmTime time, ref object state)
+    {
+        state = 0;
+    }
 
-        protected override void TickCore(Entity host, RealmTime time, ref object state)
-        {
-            var cool = (int)state;
+    protected override void TickCore(Entity host, RealmTime time, ref object state)
+    {
+        var cool = (int)state;
 
-            if (cool <= 0)
+        if (cool <= 0)
+        {
+            foreach (var entity in host.GetNearestEntitiesByGroup(range, group).OfType<Enemy>())
             {
-                foreach (var entity in host.GetNearestEntitiesByGroup(range, group).OfType<Enemy>())
+                var newHp = entity.ObjectDesc.MaxHP;
+                if (amount != null)
                 {
-                    var newHp = entity.ObjectDesc.MaxHP;
-                    if (amount != null)
-                    {
-                        var newHealth = (int) amount + entity.HP;
-                        if (newHp > newHealth)
-                            newHp = newHealth;
-                    }
-                    if (newHp != entity.HP)
-                    {
-                        var n = newHp - entity.HP;
-                        entity.HP = newHp;
-                        foreach (var p in host.Owner.Players.Values)
-                            if (MathUtils.DistSqr(p.X, p.Y, host.X, host.Y) < 16 * 16) {
-                                p.Client.SendShowEffect(EffectType.Potion, entity.Id, 0, 0, 0, 0, 0xFFFFFFFF);
-                                p.Client.SendShowEffect(EffectType.Trail, host.Id, entity.X, entity.Y, 0, 0, 0xFFFFFFFF); 
-                                p.Client.SendNotification(entity.Id, "+" + n, 0xFF00FF00);
-                            }
-                    }
+                    var newHealth = (int) amount + entity.HP;
+                    if (newHp > newHealth)
+                        newHp = newHealth;
                 }
-                cool = coolDown.Next(Random);
+                if (newHp != entity.HP)
+                {
+                    var n = newHp - entity.HP;
+                    entity.HP = newHp;
+                    foreach (var p in host.Owner.Players.Values)
+                        if (MathUtils.DistSqr(p.X, p.Y, host.X, host.Y) < 16 * 16) {
+                            p.Client.SendShowEffect(EffectType.Potion, entity.Id, 0, 0, 0, 0, 0xFFFFFFFF);
+                            p.Client.SendShowEffect(EffectType.Trail, host.Id, entity.X, entity.Y, 0, 0, 0xFFFFFFFF); 
+                            p.Client.SendNotification(entity.Id, "+" + n, 0xFF00FF00);
+                        }
+                }
             }
-            else
-                cool -= time.ElapsedMsDelta;
-
-            state = cool;
+            cool = coolDown.Next(Random);
         }
+        else
+            cool -= time.ElapsedMsDelta;
+
+        state = cool;
     }
 }

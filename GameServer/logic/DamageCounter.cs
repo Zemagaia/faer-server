@@ -3,95 +3,94 @@ using GameServer.realm;
 using GameServer.realm.entities;
 using GameServer.realm.entities.player;
 
-namespace GameServer.logic
+namespace GameServer.logic; 
+
+public class DamageCounter
 {
-    public class DamageCounter
+    private Enemy _enemy;
+
+    public Enemy Host => _enemy;
+
+    public Projectile LastProjectile { get; private set; }
+    public Player LastHitter { get; private set; }
+
+    public DamageCounter Corpse { get; set; }
+    public DamageCounter Parent { get; set; }
+
+    private WeakDictionary<Player, int> hitters = new();
+
+    public DamageCounter(Enemy enemy)
     {
-        private Enemy _enemy;
+        _enemy = enemy;
+    }
 
-        public Enemy Host => _enemy;
+    public void HitBy(Player player, RealmTime time, Projectile projectile, int dmg)
+    {
+        int totalDmg;
+        if (!hitters.TryGetValue(player, out totalDmg))
+            totalDmg = 0;
+        totalDmg += dmg;
+        hitters[player] = totalDmg;
 
-        public Projectile LastProjectile { get; private set; }
-        public Player LastHitter { get; private set; }
+        if (_enemy.ObjectDesc.Quest && _enemy.HP > 0)
+            player.DamageDealt = hitters[player];
 
-        public DamageCounter Corpse { get; set; }
-        public DamageCounter Parent { get; set; }
+        LastProjectile = projectile;
+        LastHitter = player;
+    }
 
-        private WeakDictionary<Player, int> hitters = new();
-
-        public DamageCounter(Enemy enemy)
+    public Tuple<Player, int>[] GetPlayerData()
+    {
+        if (Parent != null)
+            return Parent.GetPlayerData();
+        var dat = new List<Tuple<Player, int>>();
+        foreach (var i in hitters)
         {
-            _enemy = enemy;
+            if (i.Key.Owner == null) continue;
+            dat.Add(new Tuple<Player, int>(i.Key, i.Value));
         }
 
-        public void HitBy(Player player, RealmTime time, Projectile projectile, int dmg)
+        return dat.ToArray();
+    }
+
+    public void UpdateEnemy(Enemy enemy)
+    {
+        _enemy = enemy;
+    }
+
+    public void Death(RealmTime time)
+    {
+        if (Corpse != null)
         {
-            int totalDmg;
-            if (!hitters.TryGetValue(player, out totalDmg))
-                totalDmg = 0;
-            totalDmg += dmg;
-            hitters[player] = totalDmg;
-
-            if (_enemy.ObjectDesc.Quest && _enemy.HP > 0)
-                player.DamageDealt = hitters[player];
-
-            LastProjectile = projectile;
-            LastHitter = player;
+            Corpse.Parent = this;
+            return;
         }
 
-        public Tuple<Player, int>[] GetPlayerData()
-        {
-            if (Parent != null)
-                return Parent.GetPlayerData();
-            var dat = new List<Tuple<Player, int>>();
-            foreach (var i in hitters)
-            {
-                if (i.Key.Owner == null) continue;
-                dat.Add(new Tuple<Player, int>(i.Key, i.Value));
-            }
+        var enemy = (Parent ?? this)._enemy;
 
-            return dat.ToArray();
-        }
+        if (enemy.Spawned)
+            return;
 
-        public void UpdateEnemy(Enemy enemy)
-        {
-            _enemy = enemy;
-        }
-
-        public void Death(RealmTime time)
-        {
-            if (Corpse != null)
-            {
-                Corpse.Parent = this;
-                return;
-            }
-
-            var enemy = (Parent ?? this)._enemy;
-
-            if (enemy.Spawned)
-                return;
-
-            if (enemy.ObjectDesc.Quest)
-                foreach (var player in hitters.Keys)
-                    player.DamageDealt = 0;
-        }
+        if (enemy.ObjectDesc.Quest)
+            foreach (var player in hitters.Keys)
+                player.DamageDealt = 0;
+    }
         
-        public void TransferData(DamageCounter dc)
+    public void TransferData(DamageCounter dc)
+    {
+        dc.LastProjectile = LastProjectile;
+        dc.LastHitter = LastHitter;
+
+        int totalDmg;
+        int totalExistingDmg;
+        foreach (var plr in hitters.Keys)
         {
-            dc.LastProjectile = LastProjectile;
-            dc.LastHitter = LastHitter;
+            if (!hitters.TryGetValue(plr, out totalDmg))
+                totalDmg = 0;
+            if (!dc.hitters.TryGetValue(plr, out totalExistingDmg))
+                totalExistingDmg = 0;
 
-            int totalDmg;
-            int totalExistingDmg;
-            foreach (var plr in hitters.Keys)
-            {
-                if (!hitters.TryGetValue(plr, out totalDmg))
-                    totalDmg = 0;
-                if (!dc.hitters.TryGetValue(plr, out totalExistingDmg))
-                    totalExistingDmg = 0;
-
-                dc.hitters[plr] = totalDmg + totalExistingDmg;
-            }
+            dc.hitters[plr] = totalDmg + totalExistingDmg;
         }
     }
 }

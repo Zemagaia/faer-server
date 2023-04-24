@@ -3,37 +3,36 @@ using Shared;
 using GameServer.realm;
 using GameServer.realm.entities;
 
-namespace GameServer.logic.transitions
+namespace GameServer.logic.transitions; 
+
+internal class OnParentDeathTransition : Transition
 {
-    class OnParentDeathTransition : Transition
+    private bool parentDead;
+    private bool init;
+
+    public OnParentDeathTransition(XElement e)
+        : base(e.ParseString("@targetState", "root"))
     {
-        private bool parentDead;
-        private bool init;
-
-        public OnParentDeathTransition(XElement e)
-            : base(e.ParseString("@targetState", "root"))
-        {
-        }
+    }
         
-        public OnParentDeathTransition(string targetState)
-            :base(targetState)
-        {
-        }
+    public OnParentDeathTransition(string targetState)
+        :base(targetState)
+    {
+    }
 
-        protected override bool TickCore(Entity host, RealmTime time, ref object state)
+    protected override bool TickCore(Entity host, RealmTime time, ref object state)
+    {
+        if (!init && host is Enemy)
         {
-            if (!init && host is Enemy)
+            init = true;
+            var enemyHost = host as Enemy;
+            if (enemyHost.ParentEntity != null)
             {
-                init = true;
-                var enemyHost = host as Enemy;
-                if (enemyHost.ParentEntity != null)
-                {
-                    (host as Enemy).ParentEntity.OnDeath +=
-                        (sender, e) => parentDead = true;
-                }
+                (host as Enemy).ParentEntity.OnDeath +=
+                    (sender, e) => parentDead = true;
             }
-
-            return parentDead;
         }
+
+        return parentDead;
     }
 }

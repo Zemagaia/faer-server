@@ -2,39 +2,38 @@
 using Shared;
 using GameServer.realm;
 
-namespace GameServer.logic.behaviors
+namespace GameServer.logic.behaviors; 
+
+internal class MultiplyLootValue : Behavior
 {
-    class MultiplyLootValue : Behavior
-    {
-        //State storage: cooldown timer
+    //State storage: cooldown timer
 
-        int multiplier;
+    private int multiplier;
         
-        public MultiplyLootValue(XElement e)
-        {
-            multiplier = e.ParseInt("@multiplier");
-        }
+    public MultiplyLootValue(XElement e)
+    {
+        multiplier = e.ParseInt("@multiplier");
+    }
 
-        public MultiplyLootValue(int multiplier)
-        {
-            this.multiplier = multiplier;
-        }
+    public MultiplyLootValue(int multiplier)
+    {
+        this.multiplier = multiplier;
+    }
 
-        protected override void OnStateEntry(Entity host, RealmTime time, ref object state)
-        {
-            state = false;
-        }
+    protected override void OnStateEntry(Entity host, RealmTime time, ref object state)
+    {
+        state = false;
+    }
 
-        protected override void TickCore(Entity host, RealmTime time, ref object state)
+    protected override void TickCore(Entity host, RealmTime time, ref object state)
+    {
+        var multiplied = (bool)state;
+        if (!multiplied)
         {
-            var multiplied = (bool)state;
-            if (!multiplied)
-            {
-                var newLootValue = host.LootValue * multiplier;
-                host.LootValue = newLootValue;
-                multiplied = true;
-            }
-            state = multiplied;
+            var newLootValue = host.LootValue * multiplier;
+            host.LootValue = newLootValue;
+            multiplied = true;
         }
+        state = multiplied;
     }
 }

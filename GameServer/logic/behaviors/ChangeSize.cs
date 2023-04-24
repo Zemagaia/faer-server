@@ -2,54 +2,53 @@
 using Shared;
 using GameServer.realm;
 
-namespace GameServer.logic.behaviors
+namespace GameServer.logic.behaviors; 
+
+internal class ChangeSize : Behavior
 {
-    class ChangeSize : Behavior
-    {
-        //State storage: cooldown timer
+    //State storage: cooldown timer
 
-        int rate;
-        int target;
+    private int rate;
+    private int target;
         
-        public ChangeSize(XElement e)
-        {
-            rate = e.ParseInt("@rate");
-            target = e.ParseInt("@target");
-        }
+    public ChangeSize(XElement e)
+    {
+        rate = e.ParseInt("@rate");
+        target = e.ParseInt("@target");
+    }
 
-        public ChangeSize(int rate, int target)
-        {
-            this.rate = rate;
-            this.target = target;
-        }
+    public ChangeSize(int rate, int target)
+    {
+        this.rate = rate;
+        this.target = target;
+    }
 
-        protected override void OnStateEntry(Entity host, RealmTime time, ref object state)
-        {
-            state = 0;
-        }
+    protected override void OnStateEntry(Entity host, RealmTime time, ref object state)
+    {
+        state = 0;
+    }
 
-        protected override void TickCore(Entity host, RealmTime time, ref object state)
-        {
-            var cool = (int)state;
+    protected override void TickCore(Entity host, RealmTime time, ref object state)
+    {
+        var cool = (int)state;
 
-            if (cool <= 0)
+        if (cool <= 0)
+        {
+            var size = host.Size;
+            if (size != target)
             {
-                var size = host.Size;
-                if (size != target)
-                {
-                    size = (ushort) (size + rate);
-                    if ((rate > 0 && size > target) ||
-                        (rate < 0 && size < target))
-                        size = (ushort) target;
+                size = (ushort) (size + rate);
+                if ((rate > 0 && size > target) ||
+                    (rate < 0 && size < target))
+                    size = (ushort) target;
 
-                    host.Size = size;
-                }
-                cool = 150;
+                host.Size = size;
             }
-            else
-                cool -= time.ElapsedMsDelta;
-
-            state = cool;
+            cool = 150;
         }
+        else
+            cool -= time.ElapsedMsDelta;
+
+        state = cool;
     }
 }
