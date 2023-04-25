@@ -5,6 +5,7 @@ using NetTopologySuite.Operation.Overlay;
 using NetTopologySuite.Triangulate;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
@@ -37,9 +38,10 @@ namespace terrain
         public bool IsWater { get; set; }
         public bool IsCoast { get; set; }
         public bool IsOcean { get; set; }
-        public string Biome { get; set; }
+        public Biome Biome { get; set; }
         public Polygon Polygon { get; set; }
         public TileRegion Region { get; set; }
+        public bool IsRoad { get; set; }
     }
 
     public class PolygonMap
@@ -60,7 +62,7 @@ namespace terrain
         }
 
 
-        private string[] Biomes = new string[3] { "Volcanic", "Forest", "Desert" };
+        private Biome[] Biomes = new Biome[3] { Biome.Volcanic, Biome.Forest, Biome.Desert };
 
         public IGeometryCollection VoronoiDiagram { get; private set; }
         public List<MapPolygon> MapPolygons { get; private set; }
@@ -94,7 +96,7 @@ namespace terrain
             return geom.Factory.CreateGeometryCollection(GeometryFactory.ToGeometryArray(clipped));
         }
 
-        public void Generate(int pointCount, int optimiseSteps, int blobSize)
+        public void Generate(int pointCount, int optimiseSteps, int blobSize, double roadChance)
         {
             //Generate random points
             var hashSet = new HashSet<Coordinate>(pointCount);
@@ -119,7 +121,7 @@ namespace terrain
                     VoronoiDiagram = builder.GetDiagram(new GeometryFactory());
                     for (int j = 0; j < points.Length; j++)
                     {
-                        Polygon poly = VoronoiDiagram[j] as Polygon;
+                        var poly = VoronoiDiagram[j] as Polygon;
                         points[j] = new Coordinate(poly.Centroid.X, poly.Centroid.Y);
                     }
                 }
@@ -131,14 +133,12 @@ namespace terrain
                 VoronoiDiagram = ClipGeometryCollection(VoronoiDiagram, new Envelope(-1, 1, -1, 1));
                 graph = new PlanarGraph(new OverlayNodeFactory());
                 var edges = new List<Edge>();
-                for (int i = 0; i < VoronoiDiagram.Count; i++)
+                for (var i = 0; i < VoronoiDiagram.Count; i++)
                 {
-                    Polygon poly = VoronoiDiagram[i] as Polygon;
+                    var poly = VoronoiDiagram[i] as Polygon;
                     var coords = poly.Coordinates;
-                    for (int j = 1; j < coords.Length; j++)
-                    {
+                    for (var j = 1; j < coords.Length; j++)
                         edges.Add(new Edge(new Coordinate[] { coords[j - 1], coords[j] }, new Label(Location.Boundary)));
-                    }
                 }
                 graph.AddEdges(edges);
             }
@@ -146,12 +146,12 @@ namespace terrain
             //Convert graph
             Dictionary<Node, MapNode> nodeDict;
             {
-                Dictionary<MapPolygon, HashSet<MapPolygon>> polys = new Dictionary<MapPolygon, HashSet<MapPolygon>>();
+                var polys = new Dictionary<MapPolygon, HashSet<MapPolygon>>();
                 nodeDict = new Dictionary<Node, MapNode>();
-                Dictionary<MapNode, Tuple<HashSet<MapPolygon>, HashSet<MapEdge>>> dats = new Dictionary<MapNode, Tuple<HashSet<MapPolygon>, HashSet<MapEdge>>>();
-                for (int i = 0; i < VoronoiDiagram.Count; i++)
+                var dats = new Dictionary<MapNode, Tuple<HashSet<MapPolygon>, HashSet<MapEdge>>>();
+                for (var i = 0; i < VoronoiDiagram.Count; i++)
                 {
-                    List<MapNode> nodes = new List<MapNode>();
+                    var nodes = new List<MapNode>();
                     var poly = new MapPolygon()
                     {
                         CentroidX = VoronoiDiagram[i].Centroid.X,
@@ -160,20 +160,20 @@ namespace terrain
                     };
                     foreach (var j in VoronoiDiagram[i].Coordinates.Skip(1))
                     {
-                        Node n = graph.Find(j);
-                        MapNode mapNode;
-                        if (!nodeDict.TryGetValue(n, out mapNode))
+                        var n = graph.Find(j);
+                        if (!nodeDict.TryGetValue(n, out var mapNode))
                         {
                             mapNode = new MapNode() { X = j.X, Y = j.Y };
                             dats[mapNode] = new Tuple<HashSet<MapPolygon>, HashSet<MapEdge>>(new HashSet<MapPolygon>() { poly }, new HashSet<MapEdge>());
                         }
                         else
-                            dats[mapNode].Item1.Add(poly);
+                            _ = dats[mapNode].Item1.Add(poly);
                         nodes.Add(nodeDict[n] = mapNode);
                     }
                     poly.Nodes = nodes.ToArray();
                     polys.Add(poly, new HashSet<MapPolygon>());
                 }
+
                 foreach (var i in nodeDict)
                 {
                     foreach (var j in dats[i.Value].Item1)
@@ -187,15 +187,16 @@ namespace terrain
                     {
                         var from = nodeDict[graph.Find(j.Coordinate)];
                         var to = nodeDict[graph.Find(j.DirectedCoordinate)];
-                        dats[from].Item2.Add(new MapEdge() { From = from, To = to });
+                        _ = dats[from].Item2.Add(new MapEdge() { From = from, To = to });
                     }
                 }
-                int ftrh = dats.Count(_ => _.Value.Item2.Count == 0);
+
+                var ftrh = dats.Count(_ => _.Value.Item2.Count == 0);
                 foreach (var i in dats)
                     i.Key.Edges = i.Value.Item2.ToArray();
 
                 var x = polys.ToArray();
-                for (int i = 0; i < x.Length; i++)
+                for (var i = 0; i < x.Length; i++)
                 {
                     x[i].Key.Neighbours = x[i].Value.ToList();
                     x[i].Key.Id = i;
@@ -217,7 +218,7 @@ namespace terrain
                     {
                         j.IsWater = true;
                         i.IsWater = true;
-                        waters.Add(j);
+                        _ = waters.Add(j);
                     }
                 }
             }
@@ -235,13 +236,13 @@ namespace terrain
 
             // Cluster biomes together in blobs using a flood-fill approach
 
-            List<MapPolygon> unvisited = new List<MapPolygon>(MapPolygons);
-            List<string> availableBiomes = new List<string>(Biomes);
+            var unvisited = new List<MapPolygon>(MapPolygons);
+            var availableBiomes = new List<Biome>(Biomes);
 
             while (unvisited.Count > 0)
             {
                 int size = Random.Next(blobSize / 2, blobSize + 1);
-                string currentBiome;
+                Biome currentBiome;
 
                 if (availableBiomes.Count > 0)
                 {
@@ -253,8 +254,8 @@ namespace terrain
                     currentBiome = Biomes[BiomeSeed.Next(Biomes.Length)];
                 }
 
-                MapPolygon startPolygon = unvisited[Random.Next(unvisited.Count)];
-                Queue<MapPolygon> queue = new Queue<MapPolygon>();
+                var startPolygon = unvisited[Random.Next(unvisited.Count)];
+                var queue = new Queue<MapPolygon>();
                 queue.Enqueue(startPolygon);
 
                 while (queue.Count > 0 && size > 0)
@@ -263,7 +264,7 @@ namespace terrain
                     if (!unvisited.Contains(currentPolygon))
                         continue;
 
-                    unvisited.Remove(currentPolygon);
+                    _ = unvisited.Remove(currentPolygon);
                     currentPolygon.Biome = currentBiome;
                     size--;
 
@@ -276,12 +277,13 @@ namespace terrain
             }
 
             FindLakesAndCoasts();
+            GenerateRoads(roadChance);
         }
 
         public void FindLakesAndCoasts()
         {
             var lake = new HashSet<MapPolygon>(MapPolygons.Where(_ => _.IsWater));
-            var  coast = new HashSet<MapPolygon>();
+            var coast = new HashSet<MapPolygon>();
             var start = MapPolygons.First(_ => _.Nodes.Any(__ => __.X == -1 && __.Y == -1));
             _ = lake.Remove(start);
 
@@ -304,110 +306,77 @@ namespace terrain
             foreach (var i in lake)
             {
                 i.IsOcean = false;
-                i.IsCoast =true;
+                i.IsCoast = true;
             }
             foreach (var i in coast)
                 i.IsCoast = true;
         }
+
+        public void GenerateRoads(double roadChance)
+        {
+            foreach (var poly in MapPolygons)
+            {
+                if (poly.IsWater)
+                    continue;
+                if (poly.IsCoast)
+                    continue;
+                if (poly.Neighbours.Any(_ => _.IsCoast))
+                    continue;
+
+                poly.IsRoad = Random.NextDouble() <= roadChance;
+            }
+        }
+
+        public List<Tuple<MapPolygon, MapPolygon>> ConnectRoadPolygons(List<MapPolygon> roadPolygons)
+        {
+            var connectedEdges = new List<Tuple<MapPolygon, MapPolygon>>();
+            var unvisited = new HashSet<MapPolygon>(roadPolygons);
+            var visited = new HashSet<MapPolygon>();
+
+            if (unvisited.Count == 0)
+                return connectedEdges;
+
+            var start = unvisited.First();
+            _ = unvisited.Remove(start);
+            _ = visited.Add(start);
+
+            while (unvisited.Count > 0)
+            {
+                double minDistance = double.MaxValue;
+                MapPolygon minFrom = null, minTo = null;
+
+                foreach (var from in visited)
+                {
+                    foreach (var to in unvisited)
+                    {
+                        double distance = EuclideanDistance(from, to);
+                        if (distance < minDistance)
+                        {
+                            minDistance = distance;
+                            minFrom = from;
+                            minTo = to;
+                        }
+                    }
+                }
+
+                if (minFrom != null && minTo != null)
+                {
+                    connectedEdges.Add(new Tuple<MapPolygon, MapPolygon>(minFrom, minTo));
+                    _ = visited.Add(minTo);
+                    _ = unvisited.Remove(minTo);
+                }
+                else
+                    break;
+            }
+
+            return connectedEdges;
+        }
+
+        public double EuclideanDistance(MapPolygon a, MapPolygon b)
+        {
+            double dx = a.CentroidX - b.CentroidX;
+            double dy = a.CentroidY - b.CentroidY;
+            return Math.Sqrt(dx * dx + dy * dy);
+        }
     }
 }
- 
-//// Cluster biomes together in blobs using a flood-fill approach
-//int minBlobSize = 500; // Adjust this value to control the minimum size of each biome blob
-//int maxBlobSize = 1000; // Adjust this value to control the maximum size of each biome blob
-
-//List<MapPolygon> unvisited = new List<MapPolygon>(Polygons);
-//List<string> availableBiomes = new List<string>(Biomes);
-
-//while (unvisited.Count > 0)
-//{
-//    int blobSize = Random.Next(minBlobSize, maxBlobSize + 1);
-//    string currentBiome;
-
-//    if (availableBiomes.Count > 0)
-//    {
-//        currentBiome = availableBiomes[Random.Next(availableBiomes.Count)];
-//        availableBiomes.Remove(currentBiome);
-//    }
-//    else
-//    {
-//        currentBiome = Biomes[Random.Next(Biomes.Length)];
-//    }
-
-//    MapPolygon startPolygon = unvisited[Random.Next(unvisited.Count)];
-//    Queue<MapPolygon> queue = new Queue<MapPolygon>();
-//    queue.Enqueue(startPolygon);
-
-//    while (queue.Count > 0 && blobSize > 0)
-//    {
-//        MapPolygon currentPolygon = queue.Dequeue();
-//        if (!unvisited.Contains(currentPolygon))
-//            continue;
-
-//        unvisited.Remove(currentPolygon);
-//        currentPolygon.Biome = currentBiome;
-//        blobSize--;
-
-//        foreach (MapPolygon neighbor in currentPolygon.Neighbour)
-//        {
-//            if (unvisited.Contains(neighbor))
-//                queue.Enqueue(neighbor);
-//        }
-//    }
-//}
-//    }
-//}
-
-//public static double Clamp01(double value)
-//        {
-//            return value < 0.0 ? 0.0 : (value > 1.0 ? 1.0 : value);
-//        }
-//    }
-//}
-//// Cluster biomes together in blobs using a flood-fill approach
-//int minBlobSize = 5; // Adjust this value to control the minimum size of each biome blob
-//int maxBlobSize = 10; // Adjust this value to control the maximum size of each biome blob
-
-//List<MapPolygon> unvisited = new List<MapPolygon>(Polygons);
-//List<string> availableBiomes = new List<string>(Biomes);
-
-//while (unvisited.Count > 0)
-//{
-//    int blobSize = Random.Next(minBlobSize, maxBlobSize + 1);
-//    string currentBiome;
-
-//    if (availableBiomes.Count > 0)
-//    {
-//        currentBiome = availableBiomes[Random.Next(availableBiomes.Count)];
-//        availableBiomes.Remove(currentBiome);
-//    }
-//    else
-//    {
-//        currentBiome = Biomes[Random.Next(Biomes.Length)];
-//    }
-
-//    MapPolygon startPolygon = unvisited[Random.Next(unvisited.Count)];
-//    Queue<MapPolygon> queue = new Queue<MapPolygon>();
-//    queue.Enqueue(startPolygon);
-
-//    while (queue.Count > 0 && blobSize > 0)
-//    {
-//        MapPolygon currentPolygon = queue.Dequeue();
-//        if (!unvisited.Contains(currentPolygon))
-//            continue;
-
-//        unvisited.Remove(currentPolygon);
-//        currentPolygon.Biome = currentBiome;
-//        blobSize--;
-
-//        foreach (MapPolygon neighbor in currentPolygon.Neighbour)
-//        {
-//            if (unvisited.Contains(neighbor))
-//                queue.Enqueue(neighbor);
-//        }
-//    }
-//}
-//}
-//    }
-//    }
-//}
