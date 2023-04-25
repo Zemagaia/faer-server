@@ -47,7 +47,7 @@ public class World
     public HashSet<string> Invites { get; set; }
     public Dictionary<string, Player> InviteDict { get; set; }
 
-    public Wmap Map { get; private set; }
+    public Map Map { get; private set; }
     public bool Deleted { get; protected set; }
 
     private long _elapsedTime;
@@ -265,7 +265,7 @@ public class World
 
         if (Map == null)
         {
-            Map = new Wmap(Manager.Resources.GameData);
+            Map = new Map(Manager.Resources.GameData);
             Interlocked.Add(ref _entityInc, Map.Load(dTiles, _entityInc));
             if (Blocking == 3)
                 Sight.CalcRegionBlocks(Map);
@@ -282,7 +282,7 @@ public class World
 
         if (Map == null)
         {
-            Map = new Wmap(Manager.Resources.GameData);
+            Map = new Map(Manager.Resources.GameData);
             Interlocked.Add(ref _entityInc, Map.Load(dat, _entityInc));
             if (Blocking == 3)
                 Sight.CalcRegionBlocks(Map);

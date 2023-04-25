@@ -110,7 +110,7 @@ internal class EnemyAoe : CycleBehavior
                     }
                     else if (entity is Enemy e && !_players)
                     {
-                        e.Damage(host.GetPlayerOwner(), time, _damage, _noDef);
+                        e.Damage(host.GetPlayerOwner(), time, _damage);
                         e.ApplyConditionEffect(_effect, _effectDuration);
                     }
                 }

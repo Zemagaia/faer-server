@@ -169,7 +169,7 @@ public class Sight
         return _sCircle;
     }
 
-    private void CalcUnblockedSight(Wmap map)
+    private void CalcUnblockedSight(Map map)
     {
         _sCircle.Clear();
         var unblockedView = _unblockedView;
@@ -185,7 +185,7 @@ public class Sight
         }
     }
 
-    private void CalcRegionBlockSight(Wmap map)
+    private void CalcRegionBlockSight(Map map)
     {
         var sRegion = map[LastX, LastY].SightRegion;
 
@@ -205,7 +205,7 @@ public class Sight
         }
     }
 
-    private void CalcBlockedRoomSight(Wmap map)
+    private void CalcBlockedRoomSight(Map map)
     {
         var height = map.Height;
         var width = map.Width;
@@ -255,7 +255,7 @@ public class Sight
         _visibleTilesList.AddRange(tilesToAdd);
     }
 
-    private void CalcBlockedLineOfSight(Wmap map)
+    private void CalcBlockedLineOfSight(Map map)
     {
         _sCircle.Clear();
         var rays = _sightRays;
@@ -283,7 +283,7 @@ public class Sight
             }
     }
 
-    public static void CalcRegionBlocks(Wmap map)
+    public static void CalcRegionBlocks(Map map)
     {
         var i = 0;
         for (var x = 0; x < map.Width; x++)
@@ -297,7 +297,7 @@ public class Sight
         }
     }
 
-    private static void CalcRegion(Wmap map, int pIndex, int sx, int sy)
+    private static void CalcRegion(Map map, int pIndex, int sx, int sy)
     {
         VisibleTilesList.Clear();
         VisibleTilesSet.Clear();
@@ -339,7 +339,7 @@ public class Sight
         }
     }
 
-    public static void UpdateRegion(Wmap map, int ox, int oy)
+    public static void UpdateRegion(Map map, int ox, int oy)
     {
         var op = new IntPoint(ox, oy);
         var p = new IntPoint();
@@ -409,7 +409,7 @@ public class Sight
         }
     }
 
-    private static bool IsBlocking(WmapTile tile)
+    private static bool IsBlocking(MapTile tile)
     {
         return tile.ObjType != 0 &&
                tile.ObjDesc != null &&

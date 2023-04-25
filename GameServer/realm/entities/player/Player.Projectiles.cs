@@ -9,7 +9,7 @@ public partial class Player
         long time, float x, float y, float angle, int projectileId)
     {
         bulletId = id;
-        return CreateProjectile(desc, objType, (int)Stats.GetAttackDamage(desc),
+        return CreateProjectile(desc, objType,
             time, x, y, angle, projectileId);
     }
 }

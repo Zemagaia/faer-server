@@ -48,17 +48,18 @@ public class StaticObject : Entity
 
     public override bool HitByProjectile(Projectile projectile, RealmTime time)
     {
-        if (Vulnerable && projectile.ProjectileOwner is Player p)
-        {
-            var dmg = (int)StatsManager.GetDefenseDamage(this, projectile.Damage, projectile.DamageType, p);
+        if (!Vulnerable || projectile.ProjectileOwner is not Player p) 
+            return true;
+        
+        var dmg = (int)(StatsManager.GetPhysDamage(this, projectile.PhysDamage, p) + 
+                        StatsManager.GetMagicDamage(this, projectile.MagicDamage, p) + 
+                        StatsManager.GetTrueDamage(this, projectile.TrueDamage, p));
                 
-            foreach (var player in Owner.Players.Values)
-            {
-                if (MathUtils.DistSqr(p.X, p.Y, X, Y) < 16 * 16)
-                    player.Client.SendDamage(this.Id, 0, (ushort)dmg, !CheckHP(), projectile.BulletId, projectile.ProjectileOwner.Self.Id);
-            }
-            HP -= dmg;
-        }
+        foreach (var player in Owner.Players.Values)
+            if (MathUtils.DistSqr(p.X, p.Y, X, Y) < 16 * 16)
+                player.Client.SendDamage(this.Id, 0, (ushort)dmg, !CheckHP(), projectile.BulletId, projectile.ProjectileOwner.Self.Id);
+            
+        HP -= dmg;
 
         return true;
     }

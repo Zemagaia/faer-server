@@ -328,7 +328,7 @@ partial class Player {
         var enemies = new List<Enemy>();
         Owner.AOE(target, eff.Radius, false, enemy => {
             enemies.Add(enemy as Enemy);
-            totalDmg += ((Enemy) enemy).Damage(this, time, (int) eff.Amount, false);
+            totalDmg += ((Enemy) enemy).Damage(this, time, (int) eff.Amount);
         });
 
         var players = new List<Player>();

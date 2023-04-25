@@ -123,15 +123,15 @@ internal class SetPieces
     {
         var manager = world.Manager;
         var ms = new MemoryStream(proto.mapData);
-        var sp = new Wmap(manager.Resources.GameData);
+        var sp = new Map(manager.Resources.GameData);
         sp.Load(ms, 0);
         sp.ProjectOntoWorld(world, pos);
     }
 
-    public static Wmap GetWmap(RealmManager manager, ProtoWorld proto)
+    public static Map GetWmap(RealmManager manager, ProtoWorld proto)
     {
         var ms = new MemoryStream(proto.mapData);
-        var wmap = new Wmap(manager.Resources.GameData);
+        var wmap = new Map(manager.Resources.GameData);
         wmap.Load(ms, 0);
         return wmap;
     }

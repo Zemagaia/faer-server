@@ -31,11 +31,12 @@ public class ProjectileDesc
 {
     public readonly int BulletType;
     public readonly string ObjectId;
-    public readonly DamageTypes DamageType;
     public readonly float LifetimeMS;
     public readonly float Speed;
     public readonly int Size;
     public readonly int Damage;
+    public readonly int MagicDamage;
+    public readonly int TrueDamage;
 
     public readonly bool MultiHit;
     public readonly bool PassesCover;
@@ -58,7 +59,6 @@ public class ProjectileDesc
     {
         BulletType = e.GetAttribute<int>("id");
         ObjectId = e.GetValue<string>("ObjectId");
-        DamageType = e.ParseDamageType("DamageType");
         LifetimeMS = e.GetValue<float>("LifetimeMS");
         Speed = e.GetValue<float>("Speed", 100);
         Size = e.GetAttribute("Size", 100);
@@ -66,6 +66,14 @@ public class ProjectileDesc
         var dmg = e.Element("Damage");
         if (dmg != null)
             Damage = e.GetValue<int>("Damage");
+        
+        var magicDmg = e.Element("MagicDamage");
+        if (magicDmg != null)
+            MagicDamage = e.GetValue<int>("MagicDamage");
+        
+        var trueDmg = e.Element("TrueDamage");
+        if (trueDmg != null)
+            TrueDamage = e.GetValue<int>("TrueDamage");
 
         List<ConditionEffect> effects = new();
         foreach (var i in e.Elements("ConditionEffect"))
@@ -531,7 +539,7 @@ public class ObjectDesc
     public readonly int SizeStep;
     public readonly ProjectileDesc[] Projectiles;
     public readonly int MaxHP;
-    public readonly int Armor;
+    public readonly int Defense;
     public readonly int Resistance;
     public readonly int Tenacity;
     public readonly int Agility;
@@ -555,7 +563,7 @@ public class ObjectDesc
         BlocksSight = e.HasElement("BlocksSight");
         Enemy = e.HasElement("Enemy");
         MaxHP = e.GetValue<int>("Health");
-        Armor = e.GetValue<int>("Armor");
+        Defense = e.GetValue<int>("Defense");
         Resistance = e.GetValue<int>("Resistance");
         Tenacity = e.GetValue<int>("Tenacity");
         Agility = e.GetValue("Agility", 50);

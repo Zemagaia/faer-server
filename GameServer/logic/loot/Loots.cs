@@ -52,15 +52,10 @@ public class Loot : List<ILootDef>
         }
     }
 
-    public static readonly ushort BrownBag = 0x0407;
-    public static readonly ushort BlackBag = 0x0408;
-    private static readonly ushort EggBasket = 0x0409;
-    private static readonly ushort BlueBag = 0x040A;
-    private static readonly ushort GreyBag = 0x040B;
-    private static readonly ushort GoldenBag = 0x040C;
-    private static readonly ushort RedBag = 0x040D;
-    private static readonly ushort PinkBag = 0x040E;
-    private static readonly ushort CyanBag = 0x040F;
+    public static readonly ushort BrownBag = 0x0500;
+    public static readonly ushort PurpleBag = 0x0507;
+    private static readonly ushort BlueBag = 0x0508;
+    private static readonly ushort WhiteBag = 0x0509;
 
     public void Handle(Enemy enemy)
     {
@@ -116,16 +111,13 @@ public class Loot : List<ILootDef>
                 bag = BrownBag;
                 break;
             case 1:
-                bag = BlackBag;
+                bag = PurpleBag;
                 break;
             case 2:
-                bag = EggBasket;
-                break;
-            case 3:
                 bag = BlueBag;
                 break;
-            case 4:
-                bag = GreyBag;
+            case 3:
+                bag = WhiteBag;
                 break;
         }
 
@@ -135,7 +127,7 @@ public class Loot : List<ILootDef>
         container.Move(
             enemy.X + (float)((Rand.NextDouble() * 2 - 1) * 0.5),
             enemy.Y + (float)((Rand.NextDouble() * 2 - 1) * 0.5));
-        container.SetDefaultSize((ushort) (bagType > 3 ? 110 : 80));
+        container.SetDefaultSize(100);
         enemy.Owner.EnterWorld(container);
         container.AlwaysTick = true;
     }

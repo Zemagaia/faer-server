@@ -580,7 +580,7 @@ public partial class Entity : IProjectileOwner, ICollidable<Entity> {
         }
     }
 
-    public Projectile CreateProjectile(ProjectileDesc desc, ushort container, int dmg, long time, float x, float y,
+    public Projectile CreateProjectile(ProjectileDesc desc, ushort container, long time, float x, float y,
         float angle, int projectileId) {
         var ret = new Projectile(Manager, desc) //Assume only one
         {
@@ -588,8 +588,9 @@ public partial class Entity : IProjectileOwner, ICollidable<Entity> {
             BulletId = bulletId++,
             ProjectileId = (byte) projectileId,
             Container = container,
-            Damage = dmg,
-            DamageType = desc.DamageType,
+            PhysDamage = desc.Damage,
+            MagicDamage = desc.MagicDamage,
+            TrueDamage = desc.TrueDamage,
 
             CreationTime = time,
             StartPos = new Position {X = x, Y = y},

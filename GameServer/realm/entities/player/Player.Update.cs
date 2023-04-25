@@ -129,7 +129,7 @@ public partial class Player
         {
             var x = point.X;
             var y = point.Y;
-            var tile = Owner?.Map[x, y] ?? new WmapTile();
+            var tile = Owner?.Map[x, y] ?? new MapTile();
 
             if (tile.TileType == 255 ||
                 tiles[x, y] >= tile.UpdateCount)
@@ -266,7 +266,7 @@ public partial class Player
 
         foreach (var i in visibleTiles)
         {
-            var tile = Owner?.Map[i.X, i.Y] ?? new WmapTile();
+            var tile = Owner?.Map[i.X, i.Y] ?? new MapTile();
 
             if (tile.ObjId != 0 && tile.ObjType != 0 && _clientStatic.Add(i))
                 _newStatics.Add(tile.ToDef(i.X, i.Y));

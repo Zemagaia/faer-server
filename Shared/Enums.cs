@@ -1,9 +1,4 @@
-﻿using System;
-using System.Xml.Linq;
-using NLog.LayoutRenderers;
-using StackExchange.Redis;
-
-namespace Shared; 
+﻿namespace Shared; 
 
 public enum ItemType
 {

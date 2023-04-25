@@ -541,7 +541,9 @@ public partial class Player : Character, IContainer, IPlayer {
         if (projectile.ProjectileOwner is Player || IsInvulnerable())
             return false;
 
-        var dmg = (int)(Stats.GetDefenseDamage(projectile.Damage, projectile.DamageType) * HitMultiplier);
+        var dmg = (int)(Stats.GetPhysicalDamage(projectile.PhysDamage, this) + 
+                        Stats.GetMagicDamage(projectile.MagicDamage, this) +
+                        Stats.GetTrueDamage(projectile.TrueDamage));
         HP -= dmg;
 
         ApplyConditionEffect(projectile.ProjDesc.Effects);
@@ -563,7 +565,7 @@ public partial class Player : Character, IContainer, IPlayer {
         if (IsInvulnerable())
             return;
 
-        dmg = (int)(Stats.GetDefenseDamage(dmg, DamageTypes.Physical, noDef) * HitMultiplier);
+        dmg = (int)Stats.GetPhysicalDamage(dmg, this);
         HP -= dmg;
 
         foreach (var p in Owner.Players.Values)
@@ -745,7 +747,7 @@ public partial class Player : Character, IContainer, IPlayer {
         }
     }
 
-    public void Death(string killer, Entity entity = null, WmapTile? tile = null, bool rekt = false) {
+    public void Death(string killer, Entity entity = null, MapTile? tile = null, bool rekt = false) {
         if (_dead)
             return;
 

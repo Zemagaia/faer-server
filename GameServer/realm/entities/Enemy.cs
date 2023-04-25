@@ -50,11 +50,10 @@ public class Enemy : Character
         Owner.LeaveWorld(this);
     }
 
-    public int Damage(Player from, RealmTime time, int dmg, bool noDef, bool dmgTypeDelayed = false,
-        DamageTypes damageType = DamageTypes.Magical, params ConditionEffect[] effs)
+    public int Damage(Player from, RealmTime time, int dmg, params ConditionEffect[] effs)
     {
         if (stat || Owner == null) return 0;
-        dmg = (int)(StatsManager.GetDefenseDamage(this, dmg, damageType, from) * from.DamageMultiplier);
+        dmg = (int)(StatsManager.GetPhysDamage(this, dmg, from));
         if (!HasConditionEffect(ConditionEffects.Invulnerable))
             HP -= dmg;
         ApplyConditionEffect(effs);
@@ -79,7 +78,10 @@ public class Enemy : Character
             projectile.ProjectileOwner is not Player p)
             return false;
             
-        var dmg = (int)(StatsManager.GetDefenseDamage(this, projectile.Damage, projectile.DamageType, p) * p.DamageMultiplier);
+        var dmg = (int)(StatsManager.GetPhysDamage(this, projectile.PhysDamage, p) + 
+                        StatsManager.GetMagicDamage(this, projectile.MagicDamage, p) + 
+                        StatsManager.GetTrueDamage(this, projectile.TrueDamage, p));
+        
         if (!HasConditionEffect(ConditionEffects.Invulnerable))
             HP -= dmg;
         ApplyConditionEffect(projectile.ProjDesc.Effects);

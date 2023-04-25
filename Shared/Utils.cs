@@ -482,14 +482,6 @@ public static class ParseUtils
         return (ushort)(value.StartsWith("0x") ? int.Parse(value.Substring(2), NumberStyles.HexNumber) : int.Parse(value));
     }
 
-    public static DamageTypes ParseDamageType(this XElement element, string name, DamageTypes undefined = DamageTypes.Physical)
-    {
-        var value = name[0].Equals('@') ? element.Attribute(name.Remove(0, 1))?.Value : element.Element(name)?.Value;
-        if (string.IsNullOrWhiteSpace(value))
-            return undefined;
-        return (DamageTypes)Enum.Parse(typeof(DamageTypes), value.Replace(" ", ""));
-    }
-
     public static ConditionEffectIndex ParseConditionEffect(this XElement element, string name, ConditionEffectIndex undefined = ConditionEffectIndex.Dead)
     {
         var value = name[0].Equals('@') ? element.Attribute(name.Remove(0, 1))?.Value : element.Element(name)?.Value;

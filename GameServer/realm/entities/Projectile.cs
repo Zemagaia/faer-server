@@ -9,21 +9,21 @@ public interface IProjectileOwner
     Entity Self { get; }
 }
 
-public class Projectile : Entity
-{
-    public IProjectileOwner ProjectileOwner { get; init; }
-    public ushort Container { get; set; }
-    public ProjectileDesc ProjDesc { get; }
-    public long CreationTime { get; set; }
-    public long ServerCreationTime { get; set; }
+public class Projectile : Entity {
+    public IProjectileOwner ProjectileOwner;
+    public ushort Container;
+    public ProjectileDesc ProjDesc;
+    public long CreationTime;
+    public long ServerCreationTime;
     private int _elapsed;
 
-    public byte BulletId { get; init; }
-    public byte ProjectileId { get; init; }
-    public Position StartPos { get; init; }
-    public float Angle { get; init; }
-    public int Damage { get; init; }
-    public DamageTypes DamageType { get; init; }
+    public byte BulletId;
+    public byte ProjectileId;
+    public Position StartPos;
+    public float Angle;
+    public int PhysDamage;
+    public int MagicDamage;
+    public int TrueDamage;
 
     private readonly HashSet<Entity> _hit = new();
 

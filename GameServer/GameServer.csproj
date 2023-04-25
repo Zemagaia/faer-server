@@ -33,8 +33,4 @@
       </None>
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="logic\db\" />
-    </ItemGroup>
-
 </Project>
