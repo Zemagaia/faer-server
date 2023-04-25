@@ -431,8 +431,27 @@ namespace terrain
                     buff2[x, y] = (uint)overlayRasterizer.Buffer[x, y];
             buff2.Unlock();
 
+            var bmp3 = new Bitmap(MAP_SIZE, MAP_SIZE);
+            var buff3 = new BitmapBuffer(bmp3);
+            buff3.Lock();
+
+            for (var y = 0; y < MAP_SIZE; y++)
+                for (var x = 0; x < MAP_SIZE; x++)
+                {
+                    if (overlayRasterizer.Buffer[x, y] != Color.Transparent.ToArgb())
+                        buff3[x, y] = (uint)overlayRasterizer.Buffer[x, y];
+
+                    if (rasterizer.Buffer[x, y].RenderColor != Color.Magenta)
+                        buff3[x, y] = (uint)rasterizer.Buffer[x, y].RenderColor.ToArgb();
+                }
+            buff3.Unlock();
+
+            Image = bmp3;
+
             return (bmp, bmp2, rasterizer.Buffer);
         }
+
+        public static Bitmap Image;
         
         public static ushort GetObjectType(string idName)
         {
@@ -536,39 +555,13 @@ namespace terrain
                     tile.RenderColor = swapTile.RenderColor;
                     swapTile.RenderColor = t2;
 
+                    var t3 = tile.Biome;
+                    tile.Biome = swapTile.Biome;
+                    swapTile.Biome = t3;
+
                     buff[x, y] = tile;
                     buff[px, py] = swapTile;
                 }
-
-            //var ocean = GetTileType("Water");
-            //var water = GetTileType("Water Dark");
-            //for (var x = 8; x < MAP_SIZE - 8; x++)
-            //    for (var y = 8; y < MAP_SIZE - 8; y++)
-            //    {
-            //        var tile = buff[x, y];
-            //        var tileType = tile.Tile;
-
-            //        if (buff[x, y].Region != TileRegion.FM_Empty)
-            //            continue;
-
-            //        if (tileType == ocean || tileType == water)
-            //            continue;
-
-            //        var px = x + map.Random.Next(-2, 3);
-            //        var py = y + map.Random.Next(-2, 3);
-
-            //        var swapTile = buff[px, py];
-            //        tileType = swapTile.Tile;
-            //        if (tileType == ocean || tileType == water)
-            //            continue;
-
-            //        var temp = tile.Biome;
-            //        swapTile.Biome = tile.Biome;
-            //        tile.Biome = temp;
-
-            //        buff[x, y] = swapTile;
-            //        buff[px, py] = tile;
-            //    }
         }
 
             private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -812,6 +805,9 @@ namespace terrain
             data = ParseMap.Serialize(MapData, version);
             name = $"Map_V{version}.fm";
             File.WriteAllBytes(name, data);
+
+
+            Image.Save("Image.png");
         }
     }
 }
