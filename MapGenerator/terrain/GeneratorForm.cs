@@ -320,15 +320,15 @@ namespace terrain
                         case Biome.Volcanic:
                             tile.RenderColor = Color.FromArgb(124, 110, 124);
                             tile.Tile = GetTileType("Cobblestone Light");
+                            return tile;
+                        case Biome.Forest:
+                            tile.RenderColor = Color.FromArgb(86, 72, 70);
+                            tile.Tile = GetTileType("Dirt");
                             if (/*map.Random.NextDouble() >= 0.99 && */i % 128 == 0)
                             {
                                 tile.Region = TileRegion.Spawn;
                                 overlayRasterizer.PlotSqr(x, y, Color.Pink.ToArgb(), pointThickness);
                             }
-                            return tile;
-                        case Biome.Forest:
-                            tile.RenderColor = Color.FromArgb(86, 72, 70);
-                            tile.Tile = GetTileType("Dirt");
                             return tile;
                         case Biome.Desert:
                             tile.RenderColor = Color.FromArgb(255, 183, 128);
@@ -748,27 +748,22 @@ namespace terrain
                         wtr.Write(w);
                         wtr.Write(h);
 
-                        var lengthPos = ms.Position;
-                        wtr.Write((ushort)0);
-
                         var tiles = new List<MapTile>();
                         for (var y = 0; y < h; y++)
                             for (var x = 0; x < w; x++)
                             {
                                 var tile = mapTiles[x, y]; // dont need a null check here cus its a realm it has no whitespace
                                 if (!TilesContains(tiles, tile))
-                                {
                                     tiles.Add(tile);
-                                    wtr.Write(tile.Tile);
-                                    wtr.Write(tile.Object);
-                                    wtr.Write((byte)tile.Region);
-                                }
                             }
 
-                        var prevPos = ms.Position;
-                        ms.Position = lengthPos;
                         wtr.Write((ushort)tiles.Count);
-                        ms.Position = prevPos;
+                        foreach (var t in tiles)
+                        {
+                            wtr.Write((ushort)t.Tile);
+                            wtr.Write((ushort)t.Object);
+                            wtr.Write((byte)t.Region);
+                        }
 
                         var byteWrite = tiles.Count <= 256;
                         for (var y = 0; y < h; y++)
@@ -786,19 +781,20 @@ namespace terrain
                     return ZlibStream.CompressBuffer(ms.ToArray());
                 }
             }
-            private static bool TilesContains(List<MapTile> tiles, MapTile tile) => tiles.Any(_ =>
-                _.Tile == tile.Tile &&
-                _.Object == tile.Object &&
-                _.Region == tile.Region
-            );
+            private static bool TilesContains(List<MapTile> tiles, MapTile tile)
+            {
+                foreach (var t in tiles)
+                    if (t.Object == tile.Object && t.Tile == tile.Tile && t.Region == tile.Region)
+                        return true;
+                return false;
+            }
 
             private static short TilesIndexOf(List<MapTile> tiles, MapTile tile)
             {
-                short i = 0;
-                foreach(var t in tiles)
+                for (short i = 0; i < tiles.Count; i++)
                 {
-                    i++;
-                    if (t.Tile == tile.Tile && t.Object == tile.Object && t.Region == tile.Region)
+                    var t = tiles[i];
+                    if (t.Object == tile.Object && t.Tile == tile.Tile && t.Region == tile.Region)
                         return i;
                 }
                 return 0;

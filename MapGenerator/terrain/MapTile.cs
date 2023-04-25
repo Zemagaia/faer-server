@@ -19,6 +19,8 @@ namespace terrain
         public Biome Biome = Biome.None;
         public bool IsRoad = false;
 
+        public override string ToString() => $"{Tile} {Object} {(byte)Region}";
+
         public MapTile Clone()
         {
             return new MapTile()
