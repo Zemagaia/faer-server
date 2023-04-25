@@ -1,8 +1,11 @@
-﻿using Ionic.Zlib;
+﻿using GeoAPI.Geometries;
+using Ionic.Zlib;
 using Microsoft.Win32;
 using NetTopologySuite.Geometries;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -29,7 +32,6 @@ namespace terrain
         public bool ShowOcean => checkBox2.Checked;
         public bool RandomizeEdges => checkBox3.Checked;
 
-
         private void button1_Click(object sender, EventArgs e)
         {
             Generate();
@@ -52,14 +54,13 @@ namespace terrain
                 var biomeSeed = textBox2.Text.GetHashCode();
 
                 var map = new PolygonMap(seed, biomeSeed);
-                map.Generate(/*(int)numericUpDown1.Value*/ 32768 * 3, (int)numericUpDown2.Value, (int)numericUpDown3.Value);
+                map.Generate((int)numericUpDown1.Value, (int)numericUpDown2.Value, (int)numericUpDown3.Value, (double)numericUpDown5.Value);
                 CurrentMap = map;
 
                 ////var dat = CreateTerrain(map);
                 //new Biome(map).ComputeBiomes(dat);
 
                 RenderMap();
-
             }).ContinueWith(_ =>
             {
                 Generating = false;
@@ -68,7 +69,7 @@ namespace terrain
 
         public void RenderMap()
         {
-            if(CurrentMap == null) 
+            if (CurrentMap == null)
                 return;
 
             var (bitmap, bitmap2, mapData) = RenderPolygons(CurrentMap);
@@ -92,8 +93,12 @@ namespace terrain
             //Render lands poly
             foreach (var poly in map.MapPolygons)
             {
-                if (poly.IsWater)
+                if (poly.IsWater || beaches.Contains(poly))
+                {
+                    if (poly.IsWater)
+                        poly.Biome = Biome.None;
                     continue;
+                }
 
                 var points = new List<double>();
                 foreach (var polyNode in poly.Nodes)
@@ -104,24 +109,24 @@ namespace terrain
                 points.Add((poly.Nodes[0].X + 1) / 2 * MAP_SIZE);
                 points.Add((poly.Nodes[0].Y + 1) / 2 * MAP_SIZE);
 
-                var tile = new MapTile();
                 var color = Color.Magenta;
                 var type = GetTileType("Water Dark");
                 var region = TileRegion.FM_Empty;
                 var r = map.Random.NextDouble();
-                switch (poly.Biome)
+                var biome = poly.Biome;
+                switch (biome)
                 {
-                    case "Volcanic":
+                    case Biome.Volcanic:
                         color = Color.FromArgb(69, 78, 99);
                         type = GetTileType("Cobblestone");
                         region = r > 0.5 ? TileRegion.Biome_Volcanic_Encounter_Spawn : TileRegion.Biome_Volcanic_Setpiece_Spawn;
                         break;
-                    case "Forest":
+                    case Biome.Forest:
                         color = Color.FromArgb(65, 109, 93);
-                        type = GetTileType("Grass"); 
+                        type = GetTileType("Grass");
                         region = r > 0.5 ? TileRegion.Biome_Forest_Encounter_Spawn : TileRegion.Biome_Forest_Setpiece_Spawn;
                         break;
-                    case "Desert":
+                    case Biome.Desert:
                         color = Color.FromArgb(226, 178, 126);
                         type = GetTileType("Desert Sand");
                         region = r > 0.5 ? TileRegion.Biome_Desert_Encounter_Spawn : TileRegion.Biome_Desert_Setpiece_Spawn;
@@ -129,13 +134,16 @@ namespace terrain
                 }
 
                 // remove some regions
-                if(region != TileRegion.FM_Empty)
+
+                // no water
+                if (region != TileRegion.FM_Empty)
                     if (map.Random.NextDouble() > 0.5)
                         region = TileRegion.FM_Empty;
 
+                var tile = new MapTile();
                 tile.Tile = type;
-                //tile.Region = region;
                 tile.RenderColor = color;
+                tile.Biome = biome;
 
                 rasterizer.FillPolygon(points.ToArray(), tile);
 
@@ -156,14 +164,13 @@ namespace terrain
                     regionColor = Color.FromArgb(155, 0, 255);
                 else if (region >= TileRegion.Biome_Desert_Setpiece_Spawn && region <= TileRegion.Biome_Forest_Setpiece_Spawn)
                     regionColor = Color.FromArgb(0, 255, 173);
-                else if (region == TileRegion.Spawn)
-                    regionColor = Color.Green;
 
                 if (regionColor != Color.Transparent)
                 {
                     tile = new MapTile();
                     tile.Tile = type;
                     tile.Region = region;
+                    tile.Biome = biome;
                     rasterizer.Plot(cx, cy, tile);
                     overlayRasterizer.PlotSqr(cx, cy, regionColor.ToArgb(), pointThickness);
                 }
@@ -218,61 +225,32 @@ namespace terrain
                 points.Add((poly.Nodes[0].X + 1) / 2 * MAP_SIZE);
                 points.Add((poly.Nodes[0].Y + 1) / 2 * MAP_SIZE);
 
-                var tile = new MapTile();
-
-                var type = GetTileType("Dirt");
-                tile.RenderColor = Color.FromArgb(86, 72, 70);
-                tile.Tile = type;
-
-                rasterizer.FillPolygon(points.ToArray(), tile);
-
-                if (ShowGrid)
-                {
-                    overlayRasterizer.DrawPolygon(points.ToArray(), Color.White.ToArgb(), pointThickness);
-
-                    var cx = (int)((poly.CentroidX + 1) / 2 * MAP_SIZE);
-                    var cy = (int)((poly.CentroidY + 1) / 2 * MAP_SIZE);
-                    overlayRasterizer.PlotSqr(cx, cy, Color.Black.ToArgb(), pointThickness);
-                }
-            }
-
-
-            foreach (var poly in beaches)
-            {
-                var points = new List<double>();
-                foreach (var polyNode in poly.Nodes)
-                {
-                    points.Add((polyNode.X + 1) / 2 * MAP_SIZE);
-                    points.Add((polyNode.Y + 1) / 2 * MAP_SIZE);
-                }
-                points.Add((poly.Nodes[0].X + 1) / 2 * MAP_SIZE);
-                points.Add((poly.Nodes[0].Y + 1) / 2 * MAP_SIZE);
-
-                var tile = new MapTile();
-
                 if (!map.MapPolygons.Any(_ => poly.Neighbours.Contains(_)))
                     continue;
 
                 var color = Color.Magenta;
                 var type = GetTileType("Water Dark");
-                switch (poly.Biome)
+                var biome = poly.Biome;
+                switch (biome)
                 {
-                    case "Volcanic":
-                        color = Color.FromArgb(190, 155, 115);
-                        type = GetTileType("Wood Light");
+                    case Biome.Volcanic:
+                        color = Color.FromArgb(54, 57, 69);
+                        type = GetTileType("Cobblestone Dark");
                         break;
-                    case "Forest":
+                    case Biome.Forest:
                         color = Color.FromArgb(86, 72, 70);
                         type = GetTileType("Dirt");
                         break;
-                    case "Desert":
+                    case Biome.Desert:
                         color = Color.FromArgb(160, 128, 90);
-                        type = GetTileType("Darket Desert Sand");
+                        type = GetTileType("Dark Desert Sand");
                         break;
                 }
+
+                var tile = new MapTile();
                 tile.Tile = type;
                 tile.RenderColor = color;
-
+                tile.Biome = biome;
                 rasterizer.FillPolygon(points.ToArray(), tile);
 
                 if (ShowGrid)
@@ -286,16 +264,161 @@ namespace terrain
             }
 
             if (RandomizeEdges)
-            {
                 Randomize(map, rasterizer.Buffer);
+
+            var roadPolygons = map.MapPolygons.Where(p => p.IsRoad).ToList();
+            var connectedRoadEdges = map.ConnectRoadPolygons(roadPolygons);
+
+            var tension = (double)numericUpDown6.Value;
+
+            var i = 0;
+            foreach (var (from, to) in connectedRoadEdges)
+            {
+                var x1 = (from.CentroidX + 1) / 2 * MAP_SIZE;
+                var y1 = (from.CentroidY + 1) / 2 * MAP_SIZE;
+
+                var x2 = (to.CentroidX + 1) / 2 * MAP_SIZE;
+                var y2 = (to.CentroidY + 1) / 2 * MAP_SIZE;
+
+                // Calculate the midpoint
+                double midX = (x1 + x2) / 2;
+                double midY = (y1 + y2) / 2;
+
+                // Calculate the vector from start to end point
+                double dx = x2 - x1;
+                double dy = y2 - y1;
+
+                // Calculate a perpendicular vector
+                double perpX = -dy;
+                double perpY = dx;
+
+                // Normalize the perpendicular vector
+                double perpLength = Math.Sqrt(perpX * perpX + perpY * perpY);
+                perpX /= perpLength;
+                perpY /= perpLength;
+
+                // Offset the midpoint using the perpendicular vector
+                double offsetX = midX + perpX * tension;
+                double offsetY = midY + perpY * tension;
+
+                double[] points = { x1, y1, offsetX, offsetY, x2, y2 };
+
+                //overlayRasterizer.DrawLineBresenham(x1, y1, x2, y2, Color.Magenta.ToArgb(), pointThickness);
+                rasterizer.DrawCurveFunc(points, 1, (x, y, _) =>
+                {
+                    i++;
+
+                    var tile = _.Clone();
+                    tile.Region = TileRegion.FM_Empty;
+                    tile.IsRoad = true;
+                    switch (tile.Biome)
+                    {
+                        case Biome.None:
+                            tile.RenderColor = Color.FromArgb(106, 76, 65);
+                            tile.Tile = GetTileType("Wood Light");
+                            return tile;
+                        case Biome.Volcanic:
+                            tile.RenderColor = Color.FromArgb(124, 110, 124);
+                            tile.Tile = GetTileType("Cobblestone Light");
+                            if (/*map.Random.NextDouble() >= 0.99 && */i % 128 == 0)
+                            {
+                                tile.Region = TileRegion.Spawn;
+                                overlayRasterizer.PlotSqr(x, y, Color.Pink.ToArgb(), pointThickness);
+                            }
+                            return tile;
+                        case Biome.Forest:
+                            tile.RenderColor = Color.FromArgb(86, 72, 70);
+                            tile.Tile = GetTileType("Dirt");
+                            return tile;
+                        case Biome.Desert:
+                            tile.RenderColor = Color.FromArgb(255, 183, 128);
+                            tile.Tile = GetTileType("Sandstone Brick");
+                            return tile;
+                    }
+                    return _;
+                }, 3);
+
+                rasterizer.DrawCurveFunc(points, 1, (x, y, _) =>
+                {
+                    i++;
+                    switch (_.Biome)
+                    {
+                        case Biome.None:
+                            var tile = _.Clone();
+                            tile.Region = TileRegion.FM_Empty;
+                            tile.RenderColor = Color.Red;
+                            tile.Tile = GetTileType("Wood Light");
+                            tile.IsRoad = true;
+                            return tile;
+                    }
+                    return _;
+                }, 5);
             }
+
+            // populate the objects
+
+            var staticObjects = new Dictionary<Biome, List<(string, string)>>()
+            {
+                {
+                    Biome.Volcanic, new List<(string, string)>()
+                    {
+                        ("Dirt", "Rock"),
+                        (null, "Bones")
+                    }
+                },
+
+                {
+                    Biome.Forest, new List<(string, string)>()
+                    {
+                        (null, "Bush"),
+                        (null, "Grass"),
+                        (null, "Flowers"),
+                        (null, "Tree"),
+                        ("Dirt", "Vase")
+                    }
+                },
+
+                {
+                    Biome.Desert, new List<(string, string)>()
+                    {
+                        (null, "Cactus"),
+                        (null, "Tumbleweed")
+                    }
+                }
+            };
+
+            for (var y = 0; y < MAP_SIZE; y++)
+                for (var x = 0; x < MAP_SIZE; x++)
+                {
+                    var tile = rasterizer.Buffer[x, y];
+                    var biome = tile.Biome;
+
+                    // iterate all tiles and try to place a static
+                    if (biome == Biome.None || tile.IsRoad || tile.Region != TileRegion.FM_Empty || map.Random.NextDouble() <= (1.0 - 0.08))
+                        continue;
+
+                    tile = tile.Clone();
+
+                    var objs = staticObjects[biome];
+
+                    var obj = objs[map.Random.Next(objs.Count)];
+                    if(obj.Item1 != null && tile.Tile != GetTileType(obj.Item1))
+                        continue;
+
+                    tile.Object = GetObjectType(obj.Item2);
+
+                    tile.RenderColor = Color.White;
+
+                    rasterizer.Buffer[x, y] = tile;
+                }
+
 
             var bmp = new Bitmap(MAP_SIZE, MAP_SIZE);
             var buff = new BitmapBuffer(bmp);
             buff.Lock();
 
-            for (int y = 0; y < MAP_SIZE; y++)
-                for (int x = 0; x < MAP_SIZE; x++)
+            for (var y = 0; y < MAP_SIZE; y++)
+                for (var x = 0; x < MAP_SIZE; x++)
                     buff[x, y] = (uint)rasterizer.Buffer[x, y].RenderColor.ToArgb();
             buff.Unlock();
 
@@ -303,16 +426,45 @@ namespace terrain
             var buff2 = new BitmapBuffer(bmp2);
             buff2.Lock();
 
-            for (int y = 0; y < MAP_SIZE; y++)
-                for (int x = 0; x < MAP_SIZE; x++)
+            for (var y = 0; y < MAP_SIZE; y++)
+                for (var x = 0; x < MAP_SIZE; x++)
                     buff2[x, y] = (uint)overlayRasterizer.Buffer[x, y];
             buff2.Unlock();
+
             return (bmp, bmp2, rasterizer.Buffer);
         }
+        
+        public static ushort GetObjectType(string idName)
+        {
+            switch (idName)
+            {
+                case "Bush":
+                    return 0x0103;
+                case "Grass":
+                    return 0x0101;
+                case "Flowers":
+                    return 0x0104;
+                case "Tree":
+                    return 0x0100;
+                case "Vase":
+                    return 0x010b;
 
+                case "Cactus":
+                    return 0x111;
+                case "Tumbleweed":
+                    return 0x112;
+
+                case "Rock":
+                    return 0x0102;
+                case "Bones":
+                    return 0x010c;
+            }
+            return ushort.MaxValue;
+        }
+        
         public static ushort GetTileType(string tile)
         {
-            ushort type = 0x31;
+            ushort type = 0xFF;
             switch (tile)
             {
                 case "Water":
@@ -327,28 +479,29 @@ namespace terrain
                 case "Desert Sand":
                     type = 0x2b;
                     break;
+                case "Dark Desert Sand":
+                    type = 0x2c;
+                    break;
                 case "Grass":
                     type = 0x21;
                     break;
                 case "Dirt":
                     type = 0x22;
                     break;
+                case "Sandstone Brick":
+                    type = 0x79;
+                    break;
+                case "Cobblestone Light":
+                    type = 0x78;
+                    break;
+                case "Cobblestone Dark":
+                    type = 0x77;
+                    break;
+                case "Wood Light":
+                    type = 0x00;
+                    break;
             }
             return type;
-        }
-
-        void Randomize(PolygonMap map, string[,] buff)
-        {
-            for (int x = 8; x < MAP_SIZE - 8; x++)
-                for (int y = 8; y < MAP_SIZE - 8; y++)
-                {
-                    if (buff[x, y] == "Water Dark" || buff[x, y] == "Water")
-                        continue;
-                    var t = buff[x + map.Random.Next(-2, 3), y + map.Random.Next(-2, 3)];
-                    if (t == "Water Dark" || t == "Water")
-                        continue;
-                    buff[x, y] = t;
-                }
         }
 
         void Randomize(PolygonMap map, MapTile[,] buff)
@@ -358,7 +511,7 @@ namespace terrain
             for (var x = 8; x < MAP_SIZE - 8; x++)
                 for (var y = 8; y < MAP_SIZE - 8; y++)
                 {
-                    var tile = buff[x, y];
+                    var tile = buff[x, y].Clone();
                     var tileType = tile.Tile;
 
                     if (buff[x, y].Region != TileRegion.FM_Empty)
@@ -370,32 +523,55 @@ namespace terrain
                     var px = x + map.Random.Next(-2, 3);
                     var py = y + map.Random.Next(-2, 3);
 
-                    var swapTile = buff[px, py];
+                    var swapTile = buff[px, py].Clone();
                     tileType = swapTile.Tile;
                     if (tileType == ocean || tileType == water)
                         continue;
 
-                    buff[x, y] = swapTile;
-                    buff[px, py] = tile;
+                    var t = tile.Tile;
+                    tile.Tile = swapTile.Tile;
+                    swapTile.Tile = t;
+
+                    var t2 = tile.RenderColor;
+                    tile.RenderColor = swapTile.RenderColor;
+                    swapTile.RenderColor = t2;
+
+                    buff[x, y] = tile;
+                    buff[px, py] = swapTile;
                 }
+
+            //var ocean = GetTileType("Water");
+            //var water = GetTileType("Water Dark");
+            //for (var x = 8; x < MAP_SIZE - 8; x++)
+            //    for (var y = 8; y < MAP_SIZE - 8; y++)
+            //    {
+            //        var tile = buff[x, y];
+            //        var tileType = tile.Tile;
+
+            //        if (buff[x, y].Region != TileRegion.FM_Empty)
+            //            continue;
+
+            //        if (tileType == ocean || tileType == water)
+            //            continue;
+
+            //        var px = x + map.Random.Next(-2, 3);
+            //        var py = y + map.Random.Next(-2, 3);
+
+            //        var swapTile = buff[px, py];
+            //        tileType = swapTile.Tile;
+            //        if (tileType == ocean || tileType == water)
+            //            continue;
+
+            //        var temp = tile.Biome;
+            //        swapTile.Biome = tile.Biome;
+            //        tile.Biome = temp;
+
+            //        buff[x, y] = swapTile;
+            //        buff[px, py] = tile;
+            //    }
         }
 
-        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
-        {
-            Generate();
-        }
-
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
-            Generate();
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            Generate();
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+            private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             RenderMap();
         }
@@ -519,7 +695,19 @@ namespace terrain
 
         public static class ParseMap
         {
-            public static byte[] Serialize(MapTile[,] tiles)
+            public static byte[] Serialize(MapTile[,] tiles, int version)
+            {
+                switch (version)
+                {
+                    case 1:
+                        return SerializeV1(tiles);
+                    case 2:
+                        return SerializeV2(tiles);
+                }
+                return null;
+            }
+
+            private static byte[] SerializeV1(MapTile[,] tiles)
             {
                 var w = (ushort)tiles.GetLength(0);
                 var h = (ushort)tiles.GetLength(1);
@@ -544,11 +732,90 @@ namespace terrain
                     return ZlibStream.CompressBuffer(ms.ToArray());
                 }
             }
+
+            private static byte[] SerializeV2(MapTile[,] mapTiles)
+            {
+                var w = (ushort)mapTiles.GetLength(0);
+                var h = (ushort)mapTiles.GetLength(1);
+
+                using (var ms = new MemoryStream())
+                {
+                    using (var wtr = new BinaryWriter(ms))
+                    {
+                        wtr.Write((byte)2);
+                        wtr.Write((ushort)0); // this will have to be adjusted if client sizes change from 2048 to anything bigger
+                        wtr.Write((ushort)0); // this will have to be adjusted if client sizes change from 2048 to anything bigger
+                        wtr.Write(w);
+                        wtr.Write(h);
+
+                        var lengthPos = ms.Position;
+                        wtr.Write((ushort)0);
+
+                        var tiles = new List<MapTile>();
+                        for (var y = 0; y < h; y++)
+                            for (var x = 0; x < w; x++)
+                            {
+                                var tile = mapTiles[x, y]; // dont need a null check here cus its a realm it has no whitespace
+                                if (!TilesContains(tiles, tile))
+                                {
+                                    tiles.Add(tile);
+                                    wtr.Write(tile.Tile);
+                                    wtr.Write(tile.Object);
+                                    wtr.Write((byte)tile.Region);
+                                }
+                            }
+
+                        var prevPos = ms.Position;
+                        ms.Position = lengthPos;
+                        wtr.Write((ushort)tiles.Count);
+                        ms.Position = prevPos;
+
+                        var byteWrite = tiles.Count <= 256;
+                        for (var y = 0; y < h; y++)
+                            for (var x = 0; x < w; x++)
+                            {
+                                var tile = mapTiles[x, y]; // dont need a null check here cus its a realm it has no whitespace
+                                var idx = TilesIndexOf(tiles, tile);
+                                if (byteWrite)
+                                    wtr.Write((byte)idx);
+                                else
+                                    wtr.Write((ushort)idx);
+                            }
+
+                    }
+                    return ZlibStream.CompressBuffer(ms.ToArray());
+                }
+            }
+            private static bool TilesContains(List<MapTile> tiles, MapTile tile) => tiles.Any(_ =>
+                _.Tile == tile.Tile &&
+                _.Object == tile.Object &&
+                _.Region == tile.Region
+            );
+
+            private static short TilesIndexOf(List<MapTile> tiles, MapTile tile)
+            {
+                short i = 0;
+                foreach(var t in tiles)
+                {
+                    i++;
+                    if (t.Tile == tile.Tile && t.Object == tile.Object && t.Region == tile.Region)
+                        return i;
+                }
+                return 0;
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            File.WriteAllBytes("test.fm", ParseMap.Serialize(MapData));
+            var version = 1;
+            var data = ParseMap.Serialize(MapData, version);
+            var name = $"Map_V{version}.fm";
+            File.WriteAllBytes(name, data);
+
+            version = 2;
+            data = ParseMap.Serialize(MapData, version);
+            name = $"Map_V{version}.fm";
+            File.WriteAllBytes(name, data);
         }
     }
 }

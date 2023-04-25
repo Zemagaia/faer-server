@@ -60,6 +60,32 @@ namespace terrain
                     break;
             }
         }
+        public void PlotSqrFunc(double x, double y, Func<int, int, T, T> val, int w)
+        {
+            switch (w)
+            {
+                case 0: return;
+                case 1:
+                    Buffer[(int)x, (int)y] = val((int)x, (int)y, Buffer[(int)x, (int)y]); break;
+                case 2:
+                    Buffer[(int)x, (int)y] = val((int)x, (int)y, Buffer[(int)x, (int)y]);
+                    Buffer[(int)x + 1, (int)y] = val((int)x + 1, (int)y, Buffer[(int)x + 1, (int)y]);
+                    Buffer[(int)x, (int)y + 1] = val((int)x, (int)y + 1, Buffer[(int)x, (int)y + 1]);
+                    Buffer[(int)x + 1, (int)y + 1] = val((int)x + 1, (int)y + 1, Buffer[(int)x + 1, (int)y + 1]); break;
+                default:
+                    for (int _x = 0; _x < w; _x++)
+                        for (int _y = 0; _y < w; _y++)
+                        {
+                            var xCoord = (int)x + _x;
+                            var yCoord = (int)y + _y;
+                            if (xCoord < 0 || xCoord >= Buffer.GetLength(0) || yCoord < 0 || yCoord >= Buffer.GetLength(1))
+                                continue;
+
+                            Buffer[xCoord, yCoord] = val(xCoord, yCoord, Buffer[xCoord, yCoord]);
+                        }
+                    break;
+            }
+        }
 
         public void Clear(T val)
         {
@@ -354,6 +380,64 @@ namespace terrain
         }
 
 
+        void DrawCurveSegmentFunc(
+            double x1, double y1, double x2, double y2,
+            double x3, double y3, double x4, double y4,
+            double tension, Func<int, int, T, T> val, int width)
+        {
+            // Determine distances between controls points (bounding rect) to find the optimal stepsize
+            var minX = Math.Min(x1, Math.Min(x2, Math.Min(x3, x4)));
+            var minY = Math.Min(y1, Math.Min(y2, Math.Min(y3, y4)));
+            var maxX = Math.Max(x1, Math.Max(x2, Math.Max(x3, x4)));
+            var maxY = Math.Max(y1, Math.Max(y2, Math.Max(y3, y4)));
+
+            // Get slope
+            var lenx = maxX - minX;
+            var len = maxY - minY;
+            if (lenx > len)
+            {
+                len = lenx;
+            }
+
+            // Prevent divison by zero
+            if (len != 0)
+            {
+                // Init vars
+                var step = StepFactor / len;
+                double tx1 = x2;
+                double ty1 = y2;
+                double tx2, ty2;
+
+                // Calculate factors
+                var sx1 = tension * (x3 - x1);
+                var sy1 = tension * (y3 - y1);
+                var sx2 = tension * (x4 - x2);
+                var sy2 = tension * (y4 - y2);
+                var ax = sx1 + sx2 + 2 * x2 - 2 * x3;
+                var ay = sy1 + sy2 + 2 * y2 - 2 * y3;
+                var bx = -2 * sx1 - sx2 - 3 * x2 + 3 * x3;
+                var by = -2 * sy1 - sy2 - 3 * y2 + 3 * y3;
+
+                // Interpolate
+                for (var t = step; t <= 1; t += step)
+                {
+                    var tSq = t * t;
+
+                    tx2 = ax * tSq * t + bx * tSq + sx1 * t + x2;
+                    ty2 = ay * tSq * t + by * tSq + sy1 * t + y2;
+
+                    // Draw line
+                    DrawLineBresenhamFunc(tx1, ty1, tx2, ty2, val, width);
+                    tx1 = tx2;
+                    ty1 = ty2;
+                }
+
+                // Prevent rounding gap
+                DrawLineBresenhamFunc(tx1, ty1, x3, y3, val, width);
+            }
+        }
+
+
         public void DrawCurve(double[] points, double tension, T val, int width)
         {
             int pn = points.Length;
@@ -371,6 +455,144 @@ namespace terrain
             // Last segment
             DrawCurveSegment(points[i - 2], points[i - 1], points[i], points[i + 1], points[i + 2], points[i + 3], points[i + 2], points[i + 3], tension, val, width);
         }
+
+        public void DrawCurveFunc(double[] points, double tension, Func<int, int, T, T> val, int width)
+        {
+            int pn = points.Length;
+
+            // First segment
+            DrawCurveSegmentFunc(points[0], points[1], points[0], points[1], points[2], points[3], points[4], points[5], tension, val, width);
+
+            // Middle segments
+            int i;
+            for (i = 2; i < pn - 4; i += 2)
+            {
+                DrawCurveSegmentFunc(points[i - 2], points[i - 1], points[i], points[i + 1], points[i + 2], points[i + 3], points[i + 4], points[i + 5], tension, val, width);
+            }
+
+            // Last segment
+            DrawCurveSegmentFunc(points[i - 2], points[i - 1], points[i], points[i + 1], points[i + 2], points[i + 3], points[i + 2], points[i + 3], tension, val, width);
+        }
+
+        public void DrawLineBresenhamFunc(double x1, double y1, double x2, double y2, Func<int, int, T, T> val, int width)
+        {
+            // Use refs for faster access (really important!) speeds up a lot!
+            int w = Width;
+            int h = Height;
+            var pixels = Buffer;
+
+            // Distance start and end point
+            double dx = x2 - x1;
+            double dy = y2 - y1;
+
+            // Determine sign for direction x
+            int incx = 0;
+            if (dx < 0)
+            {
+                dx = -dx;
+                incx = -1;
+            }
+            else if (dx > 0)
+            {
+                incx = 1;
+            }
+
+            // Determine sign for direction y
+            int incy = 0;
+            if (dy < 0)
+            {
+                dy = -dy;
+                incy = -1;
+            }
+            else if (dy > 0)
+            {
+                incy = 1;
+            }
+
+            // Which gradient is larger
+            double pdx, pdy, odx, ody, es, el;
+            if (dx > dy)
+            {
+                pdx = incx;
+                pdy = 0;
+                odx = incx;
+                ody = incy;
+                es = dy;
+                el = dx;
+            }
+            else
+            {
+                pdx = 0;
+                pdy = incy;
+                odx = incx;
+                ody = incy;
+                es = dx;
+                el = dy;
+            }
+
+            // Init start
+            double x = x1;
+            double y = y1;
+            double error = el / 2;
+            if (y < h && y >= 0 && x < w && x >= 0)
+            {
+                Plot(x, y, val((int)x, (int)y, pixels[(int)x, (int)y]));
+            }
+
+            // Set limit
+            double lx, hx, ly, hy;
+            if (x1 < x2)
+            {
+                lx = x1;
+                hx = x2;
+            }
+            else
+            {
+                lx = x2;
+                hx = x1;
+            }
+            if (y1 < y2)
+            {
+                ly = y1;
+                hy = y2;
+            }
+            else
+            {
+                ly = y2;
+                hy = y1;
+            }
+
+            // Walk the line!
+            for (int i = 0; i < el; i++)
+            {
+                // Update error term
+                error -= es;
+
+                // Decide which coord to use
+                if (error < 0)
+                {
+                    error += el;
+                    x += odx;
+                    y += ody;
+                }
+                else
+                {
+                    x += pdx;
+                    y += pdy;
+                }
+                if (x > hx) x = hx;
+                else if (x < lx) x = lx;
+                if (y > hy) y = hy;
+                else if (y < ly) y = ly;
+
+                // Set pixel
+                if (y < h && y >= 0 && x < w && x >= 0)
+                {
+                    PlotSqrFunc(x, y, val, width);
+                }
+            }
+        }
+
         public void DrawClosedCurve(double[] points, double tension, T val, int width)
         {
             int pn = points.Length;
