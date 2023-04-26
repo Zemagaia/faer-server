@@ -12,6 +12,9 @@ public class Enemy : Character
     private readonly bool stat;
     public Enemy ParentEntity;
 
+    public bool RealmSpawn { get; set; }
+    public bool RealmEvent { get; set; }
+    
     public Enemy(RealmManager manager, ushort objType)
         : base(manager, objType)
     {
@@ -44,6 +47,8 @@ public class Enemy : Character
 
     public void Death(RealmTime time)
     {
+        Owner.RealmLogic?.OnDeath(this);
+        
         DamageCounter.Death(time);
         CurrentState?.OnDeath(new BehaviorEventArgs(this, time));
         OnDeath?.Invoke(this, new BehaviorEventArgs(this, time));

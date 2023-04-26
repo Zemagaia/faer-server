@@ -28,6 +28,7 @@ public struct ProtoWorld
     public string[] music;
     public string map;
     public byte[] mapData;
+    public string realm;
 }
 
 public class TauntData

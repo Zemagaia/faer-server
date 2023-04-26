@@ -41,11 +41,14 @@ public class World
     public bool ShowDisplays { get; protected set; }
     public bool Persist { get; protected set; }
     public int Blocking { get; protected set; }
+    public string Realm { get; protected set; }
+
     public string Music { get; set; }
     public bool PlayerDungeon { get; set; }
     public string Opener { get; set; }
     public HashSet<string> Invites { get; set; }
     public Dictionary<string, Player> InviteDict { get; set; }
+    public Realm RealmLogic{ get; set; }
 
     public Map Map { get; private set; }
     public bool Deleted { get; protected set; }
@@ -90,6 +93,7 @@ public class World
         AllowTeleport = !proto.restrictTp;
         ShowDisplays = proto.showDisplays;
         Blocking = proto.blocking;
+        Realm = proto.realm;
         Opener = "";
 
         var rnd = new Random();
@@ -152,7 +156,7 @@ public class World
     protected virtual void Init()
     {
         if (IsLimbo) return;
-
+        
         var proto = Proto;
 
         /*if (proto.maps != null && proto.maps.Length <= 0)
@@ -167,6 +171,9 @@ public class World
         FromWorldMap(new MemoryStream(proto.mapData));
 
         InitShops();
+
+        if (Realm != null)
+            RealmLogic = new Realm(this);
     }
 
     protected void InitShops()
@@ -310,7 +317,13 @@ public class World
         foreach (var i in Map.InstantiateEntities(Manager))
             EnterWorld(i);
     }
-
+    
+    public void WorldAnnouncement(string msg)
+    {
+        foreach (var player in Players.Values)
+            player.SendInfo(msg);
+    }
+    
     public virtual int EnterWorld(Entity entity)
     {
         if (entity is Player p)
@@ -523,6 +536,8 @@ public class World
 
             lock (_deleteLock)
             {
+                RealmLogic?.Tick(time);
+                
                 if (Deleted)
                     return;
 
