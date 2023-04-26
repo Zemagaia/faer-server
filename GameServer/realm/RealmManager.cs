@@ -84,7 +84,6 @@ public class RealmManager
         Commands = new CommandManager(this);
 
         InitializeGlobalWorlds();
-        AddWorld("Hub");
 
         // add portal monitor to nexus and initialize worlds
         if (Worlds.ContainsKey(World.Hub))
