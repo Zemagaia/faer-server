@@ -126,7 +126,7 @@ public class Vault : World
         }
     }
 
-    public override void Tick(RealmTime time)
+    /*public override void Tick(RealmTime time)
     {
         if (vaults != null && vaults.Count > 0)
         {
@@ -140,7 +140,7 @@ public class Vault : World
         }
 
         base.Tick(time);
-    }
+    }*/
 
     private void SaveChest(IContainer chest)
     {

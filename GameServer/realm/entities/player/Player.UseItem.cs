@@ -363,8 +363,10 @@ partial class Player {
             return;
 
         var oldPos = TryGetHistory(ticks);
-        if (oldPos.HasValue && !TileOccupied(oldPos.Value.X, oldPos.Value.Y)) 
-            TeleportPosition(Manager.Logic.WorldTime, oldPos.Value.X, oldPos.Value.Y);
+        if (oldPos.HasValue && !TileOccupied(oldPos.Value.X, oldPos.Value.Y)) {
+            AwaitGotoAck(time.TotalElapsedMs);
+            Client.SendGoto(Id, oldPos.Value.X, oldPos.Value.Y);
+        }
 
         var oldHp = TryGetHPHistory(ticks) ?? -1;
         var hpGain = Math.Max(0, oldHp - HP - item.HpCost);

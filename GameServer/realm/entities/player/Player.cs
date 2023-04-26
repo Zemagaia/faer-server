@@ -497,11 +497,10 @@ public partial class Player : Character, IContainer, IPlayer {
             ApplyConditionEffect(NegativeEffs);
         }
 
-        foreach (var plr in Owner.Players.Values) {
-            plr.AwaitGotoAck(time.TotalElapsedMs);
-            plr.Client.SendGoto(Id, position.X, position.Y);
+        AwaitGotoAck(time.TotalElapsedMs);
+        Client.SendGoto(Id, position.X, position.Y);
+        foreach (var plr in Owner.Players.Values)
             plr.Client.SendShowEffect(EffectType.Teleport, Id, position.X, position.Y, 0, 0, 0xFFFFFF);
-        }
     }
 
     public void Teleport(RealmTime time, int objId, bool ignoreRestrictions = false) {
@@ -847,7 +846,7 @@ public partial class Player : Character, IContainer, IPlayer {
 
     public override void Dispose() {
         base.Dispose();
-        _clientEntities.Dispose();
+        DisposeUpdate();
     }
 
     // allow other admins to see hidden people

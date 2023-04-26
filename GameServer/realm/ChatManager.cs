@@ -54,8 +54,9 @@ public class ChatManager : IDisposable
         if (string.IsNullOrWhiteSpace(text))
             return;
 
-        src.Client.SendText(src.Name, src.Id, 5, "", text, 
-            (uint)(src.Glow != 0 ? src.Glow : 0x123456), (uint)(src.Glow != 0 ? 0xFFFFFF : 0x123456));
+        foreach (var plr in src.Owner.Players.Values)
+            plr.Client.SendText(src.Name, src.Id, 5, "", text, 
+                (uint)(src.Glow != 0 ? src.Glow : 0x123456), (uint)(src.Glow != 0 ? 0xFFFFFF : 0x123456));
     }
 
     public void Announce(string text, bool local = false)

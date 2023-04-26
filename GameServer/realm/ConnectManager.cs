@@ -53,7 +53,7 @@ public class ConnectManager {
             }
 
             currentWorld.LeaveWorld(player);
-            //player.DisposeUpdate();
+            player.DisposeUpdate();
 
             var objectId = world.EnterWorld(player);
             client.SendCreateSuccess(objectId, client.Character.CharId);
