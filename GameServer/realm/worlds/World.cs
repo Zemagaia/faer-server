@@ -528,7 +528,7 @@ public class World
 
             if (IsLimbo) return;
 
-            if (!Persist && (this is Vault ? _elapsedTime > 5000 : _elapsedTime > 60000) && Players.Count <= 0)
+            if (!Persist && (this is Stash ? _elapsedTime > 5000 : _elapsedTime > 60000) && Players.Count <= 0)
             {
                 Delete();
                 return;

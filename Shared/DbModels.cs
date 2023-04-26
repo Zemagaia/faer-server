@@ -729,7 +729,7 @@ public abstract class RInventory : RedisObject
 
     public ushort[] Items
     {
-        get => GetValue<ushort[]>(Field) ?? Enumerable.Repeat((ushort)0xffff, 20).ToArray();
+        get => GetValue<ushort[]>(Field) ?? Enumerable.Repeat(ushort.MaxValue, 20).ToArray();
         set => SetValue(Field, value);
     }
 }
@@ -741,30 +741,12 @@ public class DbVaultSingle : RInventory
         Field = "vault." + vaultIndex;
         Init(acc.Database, "vault." + acc.AccountId, Field);
 
-        var items = GetValue<Item[]>(Field);
+        var items = GetValue<ushort[]>(Field);
         if (items != null)
             return;
 
         var trans = Database.CreateTransaction();
         SetValue<ushort[]>(Field, Items);
-        FlushAsync(trans);
-        trans.Execute(CommandFlags.FireAndForget);
-    }
-}
-
-public class DbGiftSingle : RInventory
-{
-    public DbGiftSingle(DbAccount acc, int giftIndex)
-    {
-        Field = "gift." + giftIndex;
-        Init(acc.Database, "vault." + acc.AccountId, Field);
-
-        var items = GetValue<Item[]>(Field);
-        if (items != null)
-            return;
-
-        var trans = Database.CreateTransaction();
-        SetValue(Field, Utils.ResizeArray(Items, 0));
         FlushAsync(trans);
         trans.Execute(CommandFlags.FireAndForget);
     }

@@ -556,8 +556,10 @@ public partial class Entity : IProjectileOwner, ICollidable<Entity> {
                 return new Portal(manager, id, null);
             case "GuildHallPortal":
                 return new GuildHallPortal(manager, id, null);
-            case "ClosedVaultChest":
+            
+            case "ClosedStashChest":
                 return new ClosedVaultChest(manager, id);
+            
             case "ClosedVaultChestGold":
             case "ClosedGiftChest":
             case "VaultChest":

@@ -169,6 +169,15 @@ public class RealmManager
         Config.serverInfo.playerList.Remove(plrInfo);
     }
 
+    public Stash CreateNewStash(Client client)
+    {
+        var proto = Resources.Worlds.Data["Stash"];
+        var id = Interlocked.Increment(ref _nextWorldId);
+        var stash = new Stash(proto, client);
+        AddWorld(id, stash);
+        return stash;
+    }
+    
     private void AddWorld(string name, bool actAsHub = false)
     {
         AddWorld(Resources.Worlds.Data[name], actAsHub);
@@ -239,7 +248,6 @@ public class RealmManager
     private void OnWorldAdded(World world)
     {
         world.Manager = this;
-
         Log.Info("World {0}({1}) added. {2} Worlds existing.", world.Id, world.Name, Worlds.Count);
     }
 

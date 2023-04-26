@@ -8,6 +8,7 @@ using GameServer.realm;
 using GameServer.realm.entities;
 using GameServer.realm.entities.player;
 using GameServer.realm.entities.vendors;
+using GameServer.realm.worlds;
 using GameServer.realm.worlds.logic;
 using NLog;
 using StackExchange.Redis;
@@ -1610,7 +1611,7 @@ public class Client {
         if (entity == null) {
             return;
         }
-
+        
         if (entity is GuildHallPortal guildHallPortal) {
             if (string.IsNullOrEmpty(Player.Guild)) {
                 Player.SendError("You are not in a guild.");
@@ -1627,9 +1628,16 @@ public class Client {
             }
         }
 
+        if (entity.ObjectType == 0x0707) // stash portal
+        {
+            // make a new stash every time????
+            Player.Reconnect(Player.Manager.CreateNewStash(Player.Client));
+            return;
+        }
+
         if (entity is not Portal portal || !portal.Usable)
             return;
-
+        
         lock (portal.CreateWorldLock) {
             var world = portal.WorldInstance;
             if (world != null) {

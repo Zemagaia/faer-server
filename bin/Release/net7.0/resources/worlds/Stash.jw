@@ -1,0 +1,12 @@
+{
+	"id": 0,
+	"isLimbo": false,
+	"persist": false,
+	"name": "Stash",
+	"sbName": "Stash",
+	"difficulty": -1,
+	"background": 0,
+	"map": "Stash.fm",
+	"portals": [ ],
+	"music": [""]
+}

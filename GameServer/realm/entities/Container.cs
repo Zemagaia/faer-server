@@ -44,15 +44,15 @@ public class Container : StaticObject, IContainer
     protected override void ExportStats(IDictionary<StatsType, object> stats)
     {
         if (Inventory == null) return;
-        stats[StatsType.Inv0] = Inventory[0]?.ObjectType ?? -1;
-        stats[StatsType.Inv1] = Inventory[1]?.ObjectType ?? -1;
-        stats[StatsType.Inv2] = Inventory[2]?.ObjectType ?? -1;
-        stats[StatsType.Inv3] = Inventory[3]?.ObjectType ?? -1;
-        stats[StatsType.Inv4] = Inventory[4]?.ObjectType ?? -1;
-        stats[StatsType.Inv5] = Inventory[5]?.ObjectType ?? -1;
-        stats[StatsType.Inv6] = Inventory[6]?.ObjectType ?? -1;
-        stats[StatsType.Inv7] = Inventory[7]?.ObjectType ?? -1;
-        stats[StatsType.OwnerAccountId] = (BagOwners.Length == 1 ? BagOwners[0] : -1).ToString();
+        stats[StatsType.Inv0] = Inventory[0]?.ObjectType ?? ushort.MaxValue;
+        stats[StatsType.Inv1] = Inventory[1]?.ObjectType ?? ushort.MaxValue;
+        stats[StatsType.Inv2] = Inventory[2]?.ObjectType ?? ushort.MaxValue;
+        stats[StatsType.Inv3] = Inventory[3]?.ObjectType ?? ushort.MaxValue;
+        stats[StatsType.Inv4] = Inventory[4]?.ObjectType ?? ushort.MaxValue;
+        stats[StatsType.Inv5] = Inventory[5]?.ObjectType ?? ushort.MaxValue;
+        stats[StatsType.Inv6] = Inventory[6]?.ObjectType ?? ushort.MaxValue;
+        stats[StatsType.Inv7] = Inventory[7]?.ObjectType ?? ushort.MaxValue;
+        stats[StatsType.OwnerAccountId] = (BagOwners.Length == 1 ? BagOwners[0] : ushort.MaxValue).ToString();
         base.ExportStats(stats);
     }
 
@@ -61,7 +61,7 @@ public class Container : StaticObject, IContainer
         if (Inventory == null)
             return;
 
-        if (ObjectType == 0x0403) //Vault chest
+        if (ObjectType == 0x0504) //Vault chest
             return;
             
         if (Inventory.Count(i => i.ObjectType != ushort.MaxValue) == 0)
