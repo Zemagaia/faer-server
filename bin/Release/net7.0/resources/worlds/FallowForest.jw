@@ -8,5 +8,6 @@
 	"background": 0,
 	"map": "FallowForest.fm",
 	"portals": [ 0x0703 ],
+	"realm": "forest",
 	"music": [""]
 }

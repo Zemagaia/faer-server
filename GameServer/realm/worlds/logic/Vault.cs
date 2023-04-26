@@ -43,7 +43,6 @@ public class Vault : World
     private void InitVault()
     {
         var vaultChestPosition = new List<IntPoint>();
-        var giftChestPosition = new List<IntPoint>();
         var spawn = new IntPoint(0, 0);
 
         var w = Map.Width;
@@ -58,20 +57,13 @@ public class Vault : World
                 case TileRegion.Spawn:
                     spawn = new IntPoint(x, y);
                     break;
-                case TileRegion.Vault:
+                case TileRegion.Stash:
                     vaultChestPosition.Add(new IntPoint(x, y));
-                    break;
-                case TileRegion.Gifting_Chest:
-                    giftChestPosition.Add(new IntPoint(x, y));
                     break;
             }
         }
 
         vaultChestPosition.Sort((x, y) => Comparer<int>.Default.Compare(
-            (x.X - spawn.X) * (x.X - spawn.X) + (x.Y - spawn.Y) * (x.Y - spawn.Y),
-            (y.X - spawn.X) * (y.X - spawn.X) + (y.Y - spawn.Y) * (y.Y - spawn.Y)));
-
-        giftChestPosition.Sort((x, y) => Comparer<int>.Default.Compare(
             (x.X - spawn.X) * (x.X - spawn.X) + (x.Y - spawn.Y) * (x.Y - spawn.Y),
             (y.X - spawn.X) * (y.X - spawn.X) + (y.Y - spawn.Y) * (y.Y - spawn.Y)));
 
@@ -92,26 +84,6 @@ public class Vault : World
         foreach (var i in vaultChestPosition)
         {
             var x = new ClosedVaultChest(_client.Manager, 0x0404);
-            x.Move(i.X + 0.5f, i.Y + 0.5f);
-            EnterWorld(x);
-        }
-
-        /*foreach (var i in _client.Account.ActiveGiftChests)
-        {
-            var giftChest = new DbGiftSingle(_client.Account, i);
-            con = new GiftChest(_client.Manager, 0x0405, null, false, giftChest);
-            (con as GiftChest).AssignedGiftId = i;
-            con.BagOwners = new [] { _client.Account.AccountId };
-            con.Inventory.SetItems(giftChest.Items);
-            con.Inventory.InventoryChanged += (sender, e) => SaveChest(((Inventory)sender).Parent);
-            con.Move(giftChestPosition[0].X + 0.5f, giftChestPosition[0].Y + 0.5f);
-            EnterWorld(con);
-            giftChestPosition.RemoveAt(0);
-        }*/
-
-        foreach (var i in giftChestPosition)
-        {
-            var x = new StaticObject(_client.Manager, 0x0406, null, true, false, false);
             x.Move(i.X + 0.5f, i.Y + 0.5f);
             EnterWorld(x);
         }

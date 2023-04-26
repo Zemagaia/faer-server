@@ -659,7 +659,8 @@ public class MerchantList
 
     public MerchantList(XElement e, XmlData gameData)
     {
-        Region = (TileRegion)Enum.Parse(typeof(TileRegion), e.ParseString("@region").Replace(' ', '_'));
+        // todo fix
+        Region = TileRegion.None; //(TileRegion)Enum.Parse(typeof(TileRegion), e.ParseString("@region").Replace(' ', '_'));
         Currency = (CurrencyType)Enum.Parse(typeof(CurrencyType), e.ParseString("@currency"));
         var idToObjectType = gameData.IdToObjectType;
         Items = new List<ISellableItem>();
