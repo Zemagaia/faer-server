@@ -150,8 +150,7 @@ public partial class Player
 
     public void UpdateAckReceived()
     {
-        long ignored;
-        if (!_updateAckTimeout.TryDequeue(out ignored))
+        if (!_updateAckTimeout.TryDequeue(out _))
         {
             _client.Disconnect("One too many UpdateAcks");
         }
@@ -164,8 +163,7 @@ public partial class Player
 
     public void GotoAckReceived()
     {
-        long ignored;
-        if (!_gotoAckTimeout.TryDequeue(out ignored))
+        if (!_gotoAckTimeout.TryDequeue(out _))
         {
             _client.Disconnect("One too many GotoAcks");
         }

@@ -143,6 +143,7 @@ public class Client {
         Player = null;
         _pingTime = _pongTime = -1L;
         Socket = socket;
+        Socket.DontFragment = true;
         try {
             IP = ((IPEndPoint) socket.RemoteEndPoint).Address.ToString();
         }
@@ -160,7 +161,7 @@ public class Client {
             return;
 
         try {
-            //Log.Error($"Sending packet {(PacketId) SendMem.Span[0]}");
+            //Log.Error($"Sending packet {(PacketId) SendMem.Span[0]} {len}");
             await Socket.SendAsync(SendMem[..len]);
         }
         catch (Exception e) {
@@ -334,6 +335,8 @@ public class Client {
         var ptr = 0;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
         WriteByte(ref ptr, ref spanRef, (byte) PacketId.NewTick);
+        var lenPtr = ptr;
+        WriteUShort(ref ptr, ref spanRef, 0);
         WriteByte(ref ptr, ref spanRef, tickId);
         WriteByte(ref ptr, ref spanRef, tps);
         WriteShort(ref ptr, ref spanRef, (short) stats.Length);
@@ -353,6 +356,8 @@ public class Client {
                 SendStat(ref ptr, ref spanRef, key, value);
             }
         }
+        
+        WriteUShort(ref lenPtr, ref spanRef, (ushort)ptr);
 
         TrySend(ptr);
     }
@@ -480,6 +485,8 @@ public class Client {
         var ptr = 0;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
         WriteByte(ref ptr, ref spanRef, (byte) PacketId.Update);
+        var lenPtr = ptr;
+        WriteUShort(ref ptr, ref spanRef, 0);
         WriteShort(ref ptr, ref spanRef, (short) tiles.Length);
         for (var i = 0; i < tiles.Length; i++) {
             var tile = tiles[i];
@@ -509,7 +516,9 @@ public class Client {
         WriteShort(ref ptr, ref spanRef, (short) drops.Length);
         foreach (var drop in drops)
             WriteInt(ref ptr, ref spanRef, drop);
-
+        
+        WriteUShort(ref lenPtr, ref spanRef, (ushort)ptr);
+        
         TrySend(ptr);
     }
 
@@ -686,7 +695,7 @@ public class Client {
         ref var spanRef = ref MemoryMarshal.GetReference(ReceiveMem.Span);
         while (ptr < len) {
             var packetId = (PacketId) ReadByte(ref ptr, ref spanRef, len);
-            //Log.Error($"Reading packet {packetId}");
+            //Log.Error($"Reading packet {packetId} {len}");
             switch (packetId) {
                 case PacketId.AcceptTrade:
                     ProcessAcceptTrade(ReadBoolArray(ref ptr, ref spanRef, len),
@@ -1283,7 +1292,7 @@ public class Client {
 
         ConnectManager.Connect(this, gameId, charId);
     }
-    
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessMapHello(string buildVer, string guid, string pwd, short charId, byte[] fm) {
         var version = Manager.Config.serverSettings.version;
@@ -1313,7 +1322,7 @@ public class Client {
         acc.IP = IP;
         acc.FlushAsync();
         Account = acc;
-        
+
         ConnectManager.MapConnect(this, charId, fm);
     }
 
