@@ -1289,6 +1289,7 @@ public class Client {
 
             Character = character;
             Player = new Player(this);
+            charId = character.CharId;
         }
 
         ConnectManager.Connect(this, gameId, charId);

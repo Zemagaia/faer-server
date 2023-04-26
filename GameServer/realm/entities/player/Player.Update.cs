@@ -78,6 +78,17 @@ public partial class Player
     public Sight Sight { get; private set; }
 
     public int TickId;
+    
+    public void DisposeUpdate() {
+        _clientEntities.Dispose();
+        _clientStatic.Clear();
+        _newObjects = null;
+        _newStatics.Clear();
+        _removedObjects = null;
+        _statUpdates.Clear();
+        _tiles = null;
+        _updateStatuses = null;
+    }
 
     public void HandleStatChanges(object entity, StatChangedEventArgs statChange)
     {
@@ -258,7 +269,7 @@ public partial class Player
         }
     }
 
-    private readonly List<ObjectDef> _newStatics = new(AppoxAreaOfSight);
+    private List<ObjectDef> _newStatics = new(AppoxAreaOfSight);
 
     private IEnumerable<ObjectDef> GetNewStatics(HashSet<IntPoint> visibleTiles)
     {

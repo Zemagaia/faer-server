@@ -67,7 +67,6 @@ public class World
     public ConcurrentDictionary<int, Enemy> Quests { get; private set; }
     public ConcurrentDictionary<Tuple<int, byte>, Projectile> Projectiles { get; private set; }
     public ConcurrentDictionary<int, StaticObject> StaticObjects { get; private set; }
-    public ConcurrentDictionary<int, Enemy> Pets { get; private set; }
 
     public CollisionMap<Entity> EnemiesCollision { get; private set; }
     public CollisionMap<Entity> PlayersCollision { get; private set; }
@@ -107,7 +106,6 @@ public class World
         Quests = new ConcurrentDictionary<int, Enemy>();
         Projectiles = new ConcurrentDictionary<Tuple<int, byte>, Projectile>();
         StaticObjects = new ConcurrentDictionary<int, StaticObject>();
-        Pets = new ConcurrentDictionary<int, Enemy>();
         Timers = new List<WorldTimer>();
         AllowTeleport = true;
         ShowDisplays = true;
@@ -241,13 +239,11 @@ public class World
             DisposeEntities(Enemies);
             DisposeEntities(Projectiles);
             DisposeEntities(StaticObjects);
-            DisposeEntities(Pets);
 
             Players = null;
             Enemies = null;
             Projectiles = null;
             StaticObjects = null;
-            Pets = null;
             _spawnPoints = null;
 
             return true;
@@ -312,7 +308,6 @@ public class World
         Players.Clear();
         Quests.Clear();
         Timers.Clear();
-        Pets.Clear();
 
         foreach (var i in Map.InstantiateEntities(Manager))
             EnterWorld(i);
@@ -347,17 +342,7 @@ public class World
                 Quests.TryAdd(entity.Id, e);
             return entity.Id;
         }
-
-        // for pets
-        if (entity is Enemy pet)
-        {
-            entity.Id = GetNextEntityId();
-            entity.Init(this);
-            Pets.TryAdd(entity.Id, pet);
-            PlayersCollision.Insert(entity);
-            return entity.Id;
-        }
-
+        
         if (entity is Projectile)
         {
             entity.Init(this);
@@ -398,12 +383,6 @@ public class World
             if (entity.ObjectDesc.Quest)
                 Quests.TryRemove(entity.Id, out dummy);
         }
-        else if (entity is Enemy)
-        {
-            Enemy dummy;
-            Pets.TryRemove(entity.Id, out dummy);
-            PlayersCollision.Remove(entity);
-        }
         else if (entity is Projectile)
         {
             var p = entity as Projectile;
@@ -435,15 +414,10 @@ public class World
         return Interlocked.Increment(ref _entityInc);
     }
 
-    public Entity GetEntity(int id)
-    {
-        Player ret1;
-        if (Players.TryGetValue(id, out ret1)) return ret1;
-        Enemy ret2;
-        if (Enemies.TryGetValue(id, out ret2)) return ret2;
-        StaticObject ret3;
-        if (StaticObjects.TryGetValue(id, out ret3)) return ret3;
-        return null;
+    public Entity GetEntity(int id) {
+        return Players.TryGetValue(id, out var plr) ? plr :
+            Enemies.TryGetValue(id, out var en) ? en :
+            StaticObjects.TryGetValue(id, out var so) ? so : null;
     }
 
     public Player GetUniqueNamedPlayer(string name)
