@@ -357,32 +357,32 @@ namespace terrain
 
             // populate the objects
 
-            var staticObjects = new Dictionary<Biome, List<(string, string)>>()
+            var staticObjects = new Dictionary<Biome, List<(string, string, double)>>()
             {
                 {
-                    Biome.Volcanic, new List<(string, string)>()
+                    Biome.Volcanic, new List<(string, string, double)>()
                     {
-                        ("Dirt", "Rock"),
-                        (null, "Bones")
+                        (null, "Bones", 0.98)
                     }
                 },
 
                 {
-                    Biome.Forest, new List<(string, string)>()
+                    Biome.Forest, new List<(string, string, double)>()
                     {
-                        (null, "Bush"),
-                        (null, "Grass"),
-                        (null, "Flowers"),
-                        (null, "Tree"),
-                        ("Dirt", "Vase")
+                        ("Grass", "Bush", 0.92),
+                        ("Grass", "Grass", 0.92),
+                        ("Grass", "Flowers", 0.90),
+                        (null, "Tree", 0.98),
+                        ("Dirt", "Vase", 0.92),
+                        ("Dirt", "Rock", 0.95)
                     }
                 },
 
                 {
-                    Biome.Desert, new List<(string, string)>()
+                    Biome.Desert, new List<(string, string, double)>()
                     {
-                        (null, "Cactus"),
-                        (null, "Tumbleweed")
+                        (null, "Cactus", 0.92),
+                        (null, "Tumbleweed", 0.96)
                     }
                 }
             };
@@ -393,15 +393,17 @@ namespace terrain
                     var tile = rasterizer.Buffer[x, y];
                     var biome = tile.Biome;
 
+                    if (biome == Biome.None)
+                        continue;
+
+                    var objs = staticObjects[biome];
+                    var obj = objs[map.Random.Next(objs.Count)];
+
                     // iterate all tiles and try to place a static
-                    if (biome == Biome.None || tile.IsRoad || tile.Region != TileRegion.FM_Empty || map.Random.NextDouble() <= (1.0 - 0.08))
+                    if (tile.IsRoad || tile.Region != TileRegion.FM_Empty || map.Random.NextDouble() <= obj.Item3)
                         continue;
 
                     tile = tile.Clone();
-
-                    var objs = staticObjects[biome];
-
-                    var obj = objs[map.Random.Next(objs.Count)];
                     if(obj.Item1 != null && tile.Tile != GetTileType(obj.Item1))
                         continue;
 
