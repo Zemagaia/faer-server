@@ -192,7 +192,8 @@ public partial class Player
 
         foreach (var i in _clientEntities)
         {
-            if (i.Owner == null)
+            // this is a hacky fix to check entity is in a different world lol
+            if (i.Owner == null || i.Owner != Owner)
                 yield return i.Id;
 
             if (i != this && !i.CanBeSeenBy(this))
