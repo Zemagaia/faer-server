@@ -183,7 +183,6 @@
          <Sheet>tieredProjectiles</Sheet>
          <Index>0x00</Index>
       </Texture>
-      <AngleCorrection>1</AngleCorrection>
    </Object>
    <Object type="0x0018" id="Small Emerald Slash">
       <Class>Projectile</Class>
@@ -191,7 +190,6 @@
          <Sheet>tieredProjectiles</Sheet>
          <Index>0x01</Index>
       </Texture>
-      <AngleCorrection>1</AngleCorrection>
    </Object>
    <Object type="0x0019" id="Small Amethyst Slash">
       <Class>Projectile</Class>
@@ -199,7 +197,6 @@
          <Sheet>tieredProjectiles</Sheet>
          <Index>0x02</Index>
       </Texture>
-      <AngleCorrection>1</AngleCorrection>
    </Object>
    <Object type="0x001a" id="Medium Sapphire Slash">
       <Class>Projectile</Class>
@@ -207,7 +204,6 @@
          <Sheet>tieredProjectiles</Sheet>
          <Index>0x03</Index>
       </Texture>
-      <AngleCorrection>1</AngleCorrection>
    </Object>
    <Object type="0x001b" id="Medium Emerald Slash">
       <Class>Projectile</Class>
@@ -215,7 +211,6 @@
          <Sheet>tieredProjectiles</Sheet>
          <Index>0x04</Index>
       </Texture>
-      <AngleCorrection>1</AngleCorrection>
    </Object>
    <Object type="0x001c" id="Medium Amethyst Slash">
       <Class>Projectile</Class>
@@ -223,7 +218,6 @@
          <Sheet>tieredProjectiles</Sheet>
          <Index>0x05</Index>
       </Texture>
-      <AngleCorrection>1</AngleCorrection>
    </Object>
    <Object type="0x001d" id="Small Sapphire Arrow">
       <Class>Projectile</Class>

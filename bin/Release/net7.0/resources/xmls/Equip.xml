@@ -319,7 +319,7 @@
             <ObjectId>Small Sapphire Bolt</ObjectId>
             <Speed>150</Speed>
             <LifetimeMS>700</LifetimeMS>
-            <Damage>70</Damage>
+            <MagicDamage>70</MagicDamage>
             <Amplitude>0.33</Amplitude>
             <Frequency>4</Frequency>
             <Acceleration>-90</Acceleration>
@@ -345,7 +345,7 @@
             <ObjectId>Small Emerald Bolt</ObjectId>
             <Speed>150</Speed>
             <LifetimeMS>700</LifetimeMS>
-            <Damage>85</Damage>
+            <MagicDamage>85</MagicDamage>
             <Amplitude>0.33</Amplitude>
             <Frequency>4</Frequency>
             <Acceleration>-90</Acceleration>
@@ -371,7 +371,7 @@
             <ObjectId>Small Amethyst Bolt</ObjectId>
             <Speed>150</Speed>
             <LifetimeMS>700</LifetimeMS>
-            <Damage>95</Damage>
+            <MagicDamage>95</MagicDamage>
             <Amplitude>0.33</Amplitude>
             <Frequency>4</Frequency>
             <Acceleration>-90</Acceleration>
@@ -397,7 +397,7 @@
             <ObjectId>Medium Sapphire Bolt</ObjectId>
             <Speed>150</Speed>
             <LifetimeMS>700</LifetimeMS>
-            <Damage>105</Damage>
+            <MagicDamage>105</MagicDamage>
             <Amplitude>0.33</Amplitude>
             <Frequency>4</Frequency>
             <Acceleration>-90</Acceleration>
@@ -423,7 +423,7 @@
             <ObjectId>Medium Emerald Bolt</ObjectId>
             <Speed>150</Speed>
             <LifetimeMS>700</LifetimeMS>
-            <Damage>115</Damage>
+            <MagicDamage>115</MagicDamage>
             <Amplitude>0.33</Amplitude>
             <Frequency>4</Frequency>
             <Acceleration>-90</Acceleration>
@@ -2473,7 +2473,7 @@
             <ObjectId>Medium Amethyst Bolt</ObjectId>
             <Speed>150</Speed>
             <LifetimeMS>700</LifetimeMS>
-            <Damage>130</Damage>
+            <MagicDamage>130</MagicDamage>
             <Amplitude>0.33</Amplitude>
             <Frequency>4</Frequency>
             <Acceleration>-90</Acceleration>
@@ -2499,7 +2499,7 @@
             <ObjectId>Large Sapphire Bolt</ObjectId>
             <Speed>150</Speed>
             <LifetimeMS>700</LifetimeMS>
-            <Damage>150</Damage>
+            <MagicDamage>150</MagicDamage>
             <Amplitude>0.33</Amplitude>
             <Frequency>4</Frequency>
             <Acceleration>-90</Acceleration>
@@ -2525,7 +2525,7 @@
             <ObjectId>Large Emerald Bolt</ObjectId>
             <Speed>150</Speed>
             <LifetimeMS>700</LifetimeMS>
-            <Damage>170</Damage>
+            <MagicDamage>170</MagicDamage>
             <Amplitude>0.33</Amplitude>
             <Frequency>4</Frequency>
             <Acceleration>-90</Acceleration>
@@ -2551,7 +2551,7 @@
             <ObjectId>Large Amethyst Bolt</ObjectId>
             <Speed>190</Speed>
             <LifetimeMS>700</LifetimeMS>
-            <Damage>170</Damage>
+            <MagicDamage>170</MagicDamage>
             <Amplitude>0.33</Amplitude>
             <Frequency>4</Frequency>
             <Acceleration>-90</Acceleration>
@@ -2577,7 +2577,7 @@
             <ObjectId>Prime Bolt</ObjectId>
             <Speed>150</Speed>
             <LifetimeMS>700</LifetimeMS>
-            <Damage>220</Damage>
+            <MagicDamage>220</MagicDamage>
             <Amplitude>0.33</Amplitude>
             <Frequency>4</Frequency>
             <Acceleration>-90</Acceleration>
