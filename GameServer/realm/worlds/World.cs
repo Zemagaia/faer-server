@@ -292,10 +292,11 @@ public class World {
             player.SendInfo(msg);
     }
 
-    public int EnterWorld(Entity entity) {
+    public int EnterWorld(Entity entity, bool noIdChange = false) {
         switch (entity) {
             case Player p:
-                p.Id = GetNextEntityId();
+                if (!noIdChange)
+                    p.Id = GetNextEntityId();
                 p.Init(this);
                 Players.TryAdd(p.Id, p);
                 PlayersCollision.Insert(p);
