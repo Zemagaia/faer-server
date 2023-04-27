@@ -998,4 +998,121 @@
         </RandomTexture>
         <Static/>
     </Object>
+    <Object type="0x156" id="Cove Cave Wall">
+        <Class>Wall</Class>
+        <RandomTexture>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0x96</Index>
+            </Texture>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0x97</Index>
+            </Texture>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0x98</Index>
+            </Texture>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0x99</Index>
+            </Texture>
+        </RandomTexture>
+        <Top>
+            <RandomTexture>
+                <Texture>
+                    <Sheet>ground</Sheet>
+                    <Index>0x96</Index>
+                </Texture>
+                <Texture>
+                    <Sheet>ground</Sheet>
+                    <Index>0x97</Index>
+                </Texture>
+                <Texture>
+                    <Sheet>ground</Sheet>
+                    <Index>0x98</Index>
+                </Texture>
+                <Texture>
+                    <Sheet>ground</Sheet>
+                    <Index>0x99</Index>
+                </Texture>
+            </RandomTexture>
+        </Top>
+        <Static/>
+        <FullOccupy/>
+        <OccupySquare/>
+    </Object>
+    <Object type="0x157" id="Cove Driftwood">
+        <Class>GameObject</Class>
+        <RandomTexture>
+            <Texture>
+                <Sheet>props</Sheet>
+                <Index>0x30</Index>
+            </Texture>
+            <Texture>
+                <Sheet>props</Sheet>
+                <Index>0x31</Index>
+            </Texture>
+            <Texture>
+                <Sheet>props</Sheet>
+                <Index>0x32</Index>
+            </Texture>
+        </RandomTexture>
+        <Static />
+        <DrawOnGround />
+    </Object>
+    <Object type="0x158" id="Chasm Wall">
+        <Class>Wall</Class>
+        <Texture><Sheet>ground</Sheet><Index>0x0e</Index></Texture>
+        <Top>
+            <Texture><Sheet>ground</Sheet><Index>0xa7</Index></Texture>
+        </Top>
+        <Static/>
+        <FullOccupy/>
+        <OccupySquare/>
+    </Object>
+    <Object  type="0x159" id="Chasm Wall Candle">
+        <Class>Wall</Class>
+        <Texture><Sheet>ground</Sheet><Index>0x0e</Index></Texture>
+        <Top>
+            <Texture><Sheet>ground</Sheet><Index>0xa7</Index></Texture>
+        </Top>
+        <Static/>
+        <FullOccupy/>
+        <OccupySquare/>
+    </Object>
+    <Object type="0x15a" id="Chasm Wall Dark">
+        <Class>Wall</Class>
+        <Texture><Sheet>ground</Sheet><Index>0xa6</Index></Texture>
+        <Top>
+            <Texture><Sheet>ground</Sheet><Index>0xa9</Index></Texture>
+        </Top>
+        <Static/>
+        <FullOccupy/>
+        <OccupySquare/>
+    </Object>
+    <Object type="0x15b" id="Chasm Wall Lava">
+        <Class>Wall</Class>
+        <Texture><Sheet>ground</Sheet><Index>0xac</Index></Texture>
+        <Top>
+            <Texture><Sheet>ground</Sheet><Index>0xab</Index></Texture>
+        </Top>
+        <Static/>
+        <FullOccupy/>
+        <OccupySquare/>
+    </Object>
+    <Object type="0x15c" id="Chasm Stalagmite">
+        <Class>GameObject</Class>
+        <RandomTexture>
+            <Texture><Sheet>props</Sheet><Index>0x36</Index></Texture>
+            <Texture><Sheet>props</Sheet><Index>0x37</Index></Texture>
+            <Texture><Sheet>props</Sheet><Index>0x38</Index></Texture>
+            <Texture><Sheet>props</Sheet><Index>0x39</Index></Texture>
+        </RandomTexture>
+        <MinSize>150</MinSize>
+        <MaxSize>190</MaxSize>
+        <SizeStep>15</SizeStep>
+        <Static />
+        <OccupySquare />
+    </Object>
 </Objects>

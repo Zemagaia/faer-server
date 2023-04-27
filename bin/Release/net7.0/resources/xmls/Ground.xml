@@ -111,19 +111,47 @@
         </Texture>
         <NoWalk/>
     </Ground>
-    <Ground type="0x29" id="Chasm Bricks 1">
-        <Texture>
-            <Sheet>ground</Sheet>
-            <Index>0x09</Index>
-        </Texture>
-        <BlendPriority>-98</BlendPriority>
+    <Ground type="0x29" id="Chasm Ground">
+        <RandomTexture>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0x7a</Index>
+            </Texture>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0x7b</Index>
+            </Texture>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0x7c</Index>
+            </Texture>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0x7d</Index>
+            </Texture>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0x7e</Index>
+            </Texture>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0x7f</Index>
+            </Texture>
+        </RandomTexture>
+        <!-- <BlendPriority>-98</BlendPriority> -->
     </Ground>
-    <Ground type="0x2a" id="Chasm Bricks 2">
-        <Texture>
-            <Sheet>ground</Sheet>
-            <Index>0x0a</Index>
-        </Texture>
-        <BlendPriority>-99</BlendPriority>
+    <Ground type="0x2a" id="Chasm Ground Dark">
+        <RandomTexture>
+            <Texture><Sheet>ground</Sheet><Index>0x80</Index></Texture>
+            <Texture><Sheet>ground</Sheet><Index>0x81</Index></Texture>
+            <Texture><Sheet>ground</Sheet><Index>0x82</Index></Texture>
+            <Texture><Sheet>ground</Sheet><Index>0x83</Index></Texture>
+            <Texture><Sheet>ground</Sheet><Index>0x84</Index></Texture>
+            <Texture><Sheet>ground</Sheet><Index>0x85</Index></Texture>
+            <!-- What is the stuff after that meant to be? The ones with the bones on them -->
+        </RandomTexture>
+        <!-- lower than bright -->
+        <!-- <BlendPriority>-98</BlendPriority> -->
     </Ground>
     <Ground type="0x2b" id="Desert Sand">
         <Texture>
@@ -631,6 +659,7 @@
             <Sheet>ground</Sheet>
             <Index>0x6F</Index>
         </Texture>
+        <BlendPriority>10</BlendPriority>
     </Ground>
     <Ground type="0x71" id="Cove Sand Rough">
         <RandomTexture>
@@ -650,10 +679,11 @@
         <BlendPriority>11</BlendPriority>
     </Ground>
     <Ground type="0x72" id="Cove Sand Wet">
-            <Texture>
-                <Sheet>ground</Sheet>
-                <Index>0x70</Index>
-            </Texture>
+        <Texture>
+            <Sheet>ground</Sheet>
+            <Index>0x70</Index>
+        </Texture>
+        <BlendPriority>12</BlendPriority>
     </Ground>
     <Ground type="0x73" id="Ocean Water Shallow">
         <Texture>
@@ -742,4 +772,22 @@
         </Texture>
         <BlendPriority>2</BlendPriority>
     </Ground>
+    <Ground type="0x7a" id="Chasm Lava">
+        <Texture><Sheet>ground</Sheet><Index>0x78</Index></Texture>
+        <Animate dx=".13" dy=".13">Wave</Animate>
+        <Damage>30</Damage>
+        <Speed>0.58</Speed>
+        <Sink/>
+        <!-- <BlendPriority>-99</BlendPriority> -->
+    </Ground>
+    <Ground type="0x7b" id="Chasm Bridge">
+        <Texture><Sheet>ground</Sheet><Index>0x79</Index></Texture>
+        <Speed>0.8</Speed>
+        <!-- <BlendPriority>-99</BlendPriority> -->
+    </Ground>
+    <Ground type="0x7c" id="Chasm Ground Tile">
+        <Texture><Sheet>ground</Sheet><Index>0xa8</Index></Texture>
+        <!-- <BlendPriority>-99</BlendPriority> -->
+    </Ground>
+
 </GroundTypes>

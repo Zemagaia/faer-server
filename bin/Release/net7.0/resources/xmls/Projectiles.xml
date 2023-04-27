@@ -1186,4 +1186,68 @@
       </Texture>
       <AngleCorrection>1</AngleCorrection>
    </Object>
+   <Object type="0x0096" id="Goblin Blue Bolt">
+      <Class>Projectile</Class>
+      <Texture>
+         <Sheet>projectiles</Sheet>
+         <Index>117</Index>
+      </Texture>
+      <AngleCorrection>1</AngleCorrection>
+   </Object>
+   <Object type="0x0097" id="Goblin Green Bolt">
+      <Class>Projectile</Class>
+      <Texture>
+         <Sheet>projectiles</Sheet>
+         <Index>118</Index>
+      </Texture>
+      <AngleCorrection>1</AngleCorrection>
+   </Object>
+   <Object type="0x0098" id="Goblin Red Bolt">
+      <Class>Projectile</Class>
+      <Texture>
+         <Sheet>projectiles</Sheet>
+         <Index>119</Index>
+      </Texture>
+      <AngleCorrection>1</AngleCorrection>
+   </Object>
+   <Object type="0x0099" id="Goblin Yellow Bolt">
+      <Class>Projectile</Class>
+      <Texture>
+         <Sheet>projectiles</Sheet>
+         <Index>120</Index>
+      </Texture>
+      <AngleCorrection>1</AngleCorrection>
+   </Object>
+   <Object type="0x009a" id="Goblin Blue Blast">
+      <Class>Projectile</Class>
+      <Texture>
+         <Sheet>projectiles</Sheet>
+         <Index>121</Index>
+      </Texture>
+      <AngleCorrection>1</AngleCorrection>
+   </Object>
+   <Object type="0x009b" id="Goblin Green Blast">
+      <Class>Projectile</Class>
+      <Texture>
+         <Sheet>projectiles</Sheet>
+         <Index>122</Index>
+      </Texture>
+      <AngleCorrection>1</AngleCorrection>
+   </Object>
+   <Object type="0x009c" id="Goblin Red Blast">
+      <Class>Projectile</Class>
+      <Texture>
+         <Sheet>projectiles</Sheet>
+         <Index>123</Index>
+      </Texture>
+      <AngleCorrection>1</AngleCorrection>
+   </Object>
+   <Object type="0x009d" id="Goblin Yellow Blast">
+      <Class>Projectile</Class>
+      <Texture>
+         <Sheet>projectiles</Sheet>
+         <Index>124</Index>
+      </Texture>
+      <AngleCorrection>1</AngleCorrection>
+   </Object>
 </Objects>
