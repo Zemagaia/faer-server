@@ -94,9 +94,9 @@ public class Realm
 		}
 	};
 	
-	public const float EVENT_CHANCE = 0.005f;
+	public const float EVENT_CHANCE = 0.0005f;
 	private const int TIMER_RESET = 60000;
-	private const int MOB_LIMIT = 100000;
+	private const int MOB_LIMIT = 30000;
 
 	private World World;
 	private int PopulationTimerMS;
