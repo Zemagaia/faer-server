@@ -10,21 +10,18 @@ using GameServer.realm.entities.vendors;
 using GameServer.realm.worlds.logic;
 using NLog;
 
-namespace GameServer.realm.worlds; 
+namespace GameServer.realm.worlds;
 
-public class World
-{
+public class World {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
     public const int Hub = -2;
 
     private RealmManager _manager;
 
-    public RealmManager Manager
-    {
+    public RealmManager Manager {
         get => _manager;
-        internal set
-        {
+        internal set {
             _manager = value;
             if (_manager != null)
                 Init();
@@ -48,7 +45,7 @@ public class World
     public string Opener { get; set; }
     public HashSet<string> Invites { get; set; }
     public Dictionary<string, Player> InviteDict { get; set; }
-    public Realm RealmLogic{ get; set; }
+    public Realm RealmLogic { get; set; }
 
     public Map Map { get; private set; }
     public bool Deleted { get; protected set; }
@@ -78,8 +75,7 @@ public class World
     private readonly object _deleteLock = new();
     public readonly ProtoWorld Proto;
 
-    public World(ProtoWorld proto)
-    {
+    public World(ProtoWorld proto) {
         Proto = proto;
         Setup();
         Id = proto.id;
@@ -99,8 +95,7 @@ public class World
         Music = proto.music != null ? proto.music[rnd.Next(0, proto.music.Length)] : "Test";
     }
 
-    private void Setup()
-    {
+    private void Setup() {
         Players = new ConcurrentDictionary<int, Player>();
         Enemies = new ConcurrentDictionary<int, Enemy>();
         Quests = new ConcurrentDictionary<int, Enemy>();
@@ -113,27 +108,21 @@ public class World
         Blocking = 0; // toggles sight block (0 disables sight block)
     }
 
-    public string GetDisplayName()
-    {
-        if (SBName != null && SBName.Length > 0)
-        {
+    public string GetDisplayName() {
+        if (SBName != null && SBName.Length > 0) {
             return SBName[0] == '{' ? Name : SBName;
         }
-        else
-        {
+        else {
             return Name;
         }
     }
 
-    public virtual bool AllowedAccess(Client client)
-    {
+    public virtual bool AllowedAccess(Client client) {
         return !Closed || client.Account.Admin;
     }
 
-    public virtual KeyValuePair<IntPoint, TileRegion>[] GetSpawnPoints()
-    {
-        if (_spawnPoints is null)
-        {
+    public virtual KeyValuePair<IntPoint, TileRegion>[] GetSpawnPoints() {
+        if (_spawnPoints is null) {
             _spawnPoints = Map.Regions.Where(t => t.Value == TileRegion.Spawn).ToArray();
         }
 
@@ -146,15 +135,13 @@ public class World
         });
     }
 
-    public long GetAge()
-    {
+    public long GetAge() {
         return _elapsedTime;
     }
 
-    protected virtual void Init()
-    {
+    protected virtual void Init() {
         if (IsLimbo) return;
-        
+
         var proto = Proto;
 
         /*if (proto.maps != null && proto.maps.Length <= 0)
@@ -174,10 +161,8 @@ public class World
             RealmLogic = new Realm(this);
     }
 
-    protected void InitShops()
-    {
-        foreach (var shop in Manager.Resources.GameData.MerchantLists)
-        {
+    protected void InitShops() {
+        foreach (var shop in Manager.Resources.GameData.MerchantLists) {
             var items = new List<ISellableItem>(shop.Items);
             var mLocations = Map.Regions
                 .Where(r => shop.Region == r.Value)
@@ -189,12 +174,10 @@ public class World
 
             var rotate = items.Count > mLocations.Length;
             var reloadOffset = 0;
-            foreach (var loc in mLocations)
-            {
+            foreach (var loc in mLocations) {
                 var item = items[0];
                 items.RemoveAt(0);
-                while (item.ItemId == ushort.MaxValue)
-                {
+                while (item.ItemId == ushort.MaxValue) {
                     if (items.Count <= 0)
                         items.AddRange(shop.Items);
 
@@ -203,8 +186,7 @@ public class World
                 }
 
                 reloadOffset += 500;
-                var m = new WorldMerchant(Manager, 0x0400)
-                {
+                var m = new WorldMerchant(Manager, 0x0400) {
                     ShopItem = item,
                     Item = item.ItemId,
                     Price = item.Price,
@@ -224,10 +206,8 @@ public class World
         }
     }
 
-    public bool Delete()
-    {
-        lock (_deleteLock)
-        {
+    public bool Delete() {
+        lock (_deleteLock) {
             if (Players.Count > 0)
                 return false;
 
@@ -250,14 +230,12 @@ public class World
         }
     }
 
-    private void DisposeEntities<T, TU>(ConcurrentDictionary<T, TU> dictionary)
-    {
+    private void DisposeEntities<T, TU>(ConcurrentDictionary<T, TU> dictionary) {
         foreach (var entity in dictionary)
             (entity.Value as Entity).Dispose();
     }
 
-    protected void FromDungeonGen(int seed, DungeonTemplate template)
-    {
+    protected void FromDungeonGen(int seed, DungeonTemplate template) {
         Log.Info("Loading template for world {0}({1})...", Id, Name);
 
         var gen = new Generator(seed, template);
@@ -266,8 +244,7 @@ public class World
         ras.Rasterize();
         var dTiles = ras.ExportMap();
 
-        if (Map == null)
-        {
+        if (Map == null) {
             Map = new Map(Manager.Resources.GameData);
             Interlocked.Add(ref _entityInc, Map.Load(dTiles, _entityInc));
             if (Blocking == 3)
@@ -279,12 +256,10 @@ public class World
         InitMap();
     }
 
-    protected void FromWorldMap(Stream dat)
-    {
+    protected void FromWorldMap(Stream dat) {
         Log.Info("Loading map for world {0}({1})...", Id, Name);
 
-        if (Map == null)
-        {
+        if (Map == null) {
             Map = new Map(Manager.Resources.GameData);
             Interlocked.Add(ref _entityInc, Map.Load(dat, _entityInc));
             if (Blocking == 3)
@@ -296,8 +271,7 @@ public class World
         InitMap();
     }
 
-    private void InitMap()
-    {
+    private void InitMap() {
         int w = Map.Width, h = Map.Height;
         EnemiesCollision = new CollisionMap<Entity>(0, w, h);
         PlayersCollision = new CollisionMap<Entity>(1, w, h);
@@ -312,61 +286,48 @@ public class World
         foreach (var i in Map.InstantiateEntities(Manager))
             EnterWorld(i);
     }
-    
-    public void WorldAnnouncement(string msg)
-    {
+
+    public void WorldAnnouncement(string msg) {
         foreach (var player in Players.Values)
             player.SendInfo(msg);
     }
-    
-    public virtual int EnterWorld(Entity entity)
-    {
-        if (entity is Player p)
-        {
-            entity.Id = GetNextEntityId();
-            entity.Init(this);
-            Players.TryAdd(entity.Id, p);
-            PlayersCollision.Insert(entity);
-            Interlocked.Increment(ref _totalConnects);
-            return entity.Id;
-        }
 
-        // for regular enemies
-        if (entity is Enemy e)
-        {
-            entity.Id = GetNextEntityId();
-            entity.Init(this);
-            Enemies.TryAdd(entity.Id, e);
-            EnemiesCollision.Insert(entity);
-            if (entity.ObjectDesc.Quest)
-                Quests.TryAdd(entity.Id, e);
-            return entity.Id;
+    public int EnterWorld(Entity entity) {
+        switch (entity) {
+            case Player p:
+                p.Id = GetNextEntityId();
+                p.Init(this);
+                Players.TryAdd(p.Id, p);
+                PlayersCollision.Insert(p);
+                Interlocked.Increment(ref _totalConnects);
+                return p.Id;
+            case Enemy e: {
+                e.Id = GetNextEntityId();
+                e.Init(this);
+                Enemies.TryAdd(e.Id, e);
+                EnemiesCollision.Insert(e);
+                if (e.ObjectDesc.Quest)
+                    Quests.TryAdd(e.Id, e);
+                return e.Id;
+            }
+            case Projectile projectile: {
+                projectile.Init(this);
+                Projectiles[new Tuple<int, byte>(projectile.ProjectileOwner.Self.Id, projectile.BulletId)] = projectile;
+                return projectile.Id;
+            }
+            case StaticObject staticObject:
+                staticObject.Id = GetNextEntityId();
+                staticObject.Init(this);
+                StaticObjects.TryAdd(staticObject.Id, staticObject);
+                EnemiesCollision.Insert(staticObject);
+                return staticObject.Id;
+            default:
+                return entity.Id;
         }
-        
-        if (entity is Projectile)
-        {
-            entity.Init(this);
-            var prj = entity as Projectile;
-            Projectiles[new Tuple<int, byte>(prj.ProjectileOwner.Self.Id, prj.BulletId)] = prj;
-            return entity.Id;
-        }
-
-        if (entity is StaticObject)
-        {
-            entity.Id = GetNextEntityId();
-            entity.Init(this);
-            StaticObjects.TryAdd(entity.Id, entity as StaticObject);
-            EnemiesCollision.Insert(entity);
-            return entity.Id;
-        }
-
-        return entity.Id;
     }
 
-    public virtual void LeaveWorld(Entity entity)
-    {
-        if (entity is Player)
-        {
+    public virtual void LeaveWorld(Entity entity) {
+        if (entity is Player) {
             Players.TryRemove(entity.Id, out var player);
             PlayersCollision.Remove(entity);
 
@@ -375,31 +336,28 @@ public class World
                 player.CancelTrade();
         }
         // for enemies
-        else if (entity is Enemy e)
-        {
+        else if (entity is Enemy e) {
             Enemy dummy;
             Enemies.TryRemove(entity.Id, out dummy);
             EnemiesCollision.Remove(entity);
             if (entity.ObjectDesc.Quest)
                 Quests.TryRemove(entity.Id, out dummy);
         }
-        else if (entity is Projectile)
-        {
+        else if (entity is Projectile) {
             var p = entity as Projectile;
             Projectiles.TryRemove(new Tuple<int, byte>(p.ProjectileOwner.Self.Id, p.BulletId), out p);
         }
-        else if (entity is StaticObject)
-        {
+        else if (entity is StaticObject) {
             StaticObject dummy;
             StaticObjects.TryRemove(entity.Id, out dummy);
 
-            if (entity.ObjectDesc?.BlocksSight == true)
-            {
+            if (entity.ObjectDesc?.BlocksSight == true) {
                 if (Blocking == 3)
-                    Sight.UpdateRegion(Map, (int)entity.X, (int)entity.Y);
+                    Sight.UpdateRegion(Map, (int) entity.X, (int) entity.Y);
 
                 foreach (var plr in Players
-                             .Where(p => MathsUtils.DistSqr(p.Value.X, p.Value.Y, entity.X, entity.Y) < Player.RadiusSqr))
+                             .Where(p => MathsUtils.DistSqr(p.Value.X, p.Value.Y, entity.X, entity.Y) <
+                                         Player.RadiusSqr))
                     plr.Value.Sight.UpdateCount++;
             }
 
@@ -409,8 +367,7 @@ public class World
         entity.Dispose();
     }
 
-    public int GetNextEntityId()
-    {
+    public int GetNextEntityId() {
         return Interlocked.Increment(ref _entityInc);
     }
 
@@ -420,12 +377,9 @@ public class World
             StaticObjects.TryGetValue(id, out var so) ? so : null;
     }
 
-    public Player GetUniqueNamedPlayer(string name)
-    {
-        foreach (var i in Players)
-        {
-            if (i.Value.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase))
-            {
+    public Player GetUniqueNamedPlayer(string name) {
+        foreach (var i in Players) {
+            if (i.Value.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase)) {
                 if (!i.Value.NameChosen)
                     Manager.Database.ReloadAccount(i.Value.Client.Account);
 
@@ -436,10 +390,9 @@ public class World
         return null;
     }
 
-    public bool IsPassable(double x, double y, bool spawning = false)
-    {
-        var x_ = (int)x;
-        var y_ = (int)y;
+    public bool IsPassable(double x, double y, bool spawning = false) {
+        var x_ = (int) x;
+        var y_ = (int) y;
 
         if (!Map.Contains(x_, y_))
             return false;
@@ -449,8 +402,7 @@ public class World
         if (tile.TileDesc.NoWalk)
             return false;
 
-        if (tile.ObjType != 0 && tile.ObjDesc != null)
-        {
+        if (tile.ObjType != 0 && tile.ObjDesc != null) {
             if (tile.ObjDesc.FullOccupy || tile.ObjDesc.EnemyOccupySquare ||
                 (spawning && tile.ObjDesc.OccupySquare))
                 return false;
@@ -459,105 +411,91 @@ public class World
         return true;
     }
 
-    public void QuakeToWorld(World newWorld)
-    {
+    public void QuakeToWorld(World newWorld) {
         if (!Persist)
             Closed = true;
 
         foreach (var p in Players)
             p.Value.Client.SendShowEffect(EffectType.Earthquake, 0, 0, 0, 0, 0, 0);
 
-        Timers.Add(new WorldTimer(8000, (w, t) =>
-        {
+        Timers.Add(new WorldTimer(8000, (w, t) => {
             foreach (var plr in w.Players.Values)
                 plr.Client.Reconnect(newWorld.SBName, newWorld.Id);
         }));
 
         if (!Persist)
-            Timers.Add(new WorldTimer(20000, (w2, t2) =>
-            {
+            Timers.Add(new WorldTimer(20000, (w2, t2) => {
                 // to ensure people get kicked out of world
                 foreach (var plr in w2.Players)
                     plr.Value.Client.Disconnect();
             }));
     }
 
-    public void ChatReceived(Player player, string text)
-    {
+    public void ChatReceived(Player player, string text) {
         foreach (var en in Enemies)
             en.Value.OnChatTextReceived(player, text);
         foreach (var en in StaticObjects)
             en.Value.OnChatTextReceived(player, text);
     }
 
-    public virtual void Tick(RealmTime time)
-    {
+    public virtual void Tick(RealmTime time) {
         // if Tick is overrided and you make a call to this function
         // make sure not to do anything after the call (or at least check)
         // as it is possible for the world to have been removed at that point.
 
-        try
-        {
+        try {
             _elapsedTime += time.ElapsedMsDelta;
 
             if (IsLimbo) return;
 
-            if (!Persist && (this is Stash ? _elapsedTime > 5000 : _elapsedTime > 60000) && Players.Count <= 0)
-            {
+            if (!Persist && (this is Stash ? _elapsedTime > 5000 : _elapsedTime > 60000) && Players.Count <= 0) {
                 Delete();
                 return;
             }
 
-            lock (_deleteLock)
-            {
+            lock (_deleteLock) {
                 RealmLogic?.Tick(time);
-                
+
                 if (Deleted)
                     return;
 
-                if (EnemiesCollision != null)
-                {
+                if (EnemiesCollision != null) {
                     foreach (var i in EnemiesCollision.GetActiveChunks(PlayersCollision))
                         i.Tick(time);
                 }
-                else
-                {
+                else {
                     foreach (var i in Enemies)
                         i.Value.Tick(time);
-                    
+
                     foreach (var i in StaticObjects)
                         i.Value.Tick(time);
                 }
-                
+
                 foreach (var i in Players)
                     i.Value.Tick(time);
 
                 foreach (var i in Projectiles)
                     i.Value.Tick(time);
             }
-            
+
             for (var i = Timers.Count - 1; i >= 0; i--)
-                try
-                {
+                try {
                     if (Timers[i].Tick(this, time))
                         Timers.RemoveAt(i);
                 }
-                catch (Exception e)
-                {
+                catch (Exception e) {
                     var msg = e.Message + "\n" + e.StackTrace;
                     Log.Error(msg);
                     Timers.RemoveAt(i);
                 }
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             var msg = e.Message + "\n" + e.StackTrace;
             Log.Error(msg);
         }
     }
 
-    public Projectile GetProjectile(int objectId, int bulletId)
-    {
+    public Projectile GetProjectile(int objectId, int bulletId) {
         return GetEntity(objectId) is IProjectileOwner entity
             ? entity.Projectiles[bulletId]
             : Projectiles.SingleOrDefault(p =>

@@ -759,17 +759,21 @@ public partial class Player : Character, IContainer, IPlayer {
     }
 
     public void Reconnect(World world) {
-        if (!CheckLimitedWorlds(world))
-            return;
+        if (world == null)
+            SendError("This world does not exist.");
+        else {
+            if (!CheckLimitedWorlds(world))
+                return;
 
-        Client.Reconnect(world.Name, world.Id);
+            Client.Reconnect(world.Name, world.Id);
+        }
     }
 
     public void Reconnect(object portal, World world) {
         ((Portal) portal).WorldInstanceSet -= Reconnect;
 
         if (world == null)
-            SendError("Portal Not Implemented!");
+            SendError("This world does not exist.");
         else {
             if (!CheckLimitedWorlds(world))
                 return;
