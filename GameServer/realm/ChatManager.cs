@@ -55,8 +55,8 @@ public class ChatManager : IDisposable
             return;
 
         foreach (var plr in src.Owner.Players.Values)
-            plr.Client.SendText(src.Name, src.Id, 5, "", text, 
-                (uint)(src.Glow != 0 ? src.Glow : 0x123456), (uint)(src.Glow != 0 ? 0xFFFFFF : 0x123456));
+            plr.Client.SendText(src.Name, src.Id, 5, "", text,
+                (uint) (src.Admin != 0 ? 0xF2CA46 : 0xEBEBEB), (uint)(src.Admin != 0 ? 0xD4AF37 : 0xB0B0B0));
     }
 
     public void Announce(string text, bool local = false)

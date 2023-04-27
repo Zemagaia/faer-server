@@ -198,8 +198,7 @@ public partial class Player
             if (i != this && !i.CanBeSeenBy(this))
                 yield return i.Id;
 
-            var so = i as StaticObject;
-            if (so != null && so.Static)
+            if (i is StaticObject so && so.Static)
             {
                 if (Math.Abs(StaticBoundingBox - ((int)X - i.X)) > 0 &&
                     Math.Abs(StaticBoundingBox - ((int)Y - i.Y)) > 0)
@@ -217,8 +216,7 @@ public partial class Player
 
     private IEnumerable<Entity> GetNewEntities(HashSet<IntPoint> visibleTiles)
     {
-        Entity entity;
-        while (ClientKilledEntity.TryDequeue(out entity))
+        while (ClientKilledEntity.TryDequeue(out var entity))
             _clientEntities.Remove(entity);
 
         foreach (var i in Owner.Players)
@@ -242,14 +240,11 @@ public partial class Player
                 yield return i;
         }
 
-        foreach (var i in Owner.Enemies)
+        foreach (var en in Owner.Enemies.Values)
         {
-            if (i.Value != null && i.Value.ObjectDesc.KeepMinimap && _clientEntities.Add(i.Value))
-                yield return i.Value;
+            if (en != null && en.RealmEvent && _clientEntities.Add(en))
+                yield return en;
         }
-
-        if (SpectateTarget?.Owner != null && _clientEntities.Add(SpectateTarget))
-            yield return SpectateTarget;
     }
 
     private IEnumerable<IntPoint> GetRemovedStatics()

@@ -92,7 +92,7 @@ public class Enemy : Character
         ApplyConditionEffect(projectile.ProjDesc.Effects);
             
         foreach (var plr in Owner.Players.Values)
-            if (MathUtils.DistSqr(X, Y, plr.X, plr.Y) < 16 * 16)
+            if (plr != p && MathUtils.DistSqr(X, Y, plr.X, plr.Y) < 16 * 16)
                 plr.Client.SendDamage(Id, projectile.ConditionEffects, (ushort)dmg, HP < 0, projectile.BulletId, projectile.ProjectileOwner.Self.Id);
             
         DamageCounter.HitBy(p, time, projectile, dmg);

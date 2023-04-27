@@ -233,7 +233,7 @@ partial class Player {
 
     private void AEUnlockSkin(RealmTime time, Item item, Position target, ActivateEffect eff) {
         if (Owner is not Stash) {
-            RefundItem(item, "You can only use this item in your vault.");
+            RefundItem(item, "You can only use this item in your stash.");
             return;
         }
 

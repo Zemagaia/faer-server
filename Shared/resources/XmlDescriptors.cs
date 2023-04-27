@@ -555,6 +555,8 @@ public class ObjectDesc
         ObjectType = type;
         ObjectId = e.GetAttribute<string>("id");
         DisplayId = e.GetValue<string>("DisplayId");
+        if (string.IsNullOrEmpty(DisplayId))
+            DisplayId = ObjectId;
         Class = e.GetValue<string>("Class");
         Static = e.HasElement("Static");
         OccupySquare = e.HasElement("OccupySquare");

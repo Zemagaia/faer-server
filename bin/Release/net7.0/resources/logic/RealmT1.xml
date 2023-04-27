@@ -32,4 +32,10 @@
    	<ItemLoot item="Health Vial" probability="0.02"/>
 	  <ItemLoot item="Magic Vial" probability="0.02"/>
 	</BehaviorEntry>
+	<BehaviorEntry id="Sobek">
+	  <Taunt text="Stevia" />
+   	<DropPortalOnDeath target="Crown Cove" probability="0.01"/>
+   	<ItemLoot item="Health Vial" probability="0.02"/>
+	  <ItemLoot item="Magic Vial" probability="0.02"/>
+	</BehaviorEntry>
 </BehaviorEntries>

@@ -64,8 +64,8 @@ public class Container : StaticObject, IContainer
         if (ObjectType == 0x0504) //Vault chest
             return;
             
-        if (Inventory.Count(i => i.ObjectType != ushort.MaxValue) == 0)
-            Owner.LeaveWorld(this);
+        if (Inventory.Count(i => i?.ObjectType != ushort.MaxValue) == 0)
+            Owner?.LeaveWorld(this);
 
         base.Tick(time);
     }

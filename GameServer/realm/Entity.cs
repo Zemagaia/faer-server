@@ -519,11 +519,7 @@ public partial class Entity : IProjectileOwner, ICollidable<Entity> {
     }
 
     public static Entity Resolve(RealmManager manager, string name) {
-        ushort id;
-        if (!manager.Resources.GameData.IdToObjectType.TryGetValue(name, out id))
-            return null;
-
-        return Resolve(manager, id);
+        return !manager.Resources.GameData.IdToObjectType.TryGetValue(name, out var id) ? null : Resolve(manager, id);
     }
 
     public static Entity Resolve(RealmManager manager, ushort id) {

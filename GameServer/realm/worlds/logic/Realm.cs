@@ -139,7 +139,7 @@ public class Realm
 		Console.WriteLine($"{biome} was chosen at random");
 		
 		var chosenEventList = ForestEventList[biome];
-		(var chosenEvent, var chosenRegion) = chosenEventList[Random.Shared.Next(chosenEventList.Count)];
+		var (chosenEvent, chosenRegion) = chosenEventList[Random.Shared.Next(chosenEventList.Count)];
 		var spawns = SpawnableRegions[chosenRegion];
 		var chosenPoint = spawns[Random.Shared.Next(spawns.Count)];
 		
@@ -153,7 +153,7 @@ public class Realm
 		EventActive = true;
 		entity.Move(chosenPoint.X + 0.5f, chosenPoint.Y + 0.5f);
 		World.EnterWorld(entity);
-		World.WorldAnnouncement("A <font size=\"18\" color=\"#BC00FF\">" + entity.ObjectDesc.DisplayId + "</font> has appeared somewhere...");
+		World.WorldAnnouncement("A " + entity.ObjectDesc.DisplayId + " has appeared somewhere...");
 	}
 
 	private void PopulateRealmMobs()

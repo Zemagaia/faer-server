@@ -294,6 +294,7 @@ public partial class Player : Character, IContainer, IPlayer {
 
         _accountId = new SV<int>(this, StatsType.AccountId, client.Account.AccountId, true);
         _guild = new SV<string>(this, StatsType.Guild, "");
+        _admin = new SV<int>(this, StatsType.None, 0);
         _guildRank = new SV<sbyte>(this, StatsType.GuildRank, -1);
         _texture1 = new SV<ushort>(this, StatsType.Texture1, (ushort) client.Character.Tex1);
         _texture2 = new SV<ushort>(this, StatsType.Texture2, (ushort) client.Character.Tex2);
@@ -368,6 +369,8 @@ public partial class Player : Character, IContainer, IPlayer {
                     ? 0xFF0000
                     : client.Account.GlowColor;
             });
+
+        Admin = client.Account.Admin ? 1 : 0;
 
         SetItemXpBoost();
     }
@@ -578,51 +581,20 @@ public partial class Player : Character, IContainer, IPlayer {
     }
 
     private void GenerateGravestone(bool phantomDeath = false) {
-        var playerDesc = Manager.Resources.GameData.Classes[ObjectType];
-        var maxed = playerDesc.Stats.Where((t, i) => Stats.Base[i] >= t.MaxValues[Tier - 1]).Count();
         ushort objType;
         int time;
-        switch (maxed) {
-            case 9:
-                objType = 0x042C;
-                time = 600000;
-                break;
-            case 8:
-                objType = 0x042C;
-                time = 600000;
-                break;
-            case 7:
-                objType = 0x042B;
-                time = 600000;
-                break;
-            case 6:
-                objType = 0x042A;
-                time = 600000;
-                break;
-            case 5:
-                objType = 0x0429;
-                time = 600000;
-                break;
-            case 4:
-                objType = 0x0428;
-                time = 600000;
-                break;
+        switch (Tier) {
             case 3:
-                objType = 0x0427;
+                objType = 0x116;
                 time = 600000;
                 break;
             case 2:
-                objType = 0x0426;
-                time = 600000;
-                break;
-            case 1:
-                objType = 0x0425;
+                objType = 0x115;
                 time = 600000;
                 break;
             default:
-                objType = 0x0424;
+                objType = 0x114;
                 time = 300000;
-
                 break;
         }
 
@@ -734,7 +706,7 @@ public partial class Player : Character, IContainer, IPlayer {
         if (notableDeath && !Client.Account.Admin) {
             foreach (var w in Manager.Worlds.Values)
             foreach (var p in w.Players.Values)
-                p.SendHelp(deathMessage);
+                p.SendInfo(deathMessage);
             return;
         }
 

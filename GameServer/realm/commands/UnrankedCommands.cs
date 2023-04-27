@@ -17,7 +17,7 @@ internal class HelpCommand : Command
     protected override bool Process(Player player, RealmTime time, string args)
     {
         // newline (\n) does not work.
-        player.SendHelp("Help:" +
+        player.SendInfo("Help:" +
                         "\n[/pause]: pause the game (until you [/pause] again)" +
                         "\n[/who]: list players in your world" +
                         "\n[/tutorial]: enter the tutorial" +
