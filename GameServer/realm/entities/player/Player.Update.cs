@@ -171,6 +171,9 @@ public partial class Player {
             yield return e.Id;
 
         foreach (var i in _clientEntities) {
+            if (i.Owner == null)
+                yield return i.Id;
+            
             if (i is Player) {
                 if (i.Owner == null || i.Owner.Id != Owner.Id) // this is a hacky fix to check for a different world
                     yield return i.Id;

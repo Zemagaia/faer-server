@@ -1667,7 +1667,6 @@ public class Client {
 
                 Player.SaveToCharacter();
                 Player.Dispose();
-                Player = null;
                 Account.RefreshLastSeen();
                 Account.FlushAsync();
                 Manager.Database.SaveCharacter(Account, Character, true)

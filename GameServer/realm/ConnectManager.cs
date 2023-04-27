@@ -133,7 +133,8 @@ public class ConnectManager {
                 return;
             }
 
-            client.Player ??= new Player(client);
+            if (client.Player?.Owner == null)
+                client.Player = new Player(client);
             client.SendCreateSuccess(client.Manager.Worlds[world.Id].EnterWorld(client.Player),
                 client.Character.CharId);
             client.Manager.Clients[client].WorldInstance = client.Player.Owner.Id;
@@ -204,7 +205,8 @@ public class ConnectManager {
                 return;
             }
 
-            client.Player ??= new Player(client);
+            if (client.Player?.Owner == null)
+                client.Player = new Player(client);
             client.SendCreateSuccess(client.Manager.Worlds[world.Id].EnterWorld(client.Player),
                 client.Character.CharId);
             client.Manager.Clients[client].WorldInstance = client.Player.Owner.Id;
