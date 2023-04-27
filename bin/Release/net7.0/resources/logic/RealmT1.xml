@@ -32,10 +32,74 @@
    	<ItemLoot item="Health Vial" probability="0.02"/>
 	  <ItemLoot item="Magic Vial" probability="0.02"/>
 	</BehaviorEntry>
+	<BehaviorEntry id="Imp">
+	  <Charge speed="1.5" range="13" cooldown="400"/>
+    <Wander speed="0.42"/>
+   	<Shoot radius="13" count="5" shootAngle="8" projectileIndex="0" cooldown="800"/>
+   	<DropPortalOnDeath target="Crimson Chasm" probability="0.01"/>
+   	<ItemLoot item="Health Vial" probability="0.04"/>
+    <ItemLoot item="Magic Vial" probability="0.04"/>
+	</BehaviorEntry>
+	<BehaviorEntry id="Living Flame">
+    <Wander speed="0.44"/>
+    <Shoot radius="16" count="7" shootAngle="51" projectileIndex="0" cooldown="200"/>
+   	<Shoot radius="16" count="5" shootAngle="72" projectileIndex="0" cooldown="800"/>
+   	<DropPortalOnDeath target="Crimson Chasm" probability="0.01"/>
+   	<ItemLoot item="Health Vial" probability="0.04"/>
+    <ItemLoot item="Magic Vial" probability="0.04"/>
+	</BehaviorEntry>
+	<BehaviorEntry id="Demon Mage">
+	  <Orbit speed="0.77" radius="1" acquireRange="9" target="Imp"/>
+	  <Wander speed="0.43"/>
+   	<Shoot radius="16" count="5" shootAngle="3" projectileIndex="0" cooldown="600"/>
+	  <DropPortalOnDeath target="Crimson Chasm" probability="0.01"/>
+   	<ItemLoot item="Health Vial" probability="0.04"/>
+    <ItemLoot item="Magic Vial" probability="0.04"/>
+	</BehaviorEntry>
+	<BehaviorEntry id="Demon Archer">
+	  <Orbit speed="0.77" radius="1" acquireRange="9" target="Living Flame"/>
+	  <Wander speed="0.43"/>
+   	<Shoot radius="16" count="5" shootAngle="3" projectileIndex="0" cooldown="600"/>
+	  <DropPortalOnDeath target="Crimson Chasm" probability="0.01"/>
+   	<ItemLoot item="Health Vial" probability="0.04"/>
+    <ItemLoot item="Magic Vial" probability="0.04"/>
+	</BehaviorEntry>
+	<BehaviorEntry id="Jackal Warrior">
+	  <Charge speed="1.5" range="13" cooldown="400"/>
+    <Wander speed="0.45"/>
+   	<Shoot radius="16" count="7" shootAngle="15" projectileIndex="0" cooldown="600"/>
+   	<DropPortalOnDeath target="Dusty Dune" probability="0.01"/>
+   	<ItemLoot item="Health Vial" probability="0.06"/>
+    <ItemLoot item="Magic Vial" probability="0.06"/>
+	</BehaviorEntry>
+	<BehaviorEntry id="Jackal Priest">
+	  <Orbit speed="0.77" radius="1" acquireRange="9" target="Jackal Archer"/>
+    <Wander speed="0.45"/>
+   	<Shoot radius="16" count="8" shootAngle="45" projectileIndex="0" cooldown="1000"/>
+   	<HealEntity range="10" name="Jackal Warrior" amount="2500" cooldown="1000"/>
+   	<HealEntity range="10" name="Jackal Priest" amount="2500" cooldown="1000"/>
+   	<HealEntity range="10" name="Regal Mummy" amount="2500" cooldown="1000"/>
+   	<DropPortalOnDeath target="Dusty Dune" probability="0.01"/>
+   	<ItemLoot item="Health Vial" probability="0.06"/>
+    <ItemLoot item="Magic Vial" probability="0.06"/>
+	</BehaviorEntry>
+	<BehaviorEntry id="Jackal Archer">
+    <Follow speed="0.6" duration="600" cooldown="1000"/>
+    <Wander speed="0.45"/>
+   	<Shoot radius="16" count="4" shootAngle="5" projectileIndex="0" cooldown="300"/>
+   	<DropPortalOnDeath target="Dusty Dune" probability="0.01"/>
+   	<ItemLoot item="Health Vial" probability="0.06"/>
+    <ItemLoot item="Magic Vial" probability="0.06"/>
+	</BehaviorEntry>
+	<BehaviorEntry id="Regal Mummy">
+    <Follow speed="0.6" duration="600" cooldown="1000"/>
+    <Wander speed="0.45"/>
+    <!--<AoeAttack radius="3" damage="150" cooldown="300" effect="Slowed" effectDuration="1000" color="0x01361f"/>-->
+   	<DropPortalOnDeath target="Dusty Dune" probability="0.01"/>
+   	<ItemLoot item="Health Vial" probability="0.06"/>
+    <ItemLoot item="Magic Vial" probability="0.06"/>
+	</BehaviorEntry>
 	<BehaviorEntry id="Sobek">
 	  <Taunt text="Stevia" />
-   	<DropPortalOnDeath target="Crown Cove" probability="0.01"/>
-   	<ItemLoot item="Health Vial" probability="0.02"/>
-	  <ItemLoot item="Magic Vial" probability="0.02"/>
 	</BehaviorEntry>
 </BehaviorEntries>
