@@ -123,26 +123,26 @@ public class Program
 		if (!Database.LockOk(i))
 			return "<Error>Account in use</Error>";
         		
-		var currency = (CurrencyType)0;
+		/*var currency = (CurrencyType)0;
 		if ((int)currency == 0 && acc.Fame < 1000)
-			return "<Error>Insufficient funds</Error>";
+			return "<Error>Insufficient funds</Error>";*/
         		
 		var trans = Database.Conn.CreateTransaction();
-		var t1 = Database.UpdateCurrency(acc, -1000, currency, trans);
 		trans.AddCondition(Condition.HashEqual(acc.Key, "maxCharSlot", acc.MaxCharSlot));
 		trans.HashIncrementAsync(acc.Key, "maxCharSlot");
 		var t2 = trans.ExecuteAsync();
-		Task.WhenAll(t1, t2).ContinueWith(_ => {
+		t2.ContinueWith(_ => {
 			if (t2.IsCanceled || !t2.Result)
 				return "<Error>Internal Server Error</Error>";
 
 			acc.MaxCharSlot++;
 			return "<Success />";
-		}).ContinueWith(e =>
-				Log.Error(e.Exception.InnerException.ToString()),
-			TaskContinuationOptions.OnlyOnFaulted);
-                
-		return "<Error>" + status.GetInfo() + "</Error>";
+		}).ContinueWith(e => { 
+				Log.Error(e.Exception.InnerException.ToString());
+				return "<Error>" + status.GetInfo() + "</Error>";
+		}, TaskContinuationOptions.OnlyOnFaulted);
+		
+		return "<Success />";
 	}
         
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
