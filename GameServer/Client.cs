@@ -1609,24 +1609,18 @@ public class Client {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessUsePortal(int objId) {
         var entity = Player?.Owner?.GetEntity(objId);
-        if (entity == null) {
-            return;
-        }
-        
-        if (entity is GuildHallPortal guildHallPortal) {
-            if (string.IsNullOrEmpty(Player.Guild)) {
+        switch (entity) {
+            case null:
+                return;
+            case GuildHallPortal guildHallPortal when string.IsNullOrEmpty(Player.Guild):
                 Player.SendError("You are not in a guild.");
-            }
-            else {
-                if (guildHallPortal.ObjectType != 1839) {
-                    Player.SendInfo("Portal not implemented.");
-                    return;
-                }
-
-                /*ProtoWorld proto = Player.Manager.Resources.Worlds.Item("GuildHall");
+                break;
+            /*ProtoWorld proto = Player.Manager.Resources.Worlds.Item("GuildHall");
                 var world2 = Player.Manager.GetWorld(proto.id);
                 Player.Reconnect(world2);*/
-            }
+            case GuildHallPortal guildHallPortal when guildHallPortal.ObjectType != 1839:
+                Player.SendInfo("Portal not implemented.");
+                return;
         }
 
         if (entity.ObjectType == 0x0707) // stash portal
@@ -1660,20 +1654,27 @@ public class Client {
     }
 
     public void Disconnect(string reason = "") {
-        if (reason != "") {
-            var log = Log;
-            var account = Account;
-            log.Info("Disconnecting client ({0}) @ {1}... {2}",
-                account?.Name ?? "[unconnected]", IP, reason);
-        }
+        if (reason != "")
+            Log.Info("Disconnecting client ({0}) @ {1}... {2}",
+                Account?.Name ?? "[unconnected]", IP, reason);
 
         if (Account != null) {
             try {
-                Save();
+                if (Character == null || Player == null) {
+                    Manager.Database.ReleaseLock(Account);
+                    return;
+                }
+
+                Player.SaveToCharacter();
+                Player.Dispose();
+                Player = null;
+                Account.RefreshLastSeen();
+                Account.FlushAsync();
+                Manager.Database.SaveCharacter(Account, Character, true)
+                    .ContinueWith(delegate { Manager.Database.ReleaseLock(Account); });
             }
             catch (Exception e) {
-                var msg = e.Message + "\n" + e.StackTrace;
-                Log.Error(msg);
+                Log.Error(e.Message + "\n" + e.StackTrace);
             }
         }
 
@@ -1682,17 +1683,7 @@ public class Client {
     }
 
     private void Save() {
-        var acc = Account;
-        if (Character == null || Player == null) {
-            Manager.Database.ReleaseLock(acc);
-            return;
-        }
-
-        Player.SaveToCharacter();
-        acc.RefreshLastSeen();
-        acc.FlushAsync();
-        Manager.Database.SaveCharacter(acc, Character, true)
-            .ContinueWith(delegate { Manager.Database.ReleaseLock(acc); });
+        
     }
 
     public bool KeepAlive(RealmTime time, int position, int count) {

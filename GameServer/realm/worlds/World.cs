@@ -327,44 +327,51 @@ public class World {
     }
 
     public virtual void LeaveWorld(Entity entity) {
-        if (entity is Player) {
-            Players.TryRemove(entity.Id, out var player);
-            PlayersCollision.Remove(entity);
+        switch (entity) {
+            case Player player: {
+                Players.TryRemove(player.Id, out _);
+                PlayersCollision.Remove(player);
 
-            // if in trade, cancel it...
-            if (player?.tradeTarget != null)
-                player.CancelTrade();
-        }
-        // for enemies
-        else if (entity is Enemy e) {
-            Enemy dummy;
-            Enemies.TryRemove(entity.Id, out dummy);
-            EnemiesCollision.Remove(entity);
-            if (entity.ObjectDesc.Quest)
-                Quests.TryRemove(entity.Id, out dummy);
-        }
-        else if (entity is Projectile) {
-            var p = entity as Projectile;
-            Projectiles.TryRemove(new Tuple<int, byte>(p.ProjectileOwner.Self.Id, p.BulletId), out p);
-        }
-        else if (entity is StaticObject) {
-            StaticObject dummy;
-            StaticObjects.TryRemove(entity.Id, out dummy);
-
-            if (entity.ObjectDesc?.BlocksSight == true) {
-                if (Blocking == 3)
-                    Sight.UpdateRegion(Map, (int) entity.X, (int) entity.Y);
-
-                foreach (var plr in Players
-                             .Where(p => MathsUtils.DistSqr(p.Value.X, p.Value.Y, entity.X, entity.Y) <
-                                         Player.RadiusSqr))
-                    plr.Value.Sight.UpdateCount++;
+                // if in trade, cancel it...
+                if (player?.tradeTarget != null)
+                    player.CancelTrade();
+                player.Dispose();
+                break;
             }
+            case Enemy enemy: {
+                Enemies.TryRemove(enemy.Id, out _);
+                EnemiesCollision.Remove(enemy);
+                if (enemy.ObjectDesc.Quest)
+                    Quests.TryRemove(enemy.Id, out _);
+                enemy.Dispose();
+                break;
+            }
+            case Projectile projectile: {
+                Projectiles.TryRemove(new Tuple<int, byte>(projectile.ProjectileOwner.Self.Id, projectile.BulletId), out _);
+                projectile.Dispose();
+                break;
+            }
+            case StaticObject so: {
+                StaticObjects.TryRemove(so.Id, out _);
 
-            EnemiesCollision.Remove(entity);
+                if (so.ObjectDesc?.BlocksSight == true) {
+                    if (Blocking == 3)
+                        Sight.UpdateRegion(Map, (int) so.X, (int) so.Y);
+
+                    foreach (var plr in Players
+                                 .Where(p => MathsUtils.DistSqr(p.Value.X, p.Value.Y, so.X, so.Y) <
+                                             Player.RadiusSqr))
+                        plr.Value.Sight.UpdateCount++;
+                }
+
+                EnemiesCollision.Remove(so);
+                so.Dispose();
+                break;
+            }
+            default:
+                entity.Dispose();
+                break;
         }
-
-        entity.Dispose();
     }
 
     public int GetNextEntityId() {

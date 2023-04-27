@@ -57,10 +57,6 @@ public class ConnectManager {
 
             var objectId = world.EnterWorld(player);
             client.SendCreateSuccess(objectId, client.Character.CharId);
-
-            var playerInfo = client.Manager.Clients[client];
-            playerInfo.WorldInstance = world.Id;
-            playerInfo.WorldName = world.Name;
         }
         else {
             client.SendFailure("Failed to load character");
@@ -137,7 +133,7 @@ public class ConnectManager {
                 return;
             }
 
-            client.Player = new Player(client);
+            client.Player ??= new Player(client);
             client.SendCreateSuccess(client.Manager.Worlds[world.Id].EnterWorld(client.Player),
                 client.Character.CharId);
             client.Manager.Clients[client].WorldInstance = client.Player.Owner.Id;
@@ -208,7 +204,7 @@ public class ConnectManager {
                 return;
             }
 
-            client.Player = new Player(client);
+            client.Player ??= new Player(client);
             client.SendCreateSuccess(client.Manager.Worlds[world.Id].EnterWorld(client.Player),
                 client.Character.CharId);
             client.Manager.Clients[client].WorldInstance = client.Player.Owner.Id;
