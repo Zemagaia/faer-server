@@ -1124,8 +1124,13 @@ public class Client {
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessEnemyHit(byte bulletId, int targetId) {
-        if (Player?.Owner != null && Player.Owner.Enemies.TryGetValue(targetId, out var en))
+        if (Player?.Owner == null) 
+            return;
+        
+        if (Player.Owner.Enemies.TryGetValue(targetId, out var en))
             Player._projectiles[bulletId].ForceHit(en, Manager.Logic.WorldTime);
+        else if (Player.Owner.StaticObjects.TryGetValue(targetId, out var so) && so.ObjectDesc.Enemy)
+            Player._projectiles[bulletId].ForceHit(so, Manager.Logic.WorldTime);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
