@@ -1,9 +1,11 @@
-﻿using System.Diagnostics;
+﻿/*using System.Diagnostics;
 using NLog;
 
 namespace GameServer.realm; 
 
-public class LogicTicker {
+// tick system with variable ticks
+
+public class LogicTicker { 
 	private static Logger Log = LogManager.GetCurrentClassLogger();
 	private RealmManager _manager;
 	public RealmTime WorldTime { get; private set; }
@@ -60,10 +62,8 @@ public class LogicTicker {
 		Log.Info("Logic loop stopped.");
 	}
 }
+*/
 
-
-/*
- 
  // this is old logicticker code
  
  using System.Diagnostics;
@@ -114,4 +114,4 @@ public class LogicTicker {
             
 		Log.Info("Logic loop stopped.");
 	}
-}*/
+}
