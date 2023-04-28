@@ -1140,16 +1140,16 @@
         <FullOccupy/>
         <OccupySquare/>
     </Object>
-    <Object type="0x15d" id="Decor Door">
+    <Object type="0x15e" id="Decor Door">
         <Class>Wall</Class>
         <Texture>
             <Sheet>ground</Sheet>
-             <Index>0xb3</Index>
+             <Index>0xb4</Index>
          </Texture>
         <Top>
             <Texture>
                 <Sheet>ground</Sheet>
-                <Index>0xb4</Index>
+                <Index>0xb3</Index>
             </Texture>
         </Top>
         <Health>300</Health>
@@ -1157,7 +1157,7 @@
         <FullOccupy/>
         <OccupySquare/>
     </Object>
-    <Object type="0x15e" id="Decor Chair">
+    <Object type="0x15f" id="Decor Chair">
         <Class>GameObject</Class>
         <RandomTexture>
             <Texture>
@@ -1171,7 +1171,7 @@
         </RandomTexture>
         <Static/>
     </Object>
-    <Object type="0x15f" id="Decor Table">
+    <Object type="0x160" id="Decor Table">
         <Class>GameObject</Class>
             <Texture>
                 <Sheet>props</Sheet>
@@ -1179,11 +1179,11 @@
             </Texture>
         <Static/>
     </Object>
-    <Object type="0x160" id="Decor Bed">
+    <Object type="0x161" id="Decor Bed">
         <Class>GameObject</Class>
             <Texture>
                 <Sheet>props</Sheet>
-                <Index>0x3f</Index>
+                <Index>0x40</Index>
             </Texture>
         <Static/>
     </Object>
