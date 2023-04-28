@@ -254,7 +254,7 @@ public class Client {
         TrySend(ptr);
     }
 
-    public void SendEnemyShoot(byte bulletId, int ownerId, byte bulletType, float x, float y, float angle, short damage,
+    public void SendEnemyShoot(byte bulletId, int ownerId, byte bulletType, float x, float y, float angle, short damage, short magicDamage, short trueDamage,
         byte numShots, float angleInc) {
         var ptr = 0;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
@@ -266,6 +266,8 @@ public class Client {
         WriteFloat(ref ptr, ref spanRef, y);
         WriteFloat(ref ptr, ref spanRef, angle);
         WriteShort(ref ptr, ref spanRef, damage);
+        WriteShort(ref ptr, ref spanRef, magicDamage);
+        WriteShort(ref ptr, ref spanRef, trueDamage);
         WriteByte(ref ptr, ref spanRef, numShots);
         WriteFloat(ref ptr, ref spanRef, angleInc);
         TrySend(ptr);

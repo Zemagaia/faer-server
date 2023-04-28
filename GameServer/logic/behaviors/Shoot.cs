@@ -174,8 +174,9 @@ internal class Shoot : CycleBehavior
                 }
                     
                 foreach (var p in host.Owner.Players.Values)
-                    if (MathUtils.DistSqr(host.X, host.Y, p.X, p.Y) < 40 * 40)
-                        p.Client.SendEnemyShoot(prjId, host.Id, (byte)(desc.BulletType), host.X, host.Y, startAngle, (short)dmg, (byte)count, _shootAngle);
+                    if (MathUtils.DistSqr(host.X, host.Y, p.X, p.Y) < 20 * 20)
+                        p.Client.SendEnemyShoot(prjId, host.Id, (byte)(desc.BulletType), host.X, host.Y,
+                            startAngle, (short)desc.Damage, (short)desc.MagicDamage, (short)desc.TrueDamage, (byte)count, _shootAngle);
             }
 
             cool = _coolDown.Next(Random);
