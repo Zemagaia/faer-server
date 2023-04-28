@@ -1153,6 +1153,7 @@
             </Texture>
         </Top>
         <Health>300</Health>
+        <Enemy/>>
         <Static/>
         <FullOccupy/>
         <OccupySquare/>
@@ -1186,5 +1187,21 @@
                 <Index>0x40</Index>
             </Texture>
         <Static/>
+    </Object>
+    <Object type="0x162" id="Decor Wall">
+        <Class>Wall</Class>
+        <Texture>
+            <Sheet>ground</Sheet>
+             <Index>0xb5</Index>
+         </Texture>
+        <Top>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0xb3</Index>
+            </Texture>
+        </Top>
+        <Static/>
+        <FullOccupy/>
+        <OccupySquare/>
     </Object>
 </Objects>
