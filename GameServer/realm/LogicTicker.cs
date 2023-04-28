@@ -38,7 +38,6 @@ public class LogicTicker {
 
 				try
 				{
-					Console.WriteLine(t.ElapsedMsDelta + " " + t.TotalElapsedMs);
 					_manager.Monitor.Tick(t);
 					_manager.InterServer.Tick(t.ElapsedMsDelta);
 					foreach (var w in _manager.Worlds.Values)
