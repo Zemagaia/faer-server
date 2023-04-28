@@ -6,6 +6,75 @@ namespace GameServer.realm;
 public class LogicTicker {
 	private static Logger Log = LogManager.GetCurrentClassLogger();
 	private RealmManager _manager;
+	public RealmTime WorldTime { get; private set; }
+	public int MillisecondsPerTick;
+       
+	public LogicTicker(RealmManager manager) {
+		_manager = manager;
+		MillisecondsPerTick = 1000 / manager.TPS;
+		WorldTime = new RealmTime();
+	}
+       
+	public void TickLoop() {
+		Log.Info("Logic loop started.");
+		var loopTime = 0;
+		
+		var watch = Stopwatch.StartNew();
+
+		var lastMS = 0L;
+
+		var t = new RealmTime();
+		while (!_manager.Terminating)
+		{
+			var currentMS = t.TotalElapsedMs = watch.ElapsedMilliseconds;
+
+			var delta = (int)(currentMS - lastMS);
+			if (delta >= MillisecondsPerTick)
+			{
+				t.TickCount++;
+				t.ElapsedMsDelta = delta;
+
+				var start = watch.ElapsedMilliseconds;
+
+				try
+				{
+					Console.WriteLine(t.ElapsedMsDelta + " " + t.TotalElapsedMs);
+					_manager.Monitor.Tick(t);
+					_manager.InterServer.Tick(t.ElapsedMsDelta);
+					foreach (var w in _manager.Worlds.Values)
+						w.Tick(t);
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine(e);
+				}
+				
+				var end = watch.ElapsedMilliseconds;
+				var logicExecutionTime = (int)(end - start);
+
+				lastMS = currentMS + logicExecutionTime; // logic update time added ontop to offset the latency of each tick to help with stability
+
+				WorldTime = t;
+			}
+		}
+		
+		Log.Info("Logic loop stopped.");
+	}
+}
+
+
+/*
+ 
+ // this is old logicticker code
+ 
+ using System.Diagnostics;
+using NLog;
+
+namespace GameServer.realm; 
+
+public class LogicTicker {
+	private static Logger Log = LogManager.GetCurrentClassLogger();
+	private RealmManager _manager;
 	private ManualResetEvent _mre;
 	public RealmTime WorldTime;
 	public int MillisPerTick;
@@ -46,4 +115,4 @@ public class LogicTicker {
             
 		Log.Info("Logic loop stopped.");
 	}
-}
+}*/

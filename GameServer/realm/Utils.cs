@@ -268,9 +268,17 @@ internal static class EntityUtils {
         return ret;
     }
 
-    public static float GetSpeed(this Entity entity, float spdMult) {
-        return (entity.HasConditionEffect(ConditionEffects.Slowed) ? 4 : 4 + 5.6f) * spdMult;
+    public static float GetSpeed(this Entity entity, float speed)
+    {
+        var ret = speed;
+        if(entity.HasConditionEffect(ConditionEffects.Slowed))
+            ret *= 0.5f;
+        return ret * 5.0f; // we move at 5 tps speeds even at a different tps
     }
+
+    // public static float GetSpeed(this Entity entity, float spdMult) {
+        // return (entity.HasConditionEffect(ConditionEffects.Slowed) ? 4 : 4 + 5.6f) * spdMult;
+    // }
 
     public static void
         AOE(this Entity entity, float radius, ushort? objType, Action<Entity> callback) //Null for player
