@@ -789,5 +789,22 @@
         <Texture><Sheet>ground</Sheet><Index>0xa8</Index></Texture>
         <!-- <BlendPriority>-99</BlendPriority> -->
     </Ground>
+    <Ground type="0x7d" id="Oasis Grass">
+        <RandomTexture>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0xad</Index>
+            </Texture>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0xae</Index>
+            </Texture>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0xaf</Index>
+            </Texture>
+        </RandomTexture>
+        <BlendPriority>4</BlendPriority>
+    </Ground>
 
 </GroundTypes>

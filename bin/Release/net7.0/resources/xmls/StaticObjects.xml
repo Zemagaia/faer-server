@@ -933,6 +933,9 @@
                 <Index>0x0f</Index>
             </Texture>
         </RandomTexture>
+        <FullOccupy/>
+        <OccupySquare/>
+        <Static/>
      </Object>
     <Object type="0x152" id="Crown Cove Small Barrel">
         <Class>GameObject</Class>
@@ -1114,5 +1117,74 @@
         <SizeStep>15</SizeStep>
         <Static />
         <OccupySquare />
+    </Object>
+    <Object type="0x15d" id="Decor Bookshelf">
+        <Class>Wall</Class>
+        <RandomTexture>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0xb0</Index>
+            </Texture>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0xb1</Index>
+            </Texture>
+        </RandomTexture>
+        <Top>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0xb2</Index>
+            </Texture>
+        </Top>
+        <Static/>
+        <FullOccupy/>
+        <OccupySquare/>
+    </Object>
+    <Object type="0x15d" id="Decor Door">
+        <Class>Wall</Class>
+        <Texture>
+            <Sheet>ground</Sheet>
+             <Index>0xb3</Index>
+         </Texture>
+        <Top>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0xb4</Index>
+            </Texture>
+        </Top>
+        <Health>300</Health>
+        <Static/>
+        <FullOccupy/>
+        <OccupySquare/>
+    </Object>
+    <Object type="0x15e" id="Decor Chair">
+        <Class>GameObject</Class>
+        <RandomTexture>
+            <Texture>
+                <Sheet>props</Sheet>
+                <Index>0x3d</Index>
+            </Texture>
+            <Texture>
+                <Sheet>props</Sheet>
+                <Index>0x3e</Index>
+            </Texture>
+        </RandomTexture>
+        <Static/>
+    </Object>
+    <Object type="0x15f" id="Decor Table">
+        <Class>GameObject</Class>
+            <Texture>
+                <Sheet>props</Sheet>
+                <Index>0x3f</Index>
+            </Texture>
+        <Static/>
+    </Object>
+    <Object type="0x160" id="Decor Bed">
+        <Class>GameObject</Class>
+            <Texture>
+                <Sheet>props</Sheet>
+                <Index>0x3f</Index>
+            </Texture>
+        <Static/>
     </Object>
 </Objects>
