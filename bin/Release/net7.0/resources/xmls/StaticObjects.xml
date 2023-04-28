@@ -1153,7 +1153,7 @@
             </Texture>
         </Top>
         <Health>300</Health>
-        <Enemy/>>
+        <Enemy/>
         <Static/>
         <FullOccupy/>
         <OccupySquare/>
