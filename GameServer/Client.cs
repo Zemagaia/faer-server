@@ -1503,11 +1503,16 @@ public class Client {
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessPlayerShoot(int time, byte bulletId, ushort objType, float x, float y, float angle) {
-        if (Manager.Resources.GameData.Items.TryGetValue(objType, out var item) && item != Player.Inventory[1]) {
-            var prjDesc = item.Projectiles[0];
-            var prj = Player.PlayerShootProjectile(bulletId, prjDesc, item.ObjectType, time, x, y, angle, bulletId);
-            Player.Owner.EnterWorld(prj);
-        }
+        if (!Manager.Resources.GameData.Items.TryGetValue(objType, out var item) || item == Player.Inventory[1]) 
+            return;
+        
+        var prjDesc = item.Projectiles[0];
+        var prj = Player.PlayerShootProjectile(bulletId, prjDesc, item.ObjectType, time, x, y, angle, bulletId);
+        Player.Owner.EnterWorld(prj);
+            
+        foreach (var plr in Player.Owner.Players.Values)
+            if (plr.Id != Player.Id && MathUtils.DistSqr(plr.X, plr.Y, Player.X, Player.Y) < 20 * 20)
+                plr.Client.SendAllyShoot(prj.BulletId, Player.Id, prj.Container, angle);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
