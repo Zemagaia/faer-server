@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "Ig7wG6dHLrp+m3b7ATr4V4lViFf6rR924L5DKj0mWSyufU8QeDtthGS4/4vZRP53unOTvBYPgqLCqphV2p05jA==",
+  "dgSpecHash": "SGTth9hqg95Jha1J2FpwCSaG9w75eZ+HwFOwX577/7chfZ/XXVbBazJDTBp93OC5nT9C7hhEGpBuQp0KS/P5Ww==",
   "success": true,
   "projectFilePath": "/home/a/faer/server/GameServer/GameServer.csproj",
   "expectedPackageFiles": [
     "/home/a/.nuget/packages/bouncycastle.netcore/1.9.0/bouncycastle.netcore.1.9.0.nupkg.sha512",
     "/home/a/.nuget/packages/dynamitey/2.0.10.189/dynamitey.2.0.10.189.nupkg.sha512",
     "/home/a/.nuget/packages/ionic.zlib/1.9.1.5/ionic.zlib.1.9.1.5.nupkg.sha512",
+    "/home/a/.nuget/packages/k4os.compression.lz4/1.3.5/k4os.compression.lz4.1.3.5.nupkg.sha512",
     "/home/a/.nuget/packages/microsoft.csharp/4.6.0/microsoft.csharp.4.6.0.nupkg.sha512",
     "/home/a/.nuget/packages/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "/home/a/.nuget/packages/microsoft.netcore.targets/1.1.0/microsoft.netcore.targets.1.1.0.nupkg.sha512",

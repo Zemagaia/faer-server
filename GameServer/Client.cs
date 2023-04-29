@@ -1,3 +1,4 @@
+using System.Buffers.Binary;
 using System.Net;
 using System.Net.Sockets;
 using System.Runtime.CompilerServices;
@@ -10,6 +11,8 @@ using GameServer.realm.entities.player;
 using GameServer.realm.entities.vendors;
 using GameServer.realm.worlds;
 using GameServer.realm.worlds.logic;
+using K4os.Compression.LZ4;
+using K4os.Compression.LZ4.Encoders;
 using NLog;
 using StackExchange.Redis;
 using wServer.realm;
@@ -94,6 +97,8 @@ public enum PacketId : byte {
 }
 
 public class Client {
+    private const int LENGTH_PREFIX = 2;
+    
     private static Logger Log = LogManager.GetCurrentClassLogger();
     public Random ClientRandom = new((int) DateTime.Now.Ticks);
     public static Random StaticRandom = new((int) DateTime.Now.Ticks);
@@ -163,6 +168,7 @@ public class Client {
 
         try {
             //Log.Error($"Sending packet {(PacketId) SendMem.Span[0]} {len}");
+            BinaryPrimitives.WriteUInt16LittleEndian(SendMem.Span, (ushort)(len - 2));
             await Socket.SendAsync(SendMem[..len]);
         }
         catch (Exception e) {
@@ -174,7 +180,7 @@ public class Client {
     }
 
     public void SendAccountList(int id, int[] list) {
-        var ptr = 0;
+        var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
         WriteByte(ref ptr, ref spanRef, (byte) PacketId.AccountList);
         WriteInt(ref ptr, ref spanRef, id);
@@ -186,7 +192,7 @@ public class Client {
     }
 
     public void SendAllyShoot(byte bulletId, int ownerId, ushort containerType, float angle) {
-        var ptr = 0;
+        var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
         WriteByte(ref ptr, ref spanRef, (byte) PacketId.AllyShoot);
         WriteByte(ref ptr, ref spanRef, bulletId);
@@ -198,7 +204,7 @@ public class Client {
 
     public void SendAOE(float x, float y, float radius, ushort damage, ConditionEffectIndex effect, float duration,
         ushort origType, uint color) {
-        var ptr = 0;
+        var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
         WriteByte(ref ptr, ref spanRef, (byte) PacketId.Aoe);
         WriteFloat(ref ptr, ref spanRef, x);
@@ -213,7 +219,7 @@ public class Client {
     }
 
     public void SendBuyResult(int id, string res) {
-        var ptr = 0;
+        var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
         WriteByte(ref ptr, ref spanRef, (byte) PacketId.BuyResult);
         WriteInt(ref ptr, ref spanRef, id);
@@ -222,7 +228,7 @@ public class Client {
     }
 
     public void SendCreateSuccess(int objId, int charId) {
-        var ptr = 0;
+        var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
         WriteByte(ref ptr, ref spanRef, (byte) PacketId.CreateSuccess);
         WriteInt(ref ptr, ref spanRef, objId);
@@ -232,7 +238,7 @@ public class Client {
 
     public void SendDamage(int targetId, ConditionEffects effects, ushort damage, bool kill, byte bulletId,
         int objectId) {
-        var ptr = 0;
+        var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
         WriteByte(ref ptr, ref spanRef, (byte) PacketId.Damage);
         WriteInt(ref ptr, ref spanRef, targetId);
@@ -245,7 +251,7 @@ public class Client {
     }
 
     public void SendDeath(int accId, int charId, string killedBy) {
-        var ptr = 0;
+        var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
         WriteByte(ref ptr, ref spanRef, (byte) PacketId.Death);
         WriteInt(ref ptr, ref spanRef, accId);
@@ -256,7 +262,7 @@ public class Client {
 
     public void SendEnemyShoot(byte bulletId, int ownerId, byte bulletType, float x, float y, float angle, short damage, short magicDamage, short trueDamage,
         byte numShots, float angleInc) {
-        var ptr = 0;
+        var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
         WriteByte(ref ptr, ref spanRef, (byte) PacketId.EnemyShoot);
         WriteByte(ref ptr, ref spanRef, bulletId);
@@ -274,7 +280,7 @@ public class Client {
     }
 
     public void SendGoto(int objId, float x, float y) {
-        var ptr = 0;
+        var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
         WriteByte(ref ptr, ref spanRef, (byte) PacketId.Goto);
         WriteInt(ref ptr, ref spanRef, objId);
@@ -284,7 +290,7 @@ public class Client {
     }
 
     public void SendGuildResult(bool success, string errorText) {
-        var ptr = 0;
+        var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
         WriteByte(ref ptr, ref spanRef, (byte) PacketId.GuildResult);
         WriteBool(ref ptr, ref spanRef, success);
@@ -293,7 +299,7 @@ public class Client {
     }
 
     public void SendInvitedToGuild(string guildName, string name) {
-        var ptr = 0;
+        var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
         WriteByte(ref ptr, ref spanRef, (byte) PacketId.InvitedToGuild);
         WriteString(ref ptr, ref spanRef, guildName);
@@ -302,7 +308,7 @@ public class Client {
     }
 
     public void SendInvResult(int result) {
-        var ptr = 0;
+        var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
         WriteByte(ref ptr, ref spanRef, (byte) PacketId.InvResult);
         WriteInt(ref ptr, ref spanRef, result);
@@ -310,7 +316,7 @@ public class Client {
     }
 
     public void SendNameResult(bool success, string errorText) {
-        var ptr = 0;
+        var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
         WriteByte(ref ptr, ref spanRef, (byte) PacketId.NameResult);
         WriteBool(ref ptr, ref spanRef, success);
@@ -320,7 +326,7 @@ public class Client {
 
     public void SendMapInfo(int width, int height, string name, string displayName, int diff, int background,
         bool allowTp, bool showDisplays) {
-        var ptr = 0;
+        var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
         WriteByte(ref ptr, ref spanRef, (byte) PacketId.MapInfo);
         WriteInt(ref ptr, ref spanRef, width);
@@ -335,11 +341,9 @@ public class Client {
     }
 
     public void SendNewTick(byte tickId, byte tps, ObjectStats[] stats) {
-        var ptr = 0;
+        var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
         WriteByte(ref ptr, ref spanRef, (byte) PacketId.NewTick);
-        var lenPtr = ptr;
-        WriteUShort(ref ptr, ref spanRef, 0);
         WriteByte(ref ptr, ref spanRef, tickId);
         WriteByte(ref ptr, ref spanRef, tps);
         WriteShort(ref ptr, ref spanRef, (short) stats.Length);
@@ -359,14 +363,12 @@ public class Client {
                 SendStat(ref ptr, ref spanRef, key, value);
             }
         }
-        
-        WriteUShort(ref lenPtr, ref spanRef, (ushort)ptr);
 
         TrySend(ptr);
     }
 
     public void SendNotification(int objId, string msg, uint color) {
-        var ptr = 0;
+        var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
         WriteByte(ref ptr, ref spanRef, (byte) PacketId.Notification);
         WriteInt(ref ptr, ref spanRef, objId);
@@ -376,7 +378,7 @@ public class Client {
     }
 
     public void SendPing(int serial) {
-        var ptr = 0;
+        var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
         WriteByte(ref ptr, ref spanRef, (byte) PacketId.Ping);
         WriteInt(ref ptr, ref spanRef, serial);
@@ -385,7 +387,7 @@ public class Client {
 
     public void SendShowEffect(EffectType effectType, int targetObjId, float x1, float y1, float x2, float y2,
         uint color) {
-        var ptr = 0;
+        var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
         WriteByte(ref ptr, ref spanRef, (byte) PacketId.ShowEffect);
         WriteByte(ref ptr, ref spanRef, (byte) effectType);
@@ -400,7 +402,7 @@ public class Client {
 
     public void SendText(string name, int objectId, byte bubbleTime, string recipient, string text,
         uint nameColor = 0xFF0000, uint textColor = 0xFFFFFF) {
-        var ptr = 0;
+        var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
         WriteByte(ref ptr, ref spanRef, (byte) PacketId.Text);
         WriteString(ref ptr, ref spanRef, name);
@@ -416,7 +418,7 @@ public class Client {
     }
 
     public void SendTradeAccepted(bool[] myOffer, bool[] yourOffer) {
-        var ptr = 0;
+        var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
         WriteByte(ref ptr, ref spanRef, (byte) PacketId.TradeAccepted);
         WriteShort(ref ptr, ref spanRef, (short) myOffer.Length);
@@ -431,7 +433,7 @@ public class Client {
     }
 
     public void SendTradeChanged(bool[] offer) {
-        var ptr = 0;
+        var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
         WriteByte(ref ptr, ref spanRef, (byte) PacketId.TradeChanged);
         WriteShort(ref ptr, ref spanRef, (short) offer.Length);
@@ -442,7 +444,7 @@ public class Client {
     }
 
     public void SendTradeDone(int code, string desc) {
-        var ptr = 0;
+        var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
         WriteByte(ref ptr, ref spanRef, (byte) PacketId.TradeDone);
         WriteInt(ref ptr, ref spanRef, code);
@@ -451,7 +453,7 @@ public class Client {
     }
 
     public void SendTradeRequested(string name) {
-        var ptr = 0;
+        var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
         WriteByte(ref ptr, ref spanRef, (byte) PacketId.TradeRequested);
         WriteString(ref ptr, ref spanRef, name);
@@ -459,7 +461,7 @@ public class Client {
     }
 
     public void SendTradeStart(TradeItem[] myItems, string yourName, TradeItem[] yourItems) {
-        var ptr = 0;
+        var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
         WriteByte(ref ptr, ref spanRef, (byte) PacketId.TradeStart);
         WriteShort(ref ptr, ref spanRef, (short) myItems.Length);
@@ -485,11 +487,9 @@ public class Client {
     }
 
     public void SendUpdate(TileData[] tiles, ObjectDef[] newObjs, int[] drops) {
-        var ptr = 0;
+        var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
         WriteByte(ref ptr, ref spanRef, (byte) PacketId.Update);
-        var lenPtr = ptr;
-        WriteUShort(ref ptr, ref spanRef, 0);
         WriteShort(ref ptr, ref spanRef, (short) tiles.Length);
         for (var i = 0; i < tiles.Length; i++) {
             var tile = tiles[i];
@@ -519,9 +519,7 @@ public class Client {
         WriteShort(ref ptr, ref spanRef, (short) drops.Length);
         foreach (var drop in drops)
             WriteInt(ref ptr, ref spanRef, drop);
-        
-        WriteUShort(ref lenPtr, ref spanRef, (ushort)ptr);
-        
+
         TrySend(ptr);
     }
 
@@ -637,7 +635,7 @@ public class Client {
     }
 
     public void SendFailure(string text, FailureType errorId = FailureType.MessageWithDisconnect) {
-        var ptr = 0;
+        var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
         WriteByte(ref ptr, ref spanRef, (byte) PacketId.Failure);
         WriteInt(ref ptr, ref spanRef, (int) errorId);

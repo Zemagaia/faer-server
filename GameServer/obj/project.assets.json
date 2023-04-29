@@ -37,6 +37,19 @@
           "lib/Ionic.Zlib.dll": {}
         }
       },
+      "K4os.Compression.LZ4/1.3.5": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/K4os.Compression.LZ4.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/K4os.Compression.LZ4.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.CSharp/4.6.0": {
         "type": "package",
         "compile": {
@@ -231,6 +244,27 @@
         "ionic.zlib.1.9.1.5.nupkg.sha512",
         "ionic.zlib.nuspec",
         "lib/Ionic.Zlib.dll"
+      ]
+    },
+    "K4os.Compression.LZ4/1.3.5": {
+      "sha512": "TS4mqlT0X1OlnvOGNfl02QdVUhuqgWuCnn7UxupIa7C9Pb6qlQ5yZA2sPhRh0OSmVULaQU64KV4wJuu//UyVQQ==",
+      "type": "package",
+      "path": "k4os.compression.lz4/1.3.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "k4os.compression.lz4.1.3.5.nupkg.sha512",
+        "k4os.compression.lz4.nuspec",
+        "lib/net462/K4os.Compression.LZ4.dll",
+        "lib/net462/K4os.Compression.LZ4.xml",
+        "lib/net5.0/K4os.Compression.LZ4.dll",
+        "lib/net5.0/K4os.Compression.LZ4.xml",
+        "lib/net6.0/K4os.Compression.LZ4.dll",
+        "lib/net6.0/K4os.Compression.LZ4.xml",
+        "lib/netstandard2.0/K4os.Compression.LZ4.dll",
+        "lib/netstandard2.0/K4os.Compression.LZ4.xml",
+        "lib/netstandard2.1/K4os.Compression.LZ4.dll",
+        "lib/netstandard2.1/K4os.Compression.LZ4.xml"
       ]
     },
     "Microsoft.CSharp/4.6.0": {
@@ -622,6 +656,7 @@
     "net7.0": [
       "BouncyCastle.NetCore >= 1.9.0",
       "DungeonGen >= 1.0.0",
+      "K4os.Compression.LZ4 >= 1.3.5",
       "NLog >= 5.1.2",
       "Shared >= 1.0.0"
     ]
@@ -673,6 +708,10 @@
           "BouncyCastle.NetCore": {
             "target": "Package",
             "version": "[1.9.0, )"
+          },
+          "K4os.Compression.LZ4": {
+            "target": "Package",
+            "version": "[1.3.5, )"
           },
           "NLog": {
             "target": "Package",
