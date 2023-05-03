@@ -1,4 +1,5 @@
 ﻿using GameServer.realm;
+using System.Xml.Linq;
 
 namespace GameServer.logic; 
 
@@ -9,6 +10,10 @@ public interface IStateChildren
 public class State : IStateChildren
 {
     public State(params IStateChildren[] children) : this("", children)
+    {
+    }
+
+    public State(XElement elem, params IStateChildren[] children) : this(elem.Attribute("id").Value, children)
     {
     }
 
