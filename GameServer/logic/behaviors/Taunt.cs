@@ -15,13 +15,13 @@ internal class Taunt : Behavior
     private Cooldown cooldown = new Cooldown(0, 0);
     private string[] text;
     private int? ordered;
-        
+    
     public Taunt(XElement e)
     {
-        text = e.ParseStringArray("@text", ',');
+        text = e.ParseStringArray("@text", '|', new[] { e.ParseString("@text") });
         probability = e.ParseFloat("@probability", 1);
         broadcast = e.ParseBool("@broadcast");
-        cooldown = new Cooldown(e.ParseInt("@cooldown"), 0);
+        cooldown = new Cooldown(e.ParseInt("@coolDown"), 0);
     }
 
     public Taunt(params string[] text)
