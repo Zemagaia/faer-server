@@ -28,73 +28,72 @@ public enum FailureType : sbyte {
     InvalidTeleportTarget
 }
 
-public enum PacketId : byte {
-    CreateSuccess = 1,
-    PlayerShoot = 3,
-    Move = 4,
-    PlayerText = 5,
-    Text = 6,
-    ServerPlayerShoot = 7,
-    Damage = 8,
-    Update = 9,
-    UpdateAck = 10,
-    Notification = 11,
-    NewTick = 12,
-    InvSwap = 13,
-    UseItem = 14,
-    ShowEffect = 15,
-    Hello = 16,
-    Goto = 17,
-    InvDrop = 18,
-    InvResult = 19,
-    Reconnect = 20,
-    Ping = 21,
-    Pong = 22,
-    MapInfo = 23,
-    Teleport = 27,
-    UsePortal = 28,
-    Death = 29,
-    Buy = 30,
-    BuyResult = 31,
-    Aoe = 32,
-    GroundDamage = 33,
-    PlayerHit = 34,
-    EnemyHit = 35,
-    AoeAck = 36,
-    ShootAck = 37,
-    OtherHit = 38,
-    SquareHit = 39,
-    GotoAck = 40,
-    EditAccountList = 41,
-    AccountList = 42,
-    QuestObjId = 43,
-    ChooseName = 44,
-    NameResult = 45,
-    CreateGuild = 46,
-    GuildResult = 47,
-    GuildRemove = 48,
-    GuildInvite = 49,
-    AllyShoot = 50,
-    EnemyShoot = 51,
-    RequestTrade = 52,
-    TradeRequested = 53,
-    TradeStart = 54,
-    ChangeTrade = 55,
-    TradeChanged = 56,
-    AcceptTrade = 57,
-    CancelTrade = 58,
-    TradeDone = 59,
-    TradeAccepted = 60,
-    Escape = 63,
-    InvitedToGuild = 65,
-    JoinGuild = 66,
-    ChangeGuildRank = 67,
-    PlaySound = 68,
-    Reskin = 70,
-    ReskinVault = 71,
-    Failure = 72,
-    MapHello = 73
-}
+public enum C2SPacketId : byte {
+    PlayerShoot = 0,
+    Move = 1,
+    PlayerText = 2,
+    UpdateAck = 3,
+    InvSwap = 4,
+    UseItem = 5,
+    Hello = 6,
+    InvDrop = 7,
+    Pong = 8,
+    Teleport = 9,
+    UsePortal = 10,
+    Buy = 11,
+    GroundDamage = 12,
+    PlayerHit = 13,
+    EnemyHit = 14,
+    AoeAck = 15,
+    ShootAck = 16,
+    OtherHit = 17,
+    SquareHit = 18,
+    GotoAck = 19,
+    EditAccountList = 20,
+    CreateGuild = 21,
+    GuildRemove = 22,
+    GuildInvite = 23,
+    RequestTrade = 24,
+    ChangeTrade = 25,
+    AcceptTrade = 26,
+    CancelTrade = 27,
+    Escape = 28,
+    JoinGuild = 29,
+    ChangeGuildRank = 30,
+    Reskin = 31,
+    MapHello = 32
+};
+
+public enum S2CPacketId : byte {
+    CreateSuccess = 0,
+    Text = 1,
+    ServerPlayerShoot = 2,
+    Damage = 3,
+    Update = 4,
+    Notification = 5,
+    NewTick = 6,
+    ShowEffect = 7,
+    Goto = 8,
+    InvResult = 9,
+    Ping = 10,
+    MapInfo = 11,
+    Death = 12,
+    BuyResult = 13,
+    Aoe = 14,
+    AccountList = 15,
+    QuestObjId = 16,
+    GuildResult = 17,
+    AllyShoot = 18,
+    EnemyShoot = 19,
+    TradeRequested = 20,
+    TradeStart = 21,
+    TradeChanged = 22,
+    TradeDone = 23,
+    TradeAccepted = 24,
+    InvitedToGuild = 25,
+    PlaySound = 26,
+    Failure = 27
+};
 
 public class Client {
     private const int LENGTH_PREFIX = 2;
@@ -182,7 +181,7 @@ public class Client {
     public void SendAccountList(int id, int[] list) {
         var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
-        WriteByte(ref ptr, ref spanRef, (byte) PacketId.AccountList);
+        WriteByte(ref ptr, ref spanRef, (byte) S2CPacketId.AccountList);
         WriteInt(ref ptr, ref spanRef, id);
         WriteShort(ref ptr, ref spanRef, (short) list.Length);
         foreach (var i in list)
@@ -194,7 +193,7 @@ public class Client {
     public void SendAllyShoot(byte bulletId, int ownerId, ushort containerType, float angle) {
         var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
-        WriteByte(ref ptr, ref spanRef, (byte) PacketId.AllyShoot);
+        WriteByte(ref ptr, ref spanRef, (byte) S2CPacketId.AllyShoot);
         WriteByte(ref ptr, ref spanRef, bulletId);
         WriteInt(ref ptr, ref spanRef, ownerId);
         WriteUShort(ref ptr, ref spanRef, containerType);
@@ -206,7 +205,7 @@ public class Client {
         ushort origType, uint color) {
         var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
-        WriteByte(ref ptr, ref spanRef, (byte) PacketId.Aoe);
+        WriteByte(ref ptr, ref spanRef, (byte) S2CPacketId.Aoe);
         WriteFloat(ref ptr, ref spanRef, x);
         WriteFloat(ref ptr, ref spanRef, y);
         WriteFloat(ref ptr, ref spanRef, radius);
@@ -221,7 +220,7 @@ public class Client {
     public void SendBuyResult(int id, string res) {
         var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
-        WriteByte(ref ptr, ref spanRef, (byte) PacketId.BuyResult);
+        WriteByte(ref ptr, ref spanRef, (byte) S2CPacketId.BuyResult);
         WriteInt(ref ptr, ref spanRef, id);
         WriteString(ref ptr, ref spanRef, res);
         TrySend(ptr);
@@ -230,7 +229,7 @@ public class Client {
     public void SendCreateSuccess(int objId, int charId) {
         var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
-        WriteByte(ref ptr, ref spanRef, (byte) PacketId.CreateSuccess);
+        WriteByte(ref ptr, ref spanRef, (byte) S2CPacketId.CreateSuccess);
         WriteInt(ref ptr, ref spanRef, objId);
         WriteInt(ref ptr, ref spanRef, charId);
         TrySend(ptr);
@@ -240,7 +239,7 @@ public class Client {
         int objectId) {
         var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
-        WriteByte(ref ptr, ref spanRef, (byte) PacketId.Damage);
+        WriteByte(ref ptr, ref spanRef, (byte) S2CPacketId.Damage);
         WriteInt(ref ptr, ref spanRef, targetId);
         WriteUInt(ref ptr, ref spanRef, (uint) (int) effects);
         WriteUShort(ref ptr, ref spanRef, damage);
@@ -253,7 +252,7 @@ public class Client {
     public void SendDeath(int accId, int charId, string killedBy) {
         var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
-        WriteByte(ref ptr, ref spanRef, (byte) PacketId.Death);
+        WriteByte(ref ptr, ref spanRef, (byte) S2CPacketId.Death);
         WriteInt(ref ptr, ref spanRef, accId);
         WriteInt(ref ptr, ref spanRef, charId);
         WriteString(ref ptr, ref spanRef, killedBy);
@@ -264,7 +263,7 @@ public class Client {
         byte numShots, float angleInc) {
         var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
-        WriteByte(ref ptr, ref spanRef, (byte) PacketId.EnemyShoot);
+        WriteByte(ref ptr, ref spanRef, (byte) S2CPacketId.EnemyShoot);
         WriteByte(ref ptr, ref spanRef, bulletId);
         WriteInt(ref ptr, ref spanRef, ownerId);
         WriteByte(ref ptr, ref spanRef, bulletType);
@@ -282,7 +281,7 @@ public class Client {
     public void SendGoto(int objId, float x, float y) {
         var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
-        WriteByte(ref ptr, ref spanRef, (byte) PacketId.Goto);
+        WriteByte(ref ptr, ref spanRef, (byte) S2CPacketId.Goto);
         WriteInt(ref ptr, ref spanRef, objId);
         WriteFloat(ref ptr, ref spanRef, x);
         WriteFloat(ref ptr, ref spanRef, y);
@@ -292,7 +291,7 @@ public class Client {
     public void SendGuildResult(bool success, string errorText) {
         var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
-        WriteByte(ref ptr, ref spanRef, (byte) PacketId.GuildResult);
+        WriteByte(ref ptr, ref spanRef, (byte) S2CPacketId.GuildResult);
         WriteBool(ref ptr, ref spanRef, success);
         WriteString(ref ptr, ref spanRef, errorText);
         TrySend(ptr);
@@ -301,7 +300,7 @@ public class Client {
     public void SendInvitedToGuild(string guildName, string name) {
         var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
-        WriteByte(ref ptr, ref spanRef, (byte) PacketId.InvitedToGuild);
+        WriteByte(ref ptr, ref spanRef, (byte) S2CPacketId.InvitedToGuild);
         WriteString(ref ptr, ref spanRef, guildName);
         WriteString(ref ptr, ref spanRef, name);
         TrySend(ptr);
@@ -310,25 +309,25 @@ public class Client {
     public void SendInvResult(int result) {
         var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
-        WriteByte(ref ptr, ref spanRef, (byte) PacketId.InvResult);
+        WriteByte(ref ptr, ref spanRef, (byte) S2CPacketId.InvResult);
         WriteInt(ref ptr, ref spanRef, result);
         TrySend(ptr);
     }
 
     public void SendNameResult(bool success, string errorText) {
-        var ptr = LENGTH_PREFIX;
+        /*var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
-        WriteByte(ref ptr, ref spanRef, (byte) PacketId.NameResult);
+        WriteByte(ref ptr, ref spanRef, (byte) S2CPacketId.NameResult);
         WriteBool(ref ptr, ref spanRef, success);
         WriteString(ref ptr, ref spanRef, errorText);
-        TrySend(ptr);
+        TrySend(ptr);*/
     }
 
     public void SendMapInfo(int width, int height, string name, string displayName, int diff, int background,
         bool allowTp, bool showDisplays) {
         var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
-        WriteByte(ref ptr, ref spanRef, (byte) PacketId.MapInfo);
+        WriteByte(ref ptr, ref spanRef, (byte) S2CPacketId.MapInfo);
         WriteInt(ref ptr, ref spanRef, width);
         WriteInt(ref ptr, ref spanRef, height);
         WriteString(ref ptr, ref spanRef, name);
@@ -343,7 +342,7 @@ public class Client {
     public void SendNewTick(byte tickId, byte tps, ObjectStats[] stats) {
         var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
-        WriteByte(ref ptr, ref spanRef, (byte) PacketId.NewTick);
+        WriteByte(ref ptr, ref spanRef, (byte) S2CPacketId.NewTick);
         WriteByte(ref ptr, ref spanRef, tickId);
         WriteByte(ref ptr, ref spanRef, tps);
         WriteShort(ref ptr, ref spanRef, (short) stats.Length);
@@ -370,7 +369,7 @@ public class Client {
     public void SendNotification(int objId, string msg, uint color) {
         var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
-        WriteByte(ref ptr, ref spanRef, (byte) PacketId.Notification);
+        WriteByte(ref ptr, ref spanRef, (byte) S2CPacketId.Notification);
         WriteInt(ref ptr, ref spanRef, objId);
         WriteString(ref ptr, ref spanRef, msg);
         WriteUInt(ref ptr, ref spanRef, color);
@@ -380,7 +379,7 @@ public class Client {
     public void SendPing(int serial) {
         var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
-        WriteByte(ref ptr, ref spanRef, (byte) PacketId.Ping);
+        WriteByte(ref ptr, ref spanRef, (byte) S2CPacketId.Ping);
         WriteInt(ref ptr, ref spanRef, serial);
         TrySend(ptr);
     }
@@ -389,7 +388,7 @@ public class Client {
         uint color) {
         var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
-        WriteByte(ref ptr, ref spanRef, (byte) PacketId.ShowEffect);
+        WriteByte(ref ptr, ref spanRef, (byte) S2CPacketId.ShowEffect);
         WriteByte(ref ptr, ref spanRef, (byte) effectType);
         WriteInt(ref ptr, ref spanRef, targetObjId);
         WriteFloat(ref ptr, ref spanRef, x1);
@@ -404,7 +403,7 @@ public class Client {
         uint nameColor = 0xFF0000, uint textColor = 0xFFFFFF) {
         var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
-        WriteByte(ref ptr, ref spanRef, (byte) PacketId.Text);
+        WriteByte(ref ptr, ref spanRef, (byte) S2CPacketId.Text);
         WriteString(ref ptr, ref spanRef, name);
         WriteInt(ref ptr, ref spanRef, objectId);
         WriteByte(ref ptr, ref spanRef, bubbleTime);
@@ -420,7 +419,7 @@ public class Client {
     public void SendTradeAccepted(bool[] myOffer, bool[] yourOffer) {
         var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
-        WriteByte(ref ptr, ref spanRef, (byte) PacketId.TradeAccepted);
+        WriteByte(ref ptr, ref spanRef, (byte) S2CPacketId.TradeAccepted);
         WriteShort(ref ptr, ref spanRef, (short) myOffer.Length);
         foreach (var offer in myOffer)
             WriteBool(ref ptr, ref spanRef, offer);
@@ -435,7 +434,7 @@ public class Client {
     public void SendTradeChanged(bool[] offer) {
         var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
-        WriteByte(ref ptr, ref spanRef, (byte) PacketId.TradeChanged);
+        WriteByte(ref ptr, ref spanRef, (byte) S2CPacketId.TradeChanged);
         WriteShort(ref ptr, ref spanRef, (short) offer.Length);
         foreach (var o in offer)
             WriteBool(ref ptr, ref spanRef, o);
@@ -446,7 +445,7 @@ public class Client {
     public void SendTradeDone(int code, string desc) {
         var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
-        WriteByte(ref ptr, ref spanRef, (byte) PacketId.TradeDone);
+        WriteByte(ref ptr, ref spanRef, (byte) S2CPacketId.TradeDone);
         WriteInt(ref ptr, ref spanRef, code);
         WriteString(ref ptr, ref spanRef, desc);
         TrySend(ptr);
@@ -455,7 +454,7 @@ public class Client {
     public void SendTradeRequested(string name) {
         var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
-        WriteByte(ref ptr, ref spanRef, (byte) PacketId.TradeRequested);
+        WriteByte(ref ptr, ref spanRef, (byte) S2CPacketId.TradeRequested);
         WriteString(ref ptr, ref spanRef, name);
         TrySend(ptr);
     }
@@ -463,7 +462,7 @@ public class Client {
     public void SendTradeStart(TradeItem[] myItems, string yourName, TradeItem[] yourItems) {
         var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
-        WriteByte(ref ptr, ref spanRef, (byte) PacketId.TradeStart);
+        WriteByte(ref ptr, ref spanRef, (byte) S2CPacketId.TradeStart);
         WriteShort(ref ptr, ref spanRef, (short) myItems.Length);
         for (var i = 0; i < myItems.Length; i++) {
             var offer = myItems[i];
@@ -489,7 +488,7 @@ public class Client {
     public void SendUpdate(TileData[] tiles, ObjectDef[] newObjs, int[] drops) {
         var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
-        WriteByte(ref ptr, ref spanRef, (byte) PacketId.Update);
+        WriteByte(ref ptr, ref spanRef, (byte) S2CPacketId.Update);
         WriteShort(ref ptr, ref spanRef, (short) tiles.Length);
         for (var i = 0; i < tiles.Length; i++) {
             var tile = tiles[i];
@@ -637,7 +636,7 @@ public class Client {
     public void SendFailure(string text, FailureType errorId = FailureType.MessageWithDisconnect) {
         var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
-        WriteByte(ref ptr, ref spanRef, (byte) PacketId.Failure);
+        WriteByte(ref ptr, ref spanRef, (byte) S2CPacketId.Failure);
         WriteInt(ref ptr, ref spanRef, (int) errorId);
         WriteString(ref ptr, ref spanRef, text);
         TrySend(ptr);
@@ -695,59 +694,56 @@ public class Client {
         var ptr = 0;
         ref var spanRef = ref MemoryMarshal.GetReference(ReceiveMem.Span);
         while (ptr < len) {
-            var packetId = (PacketId) ReadByte(ref ptr, ref spanRef, len);
+            var packetId = (C2SPacketId) ReadByte(ref ptr, ref spanRef, len);
             //Log.Error($"Reading packet {packetId} {len}");
             switch (packetId) {
-                case PacketId.AcceptTrade:
+                case C2SPacketId.AcceptTrade:
                     ProcessAcceptTrade(ReadBoolArray(ref ptr, ref spanRef, len),
                         ReadBoolArray(ref ptr, ref spanRef, len));
                     break;
-                case PacketId.AoeAck:
+                case C2SPacketId.AoeAck:
                     ProcessAoeAck(ReadInt(ref ptr, ref spanRef, len), ReadFloat(ref ptr, ref spanRef, len),
                         ReadFloat(ref ptr, ref spanRef, len));
                     break;
-                case PacketId.Buy:
+                case C2SPacketId.Buy:
                     ProcessBuy(ReadInt(ref ptr, ref spanRef, len));
                     break;
-                case PacketId.CancelTrade:
+                case C2SPacketId.CancelTrade:
                     ProcessCancelTrade();
                     break;
-                case PacketId.ChangeGuildRank:
+                case C2SPacketId.ChangeGuildRank:
                     ProcessChangeGuildRank(ReadString(ref ptr, ref spanRef, len), ReadInt(ref ptr, ref spanRef, len));
                     break;
-                case PacketId.ChangeTrade:
+                case C2SPacketId.ChangeTrade:
                     ProcessChangeTrade(ReadBoolArray(ref ptr, ref spanRef, len));
                     break;
-                case PacketId.ChooseName:
-                    ProcessChooseName(ReadString(ref ptr, ref spanRef, len));
-                    break;
-                case PacketId.CreateGuild:
+                case C2SPacketId.CreateGuild:
                     ProcessCreateGuild(ReadString(ref ptr, ref spanRef, len));
                     break;
-                case PacketId.EditAccountList:
+                case C2SPacketId.EditAccountList:
                     ProcessEditAccountList(ReadInt(ref ptr, ref spanRef, len), ReadBool(ref ptr, ref spanRef, len),
                         ReadInt(ref ptr, ref spanRef, len));
                     break;
-                case PacketId.EnemyHit:
+                case C2SPacketId.EnemyHit:
                     ProcessEnemyHit(ReadByte(ref ptr, ref spanRef, len), ReadInt(ref ptr, ref spanRef, len));
                     break;
-                case PacketId.Escape:
+                case C2SPacketId.Escape:
                     ProcessEscape();
                     break;
-                case PacketId.GotoAck:
+                case C2SPacketId.GotoAck:
                     ProcessGotoAck(ReadInt(ref ptr, ref spanRef, len));
                     break;
-                case PacketId.GroundDamage:
+                case C2SPacketId.GroundDamage:
                     ProcessGroundDamage(ReadInt(ref ptr, ref spanRef, len), ReadFloat(ref ptr, ref spanRef, len),
                         ReadFloat(ref ptr, ref spanRef, len));
                     break;
-                case PacketId.GuildInvite:
+                case C2SPacketId.GuildInvite:
                     ProcessGuildInvite(ReadString(ref ptr, ref spanRef, len));
                     break;
-                case PacketId.GuildRemove:
+                case C2SPacketId.GuildRemove:
                     ProcessGuildRemove(ReadString(ref ptr, ref spanRef, len));
                     break;
-                case PacketId.Hello: {
+                case C2SPacketId.Hello: {
                     var buildVer = ReadString(ref ptr, ref spanRef, len);
                     var gameId = ReadInt(ref ptr, ref spanRef, len);
                     var guid = ReadString(ref ptr, ref spanRef, len);
@@ -759,7 +755,7 @@ public class Client {
                     ProcessHello(buildVer, gameId, guid, pwd, chrId, createChar, charType, skinType);
                     break;
                 }
-                case PacketId.MapHello: {
+                case C2SPacketId.MapHello: {
                     var buildVer = ReadString(ref ptr, ref spanRef, len);
                     var guid = ReadString(ref ptr, ref spanRef, len);
                     var pwd = ReadString(ref ptr, ref spanRef, len);
@@ -771,68 +767,65 @@ public class Client {
                     ProcessMapHello(buildVer, guid, pwd, chrId, fm);
                     break;
                 }
-                case PacketId.InvDrop:
+                case C2SPacketId.InvDrop:
                     ProcessInvDrop(ReadInt(ref ptr, ref spanRef, len), ReadByte(ref ptr, ref spanRef, len),
                         ReadShort(ref ptr, ref spanRef, len));
                     break;
-                case PacketId.InvSwap:
+                case C2SPacketId.InvSwap:
                     ProcessInvSwap(ReadInt(ref ptr, ref spanRef, len), ReadByte(ref ptr, ref spanRef, len),
                         ReadInt(ref ptr, ref spanRef, len), ReadByte(ref ptr, ref spanRef, len));
                     break;
-                case PacketId.JoinGuild:
+                case C2SPacketId.JoinGuild:
                     ProcessJoinGuild(ReadString(ref ptr, ref spanRef, len));
                     break;
-                case PacketId.Move:
+                case C2SPacketId.Move:
                     ProcessMove(ReadByte(ref ptr, ref spanRef, len), ReadInt(ref ptr, ref spanRef, len),
                         ReadFloat(ref ptr, ref spanRef, len), ReadFloat(ref ptr, ref spanRef, len),
                         ReadTimedPosArray(ref ptr, ref spanRef, len));
                     break;
-                case PacketId.OtherHit:
+                case C2SPacketId.OtherHit:
                     ProcessOtherHit(ReadInt(ref ptr, ref spanRef, len), ReadByte(ref ptr, ref spanRef, len),
                         ReadInt(ref ptr, ref spanRef, len), ReadInt(ref ptr, ref spanRef, len));
                     break;
-                case PacketId.PlayerHit:
+                case C2SPacketId.PlayerHit:
                     ProcessPlayerHit(ReadByte(ref ptr, ref spanRef, len), ReadInt(ref ptr, ref spanRef, len));
                     break;
-                case PacketId.PlayerShoot:
+                case C2SPacketId.PlayerShoot:
                     ProcessPlayerShoot(ReadInt(ref ptr, ref spanRef, len), ReadByte(ref ptr, ref spanRef, len),
                         ReadUShort(ref ptr, ref spanRef, len), ReadFloat(ref ptr, ref spanRef, len),
                         ReadFloat(ref ptr, ref spanRef, len), ReadFloat(ref ptr, ref spanRef, len));
                     break;
-                case PacketId.PlayerText:
+                case C2SPacketId.PlayerText:
                     ProcessPlayerText(ReadString(ref ptr, ref spanRef, len));
                     break;
-                case PacketId.Pong:
+                case C2SPacketId.Pong:
                     ProcessPong(ReadInt(ref ptr, ref spanRef, len), ReadInt(ref ptr, ref spanRef, len));
                     break;
-                case PacketId.RequestTrade:
+                case C2SPacketId.RequestTrade:
                     ProcessRequestTrade(ReadString(ref ptr, ref spanRef, len));
                     break;
-                case PacketId.Reskin:
+                case C2SPacketId.Reskin:
                     ProcessReskin((ushort) ReadInt(ref ptr, ref spanRef, len));
                     break;
-                case PacketId.ReskinVault:
-                    ProcessReskinVault((ushort) ReadInt(ref ptr, ref spanRef, len));
-                    break;
-                case PacketId.ShootAck:
+                case C2SPacketId.ShootAck:
                     ProcessShootAck();
                     break;
-                case PacketId.SquareHit:
+                case C2SPacketId.SquareHit:
                     ProcessSquareHit();
                     break;
-                case PacketId.Teleport:
+                case C2SPacketId.Teleport:
                     ProcessTeleport(ReadInt(ref ptr, ref spanRef, len));
                     break;
-                case PacketId.UpdateAck:
+                case C2SPacketId.UpdateAck:
                     ProcessUpdateAck();
                     break;
-                case PacketId.UseItem:
+                case C2SPacketId.UseItem:
                     ProcessUseItem(ReadInt(ref ptr, ref spanRef, len), ReadInt(ref ptr, ref spanRef, len),
                         ReadByte(ref ptr, ref spanRef, len), (ushort) ReadShort(ref ptr, ref spanRef, len),
                         ReadFloat(ref ptr, ref spanRef, len), ReadFloat(ref ptr, ref spanRef, len),
                         ReadByte(ref ptr, ref spanRef, len));
                     break;
-                case PacketId.UsePortal:
+                case C2SPacketId.UsePortal:
                     ProcessUsePortal(ReadInt(ref ptr, ref spanRef, len));
                     break;
                 default:
@@ -1028,48 +1021,7 @@ public class Client {
         Player.trade = offer;
         Player.tradeTarget.Client.SendTradeChanged(offer);
     }
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void ProcessChooseName(string name) {
-        if (Player == null) {
-            return;
-        }
-
-        Manager.Database.ReloadAccount(Account);
-        var length = name.Length;
-        if (length < 1 || length > 10 || !name.All(char.IsLetter)) {
-            SendNameResult(success: false, "Invalid name");
-            return;
-        }
-
-        string lockToken = null;
-        try {
-            while ((lockToken = Manager.Database.AcquireLock("nameLock")) == null) { }
-
-            if (Manager.Database.Conn.HashExists("names", name.ToUpperInvariant())) {
-                SendNameResult(success: false, "Duplicated name");
-                return;
-            }
-
-            if (Account.Credits < 1000) {
-                SendNameResult(success: false, "Not enough gold");
-                return;
-            }
-
-            Manager.Database.UpdateCredit(Account, -1000);
-            while (!Manager.Database.RenameIGN(Account, name, lockToken)) { }
-
-            Player.Credits = Account.Credits;
-            Player.Name = Account.Name;
-            SendNameResult(success: true, "");
-        }
-        finally {
-            if (lockToken != null) {
-                Manager.Database.ReleaseLock("nameLock", lockToken);
-            }
-        }
-    }
-
+    
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessCreateGuild(string guildName) {
         if (Player == null) {
@@ -1578,17 +1530,6 @@ public class Client {
 
         Player.SetDefaultSkin(skinId);
         Player.SetDefaultSize((ushort) skinSize);
-    }
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void ProcessReskinVault(ushort skinId) {
-        if (Player != null) {
-            /*if (Account.VaultSkins.Contains(skinId)) {
-                Account.VaultSkin = skinId;
-            }*/
-
-            Account.FlushAsync();
-        }
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

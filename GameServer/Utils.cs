@@ -2,10 +2,12 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
+using NLog;
 
 namespace GameServer; 
 
 internal static class PacketUtils {
+    private static Logger Log = LogManager.GetCurrentClassLogger();
     public const int SEND_BUFFER_LEN = 65535;
     public const int RECV_BUFFER_LEN = 65535;
 
@@ -97,7 +99,7 @@ internal static class PacketUtils {
         Span<byte> s = stackalloc byte[strLen];
         Unsafe.CopyBlockUnaligned(ref MemoryMarshal.GetReference(s), ref Unsafe.Add(ref spanRef, ptr), strLen);
         ptr += strLen;
-        return Encoding.UTF8.GetString(s);
+        return Encoding.ASCII.GetString(s);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
