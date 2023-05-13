@@ -136,14 +136,11 @@ public class Realm
 			return;
 
 		var biome = (Biome)Random.Shared.Next((int)Biome.None, (int)Biome.Desert) + 1;
-		Console.WriteLine($"{biome} was chosen at random");
 		
 		var chosenEventList = ForestEventList[biome];
 		var (chosenEvent, chosenRegion) = chosenEventList[Random.Shared.Next(chosenEventList.Count)];
 		var spawns = SpawnableRegions[chosenRegion];
 		var chosenPoint = spawns[Random.Shared.Next(spawns.Count)];
-		
-		Console.WriteLine($"{chosenEvent} was chosen to spawn at: {chosenPoint.X}, {chosenPoint.Y}");
 
 		var entity = Entity.Resolve(World.Manager, chosenEvent);
 		if (entity == null)
@@ -158,7 +155,6 @@ public class Realm
 
 	private void PopulateRealmMobs()
 	{
-		Console.WriteLine("Spawning Mobs");
 		var i = 0;
 		while (MobCount < MOB_LIMIT)
 		{
@@ -198,8 +194,6 @@ public class Realm
 			MobCount++;
 			i++;
 		}
-
-		Console.WriteLine($"Spawned {i} Mobs");
 	}
 
 	private bool ValidateTile(int x, int y, Predicate<MapTile> func)
