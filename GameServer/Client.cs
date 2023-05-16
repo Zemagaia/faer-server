@@ -148,7 +148,6 @@ public class Client {
         Player = null;
         _pingTime = _pongTime = -1L;
         Socket = socket;
-        Socket.DontFragment = true;
         try {
             IP = ((IPEndPoint) socket.RemoteEndPoint).Address.ToString();
         }
@@ -160,13 +159,12 @@ public class Client {
         Receive();
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private async void TrySend(int len) {
         if (!Socket.Connected)
             return;
 
         try {
-            //Log.Error($"Sending packet {(PacketId) SendMem.Span[0]} {len}");
+            // Log.Error($"Sending packet {(S2CPacketId) SendMem.Span[0]} {len}");
             BinaryPrimitives.WriteUInt16LittleEndian(SendMem.Span, (ushort)(len - 2));
             await Socket.SendAsync(SendMem[..len]);
         }
@@ -339,7 +337,7 @@ public class Client {
         TrySend(ptr);
     }
 
-    public void SendNewTick(byte tickId, byte tps, ObjectStats[] stats) {
+    public void SendNewTick(byte tickId, byte tps, NewTickObjectDef[] stats) {
         var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
         WriteByte(ref ptr, ref spanRef, (byte) S2CPacketId.NewTick);
@@ -348,10 +346,11 @@ public class Client {
         WriteShort(ref ptr, ref spanRef, (short) stats.Length);
         for (var i = 0; i < stats.Length; i++) {
             var stat = stats[i];
-            WriteInt(ref ptr, ref spanRef, stat.Id);
-            WriteFloat(ref ptr, ref spanRef, stat.X);
-            WriteFloat(ref ptr, ref spanRef, stat.Y);
-            var statTypes = stat.StatTypes;
+            WriteByte(ref ptr, ref spanRef, (byte) stat.ClassType);
+            WriteInt(ref ptr, ref spanRef, stat.Stats.Id);
+            WriteFloat(ref ptr, ref spanRef, stat.Stats.X);
+            WriteFloat(ref ptr, ref spanRef, stat.Stats.Y);
+            var statTypes = stat.Stats.StatTypes;
             if (statTypes == null) {
                 WriteShort(ref ptr, ref spanRef, 0);
                 continue;
@@ -496,6 +495,10 @@ public class Client {
             WriteShort(ref ptr, ref spanRef, tile.Y);
             WriteUShort(ref ptr, ref spanRef, tile.Tile);
         }
+        
+        WriteShort(ref ptr, ref spanRef, (short) drops.Length);
+        foreach (var drop in drops)
+            WriteInt(ref ptr, ref spanRef, drop);
 
         WriteShort(ref ptr, ref spanRef, (short) newObjs.Length);
         for (var j = 0; j < newObjs.Length; j++) {
@@ -515,14 +518,9 @@ public class Client {
                 SendStat(ref ptr, ref spanRef, key, value);
         }
 
-        WriteShort(ref ptr, ref spanRef, (short) drops.Length);
-        foreach (var drop in drops)
-            WriteInt(ref ptr, ref spanRef, drop);
-
         TrySend(ptr);
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void SendStat(ref int ptr, ref byte spanRef, StatsType stat, object value) {
         WriteByte(ref ptr, ref spanRef, (byte) stat);
         switch (stat) {
@@ -689,13 +687,12 @@ public class Client {
         player.Owner.EnterWorld(container);
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessPacket(int len) {
         var ptr = 0;
         ref var spanRef = ref MemoryMarshal.GetReference(ReceiveMem.Span);
         while (ptr < len) {
             var packetId = (C2SPacketId) ReadByte(ref ptr, ref spanRef, len);
-            //Log.Error($"Reading packet {packetId} {len}");
+            // Log.Error($"Reading packet {packetId} {len}");
             switch (packetId) {
                 case C2SPacketId.AcceptTrade:
                     ProcessAcceptTrade(ReadBoolArray(ref ptr, ref spanRef, len),
@@ -835,7 +832,6 @@ public class Client {
         }
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessAcceptTrade(bool[] myOffer, bool[] yourOffer) {
         if (Player == null || Player.tradeAccepted) {
             return;
@@ -933,20 +929,16 @@ public class Client {
         }
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessAoeAck(int time, float x, float y) { }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessBuy(int id) {
         (Player?.Owner?.GetEntity(id) as SellableObject)?.Buy(Player);
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessCancelTrade() {
         Player?.CancelTrade();
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessChangeGuildRank(string name, int rank) {
         if (Player == null) {
             return;
@@ -1003,7 +995,6 @@ public class Client {
         }
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessChangeTrade(bool[] offer) {
         if (Player?.tradeTarget == null) {
             return;
@@ -1022,7 +1013,6 @@ public class Client {
         Player.tradeTarget.Client.SendTradeChanged(offer);
     }
     
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessCreateGuild(string guildName) {
         if (Player == null) {
             return;
@@ -1052,7 +1042,6 @@ public class Client {
         SendGuildResult(success: true, "Success!");
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessEditAccountList(int action, bool add, int id) {
         if (Player == null) {
             return;
@@ -1074,7 +1063,6 @@ public class Client {
         }
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessEnemyHit(byte bulletId, int targetId) {
         if (Player?.Owner == null) 
             return;
@@ -1085,26 +1073,22 @@ public class Client {
             Player._projectiles[bulletId].ForceHit(so, Manager.Logic.WorldTime);
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessEscape() {
         if (Player?.Owner != null) {
             Reconnect("Hub", -2);
         }
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessGotoAck(int time) {
         Player.GotoAckReceived();
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessGroundDamage(int time, float x, float y) {
         if (Player?.Owner != null) {
             //Player.DamagePlayerGround(x, y, dmg);
         }
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessGuildInvite(string name) {
         if (Player == null) {
             return;
@@ -1133,7 +1117,6 @@ public class Client {
         Player.SendError("Could not find the player to invite.");
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessGuildRemove(string name) {
         if (Player == null) {
             return;
@@ -1199,7 +1182,6 @@ public class Client {
         }
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessHello(string buildVer, int gameId, string guid, string pwd, int charId, bool createChar,
         ushort charType, ushort skinType) {
         var version = Manager.Config.serverSettings.version;
@@ -1252,7 +1234,6 @@ public class Client {
         ConnectManager.Connect(this, gameId, charId);
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessMapHello(string buildVer, string guid, string pwd, short charId, byte[] fm) {
         var version = Manager.Config.serverSettings.version;
         if (!version.Equals(buildVer)) {
@@ -1285,7 +1266,6 @@ public class Client {
         ConnectManager.MapConnect(this, charId, fm);
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessInvDrop(int objId, byte slotId, short objType) {
         if (Player?.Owner == null || Player.tradeTarget != null) {
             return;
@@ -1329,7 +1309,6 @@ public class Client {
         SendInvResult(0);
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessInvSwap(int objId1, byte slotId1, int objId2, byte slotId2) {
         if (Player?.Owner == null) {
             return;
@@ -1399,7 +1378,6 @@ public class Client {
         }
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void ProcessJoinGuild(string guildName) {
         if (Player == null) {
             return;
@@ -1432,7 +1410,6 @@ public class Client {
         Manager.Chat.Guild(Player, Player.Name + " has joined the guild!", announce: true);
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessMove(byte tickId, int time, float x, float y, TimedPosition[] records) {
         if (Player?.Owner == null || x < 0f || x >= Player.Owner.Map.Width || y < 0f ||
             y >= Player.Owner.Map.Height)
@@ -1443,17 +1420,14 @@ public class Client {
             Player.Move(x, y);
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessOtherHit(int time, byte bulletId, int ownerId, int targetId) { }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessPlayerHit(byte bulletId, int objId) {
         if (Player?.Owner != null && Player.Owner.Enemies.TryGetValue(objId, out var enemy)) {
             enemy._projectiles[bulletId].ForceHit(Player, Manager.Logic.WorldTime);
         }
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessPlayerShoot(int time, byte bulletId, ushort objType, float x, float y, float angle) {
         if (!Manager.Resources.GameData.Items.TryGetValue(objType, out var item) || item == Player.Inventory[1]) 
             return;
@@ -1467,7 +1441,6 @@ public class Client {
                 plr.Client.SendAllyShoot(prj.BulletId, Player.Id, prj.Container, angle);
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessPlayerText(string text) {
         if (Player?.Owner == null || text.Length > 512)
             return;
@@ -1486,17 +1459,14 @@ public class Client {
         manager.Chat.Say(Player, text);
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessPong(int serial, int pongTime) {
         Player?.Pong(Manager.Logic.WorldTime, serial, pongTime);
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessRequestTrade(string name) {
         Player?.RequestTrade(name);
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessReskin(ushort skinId) {
         if (Player == null) {
             return;
@@ -1532,32 +1502,26 @@ public class Client {
         Player.SetDefaultSize((ushort) skinSize);
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessShootAck() { }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessSquareHit() { }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessTeleport(int objId) {
         if (Player?.Owner != null) {
             Player.Teleport(Manager.Logic.WorldTime, objId);
         }
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessUpdateAck() {
         Player.UpdateAckReceived();
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessUseItem(int time, int objId, byte slotId, ushort objType, float x, float y, byte useType) {
         if (Player?.Owner != null) {
             Player.UseItem(objId, slotId, x, y);
         }
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void ProcessUsePortal(int objId) {
         var entity = Player?.Owner?.GetEntity(objId);
         switch (entity) {

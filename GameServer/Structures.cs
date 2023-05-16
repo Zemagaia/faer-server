@@ -94,8 +94,29 @@ public struct ObjectDef
     public ObjectStats Stats;
 }
 
-public struct ObjectStats
-{
+public struct NewTickObjectDef {
+    public ClassType ClassType;
+    public ObjectStats Stats;
+}
+
+public enum ClassType : byte {
+    GameObject = 0,
+    Character = 1,
+    Player = 2,
+    Container = 3,
+    Wall = 4,
+    Portal = 5,
+    Merchant = 6,
+    ClosedStashChest = 7,
+    FoundingTable = 8,
+    GuildManager = 9,
+    GuildHallPortal = 10,
+    SkinChanger = 11,
+    Bazaar = 12,
+    Projectile = 13,
+}
+
+public struct ObjectStats {
     public int Id;
     public float X;
     public float Y;
