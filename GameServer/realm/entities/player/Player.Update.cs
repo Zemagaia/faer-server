@@ -133,8 +133,8 @@ public partial class Player {
                 continue;
 
             tilesUpdate.Add(new TileData {
-                X = (short) x,
-                Y = (short) y,
+                X = (ushort) x,
+                Y = (ushort) y,
                 Tile = tile.TileType
             });
             tiles[x, y] = tile.UpdateCount;

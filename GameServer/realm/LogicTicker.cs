@@ -91,10 +91,10 @@ public class LogicTicker {
 		var t = default(RealmTime);
 		var watch = Stopwatch.StartNew();
 		while (true) {
-			t.TotalElapsedMs = watch.ElapsedMilliseconds;
+			WorldTime.TotalElapsedMs = t.TotalElapsedMs = watch.ElapsedMilliseconds;
 			t.TickDelta = loopTime / MillisPerTick;
-			t.TickCount += t.TickDelta;
-			t.ElapsedMsDelta = t.TickDelta * MillisPerTick;
+			WorldTime.TickCount = t.TickCount += t.TickDelta;
+			WorldTime.ElapsedMsDelta = t.ElapsedMsDelta = t.TickDelta * MillisPerTick;
 			if (_manager.Terminating)
 				break;
        			
@@ -105,7 +105,7 @@ public class LogicTicker {
 				w.Tick(t);
        			
 			t.TickDelta = WorldTime.TickDelta;
-			t.ElapsedMsDelta = t.TickDelta * MillisPerTick;
+			WorldTime.ElapsedMsDelta = t.ElapsedMsDelta = t.TickDelta * MillisPerTick;
 			WorldTime.TickDelta = 0;
 			var logicTime = (int)(watch.ElapsedMilliseconds - t.TotalElapsedMs);
 			_mre.WaitOne(Math.Max(0, MillisPerTick - logicTime));

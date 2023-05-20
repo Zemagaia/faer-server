@@ -124,7 +124,7 @@ public struct ObjectStats {
 }
 
 public struct TileData {
-    public short X;
-    public short Y;
+    public ushort X;
+    public ushort Y;
     public ushort Tile;
 }

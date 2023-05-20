@@ -585,7 +585,7 @@ internal class UptimeCommand : Command
         var t = TimeSpan.FromMilliseconds(time.TotalElapsedMs);
 
         var answer = (t.Days > 0 ? t.Days + "d:" : "") +
-                     string.Format("{0:D2}h:{1:D2}m:{2:D2}s", t.Hours, t.Minutes, t.Seconds);
+                     $"{t.Hours:D2}h:{t.Minutes:D2}m:{t.Seconds:D2}s";
 
         player.SendInfo("The server has been up for " + answer + ".");
         return true;

@@ -113,7 +113,7 @@ internal static class PacketUtils {
         if (ptr + 2 > len)
             throw new Exception("Receive buffer attempted to read out of bounds");
 
-        var arrLen = Unsafe.ReadUnaligned<short>(ref Unsafe.Add(ref spanRef, ptr));
+        var arrLen = Unsafe.ReadUnaligned<ushort>(ref Unsafe.Add(ref spanRef, ptr));
         ptr += 2;
         if (ptr + arrLen > len)
             throw new Exception("Receive buffer attempted to read out of bounds");

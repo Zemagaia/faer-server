@@ -346,7 +346,6 @@ public class Client {
         WriteShort(ref ptr, ref spanRef, (short) stats.Length);
         for (var i = 0; i < stats.Length; i++) {
             var stat = stats[i];
-            WriteByte(ref ptr, ref spanRef, (byte) stat.ClassType);
             WriteInt(ref ptr, ref spanRef, stat.Stats.Id);
             WriteFloat(ref ptr, ref spanRef, stat.Stats.X);
             WriteFloat(ref ptr, ref spanRef, stat.Stats.Y);
@@ -491,8 +490,8 @@ public class Client {
         WriteShort(ref ptr, ref spanRef, (short) tiles.Length);
         for (var i = 0; i < tiles.Length; i++) {
             var tile = tiles[i];
-            WriteShort(ref ptr, ref spanRef, tile.X);
-            WriteShort(ref ptr, ref spanRef, tile.Y);
+            WriteUShort(ref ptr, ref spanRef, tile.X);
+            WriteUShort(ref ptr, ref spanRef, tile.Y);
             WriteUShort(ref ptr, ref spanRef, tile.Tile);
         }
         
@@ -775,11 +774,14 @@ public class Client {
                 case C2SPacketId.JoinGuild:
                     ProcessJoinGuild(ReadString(ref ptr, ref spanRef, len));
                     break;
-                case C2SPacketId.Move:
-                    ProcessMove(ReadByte(ref ptr, ref spanRef, len), ReadInt(ref ptr, ref spanRef, len),
-                        ReadFloat(ref ptr, ref spanRef, len), ReadFloat(ref ptr, ref spanRef, len),
-                        ReadTimedPosArray(ref ptr, ref spanRef, len));
+                case C2SPacketId.Move: {
+                    var tickId = ReadByte(ref ptr, ref spanRef, len);
+                    var time = ReadInt(ref ptr, ref spanRef, len);
+                    var x = ReadFloat(ref ptr, ref spanRef, len);
+                    var y = ReadFloat(ref ptr, ref spanRef, len);
+                    ProcessMove(tickId, time, x, y, ReadTimedPosArray(ref ptr, ref spanRef, len));
                     break;
+                }
                 case C2SPacketId.OtherHit:
                     ProcessOtherHit(ReadInt(ref ptr, ref spanRef, len), ReadByte(ref ptr, ref spanRef, len),
                         ReadInt(ref ptr, ref spanRef, len), ReadInt(ref ptr, ref spanRef, len));
