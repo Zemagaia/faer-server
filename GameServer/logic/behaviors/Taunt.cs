@@ -122,13 +122,13 @@ internal class Taunt : Behavior
 
         if (broadcast) {
             foreach (var p in host.Owner.Players.Values)
-                if (p != host && MathUtils.DistSqr(p.X, p.Y, host.X, host.Y) < 16 * 16)
-                    p.Client.SendText("#" + (host.ObjectDesc.DisplayId ?? host.ObjectDesc.ObjectId), host.Id, 3, "",
+                if (p != host)
+                    p.Client.SendText(host.ObjectDesc.DisplayId ?? host.ObjectDesc.ObjectId, host.Id, 3, "",
                         taunt, 0xF2963A, 0xF2963A);
         } else
             foreach (var i in host.Owner.PlayersCollision.HitTest(host.X, host.Y, 15).Where(e => e is Player))
                 if (i is Player player && host.Dist(player) < 15)
-                    player.Client.SendText("#" + (host.ObjectDesc.DisplayId ?? host.ObjectDesc.ObjectId), host.Id, 3, "",
+                    player.Client.SendText(host.ObjectDesc.DisplayId ?? host.ObjectDesc.ObjectId, host.Id, 3, "",
                         taunt, 0xF2963A, 0xF2963A);
     }
 }
