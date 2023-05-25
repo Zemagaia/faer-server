@@ -26,7 +26,7 @@ internal class Charge : CycleBehavior
     {
         _speed = e.ParseFloat("@speed", 4);
         _range = e.ParseFloat("@range", 10);
-        _coolDown = new Cooldown().Normalize(e.ParseInt("@coolDown", 2000));
+        _coolDown = new Cooldown().Normalize(e.ParseInt("@cooldown", 2000));
     }
         
     public Charge(double speed = 4, float range = 10, Cooldown coolDown = new Cooldown(), bool targetPlayers = true,

@@ -15,7 +15,7 @@ internal class HealPlayer : Behavior
     {
         _range = e.ParseFloat("@range");
         _healAmount = e.ParseInt("@amount", 100);            
-        _coolDown = new Cooldown().Normalize(e.ParseInt("@coolDown", 1000));
+        _coolDown = new Cooldown().Normalize(e.ParseInt("@cooldown", 1000));
     }
         
     public HealPlayer(double range, Cooldown coolDown = new Cooldown(), int healAmount = 100)

@@ -1,8 +1,7 @@
 ﻿using System.Xml.Linq;
-using Shared;
-using Shared.resources;
 using GameServer.realm;
 using GameServer.realm.entities;
+using Shared;
 
 namespace GameServer.logic.behaviors; 
 
@@ -20,24 +19,27 @@ internal class Spawn : Behavior
     private Cooldown _coolDown;
     private readonly ushort _children;
     private readonly bool _givesNoXp;
+    private readonly bool _copyHpState;
         
     public Spawn(XElement e)
     {
         _children = GetObjType(e.ParseString("@children"));
         _maxChildren = e.ParseInt("@maxChildren", 5);
         _initialSpawn = (int)(_maxChildren * e.ParseFloat("@initialSpawn", 0.5f));
-        _coolDown = new Cooldown().Normalize(e.ParseInt("@coolDown"));
+        _coolDown = new Cooldown().Normalize(e.ParseInt("@cooldown"));
         _givesNoXp = e.ParseBool("@givesNoXp", true);
+        _copyHpState = e.ParseBool("@copyHpState");
     }
 
     public Spawn(string children, int maxChildren = 5, double initialSpawn = 0.5,
-        Cooldown coolDown = new(), bool givesNoXp = true)
+        Cooldown coolDown = new(), bool givesNoXp = true, bool copyHpState = true)
     {
         _children = GetObjType(children);
         _maxChildren = maxChildren;
         _initialSpawn = (int)(maxChildren * initialSpawn);
         _coolDown = coolDown.Normalize(0);
         _givesNoXp = givesNoXp;
+        _copyHpState = copyHpState;
     }
 
     protected override void OnStateEntry(Entity host, RealmTime time, ref object state)
@@ -59,6 +61,7 @@ internal class Spawn : Behavior
             if (enemyHost != null && !entity.GivesNoXp)
                 entity.GivesNoXp = enemyHost.GivesNoXp;
 
+            entity.ParentEntity = host;
             if (enemyHost != null && enemyEntity != null)
             {
                 enemyEntity.ParentEntity = host as Enemy;
@@ -66,6 +69,13 @@ internal class Spawn : Behavior
                 if (enemyHost.Spawned)
                 {
                     enemyEntity.Spawned = true;
+                }
+
+                if (_copyHpState)
+                {
+                    enemyEntity.ScaleHpState = enemyHost.ScaleHpState;
+                    enemyEntity.HP = enemyHost.HP;
+                    enemyEntity.MaximumHP = enemyHost.MaximumHP;
                 }
             }
 
@@ -88,6 +98,7 @@ internal class Spawn : Behavior
 
             var enemyHost = host as Enemy;
             var enemyEntity = entity as Enemy;
+            entity.ParentEntity = host;
             if (enemyHost != null && enemyEntity != null)
             {
                 enemyEntity.Region = enemyHost.Region;
@@ -99,6 +110,13 @@ internal class Spawn : Behavior
                 if (enemyHost.DevSpawned)
                 {
                     enemyEntity.DevSpawned = true;
+                }
+
+                if (_copyHpState)
+                {
+                    enemyEntity.ScaleHpState = enemyHost.ScaleHpState;
+                    enemyEntity.HP = enemyHost.HP;
+                    enemyEntity.MaximumHP = enemyHost.MaximumHP;
                 }
             }
 

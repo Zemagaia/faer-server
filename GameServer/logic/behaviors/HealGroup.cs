@@ -19,7 +19,7 @@ internal class HealGroup : Behavior
         range = e.ParseFloat("@range");
         group = e.ParseString("@group");
         amount = e.ParseNInt("@amount");            
-        coolDown = new Cooldown().Normalize(e.ParseInt("@coolDown", 1000));
+        coolDown = new Cooldown().Normalize(e.ParseInt("@cooldown", 1000));
     }
         
     public HealGroup(double range, string group, Cooldown coolDown = new Cooldown(), int? healAmount = null)

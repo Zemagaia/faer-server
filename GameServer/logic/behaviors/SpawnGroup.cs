@@ -28,7 +28,7 @@ internal class SpawnGroup : Behavior
             .Select(x => x.ObjectType).ToArray();
         maxChildren = e.ParseInt("@maxChildren");
         initialSpawn = (int)(maxChildren * e.ParseFloat("@initialSpawn", 0.5f));
-        coolDown = new Cooldown().Normalize(e.ParseInt("@coolDown", 1000));
+        coolDown = new Cooldown().Normalize(e.ParseInt("@cooldown", 1000));
         radius = e.ParseFloat("@radius");
     }
 

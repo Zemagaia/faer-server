@@ -15,7 +15,7 @@ internal class HealSelf : Behavior
     public HealSelf(XElement e)
     {
         _amount = e.ParseNInt("@amount");    
-        _coolDown = new Cooldown().Normalize(e.ParseInt("@coolDown", 1000));
+        _coolDown = new Cooldown().Normalize(e.ParseInt("@cooldown", 1000));
     }
         
     public HealSelf(Cooldown coolDown = new Cooldown(), int? amount = null)

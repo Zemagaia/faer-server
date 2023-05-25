@@ -1,6 +1,6 @@
 ﻿using System.Xml.Linq;
-using Shared;
 using GameServer.realm;
+using Shared;
 
 namespace GameServer.logic.behaviors; 
 
@@ -22,26 +22,30 @@ internal class Follow : CycleBehavior
         
     public Follow(XElement e)
     {
-        speed = e.ParseFloat("@speed");
-        acquireRange = e.ParseFloat("@acquireRange", 10);
-        range = e.ParseFloat("@range", 6);
-        duration = e.ParseInt("@duration");
-        coolDown = new Cooldown().Normalize(e.ParseInt("@coolDown"));
+        _speed = e.ParseFloat("@speed");
+        _acquireRange = e.ParseFloat("@acquireRange", 10);
+        _range = e.ParseFloat("@range", 6);
+        _duration = e.ParseInt("@duration");
+        _coolDown = new Cooldown().Normalize(e.ParseInt("@cooldown"));
+        _followParent = e.ParseBool("@followParent");
     }
 
-    private float speed;
-    private float acquireRange;
-    private float range;
-    private int duration;
-    private Cooldown coolDown;
+    private float _speed;
+    private float _acquireRange;
+    private float _range;
+    private int _duration;
+    private Cooldown _coolDown;
+    private bool _followParent;
+    
     public Follow(double speed, double acquireRange = 10, double range = 6,
-        int duration = 0, Cooldown coolDown = new Cooldown())
+        int duration = 0, Cooldown coolDown = new(), bool followParent = false)
     {
-        this.speed = (float)speed;
-        this.acquireRange = (float)acquireRange;
-        this.range = (float)range;
-        this.duration = duration;
-        this.coolDown = coolDown.Normalize(duration == 0 ? 0 : 1000);
+        _speed = (float)speed;
+        _acquireRange = (float)acquireRange;
+        _range = (float)range;
+        _duration = duration;
+        _coolDown = coolDown.Normalize(duration == 0 ? 0 : 1000);
+        _followParent = followParent;
     }
 
     protected override void TickCore(Entity host, RealmTime time, ref object state)
@@ -52,47 +56,51 @@ internal class Follow : CycleBehavior
 
         Status = CycleStatus.NotStarted;
             
-        var player = host.AttackTarget ?? host.GetNearestEntity(acquireRange, null);
+        var target = host.AttackTarget ?? host.GetNearestEntity(_acquireRange, null);
+        if (_followParent)
+            target = host;
 
         Vector2 vect;
         switch (s.State)
         {
             case F.DontKnowWhere:
-                if (player != null && s.RemainingTime <= 0)
+                if (target != null && s.RemainingTime <= 0)
                 {
                     s.State = F.Acquired;
-                    if (duration > 0)
-                        s.RemainingTime = duration;
+                    if (_duration > 0)
+                        s.RemainingTime = _duration;
                     goto case F.Acquired;
                 }
-                else if (s.RemainingTime > 0)
+
+                if (s.RemainingTime > 0)
                     s.RemainingTime -= time.ElapsedMsDelta;
                 break;
             case F.Acquired:
-                if (player == null)
+                if (target == null)
                 {
                     s.State = F.DontKnowWhere;
                     s.RemainingTime = 0;
                     break;
                 }
-                else if (s.RemainingTime <= 0 && duration > 0)
+
+                if (s.RemainingTime <= 0 && _duration > 0)
                 {
                     s.State = F.DontKnowWhere;
-                    s.RemainingTime = coolDown.Next(Random);
+                    s.RemainingTime = _coolDown.Next(Random);
                     Status = CycleStatus.Completed;
                     break;
                 }
                 if (s.RemainingTime > 0)
                     s.RemainingTime -= time.ElapsedMsDelta;
 
-                vect = new Vector2(player.X - host.X, player.Y - host.Y);
-                if (vect.Length() > range)
+                vect = new Vector2(target.X - host.X, target.Y - host.Y);
+                if (vect.Length() > _range)
                 {
                     Status = CycleStatus.InProgress;
                     vect.X -= Random.Next(-2, 2) / 2f;
                     vect.Y -= Random.Next(-2, 2) / 2f;
                     vect.Normalize();
-                    var dist = host.GetSpeed(speed) * (time.ElapsedMsDelta / 1000f);
+                    var dist = host.GetSpeed(_speed) * (time.ElapsedMsDelta / 1000f);
                     host.ValidateAndMove(host.X + vect.X * dist, host.Y + vect.Y * dist);
                 }
                 else
@@ -103,19 +111,19 @@ internal class Follow : CycleBehavior
                 }
                 break;
             case F.Resting:
-                if (player == null)
+                if (target == null)
                 {
                     s.State = F.DontKnowWhere;
-                    if (duration > 0)
-                        s.RemainingTime = duration;
+                    if (_duration > 0)
+                        s.RemainingTime = _duration;
                     break;
                 }
                 Status = CycleStatus.Completed;
-                vect = new Vector2(player.X - host.X, player.Y - host.Y);
-                if (vect.Length() > range + 1)
+                vect = new Vector2(target.X - host.X, target.Y - host.Y);
+                if (vect.Length() > _range + 1)
                 {
                     s.State = F.Acquired;
-                    s.RemainingTime = duration;
+                    s.RemainingTime = _duration;
                     goto case F.Acquired;
                 }
                 break;

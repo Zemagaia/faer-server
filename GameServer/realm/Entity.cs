@@ -26,6 +26,7 @@ public partial class Entity : IProjectileOwner, ICollidable<Entity> {
     public Player Controller;
     public CollisionNode<Entity> CollisionNode { get; set; }
     public CollisionMap<Entity> Parent { get; set; }
+    public Entity ParentEntity;
     public event EventHandler<StatChangedEventArgs> StatChanged;
     private Player _playerOwner;
 

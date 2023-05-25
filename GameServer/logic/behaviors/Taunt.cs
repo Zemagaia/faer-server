@@ -21,7 +21,7 @@ internal class Taunt : Behavior
         text = e.ParseStringArray("@text", '|', new[] { e.ParseString("@text") });
         probability = e.ParseFloat("@probability", 1);
         broadcast = e.ParseBool("@broadcast");
-        cooldown = new Cooldown(e.ParseInt("@coolDown"), 0);
+        cooldown = new Cooldown(e.ParseInt("@cooldown"), 0);
     }
 
     public Taunt(params string[] text)

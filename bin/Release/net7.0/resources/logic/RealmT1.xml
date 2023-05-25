@@ -102,4 +102,150 @@
 	<BehaviorEntry id="Sobek">
 	  <Taunt text="Stevia" />
 	</BehaviorEntry>
+	
+	<!-- 
+	proj 0: slower high damage slowing
+	proj 1: faster medium damage
+	-->
+	<BehaviorEntry id="Giant Slime">
+		<!-- Slow Immunity... -->
+		<State id="root">
+			<DropPortalOnDeath target="Slimy Ruins" probability="1" timeout="60"/>
+			<ScaleHP amountPerPlayer="2500" amountPerc="0.05" dist="20"/>
+			
+			<State id="Wait">
+				<ConditionalEffect effect="Invulnerable"/>
+				<PlayerWithinTransition dist="20" targetState="schijfactiviteit"/>
+			</State>
+			
+			<!-- SJFA: spawn a few slime pieces, switch between attacking and savage attacking -->
+			<State id="schijfactiviteit">
+				<HpLessTransition threshold="0.7" targetState="mass assault"/>
+				<Wander speed="0.7"/>
+				<Spawn children="Slime Piece" maxChildren="3" initialSpawn="0" cooldown="1500"/>
+				<State id="sjfa. 1">
+					<Shoot radius="10" projectileIndex="0" shootAngle="8" count="5" cooldown="900"/>
+					<TimedTransition targetState="sjfa. 2" time="3600"/>
+				</State>
+				<State id="sjfa. 2">
+					<Flash color="0xff9900" flashPeriod="0.5" flashRepeats="2"/>
+					<Shoot radius="10" projectileIndex="0" shootAngle="8" count="5" cooldown="900" cooldownOffset="100"/>
+					<Shoot radius="15" projectileIndex="1" fixedAngle="5" count="3" rotateAngle="10" cooldown="200" cooldownOffset="1000"/>
+					<TimedTransition targetState="sjfa. 1" time="2800"/>
+				</State>
+			</State>
+			
+			<!-- spawn a ton of enemies and explode-->
+			<State id="mass assault">
+				<HpLessTransition threshold="0.5" targetState="Duplication"/>
+				<ConditionalEffect effect="Armored" duration="6500"/>
+				<Wander speed="0.3"/>
+				<Spawn children="Slime Piece" maxChildren="5" initialSpawn="0" cooldown="800"/>
+				<State id="Charge up">
+					<StayCloseToSpawn speed="1" range="1"/>
+					<Flash color="0x4000ff" flashPeriod="0.8" flashRepeats="1"/>
+					<TimedTransition time="800" targetState="Blow up"/>
+				</State>
+				<State id="Blow up">
+					<Spawn children="Slime Piece" maxChildren="1" initialSpawn="1"/>
+					<Shoot radius="15" projectileIndex="1" fixedAngle="0" count="16" rotateAngle="5" cooldown="500"/>
+				</State>
+			</State>
+			
+			<!-- <50% HP. Divide self -->
+			<State id="Duplication">
+				<Wander speed="0.2"/>
+				<ConditionalEffect effect="Invulnerable" perm="true"/>
+				<Flash color="0x00ff00" flashPeriod="1" flashRepeats="3"/>
+				<Taunt text="...|... ...|... ... ..."/>
+				<Spawn children="Giant Slime Clone" maxChildren="1" initialSpawn="1" givesNoXp="false" copyHpState="true"/>
+				<TimedTransition time="3000" targetState="eat"/>
+			</State>
+			<!-- Rage: main enemy (absorb all slimes nearby) and grow mad -->
+			<State id="eat">
+				<Wander speed="0.2"/>
+				<State id="growth">
+					<Flash color="0xff0000" flashPeriod="1" flashRepeats="2"/>
+					<OrderOnce children="Slime Piece" range="20" targetState="feed"/>
+					<ChangeSize rate="8" target="210"/> <!-- 1600 ms -->
+					<TimedTransition time="2000" targetState="jimmy carter"/>
+				</State>
+				<State id="jimmy carter">
+					<OrderOnce children="Giant Slime Clone" range="15" targetState="jimmy carter"/>
+					<EntityNotExistsTransition target="Slime Piece" dist="15" targetState="biannual kurdistani extremist meeting"/>
+				</State>
+			</State>
+			<State id="biannual kurdistani extremist meeting">
+				<ConditionalEffect effect="Invulnerable" duration="0"/>
+				<Wander speed="0.45"/>
+				<Shoot radius="10" projectileIndex="0" shootAngle="10" count="7" cooldown="1100"/>
+			</State>
+		</State>
+		<!-- drops -->
+	</BehaviorEntry>
+
+	<BehaviorEntry id="Giant Slime Clone">
+		<!-- Slow Immunity... -->
+		<State id="root">
+			<Protect protectee="Giant Slime" speed="0.7" acquireRange="15" protectionRange="10" reprotectRange="10"/>
+			<ScaleHP amountPerPlayer="2500" amountPerc="0.05" dist="20" inheritHpScaleState="true" saveHpScaleState="false"/>
+			<!-- starts at <50% HP -->
+			<State id="Duplication">
+				<Wander speed="0.2"/>
+				<ConditionalEffect effect="Invulnerable" perm="true"/>
+				<Flash color="0x00ff00" flashPeriod="1" flashRepeats="3"/>
+				<Taunt text="...|... ...|... ... ..."/>
+				<TimedTransition time="3000" targetState="eat"/>
+			</State>
+			<!-- Rage: clone enemy (absorb all slimes nearby) and grow mad -->
+			<State id="eat">
+				<Wander speed="0.2"/>
+				<State id="growth">
+					<Flash color="0x00ff00" flashPeriod="1" flashRepeats="2"/>
+					<ChangeSize rate="8" target="210"/> <!-- 1600 ms -->
+					<TimedTransition time="2000" targetState="jimmy carter"/>
+				</State>
+				<State id="jimmy carter">
+					<EntityNotExistsTransition target="Slime Piece" dist="15" targetState="biannual kurdistani extremist meeting"/>
+				</State>
+			</State>
+			<State id="biannual kurdistani extremist meeting">
+				<ConditionalEffect effect="Invulnerable" duration="0"/>
+				<Wander speed="0.45"/>
+				<Shoot radius="15" projectileIndex="1" fixedAngle="5" count="3" rotateAngle="10" cooldown="200" cooldownOffset="1000"/>
+			</State>
+		</State>
+	</BehaviorEntry>
+	
+	<BehaviorEntry id="Slime Piece">
+		<State id="root">
+			<HealEntity name="Giant Slime" amount="200" range="2" cooldown="2000"/>
+			<ScaleHP amountPerPlayer="400" dist="15"/>
+			<Shoot radius="8" count="1" shootAngle="0" projectileIndex="0" cooldown="800"/>
+			<State id="default">
+				<Protect protectee="Giant Slime" speed="0.7" acquireRange="15" protectionRange="12" reprotectRange="12"/>
+				<Wander speed="0.6"/>
+				<TimedTransition targetState="experience" time="4500"/>
+			</State>
+			<State id="experience">
+				<Protect protectee="Giant Slime" speed="0.7" acquireRange="15" protectionRange="1.5" reprotectRange="1.5"/>
+				<Wander speed="0.6"/>
+				<Shoot radius="8" count="2" shootAngle="14" projectileIndex="0" cooldown="1200"/>
+				<TimedTransition targetState="default" time="6000"/>
+			</State>
+			<State id="feed">
+				<Protect protectee="Giant Slime" speed="0.7" acquireRange="15" protectionRange="0.5" reprotectRange="0.5"/>
+				<EntityWithinTransition dist="1.5" entity="Giant Slime" targetState="perish"/>
+			</State>
+			<State id="perish">
+				<Flash color="0xffff00" flashRepeats="2" flashPeriod="1"/>
+				<Protect protectee="Giant Slime" speed="0.7" acquireRange="15" protectionRange="1.5" reprotectRange="1.5"/>
+				<Wander speed="0.2"/>
+				<TimedTransition time="2000" targetState="for real now"/>
+			</State>
+			<State id="for real now">
+				<Suicide/>
+			</State>
+		</State>
+	</BehaviorEntry>
 </BehaviorEntries>

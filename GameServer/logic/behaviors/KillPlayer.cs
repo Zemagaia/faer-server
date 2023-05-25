@@ -15,7 +15,7 @@ internal class KillPlayer : Behavior
     public KillPlayer(XElement e)
     {
         _killMessage = e.ParseString("@killMessage");
-        _coolDown = new Cooldown().Normalize(e.ParseInt("@coolDown", 1000));
+        _coolDown = new Cooldown().Normalize(e.ParseInt("@cooldown", 1000));
         _rekt = e.ParseBool("@rekt");
         _killAll = e.ParseBool("@killAll");
     }

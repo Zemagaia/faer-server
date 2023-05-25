@@ -51,6 +51,15 @@ public struct IntPoint : IEquatable<IntPoint>
     }
 }
 
+public struct ScaleHpState
+{
+    public IList<string> PNamesCounted;
+    public int InitialScaleAmount;
+    public int MaxHp;
+    public bool HitMaxHp;
+    public int Cooldown;
+}
+
 public struct TradeItem
 {
     public int Item;

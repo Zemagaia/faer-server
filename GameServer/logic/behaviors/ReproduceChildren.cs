@@ -25,7 +25,7 @@ internal class ReproduceChildren : Behavior
         _children = e.ParseStringArray("@children", ',', new string[0]).Select(x => GetObjType(x)).ToArray();
         _maxChildren = e.ParseInt("@maxChildren", 5);
         _initialSpawn = (int)(_maxChildren * e.ParseFloat("@initialSpawn", 0.5f));
-        _coolDown = new Cooldown().Normalize(e.ParseInt("@coolDown", 1000));
+        _coolDown = new Cooldown().Normalize(e.ParseInt("@cooldown", 1000));
     }
         
     public ReproduceChildren(int maxChildren = 5, double initialSpawn = 0.5, Cooldown coolDown = new Cooldown(), params string[] children)
@@ -91,6 +91,7 @@ internal class ReproduceChildren : Behavior
 
             var enemyHost = host as Enemy;
             var enemyEntity = entity as Enemy;
+            entity.ParentEntity = host;
             if (enemyHost != null && enemyEntity != null)
             {
                 enemyEntity.Region = enemyHost.Region;

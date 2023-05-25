@@ -21,7 +21,7 @@ internal class InvisiToss : Behavior
         range = e.ParseFloat("@range");            
         angle = e.ParseNFloat("@angle") * Math.PI / 180;
         coolDownOffset = e.ParseInt("@coolDownOffset");
-        coolDown = new Cooldown().Normalize(e.ParseInt("@coolDown", 1000));
+        coolDown = new Cooldown().Normalize(e.ParseInt("@cooldown", 1000));
     }
         
     public InvisiToss(string child, double range = 5, double? angle = null,
@@ -64,6 +64,7 @@ internal class InvisiToss : Behavior
                 }
 
                 entity.Move(target.X, target.Y);
+                entity.ParentEntity = host;
                 (entity as Enemy).Region = (host as Enemy).Region;
                 world.EnterWorld(entity);
             }));

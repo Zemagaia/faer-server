@@ -29,6 +29,8 @@ public class Enemy : Character
     private Position? pos;
     public Position SpawnPoint => pos ?? new Position { X = X, Y = Y };
 
+    public ScaleHpState? ScaleHpState;
+
     public override void Init(World owner)
     {
         base.Init(owner);

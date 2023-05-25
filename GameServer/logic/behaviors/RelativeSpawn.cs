@@ -26,7 +26,7 @@ internal class RelativeSpawn : Behavior
         _maxChildren = e.ParseInt("@maxChildren", 5);
         _initialSpawn = (int)(_maxChildren * e.ParseFloat("@initialSpawn", 0.5f));
         _children = GetObjType(e.ParseString("@children"));
-        _coolDown = new Cooldown().Normalize(e.ParseInt("@coolDown"));
+        _coolDown = new Cooldown().Normalize(e.ParseInt("@cooldown"));
         _relativeTargetLoc = new IntPoint(e.ParseInt("@x"),e.ParseInt("@y"));
     }
         

@@ -19,7 +19,7 @@ internal class HealEntity : Behavior
         _range = e.ParseFloat("@range");
         _name = e.ParseString("@name");
         _amount = e.ParseNInt("@amount");            
-        _coolDown = new Cooldown().Normalize(e.ParseInt("@coolDown", 1000));
+        _coolDown = new Cooldown().Normalize(e.ParseInt("@cooldown", 1000));
     }
         
     public HealEntity(double range, string name = null, int? healAmount = null, Cooldown coolDown = new Cooldown())

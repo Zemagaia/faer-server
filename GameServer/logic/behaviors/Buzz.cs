@@ -25,7 +25,7 @@ internal class Buzz : CycleBehavior
     {
         speed = e.ParseFloat("@speed");
         dist = e.ParseFloat("@dist");
-        coolDown = new Cooldown().Normalize(e.ParseInt("@coolDown", 1));
+        coolDown = new Cooldown().Normalize(e.ParseInt("@cooldown", 1));
     }
         
     public Buzz(double speed = 2, double dist = 0.5, Cooldown coolDown = new Cooldown())

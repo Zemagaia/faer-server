@@ -31,7 +31,7 @@ internal class EnemyAoe : CycleBehavior
         _effectDuration = e.ParseInt("@effectDuration");
         _players = e.ParseBool("@players");
         _color = e.ParseUInt("@color", undefined: 0xffff0000);
-        _coolDown = new Cooldown().Normalize(e.ParseInt("@coolDown"));
+        _coolDown = new Cooldown().Normalize(e.ParseInt("@cooldown"));
     }
         
     public EnemyAoe(

@@ -38,7 +38,7 @@ internal class Shoot : CycleBehavior
         _defaultAngle = (float?)(e.ParseNFloat("@defaultAngle") * Math.PI / 180);
         _predictive = e.ParseFloat("@predictive");
         _coolDownOffset = e.ParseInt("@coolDownOffset");
-        _coolDown = new Cooldown().Normalize(e.ParseInt("@coolDown", 1000));
+        _coolDown = new Cooldown().Normalize(e.ParseInt("@cooldown", 1000));
         _shootLowHp = e.ParseBool("@shootLowHp");
         _target = e.ParseString("@target") == null ? null : GetObjType(e.ParseString("@target"));
     }

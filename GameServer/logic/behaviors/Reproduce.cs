@@ -24,7 +24,7 @@ internal class Reproduce : Behavior
         _children = GetObjType(e.ParseString("@children"));
         _densityRadius = e.ParseFloat("@densityRadius", 10);
         _densityMax = e.ParseInt("@densityMax", 5);
-        _coolDown = new Cooldown().Normalize(e.ParseInt("@coolDown", 60000));
+        _coolDown = new Cooldown().Normalize(e.ParseInt("@cooldown", 60000));
         _region = (TileRegion)Enum.Parse(typeof(TileRegion), e.ParseString("@region", "None"));
         _regionRange = e.ParseInt("@regionRange", 10);
     }
@@ -119,6 +119,7 @@ internal class Reproduce : Behavior
 
                 var enemyHost = host as Enemy;
                 var enemyEntity = entity as Enemy;
+                entity.ParentEntity = host;
                 if (enemyHost != null && enemyEntity != null)
                 {
                     enemyEntity.Region = enemyHost.Region;

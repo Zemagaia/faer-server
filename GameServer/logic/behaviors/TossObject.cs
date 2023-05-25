@@ -41,7 +41,7 @@ internal class TossObject : Behavior
 
         _range = e.ParseFloat("@range", 5);
         _angle = e.ParseNFloat("@angle") * Math.PI / 180;
-        _coolDown = new Cooldown().Normalize(e.ParseInt("@coolDown", 1000));
+        _coolDown = new Cooldown().Normalize(e.ParseInt("@cooldown", 1000));
         _coolDownOffset = e.ParseInt("@coolDownOffset");
         _tossInvis = e.ParseBool("@tossInvis");
         _probability = e.ParseFloat("@probability", 1);
@@ -192,6 +192,7 @@ internal class TossObject : Behavior
 
                     var entity = Entity.Resolve(host.Manager, _children[Random.Next(_children.Length)]);
                     entity.Move(target.X, target.Y);
+                    entity.ParentEntity = host;
 
                     if (host.Spawned)
                     {

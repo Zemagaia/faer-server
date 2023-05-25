@@ -21,7 +21,7 @@ internal class SetAltTexture : Behavior
     {
         _indexMin = e.ParseInt("@minValue");
         _indexMax = e.ParseInt("@maxValue", -1);            
-        _cooldown = new Cooldown().Normalize(e.ParseInt("@coolDown", 1000));
+        _cooldown = new Cooldown().Normalize(e.ParseInt("@cooldown", 1000));
         _loop = e.ParseBool("@loop");
     }
 

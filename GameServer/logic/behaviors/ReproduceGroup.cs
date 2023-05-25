@@ -31,7 +31,7 @@ internal class ReproduceGroup : Behavior
         _region = (TileRegion)Enum.Parse(typeof(TileRegion), e.ParseString("@region", "None").Replace(' ', '_'));
         _regionRange = e.ParseFloat("@regionRange", 10);
         _densityRadius = e.ParseFloat("@densityRadius", 10);
-        _coolDown = new Cooldown().Normalize(e.ParseInt("@coolDown", 1000));
+        _coolDown = new Cooldown().Normalize(e.ParseInt("@cooldown", 1000));
     }
         
     public ReproduceGroup(
@@ -129,6 +129,7 @@ internal class ReproduceGroup : Behavior
 
                 var enemyHost = host as Enemy;
                 var enemyEntity = entity as Enemy;
+                entity.ParentEntity = host;
                 if (enemyHost != null && enemyEntity != null)
                 {
                     enemyEntity.Region = enemyHost.Region;

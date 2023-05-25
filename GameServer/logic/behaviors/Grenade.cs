@@ -25,7 +25,7 @@ internal class Grenade : Behavior
         damage = e.ParseInt("@damage");
         range = e.ParseInt("@range", 5);
         fixedAngle = (float?)(e.ParseNFloat("@fixedAngle") * Math.PI / 180);
-        coolDown = new Cooldown().Normalize(e.ParseInt("@coolDown", 1000));
+        coolDown = new Cooldown().Normalize(e.ParseInt("@cooldown", 1000));
         effect = e.ParseConditionEffect("@effect");
         effectDuration = e.ParseInt("@effectDuration");
         color = e.ParseUInt("@color", true, 0xffff0000);
