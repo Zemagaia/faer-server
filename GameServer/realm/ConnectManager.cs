@@ -102,7 +102,7 @@ public class ConnectManager {
             difficulty = 0,
             isLimbo = false,
             persist = false,
-            portals = Empty<int>.Array,
+            portals = Array.Empty<int>(),
             restrictTp = false,
             map = "",
             mapData = fm,

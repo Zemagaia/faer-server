@@ -43,29 +43,4 @@ public partial class Player
              Log.Error(ex);
          }
      } */
-
-    public void DamagePlayerGround(Position pos, int damage)
-    {
-        var tile = Owner.Map[(int)pos.X, (int)pos.Y];
-        var tileDesc = Manager.Resources.GameData.Tiles[tile.TileType];
-
-        var limit = (int)Math.Min(ShieldMax + 100, ShieldMax * 1.3);
-        if (Shield > 0)
-            ShieldDamage += damage;
-        else if (ShieldDamage + damage <= limit)
-        {
-            // more accurate... maybe
-            ShieldDamage += damage;
-            HP -= damage;
-        }
-        else
-            HP -= damage;
-        foreach (var p in Owner.Players.Values)
-            if (MathUtils.DistSqr(p.X, Y, X, Y) < 16 * 16)
-                p.Client.SendDamage(Id, 0, (ushort)damage, HP <= 0, 0, 0);
-        if (HP <= 0)
-        {
-            Death(tileDesc.ObjectId, tile: tile);
-        }
-    }
 }

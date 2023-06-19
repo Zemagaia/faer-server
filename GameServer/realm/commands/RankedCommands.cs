@@ -1166,7 +1166,7 @@ internal class ClearInvCommand : Command {
     public ClearInvCommand() : base("clearinv", permLevel: 80) { }
 
     protected override bool Process(Player player, RealmTime time, string args) {
-        for (var i = 4; i < 12; i++)
+        for (var i = 4; i < 22; i++)
             player.Inventory[i] = null;
         player.SendInfo("Inventory Cleared.");
         return true;

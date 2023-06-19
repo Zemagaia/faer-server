@@ -695,39 +695,29 @@ public class MerchantItem : ISellableItem
 
 }
 
-public class StatUtils
+public static class StatUtils
 {
     public static int[] ArrayStatNameToId(string[] arr)
     {
         return arr.Select(StatNameToId).ToArray();
     }
 
-    public static int StatNameToId(string stat)
-    {
-        switch (stat)
-        {
-            case "MaximumHP": return 0;
-            case "MaximumMP": return 3;
-            case "Strength": return 20;
-            case "Armor": return 21;
-            case "Agility": return 22;
-            case "Dexterity": return 28;
-            case "Stamina": return 26;
-            case "Intelligence": return 27;
-            case "Luck": return 102;
-            case "Haste": return 108;
-            case "ShieldPoints": return 110;
-            case "Tenacity": return 117;
-            case "CriticalStrike": return 119;
-            case "LifeSteal": return 121;
-            case "LifeStealKill": return 125;
-            case "ManaLeech": return 123;
-            case "ManaLeechKill": return 127;
-            case "Resistance": return 156;
-            case "Wit": return 82;
-            case "Lethality": return 84;
-            case "Piercing": return 86;
-            default: return 0;
-        }
+    public static int StatNameToId(string stat) {
+        return stat switch {
+            "MaximumHP" => 33,
+            "MaximumMP" => 34,
+            "Strength" => 35,
+            "Defense" => 36,
+            "Speed" => 37,
+            "Stamina" => 38,
+            "Penetration" => 39,
+            "Wit" => 40,
+            "Resistance" => 41,
+            "Haste" => 42,
+            "Intelligence" => 43,
+            "Piercing" => 44,
+            "Tenacity" => 45,
+            _ => 0
+        };
     }
 }

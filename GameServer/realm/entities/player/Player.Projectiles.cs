@@ -5,11 +5,9 @@ namespace GameServer.realm.entities.player;
 public partial class Player
 {
     internal Projectile PlayerShootProjectile(
-        byte id, ProjectileDesc desc, ushort objType,
-        long time, float x, float y, float angle, int projectileId)
+        byte id, ProjectileDesc desc, ushort objType, float x, float y)
     {
         bulletId = id;
-        return CreateProjectile(desc, objType,
-            time, x, y, angle, projectileId);
+        return CreateProjectile(desc, objType, x, y);
     }
 }

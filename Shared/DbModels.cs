@@ -610,42 +610,6 @@ public class DbChar : RedisObject
         set => SetValue("dead", value);
     }
 
-    public int HealthStackCount
-    {
-        get => GetValue<int>("hpPotCount");
-        set => SetValue("hpPotCount", value);
-    }
-
-    public int MagicStackCount
-    {
-        get => GetValue<int>("mpPotCount");
-        set => SetValue("mpPotCount", value);
-    }
-
-    public bool HasBackpack
-    {
-        get => GetValue<bool>("hasBackpack");
-        set => SetValue("hasBackpack", value);
-    }
-
-    public int XPBoostTime
-    {
-        get => GetValue<int>("xpBoost");
-        set => SetValue("xpBoost", value);
-    }
-
-    public int LDBoostTime
-    {
-        get => GetValue<int>("ldBoost");
-        set => SetValue("ldBoost", value);
-    }
-
-    public int LTBoostTime
-    {
-        get => GetValue<int>("ltBoost");
-        set => SetValue("ltBoost", value);
-    }
-        
     public int Tier {
         get => GetValue<int>("tier");
         set => SetValue("tier", value);
@@ -729,7 +693,7 @@ public abstract class RInventory : RedisObject
 
     public ushort[] Items
     {
-        get => GetValue<ushort[]>(Field) ?? Enumerable.Repeat(ushort.MaxValue, 20).ToArray();
+        get => GetValue<ushort[]>(Field) ?? Enumerable.Repeat(ushort.MaxValue, 22).ToArray();
         set => SetValue(Field, value);
     }
 }

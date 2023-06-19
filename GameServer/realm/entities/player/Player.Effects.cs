@@ -9,11 +9,6 @@ partial class Player
 
     private int _newbieTime;
     private int _canTpCooldownTime;
-    public int ShieldDamage;
-
-    private bool _isDrainingMana;
-    private int _manaDrain;
-    private int _lightGain;
 
     private void HandleEffects(RealmTime time)
     {
@@ -23,7 +18,7 @@ partial class Player
             Manager.Clients[Client].Hidden = true;
         }
             
-        if (HasConditionEffect(ConditionEffects.Bleeding) && HP > 1 && Shield <= 0)
+        if (HasConditionEffect(ConditionEffects.Bleeding) && HP > 1)
         {
             if (_bleeding > 1)
             {
@@ -57,14 +52,6 @@ partial class Player
             return false;
         if (HasConditionEffect(ConditionEffects.Bleeding))
             return false;
-        return true;
-    }
-
-    private bool CanMpRegen()
-    {
-        if (_isDrainingMana)
-            return false;
-
         return true;
     }
 

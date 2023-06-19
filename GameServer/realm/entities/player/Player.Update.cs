@@ -55,7 +55,7 @@ public partial class Player {
 
     private readonly HashSet<IntPoint> _clientStatic = new();
     private readonly UpdatedSet _clientEntities;
-    private NewTickObjectDef[] _updateStatuses;
+    private ObjectStats[] _updateStatuses;
     private TileData[] _tiles;
     private ObjectDef[] _newObjects;
     private int[] _removedObjects;
@@ -101,14 +101,11 @@ public partial class Player {
     
     private void SendNewTick(RealmTime time) {
         lock (_statUpdateLock) {
-            _updateStatuses = _statUpdates.Select(e => new NewTickObjectDef {
-                ClassType = Enum.Parse<ClassType>(e.Key.ObjectDesc.Class),
-                Stats = new ObjectStats {
-                    Id = e.Key.Id,
-                    X = e.Key.RealX,
-                    Y = e.Key.RealY,
-                    StatTypes = e.Value.ToArray()
-                }
+            _updateStatuses = _statUpdates.Select(e => new ObjectStats {
+                Id = e.Key.Id,
+                X = e.Key.RealX,
+                Y = e.Key.RealY,
+                StatTypes = e.Value.ToArray()
             }).ToArray();
             _statUpdates.Clear();
         }

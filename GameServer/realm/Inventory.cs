@@ -83,7 +83,7 @@ public class InventoryTransaction : IEnumerable<Item>
                 if (_changedItems[i] == null && playerDesc.SlotTypes[i] == item.SlotType)
                     return i;
 
-            for (var i = 4; i < 12 || (plr.HasBackpack && i < plr.Inventory.Length); i++)
+            for (var i = 4; i < 22; i++)
                 if (_changedItems[i] == null)
                     return i;
         }
@@ -181,7 +181,7 @@ public class Inventory : IEnumerable<Item>
     public int Length => _items.Length;
 
     public Inventory(IContainer parent)
-        : this(parent, new Item[20])
+        : this(parent, new Item[22])
     {
     }
 
@@ -299,7 +299,7 @@ public class Inventory : IEnumerable<Item>
                     if (_items[i] == null && playerDesc.SlotTypes[i] == item.SlotType)
                         return i;
 
-                for (var i = 4; i < 12 || (plr.HasBackpack && i < plr.Inventory.Length); i++)
+                for (var i = 4; i < 22; i++)
                     if (_items[i] == null)
                         return i;
             }

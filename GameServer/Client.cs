@@ -337,7 +337,7 @@ public class Client {
         TrySend(ptr);
     }
 
-    public void SendNewTick(byte tickId, byte tps, NewTickObjectDef[] stats) {
+    public void SendNewTick(byte tickId, byte tps, ObjectStats[] stats) {
         var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
         WriteByte(ref ptr, ref spanRef, (byte) S2CPacketId.NewTick);
@@ -346,10 +346,10 @@ public class Client {
         WriteShort(ref ptr, ref spanRef, (short) stats.Length);
         for (var i = 0; i < stats.Length; i++) {
             var stat = stats[i];
-            WriteInt(ref ptr, ref spanRef, stat.Stats.Id);
-            WriteFloat(ref ptr, ref spanRef, stat.Stats.X);
-            WriteFloat(ref ptr, ref spanRef, stat.Stats.Y);
-            var statTypes = stat.Stats.StatTypes;
+            WriteInt(ref ptr, ref spanRef, stat.Id);
+            WriteFloat(ref ptr, ref spanRef, stat.X);
+            WriteFloat(ref ptr, ref spanRef, stat.Y);
+            var statTypes = stat.StatTypes;
             if (statTypes == null) {
                 WriteShort(ref ptr, ref spanRef, 0);
                 continue;
@@ -524,13 +524,10 @@ public class Client {
         WriteByte(ref ptr, ref spanRef, (byte) stat);
         switch (stat) {
             case StatsType.PortalUsable:
-            case StatsType.HasBackpack:
                 WriteBool(ref ptr, ref spanRef, Convert.ToInt32(value) == 1);
                 return;
             case StatsType.MerchPrice:
             case StatsType.Tier:
-            case StatsType.HealthStackCount:
-            case StatsType.MagicStackCount:
                 WriteByte(ref ptr, ref spanRef, Convert.ToByte(value));
                 return;
             case StatsType.MerchCount:
@@ -550,8 +547,8 @@ public class Client {
             case StatsType.Piercing:
             case StatsType.Penetration:
             case StatsType.Tenacity:
-            case StatsType.HPBoost:
-            case StatsType.MPBoost:
+            case StatsType.HPBonus:
+            case StatsType.MPBonus:
             case StatsType.StrengthBonus:
             case StatsType.WitBonus:
             case StatsType.DefenseBonus:
@@ -655,7 +652,7 @@ public class Client {
     }
 
     private static bool ValidateSlotSwap(Player player, IContainer conA, IContainer conB, int slotA, int slotB) {
-        return ((slotA < 12 && slotB < 12) || player.HasBackpack) && conB.AuditItem(conA.Inventory[slotA], slotB) &&
+        return conB.AuditItem(conA.Inventory[slotA], slotB) &&
                conA.AuditItem(conB.Inventory[slotB], slotA);
     }
 
@@ -888,7 +885,7 @@ public class Client {
                 }
             }
 
-            for (var j = 0; j < 12; j++) {
+            for (var j = 0; j < 22; j++) {
                 for (var m = 0; m < thisItems.Count; m++) {
                     if ((tradeTarget.SlotTypes[j] == 0 && tInvTrans[j] == null) || (thisItems[m] != null &&
                             ItemUtils.SlotsMatching(tradeTarget.SlotTypes[j], thisItems[m].SlotType) &&
@@ -900,7 +897,7 @@ public class Client {
                 }
             }
 
-            for (var i = 0; i < 12; i++) {
+            for (var i = 0; i < 22; i++) {
                 for (var n = 0; n < targetItems.Count; n++) {
                     if ((Player.SlotTypes[i] == 0 && pInvTrans[i] == null) || (targetItems[n] != null &&
                                                                                ItemUtils.SlotsMatching(
@@ -1327,21 +1324,6 @@ public class Client {
 
         var conA = (IContainer) a;
         var conB = (IContainer) b;
-        if (b == Player) {
-            var stacks = Player.Stacks;
-            foreach (var stack in stacks) {
-                if (stack.Slot == slotId2) {
-                    var stackTrans = conA.Inventory.CreateTransaction();
-                    if (stack.Put(stackTrans[slotId1]) == null) {
-                        stackTrans[slotId1] = null;
-                        Inventory.Execute(stackTrans);
-                        SendInvResult(0);
-                        return;
-                    }
-                }
-            }
-        }
-
         if (!ValidateSlotSwap(Player, conA, conB, slotId1, slotId2)) {
             a.ForceUpdate(slotId1);
             b.ForceUpdate(slotId2);
@@ -1435,7 +1417,7 @@ public class Client {
             return;
         
         var prjDesc = item.Projectiles[0];
-        var prj = Player.PlayerShootProjectile(bulletId, prjDesc, item.ObjectType, time, x, y, angle, bulletId);
+        var prj = Player.PlayerShootProjectile(bulletId, prjDesc, item.ObjectType, x, y);
         Player.Owner.EnterWorld(prj);
             
         foreach (var plr in Player.Owner.Players.Values)

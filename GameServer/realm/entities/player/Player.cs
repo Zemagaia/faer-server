@@ -109,27 +109,6 @@ public partial class Player : Character, IContainer, IPlayer {
         set => _mp.SetValue(value);
     }
 
-    private readonly SV<bool> _hasBackpack;
-
-    public bool HasBackpack {
-        get => _hasBackpack.GetValue();
-        set => _hasBackpack.SetValue(value);
-    }
-
-    private readonly SV<bool> _xpBoosted;
-
-    public bool XPBoosted {
-        get => _xpBoosted.GetValue();
-        set => _xpBoosted.SetValue(value);
-    }
-
-    private readonly SV<int> _oxygenBar;
-
-    public int OxygenBar {
-        get => _oxygenBar.GetValue();
-        set => _oxygenBar.SetValue(value);
-    }
-
     private readonly SV<int> _rank;
 
     public int Rank {
@@ -142,20 +121,6 @@ public partial class Player : Character, IContainer, IPlayer {
     public int Admin {
         get => _admin.GetValue();
         set => _admin.SetValue(value);
-    }
-
-    private readonly SV<int> _shield;
-
-    public int Shield {
-        get => _shield.GetValue();
-        set => _shield.SetValue(value);
-    }
-
-    private readonly SV<int> _shieldMax;
-
-    public int ShieldMax {
-        get => _shieldMax.GetValue();
-        set => _shieldMax.SetValue(value);
     }
 
     private readonly SV<int> _tier;
@@ -178,20 +143,13 @@ public partial class Player : Character, IContainer, IPlayer {
         get => _dmgMult.GetValue();
         set => _dmgMult.SetValue(value);
     }
-
-    public int XPBoostTime { get; set; }
-    public int LDBoostTime { get; set; }
-    public int LTBoostTime { get; set; }
+    
     public int? GuildInvite { get; set; }
     public bool Muted { get; set; }
 
     public RInventory DbLink { get; private set; }
     public int[] SlotTypes { get; private set; }
     public Inventory Inventory { get; private set; }
-
-    public ItemStacker HealthPots { get; private set; }
-    public ItemStacker MagicPots { get; private set; }
-    public ItemStacker[] Stacks { get; private set; }
 
     public readonly StatsManager Stats;
 
@@ -241,8 +199,8 @@ public partial class Player : Character, IContainer, IPlayer {
         stats[StatsType.Piercing] = Stats[10];
         stats[StatsType.Penetration] = Stats[11];
         stats[StatsType.Tenacity] = Stats[12];
-        stats[StatsType.HPBoost] = Stats.Boost[0];
-        stats[StatsType.MPBoost] = Stats.Boost[1];
+        stats[StatsType.HPBonus] = Stats.Boost[0];
+        stats[StatsType.MPBonus] = Stats.Boost[1];
         stats[StatsType.StrengthBonus] = Stats.Boost[2];
         stats[StatsType.WitBonus] = Stats.Boost[3];
         stats[StatsType.DefenseBonus] = Stats.Boost[4];
@@ -254,9 +212,6 @@ public partial class Player : Character, IContainer, IPlayer {
         stats[StatsType.PiercingBonus] = Stats.Boost[10];
         stats[StatsType.PenetrationBonus] = Stats.Boost[11];
         stats[StatsType.TenacityBonus] = Stats.Boost[12];
-        stats[StatsType.HealthStackCount] = HealthPots.Count;
-        stats[StatsType.MagicStackCount] = MagicPots.Count;
-        stats[StatsType.HasBackpack] = HasBackpack ? 1 : 0;
         stats[StatsType.HitMultiplier] = HitMultiplier;
         stats[StatsType.DamageMultiplier] = DamageMultiplier;
         stats[StatsType.Tier] = Tier;
@@ -271,12 +226,6 @@ public partial class Player : Character, IContainer, IPlayer {
         chr.Tex2 = Texture2;
         chr.Skin = _originalSkin;
         chr.LastSeen = DateTime.Now;
-        chr.HealthStackCount = HealthPots.Count;
-        chr.MagicStackCount = MagicPots.Count;
-        chr.HasBackpack = HasBackpack;
-        chr.XPBoostTime = XPBoostTime;
-        chr.LDBoostTime = LDBoostTime;
-        chr.LTBoostTime = LTBoostTime;
         chr.Items = Inventory.GetItemTypes();
         chr.Tier = Tier;
     }
@@ -301,7 +250,6 @@ public partial class Player : Character, IContainer, IPlayer {
         _skin = new SV<ushort>(this, StatsType.Texture, 0);
         _glow = new SV<int>(this, StatsType.Glow, 0);
         _mp = new SV<int>(this, StatsType.MP, client.Character.MP);
-        _hasBackpack = new SV<bool>(this, StatsType.HasBackpack, client.Character.HasBackpack, true);
         _tier = new SV<int>(this, StatsType.Tier, 1, true);
         _hitMult = new SV<float>(this, StatsType.HitMultiplier, 1, true);
         _dmgMult = new SV<float>(this, StatsType.DamageMultiplier, 1, true);
@@ -309,10 +257,6 @@ public partial class Player : Character, IContainer, IPlayer {
         Name = client.Account.Name;
         HP = client.Character.HP;
         ConditionEffects = 0;
-
-        XPBoostTime = client.Character.XPBoostTime;
-        LDBoostTime = client.Character.LDBoostTime;
-        LTBoostTime = client.Character.LTBoostTime;
 
         var s = (ushort) client.Character.Skin;
         if (gameData.Skins.Keys.Contains(s)) {
@@ -328,20 +272,14 @@ public partial class Player : Character, IContainer, IPlayer {
             GuildRank = (sbyte) client.Account.GuildRank;
         }
 
-        HealthPots = new ItemStacker(this, 254, 0xaa1,
-            client.Character.HealthStackCount, settings.MaxStackablePotions);
-        MagicPots = new ItemStacker(this, 255, 0xaa2,
-            client.Character.MagicStackCount, settings.MaxStackablePotions);
-        Stacks = new ItemStacker[] {HealthPots, MagicPots};
-
         // inventory setup
         DbLink = new DbCharInv(Client.Account, Client.Character.CharId);
         Inventory = new Inventory(this,
             Utils.ResizeArray(
                 (DbLink as DbCharInv).Items
-                .Select(_ => (_ == 0xffff || !gameData.Items.ContainsKey(_)) ? null : gameData.Items[_])
+                .Select(_ => (_ == ushort.MaxValue || !gameData.Items.ContainsKey(_)) ? null : gameData.Items[_])
                 .ToArray(),
-                20));
+                22));
 
         if (!saveInventory)
             DbLink = null;
@@ -395,9 +333,6 @@ public partial class Player : Character, IContainer, IPlayer {
         Move(x + 0.5f, y + 0.5f);
         tiles = new byte[owner.Map.Width, owner.Map.Height];
 
-        if (owner.Name.Equals("OceanTrench"))
-            OxygenBar = 100;
-
         SetNewbiePeriod();
         base.Init(owner);
     }
@@ -435,21 +370,6 @@ public partial class Player : Character, IContainer, IPlayer {
         XpBoostItem = sum;
     }
 
-    private void TickActivateEffects(RealmTime time) {
-        var dt = time.ElapsedMsDelta;
-
-        if (XPBoostTime > 0)
-            XPBoostTime = Math.Max(XPBoostTime - dt, 0);
-        if (XPBoostTime == 0)
-            XPBoosted = false;
-
-        if (LDBoostTime > 0)
-            LDBoostTime = Math.Max(LDBoostTime - dt, 0);
-
-        if (LTBoostTime > 0)
-            LTBoostTime = Math.Max(LTBoostTime - dt, 0);
-    }
-
     private float _hpRegenCounter;
     private float _mpRegenCounter;
 
@@ -467,7 +387,7 @@ public partial class Player : Character, IContainer, IPlayer {
         }
 
         // mp regen
-        if (MP == Stats[1] || !CanMpRegen())
+        if (MP == Stats[1])
             _mpRegenCounter = 0;
         else {
             _mpRegenCounter += Stats.GetMpRegen() * time.ElapsedMsDelta / 1000f;

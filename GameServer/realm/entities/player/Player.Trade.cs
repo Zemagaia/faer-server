@@ -45,10 +45,10 @@ partial class Player
         if (potentialTrader.ContainsKey(target))
         {
             tradeTarget = target;
-            trade = new bool[12];
+            trade = new bool[22];
             tradeAccepted = false;
             target.tradeTarget = this;
-            target.trade = new bool[12];
+            target.trade = new bool[22];
             target.tradeAccepted = false;
             potentialTrader.Clear();
             target.potentialTrader.Clear();
@@ -58,8 +58,8 @@ partial class Player
             //MonitorTrade();
             //target.MonitorTrade();
 
-            var my = new TradeItem[12];
-            for (var i = 0; i < 12; i++)
+            var my = new TradeItem[22];
+            for (var i = 0; i < 22; i++)
                 my[i] = new TradeItem()
                 {
                     Item = Inventory[i].ObjectType,
@@ -67,8 +67,8 @@ partial class Player
                     Included = false,
                     Tradeable = Inventory[i] != null && i >= 4 && !Inventory[i].Untradable
                 };
-            var your = new TradeItem[12];
-            for (var i = 0; i < 12; i++)
+            var your = new TradeItem[22];
+            for (var i = 0; i < 22; i++)
                 your[i] = new TradeItem()
                 {
                     Item = target.Inventory[i].ObjectType,

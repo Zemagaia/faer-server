@@ -237,8 +237,8 @@ public class StatsManager {
 
     public static StatsType GetBoostStatType(int stat) {
         return stat switch {
-            0 => StatsType.HPBoost,
-            1 => StatsType.MPBoost,
+            0 => StatsType.HPBonus,
+            1 => StatsType.MPBonus,
             2 => StatsType.StrengthBonus,
             3 => StatsType.WitBonus,
             4 => StatsType.DefenseBonus,

@@ -17,10 +17,10 @@ public class Test : World
         difficulty = 0,
         isLimbo = false,
         persist = false,
-        portals = Empty<int>.Array,
+        portals = Array.Empty<int>(),
         restrictTp = false,
         map = "",
-        mapData = Empty<byte>.Array,
+        mapData = Array.Empty<byte>(),
         // to-do: add test music
         music = new[] { "Test" }
     };

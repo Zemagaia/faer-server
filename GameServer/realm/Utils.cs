@@ -344,14 +344,14 @@ internal static class EntityUtils {
             return;
 
         switch (slot) {
-            case 254:
+            /*case 254:
                 e.InvokeStatChange(
                     StatsType.HealthStackCount, (e as Player).HealthPots.Count);
                 break;
             case 255:
                 e.InvokeStatChange(
                     StatsType.MagicStackCount, (e as Player).MagicPots.Count);
-                break;
+                break;*/
             default:
                 //e.InvokeStatChange(StatsType.Inventory, (e as IContainer).Inventory.GetItems());
                 break;

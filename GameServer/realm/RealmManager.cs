@@ -18,14 +18,6 @@ public struct RealmTime
     public int ElapsedMsDelta;
 }
 
-public enum PendingPriority
-{
-    Emergent,
-    Destruction,
-    Normal,
-    Creation,
-}
-
 public class RealmManager
 {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();

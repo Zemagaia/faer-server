@@ -58,14 +58,6 @@ partial class Player {
 
             // get item
             Item item = null;
-            foreach (var stack in Stacks.Where(stack => stack.Slot == slot)) {
-                item = stack.Pull();
-
-                if (item == null)
-                    return;
-                break;
-            }
-
             if (item == null) {
                 if (container == null)
                     return;
@@ -166,9 +158,6 @@ partial class Player {
                     break;
                 case ActivateEffects.Create:
                     AECreate(time, item, target, eff);
-                    break;
-                case ActivateEffects.Backpack:
-                    AEBackpack(time, item, target, eff);
                     break;
                 case ActivateEffects.UnlockPortal:
                     AEUnlockPortal(time, item, target, eff);
@@ -316,13 +305,6 @@ partial class Player {
             player.SendInfo($"{world.SBName} unlocked by {Name}");
     }
 
-    private void AEBackpack(RealmTime time, Item item, Position target, ActivateEffect eff) {
-        if (HasBackpack)
-            RefundItem(item);
-
-        HasBackpack = true;
-    }
-        
     private void AEBloodstone(RealmTime time, Item item, Position target, ActivateEffect eff) {
         var totalDmg = 0;
         var enemies = new List<Enemy>();
@@ -513,9 +495,6 @@ partial class Player {
         this.AOE(range, true, player => {
             ((Player) player).Stats.Boost.ActivateBoost[idx].Push(amount, eff.NoStack);
             ((Player) player).Stats.ReCalculateValues();
-
-            if (idx == 12)
-                ShieldDamage = ShieldDamage - amount >= 0 ? ShieldDamage - amount : 0;
 
             // hack job to allow instant heal of nostack boosts
             if (eff.NoStack && amount > 0 && idx == 0) {

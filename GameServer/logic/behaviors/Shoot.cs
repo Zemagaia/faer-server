@@ -163,8 +163,8 @@ internal class Shoot : CycleBehavior
                 for (var i = 0; i < count; i++)
                 {
                     var prj = host.CreateProjectile(
-                        desc, host.ObjectType, time.TotalElapsedMs,
-                        prjPos.X, prjPos.Y, (startAngle + _shootAngle * i), i);
+                        desc, host.ObjectType,
+                        prjPos.X, prjPos.Y);
                     host.Owner.EnterWorld(prj);
 
                     if (i == 0)

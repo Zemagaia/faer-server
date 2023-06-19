@@ -106,7 +106,6 @@ public enum ActivateEffects
     UnlockSkin,
     ChangeSkin,
     FixedStat,
-    Backpack,
     UnlockEmote,
     Bloodstone
 }

@@ -337,10 +337,7 @@ internal class Character
     public int Tex1 { get; private init; }
     public int Tex2 { get; private init; }
     public int Skin { get; private init; }
-    public int HealthStackCount { get; private init; }
-    public int MagicStackCount { get; private init; }
     public bool Dead { get; private init; }
-    public bool HasBackpack { get; private init; }
 
     public static Character FromDb(DbChar character, bool dead)
     {
@@ -366,10 +363,7 @@ internal class Character
             Tex1 = character.Tex1,
             Tex2 = character.Tex2,
             Skin = character.Skin,
-            HealthStackCount = character.HealthStackCount,
-            MagicStackCount = character.MagicStackCount,
-            Dead = dead,
-            HasBackpack = character.HasBackpack,
+            Dead = dead
         };
     }
 
@@ -396,10 +390,7 @@ internal class Character
                 new XElement("Tex1", Tex1),
                 new XElement("Tex2", Tex2),
                 new XElement("Texture", Skin),
-                new XElement("HealthStackCount", HealthStackCount),
-                new XElement("MagicStackCount", MagicStackCount),
                 new XElement("Dead", Dead),
-                new XElement("HasBackpack", (HasBackpack) ? "1" : "0"),
                 new XElement("Equipment", Equipment.ToCommaSepString())
             );
     }

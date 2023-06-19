@@ -433,7 +433,7 @@
             <LifetimeMS>2800</LifetimeMS>
             <Amplitude>1.2</Amplitude>
             <ConditionEffect duration="3">Bleeding</ConditionEffect>
-            <MultiHit/>
+			<MultiHit/>
         </Projectile>
         <Size>160</Size>
         <PermaMiniMap/>
@@ -453,7 +453,7 @@
             <Speed>125</Speed>
             <Size>130</Size>
             <LifetimeMS>400</LifetimeMS>
-            <MultiHit/>
+			<MultiHit/>
         </Projectile>
         <Size>120</Size>
         <Enemy/>

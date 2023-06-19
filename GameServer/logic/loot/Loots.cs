@@ -80,14 +80,13 @@ public class Loot : List<ILootDef>
             foreach (var i in this) 
                 i.Populate(enemy.Manager, enemy, dat, Rand, consideration);
 
-            var lootDropBoost = dat.Item1.LDBoostTime > 0 ? 1.5 : 1;
             var globalLBoost = DateTime.UtcNow.ToUnixTimestamp() < Constants.EventEnds.ToUnixTimestamp()
                 ? Constants.GlobalLootBoost ?? 1
                 : 1;
 
             var playerLoot = new List<Item>();
             foreach (var i in consideration)
-                if (Rand.NextDouble() < i.Probability * lootDropBoost * globalLBoost)
+                if (Rand.NextDouble() < i.Probability * globalLBoost)
                     playerLoot.Add(i.Item);
             if (playerLoot.Count > 0)
                 AddBagToWorld(enemy, playerLoot, new[] { dat.Item1 });
