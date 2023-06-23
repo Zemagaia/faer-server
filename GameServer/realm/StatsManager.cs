@@ -163,24 +163,8 @@ public class StatsManager {
         return 0.5f + this[9] * .06f;
     }
 
-    /*public float Dex()
-    {
-        var dex = this[5];
-        if (Owner.HasConditionEffect(ConditionEffects.Crippled))
-            dex = 0;
-
-        var ret = 1.5f + 6.5f * (dex / 75f);
-        if (Owner.HasConditionEffect(ConditionEffects.Berserk))
-            ret *= 1.5f;
-        if (Owner.HasConditionEffect(ConditionEffects.Stunned))
-            ret = 0;
-        return ret;
-    }*/
-
     public static int GetStatIndex(StatsType stat) {
-#pragma warning disable CS8509
         return stat switch {
-#pragma warning restore CS8509
             StatsType.MaxHP => 0,
             StatsType.MaxMP => 1,
             StatsType.Strength => 2,
@@ -193,7 +177,8 @@ public class StatsManager {
             StatsType.Intelligence => 9,
             StatsType.Piercing => 10,
             StatsType.Penetration => 11,
-            StatsType.Tenacity => 12
+            StatsType.Tenacity => 12,
+            _ => -1
         };
     }
 

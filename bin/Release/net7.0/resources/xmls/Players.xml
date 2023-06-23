@@ -10,8 +10,8 @@
       <Index>0</Index>
     </AnimatedTexture>
     <Player />
-    <SlotTypes>3, 4, 6, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
-    <Equipment>0xa2a, 0xa4a, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
+    <SlotTypes>3, 4, 6, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
+    <Equipment>0xa2a, 0xa4a, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
     <Health t2="740" t1="720">695</Health>
     <Mana t2="240" t1="225">200</Mana>
     <Strength t2="75" t1="70">65</Strength>
@@ -36,8 +36,8 @@
       <Index>1</Index>
     </AnimatedTexture>
     <Player />
-    <SlotTypes>17, 5, 14, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
-    <Equipment>0xa35, 0xa55, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
+    <SlotTypes>17, 5, 14, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
+    <Equipment>0xa35, 0xa55, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
     <Health t2="740" t1="720">695</Health>
     <Mana t2="240" t1="225">200</Mana>
     <Strength t2="75" t1="70">65</Strength>
@@ -62,8 +62,8 @@
       <Index>2</Index>
     </AnimatedTexture>
     <Player />
-    <SlotTypes>3, 8, 6, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
-    <Equipment>0xa2a, 0xa60, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
+    <SlotTypes>3, 8, 6, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
+    <Equipment>0xa2a, 0xa60, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
     <Health t2="740" t1="720">695</Health>
     <Mana t2="240" t1="225">200</Mana>
     <Strength t2="75" t1="70">65</Strength>
@@ -88,8 +88,8 @@
       <Index>3</Index>
     </AnimatedTexture>
     <Player />
-    <SlotTypes>17, 14, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
-    <Equipment>0xa35, 0xa6b, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
+    <SlotTypes>17, 14, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
+    <Equipment>0xa35, 0xa6b, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
     <Health t2="740" t1="720">695</Health>
     <Mana t2="240" t1="225">200</Mana>
     <Strength t2="75" t1="70">65</Strength>
@@ -114,8 +114,8 @@
       <Index>4</Index>
     </AnimatedTexture>
     <Player />
-    <SlotTypes>1, 16, 7, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
-    <Equipment>0xa00, 0xa76, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
+    <SlotTypes>1, 16, 7, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
+    <Equipment>0xa00, 0xa76, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
     <Health t2="740" t1="720">695</Health>
     <Mana t2="240" t1="225">200</Mana>
     <Strength t2="75" t1="70">65</Strength>
@@ -140,8 +140,8 @@
       <Index>5</Index>
     </AnimatedTexture>
     <Player />
-    <SlotTypes>1, 12, 7, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
-    <Equipment>0xa00, 0xa81, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
+    <SlotTypes>1, 12, 7, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
+    <Equipment>0xa00, 0xa81, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
     <Health t2="740" t1="720">695</Health>
     <Mana t2="240" t1="225">200</Mana>
     <Strength t2="75" t1="70">65</Strength>
@@ -166,8 +166,8 @@
       <Index>6</Index>
     </AnimatedTexture>
     <Player />
-    <SlotTypes>17, 15, 14, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
-    <Equipment>0xa35, 0xa8b, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
+    <SlotTypes>17, 15, 14, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
+    <Equipment>0xa35, 0xa8b, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
     <Health t2="740" t1="720">695</Health>
     <Mana t2="240" t1="225">200</Mana>
     <Strength t2="75" t1="70">65</Strength>
@@ -192,8 +192,8 @@
       <Index>9</Index>
     </AnimatedTexture>
     <Player />
-    <SlotTypes>17, 23, 14, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
-    <Equipment>0xa35, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
+    <SlotTypes>17, 23, 14, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
+    <Equipment>0xa35, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
     <Health t2="740" t1="720">695</Health>
     <Mana t2="240" t1="225">200</Mana>
     <Strength t2="75" t1="70">65</Strength>
@@ -218,8 +218,8 @@
       <Index>8</Index>
     </AnimatedTexture>
     <Player />
-    <SlotTypes>22, 21, 20, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
-    <Equipment>0xa35, 0xa4a, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
+    <SlotTypes>22, 21, 20, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
+    <Equipment>0xa35, 0xa4a, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
     <Health t2="740" t1="720">695</Health>
     <Mana t2="240" t1="225">200</Mana>
     <Strength t2="75" t1="70">65</Strength>
@@ -244,8 +244,8 @@
       <Index>10</Index>
     </AnimatedTexture>
     <Player />
-    <SlotTypes>3, 24, 6, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
-    <Equipment>0xa2a, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
+    <SlotTypes>3, 24, 6, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
+    <Equipment>0xa2a, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
     <Health t2="740" t1="720">695</Health>
     <Mana t2="240" t1="225">200</Mana>
     <Strength t2="75" t1="70">65</Strength>

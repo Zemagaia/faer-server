@@ -704,8 +704,8 @@ public static class StatUtils
 
     public static int StatNameToId(string stat) {
         return stat switch {
-            "MaximumHP" => 33,
-            "MaximumMP" => 34,
+            "MaxHP" => 33,
+            "MaxMP" => 34,
             "Strength" => 35,
             "Defense" => 36,
             "Speed" => 37,
@@ -717,7 +717,7 @@ public static class StatUtils
             "Intelligence" => 43,
             "Piercing" => 44,
             "Tenacity" => 45,
-            _ => 0
+            _ => -1
         };
     }
 }

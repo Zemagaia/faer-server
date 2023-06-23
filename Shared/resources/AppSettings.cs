@@ -17,7 +17,6 @@ public class AppSettings : InitSettings
     public int CharacterSlotCost { get; private set; }
     public int CharacterSlotCurrency { get; private set; }
     public int VaultChestCost { get; private set; }
-    public int InventorySize { get; private set; }
     public int MaxStackablePotions { get; private set; }
     public int PotionPurchaseCooldown { get; private set; }
     public int PotionPurchaseCostCooldown { get; private set; }
@@ -47,9 +46,6 @@ public class AppSettings : InitSettings
         MaxPetCount = GetIntValue("MaxPetCount");
         Accounts = new NewAccounts(elem.Element("NewAccounts"));
         Characters = new NewCharacters(elem.Element("NewCharacters"));
-
-        InventorySize = GetIntValue("InventorySize");
-        if (InventorySize == 0) InventorySize = 20;
 
         if (Exists("PotionPurchaseCosts"))
         {

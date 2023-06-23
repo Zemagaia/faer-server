@@ -576,8 +576,6 @@ public class Client {
             case StatsType.Inv9:
             case StatsType.Inv10:
             case StatsType.Inv11:
-            case StatsType.MerchType:
-            case StatsType.AltTextureIndex:
             case StatsType.Inv12:
             case StatsType.Inv13:
             case StatsType.Inv14:
@@ -586,6 +584,10 @@ public class Client {
             case StatsType.Inv17:
             case StatsType.Inv18:
             case StatsType.Inv19:
+            case StatsType.Inv20:
+            case StatsType.Inv21:
+            case StatsType.MerchType:
+            case StatsType.AltTextureIndex:
             case StatsType.Texture:
                 WriteUShort(ref ptr, ref spanRef, Convert.ToUInt16(value));
                 return;

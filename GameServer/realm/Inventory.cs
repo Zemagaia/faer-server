@@ -129,12 +129,10 @@ public class InventoryItems
         for (var i = 0; i < items.Length; i++)
         {
             var sti = (int)StatsType.Inv0 + i;
-            if (i >= 12)
-                sti = (int)StatsType.Inv12 + i - 12;
 
             _itemTypes[i] = new SV<int>(
                 container as Entity,
-                (StatsType)sti, items[i]?.ObjectType ?? -1,
+                (StatsType)sti, items[i]?.ObjectType ?? ushort.MaxValue,
                 container is Player && i > 3);
             _items[i] = items[i];
         }
@@ -147,7 +145,7 @@ public class InventoryItems
 
         for (var i = 0; i < items.Length; i++)
         {
-            _itemTypes[i].SetValue(items[i]?.ObjectType ?? -1);
+            _itemTypes[i].SetValue(items[i]?.ObjectType ?? ushort.MaxValue);
             _items[i] = items[i];
         }
     }
@@ -162,7 +160,7 @@ public class InventoryItems
         get => _items[index];
         set
         {
-            _itemTypes[index].SetValue(value?.ObjectType ?? -1);
+            _itemTypes[index].SetValue(value?.ObjectType ?? ushort.MaxValue);
             _items[index] = value;
         }
     }
@@ -226,7 +224,7 @@ public class Inventory : IEnumerable<Item>
     {
         lock(_invLock)
         {
-            return _items.GetItems().Select(_ => _?.ObjectType ?? 0xffff).ToArray();
+            return _items.GetItems().Select(_ => _?.ObjectType ?? ushort.MaxValue).ToArray();
         }
     }
 
@@ -290,8 +288,7 @@ public class Inventory : IEnumerable<Item>
     {
         lock(_invLock)
         {
-            var plr = _parent as Player;
-            if (plr != null)
+            if (_parent is Player plr)
             {
                 var playerDesc = plr.Manager.Resources.GameData
                     .Classes[plr.ObjectDesc.ObjectType];
@@ -318,7 +315,7 @@ public class Inventory : IEnumerable<Item>
     {
         var gameData = Program.Resources.GameData;
         return a
-            .Select(_ => (_ == 0xffff || !gameData.Items.ContainsKey(_)) ? null : gameData.Items[_])
+            .Select(_ => (_ == ushort.MaxValue || !gameData.Items.ContainsKey(_)) ? null : gameData.Items[_])
             .ToArray();
     }
 

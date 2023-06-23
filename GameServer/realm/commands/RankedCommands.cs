@@ -405,13 +405,7 @@ internal class GuildRankCommand : Command {
 
 internal class GimmeCommand : Command {
     public GimmeCommand() : base("gimme", permLevel: 80, aliases: "give") { }
-
-    private string[] BannedItems = {
-        "Boshy Gun",
-        "Boshy Shotgun",
-        "Oryx's Arena Key",
-    };
-
+    
     protected override bool Process(Player player, RealmTime time, string args) {
         var gameData = player.Manager.Resources.GameData;
 
@@ -431,11 +425,6 @@ internal class GimmeCommand : Command {
         }
 
         var item = gameData.Items[objType];
-        if (player.Client.Account.Rank < 100 && BannedItems.Contains(item.ObjectId)) {
-            player.SendError("Insufficient rank to give yourself this item.");
-            return false;
-        }
-
         var inventory = player.Inventory;
         var slot = inventory.GetAvailableInventorySlot(item);
         if (slot != -1) {

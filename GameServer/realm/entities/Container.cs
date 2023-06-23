@@ -30,8 +30,8 @@ public class Container : StaticObject, IContainer
         var eq = node.Element("Equipment");
         if (eq != null)
         {
-            var inv = eq.Value.CommaToArray<ushort>().Select(_ => _ == 0xffff ? null : Manager.Resources.GameData.Items[_]).ToArray();
-            Array.Resize(ref inv, 8);
+            var inv = eq.Value.CommaToArray<ushort>().Select(_ => _ == ushort.MaxValue ? null : Manager.Resources.GameData.Items[_]).ToArray();
+            Array.Resize(ref inv, 9);
             Inventory.SetItems(inv);
         }
     }
@@ -52,6 +52,7 @@ public class Container : StaticObject, IContainer
         stats[StatsType.Inv5] = Inventory[5]?.ObjectType ?? ushort.MaxValue;
         stats[StatsType.Inv6] = Inventory[6]?.ObjectType ?? ushort.MaxValue;
         stats[StatsType.Inv7] = Inventory[7]?.ObjectType ?? ushort.MaxValue;
+        stats[StatsType.Inv8] = Inventory[8]?.ObjectType ?? ushort.MaxValue;
         stats[StatsType.OwnerAccountId] = (BagOwners.Length == 1 ? BagOwners[0] : ushort.MaxValue).ToString();
         base.ExportStats(stats);
     }

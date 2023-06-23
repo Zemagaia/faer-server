@@ -8,8 +8,8 @@ namespace GameServer;
 
 internal static class PacketUtils {
     private static Logger Log = LogManager.GetCurrentClassLogger();
-    public const int SEND_BUFFER_LEN = 65535;
-    public const int RECV_BUFFER_LEN = 65535;
+    public const int SEND_BUFFER_LEN = ushort.MaxValue;
+    public const int RECV_BUFFER_LEN = ushort.MaxValue;
 
     public static byte ReadByte(ref int ptr, ref byte spanRef, int len) {
         if (ptr + 1 > len)

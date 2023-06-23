@@ -291,7 +291,7 @@ public partial class Player : Character, IContainer, IPlayer {
 
         SlotTypes = Utils.ResizeArray(
             gameData.Classes[ObjectType].SlotTypes,
-            settings.InventorySize);
+            22);
         Stats = new StatsManager(this);
 
         // override size
