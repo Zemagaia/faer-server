@@ -7,5 +7,7 @@
 	"difficulty": -1,
 	"background": 0,
 	"map": "Hub.fm",
-	"music": [""]
+	"music": [""],
+	"bgLightColor": 0x0,
+	"bgLightIntensity": 0.2
 }

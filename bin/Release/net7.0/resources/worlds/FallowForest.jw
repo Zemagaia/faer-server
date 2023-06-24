@@ -9,5 +9,7 @@
 	"map": "FallowForest.fm",
 	"portals": [ 0x0703 ],
 	"realm": "forest",
-	"music": [""]
+	"music": [""],
+	"bgLightColor": 0x0,
+	"bgLightIntensity": 0.1
 }

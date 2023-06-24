@@ -321,7 +321,7 @@ public class Client {
         TrySend(ptr);*/
     }
 
-    public void SendMapInfo(int width, int height, string name, string displayName, int diff, int background,
+    public void SendMapInfo(int width, int height, string name, string displayName, int bgLightColor, float bgLightIntensity,
         bool allowTp, bool showDisplays) {
         var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
@@ -330,8 +330,8 @@ public class Client {
         WriteInt(ref ptr, ref spanRef, height);
         WriteString(ref ptr, ref spanRef, name);
         WriteString(ref ptr, ref spanRef, displayName);
-        WriteInt(ref ptr, ref spanRef, background);
-        WriteInt(ref ptr, ref spanRef, diff);
+        WriteInt(ref ptr, ref spanRef, bgLightColor);
+        WriteFloat(ref ptr, ref spanRef, bgLightIntensity);
         WriteBool(ref ptr, ref spanRef, allowTp);
         WriteBool(ref ptr, ref spanRef, showDisplays);
         TrySend(ptr);

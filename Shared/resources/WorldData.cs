@@ -29,6 +29,8 @@ public struct ProtoWorld
     public string map;
     public byte[] mapData;
     public string realm;
+    public int bgLightColor;
+    public float bgLightIntensity;
 }
 
 public class TauntData

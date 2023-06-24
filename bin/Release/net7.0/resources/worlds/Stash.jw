@@ -8,5 +8,7 @@
 	"background": 0,
 	"map": "Stash.fm",
 	"portals": [ ],
-	"music": [""]
+	"music": [""],
+	"bgLightColor": 0x0,
+	"bgLightIntensity": 0.1
 }

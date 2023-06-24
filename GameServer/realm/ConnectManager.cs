@@ -42,7 +42,7 @@ public class ConnectManager {
         }
 
         var mapSize = Math.Max(world.Map.Width, world.Map.Height);
-        client.SendMapInfo(mapSize, mapSize, world.Name, world.SBName, world.Difficulty, world.Background,
+        client.SendMapInfo(mapSize, mapSize, world.Name, world.SBName, world.BgLightColor, world.BgLightIntensity,
             world.AllowTeleport, world.ShowDisplays);
         client.SendAccountList(0, client.Account.LockList);
         client.SendAccountList(1, client.Account.IgnoreList);
@@ -97,9 +97,9 @@ public class ConnectManager {
             id = 0,
             setpiece = false,
             showDisplays = false,
-            background = 0,
+            bgLightColor = 0,
+            bgLightIntensity = 0.2f,
             blocking = 0,
-            difficulty = 0,
             isLimbo = false,
             persist = false,
             portals = Array.Empty<int>(),
@@ -122,7 +122,7 @@ public class ConnectManager {
         client.Account.RefreshLastSeen();
         client.Account.FlushAsync();
         var mapSize = Math.Max(world.Map.Width, world.Map.Height);
-        client.SendMapInfo(mapSize, mapSize, world.Name, world.SBName, world.Difficulty, world.Background,
+        client.SendMapInfo(mapSize, mapSize, world.Name, world.SBName, world.BgLightColor, world.BgLightIntensity,
             world.AllowTeleport, world.ShowDisplays);
         client.SendAccountList(0, client.Account.LockList);
         client.SendAccountList(1, client.Account.IgnoreList);
@@ -194,7 +194,7 @@ public class ConnectManager {
         client.Account.RefreshLastSeen();
         client.Account.FlushAsync();
         var mapSize = Math.Max(world.Map.Width, world.Map.Height);
-        client.SendMapInfo(mapSize, mapSize, world.Name, world.SBName, world.Difficulty, world.Background,
+        client.SendMapInfo(mapSize, mapSize, world.Name, world.SBName, world.BgLightColor, world.BgLightIntensity,
             world.AllowTeleport, world.ShowDisplays);
         client.SendAccountList(0, client.Account.LockList);
         client.SendAccountList(1, client.Account.IgnoreList);
