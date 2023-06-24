@@ -1085,9 +1085,8 @@ public class Client {
     }
 
     private void ProcessGroundDamage(int time, float x, float y) {
-        if (Player?.Owner != null) {
-            //Player.DamagePlayerGround(x, y, dmg);
-        }
+        if (Player?.Owner != null)
+            Player.ForceGroundHit(x, y, time);
     }
 
     private void ProcessGuildInvite(string name) {

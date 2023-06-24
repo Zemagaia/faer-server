@@ -6,41 +6,25 @@ namespace GameServer.realm.entities.player;
 
 public partial class Player
 {
-    private long l;
+    public void ForceGroundHit(float x, float y, int time) {
+        if (HasConditionEffect(ConditionEffects.Invulnerable))
+            return;
 
-    /*  private void HandleOceanTrenchGround(RealmTime time)
-     {
-         try
-         {
-             // don't suffocate hidden players
-             if (HasConditionEffect(ConditionEffects.Hidden)) return;
+        var tile = Owner.Map[(int) x, (int) y];
+        var objDesc = tile.ObjType == 0 ? null : Manager.Resources.GameData.ObjectDescs[tile.ObjType];
+        var tileDesc = Manager.Resources.GameData.Tiles[tile.TileType];
+        
+        var dmg = tileDesc.Damage;
+        if (dmg <= 0 || (objDesc != null && objDesc.ProtectFromGroundDamage))
+            return;
+        
+        HP -= dmg;
+        
+        foreach (var plr in Owner.Players.Values)
+            if (plr != this && MathUtils.DistSqr(X, Y, plr.X, plr.Y) < 16 * 16)
+                plr.Client.SendDamage(Id, 0, (ushort)dmg, HP < 0, 0, 0);
 
-             if (time.TotalElapsedMs - l <= 100 || Owner?.Name != "OceanTrench") return;
-
-             if (!(Owner?.StaticObjects.Where(i => i.Value.ObjectType == 0x098e).Count(i =>
-                 (X - i.Value.X) * (X - i.Value.X) + (Y - i.Value.Y) * (Y - i.Value.Y) < 1) > 0))
-             {
-                 if (OxygenBar == 0)
-                     HP -= 10;
-                 else
-                     OxygenBar -= 2;
-
-                 if (HP <= 0)
-                     Death("suffocation");
-             }
-             else
-             {
-                 if (OxygenBar < 100)
-                     OxygenBar += 8;
-                 if (OxygenBar > 100)
-                     OxygenBar = 100;
-             }
-
-             l = time.TotalElapsedMs;
-         }
-         catch (Exception ex)
-         {
-             Log.Error(ex);
-         }
-     } */
+        if (HP <= 0)
+            Death(tileDesc.ObjectId, tile: tile);
+    }
 }

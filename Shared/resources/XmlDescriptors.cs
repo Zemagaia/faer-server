@@ -612,9 +612,7 @@ public class TileDesc
     public readonly ushort ObjectType;
     public readonly string ObjectId;
     public readonly bool NoWalk;
-    public readonly bool Damaging;
-    public readonly int MinDamage;
-    public readonly int MaxDamage;
+    public readonly int Damage;
     public readonly float Speed;
     public readonly bool Push;
     public readonly float PushX;
@@ -626,17 +624,8 @@ public class TileDesc
         ObjectId = e.GetAttribute<string>("id");
         NoWalk = e.HasElement("NoWalk");
 
-        if (e.HasElement("MinDamage"))
-        {
-            MinDamage = e.GetValue<int>("MinDamage");
-            Damaging = true;
-        }
-
-        if (e.HasElement("MaxDamage"))
-        {
-            MaxDamage = e.GetValue<int>("MaxDamage");
-            Damaging = true;
-        }
+        if (e.HasElement("Damage"))
+            Damage = e.GetValue<int>("Damage");
 
         Speed = e.GetValue("Speed", 1.0f);
         Push = e.HasElement("Push");
