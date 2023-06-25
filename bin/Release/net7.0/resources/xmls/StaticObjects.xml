@@ -1411,4 +1411,173 @@
         <OccupySquare/>
     </Object>
 
+     <Object type="0x167" id="Volcano Skull Lamp">
+        <Class>GameObject</Class>
+        <RandomTexture>
+            <Texture>
+                <Sheet>props</Sheet>
+                <Index>0x41</Index>
+            </Texture>
+            <Texture>
+                <Sheet>props</Sheet>
+                <Index>0x42</Index>
+            </Texture>
+        </RandomTexture>
+        <LightColor>0xf5501d</LightColor>
+        <LightIntensity>0.25</LightIntensity>
+        <LightRadius>3</LightRadius>
+        <Float sine="true" height="0.3" time="400"/>
+        <Static/>
+    </Object>
+    <Object type="0x168" id="Volcano Torch Post">
+        <Class>GameObject</Class>
+        <Texture>
+            <Sheet>props16</Sheet>
+            <Index>0x10</Index>
+        </Texture>
+        <Animation prob="1" period="1.6">
+            <Frame time="0.4">
+                <Texture>
+                    <Sheet>props16</Sheet>
+                    <Index>0x10</Index>
+                </Texture>
+            </Frame>
+            <Frame time="0.4">
+                <Texture>
+                    <Sheet>props16</Sheet>
+                    <Index>0x11</Index>
+                </Texture>
+            </Frame>
+            <Frame time="0.4">
+                <Texture>
+                    <Sheet>props16</Sheet>
+                    <Index>0x12</Index>
+                </Texture>
+            </Frame>
+            <Frame time="0.4">
+                <Texture>
+                    <Sheet>props16</Sheet>
+                    <Index>0x11</Index>
+                </Texture>
+            </Frame>
+        </Animation>
+        <LightColor>0xf5501d</LightColor>
+        <LightIntensity>0.25</LightIntensity>
+        <LightRadius>3</LightRadius>
+        <OccupySquare/>
+    </Object>
+
+    <Object type="0x169" id="Forest Lamp Post">
+        <Class>GameObject</Class>
+        <Texture>
+            <Sheet>props16</Sheet>
+            <Index>0x16</Index>
+        </Texture>
+        <Animation prob="1" period="1.6">
+            <Frame time="0.4">
+                <Texture>
+                    <Sheet>props16</Sheet>
+                    <Index>0x16</Index>
+                </Texture>
+            </Frame>
+            <Frame time="0.4">
+                <Texture>
+                    <Sheet>props16</Sheet>
+                    <Index>0x17</Index>
+                </Texture>
+            </Frame>
+            <Frame time="0.4">
+                <Texture>
+                    <Sheet>props16</Sheet>
+                    <Index>0x18</Index>
+                </Texture>
+            </Frame>
+            <Frame time="0.4">
+                <Texture>
+                    <Sheet>props16</Sheet>
+                    <Index>0x17</Index>
+                </Texture>
+            </Frame>
+        </Animation>
+        <LightColor>0xe0d751</LightColor>
+        <LightIntensity>0.25</LightIntensity>
+        <LightRadius>2</LightRadius>
+        <OccupySquare/>
+    </Object>
+
+    <Object type="0x169" id="Desert Cursed Flame">
+        <Class>GameObject</Class>
+        <Texture>
+            <Sheet>props16</Sheet>
+            <Index>0x19</Index>
+        </Texture>
+        <Animation prob="1" period="1.6">
+            <Frame time="0.4">
+                <Texture>
+                    <Sheet>props16</Sheet>
+                    <Index>0x19</Index>
+                </Texture>
+            </Frame>
+            <Frame time="0.4">
+                <Texture>
+                    <Sheet>props16</Sheet>
+                    <Index>0x1a</Index>
+                </Texture>
+            </Frame>
+            <Frame time="0.4">
+                <Texture>
+                    <Sheet>props16</Sheet>
+                    <Index>0x1b</Index>
+                </Texture>
+            </Frame>
+            <Frame time="0.4">
+                <Texture>
+                    <Sheet>props16</Sheet>
+                    <Index>0x1c</Index>
+                </Texture>
+            </Frame>
+        </Animation>
+        <LightColor>0xd03fe0</LightColor>
+        <LightIntensity>0.25</LightIntensity>
+        <LightRadius>2</LightRadius>
+        <Float sine="true" height="0.3" time="400"/>
+    </Object>
+    <Object type="0x16a" id="Desert Cursed Torch">
+        <Class>GameObject</Class>
+        <Texture>
+            <Sheet>props16</Sheet>
+            <Index>0x13</Index>
+        </Texture>
+        <Animation prob="1" period="1.6">
+            <Frame time="0.4">
+                <Texture>
+                    <Sheet>props16</Sheet>
+                    <Index>0x13</Index>
+                </Texture>
+            </Frame>
+            <Frame time="0.4">
+                <Texture>
+                    <Sheet>props16</Sheet>
+                    <Index>0x14</Index>
+                </Texture>
+            </Frame>
+            <Frame time="0.4">
+                <Texture>
+                    <Sheet>props16</Sheet>
+                    <Index>0x15</Index>
+                </Texture>
+            </Frame>
+            <Frame time="0.4">
+                <Texture>
+                    <Sheet>props16</Sheet>
+                    <Index>0x14</Index>
+                </Texture>
+            </Frame>
+        </Animation>
+        <LightColor>0xd03fe0</LightColor>
+        <LightIntensity>0.25</LightIntensity>
+        <LightRadius>2</LightRadius>
+        <OccupySquare/>
+    </Object>
+
 </Objects>

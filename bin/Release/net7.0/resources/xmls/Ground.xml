@@ -50,6 +50,8 @@
             <Index>0x04</Index>
         </Texture>
         <BlendPriority>98</BlendPriority>
+        <LightColor>0x226d7a</LightColor>
+        <LightIntensity>0.376470588</LightIntensity>
         <NoWalk/>
     </Ground>
     <Ground type="0x21" id="Grass">
@@ -114,6 +116,8 @@
         </Texture>
         <Animate dx=".13" dy=".13">Wave</Animate>
         <BlendPriority>99</BlendPriority>
+        <LightColor>0xcc4539</LightColor>
+        <LightIntensity>0.25</LightIntensity>
         <Damage>30</Damage>
         <Speed>0.58</Speed>
         <Sink/>

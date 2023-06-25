@@ -790,4 +790,16 @@
         <Size>170</Size>
         <Enemy/>
     </Object>
+
+     <Object type="0x0758" id="Forest Firefly">
+        <Class>Character</Class>
+        <AnimatedTexture>
+            <Sheet>lowrealm</Sheet>
+            <Index>21</Index>
+        </AnimatedTexture>
+        <Size>80</Size>
+        <LightColor>0xe0cb99</LightColor>
+        <LightIntensity>0.15</LightIntensity>
+        <LightRadius>1</LightRadius>    
+    </Object>
 </Objects>

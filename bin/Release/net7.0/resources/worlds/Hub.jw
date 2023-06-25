@@ -8,6 +8,6 @@
 	"background": 0,
 	"map": "Hub.fm",
 	"music": [""],
-	"bgLightColor": 0x0,
-	"bgLightIntensity": 0.2
+	"bgLightColor": 0x243f52,
+	"bgLightIntensity": 0.15
 }

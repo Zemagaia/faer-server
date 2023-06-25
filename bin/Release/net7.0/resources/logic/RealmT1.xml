@@ -248,4 +248,8 @@
 			</State>
 		</State>
 	</BehaviorEntry>
+
+	<BehaviorEntry id="Forest Firefly">
+		<Wander speed="0.5"/>
+	</BehaviorEntry>
 </BehaviorEntries>
