@@ -19,7 +19,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Shared\Shared.csproj" />
-      <ProjectReference Include="..\GameServer\GameServer.csproj" />
+      <!--<ProjectReference Include="..\GameServer\GameServer.csproj" />-->
     </ItemGroup>
 
     <ItemGroup>

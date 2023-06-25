@@ -2,19 +2,6 @@
   "version": 3,
   "targets": {
     "net7.0": {
-      "BouncyCastle.NetCore/1.9.0": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/BouncyCastle.Crypto.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.0/BouncyCastle.Crypto.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "Dynamitey/2.0.10.189": {
         "type": "package",
         "dependencies": {
@@ -35,19 +22,6 @@
         },
         "runtime": {
           "lib/Ionic.Zlib.dll": {}
-        }
-      },
-      "K4os.Compression.LZ4/1.3.5": {
-        "type": "package",
-        "compile": {
-          "lib/net6.0/K4os.Compression.LZ4.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net6.0/K4os.Compression.LZ4.dll": {
-            "related": ".xml"
-          }
         }
       },
       "Microsoft.CSharp/4.6.0": {
@@ -174,33 +148,6 @@
           }
         }
       },
-      "DungeonGen/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v7.0",
-        "compile": {
-          "bin/placeholder/DungeonGen.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/DungeonGen.dll": {}
-        }
-      },
-      "GameServer/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v7.0",
-        "dependencies": {
-          "BouncyCastle.NetCore": "1.9.0",
-          "DungeonGen": "1.0.0",
-          "K4os.Compression.LZ4": "1.3.5",
-          "NLog": "5.1.2",
-          "Shared": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/GameServer.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/GameServer.dll": {}
-        }
-      },
       "Shared/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
@@ -221,21 +168,6 @@
     }
   },
   "libraries": {
-    "BouncyCastle.NetCore/1.9.0": {
-      "sha512": "FpWfsqjMp+RNavLqMlviDPlbdf7q4j/pr9SHfc1LKcZz5PRjciuYo59nFnw+eJi+H8cm0eH5uVZStwAv1LRdCw==",
-      "type": "package",
-      "path": "bouncycastle.netcore/1.9.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "bouncycastle.netcore.1.9.0.nupkg.sha512",
-        "bouncycastle.netcore.nuspec",
-        "lib/net20/BouncyCastle.Crypto.dll",
-        "lib/net20/BouncyCastle.Crypto.xml",
-        "lib/netstandard2.0/BouncyCastle.Crypto.dll",
-        "lib/netstandard2.0/BouncyCastle.Crypto.xml"
-      ]
-    },
     "Dynamitey/2.0.10.189": {
       "sha512": "sKo8BlCgQTOSFFK4RlMvC8abp0NqZrTd017fishVrkoqggNBpwa4RGq88wPjyedk5GjTWeB8/kGrbXES+Rcl7Q==",
       "type": "package",
@@ -261,27 +193,6 @@
         "ionic.zlib.1.9.1.5.nupkg.sha512",
         "ionic.zlib.nuspec",
         "lib/Ionic.Zlib.dll"
-      ]
-    },
-    "K4os.Compression.LZ4/1.3.5": {
-      "sha512": "TS4mqlT0X1OlnvOGNfl02QdVUhuqgWuCnn7UxupIa7C9Pb6qlQ5yZA2sPhRh0OSmVULaQU64KV4wJuu//UyVQQ==",
-      "type": "package",
-      "path": "k4os.compression.lz4/1.3.5",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "k4os.compression.lz4.1.3.5.nupkg.sha512",
-        "k4os.compression.lz4.nuspec",
-        "lib/net462/K4os.Compression.LZ4.dll",
-        "lib/net462/K4os.Compression.LZ4.xml",
-        "lib/net5.0/K4os.Compression.LZ4.dll",
-        "lib/net5.0/K4os.Compression.LZ4.xml",
-        "lib/net6.0/K4os.Compression.LZ4.dll",
-        "lib/net6.0/K4os.Compression.LZ4.xml",
-        "lib/netstandard2.0/K4os.Compression.LZ4.dll",
-        "lib/netstandard2.0/K4os.Compression.LZ4.xml",
-        "lib/netstandard2.1/K4os.Compression.LZ4.dll",
-        "lib/netstandard2.1/K4os.Compression.LZ4.xml"
       ]
     },
     "Microsoft.CSharp/4.6.0": {
@@ -658,16 +569,6 @@
         "system.runtime.nuspec"
       ]
     },
-    "DungeonGen/1.0.0": {
-      "type": "project",
-      "path": "../DungeonGen/DungeonGen.csproj",
-      "msbuildProject": "../DungeonGen/DungeonGen.csproj"
-    },
-    "GameServer/1.0.0": {
-      "type": "project",
-      "path": "../GameServer/GameServer.csproj",
-      "msbuildProject": "../GameServer/GameServer.csproj"
-    },
     "Shared/1.0.0": {
       "type": "project",
       "path": "../Shared/Shared.csproj",
@@ -676,41 +577,45 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
-      "GameServer >= 1.0.0",
       "NLog >= 5.1.2",
       "Shared >= 1.0.0"
     ]
   },
   "packageFolders": {
-    "/home/a/.nuget/packages/": {}
+    "C:\\Users\\Slendergo\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/a/faer/server/LoginServer/LoginServer.csproj",
+      "projectUniqueName": "C:\\Users\\Slendergo\\Documents\\GitHub\\Faer\\faer-src\\LoginServer\\LoginServer.csproj",
       "projectName": "LoginServer",
-      "projectPath": "/home/a/faer/server/LoginServer/LoginServer.csproj",
-      "packagesPath": "/home/a/.nuget/packages/",
-      "outputPath": "/home/a/faer/server/LoginServer/obj/",
+      "projectPath": "C:\\Users\\Slendergo\\Documents\\GitHub\\Faer\\faer-src\\LoginServer\\LoginServer.csproj",
+      "packagesPath": "C:\\Users\\Slendergo\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Slendergo\\Documents\\GitHub\\Faer\\faer-src\\LoginServer\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/home/a/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Slendergo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "/home/a/faer/server/GameServer/GameServer.csproj": {
-              "projectPath": "/home/a/faer/server/GameServer/GameServer.csproj"
-            },
-            "/home/a/faer/server/Shared/Shared.csproj": {
-              "projectPath": "/home/a/faer/server/Shared/Shared.csproj"
+            "C:\\Users\\Slendergo\\Documents\\GitHub\\Faer\\faer-src\\Shared\\Shared.csproj": {
+              "projectPath": "C:\\Users\\Slendergo\\Documents\\GitHub\\Faer\\faer-src\\Shared\\Shared.csproj"
             }
           }
         }
@@ -746,7 +651,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.107/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   },

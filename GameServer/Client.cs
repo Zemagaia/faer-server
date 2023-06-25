@@ -61,7 +61,8 @@ public enum C2SPacketId : byte {
     JoinGuild = 29,
     ChangeGuildRank = 30,
     Reskin = 31,
-    MapHello = 32
+    MapHello = 32,
+    UseAbility = 33
 };
 
 public enum S2CPacketId : byte {
@@ -826,6 +827,17 @@ public class Client {
                 case C2SPacketId.UsePortal:
                     ProcessUsePortal(ReadInt(ref ptr, ref spanRef, len));
                     break;
+                case C2SPacketId.UseAbility:
+                    {
+                        var time = ReadInt(ref ptr, ref spanRef, len);
+                        var abilitySlotType = ReadByte(ref ptr, ref spanRef, len);
+                        var data = new byte[ReadUShort(ref ptr, ref spanRef, len)];
+                        // todo memcpy
+                        for (var i = 0; i < data.Length; i++)
+                            data[i] = ReadByte(ref ptr, ref spanRef, len);
+                        ProcessUseAbility(time, abilitySlotType, data);
+                    }
+                    break;
                 default:
                     Log.Warn($"Unhandled packet '.{packetId}'.");
                     break;
@@ -1504,6 +1516,17 @@ public class Client {
     private void ProcessUseItem(int time, int objId, byte slotId, ushort objType, float x, float y, byte useType) {
         if (Player?.Owner != null) {
             Player.UseItem(objId, slotId, x, y);
+        }
+    }
+
+    private void ProcessUseAbility(int time, byte abilitySlotType, byte[] data)
+    {
+        if (Player?.Owner != null)
+        {
+            var abilityType = (AbilitySlotType)abilitySlotType;
+            var success = Player.TryUseAbility(time, abilityType, data);
+            if (!success)
+                Disconnect($"[{Player.Name}] Failed to use ability: {abilityType} for: {Player.ObjectDesc.ObjectId}");
         }
     }
 
