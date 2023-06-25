@@ -1,163 +1,40 @@
 {
   "format": 1,
   "restore": {
-    "/home/a/faer/server/LoginServer/LoginServer.csproj": {}
+    "C:\\Users\\Slendergo\\Documents\\GitHub\\Faer\\faer-src\\LoginServer\\LoginServer.csproj": {}
   },
   "projects": {
-    "/home/a/faer/server/DungeonGen/DungeonGen.csproj": {
+    "C:\\Users\\Slendergo\\Documents\\GitHub\\Faer\\faer-src\\LoginServer\\LoginServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/a/faer/server/DungeonGen/DungeonGen.csproj",
-        "projectName": "DungeonGen",
-        "projectPath": "/home/a/faer/server/DungeonGen/DungeonGen.csproj",
-        "packagesPath": "/home/a/.nuget/packages/",
-        "outputPath": "/home/a/faer/server/DungeonGen/obj/",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "/home/a/.nuget/NuGet/NuGet.Config"
-        ],
-        "originalTargetFrameworks": [
-          "net7.0"
-        ],
-        "sources": {
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net7.0": {
-            "targetAlias": "net7.0",
-            "projectReferences": {}
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net7.0": {
-          "targetAlias": "net7.0",
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.107/RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "/home/a/faer/server/GameServer/GameServer.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "/home/a/faer/server/GameServer/GameServer.csproj",
-        "projectName": "GameServer",
-        "projectPath": "/home/a/faer/server/GameServer/GameServer.csproj",
-        "packagesPath": "/home/a/.nuget/packages/",
-        "outputPath": "/home/a/faer/server/GameServer/obj/",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "/home/a/.nuget/NuGet/NuGet.Config"
-        ],
-        "originalTargetFrameworks": [
-          "net7.0"
-        ],
-        "sources": {
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net7.0": {
-            "targetAlias": "net7.0",
-            "projectReferences": {
-              "/home/a/faer/server/DungeonGen/DungeonGen.csproj": {
-                "projectPath": "/home/a/faer/server/DungeonGen/DungeonGen.csproj"
-              },
-              "/home/a/faer/server/Shared/Shared.csproj": {
-                "projectPath": "/home/a/faer/server/Shared/Shared.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net7.0": {
-          "targetAlias": "net7.0",
-          "dependencies": {
-            "BouncyCastle.NetCore": {
-              "target": "Package",
-              "version": "[1.9.0, )"
-            },
-            "K4os.Compression.LZ4": {
-              "target": "Package",
-              "version": "[1.3.5, )"
-            },
-            "NLog": {
-              "target": "Package",
-              "version": "[5.1.2, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.107/RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "/home/a/faer/server/LoginServer/LoginServer.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "/home/a/faer/server/LoginServer/LoginServer.csproj",
+        "projectUniqueName": "C:\\Users\\Slendergo\\Documents\\GitHub\\Faer\\faer-src\\LoginServer\\LoginServer.csproj",
         "projectName": "LoginServer",
-        "projectPath": "/home/a/faer/server/LoginServer/LoginServer.csproj",
-        "packagesPath": "/home/a/.nuget/packages/",
-        "outputPath": "/home/a/faer/server/LoginServer/obj/",
+        "projectPath": "C:\\Users\\Slendergo\\Documents\\GitHub\\Faer\\faer-src\\LoginServer\\LoginServer.csproj",
+        "packagesPath": "C:\\Users\\Slendergo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Slendergo\\Documents\\GitHub\\Faer\\faer-src\\LoginServer\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/home/a/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Slendergo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "/home/a/faer/server/GameServer/GameServer.csproj": {
-                "projectPath": "/home/a/faer/server/GameServer/GameServer.csproj"
-              },
-              "/home/a/faer/server/Shared/Shared.csproj": {
-                "projectPath": "/home/a/faer/server/Shared/Shared.csproj"
+              "C:\\Users\\Slendergo\\Documents\\GitHub\\Faer\\faer-src\\Shared\\Shared.csproj": {
+                "projectPath": "C:\\Users\\Slendergo\\Documents\\GitHub\\Faer\\faer-src\\Shared\\Shared.csproj"
               }
             }
           }
@@ -193,26 +70,33 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.107/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/a/faer/server/Shared/Shared.csproj": {
+    "C:\\Users\\Slendergo\\Documents\\GitHub\\Faer\\faer-src\\Shared\\Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/a/faer/server/Shared/Shared.csproj",
+        "projectUniqueName": "C:\\Users\\Slendergo\\Documents\\GitHub\\Faer\\faer-src\\Shared\\Shared.csproj",
         "projectName": "Shared",
-        "projectPath": "/home/a/faer/server/Shared/Shared.csproj",
-        "packagesPath": "/home/a/.nuget/packages/",
-        "outputPath": "/home/a/faer/server/Shared/obj/",
+        "projectPath": "C:\\Users\\Slendergo\\Documents\\GitHub\\Faer\\faer-src\\Shared\\Shared.csproj",
+        "packagesPath": "C:\\Users\\Slendergo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Slendergo\\Documents\\GitHub\\Faer\\faer-src\\Shared\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/home/a/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Slendergo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -268,7 +152,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.107/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

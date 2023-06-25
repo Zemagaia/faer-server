@@ -6,6 +6,7 @@ using System.Xml.Linq;
 using Shared.terrain;
 using NLog;
 using Dynamitey.Internal.Optimization;
+using System.Xml.XPath;
 
 namespace Shared.resources; 
 
@@ -493,12 +494,44 @@ public class Stat
     }
 }
 
+public enum AbilityType
+{
+    Unknown = -1,
+    AnomalousBurst = 0,
+    ParadoxicalShift = 1,
+    Swarm = 2,
+    Possession = 3
+}
+
+public enum AbilitySlotType
+{
+    Ability1 = 0,
+    Ability2 = 1,
+    Ability3 = 2,
+    Ultimate = 3
+}
+
+public class AbilityDesc
+{
+    public readonly AbilityType AbilityType;
+    public readonly int ManaCost;
+    public readonly int CooldownMS;
+
+    public AbilityDesc(XElement e)
+    {
+        AbilityType = (AbilityType)Enum.Parse(typeof(AbilityType), e.GetValue("Name", "Unknown").Replace(" ", ""), true);
+        ManaCost = e.GetAttribute<int>("ManaCost");
+        CooldownMS = e.GetAttribute<int>("Cooldown") * 1000;
+    }
+}
+
 public class PlayerDesc : ObjectDesc
 {
     public readonly int[] SlotTypes;
     public readonly ushort[] Equipment;
     public readonly Stat[] Stats;
     public readonly UnlockClass Unlock;
+    public readonly AbilityDesc[] Abilities;
 
     public PlayerDesc(ushort type, XElement e) : base(type, e)
     {
@@ -509,6 +542,14 @@ public class PlayerDesc : ObjectDesc
             Stats[i] = new Stat(i, e);
         if (e.HasElement("UnlockLevel") || e.HasElement("UnlockCost"))
             Unlock = new UnlockClass(e);
+
+        Abilities = new AbilityDesc[4]
+        {
+            new AbilityDesc(e.Element("Ability1")),
+            new AbilityDesc(e.Element("Ability2")),
+            new AbilityDesc(e.Element("Ability3")),
+            new AbilityDesc(e.Element("UltimateAbility"))
+        };
     }
 }
 
