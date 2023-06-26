@@ -1,21 +1,21 @@
 {
   "version": 2,
-  "dgSpecHash": "22+YWnO009sux0b+FDdR8gCiyGBIuDsrAfR8ARWbSkGFZbljtVTRsqwVtrwkxMSuauNMpxiUGNAz1JJxF/2ATQ==",
+  "dgSpecHash": "vOuR9YbFDrwziodnwaUjdU32WE6H/B1HipjTN8imK7g915dt/0GQA2dU69wNlR6fcZ54XBii8/OkiWHRuZpNWQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Slendergo\\Documents\\GitHub\\Faer\\faer-src\\LoginServer\\LoginServer.csproj",
+  "projectFilePath": "/home/a/faer/server/LoginServer/LoginServer.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Slendergo\\.nuget\\packages\\dynamitey\\2.0.10.189\\dynamitey.2.0.10.189.nupkg.sha512",
-    "C:\\Users\\Slendergo\\.nuget\\packages\\ionic.zlib\\1.9.1.5\\ionic.zlib.1.9.1.5.nupkg.sha512",
-    "C:\\Users\\Slendergo\\.nuget\\packages\\microsoft.csharp\\4.6.0\\microsoft.csharp.4.6.0.nupkg.sha512",
-    "C:\\Users\\Slendergo\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "C:\\Users\\Slendergo\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
-    "C:\\Users\\Slendergo\\.nuget\\packages\\newtonsoft.json\\13.0.3-beta1\\newtonsoft.json.13.0.3-beta1.nupkg.sha512",
-    "C:\\Users\\Slendergo\\.nuget\\packages\\nlog\\5.1.2\\nlog.5.1.2.nupkg.sha512",
-    "C:\\Users\\Slendergo\\.nuget\\packages\\pipelines.sockets.unofficial\\2.2.2\\pipelines.sockets.unofficial.2.2.2.nupkg.sha512",
-    "C:\\Users\\Slendergo\\.nuget\\packages\\stackexchange.redis\\2.6.96\\stackexchange.redis.2.6.96.nupkg.sha512",
-    "C:\\Users\\Slendergo\\.nuget\\packages\\system.componentmodel\\4.3.0\\system.componentmodel.4.3.0.nupkg.sha512",
-    "C:\\Users\\Slendergo\\.nuget\\packages\\system.io.pipelines\\5.0.1\\system.io.pipelines.5.0.1.nupkg.sha512",
-    "C:\\Users\\Slendergo\\.nuget\\packages\\system.runtime\\4.3.0\\system.runtime.4.3.0.nupkg.sha512"
+    "/home/a/.nuget/packages/dynamitey/2.0.10.189/dynamitey.2.0.10.189.nupkg.sha512",
+    "/home/a/.nuget/packages/ionic.zlib/1.9.1.5/ionic.zlib.1.9.1.5.nupkg.sha512",
+    "/home/a/.nuget/packages/microsoft.csharp/4.6.0/microsoft.csharp.4.6.0.nupkg.sha512",
+    "/home/a/.nuget/packages/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "/home/a/.nuget/packages/microsoft.netcore.targets/1.1.0/microsoft.netcore.targets.1.1.0.nupkg.sha512",
+    "/home/a/.nuget/packages/newtonsoft.json/13.0.3-beta1/newtonsoft.json.13.0.3-beta1.nupkg.sha512",
+    "/home/a/.nuget/packages/nlog/5.1.2/nlog.5.1.2.nupkg.sha512",
+    "/home/a/.nuget/packages/pipelines.sockets.unofficial/2.2.2/pipelines.sockets.unofficial.2.2.2.nupkg.sha512",
+    "/home/a/.nuget/packages/stackexchange.redis/2.6.96/stackexchange.redis.2.6.96.nupkg.sha512",
+    "/home/a/.nuget/packages/system.componentmodel/4.3.0/system.componentmodel.4.3.0.nupkg.sha512",
+    "/home/a/.nuget/packages/system.io.pipelines/5.0.1/system.io.pipelines.5.0.1.nupkg.sha512",
+    "/home/a/.nuget/packages/system.runtime/4.3.0/system.runtime.4.3.0.nupkg.sha512"
   ],
   "logs": [
     {

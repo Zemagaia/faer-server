@@ -42,8 +42,8 @@ public class ConnectManager {
         }
 
         var mapSize = Math.Max(world.Map.Width, world.Map.Height);
-        client.SendMapInfo(mapSize, mapSize, world.Name, world.SBName, world.BgLightColor, world.BgLightIntensity,
-            world.AllowTeleport, world.ShowDisplays);
+        client.SendMapInfo(mapSize, mapSize, world.Name, world.BgLightColor, world.BgLightIntensity,
+            world.AllowTeleport, world.DayLightIntensity, world.NightLightIntensity);
         client.SendAccountList(0, client.Account.LockList);
         client.SendAccountList(1, client.Account.IgnoreList);
         if (client.Character != null) {
@@ -122,8 +122,8 @@ public class ConnectManager {
         client.Account.RefreshLastSeen();
         client.Account.FlushAsync();
         var mapSize = Math.Max(world.Map.Width, world.Map.Height);
-        client.SendMapInfo(mapSize, mapSize, world.Name, world.SBName, world.BgLightColor, world.BgLightIntensity,
-            world.AllowTeleport, world.ShowDisplays);
+        client.SendMapInfo(mapSize, mapSize, world.Name, world.BgLightColor, world.BgLightIntensity,
+            world.AllowTeleport, world.DayLightIntensity, world.NightLightIntensity);
         client.SendAccountList(0, client.Account.LockList);
         client.SendAccountList(1, client.Account.IgnoreList);
         client.Character = client.Manager.Database.LoadCharacter(client.Account, charId);
@@ -194,8 +194,8 @@ public class ConnectManager {
         client.Account.RefreshLastSeen();
         client.Account.FlushAsync();
         var mapSize = Math.Max(world.Map.Width, world.Map.Height);
-        client.SendMapInfo(mapSize, mapSize, world.Name, world.SBName, world.BgLightColor, world.BgLightIntensity,
-            world.AllowTeleport, world.ShowDisplays);
+        client.SendMapInfo(mapSize, mapSize, world.Name, world.BgLightColor, world.BgLightIntensity,
+            world.AllowTeleport, world.DayLightIntensity, world.NightLightIntensity);
         client.SendAccountList(0, client.Account.LockList);
         client.SendAccountList(1, client.Account.IgnoreList);
         client.Character = client.Manager.Database.LoadCharacter(client.Account, charId);

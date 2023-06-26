@@ -322,19 +322,23 @@ public class Client {
         TrySend(ptr);*/
     }
 
-    public void SendMapInfo(int width, int height, string name, string displayName, int bgLightColor, float bgLightIntensity,
-        bool allowTp, bool showDisplays) {
+    public void SendMapInfo(int width, int height, string name, int bgLightColor, float bgLightIntensity,
+        bool allowTp, float dayLightIntensity, float nightLightIntensity) {
         var ptr = LENGTH_PREFIX;
         ref var spanRef = ref MemoryMarshal.GetReference(SendMem.Span);
         WriteByte(ref ptr, ref spanRef, (byte) S2CPacketId.MapInfo);
         WriteInt(ref ptr, ref spanRef, width);
         WriteInt(ref ptr, ref spanRef, height);
         WriteString(ref ptr, ref spanRef, name);
-        WriteString(ref ptr, ref spanRef, displayName);
         WriteInt(ref ptr, ref spanRef, bgLightColor);
         WriteFloat(ref ptr, ref spanRef, bgLightIntensity);
         WriteBool(ref ptr, ref spanRef, allowTp);
-        WriteBool(ref ptr, ref spanRef, showDisplays);
+        WriteBool(ref ptr, ref spanRef, dayLightIntensity != 0);
+        if (dayLightIntensity != 0) {
+            WriteFloat(ref ptr, ref spanRef, dayLightIntensity);
+            WriteFloat(ref ptr, ref spanRef, nightLightIntensity);
+            WriteInt(ref ptr, ref spanRef, (int) Manager.Logic.WorldTime.TotalElapsedMs);
+        }
         TrySend(ptr);
     }
 
@@ -1524,7 +1528,7 @@ public class Client {
         if (Player?.Owner != null)
         {
             var abilityType = (AbilitySlotType)abilitySlotType;
-            var success = Player.TryUseAbility(time, abilityType, data);
+            var success = true;//Player.TryUseAbility(time, abilityType, data);
             if (!success)
                 Disconnect($"[{Player.Name}] Failed to use ability: {abilityType} for: {Player.ObjectDesc.ObjectId}");
         }

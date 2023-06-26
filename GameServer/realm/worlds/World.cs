@@ -31,8 +31,10 @@ public class World {
     public int Id { get; internal set; }
     public string Name { get; set; }
     public string SBName { get; set; }
-    public int BgLightColor = -1;
-    public float BgLightIntensity = 0.1f;
+    public int BgLightColor;
+    public float BgLightIntensity;
+    public float DayLightIntensity;
+    public float NightLightIntensity;
     public bool IsLimbo { get; protected set; }
     public bool AllowTeleport { get; protected set; }
     public bool ShowDisplays { get; protected set; }
@@ -83,6 +85,8 @@ public class World {
         SBName = proto.sbName;
         BgLightColor = proto.bgLightColor;
         BgLightIntensity = proto.bgLightIntensity;
+        DayLightIntensity = proto.dayLightIntensity;
+        NightLightIntensity = proto.nightLightIntensity;
         IsLimbo = proto.isLimbo;
         Persist = proto.persist;
         AllowTeleport = !proto.restrictTp;

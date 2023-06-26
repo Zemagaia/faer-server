@@ -31,6 +31,8 @@ public struct ProtoWorld
     public string realm;
     public int bgLightColor;
     public float bgLightIntensity;
+    public float dayLightIntensity;
+    public float nightLightIntensity;
 }
 
 public class TauntData
