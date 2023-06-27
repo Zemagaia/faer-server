@@ -1528,7 +1528,7 @@ public class Client {
         if (Player?.Owner != null)
         {
             var abilityType = (AbilitySlotType)abilitySlotType;
-            var success = true;//Player.TryUseAbility(time, abilityType, data);
+            var success = Player.TryUseAbility(time, abilityType, data);
             if (!success)
                 Disconnect($"[{Player.Name}] Failed to use ability: {abilityType} for: {Player.ObjectDesc.ObjectId}");
         }

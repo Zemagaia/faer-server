@@ -494,7 +494,7 @@ public class Stat
     }
 }
 
-public enum AbilityType
+public enum AbilityType : short
 {
     Unknown = -1,
     AnomalousBurst = 0,
@@ -503,7 +503,7 @@ public enum AbilityType
     Possession = 3
 }
 
-public enum AbilitySlotType
+public enum AbilitySlotType : byte
 {
     Ability1 = 0,
     Ability2 = 1,
@@ -515,13 +515,15 @@ public class AbilityDesc
 {
     public readonly AbilityType AbilityType;
     public readonly int ManaCost;
+    public readonly int HealthCost;
     public readonly int CooldownMS;
 
     public AbilityDesc(XElement e)
     {
         AbilityType = (AbilityType)Enum.Parse(typeof(AbilityType), e.GetValue("Name", "Unknown").Replace(" ", ""), true);
-        ManaCost = e.GetAttribute<int>("ManaCost");
-        CooldownMS = e.GetAttribute<int>("Cooldown") * 1000;
+        ManaCost = e.GetValue<int>("ManaCost");
+        HealthCost = e.GetValue<int>("HealthCost");
+        CooldownMS = e.GetValue<int>("Cooldown") * 1000;
     }
 }
 
@@ -543,12 +545,12 @@ public class PlayerDesc : ObjectDesc
         if (e.HasElement("UnlockLevel") || e.HasElement("UnlockCost"))
             Unlock = new UnlockClass(e);
 
-        Abilities = new AbilityDesc[4]
+        Abilities = new AbilityDesc[]
         {
-            new AbilityDesc(e.Element("Ability1")),
-            new AbilityDesc(e.Element("Ability2")),
-            new AbilityDesc(e.Element("Ability3")),
-            new AbilityDesc(e.Element("UltimateAbility"))
+            new(e.Element("Ability1")),
+            new(e.Element("Ability2")),
+            new(e.Element("Ability3")),
+            new(e.Element("UltimateAbility"))
         };
     }
 }

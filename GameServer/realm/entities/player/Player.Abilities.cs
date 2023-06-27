@@ -4,13 +4,13 @@ namespace GameServer.realm.entities.player
 {
     partial class Player
     {
-        private readonly AbilityDesc[] Abilities = new AbilityDesc[4];
-        private readonly int[] LastAbilityUseTime = new int[4];
+        private AbilityDesc[] Abilities = new AbilityDesc[4];
+        private int[] LastAbilityUseTime = new int[4];
 
         private void LoadAbilities()
         {
             var playerDesc = Manager.Resources.GameData.Classes[ObjectType];
-            for(var i = 0; i < 4; i++)
+            for (var i = 0; i < 4; i++)
                 Abilities[i] = playerDesc.Abilities[i];
         }
 
@@ -20,13 +20,18 @@ namespace GameServer.realm.entities.player
             var index = (int)abilitySlotType;
             if (!CanUseAbility(time, index))
                 return false;
+
+            MP -= Abilities[index].ManaCost;
+            HP -= Abilities[index].HealthCost;
             LastAbilityUseTime[index] = time;
             UseAbility(data, index);
             return true;
         }
 
-        private bool CanUseAbility(int time, int index)
-        {
+        private bool CanUseAbility(int time, int index) {
+            if (MP < Abilities[index].ManaCost || HP < Abilities[index].HealthCost - 1)
+                return false;
+            
             var delta = time - LastAbilityUseTime[index];
             return delta >= Abilities[index].CooldownMS;
         }
@@ -54,8 +59,7 @@ namespace GameServer.realm.entities.player
             }
         }
 
-        private void DoAnomalousBurst(BinaryReader rdr)
-        {
+        private void DoAnomalousBurst(BinaryReader rdr) {
             var angle = rdr.ReadSingle();
             Console.WriteLine($"DoAnomalousBurst: {angle}");
         }
