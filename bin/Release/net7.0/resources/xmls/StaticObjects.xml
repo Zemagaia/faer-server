@@ -80,6 +80,8 @@
         </Texture>
         <Size>160</Size>
         <ShowEffect color="0xE54242" radius="4" cooldown="1000">Ring</ShowEffect>
+        <LightColor>0xE54242</LightColor>
+        <LightIntensity>0.25</LightIntensity>
         <OccupySquare />
     </Object>
     <Object type="0x0106" id="Magic Shrine">
@@ -116,6 +118,8 @@
         </Animation>
         <Size>160</Size>
         <ShowEffect color="0x4C8AED" radius="4" cooldown="1000">Ring</ShowEffect>
+        <LightColor>0x4C8AED</LightColor>
+        <LightIntensity>0.25</LightIntensity>
         <OccupySquare />
     </Object>
     <Object type="0x107" id="Beginner Totem Object">
@@ -1066,9 +1070,26 @@
     </Object>
     <Object type="0x158" id="Chasm Wall">
         <Class>Wall</Class>
-        <Texture><Sheet>ground</Sheet><Index>0xa3</Index></Texture>
+        <Texture><Sheet>ground</Sheet><Index>0xa6</Index></Texture>
         <Top>
-            <Texture><Sheet>ground</Sheet><Index>0xa7</Index></Texture>
+            <RandomTexture>
+                <Texture>
+                    <Sheet>ground</Sheet>
+                    <Index>0xbe</Index>
+                </Texture>
+                <Texture>
+                    <Sheet>ground</Sheet>
+                    <Index>0xbf</Index>
+                </Texture>
+                <Texture>
+                    <Sheet>ground</Sheet>
+                    <Index>0xc0</Index>
+                </Texture>
+                <Texture>
+                    <Sheet>ground</Sheet>
+                    <Index>0xc1</Index>
+                </Texture>
+            </RandomTexture>
         </Top>
         <Static/>
         <FullOccupy/>
@@ -1080,23 +1101,29 @@
             <Sheet>ground</Sheet>
             <Index>0xA4</Index>
         </Texture>  
-        <!--<Animation prob="1" period="0.4">
-            <Frame time="0.2">
-                <Texture>
-                    <Sheet>ground</Sheet>
-                    <Index>0xa4</Index>
-                </Texture>
-            </Frame>
-            <Frame time="0.2">
-                <Texture>
-                    <Sheet>ground</Sheet>
-                    <Index>0xa5</Index>
-                </Texture>
-            </Frame>
-        </Animation>!-->
         <Top>
-            <Texture><Sheet>ground</Sheet><Index>0xa7</Index></Texture>
+            <RandomTexture>
+                <Texture>
+                    <Sheet>ground</Sheet>
+                    <Index>0xbe</Index>
+                </Texture>
+                <Texture>
+                    <Sheet>ground</Sheet>
+                    <Index>0xbf</Index>
+                </Texture>
+                <Texture>
+                    <Sheet>ground</Sheet>
+                    <Index>0xc0</Index>
+                </Texture>
+                <Texture>
+                    <Sheet>ground</Sheet>
+                    <Index>0xc1</Index>
+                </Texture>
+            </RandomTexture>
         </Top>
+        <LightColor>0xF59F19</LightColor>
+        <LightIntensity>0.033</LightIntensity>
+        <LightRadius>6</LightRadius>
         <Static/>
         <FullOccupy/>
         <OccupySquare/>
@@ -1125,10 +1152,6 @@
             <RandomTexture>
                 <Texture>
                     <Sheet>ground</Sheet>
-                    <Index>0xbd</Index>
-                </Texture>
-                <Texture>
-                    <Sheet>ground</Sheet>
                     <Index>0xbe</Index>
                 </Texture>
                 <Texture>
@@ -1137,7 +1160,11 @@
                 </Texture>
                 <Texture>
                     <Sheet>ground</Sheet>
-                    <Index>0xba</Index>
+                    <Index>0xc0</Index>
+                </Texture>
+                <Texture>
+                    <Sheet>ground</Sheet>
+                    <Index>0xc1</Index>
                 </Texture>
             </RandomTexture>
         </Top>
@@ -1192,13 +1219,13 @@
     <Object type="0x15c" id="Chasm Stalagmite">
         <Class>GameObject</Class>
         <RandomTexture>
-            <Texture><Sheet>props</Sheet><Index>0x36</Index></Texture>
-            <Texture><Sheet>props</Sheet><Index>0x37</Index></Texture>
-            <Texture><Sheet>props</Sheet><Index>0x38</Index></Texture>
             <Texture><Sheet>props</Sheet><Index>0x39</Index></Texture>
+            <Texture><Sheet>props</Sheet><Index>0x3a</Index></Texture>
+            <Texture><Sheet>props</Sheet><Index>0x3b</Index></Texture>
+            <Texture><Sheet>props</Sheet><Index>0x3c</Index></Texture>
         </RandomTexture>
-        <MinSize>150</MinSize>
-        <MaxSize>190</MaxSize>
+        <MinSize>125</MinSize>
+        <MaxSize>150</MaxSize>
         <SizeStep>15</SizeStep>
         <Static />
         <OccupySquare />
@@ -1411,7 +1438,7 @@
         <OccupySquare/>
     </Object>
 
-     <Object type="0x167" id="Volcano Skull Lamp">
+    <Object type="0x167" id="Volcano Skull Lamp">
         <Class>GameObject</Class>
         <RandomTexture>
             <Texture>
@@ -1425,7 +1452,7 @@
         </RandomTexture>
         <LightColor>0xf5501d</LightColor>
         <LightIntensity>0.25</LightIntensity>
-        <LightRadius>3</LightRadius>
+        <LightRadius>3</LightRadius>    
         <Float sine="true" height="0.3" time="400"/>
         <Static/>
     </Object>
@@ -1505,13 +1532,19 @@
         <OccupySquare/>
     </Object>
 
-    <Object type="0x169" id="Desert Cursed Flame">
+    <Object type="0x16a" id="Desert Cursed Flame">
         <Class>GameObject</Class>
         <Texture>
             <Sheet>props16</Sheet>
             <Index>0x19</Index>
         </Texture>
         <Animation prob="1" period="1.6">
+            <Frame time="0.4">
+                <Texture>
+                    <Sheet>props16</Sheet>
+                    <Index>0x19</Index>
+                </Texture>
+            </Frame>
             <Frame time="0.4">
                 <Texture>
                     <Sheet>props16</Sheet>
@@ -1530,19 +1563,13 @@
                     <Index>0x1b</Index>
                 </Texture>
             </Frame>
-            <Frame time="0.4">
-                <Texture>
-                    <Sheet>props16</Sheet>
-                    <Index>0x1c</Index>
-                </Texture>
-            </Frame>
         </Animation>
         <LightColor>0xd03fe0</LightColor>
         <LightIntensity>0.25</LightIntensity>
         <LightRadius>2</LightRadius>
         <Float sine="true" height="0.3" time="400"/>
     </Object>
-    <Object type="0x16a" id="Desert Cursed Torch">
+    <Object type="0x16b" id="Desert Cursed Torch">
         <Class>GameObject</Class>
         <Texture>
             <Sheet>props16</Sheet>
@@ -1579,5 +1606,5 @@
         <LightRadius>2</LightRadius>
         <OccupySquare/>
     </Object>
-
+   
 </Objects>
