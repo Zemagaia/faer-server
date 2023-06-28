@@ -16,126 +16,19 @@ using NLog;
 namespace GameServer.realm.commands;
 
 internal class SpawnCommand : Command {
-    private static readonly Logger Log = LogManager.GetCurrentClassLogger();
-
-    private struct JsonSpawn {
-        public string notif;
-        public SpawnProperties[] spawns;
-    }
-
-    private struct SpawnProperties {
-        public string name;
-        public int? hp;
-        public int? size;
-        public int? count;
-        public int[] x;
-        public int[] y;
-        public bool? target;
-    }
-
     private const int Delay = 3; // in seconds
 
-    public SpawnCommand() : base("spawn", 90, true, "s", "devspawn", "ds") { }
+    public SpawnCommand() : base("spawn", 90, true) { }
 
     protected override bool Process(Player player, RealmTime time, string args) {
         args = args.Trim();
-        return args.StartsWith("{") ? SpawnJson(player, args) : SpawnBasic(player, args);
-    }
-
-    private bool SpawnJson(Player player, string json) {
-        var gameData = player.Manager.Resources.GameData;
-
-        JsonSpawn props;
-        try {
-            props = JsonConvert.DeserializeObject<JsonSpawn>(json);
-        }
-        catch (Exception) {
-            player.SendError("JSON not formatted correctly!");
-            return false;
-        }
-
-        if (props.spawns != null)
-            foreach (var spawn in props.spawns) {
-                if (spawn.name == null) {
-                    player.SendError("No mob specified. Every entry needs a name property.");
-                    return false;
-                }
-
-                var objType = GetSpawnObjectType(gameData, spawn.name);
-                if (objType == null) {
-                    player.SendError("Unknown entity!");
-                    return false;
-                }
-
-                var desc = gameData.ObjectDescs[objType.Value];
-
-                if (player.Client.Account.Rank < 100 &&
-                    desc.ObjectId.Contains("Fountain")) {
-                    player.SendError("Insufficient rank.");
-                    return false;
-                }
-
-                var hp = desc.MaxHP;
-                if (spawn.hp > hp && spawn.hp < int.MaxValue)
-                    hp = spawn.hp.Value;
-
-                var size = desc.MinSize;
-                if (spawn.size >= 25 && spawn.size <= 500)
-                    size = spawn.size.Value;
-
-                var count = 1;
-                if (spawn.count > count && spawn.count <= 500)
-                    count = spawn.count.Value;
-
-                int[] x = null;
-                int[] y = null;
-
-                if (spawn.x != null)
-                    x = new int[spawn.x.Length];
-
-                if (spawn.y != null)
-                    y = new int[spawn.y.Length];
-
-                if (x != null) {
-                    for (var i = 0; i < x.Length && i < count; i++) {
-                        if (spawn.x[i] > 0 && spawn.x[i] <= player.Owner.Map.Width) {
-                            x[i] = spawn.x[i];
-                        }
-                    }
-                }
-
-                if (y != null) {
-                    for (var i = 0; i < y.Length && i < count; i++) {
-                        if (spawn.y[i] > 0 && spawn.y[i] <= player.Owner.Map.Height) {
-                            y[i] = spawn.y[i];
-                        }
-                    }
-                }
-
-                var target = false;
-                if (spawn.target != null)
-                    target = spawn.target.Value;
-
-                QueueSpawnEvent(player, count, objType.Value, hp, size, x, y, target);
-            }
-
-        if (props.notif != null) {
-            NotifySpawn(player, props.notif);
-        }
-
-
-        return true;
-    }
-
-    private bool SpawnBasic(Player player, string args) {
         var gameData = player.Manager.Resources.GameData;
 
         // split argument
         var index = args.IndexOf(' ');
-        int num;
         var name = args;
-        if (args.IndexOf(' ') > 0 && int.TryParse(args.Substring(0, args.IndexOf(' ')), out num)) //multi
-            name = args.Substring(index + 1);
+        if (args.IndexOf(' ') > 0 && int.TryParse(args[..args.IndexOf(' ')], out var num)) //multi
+            name = args[(index + 1)..];
         else
             num = 1;
 
@@ -162,32 +55,31 @@ internal class SpawnCommand : Command {
         return true;
     }
 
-    private ushort? GetSpawnObjectType(XmlData gameData, string name) {
-        ushort objType;
-        if (!gameData.IdToObjectType.TryGetValue(name, out objType) ||
-            !gameData.ObjectDescs.ContainsKey(objType)) {
-            // no match found, try to get partial match
-            var mobs = gameData.IdToObjectType
-                .Where(m => m.Key.ContainsIgnoreCase(name) && gameData.ObjectDescs.ContainsKey(m.Value))
-                .Select(m => gameData.ObjectDescs[m.Value]);
+    private static ushort? GetSpawnObjectType(XmlData gameData, string name) {
+        if (gameData.IdToObjectType.TryGetValue(name, out var objType) &&
+            gameData.ObjectDescs.ContainsKey(objType)) return objType;
+        
+        // no match found, try to get partial match
+        var mobs = gameData.IdToObjectType
+            .Where(m => m.Key.ContainsIgnoreCase(name) && gameData.ObjectDescs.ContainsKey(m.Value))
+            .Select(m => gameData.ObjectDescs[m.Value]);
 
-            if (!mobs.Any())
-                return null;
+        if (!mobs.Any())
+            return null;
 
-            var maxHp = mobs.Max(e => e.MaxHP);
-            objType = mobs.First(e => e.MaxHP == maxHp).ObjectType;
-        }
+        var maxHp = mobs.Max(e => e.MaxHP);
+        objType = mobs.First(e => e.MaxHP == maxHp).ObjectType;
 
         return objType;
     }
 
-    private void NotifySpawn(Player player, string mob, int? num = null) {
+    private static void NotifySpawn(Player player, string mob, int? num = null) {
         var w = player.Owner;
 
         var notif = mob;
         if (num != null)
-            notif = $"{(CommandTag == "ds" || CommandTag == "devspawn" ? "Devs" : "S")}pawning " +
-                    ((num > 1) ? num + " " : "") + mob + "...";
+            notif = "Spawning " + (num > 1 ? num + " " : "") + mob + "...";
+        
         foreach (var p in w.Players.Values) {
             if (MathUtils.DistSqr(p.X, p.Y, p.X, p.Y) < 16 * 16)
                 p.Client.SendNotification((player.IsControlling) ? player.SpectateTarget.Id : player.Id, notif,
@@ -197,12 +89,12 @@ internal class SpawnCommand : Command {
         if (player.IsControlling)
             foreach (var p in w.Players.Values) {
                 if (MathUtils.DistSqr(p.X, p.Y, p.X, p.Y) < 16 * 16)
-                    p.Client.SendText($"#{player.SpectateTarget.ObjectDesc.DisplayId}", 0, 0, $"", notif, 0, 0);
+                    p.Client.SendText($"{player.SpectateTarget.ObjectDesc.DisplayId}", 0, 0, $"", notif, 0xF2CA46, 0xD4AF37);
             }
         else
             foreach (var p in w.Players.Values) {
                 if (MathUtils.DistSqr(p.X, p.Y, p.X, p.Y) < 16 * 16)
-                    p.Client.SendText($"#{player.Name}", 0, 0, $"", notif, 0, 0);
+                    p.Client.SendText($"{player.Name}", 0, 0, $"", notif, 0xF2CA46, 0xD4AF37);
             }
     }
 

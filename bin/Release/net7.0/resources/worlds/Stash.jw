@@ -10,5 +10,7 @@
 	"portals": [ ],
 	"music": [""],
 	"bgLightColor": 0x0,
-	"bgLightIntensity": 0.1
+	"bgLightIntensity": 0.1,
+	"dayLightIntensity": 0.1,
+	"nightLightIntensity": 0.4,
 }

@@ -23,27 +23,14 @@ public class ActivateBoost
         return boost;
     }
 
-    public void Push(int amount, bool noStack = false)
+    public void Push(int amount)
     {
-        if (noStack)
-        {
-            _base.Add(amount);
-            _base = _base.OrderByDescending(a => a).ToList();
-            return;
-        }
-
         _stack.Add(amount);
         _stack.Sort();
     }
 
-    public void Pop(int amount, bool noStack = false)
+    public void Pop(int amount)
     {
-        if (noStack)
-        {
-            _base.Remove(amount);
-            return;
-        }
-
         if (_stack.Count <= 0)
             return;
 

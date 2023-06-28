@@ -593,9 +593,10 @@ public partial class Entity : IProjectileOwner, ICollidable<Entity> {
             X = x,
             Y = y
         };
+        
         if (_projectiles[ret.BulletId] != null)
             _projectiles[ret.BulletId].Destroy();
-        // if (this is Player) Console.WriteLine($"create:  {ret.ProjectileId} {ret}");
+        
         return _projectiles[ret.BulletId] = ret;
     }
 

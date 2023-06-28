@@ -131,8 +131,6 @@ public class ActivateEffect
 
     public readonly string[] ConditionEffects;
     public readonly string StatName;
-
-    public readonly TotemEffect[] TotemEffects;
         
     public ActivateEffect(XElement e)
     {
@@ -157,13 +155,6 @@ public class ActivateEffect
 
             if (Utils.TryGetEffect(val, out var r))
                 ConditionEffect = r;
-            else {
-                var effects = val.Trim().Split(",");
-                    
-                TotemEffects = new TotemEffect[effects.Length];
-                for (var i = 0; i < effects.Length; i++)
-                    TotemEffects[i] = new TotemEffect(effects[i].Trim());
-            }
         }
 
         if (e.HasAttribute("condEffect"))

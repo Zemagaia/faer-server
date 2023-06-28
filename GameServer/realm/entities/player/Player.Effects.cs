@@ -67,11 +67,10 @@ partial class Player
 
     public bool IsVisibleToEnemy()
     {
-        if (HasConditionEffect(ConditionEffects.Hidden))
+        if (HasConditionEffect(ConditionEffects.Hidden) || HasConditionEffect(ConditionEffects.Invisible))
             return false;
-        if (_newbieTime > 0)
-            return false;
-        return true;
+        
+        return _newbieTime <= 0;
     }
 
     public bool TPCooledDown()

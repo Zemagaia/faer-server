@@ -572,6 +572,15 @@ Soul Fragments are shared between all Enigmas in the same instance.</Description
     <Player />
     <SlotTypes>22, 21, 20, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
     <Equipment>0xa35, 0xa4a, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
+    <Projectile id="0">
+        <ObjectId>Enigma Projectile</ObjectId>
+        <Speed>70</Speed>
+        <LifetimeMS>1000</LifetimeMS>
+        <Damage>750</Damage>
+        <HeatSeekSpeed>150</HeatSeekSpeed>
+        <HeatSeekRadius>7</HeatSeekRadius>
+        <HeatSeekDelay>100</HeatSeekDelay>
+    </Projectile>
     <Ability1>
       <Icon>
         <Sheet>abilityIcons</Sheet>
@@ -580,7 +589,7 @@ Soul Fragments are shared between all Enigmas in the same instance.</Description
       <Name>Anomalous Burst</Name>
       <ManaCost>75</ManaCost>
       <Cooldown>10</Cooldown>
-      <Description>Shoot a flurry of &lt;b&gt;&lt;i&gt;&lt;font color="#FFE880"&gt;6 (+1 per 30 SPD) heat seeking void blasts&lt;/font&gt;&lt;/b&gt;&lt;/i&gt;, dealing &lt;b&gt;&lt;i&gt;&lt;font color="#ECA07F"&gt;75 (+75% STR) damage.&lt;/font&gt;&lt;/b&gt;&lt;/i&gt;</Description>
+      <Description>Shoot a flurry of &lt;b&gt;&lt;i&gt;&lt;font color="#FFE880"&gt;6 (+1 per 30 SPD) heat seeking void blasts&lt;/font&gt;&lt;/b&gt;&lt;/i&gt;, dealing &lt;b&gt;&lt;i&gt;&lt;font color="#ECA07F"&gt;750 (+75% STR) Physical Damage.&lt;/font&gt;&lt;/b&gt;&lt;/i&gt;</Description>
     </Ability1>
     <Ability2>
       <Icon>

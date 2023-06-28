@@ -11,5 +11,5 @@
 	"bgLightColor": 0x0,
 	"bgLightIntensity": 0.15,
 	"dayLightIntensity": 0.1,
-	"nightLightIntensity": 0.7,
+	"nightLightIntensity": 0.4,
 }

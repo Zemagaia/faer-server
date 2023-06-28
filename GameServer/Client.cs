@@ -1438,7 +1438,7 @@ public class Client {
         Player.Owner.EnterWorld(prj);
             
         foreach (var plr in Player.Owner.Players.Values)
-            if (plr.Id != Player.Id && MathUtils.DistSqr(plr.X, plr.Y, Player.X, Player.Y) < 20 * 20)
+            if (plr.Id != Player.Id && MathUtils.DistSqr(plr.X, plr.Y, Player.X, Player.Y) < 16 * 16)
                 plr.Client.SendAllyShoot(prj.BulletId, Player.Id, prj.Container, angle);
     }
 

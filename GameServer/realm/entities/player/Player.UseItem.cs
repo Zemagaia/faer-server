@@ -123,12 +123,6 @@ partial class Player {
 
         foreach (var eff in activate) {
             switch (eff.Effect) {
-                case ActivateEffects.StatBoostSelf:
-                    AEStatBoostSelf(time, item, target, eff);
-                    break;
-                case ActivateEffects.StatBoostAura:
-                    AEStatBoostAura(time, item, target, eff);
-                    break;
                 case ActivateEffects.ConditionEffectSelf:
                     AEConditionEffectSelf(time, item, target, eff);
                     break;
@@ -485,49 +479,7 @@ partial class Player {
                 p.Client.SendShowEffect(EffectType.AreaBlast, Id, eff.Range, eff.Range, 0, 0, 0xFFFFFFFF);
         }
     }
-
-    private void AEStatBoostAura(RealmTime time, Item item, Position target, ActivateEffect eff) {
-        var idx = StatsManager.GetStatIndex((StatsType) eff.Stats);
-        var amount = (int) eff.Amount;
-        var duration = eff.DurationMS;
-        var range = eff.Range;
-
-        this.AOE(range, true, player => {
-            ((Player) player).Stats.Boost.ActivateBoost[idx].Push(amount, eff.NoStack);
-            ((Player) player).Stats.ReCalculateValues();
-
-            // hack job to allow instant heal of nostack boosts
-            if (eff.NoStack && amount > 0 && idx == 0) {
-                ((Player) player).HP = Math.Min(((Player) player).Stats[0], ((Player) player).HP + amount);
-            }
-
-            Owner.Timers.Add(new WorldTimer(duration, (_, _) => {
-                ((Player) player).Stats.Boost.ActivateBoost[idx].Pop(amount, eff.NoStack);
-                ((Player) player).Stats.ReCalculateValues();
-            }));
-        });
-
-        if (!eff.NoStack)
-            foreach (var p in Owner.Players.Values) {
-                if (MathUtils.DistSqr(p.X, Y, X, Y) < RadiusSqr)
-                    p.Client.SendShowEffect(EffectType.AreaBlast, Id, eff.Range, eff.Range, 0, 0, 0xFFFFFFFF);
-            }
-    }
-
-    private void AEStatBoostSelf(RealmTime time, Item item, Position target, ActivateEffect eff) {
-        var idx = StatsManager.GetStatIndex((StatsType) eff.Stats);
-        var s = (int) eff.Amount;
-        Stats.Boost.ActivateBoost[idx].Push(s, eff.NoStack);
-        Stats.ReCalculateValues();
-        Owner.Timers.Add(new WorldTimer(eff.DurationMS, (_, _) => {
-            Stats.Boost.ActivateBoost[idx].Pop(s, eff.NoStack);
-            Stats.ReCalculateValues();
-        }));
-        foreach (var p in Owner.Players.Values)
-            if (MathUtils.DistSqr(p.X, Y, X, Y) < RadiusSqr)
-                p.Client.SendShowEffect(EffectType.Potion, Id, 0, 0, 0, 0, 0xFFFFFFFF);
-    }
-
+    
     private void ActivateHealHp(Player player, int amount) {
         var maxHp = player.Stats[0];
         var newHp = Math.Min(maxHp, player.HP + amount);

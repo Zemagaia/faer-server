@@ -1,4 +1,5 @@
-﻿using Shared.resources;
+﻿using Shared;
+using Shared.resources;
 
 namespace GameServer.realm.entities.player
 {
@@ -33,7 +34,7 @@ namespace GameServer.realm.entities.player
                 return false;
             
             var delta = time - LastAbilityUseTime[index];
-            return delta >= Abilities[index].CooldownMS;
+            return delta >= Abilities[index].CooldownMS * 0.95; // account for ping (scuffed)
         }
 
         private void UseAbility(byte[] data, int index)
@@ -61,12 +62,49 @@ namespace GameServer.realm.entities.player
 
         private void DoAnomalousBurst(BinaryReader rdr) {
             var angle = rdr.ReadSingle();
-            Console.WriteLine($"DoAnomalousBurst: {angle}");
+            var prjDesc = ObjectDesc.Projectiles[0];
+
+            var numProjs = 6 + Math.Floor(Stats[6] / 30.0);
+            const double arcGap = 12 * (Math.PI / 180);
+
+            var attackAngleLeft = angle - Math.PI / 2;
+            var leftProjs = Math.Ceiling(numProjs / 2.0);
+            var leftAngle = attackAngleLeft - arcGap * (leftProjs - 1);
+            for (var i = 0; i < leftProjs; i++) {
+                var prj = PlayerShootProjectile(bulletId, prjDesc, ObjectType, (float) (Math.Cos(attackAngleLeft) * 0.25), (float) (Math.Sin(attackAngleLeft) * 0.25));
+                Owner.EnterWorld(prj);
+            
+                foreach (var plr in Owner.Players.Values)
+                    if (plr.Id != Id && MathUtils.DistSqr(plr.X, plr.Y, X, Y) < 16 * 16)
+                        plr.Client.SendAllyShoot(prj.BulletId, Id, prj.Container, (float) leftAngle);
+                leftAngle += arcGap;
+            }
+
+            var attackAngleRight = angle + Math.PI / 2;
+            var rightProjs = numProjs - leftProjs;
+            var rightAngle = attackAngleRight - arcGap * (rightProjs - 1);
+            for (var i = 0; i < rightProjs; i++) {
+                var prj = PlayerShootProjectile(bulletId, prjDesc, ObjectType, (float) (Math.Cos(attackAngleRight) * 0.25), (float) (Math.Sin(attackAngleRight) * 0.25));
+                Owner.EnterWorld(prj);
+            
+                foreach (var plr in Owner.Players.Values)
+                    if (plr.Id != Id && MathUtils.DistSqr(plr.X, plr.Y, X, Y) < 16 * 16)
+                        plr.Client.SendAllyShoot(prj.BulletId, Id, prj.Container, (float) rightAngle);
+                rightAngle += arcGap;
+            }
         }
 
-        private void DoParadoxicalShift(BinaryReader rdr)
-        {
-            Console.WriteLine($"DoAnomalousBurst: No Data");
+        private void DoParadoxicalShift(BinaryReader rdr) {
+            var amount = (int) (Stats[6] * 0.25);
+            var duration = 3000;
+            ApplyConditionEffect(ConditionEffectIndex.Invisible, duration);
+            Stats.Boost.ActivateBoost[6].Push(amount);
+            Stats.ReCalculateValues();
+            
+            Owner.Timers.Add(new WorldTimer(duration, (_, _) => {
+                Stats.Boost.ActivateBoost[6].Pop(amount);
+                Stats.ReCalculateValues();
+            }));
         }
 
         private void DoSwarm(BinaryReader rdr)

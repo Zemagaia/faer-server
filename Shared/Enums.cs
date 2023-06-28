@@ -34,7 +34,8 @@ public enum ConditionEffects : ulong
     Armored = 1 << 9,
     ArmorBroken = 1 << 10,
     Hidden = 1 << 11,
-    Targeted = 1 << 12
+    Targeted = 1 << 12,
+    Invisible = 1 << 13
 }
 
 public enum ConditionEffectIndex
@@ -51,17 +52,10 @@ public enum ConditionEffectIndex
     Armored = 9,
     ArmorBroken = 10,
     Hidden = 11,
-    Targeted = 12
+    Targeted = 12,
+    Invisible = 13
 }
-    
-[Flags]
-public enum DamageTypes : byte
-{
-    True = 0,
-    Physical = 1 << 0,
-    Magical = 1 << 1
-}
-    
+
 public enum EffectType
 {
     Potion = 1,
@@ -108,41 +102,4 @@ public enum ActivateEffects
     FixedStat,
     UnlockEmote,
     Bloodstone
-}
-
-public struct TotemEffect {
-    public ConditionEffectIndex? ConditionEffect;
-    public int StatType;
-    public int Value;
-
-    public TotemEffect(string val) {
-        if (Enum.TryParse(val, out ConditionEffectIndex conditionEffect)) {
-            ConditionEffect = conditionEffect;
-            return;
-        }
-
-        var split = val.Replace("+", "").Split(' ');
-        StatType = GetStatTypeShort(split[1]);
-        Value = int.Parse(split[0]);
-    }
-        
-    // todo this is terrible
-    public static int GetStatTypeShort(string stat) {
-        return stat switch {
-            "HP" => 0,
-            "MP" => 3,  
-            "STR" => 20, 
-            "WIT" => 77,
-            "DEF" => 21,
-            "RES" => 78,
-            "SPD" => 22,
-            "HST" => 79,
-            "STM" => 27,
-            "INT" => 80,
-            "PRC" => 81,
-            "PEN" => 30,
-            "TEN" => 82,
-            _ => 255
-        };
-    }
 }

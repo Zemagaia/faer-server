@@ -238,43 +238,4 @@ public class StatsManager {
             _ => StatsType.None
         };
     }
-
-    public class DamageUtils {
-        internal static int GetDamage(Entity entity, int damage, DamageTypes damageType, Player hitter = null) {
-            if (entity is null)
-                return 0;
-
-            return damage - GetArmorForType(damageType, entity, hitter);
-        }
-
-        private static int GetArmorForType(DamageTypes damageType, Entity entity, Player hitter = null) {
-            // calculate armor for players
-            if (entity is Player p) {
-                var isMagic = (damageType & DamageTypes.Magical) != 0;
-                return isMagic ? Math.Min(p.Stats[3], 384) : Math.Min(p.Stats[2], 384);
-            }
-
-            // finally calculate armor for enemies - hitter should never be null 
-            if (hitter == null)
-                return 0;
-
-            var desc = entity.ObjectDesc;
-            var armor = desc.Defense;
-            var resistance = desc.Resistance;
-
-            // calculate global modifiers
-            if (entity.HasConditionEffect(ConditionEffects.Armored))
-                armor = (int) (armor * 1.25);
-
-            var penetration = hitter.Stats[11];
-            var piercing = hitter.Stats[10];
-
-            // def calculation from incoming damage type
-            return damageType switch {
-                DamageTypes.Physical => Math.Max(0, armor - penetration),
-                DamageTypes.Magical => Math.Max(0, resistance - piercing),
-                _ => 0
-            };
-        }
-    }
 }

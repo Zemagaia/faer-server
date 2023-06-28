@@ -1244,4 +1244,22 @@
       </Texture>
       <AngleCorrection>1</AngleCorrection>
    </Object>
+   <Object type="0x009e" id="Enigma Projectile">
+      <Class>Projectile</Class>
+      <RandomTexture>
+         <Texture>
+            <Sheet>projectiles</Sheet>
+            <Index>125</Index>
+         </Texture>
+         <Texture>
+            <Sheet>projectiles</Sheet>
+            <Index>126</Index>
+         </Texture>
+         <Texture>
+            <Sheet>projectiles</Sheet>
+            <Index>127</Index>
+         </Texture>
+      </RandomTexture>
+      <AngleCorrection>1</AngleCorrection>
+   </Object>
 </Objects>
