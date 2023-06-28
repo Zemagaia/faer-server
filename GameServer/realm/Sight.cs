@@ -8,8 +8,8 @@ public class Sight
 {
     private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-    private const int Radius = Player.Radius;
-    private const int RadiusSqr = Player.RadiusSqr;
+    private const int Radius = Player.VISIBILITY_RADIUS;
+    private const int RadiusSqr = Player.VISIBILITY_RADIUS_SQR;
     private const int AppoxAreaOfSight = (int)(Math.PI * Radius * Radius + 1);
     private const int MaxNumRegions = 2048;
 

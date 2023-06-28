@@ -50,8 +50,8 @@
             <Index>0x04</Index>
         </Texture>
         <BlendPriority>98</BlendPriority>
-        <LightColor>0x226d7a</LightColor>
-        <LightIntensity>0.376470588</LightIntensity>
+        <LightColor>0x4C8AED</LightColor>
+        <LightIntensity>0.1</LightIntensity>
         <NoWalk/>
     </Ground>
     <Ground type="0x21" id="Grass">
@@ -660,8 +660,8 @@
     </Ground>
     <Ground type="0xff" id="Void">
         <Texture>
-            <Sheet>ground</Sheet>
-            <Index>0x66</Index>
+            <Sheet>invisible</Sheet>
+            <Index>0x00</Index>
         </Texture>
         <NoWalk/>
     </Ground>
@@ -790,16 +790,20 @@
         <Damage>30</Damage>
         <Speed>0.58</Speed>
         <Sink/>
-        <!-- <BlendPriority>-99</BlendPriority> -->
+        <BlendPriority>99</BlendPriority>
+        <LightColor>0xFFF4AA</LightColor>
+        <LightIntensity>0.05</LightIntensity>
     </Ground>
     <Ground type="0x7b" id="Chasm Bridge">
         <Texture><Sheet>ground</Sheet><Index>0x79</Index></Texture>
         <Speed>0.8</Speed>
-        <!-- <BlendPriority>-99</BlendPriority> -->
+        <BlendPriority>98</BlendPriority>
+        <LightColor>0xF59F19</LightColor>
+        <LightIntensity>0.05</LightIntensity>
     </Ground>
     <Ground type="0x7c" id="Chasm Ground Tile">
         <Texture><Sheet>ground</Sheet><Index>0xa8</Index></Texture>
-        <!-- <BlendPriority>-99</BlendPriority> -->
+        <BlendPriority>97</BlendPriority>
     </Ground>
     <Ground type="0x7d" id="Oasis Grass">
         <RandomTexture>
@@ -1045,6 +1049,28 @@
         <Speed>0.3</Speed>
         <Sink/>
         <BlendPriority>-1</BlendPriority>
+    </Ground>
+
+    <Ground type="0x9C" id="Orc Cave Cobble">
+        <RandomTexture>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0xf1</Index>
+            </Texture>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0xf2</Index>
+            </Texture>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0xf3</Index>
+            </Texture>
+            <Texture>
+                <Sheet>ground</Sheet>
+                <Index>0xf4</Index>
+            </Texture>
+        </RandomTexture>
+        <BlendPriority>4</BlendPriority>
     </Ground>
 
 </GroundTypes>

@@ -54,7 +54,7 @@ internal class ReplaceTile : Behavior
 
             if (tile.ObjDesc?.BlocksSight == true)
             {
-                foreach (var plr in host.Owner.Players.Values.Where(p => MathsUtils.DistSqr(p.X, p.Y, x, y) < Player.RadiusSqr))
+                foreach (var plr in host.Owner.Players.Values.Where(p => MathsUtils.DistSqr(p.X, p.Y, x, y) < Player.VISIBILITY_RADIUS_SQR))
                     plr.Sight.UpdateCount++;
             }
 

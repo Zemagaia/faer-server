@@ -39,7 +39,7 @@ internal class AddTileObject : Behavior
                     Sight.UpdateRegion(map, x, y);
                     
                 foreach (var plr in host.Owner.Players.Values
-                             .Where(p => MathsUtils.DistSqr(p.X, p.Y, x, y) < Player.RadiusSqr))
+                             .Where(p => MathsUtils.DistSqr(p.X, p.Y, x, y) < Player.VISIBILITY_RADIUS_SQR))
                     plr.Sight.UpdateCount++;
             }
 

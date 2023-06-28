@@ -596,7 +596,7 @@ public class ObjectDesc
         OccupySquare = e.HasElement("OccupySquare");
         FullOccupy = e.HasElement("FullOccupy");
         EnemyOccupySquare = e.HasElement("EnemyOccupySquare");
-        BlocksSight = e.HasElement("BlocksSight");
+        BlocksSight = e.HasElement("BlocksSight") || Class == "Wall";
         Enemy = e.HasElement("Enemy");
         MaxHP = e.GetValue<int>("Health");
         Defense = e.GetValue<int>("Defense");

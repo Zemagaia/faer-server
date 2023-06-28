@@ -363,9 +363,7 @@ public class World {
                     if (Blocking == 3)
                         Sight.UpdateRegion(Map, (int) so.X, (int) so.Y);
 
-                    foreach (var plr in Players
-                                 .Where(p => MathsUtils.DistSqr(p.Value.X, p.Value.Y, so.X, so.Y) <
-                                             Player.RadiusSqr))
+                    foreach (var plr in Players.Where(p => MathsUtils.DistSqr(p.Value.X, p.Value.Y, so.X, so.Y) < Player.VISIBILITY_RADIUS_SQR))
                         plr.Value.Sight.UpdateCount++;
                 }
 

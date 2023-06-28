@@ -53,7 +53,7 @@ internal class RemoveObjectOnDeath : Behavior
                 if (tile.ObjDesc?.BlocksSight == true)
                 {
                     foreach (var plr in e.Host.Owner.Players.Values
-                                 .Where(p => MathsUtils.DistSqr(p.X, p.Y, x, y) < Player.RadiusSqr))
+                                 .Where(p => MathsUtils.DistSqr(p.X, p.Y, x, y) < Player.VISIBILITY_RADIUS_SQR))
                         plr.Sight.UpdateCount++;
                 }
 

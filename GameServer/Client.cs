@@ -1593,7 +1593,7 @@ public class Client {
                 }
 
                 Player.SaveToCharacter();
-                Player.Owner.LeaveWorld(Player);
+                Player?.Owner?.LeaveWorld(Player); // this can cause a error if owner is null so im gunna null check it
                 Account.RefreshLastSeen();
                 Account.FlushAsync();
                 Manager.Database.SaveCharacter(Account, Character, true)
