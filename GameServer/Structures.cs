@@ -49,6 +49,8 @@ public struct IntPoint : IEquatable<IntPoint>
         }*/
         return 31 * X + 17 * Y; // could be problem if value is changed...
     }
+
+    public override string ToString() => $"{X}, {Y}";
 }
 
 public struct ScaleHpState

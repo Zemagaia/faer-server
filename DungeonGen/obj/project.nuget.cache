@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "I3AvmSYXGrGEi4f6ctAbLwyNaUlE/jwgqnnxcaWN0mufR2h9xNpoPfUHSsJsZRUKpKuXM6rbonwdfGidmF9DQA==",
+  "dgSpecHash": "78ZOiza4zPRts3vbNT7BECnHsPrKr3Z4+JBf4n63Pqlpm0+il9S/YQuXVktyIA9P6WHE3JGF3GvMDMbEczZdHg==",
   "success": true,
-  "projectFilePath": "/home/a/faer/server/DungeonGen/DungeonGen.csproj",
+  "projectFilePath": "C:\\Users\\Slendergo\\Documents\\GitHub\\Faer\\faer-src\\DungeonGen\\DungeonGen.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

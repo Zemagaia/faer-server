@@ -17,23 +17,30 @@ namespace GameServer.realm.entities.player
         public bool TryUseAbility(int time, AbilitySlotType abilitySlotType, byte[] data)
         {
             Console.WriteLine("Time: " + time + " AbilitySlotType: " + abilitySlotType + " Data Length: " + data.Length);
-            var index = (int)abilitySlotType;
+
+            var index = (int)abilitySlotType; 
+            if (index < 0 || index >= Abilities.Length) // safety checks
+                return false;
+
             if (!CanUseAbility(time, index))
                 return false;
 
-            MP -= Abilities[index].ManaCost;
-            HP -= Abilities[index].HealthCost;
+            var ability = Abilities[index];
+            MP -= ability.ManaCost;
+            HP -= ability.HealthCost;
             LastAbilityUseTime[index] = time;
             UseAbility(data, index);
             return true;
         }
 
         private bool CanUseAbility(int time, int index) {
-            if (MP < Abilities[index].ManaCost || HP < Abilities[index].HealthCost - 1)
+            
+            var ability = Abilities[index];
+            if (MP < ability.ManaCost || HP < ability.HealthCost - 1)
                 return false;
             
             var delta = time - LastAbilityUseTime[index];
-            return delta >= Abilities[index].CooldownMS;
+            return delta >= ability.CooldownMS;
         }
 
         private void UseAbility(byte[] data, int index)

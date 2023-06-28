@@ -427,7 +427,7 @@ partial class Player {
         this.AOE(eff.Range, true, player =>
             ActivateHealMp(player as Player, (int) eff.Amount));
         foreach (var p in Owner.Players.Values)
-            if (MathUtils.DistSqr(p.X, Y, X, Y) < RadiusSqr)
+            if (MathUtils.DistSqr(p.X, Y, X, Y) < VISIBILITY_RADIUS_SQR)
                 p.Client.SendShowEffect(EffectType.AreaBlast, Id, eff.Range, eff.Range, 0, 0, 0xFFFFFFFF);
     }
 
@@ -446,7 +446,7 @@ partial class Player {
             });
 
             foreach (var p in Owner.Players.Values)
-                if (MathUtils.DistSqr(p.X, Y, X, Y) < RadiusSqr)
+                if (MathUtils.DistSqr(p.X, Y, X, Y) < VISIBILITY_RADIUS_SQR)
                     p.Client.SendShowEffect(EffectType.AreaBlast, Id, eff.Range, eff.Range, 0, 0, 0xFFFFFFFF);
         }
     }
@@ -468,7 +468,7 @@ partial class Player {
             });
         });
         foreach (var p in Owner.Players.Values) {
-            if (MathUtils.DistSqr(p.X, Y, X, Y) < RadiusSqr)
+            if (MathUtils.DistSqr(p.X, Y, X, Y) < VISIBILITY_RADIUS_SQR)
                 p.Client.SendShowEffect(EffectType.AreaBlast, Id, eff.Range, eff.Range, 0, 0, 0xFFFFFFFF);
         }
     }
@@ -481,7 +481,7 @@ partial class Player {
             DurationMS = duration
         });
         foreach (var p in Owner.Players.Values) {
-            if (MathUtils.DistSqr(p.X, Y, X, Y) < RadiusSqr)
+            if (MathUtils.DistSqr(p.X, Y, X, Y) < VISIBILITY_RADIUS_SQR)
                 p.Client.SendShowEffect(EffectType.AreaBlast, Id, eff.Range, eff.Range, 0, 0, 0xFFFFFFFF);
         }
     }
@@ -509,7 +509,7 @@ partial class Player {
 
         if (!eff.NoStack)
             foreach (var p in Owner.Players.Values) {
-                if (MathUtils.DistSqr(p.X, Y, X, Y) < RadiusSqr)
+                if (MathUtils.DistSqr(p.X, Y, X, Y) < VISIBILITY_RADIUS_SQR)
                     p.Client.SendShowEffect(EffectType.AreaBlast, Id, eff.Range, eff.Range, 0, 0, 0xFFFFFFFF);
             }
     }
@@ -524,7 +524,7 @@ partial class Player {
             Stats.ReCalculateValues();
         }));
         foreach (var p in Owner.Players.Values)
-            if (MathUtils.DistSqr(p.X, Y, X, Y) < RadiusSqr)
+            if (MathUtils.DistSqr(p.X, Y, X, Y) < VISIBILITY_RADIUS_SQR)
                 p.Client.SendShowEffect(EffectType.Potion, Id, 0, 0, 0, 0, 0xFFFFFFFF);
     }
 
@@ -535,7 +535,7 @@ partial class Player {
             return;
 
         foreach (var p in Owner.Players.Values)
-            if (MathUtils.DistSqr(p.X, p.Y, X, Y) < RadiusSqr) {
+            if (MathUtils.DistSqr(p.X, p.Y, X, Y) < VISIBILITY_RADIUS_SQR) {
                 p.Client.SendShowEffect(EffectType.Potion, Id, 0, 0, 0, 0, 0xFFFFFF);
                 p.Client.SendNotification(player.Id, "+" + (newHp - player.HP), 0x00FF00);
             }
@@ -550,7 +550,7 @@ partial class Player {
             return;
 
         foreach (var p in Owner.Players.Values)
-            if (MathUtils.DistSqr(p.X, p.Y, X, Y) < RadiusSqr) {
+            if (MathUtils.DistSqr(p.X, p.Y, X, Y) < VISIBILITY_RADIUS_SQR) {
                 p.Client.SendShowEffect(EffectType.Potion, Id, 0, 0, 0, 0, 0xFFFFFF);
                 p.Client.SendNotification(player.Id, "+" + (newMp - player.MP), 0x9000FF);
             }
