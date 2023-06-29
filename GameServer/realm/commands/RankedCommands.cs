@@ -1062,7 +1062,7 @@ internal class QuakeCommand : Command {
 
         if (worldName.ToLower() == "hub" || string.IsNullOrWhiteSpace(worldName)) {
             var msg = worldProtoData.Aggregate(
-                "Valid World Names: ", (c, p) => c + ((!p.Value.setpiece) ? (p.Key + ", ") : ""));
+                "Valid World Names: ", (c, p) => c + ((!p.Value.setpiece && !p.Value.quakeIgnore) ? (p.Key + ", ") : ""));
             player.SendInfo(msg.Substring(0, msg.Length - 2) + ".");
             return false;
         }
