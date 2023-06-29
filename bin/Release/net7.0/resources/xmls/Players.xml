@@ -63,11 +63,11 @@ Voidlings have &lt;b&gt;&lt;i&gt;&lt;font color="#80BFA4"&gt;350 (+25% HP) Maxim
     <Defense t2="25" t1="20">15</Defense>
     <Resistance t2="25" t1="20">15</Resistance>
     <Speed t2="55" t1="50">45</Speed>
-    <Haste t2="35" t1="30">25</Haste>
     <Stamina t2="60" t1="55">50</Stamina>
     <Intelligence t2="60" t1="55">50</Intelligence>
-    <Piercing t2="35" t1="30">25</Piercing>
     <Penetration t2="55" t1="50">45</Penetration>
+    <Piercing t2="35" t1="30">25</Piercing>
+    <Haste t2="35" t1="30">25</Haste>
     <Tenacity t2="55" t1="50">45</Tenacity>
   </Object>
   <Object type="0x0307" id="Blood Mage">
@@ -133,11 +133,11 @@ Soul Fragments are shared between all Enigmas in the same instance.</Description
     <Defense t2="25" t1="20">15</Defense>
     <Resistance t2="25" t1="20">15</Resistance>
     <Speed t2="55" t1="50">45</Speed>
-    <Haste t2="35" t1="30">25</Haste>
     <Stamina t2="60" t1="55">50</Stamina>
     <Intelligence t2="60" t1="55">50</Intelligence>
-    <Piercing t2="35" t1="30">25</Piercing>
     <Penetration t2="55" t1="50">45</Penetration>
+    <Piercing t2="35" t1="30">25</Piercing>
+    <Haste t2="35" t1="30">25</Haste>
     <Tenacity t2="55" t1="50">45</Tenacity>
   </Object>
   <Object type="0x030e" id="Warden">
@@ -203,11 +203,11 @@ Soul Fragments are shared between all Enigmas in the same instance.</Description
     <Defense t2="25" t1="20">15</Defense>
     <Resistance t2="25" t1="20">15</Resistance>
     <Speed t2="55" t1="50">45</Speed>
-    <Haste t2="35" t1="30">25</Haste>
     <Stamina t2="60" t1="55">50</Stamina>
     <Intelligence t2="60" t1="55">50</Intelligence>
-    <Piercing t2="35" t1="30">25</Piercing>
     <Penetration t2="55" t1="50">45</Penetration>
+    <Piercing t2="35" t1="30">25</Piercing>
+    <Haste t2="35" t1="30">25</Haste>
     <Tenacity t2="55" t1="50">45</Tenacity>
   </Object>
   <Object type="0x0310" id="Warlock">
@@ -273,11 +273,11 @@ Soul Fragments are shared between all Enigmas in the same instance.</Description
     <Defense t2="25" t1="20">15</Defense>
     <Resistance t2="25" t1="20">15</Resistance>
     <Speed t2="55" t1="50">45</Speed>
-    <Haste t2="35" t1="30">25</Haste>
     <Stamina t2="60" t1="55">50</Stamina>
     <Intelligence t2="60" t1="55">50</Intelligence>
-    <Piercing t2="35" t1="30">25</Piercing>
     <Penetration t2="55" t1="50">45</Penetration>
+    <Piercing t2="35" t1="30">25</Piercing>
+    <Haste t2="35" t1="30">25</Haste>
     <Tenacity t2="55" t1="50">45</Tenacity>
   </Object>
   <Object type="0x031d" id="Berserker">
@@ -343,11 +343,11 @@ Soul Fragments are shared between all Enigmas in the same instance.</Description
     <Defense t2="25" t1="20">15</Defense>
     <Resistance t2="25" t1="20">15</Resistance>
     <Speed t2="55" t1="50">45</Speed>
-    <Haste t2="35" t1="30">25</Haste>
     <Stamina t2="60" t1="55">50</Stamina>
     <Intelligence t2="60" t1="55">50</Intelligence>
-    <Piercing t2="35" t1="30">25</Piercing>
     <Penetration t2="55" t1="50">45</Penetration>
+    <Piercing t2="35" t1="30">25</Piercing>
+    <Haste t2="35" t1="30">25</Haste>
     <Tenacity t2="55" t1="50">45</Tenacity>
   </Object>
   <Object type="0x031e" id="Juggernaut">
@@ -413,11 +413,11 @@ Soul Fragments are shared between all Enigmas in the same instance.</Description
     <Defense t2="25" t1="20">15</Defense>
     <Resistance t2="25" t1="20">15</Resistance>
     <Speed t2="55" t1="50">45</Speed>
-    <Haste t2="35" t1="30">25</Haste>
     <Stamina t2="60" t1="55">50</Stamina>
     <Intelligence t2="60" t1="55">50</Intelligence>
-    <Piercing t2="35" t1="30">25</Piercing>
     <Penetration t2="55" t1="50">45</Penetration>
+    <Piercing t2="35" t1="30">25</Piercing>
+    <Haste t2="35" t1="30">25</Haste>
     <Tenacity t2="55" t1="50">45</Tenacity>
   </Object>
   <Object type="0x031f" id="Chronomancer">
@@ -483,11 +483,11 @@ Soul Fragments are shared between all Enigmas in the same instance.</Description
     <Defense t2="25" t1="20">15</Defense>
     <Resistance t2="25" t1="20">15</Resistance>
     <Speed t2="55" t1="50">45</Speed>
-    <Haste t2="35" t1="30">25</Haste>
     <Stamina t2="60" t1="55">50</Stamina>
     <Intelligence t2="60" t1="55">50</Intelligence>
-    <Piercing t2="35" t1="30">25</Piercing>
     <Penetration t2="55" t1="50">45</Penetration>
+    <Piercing t2="35" t1="30">25</Piercing>
+    <Haste t2="35" t1="30">25</Haste>
     <Tenacity t2="55" t1="50">45</Tenacity>
   </Object>
   <Object type="0x0320" id="Monk">
@@ -553,11 +553,11 @@ Soul Fragments are shared between all Enigmas in the same instance.</Description
     <Defense t2="25" t1="20">15</Defense>
     <Resistance t2="25" t1="20">15</Resistance>
     <Speed t2="55" t1="50">45</Speed>
-    <Haste t2="35" t1="30">25</Haste>
     <Stamina t2="60" t1="55">50</Stamina>
     <Intelligence t2="65" t1="60">50</Intelligence>
-    <Piercing t2="35" t1="30">25</Piercing>
     <Penetration t2="55" t1="50">45</Penetration>
+    <Piercing t2="35" t1="30">25</Piercing>
+    <Haste t2="35" t1="30">25</Haste>
     <Tenacity t2="55" t1="50">45</Tenacity>
   </Object>
   <Object type="0x0321" id="Enigma">
@@ -578,8 +578,8 @@ Soul Fragments are shared between all Enigmas in the same instance.</Description
         <LifetimeMS>1000</LifetimeMS>
         <Damage>750</Damage>
         <HeatSeekSpeed>150</HeatSeekSpeed>
-        <HeatSeekRadius>7</HeatSeekRadius>
-        <HeatSeekDelay>100</HeatSeekDelay>
+        <HeatSeekRadius>12</HeatSeekRadius>
+        <HeatSeekDelay>250</HeatSeekDelay>
     </Projectile>
     <Ability1>
       <Icon>
@@ -599,7 +599,7 @@ Soul Fragments are shared between all Enigmas in the same instance.</Description
       <Name>Paradoxical Shift</Name>
       <ManaCost>100</ManaCost>
       <Cooldown>15</Cooldown>
-      <Description>Become a Phantom for the next 3 seconds, becoming invisible to enemies and gaining +25% Speed.</Description>
+      <Description>Become a &lt;i&gt;Phantom&lt;/i&gt;  for the next 3 seconds, becoming invisible to enemies and gaining &lt;b&gt;&lt;i&gt;&lt;font color="#FFE880"&gt;+25% SPD&lt;/font&gt;&lt;/b&gt;&lt;/i&gt;.</Description>
     </Ability2>
     <Ability3>
       <Icon>
@@ -624,7 +624,9 @@ Voidlings have &lt;b&gt;&lt;i&gt;&lt;font color="#80BFA4"&gt;350 (+25% HP) Maxim
       <Name>Possession</Name>
       <ManaCost>0</ManaCost>
       <Cooldown>150</Cooldown>
-      <Description>Gain control of the targeted Enemy for the next 10 seconds, making it unable to act on its own. During the possession, your body remains vulnerable to other enemies' attacks.</Description>
+      <Description>Possess the targeted Enemy for the next &lt;b&gt;&lt;i&gt;&lt;font color="#8086BF"&gt;5 (+7% INT) seconds&lt;/font&gt;&lt;/b&gt;&lt;/i&gt;, making you control its movements and making it unable to shoot.
+
+&lt;i&gt;&lt;font size="10" color="#736562"&gt;During the possession, your body remains vulnerable to other enemies' attacks.&lt;/font&gt;&lt;/i&gt;</Description>
     </UltimateAbility>
     <Health t2="740" t1="720">695</Health>
     <Mana t2="240" t1="225">200</Mana>
@@ -633,11 +635,11 @@ Voidlings have &lt;b&gt;&lt;i&gt;&lt;font color="#80BFA4"&gt;350 (+25% HP) Maxim
     <Defense t2="25" t1="20">15</Defense>
     <Resistance t2="25" t1="20">15</Resistance>
     <Speed t2="55" t1="50">45</Speed>
-    <Haste t2="35" t1="30">25</Haste>
     <Stamina t2="60" t1="55">50</Stamina>
     <Intelligence t2="60" t1="55">50</Intelligence>
-    <Piercing t2="35" t1="30">25</Piercing>
     <Penetration t2="55" t1="50">45</Penetration>
+    <Piercing t2="35" t1="30">25</Piercing>
+    <Haste t2="35" t1="30">25</Haste>
     <Tenacity t2="55" t1="50">45</Tenacity>
   </Object>
   <Object type="0x0322" id="Plaguebearer">
@@ -703,11 +705,11 @@ Soul Fragments are shared between all Enigmas in the same instance.</Description
     <Defense t2="25" t1="20">15</Defense>
     <Resistance t2="25" t1="20">15</Resistance>
     <Speed t2="55" t1="50">45</Speed>
-    <Haste t2="35" t1="30">25</Haste>
     <Stamina t2="60" t1="55">50</Stamina>
     <Intelligence t2="60" t1="55">50</Intelligence>
-    <Piercing t2="35" t1="30">25</Piercing>
     <Penetration t2="55" t1="50">45</Penetration>
+    <Piercing t2="35" t1="30">25</Piercing>
+    <Haste t2="35" t1="30">25</Haste>
     <Tenacity t2="55" t1="50">45</Tenacity>
   </Object>
 </Objects>
