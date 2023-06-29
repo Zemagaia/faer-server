@@ -250,4 +250,36 @@ public class StatsManager
             _ => StatsType.None
         };
     }
+
+    public void ExportStatData(IDictionary<StatsType, object> stats)
+    {
+        stats[StatsType.MaxHP] = this[HEALTH_STAT];
+        stats[StatsType.MaxMP] = this[MANA_STAT];
+        stats[StatsType.Strength] = this[STRENGTH_STAT];
+        stats[StatsType.Wit] = this[WIT_STAT];
+        stats[StatsType.Defense] = this[DEFENSE_STAT];
+        stats[StatsType.Resistance] = this[RESISTANCE_STAT];
+        stats[StatsType.Speed] = this[SPEED_STAT];
+        stats[StatsType.Stamina] = this[STAMINA_STAT];
+        stats[StatsType.Intelligence] = this[INTELLIGENCE_STAT];
+        stats[StatsType.Penetration] = this[PENETRATION_STAT];
+        stats[StatsType.Piercing] = this[PIERCING_STAT];
+        stats[StatsType.Haste] = this[HASTE_STAT];
+        stats[StatsType.Tenacity] = this[TENACITY_STAT];
+
+        stats[StatsType.HPBonus] = Boost[HEALTH_STAT];
+        stats[StatsType.MPBonus] = Boost[MANA_STAT];
+        stats[StatsType.StrengthBonus] = Boost[STRENGTH_STAT];
+        stats[StatsType.WitBonus] = Boost[WIT_STAT];
+        stats[StatsType.DefenseBonus] = Boost[DEFENSE_STAT];
+        stats[StatsType.ResistanceBonus] = Boost[RESISTANCE_STAT];
+        stats[StatsType.SpeedBonus] = Boost[SPEED_STAT];
+        stats[StatsType.StaminaBonus] = Boost[STAMINA_STAT];
+        stats[StatsType.IntelligenceBonus] = Boost[INTELLIGENCE_STAT];
+        stats[StatsType.PenetrationBonus] = Boost[PENETRATION_STAT];
+        stats[StatsType.PiercingBonus] = Boost[PIERCING_STAT];
+        stats[StatsType.HasteBonus] = Boost[HASTE_STAT];
+        stats[StatsType.TenacityBonus] = Boost[TENACITY_STAT];
+
+    }
 }

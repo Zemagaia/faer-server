@@ -166,6 +166,7 @@ public partial class Player : Character, IContainer, IPlayer {
         stats[StatsType.Texture] = Skin;
         stats[StatsType.Glow] = Glow;
         stats[StatsType.MP] = MP;
+
         stats[StatsType.Inv0] = Inventory[0]?.ObjectType ?? ushort.MaxValue;
         stats[StatsType.Inv1] = Inventory[1]?.ObjectType ?? ushort.MaxValue;
         stats[StatsType.Inv2] = Inventory[2]?.ObjectType ?? ushort.MaxValue;
@@ -187,34 +188,8 @@ public partial class Player : Character, IContainer, IPlayer {
         stats[StatsType.Inv18] = Inventory[18]?.ObjectType ?? ushort.MaxValue;
         stats[StatsType.Inv19] = Inventory[19]?.ObjectType ?? ushort.MaxValue;
 
-        stats[StatsType.MaxHP] = Stats[StatsManager.HEALTH_STAT];
-        stats[StatsType.MaxMP] = Stats[StatsManager.MANA_STAT];
-        stats[StatsType.Strength] = Stats[StatsManager.STRENGTH_STAT];
-        stats[StatsType.Wit] = Stats[StatsManager.WIT_STAT];
-        stats[StatsType.Defense] = Stats[StatsManager.DEFENSE_STAT];
-        stats[StatsType.Resistance] = Stats[StatsManager.RESISTANCE_STAT];
-        stats[StatsType.Speed] = Stats[StatsManager.SPEED_STAT];
-        stats[StatsType.Stamina] = Stats[StatsManager.STAMINA_STAT];
-        stats[StatsType.Intelligence] = Stats[StatsManager.INTELLIGENCE_STAT];
-        stats[StatsType.Penetration] = Stats[StatsManager.PENETRATION_STAT];
-        stats[StatsType.Piercing] = Stats[StatsManager.PIERCING_STAT];
-        stats[StatsType.Haste] = Stats[StatsManager.HASTE_STAT];
-        stats[StatsType.Tenacity] = Stats[StatsManager.TENACITY_STAT];
+        Stats.ExportStatData(stats);
 
-        stats[StatsType.HPBonus] = Stats.Boost[StatsManager.HEALTH_STAT];
-        stats[StatsType.MPBonus] = Stats.Boost[StatsManager.MANA_STAT];
-        stats[StatsType.StrengthBonus] = Stats.Boost[StatsManager.STRENGTH_STAT];
-        stats[StatsType.WitBonus] = Stats.Boost[StatsManager.WIT_STAT];
-        stats[StatsType.DefenseBonus] = Stats.Boost[StatsManager.DEFENSE_STAT];
-        stats[StatsType.ResistanceBonus] = Stats.Boost[StatsManager.RESISTANCE_STAT];
-        stats[StatsType.SpeedBonus] = Stats.Boost[StatsManager.SPEED_STAT];
-        stats[StatsType.StaminaBonus] = Stats.Boost[StatsManager.STAMINA_STAT];
-        stats[StatsType.IntelligenceBonus] = Stats.Boost[StatsManager.INTELLIGENCE_STAT];
-        stats[StatsType.PenetrationBonus] = Stats.Boost[StatsManager.PENETRATION_STAT];
-        stats[StatsType.PiercingBonus] = Stats.Boost[StatsManager.PIERCING_STAT];
-        stats[StatsType.HasteBonus] = Stats.Boost[StatsManager.HASTE_STAT];
-        stats[StatsType.TenacityBonus] = Stats.Boost[StatsManager.TENACITY_STAT];
-        
         stats[StatsType.HitMultiplier] = HitMultiplier;
         stats[StatsType.DamageMultiplier] = DamageMultiplier;
         stats[StatsType.Tier] = Tier;

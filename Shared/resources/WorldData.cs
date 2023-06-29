@@ -33,6 +33,7 @@ public struct ProtoWorld
     public float bgLightIntensity;
     public float dayLightIntensity;
     public float nightLightIntensity;
+    public bool quakeIgnore;
 }
 
 public class TauntData

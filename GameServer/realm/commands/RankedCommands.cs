@@ -1060,7 +1060,7 @@ internal class QuakeCommand : Command {
     protected override bool Process(Player player, RealmTime time, string worldName) {
         var worldProtoData = player.Manager.Resources.Worlds.Data;
 
-        if (String.IsNullOrWhiteSpace(worldName)) {
+        if (worldName.ToLower() == "hub" || string.IsNullOrWhiteSpace(worldName)) {
             var msg = worldProtoData.Aggregate(
                 "Valid World Names: ", (c, p) => c + ((!p.Value.setpiece) ? (p.Key + ", ") : ""));
             player.SendInfo(msg.Substring(0, msg.Length - 2) + ".");
@@ -1069,7 +1069,7 @@ internal class QuakeCommand : Command {
 
         var worldNameProper =
             player.Manager.Resources.Worlds.Data.FirstOrDefault(
-                p => p.Key.Equals(worldName, StringComparison.InvariantCultureIgnoreCase)).Key;
+                p => p.Key.Equals(worldName, StringComparison.InvariantCultureIgnoreCase) && !p.Value.quakeIgnore).Key;
 
         ProtoWorld proto;
         if (worldNameProper == null || (proto = worldProtoData[worldNameProper]).setpiece) {
