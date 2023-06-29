@@ -37,10 +37,7 @@ public class StatsManager
 
         _stats = new SV<short>[STAT_TOTAL_COUNT];
         for (var i = 0; i < STAT_TOTAL_COUNT; i++)
-        {
-            Console.WriteLine(GetStatType(i) + " " + (short)this[i]);
             _stats[i] = new SV<short>(Owner, GetStatType(i), (short) this[i], i != HEALTH_STAT && i != MANA_STAT); // make maxHP and maxMP global update
-        }
     }
 
     public void ReCalculateValues(InventoryChangedEventArgs e = null) {
@@ -73,7 +70,7 @@ public class StatsManager
         }
 
 
-        var penetration = hitter.Stats[11];
+        var penetration = hitter.Stats[PENETRATION_STAT];
         float ret = damage - (def - penetration);
         if (ret < limit)
             ret = limit;
@@ -98,7 +95,7 @@ public class StatsManager
         }
 
 
-        var piercing = hitter.Stats[PENETRATION_STAT];
+        var piercing = hitter.Stats[PIERCING_STAT];
         float ret = damage - (res - piercing);
         if (ret < limit)
             ret = limit;

@@ -473,11 +473,11 @@ public class Stat
             case 4: return "Defense";
             case 5: return "Resistance";
             case 6: return "Speed";
-            case 7: return "Haste";
-            case 8: return "Stamina";
-            case 9: return "Intelligence";
+            case 7: return "Stamina";
+            case 8: return "Intelligence";
+            case 9: return "Penetration";
             case 10: return "Piercing";
-            case 11: return "Penetration";
+            case 11: return "Haste";
             case 12: return "Tenacity";
         }
 
