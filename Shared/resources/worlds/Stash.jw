@@ -13,5 +13,5 @@
 	"bgLightIntensity": 0.1,
 	"dayLightIntensity": 0.1,
 	"nightLightIntensity": 0.4,
-	"quakeIgnore": false
+	"quakeIgnore": true
 }
