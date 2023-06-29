@@ -52,7 +52,7 @@ public class ConnectManager {
                 return;
             }
 
-            currentWorld.LeaveWorld(player);
+            currentWorld?.LeaveWorld(player);
             player.DisposeUpdate();
 
             var objectId = world.EnterWorld(player, true);

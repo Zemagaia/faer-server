@@ -90,7 +90,7 @@ internal class Grenade : Behavior
                     {
                         if (p == null) return;
                         var tenacity = Constants.NegativeEffsIdx.Contains(effect)
-                            ? (1d - (double)((Player)p).Stats[12] / 100)
+                            ? (1d - (double)((Player)p).Stats[StatsManager.TENACITY_STAT] / 100)
                             : 1d;
                         ((IPlayer)p).Damage(damage, host, noDef);
                         p.ApplyConditionEffect(effect, (int)(Math.Max(1, effectDuration * tenacity)));

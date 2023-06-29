@@ -1,13 +1,25 @@
-﻿using Shared;
-using Shared.resources;
-using GameServer.realm.entities.player;
+﻿using GameServer.realm.entities.player;
 using GameServer.realm.worlds;
+using Shared;
 using wServer.realm;
-
 namespace GameServer.realm;
 
-public class StatsManager {
-    internal const int NumStatTypes = 13;
+public class StatsManager 
+{
+    public const byte STAT_TOTAL_COUNT = 13;
+    public const byte HEALTH_STAT = 0;
+    public const byte MANA_STAT = 1;
+    public const byte STRENGTH_STAT = 2;
+    public const byte WIT_STAT = 3;
+    public const byte DEFENSE_STAT = 4;
+    public const byte RESISTANCE_STAT = 5;
+    public const byte SPEED_STAT = 6;
+    public const byte STAMINA_STAT = 7;
+    public const byte INTELLIGENCE_STAT = 8;
+    public const byte PIERCING_STAT = 9;
+    public const byte PENETRATION_STAT = 10;
+    public const byte HASTE_STAT = 11;
+    public const byte TENACITY_STAT = 12;
 
     internal readonly Player Owner;
     internal readonly BaseStatManager Base;
@@ -17,15 +29,15 @@ public class StatsManager {
 
     public int this[int index] => Base[index] + Boost[index];
 
-    public StatsManager(Player owner) {
+    public StatsManager(Player owner) 
+    {
         Owner = owner;
         Base = new BaseStatManager(this);
         Boost = new BoostStatManager(this);
 
-        _stats = new SV<short>[NumStatTypes];
-        for (var i = 0; i < NumStatTypes; i++)
-            _stats[i] = new SV<short>(Owner, GetStatType(i), (short) this[i],
-                i != 0 && i != 1); // make maxHP and maxMP global update
+        _stats = new SV<short>[STAT_TOTAL_COUNT];
+        for (var i = 0; i < STAT_TOTAL_COUNT; i++)
+            _stats[i] = new SV<short>(Owner, GetStatType(i), (short) this[i], i != HEALTH_STAT && i != MANA_STAT); // make maxHP and maxMP global update
     }
 
     public void ReCalculateValues(InventoryChangedEventArgs e = null) {
@@ -45,7 +57,7 @@ public class StatsManager {
         var limit = damage * 0.25f;
         int def;
         if (host is Player p)
-            def = p.Stats[2];
+            def = p.Stats[STRENGTH_STAT];
         else {
             if (hitter == null)
                 return 0;
@@ -74,7 +86,7 @@ public class StatsManager {
         var limit = damage * 0.25f;
         int res;
         if (host is Player p)
-            res = p.Stats[3];
+            res = p.Stats[WIT_STAT];
         else {
             if (hitter == null)
                 return 0;
@@ -83,7 +95,7 @@ public class StatsManager {
         }
 
 
-        var piercing = hitter.Stats[10];
+        var piercing = hitter.Stats[PENETRATION_STAT];
         float ret = damage - (res - piercing);
         if (ret < limit)
             ret = limit;
@@ -108,7 +120,7 @@ public class StatsManager {
         damage = (int) (damage * p.HitMultiplier);
         var limit = damage * 0.25f;
 
-        var def = p.Stats[2];
+        var def = p.Stats[STRENGTH_STAT];
         if (p.HasConditionEffect(ConditionEffects.Armored))
             def = (int) (def * 1.25);
 
@@ -126,7 +138,7 @@ public class StatsManager {
         damage = (int) (damage * p.HitMultiplier);
         var limit = damage * 0.25f;
 
-        var res = p.Stats[3];
+        var res = p.Stats[WIT_STAT];
         float ret = damage - res;
         if (ret < limit)
             ret = limit;
@@ -139,64 +151,63 @@ public class StatsManager {
     
     public float GetTrueDamage(int damage) {
         float ret = damage;
-
         if (Owner.HasConditionEffect(ConditionEffects.Invulnerable))
             ret = 0;
-        
         return ret;
     }
 
     public float GetSpeed(MapTile tile) {
-        var ret = 4 + 5.6f * (this[6] / 75f);
+        var ret = 4 + 5.6f * (this[SPEED_STAT] / 75f);
         return ret * tile.TileDesc.Speed;
     }
 
     public float GetHpRegen() {
-        var stamina = this[8];
+        var stamina = this[STAMINA_STAT];
         if (Owner.HasConditionEffect(ConditionEffects.Sick))
             stamina = 0;
-
         return 1 + stamina * .12f;
     }
 
     public float GetMpRegen() {
-        return 0.5f + this[9] * .06f;
+        return 0.5f + this[INTELLIGENCE_STAT] * .06f;
     }
 
     public static int GetStatIndex(StatsType stat) {
         return stat switch {
-            StatsType.MaxHP => 0,
-            StatsType.MaxMP => 1,
-            StatsType.Strength => 2,
-            StatsType.Wit => 3,
-            StatsType.Defense => 4,
-            StatsType.Resistance => 5,
-            StatsType.Speed => 6,
-            StatsType.Haste => 7,
-            StatsType.Stamina => 8,
-            StatsType.Intelligence => 9,
-            StatsType.Piercing => 10,
-            StatsType.Penetration => 11,
-            StatsType.Tenacity => 12,
+            StatsType.MaxHP => HEALTH_STAT,
+            StatsType.MaxMP => MANA_STAT,
+            StatsType.Strength => STRENGTH_STAT,
+            StatsType.Wit => WIT_STAT,
+            StatsType.Defense => DEFENSE_STAT,
+            StatsType.Resistance => RESISTANCE_STAT,
+            StatsType.Speed => SPEED_STAT,
+            StatsType.Haste => STAMINA_STAT,
+            StatsType.Stamina => HASTE_STAT,
+            StatsType.Intelligence => INTELLIGENCE_STAT,
+            StatsType.Piercing => PIERCING_STAT,
+            StatsType.Penetration => PENETRATION_STAT,
+            StatsType.Tenacity => TENACITY_STAT,
             _ => -1
         };
     }
 
-    public static StatsType GetStatType(int stat) {
-        return stat switch {
-            0 => StatsType.MaxHP,
-            1 => StatsType.MaxMP,
-            2 => StatsType.Strength,
-            3 => StatsType.Wit,
-            4 => StatsType.Defense,
-            5 => StatsType.Resistance,
-            6 => StatsType.Speed,
-            7 => StatsType.Haste,
-            8 => StatsType.Stamina,
-            9 => StatsType.Intelligence,
-            10 => StatsType.Piercing,
-            11 => StatsType.Penetration,
-            12 => StatsType.Tenacity,
+    public static StatsType GetStatType(int stat)
+    {
+        return stat switch
+        {
+            HEALTH_STAT => StatsType.MaxHP,
+            MANA_STAT => StatsType.MaxMP,
+            STRENGTH_STAT => StatsType.Strength,
+            WIT_STAT => StatsType.Wit,
+            DEFENSE_STAT => StatsType.Defense,
+            RESISTANCE_STAT => StatsType.Resistance,
+            SPEED_STAT => StatsType.Speed,
+            STAMINA_STAT => StatsType.Haste,
+            HASTE_STAT => StatsType.Stamina,
+            INTELLIGENCE_STAT => StatsType.Intelligence,
+            PIERCING_STAT => StatsType.Piercing,
+            PENETRATION_STAT => StatsType.Penetration,
+            TENACITY_STAT => StatsType.Tenacity,
             _ => StatsType.None
         };
     }
@@ -221,20 +232,21 @@ public class StatsManager {
     }
 
     public static StatsType GetBoostStatType(int stat) {
-        return stat switch {
-            0 => StatsType.HPBonus,
-            1 => StatsType.MPBonus,
-            2 => StatsType.StrengthBonus,
-            3 => StatsType.WitBonus,
-            4 => StatsType.DefenseBonus,
-            5 => StatsType.ResistanceBonus,
-            6 => StatsType.SpeedBonus,
-            7 => StatsType.HasteBonus,
-            8 => StatsType.StaminaBonus,
-            9 => StatsType.IntelligenceBonus,
-            10 => StatsType.PiercingBonus,
-            11 => StatsType.PenetrationBonus,
-            12 => StatsType.TenacityBonus,
+        return stat switch
+        {
+            HEALTH_STAT => StatsType.HPBonus,
+            MANA_STAT => StatsType.MPBonus,
+            STRENGTH_STAT => StatsType.StrengthBonus,
+            WIT_STAT => StatsType.WitBonus,
+            DEFENSE_STAT => StatsType.DefenseBonus,
+            RESISTANCE_STAT => StatsType.ResistanceBonus,
+            SPEED_STAT => StatsType.SpeedBonus,
+            STAMINA_STAT => StatsType.HasteBonus,
+            HASTE_STAT => StatsType.StaminaBonus,
+            INTELLIGENCE_STAT => StatsType.IntelligenceBonus,
+            PIERCING_STAT => StatsType.PiercingBonus,
+            PENETRATION_STAT => StatsType.PenetrationBonus,
+            TENACITY_STAT => StatsType.TenacityBonus,
             _ => StatsType.None
         };
     }
