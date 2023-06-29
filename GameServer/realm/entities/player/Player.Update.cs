@@ -196,32 +196,42 @@ public partial class Player {
         }
     }
 
-    private IEnumerable<Entity> GetNewEntities(HashSet<IntPoint> visibleTiles) {
+    private IEnumerable<Entity> GetNewEntities(HashSet<IntPoint> visibleTiles)
+    {
         while (ClientKilledEntity.TryDequeue(out var entity))
             _clientEntities.Remove(entity);
 
-        foreach (var i in Owner.Players)
-            if ((i.Value == this || i.Value.Client.Account != null && i.Value.Client.Player.CanBeSeenBy(this)) &&
-                _clientEntities.Add(i.Value))
-                yield return i.Value;
+        // getting Null owner meaning theres something wrong with threading?
+        // or it means we need to rewrite our setting world to null for entities on death lol
+        // its stupid
+        if (Owner != null)
+        {
+            foreach (var i in Owner.Players)
+                if ((i.Value == this || i.Value.Client.Account != null && i.Value.Client.Player.CanBeSeenBy(this)) &&
+                    _clientEntities.Add(i.Value))
+                    yield return i.Value;
 
-        var p = new IntPoint(0, 0);
-        foreach (var i in Owner.EnemiesCollision.HitTest(X, Y, VISIBILITY_RADIUS)) {
-            if (i is Container) {
-                var owners = (i as Container).BagOwners;
-                if (owners.Length > 0 && Array.IndexOf(owners, AccountId) == -1)
-                    continue;
+            var p = new IntPoint(0, 0);
+            foreach (var i in Owner.EnemiesCollision.HitTest(X, Y, VISIBILITY_RADIUS))
+            {
+                if (i is Container)
+                {
+                    var owners = (i as Container).BagOwners;
+                    if (owners.Length > 0 && Array.IndexOf(owners, AccountId) == -1)
+                        continue;
+                }
+
+                p.X = (int)i.X;
+                p.Y = (int)i.Y;
+                if (visibleTiles.Contains(p) && _clientEntities.Add(i))
+                    yield return i;
             }
 
-            p.X = (int) i.X;
-            p.Y = (int) i.Y;
-            if (visibleTiles.Contains(p) && _clientEntities.Add(i))
-                yield return i;
-        }
-
-        foreach (var en in Owner.Enemies.Values) {
-            if (en != null && en.RealmEvent && _clientEntities.Add(en))
-                yield return en;
+            foreach (var en in Owner.Enemies.Values)
+            {
+                if (en != null && en.RealmEvent && _clientEntities.Add(en))
+                    yield return en;
+            }
         }
     }
 

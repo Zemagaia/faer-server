@@ -163,6 +163,7 @@ public partial class Player : Character, IContainer, IPlayer {
         stats[StatsType.Texture] = Skin;
         stats[StatsType.Glow] = Glow;
         stats[StatsType.MP] = MP;
+
         stats[StatsType.Inv0] = Inventory[0]?.ObjectType ?? ushort.MaxValue;
         stats[StatsType.Inv1] = Inventory[1]?.ObjectType ?? ushort.MaxValue;
         stats[StatsType.Inv2] = Inventory[2]?.ObjectType ?? ushort.MaxValue;
@@ -183,32 +184,9 @@ public partial class Player : Character, IContainer, IPlayer {
         stats[StatsType.Inv17] = Inventory[17]?.ObjectType ?? ushort.MaxValue;
         stats[StatsType.Inv18] = Inventory[18]?.ObjectType ?? ushort.MaxValue;
         stats[StatsType.Inv19] = Inventory[19]?.ObjectType ?? ushort.MaxValue;
-        stats[StatsType.MaxHP] = Stats[0];
-        stats[StatsType.MaxMP] = Stats[1];
-        stats[StatsType.Strength] = Stats[2];
-        stats[StatsType.Wit] = Stats[3];
-        stats[StatsType.Defense] = Stats[4];
-        stats[StatsType.Resistance] = Stats[5];
-        stats[StatsType.Speed] = Stats[6];
-        stats[StatsType.Haste] = Stats[7];
-        stats[StatsType.Stamina] = Stats[8];
-        stats[StatsType.Intelligence] = Stats[9];
-        stats[StatsType.Piercing] = Stats[10];
-        stats[StatsType.Penetration] = Stats[11];
-        stats[StatsType.Tenacity] = Stats[12];
-        stats[StatsType.HPBonus] = Stats.Boost[0];
-        stats[StatsType.MPBonus] = Stats.Boost[1];
-        stats[StatsType.StrengthBonus] = Stats.Boost[2];
-        stats[StatsType.WitBonus] = Stats.Boost[3];
-        stats[StatsType.DefenseBonus] = Stats.Boost[4];
-        stats[StatsType.ResistanceBonus] = Stats.Boost[5];
-        stats[StatsType.SpeedBonus] = Stats.Boost[6];
-        stats[StatsType.HasteBonus] = Stats.Boost[7];
-        stats[StatsType.StaminaBonus] = Stats.Boost[8];
-        stats[StatsType.IntelligenceBonus] = Stats.Boost[9];
-        stats[StatsType.PiercingBonus] = Stats.Boost[10];
-        stats[StatsType.PenetrationBonus] = Stats.Boost[11];
-        stats[StatsType.TenacityBonus] = Stats.Boost[12];
+
+        Stats.ExportStatData(stats);
+
         stats[StatsType.HitMultiplier] = HitMultiplier;
         stats[StatsType.DamageMultiplier] = DamageMultiplier;
         stats[StatsType.Tier] = Tier;
@@ -359,7 +337,7 @@ public partial class Player : Character, IContainer, IPlayer {
 
     private void HandleRegen(RealmTime time) {
         // hp regen
-        if (HP == Stats[0] || !CanHpRegen())
+        if (HP == Stats[StatsManager.HEALTH_STAT] || !CanHpRegen())
             _hpRegenCounter = 0;
         else {
             _hpRegenCounter += Stats.GetHpRegen() * time.ElapsedMsDelta / 1000f;
@@ -377,7 +355,7 @@ public partial class Player : Character, IContainer, IPlayer {
             _mpRegenCounter += Stats.GetMpRegen() * time.ElapsedMsDelta / 1000f;
             var regen = (int) _mpRegenCounter;
             if (regen > 0) {
-                MP = Math.Min(Stats[1], MP + regen);
+                MP = Math.Min(Stats[StatsManager.MANA_STAT], MP + regen);
                 _mpRegenCounter -= regen;
             }
         }

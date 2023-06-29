@@ -546,11 +546,11 @@ public class Client {
             case StatsType.Defense:
             case StatsType.Resistance:
             case StatsType.Speed:
-            case StatsType.Haste:
             case StatsType.Stamina:
             case StatsType.Intelligence:
-            case StatsType.Piercing:
             case StatsType.Penetration:
+            case StatsType.Piercing:
+            case StatsType.Haste:
             case StatsType.Tenacity:
             case StatsType.HPBonus:
             case StatsType.MPBonus:
@@ -559,11 +559,11 @@ public class Client {
             case StatsType.DefenseBonus:
             case StatsType.ResistanceBonus:
             case StatsType.SpeedBonus:
-            case StatsType.HasteBonus:
             case StatsType.StaminaBonus:
             case StatsType.IntelligenceBonus:
-            case StatsType.PiercingBonus:
             case StatsType.PenetrationBonus:
+            case StatsType.PiercingBonus:
+            case StatsType.HasteBonus:
             case StatsType.TenacityBonus:
             case StatsType.SellablePrice:
                 WriteShort(ref ptr, ref spanRef, Convert.ToInt16(value));

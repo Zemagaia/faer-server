@@ -13,7 +13,7 @@ internal class BaseStatManager
         _parent = parent;
         _base = Utils.ResizeArray(
             parent.Owner.Client.Character.Stats,
-            StatsManager.NumStatTypes);
+            StatsManager.STAT_TOTAL_COUNT);
 
         ReCalculateValues();
     }

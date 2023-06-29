@@ -421,7 +421,7 @@ partial class Player {
         this.AOE(eff.Range, true, player =>
             ActivateHealMp(player as Player, (int) eff.Amount));
         foreach (var p in Owner.Players.Values)
-            if (MathUtils.DistSqr(p.X, p.Y, X, Y) < VISIBILITY_RADIUS_SQR)
+            if (MathUtils.DistSqr(p.X, Y, X, Y) < VISIBILITY_RADIUS_SQR)
                 p.Client.SendShowEffect(EffectType.AreaBlast, Id, eff.Range, eff.Range, 0, 0, 0xFFFFFFFF);
     }
 

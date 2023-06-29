@@ -9,10 +9,25 @@
 *.restore.info
 *.dll
 logs/
-GameServer
-LoginServer
 System.Reactive.xml
 !RotMG.Common.dll
+# commented out because ????????
+# GameServer
+# LoginServer
+
+# Redis database
+dump.rdb
+
+# Build results
+# resources used to be in bin and binaries checked out in git - no more
+*/bin/
+bin/
+# obj was in every project, not just top level
+*/[Oo]bj/
+*/bld/
+*/x64/
+*/x86/
+*/build/
 
 #ignore thumbnails created by windows
 Thumbs.db
@@ -28,14 +43,6 @@ Thumbs.db
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
-
-# Build results
-x64/
-x86/
-build/
-bld/
-Debug/
-[Oo]bj/
 
 # Visual Studio 2015 cache/options directory
 .vs/

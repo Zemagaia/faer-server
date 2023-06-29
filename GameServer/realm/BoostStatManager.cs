@@ -21,7 +21,7 @@ internal class BoostStatManager
         _parent = parent;
         _player = parent.Owner;
 
-        _boost = new ushort[StatsManager.NumStatTypes];
+        _boost = new ushort[StatsManager.STAT_TOTAL_COUNT];
         _boostSV = new SV<ushort>[_boost.Length];
         for (var i = 0; i < _boostSV.Length; i++)
             _boostSV[i] = new SV<ushort>(_player, StatsManager.GetBoostStatType(i), _boost[i], i != 0 && i != 1);
