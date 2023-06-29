@@ -37,7 +37,10 @@ public class StatsManager
 
         _stats = new SV<short>[STAT_TOTAL_COUNT];
         for (var i = 0; i < STAT_TOTAL_COUNT; i++)
+        {
+            Console.WriteLine(GetStatType(i) + " " + (short)this[i]);
             _stats[i] = new SV<short>(Owner, GetStatType(i), (short) this[i], i != HEALTH_STAT && i != MANA_STAT); // make maxHP and maxMP global update
+        }
     }
 
     public void ReCalculateValues(InventoryChangedEventArgs e = null) {
@@ -181,11 +184,11 @@ public class StatsManager
             StatsType.Defense => DEFENSE_STAT,
             StatsType.Resistance => RESISTANCE_STAT,
             StatsType.Speed => SPEED_STAT,
-            StatsType.Haste => STAMINA_STAT,
-            StatsType.Stamina => HASTE_STAT,
+            StatsType.Stamina => STAMINA_STAT,
             StatsType.Intelligence => INTELLIGENCE_STAT,
             StatsType.Piercing => PIERCING_STAT,
             StatsType.Penetration => PENETRATION_STAT,
+            StatsType.Haste => HASTE_STAT,
             StatsType.Tenacity => TENACITY_STAT,
             _ => -1
         };
@@ -202,11 +205,11 @@ public class StatsManager
             DEFENSE_STAT => StatsType.Defense,
             RESISTANCE_STAT => StatsType.Resistance,
             SPEED_STAT => StatsType.Speed,
-            STAMINA_STAT => StatsType.Haste,
-            HASTE_STAT => StatsType.Stamina,
+            STAMINA_STAT => StatsType.Stamina,
             INTELLIGENCE_STAT => StatsType.Intelligence,
             PIERCING_STAT => StatsType.Piercing,
             PENETRATION_STAT => StatsType.Penetration,
+            HASTE_STAT => StatsType.Haste,
             TENACITY_STAT => StatsType.Tenacity,
             _ => StatsType.None
         };
@@ -221,11 +224,11 @@ public class StatsManager
             "DEF" => StatsType.Defense,
             "RES" => StatsType.Resistance,
             "SPD" => StatsType.Speed,
-            "HST" => StatsType.Haste,
             "STM" => StatsType.Stamina,
             "INT" => StatsType.Intelligence,
             "PRC" => StatsType.Piercing,
             "PEN" => StatsType.Penetration,
+            "HST" => StatsType.Haste,
             "TEN" => StatsType.Tenacity,
             _ => StatsType.None
         };
@@ -241,11 +244,11 @@ public class StatsManager
             DEFENSE_STAT => StatsType.DefenseBonus,
             RESISTANCE_STAT => StatsType.ResistanceBonus,
             SPEED_STAT => StatsType.SpeedBonus,
-            STAMINA_STAT => StatsType.HasteBonus,
-            HASTE_STAT => StatsType.StaminaBonus,
+            STAMINA_STAT => StatsType.StaminaBonus,
             INTELLIGENCE_STAT => StatsType.IntelligenceBonus,
             PIERCING_STAT => StatsType.PiercingBonus,
             PENETRATION_STAT => StatsType.PenetrationBonus,
+            HASTE_STAT => StatsType.HasteBonus,
             TENACITY_STAT => StatsType.TenacityBonus,
             _ => StatsType.None
         };
