@@ -61,27 +61,6 @@ internal class MostDamagers : ILootDef
     }
 }
 
-public class OnlyOne : ILootDef
-{
-    private readonly ILootDef[] _loots;
-
-    public OnlyOne(XElement e, ILootDef[] loots)
-    {
-        _loots = loots;
-    }
-        
-    public OnlyOne(params ILootDef[] loots)
-    {
-        _loots = loots;
-    }
-
-    public void Populate(RealmManager manager, Enemy enemy, Tuple<Player, int> playerDat, Random rand,
-        IList<LootDef> lootDefs)
-    {
-        _loots[rand.Next(0, _loots.Length)].Populate(manager, enemy, playerDat, rand, lootDefs);
-    }
-}
-
 public class Threshold : ILootDef
 {
     private readonly double _threshold;
@@ -119,15 +98,6 @@ public class Threshold : ILootDef
             i.Populate(manager, enemy, null, rand, lootDefs);
         }
     }
-}
-
-public enum LItemType
-{
-    Weapon,
-    Ability,
-    Armor,
-    Ring,
-    Potion
 }
 
 public class TierLoot : ILootDef
@@ -281,11 +251,4 @@ public class GoldDrop : ILootDef
         player.Client.Account.Credits = player.Credits += MathUtils.Next(_min, _max);
         player.Client.SendShowEffect(EffectType.Flow, player.Id, enemy.X, enemy.Y, enemy.X, enemy.Y, 0xFFFFFF00);
     }
-}
-
-public static class Thresholds
-{
-    public const double Legendary = 0.02;
-    public const double Mythic = 0.05;
-    public const double Special = 0.08; // Divine and Unholy
 }

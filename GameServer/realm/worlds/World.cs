@@ -344,11 +344,26 @@ public class World {
                 break;
             }
             case Enemy enemy: {
+                var foundEnigma = false;
+                foreach (var p in Players.Values)
+                    if (p.ObjectType == 0x0321 && MathUtils.DistSqr(p.X, p.Y, enemy.X, enemy.Y) < 16 * 16) {
+                        foundEnigma = true;
+                        break;
+                    }
+
+                if (foundEnigma) {
+                    var soul = Entity.Resolve(Manager, 0x100a); // soul fragment id
+                    soul.Move(enemy.X, enemy.Y);
+                    EnterWorld(soul);
+                }
+                
                 Enemies.TryRemove(enemy.Id, out _);
                 EnemiesCollision.Remove(enemy);
                 if (enemy.ObjectDesc.Quest)
                     Quests.TryRemove(enemy.Id, out _);
                 enemy.Dispose();
+                
+                
                 break;
             }
             case Projectile projectile: {

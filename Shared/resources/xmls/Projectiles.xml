@@ -1261,5 +1261,8 @@
          </Texture>
       </RandomTexture>
       <AngleCorrection>1</AngleCorrection>
+      <LightColor>0xFA35FF</LightColor>
+      <LightIntensity>0.4</LightIntensity>
+      <LightRadius>0.5</LightRadius>
    </Object>
 </Objects>

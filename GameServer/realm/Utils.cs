@@ -396,31 +396,20 @@ internal static class EntityUtils {
 internal static class ItemUtils {
     public static int NO_ITEM = -1;
     public static int ALL_TYPE = 0;
-    public static int ACCESSORY_TYPE = 9;
+    public static int BOOTS_TYPE = 9;
+    public static int ARTIFACT_TYPE = 23;
     public static int CONSUMABLE_TYPE = 10;
     public static int SWORD_TYPE = 1;
     public static int BOW_TYPE = 3;
     public static int STAFF_TYPE = 17;
-    public static int SCEPTER_TYPE = 23;
-    public static int LASER_TYPE = 24;
     public static int ANY_WEAPON_TYPE = 22;
-    public static int[] WEAPON_TYPES = {SWORD_TYPE, BOW_TYPE, STAFF_TYPE, SCEPTER_TYPE, LASER_TYPE};
+    public static int[] WEAPON_TYPES = {SWORD_TYPE, BOW_TYPE, STAFF_TYPE};
 
     public static int LEATHER_TYPE = 6;
     public static int HEAVY_TYPE = 7;
     public static int ROBE_TYPE = 14;
     public static int ANY_ARMOR_TYPE = 20;
     public static int[] ARMOR_TYPES = {LEATHER_TYPE, HEAVY_TYPE, ROBE_TYPE};
-
-    public static int FLASK_TYPE = 4;
-    public static int BLOODSTONE_TYPE = 5;
-    public static int TOTEM_TYPE = 8;
-    public static int HELM_TYPE = 16;
-    public static int BULWARK_TYPE = 12;
-    public static int CLOCK_TYPE = 15;
-    public static int CAGE_TYPE = 19;
-    public static int ANY_ABILITY_TYPE = 21;
-    public static int[] ABILITY_TYPES = {FLASK_TYPE, BLOODSTONE_TYPE, TOTEM_TYPE, HELM_TYPE, BULWARK_TYPE, CLOCK_TYPE};
 
     public static bool AuditItem(this IContainer container, Item item, int slot) {
         return item == null || container.SlotTypes[slot] == 0 || SlotsMatching(item.SlotType, container.SlotTypes[slot]);
@@ -432,8 +421,6 @@ internal static class ItemUtils {
 
         if ((WEAPON_TYPES.Contains(slot1) && slot2 == ANY_WEAPON_TYPE) ||
             (WEAPON_TYPES.Contains(slot2) && slot1 == ANY_WEAPON_TYPE) ||
-            (ABILITY_TYPES.Contains(slot1) && slot2 == ANY_ABILITY_TYPE) ||
-            (ABILITY_TYPES.Contains(slot2) && slot1 == ANY_ABILITY_TYPE) ||
             (ARMOR_TYPES.Contains(slot1) && slot2 == ANY_ARMOR_TYPE) ||
             (ARMOR_TYPES.Contains(slot2) && slot1 == ANY_ARMOR_TYPE)) {
             return true;

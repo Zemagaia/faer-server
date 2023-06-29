@@ -10,8 +10,8 @@
       <Index>0</Index>
     </AnimatedTexture>
     <Player />
-    <SlotTypes>3, 4, 6, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
-    <Equipment>0xa2a, 0xa4a, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
+    <SlotTypes>3, 6, 9, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
+    <Equipment>0xa2a, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
     <Ability1>
       <Icon>
         <Sheet>abilityIcons</Sheet>
@@ -80,8 +80,8 @@ Voidlings have &lt;b&gt;&lt;i&gt;&lt;font color="#80BFA4"&gt;350 (+25% HP) Maxim
       <Index>1</Index>
     </AnimatedTexture>
     <Player />
-    <SlotTypes>17, 5, 14, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
-    <Equipment>0xa35, 0xa55, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
+    <SlotTypes>17, 14, 9, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
+    <Equipment>0xa35, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
     <Ability1>
       <Icon>
         <Sheet>abilityIcons</Sheet>
@@ -150,8 +150,8 @@ Soul Fragments are shared between all Enigmas in the same instance.</Description
       <Index>2</Index>
     </AnimatedTexture>
     <Player />
-    <SlotTypes>3, 8, 6, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
-    <Equipment>0xa2a, 0xa60, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
+    <SlotTypes>3, 6, 9, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
+    <Equipment>0xa2a, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
     <Ability1>
       <Icon>
         <Sheet>abilityIcons</Sheet>
@@ -220,8 +220,8 @@ Soul Fragments are shared between all Enigmas in the same instance.</Description
       <Index>3</Index>
     </AnimatedTexture>
     <Player />
-    <SlotTypes>17, 14, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
-    <Equipment>0xa35, 0xa6b, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
+    <SlotTypes>17, 14, 9, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
+    <Equipment>0xa35, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
     <Ability1>
       <Icon>
         <Sheet>abilityIcons</Sheet>
@@ -290,8 +290,8 @@ Soul Fragments are shared between all Enigmas in the same instance.</Description
       <Index>4</Index>
     </AnimatedTexture>
     <Player />
-    <SlotTypes>1, 16, 7, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
-    <Equipment>0xa00, 0xa76, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
+    <SlotTypes>1, 7, 9, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
+    <Equipment>0xa00, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
     <Ability1>
       <Icon>
         <Sheet>abilityIcons</Sheet>
@@ -360,8 +360,8 @@ Soul Fragments are shared between all Enigmas in the same instance.</Description
       <Index>5</Index>
     </AnimatedTexture>
     <Player />
-    <SlotTypes>1, 12, 7, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
-    <Equipment>0xa00, 0xa81, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
+    <SlotTypes>1, 7, 9, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
+    <Equipment>0xa00, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
     <Ability1>
       <Icon>
         <Sheet>abilityIcons</Sheet>
@@ -430,8 +430,8 @@ Soul Fragments are shared between all Enigmas in the same instance.</Description
       <Index>6</Index>
     </AnimatedTexture>
     <Player />
-    <SlotTypes>17, 15, 14, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
-    <Equipment>0xa35, 0xa8b, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
+    <SlotTypes>17, 14, 9, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
+    <Equipment>0xa35, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
     <Ability1>
       <Icon>
         <Sheet>abilityIcons</Sheet>
@@ -500,7 +500,7 @@ Soul Fragments are shared between all Enigmas in the same instance.</Description
       <Index>9</Index>
     </AnimatedTexture>
     <Player />
-    <SlotTypes>17, 23, 14, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
+    <SlotTypes>17, 14, 9, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
     <Equipment>0xa35, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
     <Ability1>
       <Icon>
@@ -570,8 +570,8 @@ Soul Fragments are shared between all Enigmas in the same instance.</Description
       <Index>8</Index>
     </AnimatedTexture>
     <Player />
-    <SlotTypes>22, 21, 20, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
-    <Equipment>0xa35, 0xa4a, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
+    <SlotTypes>22, 20, 9, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
+    <Equipment>0xa35, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
     <Projectile id="0">
         <ObjectId>Enigma Projectile</ObjectId>
         <Speed>70</Speed>
@@ -652,7 +652,7 @@ Voidlings have &lt;b&gt;&lt;i&gt;&lt;font color="#80BFA4"&gt;350 (+25% HP) Maxim
       <Index>10</Index>
     </AnimatedTexture>
     <Player />
-    <SlotTypes>3, 24, 6, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
+    <SlotTypes>3, 6, 9, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
     <Equipment>0xa2a, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
     <Ability1>
       <Icon>

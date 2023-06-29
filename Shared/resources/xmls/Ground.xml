@@ -149,7 +149,7 @@
                 <Index>0x7f</Index>
             </Texture>
         </RandomTexture>
-        <!-- <BlendPriority>-98</BlendPriority> -->
+        <BlendPriority>-98</BlendPriority>
     </Ground>
     <Ground type="0x2a" id="Chasm Ground Dark">
         <RandomTexture>
@@ -162,7 +162,7 @@
             <!-- What is the stuff after that meant to be? The ones with the bones on them -->
         </RandomTexture>
         <!-- lower than bright -->
-        <!-- <BlendPriority>-98</BlendPriority> -->
+        <BlendPriority>-97</BlendPriority>
     </Ground>
     <Ground type="0x2b" id="Desert Sand">
         <Texture>

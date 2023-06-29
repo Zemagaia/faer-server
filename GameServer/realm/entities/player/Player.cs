@@ -153,9 +153,6 @@ public partial class Player : Character, IContainer, IPlayer {
 
     public readonly StatsManager Stats;
 
-    public int XpBoostItem { get; set; }
-    public int DamageDealt { get; set; }
-
     protected override void ExportStats(IDictionary<StatsType, object> stats) {
         base.ExportStats(stats);
         stats[StatsType.AccountId] = AccountId;
@@ -264,7 +261,6 @@ public partial class Player : Character, IContainer, IPlayer {
 
         Inventory.InventoryChanged += (_, e) => {
             Stats.ReCalculateValues(e);
-            SetItemXpBoost();
         };
 
         SlotTypes = Utils.ResizeArray(
@@ -288,7 +284,6 @@ public partial class Player : Character, IContainer, IPlayer {
 
         Admin = client.Account.Admin ? 1 : 0;
 
-        SetItemXpBoost();
         LoadAbilities();
     }
 
@@ -335,18 +330,6 @@ public partial class Player : Character, IContainer, IPlayer {
 
         if (HP <= 0)
             Death("Unknown", rekt: true);
-    }
-
-    private void SetItemXpBoost() {
-        var sum = 0;
-        for (var i = 0; i < 6; i++) {
-            if (Inventory[i] == null)
-                continue;
-
-            sum += Inventory[i].XpBonus;
-        }
-
-        XpBoostItem = sum;
     }
 
     private float _hpRegenCounter;

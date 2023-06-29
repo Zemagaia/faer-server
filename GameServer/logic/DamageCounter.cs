@@ -26,14 +26,10 @@ public class DamageCounter
 
     public void HitBy(Player player, RealmTime time, Projectile projectile, int dmg)
     {
-        int totalDmg;
-        if (!hitters.TryGetValue(player, out totalDmg))
+        if (!hitters.TryGetValue(player, out var totalDmg))
             totalDmg = 0;
         totalDmg += dmg;
         hitters[player] = totalDmg;
-
-        if (_enemy.ObjectDesc.Quest && _enemy.HP > 0)
-            player.DamageDealt = hitters[player];
 
         LastProjectile = projectile;
         LastHitter = player;
@@ -58,22 +54,11 @@ public class DamageCounter
         _enemy = enemy;
     }
 
-    public void Death(RealmTime time)
-    {
-        if (Corpse != null)
-        {
-            Corpse.Parent = this;
+    public void Death(RealmTime time) {
+        if (Corpse == null) 
             return;
-        }
-
-        var enemy = (Parent ?? this)._enemy;
-
-        if (enemy.Spawned)
-            return;
-
-        if (enemy.ObjectDesc.Quest)
-            foreach (var player in hitters.Keys)
-                player.DamageDealt = 0;
+        
+        Corpse.Parent = this;
     }
         
     public void TransferData(DamageCounter dc)
@@ -81,13 +66,11 @@ public class DamageCounter
         dc.LastProjectile = LastProjectile;
         dc.LastHitter = LastHitter;
 
-        int totalDmg;
-        int totalExistingDmg;
         foreach (var plr in hitters.Keys)
         {
-            if (!hitters.TryGetValue(plr, out totalDmg))
+            if (!hitters.TryGetValue(plr, out var totalDmg))
                 totalDmg = 0;
-            if (!dc.hitters.TryGetValue(plr, out totalExistingDmg))
+            if (!dc.hitters.TryGetValue(plr, out var totalExistingDmg))
                 totalExistingDmg = 0;
 
             dc.hitters[plr] = totalDmg + totalExistingDmg;
