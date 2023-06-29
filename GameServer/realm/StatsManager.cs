@@ -16,8 +16,8 @@ public class StatsManager
     public const byte SPEED_STAT = 6;
     public const byte STAMINA_STAT = 7;
     public const byte INTELLIGENCE_STAT = 8;
-    public const byte PIERCING_STAT = 9;
-    public const byte PENETRATION_STAT = 10;
+    public const byte PENETRATION_STAT = 9;
+    public const byte PIERCING_STAT = 10;
     public const byte HASTE_STAT = 11;
     public const byte TENACITY_STAT = 12;
 
@@ -186,8 +186,8 @@ public class StatsManager
             StatsType.Speed => SPEED_STAT,
             StatsType.Stamina => STAMINA_STAT,
             StatsType.Intelligence => INTELLIGENCE_STAT,
-            StatsType.Piercing => PIERCING_STAT,
             StatsType.Penetration => PENETRATION_STAT,
+            StatsType.Piercing => PIERCING_STAT,
             StatsType.Haste => HASTE_STAT,
             StatsType.Tenacity => TENACITY_STAT,
             _ => -1
@@ -207,8 +207,8 @@ public class StatsManager
             SPEED_STAT => StatsType.Speed,
             STAMINA_STAT => StatsType.Stamina,
             INTELLIGENCE_STAT => StatsType.Intelligence,
-            PIERCING_STAT => StatsType.Piercing,
             PENETRATION_STAT => StatsType.Penetration,
+            PIERCING_STAT => StatsType.Piercing,
             HASTE_STAT => StatsType.Haste,
             TENACITY_STAT => StatsType.Tenacity,
             _ => StatsType.None
@@ -226,8 +226,8 @@ public class StatsManager
             "SPD" => StatsType.Speed,
             "STM" => StatsType.Stamina,
             "INT" => StatsType.Intelligence,
-            "PRC" => StatsType.Piercing,
             "PEN" => StatsType.Penetration,
+            "PRC" => StatsType.Piercing,
             "HST" => StatsType.Haste,
             "TEN" => StatsType.Tenacity,
             _ => StatsType.None
@@ -246,8 +246,8 @@ public class StatsManager
             SPEED_STAT => StatsType.SpeedBonus,
             STAMINA_STAT => StatsType.StaminaBonus,
             INTELLIGENCE_STAT => StatsType.IntelligenceBonus,
-            PIERCING_STAT => StatsType.PiercingBonus,
             PENETRATION_STAT => StatsType.PenetrationBonus,
+            PIERCING_STAT => StatsType.PiercingBonus,
             HASTE_STAT => StatsType.HasteBonus,
             TENACITY_STAT => StatsType.TenacityBonus,
             _ => StatsType.None

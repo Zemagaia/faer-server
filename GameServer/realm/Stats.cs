@@ -45,8 +45,8 @@ public enum StatsType : byte
     Wit = 39,
     Resistance = 40,
     Intelligence = 41,
-    Piercing = 42,
-    Penetration = 43,
+    Penetration = 42,
+    Piercing = 43,
     Haste = 44,
     Tenacity = 45,
 
@@ -59,8 +59,8 @@ public enum StatsType : byte
     WitBonus = 52,
     ResistanceBonus = 53,
     IntelligenceBonus = 54,
-    PiercingBonus = 55,
-    PenetrationBonus = 56,
+    PenetrationBonus = 55,
+    PiercingBonus = 56,
     HasteBonus = 57,
     TenacityBonus = 58,
 

@@ -196,8 +196,8 @@ public partial class Player : Character, IContainer, IPlayer {
         stats[StatsType.Speed] = Stats[StatsManager.SPEED_STAT];
         stats[StatsType.Stamina] = Stats[StatsManager.STAMINA_STAT];
         stats[StatsType.Intelligence] = Stats[StatsManager.INTELLIGENCE_STAT];
-        stats[StatsType.Piercing] = Stats[StatsManager.PIERCING_STAT];
         stats[StatsType.Penetration] = Stats[StatsManager.PENETRATION_STAT];
+        stats[StatsType.Piercing] = Stats[StatsManager.PIERCING_STAT];
         stats[StatsType.Haste] = Stats[StatsManager.HASTE_STAT];
         stats[StatsType.Tenacity] = Stats[StatsManager.TENACITY_STAT];
 
@@ -210,8 +210,8 @@ public partial class Player : Character, IContainer, IPlayer {
         stats[StatsType.SpeedBonus] = Stats.Boost[StatsManager.SPEED_STAT];
         stats[StatsType.StaminaBonus] = Stats.Boost[StatsManager.STAMINA_STAT];
         stats[StatsType.IntelligenceBonus] = Stats.Boost[StatsManager.INTELLIGENCE_STAT];
-        stats[StatsType.PiercingBonus] = Stats.Boost[StatsManager.PIERCING_STAT];
         stats[StatsType.PenetrationBonus] = Stats.Boost[StatsManager.PENETRATION_STAT];
+        stats[StatsType.PiercingBonus] = Stats.Boost[StatsManager.PIERCING_STAT];
         stats[StatsType.HasteBonus] = Stats.Boost[StatsManager.HASTE_STAT];
         stats[StatsType.TenacityBonus] = Stats.Boost[StatsManager.TENACITY_STAT];
         
