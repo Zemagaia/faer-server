@@ -10,8 +10,8 @@
       <Index>0</Index>
     </AnimatedTexture>
     <Player />
-    <SlotTypes>3, 4, 6, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
-    <Equipment>0xa2a, 0xa4a, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
+    <SlotTypes>3, 6, 9, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
+    <Equipment>0xa2a, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
     <Ability1>
       <Icon>
         <Sheet>abilityIcons</Sheet>
@@ -80,8 +80,8 @@ Voidlings have &lt;b&gt;&lt;i&gt;&lt;font color="#80BFA4"&gt;350 (+25% HP) Maxim
       <Index>1</Index>
     </AnimatedTexture>
     <Player />
-    <SlotTypes>17, 5, 14, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
-    <Equipment>0xa35, 0xa55, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
+    <SlotTypes>17, 14, 9, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
+    <Equipment>0xa35, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
     <Ability1>
       <Icon>
         <Sheet>abilityIcons</Sheet>
@@ -150,8 +150,8 @@ Soul Fragments are shared between all Enigmas in the same instance.</Description
       <Index>2</Index>
     </AnimatedTexture>
     <Player />
-    <SlotTypes>3, 8, 6, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
-    <Equipment>0xa2a, 0xa60, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
+    <SlotTypes>3, 6, 9, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
+    <Equipment>0xa2a, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
     <Ability1>
       <Icon>
         <Sheet>abilityIcons</Sheet>
@@ -220,8 +220,8 @@ Soul Fragments are shared between all Enigmas in the same instance.</Description
       <Index>3</Index>
     </AnimatedTexture>
     <Player />
-    <SlotTypes>17, 14, 9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
-    <Equipment>0xa35, 0xa6b, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
+    <SlotTypes>17, 14, 9, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
+    <Equipment>0xa35, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
     <Ability1>
       <Icon>
         <Sheet>abilityIcons</Sheet>
@@ -290,8 +290,8 @@ Soul Fragments are shared between all Enigmas in the same instance.</Description
       <Index>4</Index>
     </AnimatedTexture>
     <Player />
-    <SlotTypes>1, 16, 7, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
-    <Equipment>0xa00, 0xa76, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
+    <SlotTypes>1, 7, 9, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
+    <Equipment>0xa00, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
     <Ability1>
       <Icon>
         <Sheet>abilityIcons</Sheet>
@@ -360,8 +360,8 @@ Soul Fragments are shared between all Enigmas in the same instance.</Description
       <Index>5</Index>
     </AnimatedTexture>
     <Player />
-    <SlotTypes>1, 12, 7, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
-    <Equipment>0xa00, 0xa81, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
+    <SlotTypes>1, 7, 9, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
+    <Equipment>0xa00, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
     <Ability1>
       <Icon>
         <Sheet>abilityIcons</Sheet>
@@ -430,8 +430,8 @@ Soul Fragments are shared between all Enigmas in the same instance.</Description
       <Index>6</Index>
     </AnimatedTexture>
     <Player />
-    <SlotTypes>17, 15, 14, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
-    <Equipment>0xa35, 0xa8b, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
+    <SlotTypes>17, 14, 9, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
+    <Equipment>0xa35, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
     <Ability1>
       <Icon>
         <Sheet>abilityIcons</Sheet>
@@ -500,7 +500,7 @@ Soul Fragments are shared between all Enigmas in the same instance.</Description
       <Index>9</Index>
     </AnimatedTexture>
     <Player />
-    <SlotTypes>17, 23, 14, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
+    <SlotTypes>17, 14, 9, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
     <Equipment>0xa35, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
     <Ability1>
       <Icon>
@@ -570,16 +570,16 @@ Soul Fragments are shared between all Enigmas in the same instance.</Description
       <Index>8</Index>
     </AnimatedTexture>
     <Player />
-    <SlotTypes>22, 21, 20, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
-    <Equipment>0xa35, 0xa4a, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
+    <SlotTypes>22, 20, 9, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
+    <Equipment>0xa35, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
     <Projectile id="0">
         <ObjectId>Enigma Projectile</ObjectId>
         <Speed>70</Speed>
         <LifetimeMS>1000</LifetimeMS>
         <Damage>750</Damage>
         <HeatSeekSpeed>150</HeatSeekSpeed>
-        <HeatSeekRadius>7</HeatSeekRadius>
-        <HeatSeekDelay>100</HeatSeekDelay>
+        <HeatSeekRadius>12</HeatSeekRadius>
+        <HeatSeekDelay>250</HeatSeekDelay>
     </Projectile>
     <Ability1>
       <Icon>
@@ -599,7 +599,7 @@ Soul Fragments are shared between all Enigmas in the same instance.</Description
       <Name>Paradoxical Shift</Name>
       <ManaCost>100</ManaCost>
       <Cooldown>15</Cooldown>
-      <Description>Become a Phantom for the next 3 seconds, becoming invisible to enemies and gaining +25% Speed.</Description>
+      <Description>Become a &lt;i&gt;Phantom&lt;/i&gt;  for the next 3 seconds, becoming invisible to enemies and gaining &lt;b&gt;&lt;i&gt;&lt;font color="#FFE880"&gt;+25% SPD&lt;/font&gt;&lt;/b&gt;&lt;/i&gt;.</Description>
     </Ability2>
     <Ability3>
       <Icon>
@@ -624,7 +624,9 @@ Voidlings have &lt;b&gt;&lt;i&gt;&lt;font color="#80BFA4"&gt;350 (+25% HP) Maxim
       <Name>Possession</Name>
       <ManaCost>0</ManaCost>
       <Cooldown>150</Cooldown>
-      <Description>Gain control of the targeted Enemy for the next 10 seconds, making it unable to act on its own. During the possession, your body remains vulnerable to other enemies' attacks.</Description>
+      <Description>Possess the targeted Enemy for the next &lt;b&gt;&lt;i&gt;&lt;font color="#8086BF"&gt;5 (+7% INT) seconds&lt;/font&gt;&lt;/b&gt;&lt;/i&gt;, making you control its movements and making it unable to shoot.
+
+&lt;i&gt;&lt;font size="10" color="#736562"&gt;During the possession, your body remains vulnerable to other enemies' attacks.&lt;/font&gt;&lt;/i&gt;</Description>
     </UltimateAbility>
     <Health t2="740" t1="720">695</Health>
     <Mana t2="240" t1="225">200</Mana>
@@ -650,7 +652,7 @@ Voidlings have &lt;b&gt;&lt;i&gt;&lt;font color="#80BFA4"&gt;350 (+25% HP) Maxim
       <Index>10</Index>
     </AnimatedTexture>
     <Player />
-    <SlotTypes>3, 24, 6, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
+    <SlotTypes>3, 6, 9, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
     <Equipment>0xa2a, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
     <Ability1>
       <Icon>

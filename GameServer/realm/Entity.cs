@@ -196,7 +196,9 @@ public partial class Entity : IProjectileOwner, ICollidable<Entity> {
     }
 
     public virtual void Tick(RealmTime time) {
-        if (this is Projectile || Owner == null) return;
+        if (this is Projectile || Owner == null) 
+            return;
+        
         if (_playerOwner != null) {
             if (this.Dist(_playerOwner) > 20 && _poTp) {
                 Move(_playerOwner.X, _playerOwner.Y);

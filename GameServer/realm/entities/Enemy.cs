@@ -47,10 +47,8 @@ public class Enemy : Character
 
     public event EventHandler<BehaviorEventArgs> OnDeath;
 
-    public void Death(RealmTime time)
-    {
+    public void Death(RealmTime time) {
         Owner.RealmLogic?.OnDeath(this);
-        
         DamageCounter.Death(time);
         CurrentState?.OnDeath(new BehaviorEventArgs(this, time));
         OnDeath?.Invoke(this, new BehaviorEventArgs(this, time));

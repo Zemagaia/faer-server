@@ -582,40 +582,32 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Slendergo\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "/home/a/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Slendergo\\Documents\\GitHub\\Faer\\faer-src\\LoginServer\\LoginServer.csproj",
+      "projectUniqueName": "/home/a/faer/server/LoginServer/LoginServer.csproj",
       "projectName": "LoginServer",
-      "projectPath": "C:\\Users\\Slendergo\\Documents\\GitHub\\Faer\\faer-src\\LoginServer\\LoginServer.csproj",
-      "packagesPath": "C:\\Users\\Slendergo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Slendergo\\Documents\\GitHub\\Faer\\faer-src\\LoginServer\\obj\\",
+      "projectPath": "/home/a/faer/server/LoginServer/LoginServer.csproj",
+      "packagesPath": "/home/a/.nuget/packages/",
+      "outputPath": "/home/a/faer/server/LoginServer/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Slendergo\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/home/a/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\Slendergo\\Documents\\GitHub\\Faer\\faer-src\\Shared\\Shared.csproj": {
-              "projectPath": "C:\\Users\\Slendergo\\Documents\\GitHub\\Faer\\faer-src\\Shared\\Shared.csproj"
+            "/home/a/faer/server/Shared/Shared.csproj": {
+              "projectPath": "/home/a/faer/server/Shared/Shared.csproj"
             }
           }
         }
@@ -651,7 +643,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/7.0.107/RuntimeIdentifierGraph.json"
       }
     }
   },

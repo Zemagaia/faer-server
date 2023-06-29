@@ -206,8 +206,7 @@ public class Realm
 		if (enemy.RealmEvent)
 			EventActive = false;
 		
-		if (enemy.RealmSpawn)
-		{
+		if (enemy.RealmSpawn) {
 			MobCount--;
 			if (Random.Shared.NextDouble() <= EVENT_CHANCE)
 				SpawnEvent();

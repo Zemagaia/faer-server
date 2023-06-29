@@ -237,13 +237,58 @@
             <Index>3</Index>
         </AnimatedTexture>
         <Health>150000</Health>
-        <Defense>65</Defense>
+        <Defense>75</Defense>
         <Projectile id="0">
             <ObjectId>Bone Shot</ObjectId>
             <Damage>70</Damage>
             <Speed>55</Speed>
             <Size>130</Size>
             <LifetimeMS>3200</LifetimeMS>
+            <Amplitude>1.2</Amplitude>
+        </Projectile>
+        <Projectile id="1">
+            <ObjectId>Fire Blast</ObjectId>
+            <Damage>110</Damage>
+            <Speed>75</Speed>
+            <Size>130</Size>
+            <LifetimeMS>5600</LifetimeMS>
+            <MultiHit/>
+        </Projectile>
+        <Projectile id="2">
+            <ObjectId>Rageball</ObjectId>
+            <Damage>81</Damage>
+            <Speed>27</Speed>
+            <Size>99</Size>
+            <LifetimeMS>9000</LifetimeMS>
+            <Boomerang/>
+            <MultiHit/>
+            <ConditionEffect duration="1">Slowed</ConditionEffect>
+        </Projectile>
+        <Projectile id="3">
+            <ObjectId>Demon Fire</ObjectId>
+            <Damage>120</Damage>
+            <Speed>75</Speed>
+            <Size>110</Size>
+            <LifetimeMS>600</LifetimeMS>
+            <Amplitude>0.69</Amplitude>
+        </Projectile>
+        <Projectile id="4">
+            <ObjectId>Fire Vortex</ObjectId>
+            <Damage>75</Damage>
+            <Speed>145</Speed>
+            <Size>110</Size>
+            <LifetimeMS>1800</LifetimeMS>
+            <Boomerang/>
+            <MultiHit/>
+            <Amplitude>2</Amplitude>
+            <Frequency>2</Frequency>
+        </Projectile>
+        <Projectile id="5">
+            <ObjectId>Demon Magma</ObjectId>
+            <Damage>75</Damage>
+            <Speed>75</Speed>
+            <Size>100</Size>
+            <LifetimeMS>400</LifetimeMS>
             <Amplitude>1.2</Amplitude>
         </Projectile>
         <Size>170</Size>
@@ -296,16 +341,24 @@
             <Index>2</Index>
         </AnimatedTexture>
         <Health>200000</Health>
-        <Defense>70</Defense>
+        <Defense>60</Defense>
         <Projectile id="0">
             <ObjectId>Fire Blast</ObjectId>
-            <Damage>108</Damage>
-            <Speed>72</Speed>
-            <Size>126</Size>
-            <LifetimeMS>2000</LifetimeMS>
+            <Damage>68</Damage>
+            <Speed>42</Speed>
+            <Size>66</Size>
+            <LifetimeMS>5000</LifetimeMS>
             <MultiHit/>
         </Projectile>
         <Projectile id="1">
+            <ObjectId>Fire Blast</ObjectId>
+            <Damage>110</Damage>
+            <Speed>75</Speed>
+            <Size>130</Size>
+            <LifetimeMS>5600</LifetimeMS>
+            <MultiHit/>
+        </Projectile>
+        <Projectile id="2">
             <ObjectId>Rageball</ObjectId>
             <Damage>81</Damage>
             <Speed>27</Speed>
@@ -314,6 +367,33 @@
             <Boomerang/>
             <MultiHit/>
             <ConditionEffect duration="1">Slowed</ConditionEffect>
+        </Projectile>
+        <Projectile id="3">
+            <ObjectId>Demon Fire</ObjectId>
+            <Damage>120</Damage>
+            <Speed>75</Speed>
+            <Size>110</Size>
+            <LifetimeMS>600</LifetimeMS>
+            <Amplitude>0.69</Amplitude>
+        </Projectile>
+        <Projectile id="4">
+            <ObjectId>Fire Vortex</ObjectId>
+            <Damage>75</Damage>
+            <Speed>145</Speed>
+            <Size>110</Size>
+            <LifetimeMS>1800</LifetimeMS>
+            <Boomerang/>
+            <MultiHit/>
+            <Amplitude>2</Amplitude>
+            <Frequency>2</Frequency>
+        </Projectile>
+        <Projectile id="5">
+            <ObjectId>Demon Magma</ObjectId>
+            <Damage>75</Damage>
+            <Speed>75</Speed>
+            <Size>100</Size>
+            <LifetimeMS>400</LifetimeMS>
+            <Amplitude>1.2</Amplitude>
         </Projectile>
         <Size>180</Size>
         <PermaMiniMap/>
@@ -639,7 +719,7 @@
         <PermaMiniMap/>
         <Enemy/>
     </Object>
-    <Object type="0x0735" id="Goblin Mage">
+    <Object type="0x7035" id="Goblin Mage">
         <Class>Character</Class>
         <AnimatedTexture>
             <Sheet>lowrealm</Sheet>
@@ -665,7 +745,7 @@
         <Size>90</Size>
         <Enemy/>
     </Object>
-    <Object type="0x0736" id="Goblin Brawler">
+    <Object type="0x7036" id="Goblin Brawler">
         <Class>Character</Class>
         <AnimatedTexture>
             <Sheet>lowrealm</Sheet>
@@ -691,7 +771,7 @@
         <Size>90</Size>
         <Enemy/>
     </Object>
-    <Object type="0x0737" id="Goblin Thief">
+    <Object type="0x7037" id="Goblin Thief">
         <Class>Character</Class>
         <AnimatedTexture>
             <Sheet>lowrealm</Sheet>
@@ -717,7 +797,7 @@
         <Size>90</Size>
         <Enemy/>
     </Object>
-    <Object type="0x0738" id="Goblin Brute">
+    <Object type="0x7038" id="Goblin Brute">
         <Class>Character</Class>
         <AnimatedTexture>
             <Sheet>lowrealm</Sheet>
@@ -791,7 +871,7 @@
         <Enemy/>
     </Object>
 
-     <Object type="0x0758" id="Forest Firefly">
+    <Object type="0x0758" id="Forest Firefly">
         <Class>Character</Class>
         <AnimatedTexture>
             <Sheet>lowrealm</Sheet>
@@ -800,6 +880,6 @@
         <Size>80</Size>
         <LightColor>0xe0cb99</LightColor>
         <LightIntensity>0.15</LightIntensity>
-        <LightRadius>1</LightRadius>    
+        <SortPriority>5</SortPriority>
     </Object>
 </Objects>
