@@ -573,7 +573,24 @@ Soul Fragments are shared between all Enigmas in the same instance.</Description
     <SlotTypes>22, 20, 9, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</SlotTypes>
     <Equipment>0xa35, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1</Equipment>
     <Projectile id="0">
-        <ObjectId>Enigma Projectile</ObjectId>
+      <RandomTexture>
+         <Texture>
+            <Sheet>projectiles</Sheet>
+            <Index>125</Index>
+         </Texture>
+         <Texture>
+            <Sheet>projectiles</Sheet>
+            <Index>126</Index>
+         </Texture>
+         <Texture>
+            <Sheet>projectiles</Sheet>
+            <Index>127</Index>
+         </Texture>
+      </RandomTexture>
+      <AngleCorrection>1</AngleCorrection>
+      <LightColor>0xFA35FF</LightColor>
+      <LightIntensity>0.2</LightIntensity>
+      <LightRadius>0.5</LightRadius>
         <Speed>70</Speed>
         <LifetimeMS>1000</LifetimeMS>
         <Damage>750</Damage>

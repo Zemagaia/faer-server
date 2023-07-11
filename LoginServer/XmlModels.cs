@@ -357,7 +357,7 @@ internal class Character
             Stamina = character.Stats[7],
             Intelligence = character.Stats[8],
             Penetration = character.Stats[9],
-            Piercing = character.Stats[19],
+            Piercing = character.Stats[10],
             Haste = character.Stats[11],
             Tenacity = character.Stats[12],
             Tex1 = character.Tex1,

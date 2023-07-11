@@ -22,7 +22,7 @@ public class Projectile : Entity {
     private readonly HashSet<Entity> _hit = new();
 
     public Projectile(RealmManager manager, ProjectileDesc desc)
-        : base(manager, manager.Resources.GameData.IdToObjectType[desc.ObjectId])
+        : base(manager, 0xFFFF)
     {
         ProjDesc = desc;
     }

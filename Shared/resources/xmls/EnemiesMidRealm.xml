@@ -9,7 +9,11 @@
         <Health>225000</Health>
         <Defense>65</Defense>
         <Projectile id="0">
-            <ObjectId>UFO Red Swirl</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>53</Index>
+            </Texture>
+            <Rotation>250</Rotation>
             <Damage>85</Damage>
             <Speed>70</Speed>
             <Size>150</Size>
@@ -19,7 +23,11 @@
             <MultiHit/>
         </Projectile>
         <Projectile id="1">
-            <ObjectId>UFO Red Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>54</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>105</Damage>
             <Speed>100</Speed>
             <Size>150</Size>
@@ -29,7 +37,11 @@
             <MultiHit/>
         </Projectile>
         <Projectile id="2">
-            <ObjectId>UFO Blue Ball</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>61</Index>
+            </Texture>
+            <Rotation>250</Rotation>
             <Damage>105</Damage>
             <Speed>100</Speed>
             <Size>150</Size>
@@ -38,7 +50,11 @@
             <Frequency>0.45</Frequency>
         </Projectile>
         <Projectile id="3">
-            <ObjectId>UFO Blue Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>60</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>105</Damage>
             <Speed>120</Speed>
             <Size>150</Size>
@@ -60,7 +76,11 @@
         <Health>250000</Health>
         <Defense>75</Defense>
         <Projectile id="0">
-            <ObjectId>Horror Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>116</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>155</Damage>
             <Speed>70</Speed>
             <Size>160</Size>
@@ -70,7 +90,11 @@
             <MultiHit/>
         </Projectile>
         <Projectile id="1">
-            <ObjectId>Horror Wave</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>115</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>125</Damage>
             <Speed>100</Speed>
             <Size>140</Size>
@@ -92,7 +116,11 @@
         <Health>250000</Health>
         <Defense>70</Defense>
         <Projectile id="0">
-            <ObjectId>Lab Boss Blast 1</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>64</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>175</Damage>
             <Speed>70</Speed>
             <Size>150</Size>
@@ -102,7 +130,10 @@
             <MultiHit/>
         </Projectile>
         <Projectile id="1">
-            <ObjectId>Lab Boss Blast 2</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>66</Index>
+            </Texture>
             <Damage>95</Damage>
             <Speed>110</Speed>
             <Size>150</Size>
@@ -123,7 +154,11 @@
         <Health>11000</Health>
         <Defense>45</Defense>
         <Projectile id="0">
-            <ObjectId>UFO Red Swirl</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>53</Index>
+            </Texture>
+            <Rotation>250</Rotation>
             <Damage>55</Damage>
             <Speed>100</Speed>
             <Size>120</Size>
@@ -133,7 +168,11 @@
             <MultiHit/>
         </Projectile>
         <Projectile id="1">
-            <ObjectId>UFO Red Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>54</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>75</Damage>
             <Speed>110</Speed>
             <Size>120</Size>
@@ -154,7 +193,11 @@
         <Health>14000</Health>
         <Defense>45</Defense>
         <Projectile id="0">
-            <ObjectId>UFO Blue Ball</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>61</Index>
+            </Texture>
+            <Rotation>250</Rotation>
             <Damage>75</Damage>
             <Speed>100</Speed>
             <Size>120</Size>
@@ -164,7 +207,11 @@
             <MultiHit/>
         </Projectile>
         <Projectile id="1">
-            <ObjectId>UFO Blue Blast</ObjectId>
+             <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>60</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>55</Damage>
             <Speed>110</Speed>
             <Size>120</Size>
@@ -196,7 +243,11 @@
         <Health>2000</Health>
         <Defense>35</Defense>
         <Projectile id="0">
-            <ObjectId>Star Shot</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>59</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>55</Damage>
             <Speed>110</Speed>
             <Size>120</Size>
@@ -217,7 +268,11 @@
         <Health>12000</Health>
         <Defense>40</Defense>
         <Projectile id="0">
-            <ObjectId>Bone Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>57</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>125</Damage>
             <Speed>110</Speed>
             <Size>110</Size>
@@ -249,7 +304,11 @@
         <Health>7500</Health>
         <Defense>40</Defense>
         <Projectile id="0">
-            <ObjectId>Lab Spider Shot</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>62</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>75</Damage>
             <Speed>110</Speed>
             <Size>110</Size>
@@ -270,7 +329,11 @@
         <Health>5000</Health>
         <Defense>40</Defense>
         <Projectile id="0">
-            <ObjectId>Lab Eye Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>63</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>75</Damage>
             <Speed>130</Speed>
             <Size>110</Size>
@@ -290,7 +353,11 @@
         <Health>15000</Health>
         <Defense>40</Defense>
         <Projectile id="0">
-            <ObjectId>Lab Cultist Ball</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>55</Index>
+            </Texture>
+            <Rotation>250</Rotation>
             <Damage>75</Damage>
             <Speed>60</Speed>
             <Size>110</Size>
@@ -300,7 +367,11 @@
             <MultiHit/>
         </Projectile>
         <Projectile id="1">
-            <ObjectId>Lab Cultist Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>56</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>125</Damage>
             <Speed>110</Speed>
             <Size>110</Size>
@@ -321,7 +392,11 @@
         <Health>20000</Health>
         <Defense>55</Defense>
         <Projectile id="0">
-            <ObjectId>Martian Warrior Wave</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>72</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>145</Damage>
             <Speed>80</Speed>
             <Size>110</Size>
@@ -329,7 +404,11 @@
             <MultiHit/>
         </Projectile>
         <Projectile id="1">
-            <ObjectId>Martian Warrior Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>73</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>115</Damage>
             <Speed>110</Speed>
             <Size>110</Size>
@@ -350,7 +429,11 @@
         <Health>20000</Health>
         <Defense>45</Defense>
         <Projectile id="0">
-            <ObjectId>Martian Gunner Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>74</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>100</Damage>
             <Speed>110</Speed>
             <Size>110</Size>
@@ -360,7 +443,11 @@
             <MultiHit/>
         </Projectile>
         <Projectile id="1">
-            <ObjectId>Martian Gunner Shot</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>75</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>125</Damage>
             <Speed>80</Speed>
             <Size>110</Size>
@@ -381,7 +468,11 @@
         <Health>30000</Health>
         <Defense>50</Defense>
         <Projectile id="0">
-            <ObjectId>Martian Turret Wave</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>76</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>100</Damage>
             <Speed>110</Speed>
             <Size>110</Size>
@@ -391,7 +482,11 @@
             <MultiHit/>
         </Projectile>
         <Projectile id="1">
-            <ObjectId>Martian Turret Shot</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>77</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>125</Damage>
             <Speed>80</Speed>
             <Size>110</Size>
@@ -412,7 +507,11 @@
         <Health>15000</Health>
         <Defense>40</Defense>
         <Projectile id="0">
-            <ObjectId>Martian Rogue Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>78</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>100</Damage>
             <Speed>110</Speed>
             <Size>110</Size>
@@ -442,7 +541,11 @@
         <Health>15000</Health>
         <Defense>35</Defense>
         <Projectile id="0">
-            <ObjectId>Fire Elemental Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>102</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>100</Damage>
             <Speed>110</Speed>
             <Size>110</Size>
@@ -463,7 +566,11 @@
         <Health>15000</Health>
         <Defense>35</Defense>
         <Projectile id="0">
-            <ObjectId>Air Elemental Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>110</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>100</Damage>
             <Speed>110</Speed>
             <Size>110</Size>
@@ -484,7 +591,11 @@
         <Health>15000</Health>
         <Defense>35</Defense>
         <Projectile id="0">
-            <ObjectId>Water Elemental Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>104</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>100</Damage>
             <Speed>110</Speed>
             <Size>110</Size>
@@ -505,7 +616,11 @@
         <Health>15000</Health>
         <Defense>35</Defense>
         <Projectile id="0">
-            <ObjectId>Earth Elemental Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>96</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>100</Damage>
             <Speed>110</Speed>
             <Size>110</Size>
@@ -526,7 +641,11 @@
         <Health>25000</Health>
         <Defense>45</Defense>
         <Projectile id="0">
-            <ObjectId>Earth Elemental Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>96</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>75</Damage>
             <Speed>110</Speed>
             <Size>110</Size>
@@ -547,7 +666,11 @@
         <Health>25000</Health>
         <Defense>45</Defense>
         <Projectile id="0">
-            <ObjectId>Fire Elemental Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>102</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>75</Damage>
             <Speed>110</Speed>
             <Size>110</Size>
@@ -568,7 +691,11 @@
         <Health>25000</Health>
         <Defense>45</Defense>
         <Projectile id="0">
-            <ObjectId>Water Elemental Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>104</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>75</Damage>
             <Speed>110</Speed>
             <Size>110</Size>
@@ -589,7 +716,11 @@
         <Health>25000</Health>
         <Defense>45</Defense>
         <Projectile id="0">
-            <ObjectId>Air Elemental Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>110</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>75</Damage>
             <Speed>110</Speed>
             <Size>110</Size>
@@ -610,7 +741,11 @@
         <Health>275000</Health>
         <Defense>75</Defense>
         <Projectile id="0">
-            <ObjectId>Earth Elemental Wave</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>95</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>125</Damage>
             <Speed>95</Speed>
             <Size>120</Size>
@@ -618,7 +753,11 @@
             <MultiHit/>
         </Projectile>
         <Projectile id="1">
-            <ObjectId>Earth Elemental Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>96</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>175</Damage>
             <Speed>140</Speed>
             <Size>150</Size>
@@ -637,7 +776,11 @@
         <Health>275000</Health>
         <Defense>75</Defense>
         <Projectile id="0">
-            <ObjectId>Fire Elemental Shot 1</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>100</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>125</Damage>
             <Speed>95</Speed>
             <Size>120</Size>
@@ -645,7 +788,11 @@
             <MultiHit/>
         </Projectile>
         <Projectile id="1">
-            <ObjectId>Fire Elemental Shot 2</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>101</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>175</Damage>
             <Speed>140</Speed>
             <Size>150</Size>
@@ -664,7 +811,10 @@
         <Health>275000</Health>
         <Defense>75</Defense>
         <Projectile id="0">
-            <ObjectId>Water Elemental Shot 1</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>103</Index>
+            </Texture>
             <Damage>125</Damage>
             <Speed>95</Speed>
             <Size>120</Size>
@@ -672,7 +822,11 @@
             <MultiHit/>
         </Projectile>
         <Projectile id="1">
-            <ObjectId>Water Elemental Shot 2</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>105</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>175</Damage>
             <Speed>140</Speed>
             <Size>150</Size>
@@ -691,7 +845,11 @@
         <Health>275000</Health>
         <Defense>75</Defense>
         <Projectile id="0">
-            <ObjectId>Air Elemental Shot</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>109</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>125</Damage>
             <Speed>95</Speed>
             <Size>120</Size>
@@ -699,7 +857,11 @@
             <MultiHit/>
         </Projectile>
         <Projectile id="1">
-            <ObjectId>Air Elemental Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>110</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>175</Damage>
             <Speed>140</Speed>
             <Size>150</Size>
@@ -718,7 +880,11 @@
         <Health>200000</Health>
         <Defense>55</Defense>
         <Projectile id="0">
-            <ObjectId>Wyrm Red Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>113</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>95</Damage>
             <Speed>95</Speed>
             <Size>120</Size>
@@ -728,7 +894,11 @@
             <MultiHit/>
         </Projectile>
         <Projectile id="1">
-            <ObjectId>Wyrm White Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>114</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>75</Damage>
             <Speed>70</Speed>
             <Size>150</Size>
@@ -751,7 +921,11 @@
         <Health>250000</Health>
         <Defense>65</Defense>
         <Projectile id="0">
-            <ObjectId>Sentry Blue Shot</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>80</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>125</Damage>
             <Speed>115</Speed>
             <Size>120</Size>
@@ -761,7 +935,11 @@
             <MultiHit/>
         </Projectile>
         <Projectile id="1">
-            <ObjectId>Sentry Blue Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>82</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>75</Damage>
             <Speed>70</Speed>
             <Size>150</Size>
@@ -771,7 +949,11 @@
             <MultiHit/>
         </Projectile>
         <Projectile id="2">
-            <ObjectId>Sentry Red Orb</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>83</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>145</Damage>
             <Speed>115</Speed>
             <Size>120</Size>
@@ -781,7 +963,11 @@
             <MultiHit/>
         </Projectile>
         <Projectile id="3">
-            <ObjectId>Sentry Red Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>81</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>105</Damage>
             <Speed>70</Speed>
             <Size>150</Size>
@@ -803,7 +989,11 @@
         <Health>250000</Health>
         <Defense>55</Defense>
         <Projectile id="0">
-            <ObjectId>Defender Wave</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>86</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>145</Damage>
             <Speed>85</Speed>
             <Size>120</Size>
@@ -813,7 +1003,11 @@
             <MultiHit/>
         </Projectile>
         <Projectile id="1">
-            <ObjectId>Defender Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>88</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>75</Damage>
             <Speed>130</Speed>
             <Size>150</Size>
@@ -835,7 +1029,11 @@
         <Health>250000</Health>
         <Defense>45</Defense>
         <Projectile id="0">
-            <ObjectId>Overseer Chakram</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>93</Index>
+            </Texture>
+            <Rotation>250</Rotation>
             <Damage>115</Damage>
             <Speed>85</Speed>
             <Size>120</Size>
@@ -845,7 +1043,11 @@
             <MultiHit/>
         </Projectile>
         <Projectile id="1">
-            <ObjectId>Overseer Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>94</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>95</Damage>
             <Speed>130</Speed>
             <Size>150</Size>

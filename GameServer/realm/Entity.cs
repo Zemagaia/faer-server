@@ -127,6 +127,9 @@ public partial class Entity : IProjectileOwner, ICollidable<Entity> {
 
         ObjectType = objType;
         Manager = manager;
+        if (objType == 0xFFFF)
+            return;
+        
         manager.Behaviors.ResolveBehavior(this);
         manager.Resources.GameData.ObjectDescs.TryGetValue(ObjectType, out _desc);
         if (_desc == null)

@@ -135,6 +135,11 @@
             </Texture>
         </Frame>
     </Animation>
+    <Float sine="true" height="0.3" time="700"/>
+    <AlphaMult>0.4</AlphaMult>
+    <LightColor>0xFA35FF</LightColor>
+    <LightIntensity>0.25</LightIntensity>
+    <LightRadius>0.75</LightRadius>
     <Health>1000</Health>
     <Size>70</Size>
     <NoMiniMap/>

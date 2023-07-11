@@ -9,7 +9,11 @@
         <Health>3300</Health>
         <Defense>15</Defense>
         <Projectile id="0">
-            <ObjectId>Spike Shot</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>11</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>70</Damage>
             <Speed>150</Speed>
             <Size>130</Size>
@@ -27,7 +31,11 @@
         <Health>7000</Health>
         <Defense>25</Defense>
         <Projectile id="0">
-            <ObjectId>Spear Shot</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>12</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>55</Damage>
             <Speed>75</Speed>
             <Size>150</Size>
@@ -45,7 +53,11 @@
         <Health>2000</Health>
         <Defense>10</Defense>
         <Projectile id="0">
-            <ObjectId>Dagger Shot</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>30</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>80</Damage>
             <Speed>150</Speed>
             <Size>130</Size>
@@ -63,7 +75,11 @@
         <Health>5000</Health>
         <Defense>20</Defense>
         <Projectile id="0">
-            <ObjectId>Crocodile Shot</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>31</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>65</Damage>
             <Speed>125</Speed>
             <Size>130</Size>
@@ -81,21 +97,33 @@
         <Health>40000</Health>
         <Defense>33</Defense>
         <Projectile id="0">
-            <ObjectId>Spike Shot</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>11</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>110</Damage>
             <Speed>150</Speed>
             <Size>130</Size>
             <LifetimeMS>600</LifetimeMS>
         </Projectile>
         <Projectile id="1">
-            <ObjectId>Spear Shot</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>11</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>75</Damage>
             <Speed>125</Speed>
             <Size>130</Size>
             <LifetimeMS>600</LifetimeMS>
         </Projectile>
         <Projectile id="2">
-            <ObjectId>Small Sapphire</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>0</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>160</Damage>
             <Speed>160</Speed>
             <Size>130</Size>
@@ -115,7 +143,11 @@
         <Health>75000</Health>
         <Defense>55</Defense>
         <Projectile id="0">
-            <ObjectId>Iron Lance</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>13</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>130</Damage>
             <Speed>75</Speed>
             <Size>130</Size>
@@ -123,14 +155,22 @@
             <ConditionEffect duration="3">Slowed</ConditionEffect>
         </Projectile>
         <Projectile id="1">
-            <ObjectId>Iron Wave</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>14</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>55</Damage>
             <Speed>110</Speed>
             <Size>110</Size>
             <LifetimeMS>1800</LifetimeMS>
         </Projectile>
         <Projectile id="2">
-            <ObjectId>Iron Wave</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>14</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>70</Damage>
             <Speed>55</Speed>
             <Size>120</Size>
@@ -138,7 +178,12 @@
             <MultiHit/>
         </Projectile>
         <Projectile id="3">
-            <ObjectId>Fire Vortex</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>15</Index>
+            </Texture>
+            <Rotation>38</Rotation>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>75</Damage>
             <Speed>145</Speed>
             <Size>110</Size>
@@ -161,7 +206,11 @@
         <Health>4000</Health>
         <Defense>35</Defense>
         <Projectile id="0">
-            <ObjectId>Demon Magma</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>50</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>75</Damage>
             <Speed>75</Speed>
             <Size>100</Size>
@@ -180,7 +229,11 @@
         <Health>4000</Health>
         <Defense>45</Defense>
         <Projectile id="0">
-            <ObjectId>Demon Fire</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>49</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>120</Damage>
             <Speed>75</Speed>
             <Size>110</Size>
@@ -199,7 +252,11 @@
         <Health>6000</Health>
         <Defense>50</Defense>
         <Projectile id="0">
-            <ObjectId>Demon Shadow</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>48</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>90</Damage>
             <Speed>75</Speed>
             <Size>130</Size>
@@ -219,7 +276,11 @@
         <Health>5000</Health>
         <Defense>35</Defense>
         <Projectile id="0">
-            <ObjectId>Demon Arrow</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>47</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>125</Damage>
             <Speed>75</Speed>
             <Size>130</Size>
@@ -239,7 +300,12 @@
         <Health>150000</Health>
         <Defense>75</Defense>
         <Projectile id="0">
-            <ObjectId>Bone Shot</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>16</Index>
+            </Texture>
+            <Rotation>200</Rotation>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>70</Damage>
             <Speed>55</Speed>
             <Size>130</Size>
@@ -247,7 +313,11 @@
             <Amplitude>1.2</Amplitude>
         </Projectile>
         <Projectile id="1">
-            <ObjectId>Fire Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>18</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>110</Damage>
             <Speed>75</Speed>
             <Size>130</Size>
@@ -255,7 +325,11 @@
             <MultiHit/>
         </Projectile>
         <Projectile id="2">
-            <ObjectId>Rageball</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>21</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>81</Damage>
             <Speed>27</Speed>
             <Size>99</Size>
@@ -265,7 +339,11 @@
             <ConditionEffect duration="1">Slowed</ConditionEffect>
         </Projectile>
         <Projectile id="3">
-            <ObjectId>Demon Fire</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>49</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>120</Damage>
             <Speed>75</Speed>
             <Size>110</Size>
@@ -273,7 +351,12 @@
             <Amplitude>0.69</Amplitude>
         </Projectile>
         <Projectile id="4">
-            <ObjectId>Fire Vortex</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>15</Index>
+            </Texture>
+            <Rotation>38</Rotation>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>75</Damage>
             <Speed>145</Speed>
             <Size>110</Size>
@@ -284,7 +367,11 @@
             <Frequency>2</Frequency>
         </Projectile>
         <Projectile id="5">
-            <ObjectId>Demon Magma</ObjectId>
+             <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>50</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>75</Damage>
             <Speed>75</Speed>
             <Size>100</Size>
@@ -304,7 +391,11 @@
         <Health>100000</Health>
         <Defense>55</Defense>
         <Projectile id="0">
-            <ObjectId>Fire Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>18</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>110</Damage>
             <Speed>75</Speed>
             <Size>130</Size>
@@ -325,7 +416,11 @@
         <Health>15000</Health>
         <Defense>55</Defense>
         <Projectile id="0">
-            <ObjectId>Fire Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>18</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>70</Damage>
             <Speed>75</Speed>
             <Size>130</Size>
@@ -343,7 +438,11 @@
         <Health>200000</Health>
         <Defense>60</Defense>
         <Projectile id="0">
-            <ObjectId>Fire Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>18</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>68</Damage>
             <Speed>42</Speed>
             <Size>66</Size>
@@ -351,7 +450,11 @@
             <MultiHit/>
         </Projectile>
         <Projectile id="1">
-            <ObjectId>Fire Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>18</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>110</Damage>
             <Speed>75</Speed>
             <Size>130</Size>
@@ -359,7 +462,11 @@
             <MultiHit/>
         </Projectile>
         <Projectile id="2">
-            <ObjectId>Rageball</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>21</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>81</Damage>
             <Speed>27</Speed>
             <Size>99</Size>
@@ -369,7 +476,11 @@
             <ConditionEffect duration="1">Slowed</ConditionEffect>
         </Projectile>
         <Projectile id="3">
-            <ObjectId>Demon Fire</ObjectId>
+             <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>49</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>120</Damage>
             <Speed>75</Speed>
             <Size>110</Size>
@@ -377,7 +488,12 @@
             <Amplitude>0.69</Amplitude>
         </Projectile>
         <Projectile id="4">
-            <ObjectId>Fire Vortex</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>15</Index>
+            </Texture>
+            <Rotation>38</Rotation>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>75</Damage>
             <Speed>145</Speed>
             <Size>110</Size>
@@ -388,7 +504,11 @@
             <Frequency>2</Frequency>
         </Projectile>
         <Projectile id="5">
-            <ObjectId>Demon Magma</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>50</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>75</Damage>
             <Speed>75</Speed>
             <Size>100</Size>
@@ -409,7 +529,11 @@
         <Health>9000</Health>
         <Defense>45</Defense>
         <Projectile id="0">
-            <ObjectId>Golden Bolt</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>22</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>75</Damage>
             <Speed>95</Speed>
             <Size>130</Size>
@@ -428,7 +552,11 @@
         <Health>7000</Health>
         <Defense>25</Defense>
         <Projectile id="0">
-            <ObjectId>Golden Bolt</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>22</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>75</Damage>
             <Speed>55</Speed>
             <Size>130</Size>
@@ -448,7 +576,11 @@
         <Health>8000</Health>
         <Defense>35</Defense>
         <Projectile id="0">
-            <ObjectId>Jackal Arrow</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>33</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>95</Damage>
             <Speed>75</Speed>
             <Size>130</Size>
@@ -479,14 +611,22 @@
         <Health>200000</Health>
         <Defense>75</Defense>
         <Projectile id="0">
-            <ObjectId>Crocodile Shot</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>31</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>130</Damage>
             <Speed>55</Speed>
             <Size>130</Size>
             <LifetimeMS>3200</LifetimeMS>
         </Projectile>
         <Projectile id="1">
-            <ObjectId>Spike Shot</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>11</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>110</Damage>
             <Speed>85</Speed>
             <Size>130</Size>
@@ -506,7 +646,11 @@
         <Health>150000</Health>
         <Defense>65</Defense>
         <Projectile id="0">
-            <ObjectId>Green Fire Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>25</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>153</Damage>
             <Speed>115</Speed>
             <Size>130</Size>
@@ -528,7 +672,11 @@
         <Health>5000</Health>
         <Defense>35</Defense>
         <Projectile id="0">
-            <ObjectId>Crocodile Shot</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>31</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>110</Damage>
             <Speed>125</Speed>
             <Size>130</Size>
@@ -547,7 +695,11 @@
         <Health>200000</Health>
         <Defense>65</Defense>
         <Projectile id="0">
-            <ObjectId>Sand Shot</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>51</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>75</Damage>
             <Speed>110</Speed>
             <Size>120</Size>
@@ -568,7 +720,11 @@
         <Health>15000</Health>
         <Defense>45</Defense>
         <Projectile id="0">
-            <ObjectId>Water Tornado Shot</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>52</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>85</Damage>
             <Speed>95</Speed>
             <Size>110</Size>
@@ -588,7 +744,11 @@
         <Defense>30</Defense>
         <Resistance>30</Resistance>
         <Projectile id="0">
-            <ObjectId>Slime Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>37</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>90</Damage>
             <Speed>85</Speed>
             <Size>130</Size>
@@ -596,7 +756,11 @@
             <ConditionEffect duration="3">Slowed</ConditionEffect>
         </Projectile>
         <Projectile id="1">
-            <ObjectId>Slime Wave</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>36</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>75</Damage>
             <Speed>110</Speed>
             <Size>110</Size>
@@ -615,14 +779,23 @@
         <Health>35000</Health>
         <Defense>50</Defense>
         <Projectile id="0">
-            <ObjectId>Phantom Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>34</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>110</Damage>
             <Speed>80</Speed>
             <Size>130</Size>
             <LifetimeMS>1100</LifetimeMS>
         </Projectile>
         <Projectile id="1">
-            <ObjectId>Phantom Spin</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>35</Index>
+            </Texture>
+            <Rotation>150</Rotation>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>85</Damage>
             <Speed>130</Speed>
             <Size>110</Size>
@@ -642,7 +815,10 @@
         <Health>55000</Health>
         <Defense>45</Defense>
         <Projectile id="0">
-            <ObjectId>King Slime Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>39</Index>
+            </Texture>
             <Damage>75</Damage>
             <Speed>100</Speed>
             <Size>110</Size>
@@ -650,7 +826,10 @@
             <Amplitude>0.4</Amplitude>
         </Projectile>
         <Projectile id="1">
-            <ObjectId>King Slime Ball</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>40</Index>
+            </Texture>
             <Damage>85</Damage>
             <Speed>85</Speed>
             <Size>110</Size>
@@ -669,7 +848,11 @@
         <Health>175000</Health>
         <Defense>60</Defense>
         <Projectile id="0">
-            <ObjectId>Rahu Wave</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>43</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>145</Damage>
             <Speed>70</Speed>
             <Size>130</Size>
@@ -677,7 +860,11 @@
             <MultiHit/>
         </Projectile>
         <Projectile id="1">
-            <ObjectId>Rahu Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>44</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>175</Damage>
             <Speed>100</Speed>
             <Size>110</Size>
@@ -698,7 +885,11 @@
         <Health>125000</Health>
         <Defense>60</Defense>
         <Projectile id="0">
-            <ObjectId>Blood Wave</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>45</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>95</Damage>
             <Speed>70</Speed>
             <Size>130</Size>
@@ -706,7 +897,11 @@
             <MultiHit/>
         </Projectile>
         <Projectile id="1">
-            <ObjectId>Blood Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>46</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>75</Damage>
             <Speed>100</Speed>
             <Size>110</Size>
@@ -729,14 +924,22 @@
         <Defense>10</Defense>
         <Resistance>25</Resistance>
         <Projectile id="0">
-            <ObjectId>Goblin Green Bolt</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>118</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <MagicDamage>65</MagicDamage>
             <Speed>75</Speed>
             <Size>125</Size>
             <LifetimeMS>1200</LifetimeMS>
         </Projectile>
         <Projectile id="1">
-            <ObjectId>Goblin Red  Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>123</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>50</Damage>
             <Speed>75</Speed>
             <Size>125</Size>
@@ -755,14 +958,22 @@
         <Defense>15</Defense>
         <Resistance>25</Resistance>
         <Projectile id="0">
-            <ObjectId>Goblin Green Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>122</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <MagicDamage>65</MagicDamage>
             <Speed>75</Speed>
             <Size>125</Size>
             <LifetimeMS>1200</LifetimeMS>
         </Projectile>
         <Projectile id="1">
-            <ObjectId>Goblin Green Bolt</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>118</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <MagicDamage>80</MagicDamage>
             <Speed>75</Speed>
             <Size>125</Size>
@@ -781,14 +992,22 @@
         <Defense>15</Defense>
         <Resistance>25</Resistance>
         <Projectile id="0">
-            <ObjectId>Goblin Green Blast</ObjectId>
+           <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>122</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <MagicDamage>65</MagicDamage>
             <Speed>75</Speed>
             <Size>125</Size>
             <LifetimeMS>1200</LifetimeMS>
         </Projectile>
         <Projectile id="1">
-            <ObjectId>Goblin Green Bolt</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>118</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <MagicDamage>80</MagicDamage>
             <Speed>75</Speed>
             <Size>125</Size>
@@ -807,14 +1026,22 @@
         <Defense>25</Defense>
         <Resistance>15</Resistance>
         <Projectile id="0">
-            <ObjectId>Spear Shot</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>12</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>70</Damage>
             <Speed>75</Speed>
             <Size>125</Size>
             <LifetimeMS>900</LifetimeMS>
         </Projectile>
         <Projectile id="1">
-            <ObjectId>Iron Wave</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>14</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>80</Damage>
             <Speed>75</Speed>
             <Size>125</Size>
@@ -833,7 +1060,11 @@
         <Defense>20</Defense>
         <Resistance>15</Resistance>
         <Projectile id="0">
-            <ObjectId>Slime Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>37</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>50</Damage>
             <Speed>100</Speed>
             <Size>100</Size>
@@ -853,7 +1084,11 @@
         <Defense>30</Defense>
         <Resistance>30</Resistance>
         <Projectile id="0">
-            <ObjectId>Slime Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>37</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>90</Damage>
             <Speed>85</Speed>
             <Size>130</Size>
@@ -861,7 +1096,11 @@
             <ConditionEffect duration="3">Slowed</ConditionEffect>
         </Projectile>
         <Projectile id="1">
-            <ObjectId>Slime Wave</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>36</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Damage>75</Damage>
             <Speed>110</Speed>
             <Size>110</Size>

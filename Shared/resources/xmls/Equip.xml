@@ -11,7 +11,10 @@
         <Tier>Starter</Tier>
         <RateOfFire>1</RateOfFire>
         <Projectile>
-            <ObjectId>Small Sapphire Slash</ObjectId>
+            <Texture>
+                <Sheet>tieredProjectiles</Sheet>
+                <Index>0x00</Index>
+            </Texture>
             <Speed>130</Speed>
             <LifetimeMS>300</LifetimeMS>
             <Damage>330</Damage>
@@ -30,7 +33,10 @@
         <TierReq>1</TierReq>
         <RateOfFire>1</RateOfFire>
         <Projectile>
-            <ObjectId>Small Emerald Slash</ObjectId>
+            <Texture>
+                <Sheet>tieredProjectiles</Sheet>
+                <Index>0x01</Index>
+            </Texture>
             <Speed>130</Speed>
             <LifetimeMS>300</LifetimeMS>
             <Damage>360</Damage>
@@ -49,7 +55,10 @@
         <TierReq>1</TierReq>
         <RateOfFire>1</RateOfFire>
         <Projectile>
-            <ObjectId>Small Amethyst Slash</ObjectId>
+            <Texture>
+                <Sheet>tieredProjectiles</Sheet>
+                <Index>0x02</Index>
+            </Texture>
             <Speed>130</Speed>
             <LifetimeMS>300</LifetimeMS>
             <Damage>400</Damage>
@@ -68,7 +77,10 @@
         <TierReq>1</TierReq>
         <RateOfFire>1</RateOfFire>
         <Projectile>
-            <ObjectId>Medium Sapphire Slash</ObjectId>
+            <Texture>
+                <Sheet>tieredProjectiles</Sheet>
+                <Index>0x03</Index>
+            </Texture>
             <Speed>130</Speed>
             <LifetimeMS>300</LifetimeMS>
             <Damage>450</Damage>
@@ -87,7 +99,10 @@
         <TierReq>2</TierReq>
         <RateOfFire>1</RateOfFire>
         <Projectile>
-            <ObjectId>Medium Emerald Slash</ObjectId>
+            <Texture>
+                <Sheet>tieredProjectiles</Sheet>
+                <Index>0x04</Index>
+            </Texture>
             <Speed>130</Speed>
             <LifetimeMS>300</LifetimeMS>
             <Damage>500</Damage>
@@ -217,7 +232,11 @@
         <Tier>Starter</Tier>
         <RateOfFire>1</RateOfFire>
         <Projectile>
-            <ObjectId>Small Sapphire Arrow</ObjectId>
+            <Texture>
+                <Sheet>tieredProjectiles</Sheet>
+                <Index>0x10</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>180</Speed>
             <LifetimeMS>440</LifetimeMS>
             <MultiHit />
@@ -237,7 +256,10 @@
         <TierReq>1</TierReq>
         <RateOfFire>1</RateOfFire>
         <Projectile>
-            <ObjectId>Small Emerald Arrow</ObjectId>
+            <Texture>
+                <Sheet>tieredProjectiles</Sheet>
+                <Index>0x11</Index>
+            </Texture>
             <Speed>180</Speed>
             <LifetimeMS>440</LifetimeMS>
             <MultiHit />
@@ -257,7 +279,10 @@
         <TierReq>1</TierReq>
         <RateOfFire>1</RateOfFire>
         <Projectile>
-            <ObjectId>Small Amethyst Arrow</ObjectId>
+            <Texture>
+                <Sheet>tieredProjectiles</Sheet>
+                <Index>0x12</Index>
+            </Texture>
             <Speed>180</Speed>
             <LifetimeMS>440</LifetimeMS>
             <MultiHit />
@@ -277,7 +302,10 @@
         <TierReq>1</TierReq>
         <RateOfFire>1</RateOfFire>
         <Projectile>
-            <ObjectId>Medium Sapphire Arrow</ObjectId>
+            <Texture>
+                <Sheet>tieredProjectiles</Sheet>
+                <Index>0x13</Index>
+            </Texture>
             <Speed>180</Speed>
             <LifetimeMS>440</LifetimeMS>
             <MultiHit />
@@ -297,7 +325,10 @@
         <TierReq>2</TierReq>
         <RateOfFire>1</RateOfFire>
         <Projectile>
-            <ObjectId>Medium Emerald Arrow</ObjectId>
+            <Texture>
+                <Sheet>tieredProjectiles</Sheet>
+                <Index>0x14</Index>
+            </Texture>
             <Speed>180</Speed>
             <LifetimeMS>440</LifetimeMS>
             <MultiHit />
@@ -316,7 +347,10 @@
         <Tier>Starter</Tier>
         <RateOfFire>1</RateOfFire>
         <Projectile>
-            <ObjectId>Small Sapphire Bolt</ObjectId>
+            <Texture>
+                <Sheet>tieredProjectiles</Sheet>
+                <Index>0x20</Index>
+            </Texture>
             <Speed>150</Speed>
             <LifetimeMS>700</LifetimeMS>
             <MagicDamage>70</MagicDamage>
@@ -342,7 +376,10 @@
         <TierReq>1</TierReq>
         <RateOfFire>1</RateOfFire>
         <Projectile>
-            <ObjectId>Small Emerald Bolt</ObjectId>
+            <Texture>
+                <Sheet>tieredProjectiles</Sheet>
+                <Index>0x21</Index>
+            </Texture>
             <Speed>150</Speed>
             <LifetimeMS>700</LifetimeMS>
             <MagicDamage>85</MagicDamage>
@@ -368,7 +405,10 @@
         <TierReq>1</TierReq>
         <RateOfFire>1</RateOfFire>
         <Projectile>
-            <ObjectId>Small Amethyst Bolt</ObjectId>
+            <Texture>
+                <Sheet>tieredProjectiles</Sheet>
+                <Index>0x22</Index>
+            </Texture>
             <Speed>150</Speed>
             <LifetimeMS>700</LifetimeMS>
             <MagicDamage>95</MagicDamage>
@@ -394,7 +434,10 @@
         <TierReq>1</TierReq>
         <RateOfFire>1</RateOfFire>
         <Projectile>
-            <ObjectId>Medium Sapphire Bolt</ObjectId>
+            <Texture>
+                <Sheet>tieredProjectiles</Sheet>
+                <Index>0x23</Index>
+            </Texture>
             <Speed>150</Speed>
             <LifetimeMS>700</LifetimeMS>
             <MagicDamage>105</MagicDamage>
@@ -420,7 +463,10 @@
         <TierReq>2</TierReq>
         <RateOfFire>1</RateOfFire>
         <Projectile>
-            <ObjectId>Medium Emerald Bolt</ObjectId>
+            <Texture>
+                <Sheet>tieredProjectiles</Sheet>
+                <Index>0x24</Index>
+            </Texture>
             <Speed>150</Speed>
             <LifetimeMS>700</LifetimeMS>
             <MagicDamage>115</MagicDamage>
@@ -638,7 +684,11 @@
         <NumProjectiles>2</NumProjectiles>
         <ArcGap>6</ArcGap>
         <Projectile>
-            <ObjectId>Vine Shot</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>24</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>110</Speed>
             <LifetimeMS>800</LifetimeMS>
             <Damage>140</Damage>
@@ -657,7 +707,12 @@
         <TierReq>1</TierReq>
         <RateOfFire>1.2</RateOfFire>
         <Projectile>
-            <ObjectId>Bone Shot</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>16</Index>
+            </Texture>
+            <Rotation>200</Rotation>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>170</Speed>
             <LifetimeMS>570</LifetimeMS>
             <Damage>105</Damage>
@@ -725,7 +780,11 @@
         <TierReq>1</TierReq>
         <RateOfFire>1.5</RateOfFire>
         <Projectile>
-            <ObjectId>Rage Shot</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>20</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>200</Speed>
             <LifetimeMS>270</LifetimeMS>
             <Damage>310</Damage>
@@ -758,7 +817,11 @@
         <TierReq>1</TierReq>
         <RateOfFire>1.3</RateOfFire>
         <Projectile>
-            <ObjectId>Chopper Slash</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>26</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>110</Speed>
             <LifetimeMS>300</LifetimeMS>
             <Damage>370</Damage>
@@ -777,7 +840,11 @@
         <TierReq>1</TierReq>
         <RateOfFire>0.69</RateOfFire>
         <Projectile>
-            <ObjectId>Shaman Fire</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>27</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>150</Speed>
             <LifetimeMS>750</LifetimeMS>
             <Damage>250</Damage>
@@ -796,7 +863,11 @@
         <TierReq>1</TierReq>
         <RateOfFire>0.65</RateOfFire>
         <Projectile>
-            <ObjectId>TT Shot</ObjectId>
+            <Texture>
+                <Sheet>items</Sheet>
+                <Index>0x41</Index>
+            </Texture>
+            <Rotation>200</Rotation>
             <Speed>220</Speed>
             <LifetimeMS>300</LifetimeMS>
             <MultiHit />
@@ -816,7 +887,10 @@
         <TierReq>2</TierReq>
         <RateOfFire>1.1</RateOfFire>
         <Projectile>
-            <ObjectId>Sand Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>29</Index>
+            </Texture>
             <Speed>200</Speed>
             <LifetimeMS>360</LifetimeMS>
             <Damage>145</Damage>
@@ -851,7 +925,11 @@
         <TierReq>2</TierReq>
         <RateOfFire>0.81</RateOfFire>
         <Projectile>
-            <ObjectId>Scrounger Shot</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>28</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>180</Speed>
             <LifetimeMS>240</LifetimeMS>
             <Damage>720</Damage>
@@ -870,7 +948,11 @@
         <TierReq>2</TierReq>
         <RateOfFire>0.8</RateOfFire>
         <Projectile>
-            <ObjectId>Solstice Shot</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>32</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>150</Speed>
             <LifetimeMS>1020</LifetimeMS>
             <Damage>420</Damage>
@@ -906,7 +988,11 @@
         <TierReq>2</TierReq>
         <RateOfFire>1.1</RateOfFire>
         <Projectile>
-            <ObjectId>Reptile Arrow</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>41</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>180</Speed>
             <LifetimeMS>360</LifetimeMS>
             <Damage>450</Damage>
@@ -959,7 +1045,11 @@
         <TierReq>2</TierReq>
         <RateOfFire>1.2</RateOfFire>
         <Projectile>
-            <ObjectId>Burning Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>42</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>140</Speed>
             <LifetimeMS>260</LifetimeMS>
             <Damage>400</Damage>
@@ -1087,7 +1177,10 @@
         <TierReq>2</TierReq>
         <RateOfFire>1</RateOfFire>
         <Projectile>
-            <ObjectId>Medium Amethyst Slash</ObjectId>
+            <Texture>
+                <Sheet>tieredProjectiles</Sheet>
+                <Index>0x05</Index>
+            </Texture>
             <Speed>130</Speed>
             <LifetimeMS>300</LifetimeMS>
             <Damage>530</Damage>
@@ -1106,7 +1199,11 @@
         <TierReq>2</TierReq>
         <RateOfFire>1</RateOfFire>
         <Projectile>
-            <ObjectId>Large Sapphire Slash</ObjectId>
+            <Texture>
+                <Sheet>tieredProjectiles</Sheet>
+                <Index>0x06</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>130</Speed>
             <LifetimeMS>300</LifetimeMS>
             <Damage>560</Damage>
@@ -1125,7 +1222,11 @@
         <TierReq>3</TierReq>
         <RateOfFire>1</RateOfFire>
         <Projectile>
-            <ObjectId>Large Emerald Slash</ObjectId>
+            <Texture>
+                <Sheet>tieredProjectiles</Sheet>
+                <Index>0x07</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>130</Speed>
             <LifetimeMS>300</LifetimeMS>
             <Damage>590</Damage>
@@ -1144,7 +1245,11 @@
         <TierReq>3</TierReq>
         <RateOfFire>1</RateOfFire>
         <Projectile>
-            <ObjectId>Large Amethyst Slash</ObjectId>
+            <Texture>
+                <Sheet>tieredProjectiles</Sheet>
+                <Index>0x08</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>130</Speed>
             <LifetimeMS>300</LifetimeMS>
             <Damage>610</Damage>
@@ -1163,7 +1268,11 @@
         <TierReq>3</TierReq>
         <RateOfFire>1</RateOfFire>
         <Projectile>
-            <ObjectId>Prime Slash</ObjectId>
+            <Texture>
+                <Sheet>tieredProjectiles</Sheet>
+                <Index>0x09</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>130</Speed>
             <LifetimeMS>300</LifetimeMS>
             <Damage>630</Damage>
@@ -1322,7 +1431,11 @@
         <TierReq>2</TierReq>
         <RateOfFire>1</RateOfFire>
         <Projectile>
-            <ObjectId>Medium Amethyst Arrow</ObjectId>
+            <Texture>
+                <Sheet>tieredProjectiles</Sheet>
+                <Index>0x15</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>180</Speed>
             <LifetimeMS>440</LifetimeMS>
             <MultiHit />
@@ -1342,7 +1455,11 @@
         <TierReq>2</TierReq>
         <RateOfFire>1</RateOfFire>
         <Projectile>
-            <ObjectId>Large Sapphire Arrow</ObjectId>
+            <Texture>
+                <Sheet>tieredProjectiles</Sheet>
+                <Index>0x16</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>180</Speed>
             <LifetimeMS>440</LifetimeMS>
             <MultiHit />
@@ -1362,7 +1479,11 @@
         <TierReq>3</TierReq>
         <RateOfFire>1</RateOfFire>
         <Projectile>
-            <ObjectId>Large Emerald Arrow</ObjectId>
+            <Texture>
+                <Sheet>tieredProjectiles</Sheet>
+                <Index>0x17</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>180</Speed>
             <LifetimeMS>440</LifetimeMS>
             <MultiHit />
@@ -1382,7 +1503,11 @@
         <TierReq>3</TierReq>
         <RateOfFire>1</RateOfFire>
         <Projectile>
-            <ObjectId>Large Amethyst Arrow</ObjectId>
+            <Texture>
+                <Sheet>tieredProjectiles</Sheet>
+                <Index>0x18</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>180</Speed>
             <LifetimeMS>440</LifetimeMS>
             <MultiHit />
@@ -1402,7 +1527,11 @@
         <TierReq>3</TierReq>
         <RateOfFire>1</RateOfFire>
         <Projectile>
-            <ObjectId>Prime Arrow</ObjectId>
+            <Texture>
+                <Sheet>tieredProjectiles</Sheet>
+                <Index>0x19</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>180</Speed>
             <LifetimeMS>440</LifetimeMS>
             <MultiHit />
@@ -1422,7 +1551,11 @@
         <TierReq>2</TierReq>
         <RateOfFire>1</RateOfFire>
         <Projectile>
-            <ObjectId>Medium Amethyst Bolt</ObjectId>
+            <Texture>
+                <Sheet>tieredProjectiles</Sheet>
+                <Index>0x25</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>150</Speed>
             <LifetimeMS>700</LifetimeMS>
             <MagicDamage>130</MagicDamage>
@@ -1448,7 +1581,10 @@
         <TierReq>2</TierReq>
         <RateOfFire>1</RateOfFire>
         <Projectile>
-            <ObjectId>Large Sapphire Bolt</ObjectId>
+            <Texture>
+                <Sheet>tieredProjectiles</Sheet>
+                <Index>0x26</Index>
+            </Texture>
             <Speed>150</Speed>
             <LifetimeMS>700</LifetimeMS>
             <MagicDamage>150</MagicDamage>
@@ -1474,7 +1610,11 @@
         <TierReq>3</TierReq>
         <RateOfFire>1</RateOfFire>
         <Projectile>
-            <ObjectId>Large Emerald Bolt</ObjectId>
+            <Texture>
+                <Sheet>tieredProjectiles</Sheet>
+                <Index>0x27</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>150</Speed>
             <LifetimeMS>700</LifetimeMS>
             <MagicDamage>170</MagicDamage>
@@ -1500,7 +1640,11 @@
         <TierReq>3</TierReq>
         <RateOfFire>1</RateOfFire>
         <Projectile>
-            <ObjectId>Large Amethyst Bolt</ObjectId>
+            <Texture>
+                <Sheet>tieredProjectiles</Sheet>
+                <Index>0x28</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>190</Speed>
             <LifetimeMS>700</LifetimeMS>
             <MagicDamage>170</MagicDamage>
@@ -1526,7 +1670,11 @@
         <TierReq>3</TierReq>
         <RateOfFire>1</RateOfFire>
         <Projectile>
-            <ObjectId>Prime Bolt</ObjectId>
+            <Texture>
+                <Sheet>tieredProjectiles</Sheet>
+                <Index>0x29</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>150</Speed>
             <LifetimeMS>700</LifetimeMS>
             <MagicDamage>220</MagicDamage>
@@ -1776,7 +1924,11 @@
         <TierReq>2</TierReq>
         <RateOfFire>0.7</RateOfFire>
         <Projectile>
-            <ObjectId>Earth Sword Proj</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>71</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>80</Speed>
             <LifetimeMS>620</LifetimeMS>
             <Damage>750</Damage>
@@ -1796,7 +1948,11 @@
         <TierReq>2</TierReq>
         <RateOfFire>1.2</RateOfFire>
         <Projectile>
-            <ObjectId>Air Sword Proj</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>69</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>120</Speed>
             <LifetimeMS>400</LifetimeMS>
             <Damage>330</Damage>
@@ -1818,7 +1974,11 @@
         <TierReq>2</TierReq>
         <RateOfFire>1</RateOfFire>
         <Projectile>
-            <ObjectId>Neon Sword Shot</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>90</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>100</Speed>
             <LifetimeMS>300</LifetimeMS>
             <Damage>720</Damage>
@@ -1837,7 +1997,11 @@
         <TierReq>2</TierReq>
         <RateOfFire>0.9</RateOfFire>
         <Projectile>
-            <ObjectId>AC Proj</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>112</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>90</Speed>
             <LifetimeMS>400</LifetimeMS>
             <Damage>450</Damage>
@@ -1902,7 +2066,11 @@
         <TierReq>2</TierReq>
         <RateOfFire>1.4</RateOfFire>
         <Projectile>
-            <ObjectId>Infernal Spear Proj</ObjectId>
+            <Texture>
+                <Sheet>items</Sheet>
+                <Index>0x44</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>160</Speed>
             <LifetimeMS>600</LifetimeMS>
             <Damage>500</Damage>
@@ -1921,7 +2089,11 @@
         <TierReq>2</TierReq>
         <RateOfFire>1.2</RateOfFire>
         <Projectile>
-            <ObjectId>Air Bow Proj</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>68</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>160</Speed>
             <LifetimeMS>450</LifetimeMS>
             <Damage>250</Damage>
@@ -1942,7 +2114,11 @@
         <TierReq>2</TierReq>
         <RateOfFire>0.6</RateOfFire>
         <Projectile>
-            <ObjectId>Neon Bow Shot</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>85</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>80</Speed>
             <LifetimeMS>700</LifetimeMS>
             <Damage>1050</Damage>
@@ -1961,7 +2137,11 @@
         <TierReq>2</TierReq>
         <RateOfFire>1.1</RateOfFire>
         <Projectile>
-            <ObjectId>Lab Staff Proj</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>111</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>120</Speed>
             <LifetimeMS>700</LifetimeMS>
             <Damage>280</Damage>
@@ -1984,7 +2164,11 @@
         <TierReq>2</TierReq>
         <RateOfFire>1</RateOfFire>
         <Projectile>
-            <ObjectId>Water Staff Proj</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>70</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>190</Speed>
             <LifetimeMS>350</LifetimeMS>
             <Damage>550</Damage>
@@ -2004,7 +2188,11 @@
         <TierReq>2</TierReq>
         <RateOfFire>1.4</RateOfFire>
         <Projectile>
-            <ObjectId>Air Staff Proj</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>67</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>130</Speed>
             <LifetimeMS>550</LifetimeMS>
             <Damage>400</Damage>
@@ -2025,7 +2213,11 @@
         <TierReq>2</TierReq>
         <RateOfFire>0.7</RateOfFire>
         <Projectile>
-            <ObjectId>Carbon Staff Shot</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>84</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>150</Speed>
             <LifetimeMS>420</LifetimeMS>
             <Damage>1300</Damage>
@@ -2092,7 +2284,11 @@
         <TierReq>2</TierReq>
         <RateOfFire>1</RateOfFire>
         <Projectile>
-            <ObjectId>Wyrm Red Blast</ObjectId>
+            <Texture>
+                <Sheet>projectiles</Sheet>
+                <Index>113</Index>
+            </Texture>
+            <AngleCorrection>1</AngleCorrection>
             <Speed>150</Speed>
             <LifetimeMS>420</LifetimeMS>
             <Damage>1200</Damage>
