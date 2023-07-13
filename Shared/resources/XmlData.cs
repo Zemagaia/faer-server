@@ -13,6 +13,10 @@ public class XmlData {
     public Dictionary<ushort, string> ObjectTypeToId;
     public Dictionary<string, ushort> IdToObjectType;
     public Dictionary<string, ushort> DisplayIdToObjectType;
+    public Dictionary<ushort, XElement> ItemTypeToElement;
+    public Dictionary<ushort, string> ItemTypeToId;
+    public Dictionary<string, ushort> IdToItemType;
+    public Dictionary<string, ushort> DisplayIdToItemType;
     public Dictionary<ushort, XElement> TileTypeToElement;
     public Dictionary<ushort, string> TileTypeToId;
     public Dictionary<string, ushort> IdToTileType;
@@ -36,6 +40,10 @@ public class XmlData {
         ObjectTypeToId = new Dictionary<ushort, string>();
         IdToObjectType = new Dictionary<string, ushort>(StringComparer.InvariantCultureIgnoreCase);
         DisplayIdToObjectType = new Dictionary<string, ushort>(StringComparer.InvariantCultureIgnoreCase);
+        ItemTypeToElement = new Dictionary<ushort, XElement>();
+        ItemTypeToId = new Dictionary<ushort, string>();
+        IdToItemType = new Dictionary<string, ushort>(StringComparer.InvariantCultureIgnoreCase);
+        DisplayIdToItemType = new Dictionary<string, ushort>(StringComparer.InvariantCultureIgnoreCase);
         TileTypeToElement = new Dictionary<ushort, XElement>();
         TileTypeToId = new Dictionary<ushort, string>();
         IdToTileType = new Dictionary<string, ushort>(StringComparer.InvariantCultureIgnoreCase);
@@ -75,6 +83,10 @@ public class XmlData {
         ObjectTypeToId.Clear();
         IdToObjectType.Clear();
         DisplayIdToObjectType.Clear();
+        ItemTypeToElement.Clear();
+        ItemTypeToId.Clear();
+        IdToItemType.Clear();
+        DisplayIdToItemType.Clear();
         TileTypeToElement.Clear();
         TileTypeToId.Clear();
         IdToTileType.Clear();
@@ -86,6 +98,38 @@ public class XmlData {
         Skins.Clear();
         Merchants.Clear();
         SlotType2ItemType.Clear();
+    }
+    
+    private void AddItems(XElement root) {
+        foreach (var elem in root.XPathSelectElements("//Item")) {
+            var id = elem.Attribute("id")!.Value;
+
+            var typeAttr = elem.Attribute("type");
+            if (typeAttr == null) {
+                log.Error($"{id} is missing type number. Skipped.");
+                continue;
+            }
+
+            var type = (ushort) Utils.FromString(typeAttr.Value);
+
+            if (ItemTypeToId.TryGetValue(type, out var value1))
+                log.Warn("'{0}' and '{1}' has the same ID of 0x{2:x4}!", id, value1, type);
+            else {
+                ItemTypeToId[type] = id;
+                ItemTypeToElement[type] = elem;
+            }
+
+            if (IdToItemType.TryGetValue(id, out var value))
+                log.Warn("0x{0:x4} and 0x{1:x4} has the same name of {2}!", type, value, id);
+            else
+                IdToItemType[id] = type;
+
+            var displayId = elem.Element("DisplayId") != null ? elem.Element("DisplayId")!.Value : null;
+            var displayName = displayId == null ? id : displayId[0].Equals('{') ? id : displayId;
+
+            DisplayIdToItemType[displayName] = type;
+            Items[type] = new Item(type, elem);
+        }
     }
 
     private void AddObjects(XElement root) {
@@ -122,10 +166,6 @@ public class XmlData {
             DisplayIdToObjectType[displayName] = type;
 
             switch (cls) {
-                case "Equipment":
-                case "Dye":
-                    Items[type] = new Item(type, elem);
-                    break;
                 case "Skin":
                     var skinDesc = SkinDesc.FromElem(type, elem);
                     if (skinDesc != null)
@@ -180,6 +220,7 @@ public class XmlData {
     }
 
     private void ProcessXml(XElement root) {
+        AddItems(root);
         AddObjects(root);
         AddGrounds(root);
     }

@@ -301,11 +301,9 @@ internal class GimmeCommand : Command {
     protected override bool Process(Player player, RealmTime time, string args) {
         var gameData = player.Manager.Resources.GameData;
 
-        ushort objType;
-
         // allow both DisplayId and Id for query, prioritize Id
-        if (!gameData.IdToObjectType.TryGetValue(args, out objType)) {
-            if (!gameData.DisplayIdToObjectType.TryGetValue(args, out objType)) {
+        if (!gameData.IdToItemType.TryGetValue(args, out var objType)) {
+            if (!gameData.DisplayIdToItemType.TryGetValue(args, out objType)) {
                 player.SendError("Unknown item type!");
                 return false;
             }

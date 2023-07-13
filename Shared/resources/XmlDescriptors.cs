@@ -687,11 +687,11 @@ public class MerchantList
         // todo fix
         Region = TileRegion.None; //(TileRegion)Enum.Parse(typeof(TileRegion), e.ParseString("@region").Replace(' ', '_'));
         Currency = (CurrencyType)Enum.Parse(typeof(CurrencyType), e.ParseString("@currency"));
-        var idToObjectType = gameData.IdToObjectType;
+        var idToItemType = gameData.IdToItemType;
         Items = new List<ISellableItem>();
         foreach (var i in e.Elements("Item"))
         {
-            if (!idToObjectType.TryGetValue(i.Value, out var item))
+            if (!idToItemType.TryGetValue(i.Value, out var item))
             {
                 Log.Error($"Failed when adding \"{i.Value}\" to shop. Item does not exist.");
                 continue;
