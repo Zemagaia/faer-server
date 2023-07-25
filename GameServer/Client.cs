@@ -811,10 +811,10 @@ public class Client {
                     ProcessReskin((ushort) ReadInt(ref ptr, ref spanRef, len));
                     break;
                 case C2SPacketId.ShootAck:
-                    ProcessShootAck();
+                    ProcessShootAck(ReadInt(ref ptr, ref spanRef, len));
                     break;
                 case C2SPacketId.SquareHit:
-                    ProcessSquareHit();
+                    ProcessSquareHit(ReadInt(ref ptr, ref spanRef, len), ReadByte(ref ptr, ref spanRef, len), ReadInt(ref ptr, ref spanRef, len));
                     break;
                 case C2SPacketId.Teleport:
                     ProcessTeleport(ReadInt(ref ptr, ref spanRef, len));
@@ -1503,9 +1503,9 @@ public class Client {
         Player.SetDefaultSize((ushort) skinSize);
     }
 
-    private void ProcessShootAck() { }
+    private void ProcessShootAck(int time) { }
 
-    private void ProcessSquareHit() { }
+    private void ProcessSquareHit(int time, byte bulletId, int objId) { }
 
     private void ProcessTeleport(int objId) {
         if (Player?.Owner != null) {
