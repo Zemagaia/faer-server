@@ -1,5 +1,5 @@
 # faer-src
-Faer server source, runs on .NET Core 7.0. Client can be found [here](https://github.com/Zemagaia/faer-cli). 
+Faer server source, runs on .NET Core 7.0. Client can be found [here](https://github.com/Zemagaia/faer-client). 
 
 Database relies on Redis.
 
